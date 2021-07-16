@@ -32,16 +32,16 @@
  */
 
 html {
-  font-family: 'Open Sans', 'Roboto', Helvetica, Arial, sans-serif;
+  font-family: 'Noto Sans JP', 'Noto Sans', 'Roboto', Helvetica, Arial, sans-serif;
 }
 @media (min-width: 48em) {
   html {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 @media (min-width: 58em) {
   html {
-    font-size: 18px;
+    font-size: 17px;
   }
 }
 
@@ -55,8 +55,8 @@ html {
 
 .sidebar {
   text-align: center;
-  padding: 2rem 1rem;
-  color: rgba(255,255,255,.5);
+  padding: 3rem 1rem;
+  /* color: rgba(255,255,255,.5); */
   background-color: #202020;
 }
 @media (min-width: 48em) {
@@ -82,9 +82,9 @@ html {
 /* About section */
 .sidebar-about h1 {
   color: #fff;
-  margin-top: 0;
-  font-size: 2.25rem;
-  font-weight: 400;
+  margin: 1rem 0;
+  font-size: 3rem;
+  font-weight: 600;
 }
 
 /* Sidebar nav */
@@ -104,7 +104,7 @@ a.sidebar-nav-item:focus {
 }
 
 /* localhostで下書き一覧ページへジャンプするためのボタン */
-.draftButton {
+/* .draftButton {
   display: block;
   text-align: center;
   width: 100%;
@@ -113,7 +113,7 @@ a.sidebar-nav-item:focus {
   background: blue;
   padding: 0.3em 0.5em;
   border-radius: 3em;
-}
+} */
 
 /* Container
  *
@@ -146,7 +146,8 @@ footer {
 
 @media (min-width: 48em) {
   .content {
-    max-width: 40rem;
+    max-width: 45rem;
+    margin-top: 1rem;
     margin-left: 20rem;
     margin-right: 2rem;
     margin-bottom: -40px;
@@ -161,9 +162,9 @@ footer {
 
 /* イメージのボーダーとサイズ */
 .img-headshot {
-  border: 6px solid #fff;
-  height: 180px;
-  width: 180px;
+  /* border: 2px solid #fff; */
+  height: 150px;
+  width: 150px;
 }
 
 .center {
@@ -190,6 +191,7 @@ footer a,
 
 .read-more-link {
   margin-top: 1rem;
+  margin-right: 3.5rem;
   text-align: right;
 }
 
@@ -229,12 +231,14 @@ ul.posts li,
 .social-icons a {
   font-size: 1.5rem;
   padding: 0.2rem;
+  color: #fff;
 }
 
 @media (min-width: 58rem) {
   .social-icons a {
     font-size: 2.0rem;
     padding: 0.5rem;
+    color: #fff;
   }
 
   ul.posts li,
@@ -336,7 +340,7 @@ ul.tags {
 
 ul.tags li {
   display: inline-block;
-  margin: 0.25rem 0;
+  margin: 0.25rem 0.25rem;
 }
 
 a.tag-link {
@@ -345,11 +349,31 @@ a.tag-link {
   border-radius: 3px;
   font-size: 0.75rem;
   text-decoration: none;
-  color: #757575 !important;
+  color: #757575;
 }
 
 a.tag-link:hover {
   text-decoration: none;
+  background-color: #757575;
+  color: #f2f2f2;
+}
+
+a.category-link {
+  background-color: #fff;
+  padding: 5px 10px;
+  border-color: #49757a;
+  border: 1px solid;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: #49757a;
+}
+
+a.category-link:hover {
+  text-decoration: none;
+  background-color: #49757a;
+  color: #fff;
+
 }
 
 figure {
