@@ -130,10 +130,12 @@ dd {
 hr {
   position: relative;
   margin: 1.5rem 0;
-  border: 0;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #fff;
+  border-top: 5px dotted #bbb;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
 }
+
 
 abbr {
   font-size: 85%;
@@ -322,7 +324,7 @@ tbody tr:nth-child(odd) th {
 
 .page .title,
 .post .title {
-  font-size: 2rem;
+  font-size: 3.5rem;
 }
 
 /* Blog post or page title */
