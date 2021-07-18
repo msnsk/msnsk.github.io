@@ -86,14 +86,15 @@ h1, h2, h3, h4, h5, h6 {
   text-rendering: optimizeLegibility;
 }
 h1 {
-  font-size: 2rem;
+  margin: 1.5rem 0;
+  font-size: 2.5rem;
 }
 h2 {
   margin-top: 1rem;
   font-size: 1.5rem;
 }
 h3 {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   font-size: 1.25rem;
 }
 h4, h5, h6 {
@@ -244,8 +245,8 @@ tbody tr:nth-child(odd) th {
  */
 
 .lead {
-  font-size: 1.25rem;
-  font-weight: 300;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 
@@ -315,6 +316,7 @@ tbody tr:nth-child(odd) th {
 
 .page,
 .post {
+  margin-left: 2em;
   margin-bottom: 2em;
 }
 
