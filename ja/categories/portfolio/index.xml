@@ -1,3 +1,42 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>portfolio on ピーナッツコード</title><link>https://www.peanuts-code.com/ja/categories/portfolio/</link><description>Recent content in portfolio on ピーナッツコード</description><generator>Hugo -- gohugo.io</generator><language>ja</language><lastBuildDate>Fri, 06 Aug 2021 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/categories/portfolio/index.xml" rel="self" type="application/rss+xml"/><item><title>コロナデータ</title><link>https://www.peanuts-code.com/ja/portfolio/coronadata/</link><pubDate>Fri, 06 Aug 2021 00:00:00 +0900</pubDate><guid>https://www.peanuts-code.com/ja/portfolio/coronadata/</guid><description>Summary 新型コロナウイルス感染症による影響を統計データで確認するiPhone用のアプリです。簡単操作で、全国および現在地や選択した都道府県のデータを確認できます。データの推移は24ヶ月間、12週間、7日間の3つのスパンでチャート化されますので、数値だけの情報に比べて、視覚的に確認しやすくなっています。
-オリジナルデータは内閣官房が公開しているデータ。広告なし、完全無料。
-　Privacy Policy You can confirm the privacy policy of this app.</description></item><item><title>Alarm Clock Cards</title><link>https://www.peanuts-code.com/ja/portfolio/alarmclockcards/</link><pubDate>Thu, 08 Jul 2021 01:53:13 +0900</pubDate><guid>https://www.peanuts-code.com/ja/portfolio/alarmclockcards/</guid><description>Here is the best alarm clock app for people who wake up differently depending on the day.</description></item><item><title>Beautipletimer</title><link>https://www.peanuts-code.com/ja/portfolio/beautipletimer/</link><pubDate>Thu, 08 Jul 2021 01:52:57 +0900</pubDate><guid>https://www.peanuts-code.com/ja/portfolio/beautipletimer/</guid><description>A very beautiful and simple timer app is here. You can use it without network.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>portfolio on Masanao Sako</title>
+    <link>https://www.peanuts-code.com/ja/categories/portfolio/</link>
+    <description>Recent content in portfolio on Masanao Sako</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 06 Aug 2021 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/categories/portfolio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>コロナデータ</title>
+      <link>https://www.peanuts-code.com/ja/portfolio/coronadata/</link>
+      <pubDate>Fri, 06 Aug 2021 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/portfolio/coronadata/</guid>
+      <description>Caution!!  このアプリケーションはApp Storeへの申請でリジェクトされました。その理由は、個人開発ではCOVID19に関わる内容のアプリケーションは承認できないというものです。 日の目を見る機会を失ったアプリですが、GitHubのリポジトリにあげているので興味のある方は見てみてください。</description>
+    </item>
+    
+    <item>
+      <title>アラームクロックカード</title>
+      <link>https://www.peanuts-code.com/ja/portfolio/alarmclockcards/</link>
+      <pubDate>Thu, 08 Jul 2021 01:53:13 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/portfolio/alarmclockcards/</guid>
+      <description>毎日起床時間が異なる人にとって最適な目覚まし時計アプリです。
+最初に起床時間のパターンをいくつか設定しておけば、わずか数秒でアラームをセットすることができます。
+ダークモードにも対応。美しいUIとアニメーション。</description>
+    </item>
+    
+    <item>
+      <title>BeautipleTimer</title>
+      <link>https://www.peanuts-code.com/ja/portfolio/beautipletimer/</link>
+      <pubDate>Thu, 08 Jul 2021 01:52:57 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/portfolio/beautipletimer/</guid>
+      <description>とても美しくてシンプルなタイマーアプリです。
+ネットワークがなくても、完全にオフラインでご利用いただけます。
+もしあなたがプレゼンテーションのファシリテータであるならば、さらにお勧めです。 Download App Storeで詳細の確認やダウンロードをしていただけます。</description>
+    </item>
+    
+  </channel>
+</rss>
