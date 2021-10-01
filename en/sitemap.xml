@@ -148,7 +148,17 @@
                 href="https://www.peanuts-code.com/en/homepage/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/post/</loc>
+    <loc>https://www.peanuts-code.com/en/posts/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/posts/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/en/series/</loc>
     <xhtml:link
