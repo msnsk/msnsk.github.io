@@ -28,19 +28,6 @@
                 href="https://www.peanuts-code.com/ja/tags/app/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/categories/</loc>
-    <lastmod>2021-08-06T00:00:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/categories/"
-                />
-  </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/ios/</loc>
     <lastmod>2021-08-06T00:00:00+09:00</lastmod>
     <xhtml:link
@@ -67,32 +54,6 @@
                 href="https://www.peanuts-code.com/ja/tags/mobile/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/portfolio/</loc>
-    <lastmod>2021-08-06T00:00:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/portfolio/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/portfolio/"
-                />
-  </url><url>
-    <loc>https://www.peanuts-code.com/ja/categories/portfolio/</loc>
-    <lastmod>2021-08-06T00:00:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/categories/portfolio/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/categories/portfolio/"
-                />
-  </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/</loc>
     <lastmod>2021-08-06T00:00:00+09:00</lastmod>
     <xhtml:link
@@ -106,33 +67,33 @@
                 href="https://www.peanuts-code.com/ja/tags/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/portfolio/coronadata/</loc>
+    <loc>https://www.peanuts-code.com/ja/about/coronadata/</loc>
     <lastmod>2021-08-06T00:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/portfolio/alarmclockcards/</loc>
+    <loc>https://www.peanuts-code.com/ja/about/alarmclockcards/</loc>
     <lastmod>2021-07-08T01:53:13+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.peanuts-code.com/en/portfolio/alarmclockcards/"
+                href="https://www.peanuts-code.com/en/about/alarmclockcards/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://www.peanuts-code.com/ja/portfolio/alarmclockcards/"
+                href="https://www.peanuts-code.com/ja/about/alarmclockcards/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/portfolio/beautipletimer/</loc>
+    <loc>https://www.peanuts-code.com/ja/about/beautipletimer/</loc>
     <lastmod>2021-07-08T01:52:57+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.peanuts-code.com/en/portfolio/beautipletimer/"
+                href="https://www.peanuts-code.com/en/about/beautipletimer/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://www.peanuts-code.com/ja/portfolio/beautipletimer/"
+                href="https://www.peanuts-code.com/ja/about/beautipletimer/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/about/</loc>
@@ -161,18 +122,6 @@
                 href="https://www.peanuts-code.com/ja/archives/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/index/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/index/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/index/"
-                />
-  </url><url>
     <loc>https://www.peanuts-code.com/ja/post/</loc>
     <xhtml:link
                 rel="alternate"
@@ -183,6 +132,18 @@
                 rel="alternate"
                 hreflang="ja"
                 href="https://www.peanuts-code.com/ja/post/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/categories/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/series/</loc>
@@ -196,5 +157,7 @@
                 hreflang="ja"
                 href="https://www.peanuts-code.com/ja/series/"
                 />
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tutorials/</loc>
   </url>
 </urlset>

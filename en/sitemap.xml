@@ -15,17 +15,17 @@
                 href="https://www.peanuts-code.com/en/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/portfolio/alarmclockcards/</loc>
+    <loc>https://www.peanuts-code.com/en/about/alarmclockcards/</loc>
     <lastmod>2021-07-08T01:53:13+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://www.peanuts-code.com/ja/portfolio/alarmclockcards/"
+                href="https://www.peanuts-code.com/ja/about/alarmclockcards/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.peanuts-code.com/en/portfolio/alarmclockcards/"
+                href="https://www.peanuts-code.com/en/about/alarmclockcards/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/app/</loc>
@@ -80,31 +80,8 @@
                 href="https://www.peanuts-code.com/en/tags/mobile/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/portfolio/</loc>
-    <lastmod>2021-07-08T01:53:13+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/portfolio/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/portfolio/"
-                />
-  </url><url>
     <loc>https://www.peanuts-code.com/en/categories/portfolio/</loc>
     <lastmod>2021-07-08T01:53:13+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/categories/portfolio/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/categories/portfolio/"
-                />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/</loc>
     <lastmod>2021-07-08T01:53:13+09:00</lastmod>
@@ -119,17 +96,17 @@
                 href="https://www.peanuts-code.com/en/tags/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/portfolio/beautipletimer/</loc>
+    <loc>https://www.peanuts-code.com/en/about/beautipletimer/</loc>
     <lastmod>2021-07-08T01:52:57+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://www.peanuts-code.com/ja/portfolio/beautipletimer/"
+                href="https://www.peanuts-code.com/ja/about/beautipletimer/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.peanuts-code.com/en/portfolio/beautipletimer/"
+                href="https://www.peanuts-code.com/en/about/beautipletimer/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/about/</loc>
@@ -158,16 +135,17 @@
                 href="https://www.peanuts-code.com/en/archives/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/index/</loc>
+    <loc>https://www.peanuts-code.com/en/homepage/</loc>
+    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/index/"
+                href=""
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/index/"
+                href="https://www.peanuts-code.com/en/homepage/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/post/</loc>
