@@ -122,17 +122,7 @@
                 href="https://www.peanuts-code.com/ja/archives/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/post/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/post/"
-                />
+    <loc>https://www.peanuts-code.com/ja/posts/</loc>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/categories/</loc>
     <xhtml:link
