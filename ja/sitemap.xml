@@ -96,9 +96,6 @@
                 href="https://www.peanuts-code.com/ja/about/beautipletimer/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/portfolio/</loc>
-    <lastmod>2021-07-07T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.peanuts-code.com/ja/about/</loc>
     <lastmod>2021-07-07T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -111,9 +108,6 @@
                 hreflang="ja"
                 href="https://www.peanuts-code.com/ja/about/"
                 />
-  </url><url>
-    <loc>https://www.peanuts-code.com/ja/portfolio/about/</loc>
-    <lastmod>2021-07-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
@@ -165,5 +159,15 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tutorials/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tutorials/"
+                />
   </url>
 </urlset>
