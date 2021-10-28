@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.peanuts-code.com/ja/</loc>
-    <lastmod>2021-08-06T00:00:00+09:00</lastmod>
+    <lastmod>2021-10-25T00:15:11+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -14,6 +14,44 @@
                 hreflang="ja"
                 href="https://www.peanuts-code.com/ja/"
                 />
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/godot/</loc>
+    <lastmod>2021-10-25T00:15:11+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tutorials/godot_download/</loc>
+    <lastmod>2021-10-25T00:15:11+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/</loc>
+    <lastmod>2021-10-25T00:15:11+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tutorials/</loc>
+    <lastmod>2021-10-25T00:15:11+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tutorials/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tutorials/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/</loc>
+    <lastmod>2021-10-25T00:15:11+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3/</loc>
+    <lastmod>2021-10-25T00:15:11+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/app/</loc>
     <lastmod>2021-08-06T00:00:00+09:00</lastmod>
@@ -52,19 +90,6 @@
                 rel="alternate"
                 hreflang="ja"
                 href="https://www.peanuts-code.com/ja/tags/mobile/"
-                />
-  </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/</loc>
-    <lastmod>2021-08-06T00:00:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/about/coronadata/</loc>
@@ -156,18 +181,6 @@
                 rel="alternate"
                 hreflang="ja"
                 href="https://www.peanuts-code.com/ja/series/"
-                />
-  </url><url>
-    <loc>https://www.peanuts-code.com/ja/tutorials/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tutorials/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tutorials/"
                 />
   </url>
 </urlset>
