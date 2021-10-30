@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>ゲームエンジン on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3/</link>
-    <description>Recent content in ゲームエンジン on Peanuts Code</description>
+    <title>プロジェクトマネージャー on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3%E3%83%BC/</link>
+    <description>Recent content in プロジェクトマネージャー on Peanuts Code</description>
     <image>
       <url>https://www.peanuts-code.com/105</url>
       <link>https://www.peanuts-code.com/105</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 30 Oct 2021 12:30:09 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Oct 2021 12:30:09 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot Engine のプロジェクトマネージャーの操作</title>
       <link>https://www.peanuts-code.com/ja/tutorials/project_manager/</link>
@@ -18,15 +18,6 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/project_manager/</guid>
       <description>Godot Engine のプロジェクトマネージャでプロジェクトを新規作成したり、プロジェクトファイルをインポートしたり、プロジェクトマネージャから除去したりする方法を解説します。</description>
-    </item>
-    
-    <item>
-      <title>Godot Engine のダウンロード手順</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/godot_download/</link>
-      <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/godot_download/</guid>
-      <description>この記事では、インディーゲーム業界で特に人気のゲームエンジン Godot Engine のダウンロード手順を説明します。</description>
     </item>
     
   </channel>
