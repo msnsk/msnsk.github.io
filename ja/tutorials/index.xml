@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 01 Nov 2021 12:37:47 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Nov 2021 17:44:27 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るブロック崩し - Part 1</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_1/</link>
+      <pubDate>Sat, 06 Nov 2021 17:44:27 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_1/</guid>
+      <description>ゲームエンジン Godot を使って、シンプルで昔ながらのブロック崩しゲームを作る手順を解説します。Godot 初心者の方は必見です。Part 1 ではゲームのプレイ画面にパドルを配置して動かすところまでやります。</description>
+    </item>
+    
     <item>
       <title>Godot Engine の言語設定を変更する</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</link>
@@ -18,15 +27,6 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</guid>
       <description>Godot Engine で表示される言語の設定を変更する手順について説明します。</description>
-    </item>
-    
-    <item>
-      <title>Godot で作るブロック崩し - Part 1</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_1/</link>
-      <pubDate>Sat, 30 Oct 2021 17:44:27 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_1/</guid>
-      <description>Godot Engine を使って、シンプルで昔ながらのブロック崩しゲームを作る手順を解説します。Godot 初心者の方は必見です。Part 1 ではゲームのプレイ画面にパドルを配置して動かすところまでやります。</description>
     </item>
     
     <item>
