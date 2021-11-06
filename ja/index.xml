@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Godot で作るブロック崩し - Part 1</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_1/</link>
+      <pubDate>Sat, 30 Oct 2021 17:44:27 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_1/</guid>
+      <description>Godot Engine を使って、シンプルで昔ながらのブロック崩しゲームを作る手順を解説します。Godot 初心者の方は必見です。Part 1 ではゲームのプレイ画面にパドルを配置して動かすところまでやります。</description>
+    </item>
+    
+    <item>
       <title>Godot Engine のプロジェクトマネージャーでできること</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</link>
       <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
@@ -44,7 +53,8 @@
       <pubDate>Fri, 06 Aug 2021 00:00:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/about/coronadata/</guid>
-      <description>このアプリケーションはApp Storeへの申請でリジェクトされました。その理由は、個人開発ではCOVID19に関わる内容のアプリケーションは承認できないというものです。 日の目を見る機会を失ったアプリですが、GitHubのリポジトリ にあげているので興味のある方は見てみてください。</description>
+      <description>このアプリケーションはApp Storeへの申請でリジェクトされました。その理由は、個人開発ではCOVID19に関わる内容のアプリケーションは承認できないというものです。
+日の目を見る機会を失ったアプリですが、GitHubのリポジトリ にあげているので興味のある方は見てみてください。</description>
     </item>
     
     <item>
@@ -66,7 +76,7 @@
       <guid>https://www.peanuts-code.com/ja/about/beautipletimer/</guid>
       <description>とても美しくてシンプルなタイマーアプリです。
 ネットワークがなくても、完全にオフラインでご利用いただけます。
-もしあなたがプレゼンテーションのファシリテータであるならば、さらにお勧めです。 Download App Storeで詳細の確認やダウンロードをしていただけます。</description>
+もしあなたがプレゼンテーションのファシリテータであるならば、さらにお勧めです。</description>
     </item>
     
     

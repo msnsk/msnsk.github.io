@@ -23,18 +23,18 @@
 <link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.88.1" />
+<meta name="generator" content="Hugo 0.89.1" />
 <link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0001_download/" />
 <meta property="og:title" content="Godot Engine のダウンロード手順" />
 <meta property="og:description" content="この記事では、インディーゲーム業界で特に人気のゲームエンジン Godot Engine のダウンロード手順を説明します。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.peanuts-code.com/ja/tutorials/gd0001_download/" />
-<meta property="og:image" content="https://www.peanuts-code.com/images/godot/logo_vertical_color_light.png" /><meta property="article:section" content="tutorials" />
+<meta property="og:image" content="https://www.peanuts-code.com/images/godot_logo/logo_vertical_color_light.png" /><meta property="article:section" content="tutorials" />
 <meta property="article:published_time" content="2021-10-25T00:15:11&#43;09:00" />
 <meta property="article:modified_time" content="2021-10-25T00:15:11&#43;09:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.peanuts-code.com/images/godot/logo_vertical_color_light.png" />
+<meta name="twitter:image" content="https://www.peanuts-code.com/images/godot_logo/logo_vertical_color_light.png" />
 <meta name="twitter:title" content="Godot Engine のダウンロード手順"/>
 <meta name="twitter:description" content="この記事では、インディーゲーム業界で特に人気のゲームエンジン Godot Engine のダウンロード手順を説明します。"/>
 
@@ -69,10 +69,10 @@
   "keywords": [
     "Godot", "ゲームエンジン", "ダウンロード"
   ],
-  "articleBody": "Godot とは Godot（ゴドー）とは、今インディーゲーム業界を中心に利用者が増えている、非常に人気のあるオープンソースのゲームエンジンです。Godot Engine（ゴドー・エンジン）または、シンプルに Godot（ゴドー）と呼びます。\nゲームエンジンというのは、ゲーム開発者がゲーム開発に専念できるように、ゲーム開発で共通して必要になるシステムを最初から用意してくれて、あらゆる煩雑な作業を代わりに処理してくれる頼もしいツールです。例えば、「画面にキャラクターを表示する」、「ボタンを押したら効果音が鳴って画面が切り替わる」、「3Dオブジェクトに光を当てて影を描画する」、「ビーム光線が敵に当たったらダメージを与える」など、ゲームでは当たり前の処理でも一から作るとなると大変なので、それらをゲームエンジンが代行してくれているというわけなのです。\nさて、この記事では、Godot を使い始めるための最初のステップ、ダウンロードの手順を説明します（めちゃくちゃ簡単です）。\nダウンロードする .zip ファイルが 70 MB 弱程度1と、とても軽いので、時間もほとんどかかりません。.zip 展開後のファイルサイズも 145.9 MB1ですので、Unity や Unreal Engine など他のメジャーなゲームエンジンと比べても非常にコンパクトで、コンピュータの容量をほとんど気にする必要がありません。また、Godot はマルチプラットフォーム対応です。メジャーな OS である Windows、macOS、Linux がインストールされたコンピュータに対応するファイルを用意してくれているので、ほとんど全てのコンピュータで利用可能です。\nそれではさっそくダウンロード作業を進めていきましょう。\nGodot のダウンロードページへアクセスする まず、公式のダウンロードページへアクセスします。 こちらがダウンロードサイトのURLです。\nhttps://godotengine.org/download/osx Godot をダウンロードする ご自身の使用しているコンピュータのOSのタブを選択します。\n2種類のバージョンがありますが、その違いは以下の通りです。\n  Standard version： 通常バージョン。ゲームエンジン内で GDScript という Godot 専用のプログラミング言語が利用できます。プログラミング言語 Python にとてもよく似た文法で、シンプルでわかりやすいコードが記述できます。特に C# を使ってコーディングする理由がなければこちらのバージョンを選択してください。また、Windows と Linux は 64bit 版と 32bit 版がありますので、ご自身のコンピュータに合ったものを選択しましょう。一方、Mac の場合は Universal 64bit 版の一択になり、チップが Intel でも Apple Silicon でも同じ Standard バージョンを利用できます。\n  Mono version： GDScript ではなく、敢えて C# というプログラミング言語でコーディングしたい場合はこちらのバージョンを選択します。コーディングの作業は Godot ではなく、別のエディターを使うことになります。Unity（別のゲームエンジン）で C# の使用経験がある場合は、こちらを選んでも良いかもしれません。\n  どちらをダウンロードするか決まったら、ボタンをクリックします。\nダウンロードした .zip ファイルを展開する ダウンロードされるのを待ちましょう。70 MB 程度なので少し待てばダウンロードは完了します。\n.zip ファイルがダウンロードされるので、それを展開します。\nGodot をお好みの場所へ移動させる Godot をダウンロードした時の場所（ファイルパス）に置いたままですので、自分がわかりやすい場所へ移動させましょう。他のアプリケーションと同じ場所に置いておくのが一般的です。\nもしあなたが Mac ユーザでしたら、移動先はアプリケーションフォルダが最適です。ダウンロードフォルダからアプリケーションフォルダへドラッグ\u0026ドロップしましょう。 もしあなたが Windows PC ユーザでしたら、一般的にアプリケーションのインストール先は C:¥Progiram Files¥ ですので、そちらへの移動をお勧めします。\nGodot を起動してみる 最後に、Godot をダブルクリックして起動してみましょう。 プロジェクトマネージャのウインドウが立ち上がったら問題なく Godot を起動できています。これでいよいよ、ゲーム開発を始められます。 今回は、Godot を使い始める最初のステップ、ダウンロードの手順について解説しました。最後までご覧いただきありがとうございました。\n注釈   バージョン 3.3.4 Apple Silicon 搭載 Mac 版のサイズ ↩︎\n   ",
+  "articleBody": "Godot とは Godot（ゴドー）とは、今インディーゲーム業界を中心に利用者が増えている、非常に人気のあるオープンソースのゲームエンジンです。Godot Engine（ゴドー・エンジン）または、シンプルに Godot（ゴドー）と呼びます。\nゲームエンジンというのは、ゲーム開発者がゲーム開発に専念できるように、ゲーム開発で共通して必要になるシステムを最初から用意してくれて、あらゆる煩雑な作業を代わりに処理してくれる頼もしいツールです。例えば、「画面にキャラクターを表示する」、「ボタンを押したら効果音が鳴って画面が切り替わる」、「3Dオブジェクトに光を当てて影を描画する」、「ビーム光線が敵に当たったらダメージを与える」など、ゲームでは当たり前の処理でも一から作るとなると大変なので、それらをゲームエンジンが代行してくれているというわけなのです。\nさて、この記事では、Godot を使い始めるための最初のステップ、ダウンロードの手順を説明します（めちゃくちゃ簡単です）。\nダウンロードする .zip ファイルが 70 MB 弱程度1と、とても軽いので、時間もほとんどかかりません。.zip 展開後のファイルサイズも 145.9 MB1ですので、Unity や Unreal Engine など他のメジャーなゲームエンジンと比べても非常にコンパクトで、コンピュータの容量をほとんど気にする必要がありません。また、Godot はマルチプラットフォーム対応です。メジャーな OS である Windows、macOS、Linux がインストールされたコンピュータに対応するファイルを用意してくれているので、ほとんど全てのコンピュータで利用可能です。\nそれではさっそくダウンロード作業を進めていきましょう。\nGodot のダウンロードページへアクセスする まず、公式のダウンロードページへアクセスします。\nこちらがダウンロードサイトのURLです。\nhttps://godotengine.org/download/osx Godot をダウンロードする ご自身の使用しているコンピュータのOSのタブを選択します。\n2種類のバージョンがありますが、その違いは以下の通りです。\n  Standard version： 通常バージョン。ゲームエンジン内で GDScript という Godot 専用のプログラミング言語が利用できます。プログラミング言語 Python にとてもよく似た文法で、シンプルでわかりやすいコードが記述できます。特に C# を使ってコーディングする理由がなければこちらのバージョンを選択してください。また、Windows と Linux は 64bit 版と 32bit 版がありますので、ご自身のコンピュータに合ったものを選択しましょう。一方、Mac の場合は Universal 64bit 版の一択になり、チップが Intel でも Apple Silicon でも同じ Standard バージョンを利用できます。\n  Mono version： GDScript ではなく、敢えて C# というプログラミング言語でコーディングしたい場合はこちらのバージョンを選択します。コーディングの作業は Godot ではなく、別のエディターを使うことになります。Unity（別のゲームエンジン）で C# の使用経験がある場合は、こちらを選んでも良いかもしれません。\n  どちらをダウンロードするか決まったら、ボタンをクリックします。\nダウンロードした .zip ファイルを展開する ダウンロードされるのを待ちましょう。70 MB 程度なので少し待てばダウンロードは完了します。\n.zip ファイルがダウンロードされるので、それを展開します。\nGodot をお好みの場所へ移動させる Godot をダウンロードした時の場所（ファイルパス）に置いたままですので、自分がわかりやすい場所へ移動させましょう。他のアプリケーションと同じ場所に置いておくのが一般的です。\nもしあなたが Mac ユーザでしたら、移動先はアプリケーションフォルダが最適です。ダウンロードフォルダからアプリケーションフォルダへドラッグ\u0026ドロップしましょう。\nもしあなたが Windows PC ユーザでしたら、一般的にアプリケーションのインストール先は C:¥Progiram Files¥ ですので、そちらへの移動をお勧めします。\nGodot を起動してみる 最後に、Godot をダブルクリックして起動してみましょう。\nプロジェクトマネージャのウインドウが立ち上がったら問題なく Godot を起動できています。これでいよいよ、ゲーム開発を始められます。\n今回は、Godot を使い始める最初のステップ、ダウンロードの手順について解説しました。最後までご覧いただきありがとうございました。\n注釈   バージョン 3.3.4 Apple Silicon 搭載 Mac 版のサイズ ↩︎\n   ",
   "wordCount" : "115",
   "inLanguage": "ja",
-  "image":"https://www.peanuts-code.com/images/godot/logo_vertical_color_light.png","datePublished": "2021-10-25T00:15:11+09:00",
+  "image":"https://www.peanuts-code.com/images/godot_logo/logo_vertical_color_light.png","datePublished": "2021-10-25T00:15:11+09:00",
   "dateModified": "2021-10-25T00:15:11+09:00",
   "author":{
     "@type": "Person",
@@ -221,7 +221,7 @@
     <div class="post-meta">2021-10-25&nbsp;·&nbsp;1 分&nbsp;·&nbsp;Masanao Sako
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/godot/logo_vertical_color_light.png" alt="Godot Logo">
+<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/godot_logo/logo_vertical_color_light.png" alt="Godot Logo">
         
 </figure><div class="toc">
     <details >
@@ -260,7 +260,7 @@
 <p>ダウンロードする .zip ファイルが 70 MB 弱程度<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>と、とても軽いので、時間もほとんどかかりません。.zip 展開後のファイルサイズも 145.9 MB<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>ですので、Unity や Unreal Engine など他のメジャーなゲームエンジンと比べても非常にコンパクトで、コンピュータの容量をほとんど気にする必要がありません。また、Godot はマルチプラットフォーム対応です。メジャーな OS である Windows、macOS、Linux がインストールされたコンピュータに対応するファイルを用意してくれているので、ほとんど全てのコンピュータで利用可能です。</p>
 <p>それではさっそくダウンロード作業を進めていきましょう。</p>
 <h2 id="godot-のダウンロードページへアクセスする">Godot のダウンロードページへアクセスする<a hidden class="anchor" aria-hidden="true" href="#godot-のダウンロードページへアクセスする">#</a></h2>
-<p>まず、公式のダウンロードページへアクセスします。
+<p>まず、公式のダウンロードページへアクセスします。<br>
 こちらがダウンロードサイトのURLです。<br>
 <a href="https://godotengine.org/download/osx" target="_blank">https://godotengine.org/download/osx</a>
 </p>
@@ -289,13 +289,13 @@
 </p>
 <h2 id="godot-をお好みの場所へ移動させる">Godot をお好みの場所へ移動させる<a hidden class="anchor" aria-hidden="true" href="#godot-をお好みの場所へ移動させる">#</a></h2>
 <p>Godot をダウンロードした時の場所（ファイルパス）に置いたままですので、自分がわかりやすい場所へ移動させましょう。他のアプリケーションと同じ場所に置いておくのが一般的です。</p>
-<p>もしあなたが Mac ユーザでしたら、移動先はアプリケーションフォルダが最適です。ダウンロードフォルダからアプリケーションフォルダへドラッグ&amp;ドロップしましょう。
+<p>もしあなたが Mac ユーザでしたら、移動先はアプリケーションフォルダが最適です。ダウンロードフォルダからアプリケーションフォルダへドラッグ&amp;ドロップしましょう。<br>
 <img loading="lazy" src="/images/tutorials/gd0001_download/img05.png" alt="Godot in Finder for Mac"  />
 </p>
 <p>もしあなたが Windows PC ユーザでしたら、一般的にアプリケーションのインストール先は <strong>C:¥Progiram Files¥</strong> ですので、そちらへの移動をお勧めします。</p>
 <h2 id="godot-を起動してみる">Godot を起動してみる<a hidden class="anchor" aria-hidden="true" href="#godot-を起動してみる">#</a></h2>
-<p>最後に、Godot をダブルクリックして起動してみましょう。
-プロジェクトマネージャのウインドウが立ち上がったら問題なく Godot を起動できています。これでいよいよ、ゲーム開発を始められます。
+<p>最後に、Godot をダブルクリックして起動してみましょう。<br>
+プロジェクトマネージャのウインドウが立ち上がったら問題なく Godot を起動できています。これでいよいよ、ゲーム開発を始められます。<br>
 <img loading="lazy" src="/images/tutorials/gd0001_download/img06.png" alt="Godot in Finder for Mac"  />
 </p>
 <p>今回は、Godot を使い始める最初のステップ、ダウンロードの手順について解説しました。最後までご覧いただきありがとうございました。</p>
@@ -318,6 +318,13 @@
       <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3/">ゲームエンジン</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89/">ダウンロード</a></li>
     </ul>
+<nav class="paginav">
+  <a class="prev" href="https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/">
+    <span class="title">« 前のページ</span>
+    <br>
+    <span>Godot Engine のプロジェクトマネージャーでできること</span>
+  </a>
+</nav>
 
 
 <div class="share-buttons">

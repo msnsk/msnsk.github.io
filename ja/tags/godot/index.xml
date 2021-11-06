@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Godot で作るブロック崩し - Part 1</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_1/</link>
+      <pubDate>Sat, 30 Oct 2021 17:44:27 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_1/</guid>
+      <description>Godot Engine を使って、シンプルで昔ながらのブロック崩しゲームを作る手順を解説します。Godot 初心者の方は必見です。Part 1 ではゲームのプレイ画面にパドルを配置して動かすところまでやります。</description>
+    </item>
+    
+    <item>
       <title>Godot Engine のプロジェクトマネージャーでできること</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</link>
       <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
