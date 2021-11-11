@@ -17,7 +17,7 @@
       <pubDate>Tue, 09 Nov 2021 16:21:24 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_3/</guid>
-      <description>ゲームエンジン Godot を使って、シンプルで昔ながらのブロック崩しゲームを作る手順を解説します。Godot 初心者の方は必見です。Part 3 ではボールが画面外に出てしまわないように壁を作ります。</description>
+      <description>- 壁を作ってボールを跳ね返らせよう！ -</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Sat, 06 Nov 2021 23:11:01 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_2/</guid>
-      <description>ゲームエンジン Godot を使って、シンプルで昔ながらのブロック崩しゲームを作る手順を解説します。Godot 初心者の方は必見です。Part 2 ではボールを作って、それをパドルから発射するところまでやっていきます。</description>
+      <description>- ボールを作ってパドルから発射させよう！ -</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Sat, 06 Nov 2021 17:44:27 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_1/</guid>
-      <description>ゲームエンジン Godot を使って、シンプルで昔ながらのブロック崩しゲームを作る手順を解説します。Godot 初心者の方は必見です。Part 1 ではゲームのプレイ画面にパドルを配置して動かすところまでやっていきます。</description>
+      <description>- パドルを作って動かしてみよう -</description>
     </item>
     
     <item>
