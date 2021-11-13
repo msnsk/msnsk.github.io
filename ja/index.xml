@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 09 Nov 2021 16:21:24 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Nov 2021 17:05:50 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るブロック崩し - Part 4</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_4/</link>
+      <pubDate>Wed, 10 Nov 2021 17:05:50 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_4/</guid>
+      <description>- 画面に配置したブロックにボールを当てて消してみよう！ -</description>
+    </item>
+    
     <item>
       <title>Godot で作るブロック崩し - Part 3</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_3/</link>

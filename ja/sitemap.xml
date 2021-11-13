@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.peanuts-code.com/ja/</loc>
-    <lastmod>2021-11-09T16:21:24+09:00</lastmod>
+    <lastmod>2021-11-10T17:05:50+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -16,13 +16,13 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/godot/</loc>
-    <lastmod>2021-11-09T16:21:24+09:00</lastmod>
+    <lastmod>2021-11-10T17:05:50+09:00</lastmod>
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_3/</loc>
-    <lastmod>2021-11-09T16:21:24+09:00</lastmod>
+    <loc>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_4/</loc>
+    <lastmod>2021-11-10T17:05:50+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/</loc>
-    <lastmod>2021-11-09T16:21:24+09:00</lastmod>
+    <lastmod>2021-11-10T17:05:50+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -35,7 +35,7 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/</loc>
-    <lastmod>2021-11-09T16:21:24+09:00</lastmod>
+    <lastmod>2021-11-10T17:05:50+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -48,9 +48,12 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/</loc>
-    <lastmod>2021-11-09T16:21:24+09:00</lastmod>
+    <lastmod>2021-11-10T17:05:50+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%B4%A9%E3%81%97/</loc>
+    <lastmod>2021-11-10T17:05:50+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_3/</loc>
     <lastmod>2021-11-09T16:21:24+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_2/</loc>
