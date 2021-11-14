@@ -76,20 +76,20 @@
     
     <item>
       <title>コロナデータ</title>
-      <link>https://www.peanuts-code.com/ja/about/coronadata/</link>
+      <link>https://www.peanuts-code.com/ja/_portfolio/coronadata/</link>
       <pubDate>Fri, 06 Aug 2021 00:00:00 +0900</pubDate>
       
-      <guid>https://www.peanuts-code.com/ja/about/coronadata/</guid>
+      <guid>https://www.peanuts-code.com/ja/_portfolio/coronadata/</guid>
       <description>このアプリケーションはApp Storeへの申請でリジェクトされました。その理由は、個人開発ではCOVID19に関わる内容のアプリケーションは承認できないというものです。
 日の目を見る機会を失ったアプリですが、GitHubのリポジトリ にあげているので興味のある方は見てみてください。</description>
     </item>
     
     <item>
       <title>アラームクロックカード</title>
-      <link>https://www.peanuts-code.com/ja/about/alarmclockcards/</link>
+      <link>https://www.peanuts-code.com/ja/_portfolio/alarmclockcards/</link>
       <pubDate>Thu, 08 Jul 2021 01:53:13 +0900</pubDate>
       
-      <guid>https://www.peanuts-code.com/ja/about/alarmclockcards/</guid>
+      <guid>https://www.peanuts-code.com/ja/_portfolio/alarmclockcards/</guid>
       <description>毎日起床時間が異なる人にとって最適な目覚まし時計アプリです。
 最初に起床時間のパターンをいくつか設定しておけば、わずか数秒でアラームをセットすることができます。
 ダークモードにも対応。美しいUIとアニメーション。</description>
@@ -97,10 +97,10 @@
     
     <item>
       <title>BeautipleTimer</title>
-      <link>https://www.peanuts-code.com/ja/about/beautipletimer/</link>
+      <link>https://www.peanuts-code.com/ja/_portfolio/beautipletimer/</link>
       <pubDate>Thu, 08 Jul 2021 01:52:57 +0900</pubDate>
       
-      <guid>https://www.peanuts-code.com/ja/about/beautipletimer/</guid>
+      <guid>https://www.peanuts-code.com/ja/_portfolio/beautipletimer/</guid>
       <description>とても美しくてシンプルなタイマーアプリです。
 ネットワークがなくても、完全にオフラインでご利用いただけます。
 もしあなたがプレゼンテーションのファシリテータであるならば、さらにお勧めです。</description>

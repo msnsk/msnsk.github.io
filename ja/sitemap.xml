@@ -83,6 +83,9 @@
     <loc>https://www.peanuts-code.com/ja/tags/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89/</loc>
     <lastmod>2021-10-25T00:15:11+09:00</lastmod>
   </url><url>
+    <loc>https://www.peanuts-code.com/ja/_portfolio/</loc>
+    <lastmod>2021-08-06T00:00:00+09:00</lastmod>
+  </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/app/</loc>
     <lastmod>2021-08-06T00:00:00+09:00</lastmod>
     <xhtml:link
@@ -122,34 +125,14 @@
                 href="https://www.peanuts-code.com/ja/tags/mobile/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/about/coronadata/</loc>
+    <loc>https://www.peanuts-code.com/ja/_portfolio/coronadata/</loc>
     <lastmod>2021-08-06T00:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/about/alarmclockcards/</loc>
+    <loc>https://www.peanuts-code.com/ja/_portfolio/alarmclockcards/</loc>
     <lastmod>2021-07-08T01:53:13+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/about/alarmclockcards/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/about/alarmclockcards/"
-                />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/about/beautipletimer/</loc>
+    <loc>https://www.peanuts-code.com/ja/_portfolio/beautipletimer/</loc>
     <lastmod>2021-07-08T01:52:57+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/about/beautipletimer/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/about/beautipletimer/"
-                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/about/</loc>
     <lastmod>2021-07-07T00:00:00+00:00</lastmod>
