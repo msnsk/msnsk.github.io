@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Godot で作るブロック崩し - Part 2 | Peanuts Code</title>
-<meta name="keywords" content="Godot, ゲーム開発, ブロック崩し" />
+<meta name="keywords" content="Godot, ゲーム開発, ブロック崩し, 初級" />
 <meta name="description" content="- ボールを作ってパドルから発射させよう！ -">
 <meta name="author" content="Masanao Sako">
 <link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_2/" />
@@ -78,10 +78,10 @@ if (!doNotTrack) {
   "name": "Godot で作るブロック崩し - Part 2",
   "description": "- ボールを作ってパドルから発射させよう！ -",
   "keywords": [
-    "Godot", "ゲーム開発", "ブロック崩し"
+    "Godot", "ゲーム開発", "ブロック崩し", "初級"
   ],
-  "articleBody": "Part 1 に引き続きブロック崩しの開発を続けていきましょう。前回はプレイヤーが操作するパドルのオブジェクトを作って、キー操作で動かすところまでやりました。今回の Part 2 では、ボールのオブジェクトを作って、パドルからボールを発射するところまで進めていきます。\n Memo: \n前回の Part 1 をまだご覧になっていない方は、そちらを先にご一読いただくことをおすすめします。\nGodot で作るブロック崩し - Part 1 \n 　 ボールを作る 前回の Part 1 でプレイヤーが操作するパドルを作ったので、今度はボールを作ります。\nルートノード「Game」の子ノードとして「RigidBody2D」ノードを追加します。\n名前を「Ball」としましょう。\n次に「Ball」ノードに必要な子ノードを追加していきます。これは「Paddle」ノードの時と同様の作業です。まずは「Sprite」ノードを追加しましょう。\n続けて「CollisionShape2D」ノードを追加しましょう。\n「Ball」ノードに2つの子ノードが追加されましたね。\nそれではそれぞれのプロパティを設定していきましょう。まずは「Sprite」ノードから。シーンドックで「Sprite」を選択した状態にして、右側のインスペクタドックを見ると「Texture」プロパティが [空] になっていますね。\nその「空」めがけて、ファイルシステムドックから「Ball.png」をドラッグ\u0026ドロップします。\n「Texture」プロパティにボールの画像が反映しました。\n次に「CollisionShape2D」ノードを選択した状態にして、インスペクタを見ると「Shape」プロパティが [空] になっていますね。\nその[空]をクリックして「新規 CircleShape2D」を選択します。\n「Shape」プロパティが設定されました。2D ワークスペースを見てみましょう。\n半透明の緑色の円が「CollisionShape2D」ノードの形です。サイズが「Sprite」ノードの Texture よりやや大きいので、赤丸のポイントをドラッグしながら大きさを「Sprite」ノードの Texture に合わせましょう。\nこれくらいにします。「CollisionShape2D」ノードがこれより一回り小さいと 「Sprite」ノードの方が大きくなります。\nそれではここからインスペクタドックで「Ball」ノードの変更が必要なプロパティを設定していきましょう。シーンドックで「Ball」ノードを選択してインスペクタを見てください。\n上から順番にいきましょう。まずはの「Mode」プロパティを変更します。「Character」にします。これによりボールが回転するのを防ぐことができます。\n次に「Physics Material」プロパティの [空] をクリックして「新規 PhysicsMaterial」を選択します。\n設定した「PhysicsMaterial」をクリックするとさらにプロパティが表示されます。「Friction」プロパティを 0 にして摩擦の影響でボールのスピードが落ちないようにします。また「Bounce」プロパティを 1 に変更して、パドルに当たったらきっちり正確に跳ね返るようにします。\n続いて「Gravity Scale」プロパティを設定します。この値は 0 にしないと、ボールが重力の影響を受けて、常に下に落ちる力がかかってしまいます。\n「Linear」＞「Damp」プロパティも0にします。これもボールの勢いがなくならないようにするためです。\nでは 2D ワークスペースで「Ball」ノードを移動させる前に、「Ball」ノードの子を選択不可にしておきましょう。\nシーンドックでも選択不可になっていることが確認できました。\nドラッグして「Ball」ノードを移動させる際に、ツールバーでいくつか操作します。\nまず、位置をパドルに合わせやすいように、ツールバーから「グリッドスナップ」を有効にします。\nそして「移動モード」アイコンをクリックして、ドラッグで移動できるようにします。ショートカットキーを覚えておくと便利です（ Windows: W / macOS: W ）。\n2D ワークスペースのディスプレイ表示範囲の左上角（0, 0）から、パドルのちょうど真上にドラッグして「Ball」ノードを動かします。\n「Ball」ノードの「Transform」＞「Position」プロパティを確認しておきましょう。x座標が 256 で「Paddle」ノードと同じなので、ボールが今パドルのちょうど真上に位置していることがわかります。もしズレてしまった場合は、プロパティの値を直接触って調整すると効率的です。\nここで一度、シーンを実行してみましょう。\nなんだかパドルに対してボールが大きすぎる印象です。サイズを変更しましょう。\nシーンドックで「Paddle」ノードの子ノード「Sprite」を選択した状態で、インスペクタの Node2D クラスの「Transform」の「Scale」プロパティで x, y の値をそれぞれ 0.5 とします。サイズを半分にするという意味ですね。\n次に同じく「Paddle」ノードの子ノード「CollisionShape2D」ノードを選択して、2D ワークスペース内でポイントをドラッグして、サイズを「Sprite」ノードに合わせましょう。\n Memo:\n「Paddle」ノードの「Scale」プロパティを直接変更すれば良いのでは？とお思いになる方もいらっしゃるかもしれません。しかし残念ながら、子ノードの「CollisionShape2D」ノードのサイズが変わってなければ、物理エンジンによって「Paddle」ノードの「Scale」プロパティの値が上書きされてしまいます。\n ボールがパドルから離れてしまったので、「Ball」ノードを選択した状態にして、2D ワークスペース上でドラッグして移動させましょう。この時、ツールバーでピクセルスナップを有効にして、グリッドスナップは無効にしておくと移動しやすいと思います。\nさっきより良いバランスになりましたね！\nちなみにインスペクタで「Ball」ノードの「Position」プロパティを確認すると以下のようになっていると思います。\n ボールを発射する それではここからスクリプトを作ってボールを動かしていきます。シーンドックで「Ball」ノードを選択した状態で、スクリプトをアタッチします。\n先に作っておいた「scripts」フォルダに保存したいので、フォルダアイコンをクリックしましょう。\nもしパスが「res://scene」になっていたら、一つ上の階層に戻ってから「scripts」フォルダを選択しましょう。パスが「res://scripts」になったら、ファイル名を「Ball.gd」として「開く」をクリックします。\nパスが更新されましたね。「作成」をクリックします。\nスクリプトワークスペースが開きました。\n今回、スクリプトに記述する全体のコードは以下の通りです。コーディングはちょっと苦手、という方はひとまずこのコードでスクリプトのコードを置き換えてください。\nextends RigidBody2D export (float) var ball_speed = 150.0 func _ready(): var direction = Vector2(1, -1).normalized() var velocity = direction * ball_speed apply_impulse(Vector2.ZERO, velocity)  スクリプト解説 あとで使う_ready()関数以外の部分を削除しましょう。一旦、以下のようになりますね。\nextends RigidBody2D func _ready(): pass # Replace with function body. ボールの速さをball_speedという名前のプロパティで定義します。\n# ボールの速さ：1秒間に移動する距離（pixel) export (float) var ball_speed = 150.0 インスペクタで簡単に編集できるようにexportキーワードを頭につけます。(float)はこのプロパティの値が float というデータ型であることを示しています。int 型でも大きな問題はありませんが、今後ボールがだんだん速くなる仕組みを作る時に、より滑らかにスピードアップできた方が良いので float 型にしています。と、散々説明してきてなんですが、値を150.0と浮動小数で記述していることから、GDScript が自動的に float 型と判断するため、(float)の記述は無くても構いません。\n次に_ready()関数を編集していきます。まずはpassから始まる行を削除して、別のコードに書き換えていきます。\npass # Replace with function body.  Memo\nfuncキーワードで宣言した関数のブロック（インデントで区分されたコードのかたまり）には何かコードを記述しないとエラーになります。まだ記述する内容が決まっていない場合に、一旦passと入れておくことでそのエラーを回避することができます。passにはそれ以上の意味は特にありません。\n _ready()関数のブロックに以下のコードを記述します。インデントを忘れないようにご注意ください。\n# ボールが発射される向き var direction = Vector2(1, -1).normalized() _ready()関数内でプロパティを2つ定義しています。\n一つ目のプロパティはdirectionです。これはボールが飛んでいく方向を定義しています。Vector2(1, -1)で右上に飛んでいくのはなんとなくおわかりいただけるかと思いますが、.normalized()とはなんでしょう。\nまず、座標上で (0, 0) から (1, -1) までの長さが 1 ではないということを理解するところから始めましょう。(1, 0) と (0, -1) はどちらも (0, 0) からの距離が 1 です。その両方の点と接する円があったとすると、その円周に位置する点は全て (0, 0) からの距離が 1 ということになります。しかし、(1, -1) は、その円より外側にありますので、(0, 0) からの距離は 1 より大きい（厳密には √2 ）ということになります。\nプロパティdirectionは方向のみを表すプロパティにしたいので、長さを 1 にする必要があります。そこで長さが 1 より大きい (1, -1) の方向はそのままに、長さだけちょうど 1 にしてくれる便利な関数がnormalized()なのです。これは Vector2 クラスの組み込み関数ですので最初から使えます。\n次にボールの速度を表すプロパティvelocityです。単純に先に定義した方向の情報を持たない速さを示すプロパティball_speedと方向を示すdirectionの掛け算で定義しています。\n# ボールの速度（方向の情報をもったスピード：方向 x 速さ） var velocity = direction * ball_speed 最後に RigidBody2D の組み込み関数apply_impulse()を使って、ボールに衝撃を与えます。\n# 一回だけオブジェクト（ボール）に衝撃を与える apply_impulse(Vector2.ZERO, velocity) これを_ready()関数内に記述したのは、シーンを実行した時にゲームの準備処理段階で1回限りの衝撃をボールに加えてゲーム開始と同時にボールを飛ばすためです。第一引数は offset で不要なためVector2.ZEROで (0, 0) を指定、第二引数は impulse でこれはボールの速度を衝撃として与えるため、先に定義しておいたvelocityを指定しています。apply_impulse()関数について詳しくは Godot 公式ドキュメンテーション をご参照ください。\nそれでは右上の実行ボタンをクリックして、プロジェクトを実行してみましょう。ショートカットキー操作も便利ですよ（実行 Windows: F5 / macOS: Cmd + B）。\n斜め45°の方向へ真っ直ぐ飛んでいきましたね。\nPart 2 はここまでです。最後までご覧いただきありがとうございました。次回はボールが画面外に飛んで行かないように壁を作っていきます。それでは Part 3 もお楽しみに！！！\n",
-  "wordCount" : "267",
+  "articleBody": "Part 1 に引き続きブロック崩しの開発を続けていこう。前回はプレイヤーが操作するパドルのオブジェクトを作って、キー操作で動かすところまでやった。今回の Part 2 では、ボールのオブジェクトを作って、パドルからボールを発射するところまで進めていく。\n Memo: \n前回の Part 1 をまだご覧になっていない方は、そちらを先にご一読いただくことをおすすめします。\nGodot で作るブロック崩し - Part 1   Memo: \nこのチュートリアルで使用している Godot のバージョン：3.3.4\n  ボールを作る 前回の Part 1 でプレイヤーが操作するパドルを作ったので、今度はボールを作る。\nルートノード「Game」の子ノードとして「RigidBody2D」ノードを追加する。\n名前は「Ball」とする。\n次に「Ball」ノードに必要な子ノードを追加していく。これは「Paddle」ノードの時と同様の作業だ。まずは「Sprite」ノードを追加しよう。\n続けて「CollisionShape2D」ノードを追加しよう。\n「Ball」ノードに2つの子ノードが追加された。\nそれぞれのプロパティを設定していこう。\nまずは「Sprite」ノードから。シーンドックで「Sprite」を選択した状態にして、右側のインスペクタドックを見ると「Texture」プロパティが [空] になっている。\nその「空」めがけて、ファイルシステムドックから「Ball.png」をドラッグ\u0026ドロップする。\n「Texture」プロパティにボールの画像が反映したのを確認しておこう。\n次にシーンドックで「CollisionShape2D」ノードを選択し、インスペクタを見ると「Shape」プロパティが [空] になっている。\nその[空]をクリックして「新規 CircleShape2D」を選択する。\n「Shape」プロパティが設定されました。2D ワークスペースを見てみよう。\n半透明の緑色の円が「CollisionShape2D」ノードの形だ。サイズが「Sprite」ノードの Texture よりやや大きいので、赤丸のポイントをドラッグしながら大きさを「Sprite」ノードの Texture に合わせよう。\nこれくらいにする。\nそれではここからインスペクタドックで「Ball」ノードの変更が必要なプロパティを設定していこう。シーンドックで「Ball」ノードを選択してインスペクタを見てほしい。\n上から順番にいこう。まずはの「Mode」プロパティを変更する。「Character」にする。これによりボールが回転するのを防ぐことができる。\n次に「Physics Material」プロパティの [空] をクリックして「新規 PhysicsMaterial」を選択する。\n設定した「PhysicsMaterial」をクリックするとさらにプロパティが表示される。「Friction」プロパティを 0 にして摩擦の影響でボールのスピードが落ちないようにする。また「Bounce」プロパティを 1 に変更して、パドルに当たったらきっちり跳ね返るようにする。\n続いて「Gravity Scale」プロパティを設定する。この値は 0 にしないと、ボールが重力の影響を受けて、常に画面の下方向に落ちる力がかかってしまう。\n「Linear」＞「Damp」プロパティも0にする。これもボールの勢いがなくならないようにするためだ。\nでは 2D ワークスペースで「Ball」ノードを移動させる前に、「Ball」ノードの子を選択不可にしておこう。\nシーンドックでも選択不可になっていることが確認しておく。\nドラッグして「Ball」ノードを移動させる際に、ツールバーでいくつか操作する。\nまず、位置をパドルに合わせやすいように、ツールバーから「グリッドスナップ」を有効にする。\nそして「移動モード」アイコンをクリックして、ドラッグで移動できるようにする。ショートカットキーを覚えておくと便利だ（ Windows: W / macOS: W ）。\n2D ワークスペースのディスプレイ表示範囲の左上角（0, 0）から、パドルのちょうど真上にドラッグして「Ball」ノードを動かする。\n「Ball」ノードの「Transform」＞「Position」プロパティを確認しておこう。x座標が 256 で「Paddle」ノードと同じなので、今ボールがパドルのちょうど真上に位置していることがわかる。もしズレてしまった場合は、プロパティの値を直接触って調整すると効率的だ。\nここで一度、シーンを実行してみよう。\nなんだかパドルに対してボールが大きすぎる印象だ。サイズを変更しよう。\nシーンドックで「Paddle」ノードの子ノード「Sprite」を選択した状態で、インスペクタの Node2D クラスの「Transform」の「Scale」プロパティで x, y の値をそれぞれ 0.5 とする。サイズを半分にするという意味だ。\n次に同じく「Paddle」ノードの子ノード「CollisionShape2D」ノードを選択して、2D ワークスペース内でポイントをドラッグして、サイズを「Sprite」ノードに合わせよう。\n Memo: \n「Paddle」ノードの「Scale」プロパティを直接変更すれば1回の作業で済むのではないか、とお思いになる方もいらっしゃるかもしれません。しかし残念ながら、子ノードの「CollisionShape2D」ノードのサイズが変わってなければ、物理エンジンによって「Paddle」ノードの「Scale」プロパティの値が上書きされてしまいます。\n ボールがパドルから離れてしまったので、「Ball」ノードを選択した状態にして、2D ワークスペース上でドラッグして移動させよう。この時、ツールバーでピクセルスナップを有効にして、グリッドスナップは無効にしておくと移動しやすいと思う。\nさっきより良いバランスになった。\n念のため、インスペクタで「Ball」ノードの「Position」プロパティを確認しておこう。以下のスクリーンショットのようになっていれば問題ないだろう。\n ボールを発射する それではここからスクリプトを作ってボールを動かしていく。シーンドックで「Ball」ノードを選択した状態で、スクリプトをアタッチする。\n先に作っておいた「scripts」フォルダに保存したいので、フォルダアイコンをクリックしよう。\nもしパスが「res://scene」になっていたら、一つ上の階層に戻ってから「scripts」フォルダを選択しよう。パスが「res://scripts」になったら、ファイル名を「Ball.gd」として「開く」をクリックする。\nパスが更新された。「作成」をクリックする。\nスクリプトワークスペースが開いた。\n今回、スクリプトに記述する全体のコードは以下の通りだ。コーディングはちょっと苦手、という方はひとまずこのコードでスクリプトのコードを置き換えてほしい。\nextends RigidBody2D export (float) var ball_speed = 150.0 func _ready(): var direction = Vector2(1, -1).normalized() var velocity = direction * ball_speed apply_impulse(Vector2.ZERO, velocity)  スクリプト解説 あとで使う_ready()メソッド以外の部分を削除しよう。一旦、以下のようになる。\nextends RigidBody2D func _ready(): pass # Replace with function body. ボールの速さをball_speedという名前のプロパティで定義する。\n# ボールの速さ：1秒間に移動する距離（pixel) export (float) var ball_speed = 150.0 インスペクタで簡単に編集できるようにexportキーワードを頭につける。(float)はこのプロパティの値が float というデータ型であることを示している。int 型でも大きな問題はないが、今後ボールがだんだん速くなる仕組みを作る時に、より滑らかにスピードアップできた方が良いので float 型にしている。と、散々説明しておいてなんだが、値を150.0と浮動小数で記述していることから、GDScript が自動的に float 型と判断するため、(float)の記述は無くても構わない。\n次に_ready()メソッドを編集していく。まずはpassから始まる行を削除して、別のコードに書き換えていく。\npass # Replace with function body.  Memo: \nfuncキーワードで宣言したメソッドのブロック（インデントで区分されたコードのかたまり）には何かコードを記述しないとエラーになります。まだ記述する内容が決まっていない場合に、一旦passと入れておくことで、そのエラーを回避することができます。passにはそれ以上の意味は特にありません。\n _ready()メソッドのブロックに以下のコードを記述する。インデントを忘れないように注意が必要だ。\n# ボールが発射される向き var direction = Vector2(1, -1).normalized() _ready()メソッド内でプロパティを2つ定義している。\n一つ目のプロパティはdirectionだ。これはボールが飛んでいく方向を定義している。Vector2(1, -1)で右上に飛んでいくのはなんとなくおわかりいただけるかと思うが、.normalized()とはなんだろう。\nまず、座標上 (0, 0) から (1, -1) までの長さが 1 ではないということを理解するところから始めよう。(1, 0) と (0, -1) はどちらも (0, 0) からの距離が 1 だ。その両方の点と接する円があったとすると、その円周に位置する点は全て (0, 0) からの距離が 1 ということになる。しかし、(1, -1) は、その円より外側にあるので、(0, 0) からの距離は 1 より大きい（厳密には √2 ）ということになる。\nプロパティdirectionは方向のみを表すプロパティにしたいので、長さを 1 にする必要がある。そこで (1, -1) の方向はそのままで、長さだけちょうど 1 にしてくれる便利なメソッドがnormalized()なのだ。これは Vector2 クラスでもともと用意されているメソッドなので最初から使える。\n次にボールの速度を表すプロパティvelocityだ。単純に先に定義した方向の情報を持たない速さを示すプロパティball_speedと方向を示すdirectionの掛け算で定義している。\n# ボールの速度（方向の情報をもったスピード：方向 x 速さ） var velocity = direction * ball_speed 最後に RigidBody2D のメソッドapply_impulse()を使って、ボールに衝撃を与える。\n# 一回だけオブジェクト（ボール）に衝撃を与える apply_impulse(Vector2.ZERO, velocity) これを_ready()メソッド内に記述したのは、シーンを実行した時にゲームの準備処理段階で1回限りの衝撃をボールに加えてゲーム開始と同時にボールを飛ばすためだ。第一引数の offset はVector2.ZEROで (0, 0) を指定、第二引数 impulse はボールの速度を衝撃として与えるため、先に定義しておいたvelocityを指定している。apply_impulse()メソッドについて詳しくは Godot 公式ドキュメンテーション 参照のこと。\nでは改めてプロジェクトを実行してみよう。\n斜め45°の方向へ真っ直ぐ飛んでいった。\n おわりに Part 2 はここまでで終了だ。次回 Part 3 では、ボールが画面外に飛んで行かないように壁を作っていく。\n",
+  "wordCount" : "263",
   "inLanguage": "ja",
   "image":"https://www.peanuts-code.com/images/tutorials/gd0004_breakout_2/img_0.png","datePublished": "2021-11-06T23:11:01+09:00",
   "dateModified": "2021-11-06T23:11:01+09:00",
@@ -248,150 +248,156 @@ if (!doNotTrack) {
                         <ul>
                         
                 <li>
-                    <a href="#%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e8%a7%a3%e8%aa%ac" aria-label="スクリプト解説">スクリプト解説</a>
+                    <a href="#%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e8%a7%a3%e8%aa%ac" aria-label="スクリプト解説">スクリプト解説</a></li></ul>
+                    </ul>
                 </li>
-            </ul>
-            </ul>
-            </li>
+                <li>
+                    <a href="#%e3%81%8a%e3%82%8f%e3%82%8a%e3%81%ab" aria-label="おわりに">おわりに</a>
+                </li>
             </ul>
         </div>
     </details>
 </div>
 
-  <div class="post-content"><p>Part 1 に引き続き<strong>ブロック崩し</strong>の開発を続けていきましょう。前回はプレイヤーが操作するパドルのオブジェクトを作って、キー操作で動かすところまでやりました。今回の Part 2 では、ボールのオブジェクトを作って、パドルからボールを発射するところまで進めていきます。<br>
-<br></p>
+  <div class="post-content"><p>Part 1 に引き続き<strong>ブロック崩し</strong>の開発を続けていこう。前回はプレイヤーが操作するパドルのオブジェクトを作って、キー操作で動かすところまでやった。今回の Part 2 では、ボールのオブジェクトを作って、パドルからボールを発射するところまで進めていく。</p>
 <blockquote>
-<p><em><strong><span style="color:teal">Memo:</span>
+<p><strong><span style="color:teal">Memo:</span>
 </strong><br>
 前回の Part 1 をまだご覧になっていない方は、そちらを先にご一読いただくことをおすすめします。<br>
 <a href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_1/" title="Godot で作るブロック崩し - Part 1">Godot で作るブロック崩し - Part 1</a>
-</em></p>
+</p>
 </blockquote>
-<p>　<br>
-<br></p>
+<blockquote>
+<p><strong><span style="color:teal">Memo:</span>
+</strong><br>
+このチュートリアルで使用している Godot のバージョン：3.3.4</p>
+</blockquote>
+<br>
 <hr>
 <h1 id="ボールを作る">ボールを作る<a hidden class="anchor" aria-hidden="true" href="#ボールを作る">#</a></h1>
-<p>前回の Part 1 でプレイヤーが操作するパドルを作ったので、今度はボールを作ります。</p>
-<p>ルートノード「Game」の子ノードとして「RigidBody2D」ノードを追加します。<br>
+<p>前回の Part 1 でプレイヤーが操作するパドルを作ったので、今度はボールを作る。</p>
+<p>ルートノード「Game」の子ノードとして「<strong>RigidBody2D</strong>」ノードを追加する。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_1.png" alt="RigidBody2D を Game の子ノードとして追加"  />
 </p>
-<p>名前を「Ball」としましょう。<br>
+<p>名前は「Ball」とする。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_2.png" alt="名前を Ball に変更"  />
 </p>
-<p>次に「Ball」ノードに必要な子ノードを追加していきます。これは「Paddle」ノードの時と同様の作業です。まずは「Sprite」ノードを追加しましょう。<br>
+<p>次に「Ball」ノードに必要な子ノードを追加していく。これは「Paddle」ノードの時と同様の作業だ。まずは「Sprite」ノードを追加しよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_3.png" alt="Ball ノードに Sprite ノードを追加"  />
 </p>
-<p>続けて「CollisionShape2D」ノードを追加しましょう。<br>
+<p>続けて「CollisionShape2D」ノードを追加しよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_4.png" alt="Ball ノードに CollisionShape2D ノードを追加"  />
 </p>
-<p>「Ball」ノードに2つの子ノードが追加されましたね。<br>
+<p>「Ball」ノードに2つの子ノードが追加された。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_5.png" alt="Ball に2つの子ノードを追加完了"  />
 </p>
-<p>それではそれぞれのプロパティを設定していきましょう。まずは「Sprite」ノードから。シーンドックで「Sprite」を選択した状態にして、右側のインスペクタドックを見ると「Texture」プロパティが [空] になっていますね。<br>
+<p>それぞれのプロパティを設定していこう。</p>
+<p>まずは「Sprite」ノードから。シーンドックで「Sprite」を選択した状態にして、右側のインスペクタドックを見ると「Texture」プロパティが [空] になっている。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_6.png" alt="Sprite ノードの Texture プロパティ"  />
 </p>
-<p>その「空」めがけて、ファイルシステムドックから「Ball.png」をドラッグ&amp;ドロップします。<br>
+<p>その「空」めがけて、ファイルシステムドックから「Ball.png」をドラッグ&amp;ドロップする。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_7.png" alt="Ball.png を Texture へドラッグ&amp;amp;ドロップ"  />
 </p>
-<p>「Texture」プロパティにボールの画像が反映しました。<br>
+<p>「Texture」プロパティにボールの画像が反映したのを確認しておこう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_8.png" alt="画像が Texture に適用された"  />
 </p>
-<p>次に「CollisionShape2D」ノードを選択した状態にして、インスペクタを見ると「Shape」プロパティが [空] になっていますね。<br>
+<p>次にシーンドックで「CollisionShape2D」ノードを選択し、インスペクタを見ると「Shape」プロパティが [空] になっている。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_9.png" alt="CollisionShape2D ノードの Shape プロパティ"  />
 </p>
-<p>その[空]をクリックして「新規 CircleShape2D」を選択します。<br>
+<p>その[空]をクリックして「新規 CircleShape2D」を選択する。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_10.png" alt="新規 CircleShape2D を選択"  />
 </p>
-<p>「Shape」プロパティが設定されました。2D ワークスペースを見てみましょう。<br>
+<p>「Shape」プロパティが設定されました。2D ワークスペースを見てみよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_11.png" alt="Shape プロパティ設定完了"  />
 </p>
-<p>半透明の緑色の円が「CollisionShape2D」ノードの形です。サイズが「Sprite」ノードの Texture よりやや大きいので、赤丸のポイントをドラッグしながら大きさを「Sprite」ノードの Texture に合わせましょう。<br>
+<p>半透明の緑色の円が「CollisionShape2D」ノードの形だ。サイズが「Sprite」ノードの Texture よりやや大きいので、赤丸のポイントをドラッグしながら大きさを「Sprite」ノードの Texture に合わせよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_12.png" alt="Collision Shape を調整"  />
 </p>
-<p>これくらいにします。「CollisionShape2D」ノードがこれより一回り小さいと 「Sprite」ノードの方が大きくなります。<br>
+<p>これくらいにする。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_13.png" alt="Sprite と同じサイズ"  />
 </p>
-<p>それではここからインスペクタドックで「Ball」ノードの変更が必要なプロパティを設定していきましょう。シーンドックで「Ball」ノードを選択してインスペクタを見てください。</p>
-<p>上から順番にいきましょう。まずはの「Mode」プロパティを変更します。「Character」にします。これによりボールが回転するのを防ぐことができます。<br>
+<p>それではここからインスペクタドックで「Ball」ノードの変更が必要なプロパティを設定していこう。シーンドックで「Ball」ノードを選択してインスペクタを見てほしい。</p>
+<p>上から順番にいこう。まずはの「Mode」プロパティを変更する。「Character」にする。これによりボールが回転するのを防ぐことができる。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_14.png" alt="Mode プロパティ"  />
 </p>
-<p>次に「Physics Material」プロパティの [空] をクリックして「新規 PhysicsMaterial」を選択します。<br>
+<p>次に「Physics Material」プロパティの [空] をクリックして「新規 PhysicsMaterial」を選択する。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_15.png" alt="PhysicsMaterial プロパティ"  />
 </p>
-<p>設定した「PhysicsMaterial」をクリックするとさらにプロパティが表示されます。「Friction」プロパティを 0 にして摩擦の影響でボールのスピードが落ちないようにします。また「Bounce」プロパティを 1 に変更して、パドルに当たったらきっちり正確に跳ね返るようにします。<br>
+<p>設定した「PhysicsMaterial」をクリックするとさらにプロパティが表示される。「Friction」プロパティを 0 にして摩擦の影響でボールのスピードが落ちないようにする。また「Bounce」プロパティを 1 に変更して、パドルに当たったらきっちり跳ね返るようにする。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_16.png" alt="Friction　及び Bounce プロパティ"  />
 </p>
-<p>続いて「Gravity Scale」プロパティを設定します。この値は 0 にしないと、ボールが重力の影響を受けて、常に下に落ちる力がかかってしまいます。<br>
+<p>続いて「Gravity Scale」プロパティを設定する。この値は 0 にしないと、ボールが重力の影響を受けて、常に画面の下方向に落ちる力がかかってしまう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_17.png" alt="Gravity Scale プロパティ"  />
 </p>
-<p>「Linear」＞「Damp」プロパティも0にします。これもボールの勢いがなくならないようにするためです。<br>
+<p>「Linear」＞「Damp」プロパティも0にする。これもボールの勢いがなくならないようにするためだ。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_18.png" alt="Linear &amp;gt; Damp プロパティ"  />
 </p>
-<p>では 2D ワークスペースで「Ball」ノードを移動させる前に、「Ball」ノードの子を選択不可にしておきましょう。<br>
+<p>では 2D ワークスペースで「Ball」ノードを移動させる前に、「Ball」ノードの子を選択不可にしておこう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_19.png" alt="Ball ノードの子ノードを選択不可"  />
 </p>
-<p>シーンドックでも選択不可になっていることが確認できました。<br>
+<p>シーンドックでも選択不可になっていることが確認しておく。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_20.png" alt="シーンドックで選択不可設定確認"  />
 </p>
-<p>ドラッグして「Ball」ノードを移動させる際に、ツールバーでいくつか操作します。</p>
-<p>まず、位置をパドルに合わせやすいように、ツールバーから「グリッドスナップ」を有効にします。<br>
+<p>ドラッグして「Ball」ノードを移動させる際に、ツールバーでいくつか操作する。</p>
+<p>まず、位置をパドルに合わせやすいように、ツールバーから「グリッドスナップ」を有効にする。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_21a.png" alt="ツールバー＞グリッドスナップ"  />
 </p>
-<p>そして「移動モード」アイコンをクリックして、ドラッグで移動できるようにします。ショートカットキーを覚えておくと便利です（ Windows: W / macOS: W ）。<br>
+<p>そして「移動モード」アイコンをクリックして、ドラッグで移動できるようにする。ショートカットキーを覚えておくと便利だ（ Windows: W / macOS: W ）。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_21b.png" alt="ツールバー＞移動"  />
 </p>
-<p>2D ワークスペースのディスプレイ表示範囲の左上角（0, 0）から、パドルのちょうど真上にドラッグして「Ball」ノードを動かします。<br>
+<p>2D ワークスペースのディスプレイ表示範囲の左上角（0, 0）から、パドルのちょうど真上にドラッグして「Ball」ノードを動かする。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_22.png" alt="2DワークスペースでBallノードをドラッグ"  />
 </p>
-<p>「Ball」ノードの「Transform」＞「Position」プロパティを確認しておきましょう。x座標が 256 で「Paddle」ノードと同じなので、ボールが今パドルのちょうど真上に位置していることがわかります。もしズレてしまった場合は、プロパティの値を直接触って調整すると効率的です。<br>
+<p>「Ball」ノードの「Transform」＞「Position」プロパティを確認しておこう。x座標が 256 で「Paddle」ノードと同じなので、今ボールがパドルのちょうど真上に位置していることがわかる。もしズレてしまった場合は、プロパティの値を直接触って調整すると効率的だ。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_23.png" alt="BallノードのPositionプロパティ"  />
 </p>
-<p>ここで一度、シーンを実行してみましょう。<br>
+<p>ここで一度、シーンを実行してみよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_24.png" alt="シーンを実行"  />
 </p>
-<p>なんだかパドルに対してボールが大きすぎる印象です。サイズを変更しましょう。<br>
+<p>なんだかパドルに対してボールが大きすぎる印象だ。サイズを変更しよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_25.png" alt="ボールのサイズが大きい"  />
 </p>
-<p>シーンドックで「Paddle」ノードの子ノード「Sprite」を選択した状態で、インスペクタの Node2D クラスの「Transform」の「Scale」プロパティで x, y の値をそれぞれ 0.5 とします。サイズを半分にするという意味ですね。<br>
+<p>シーンドックで「Paddle」ノードの子ノード「Sprite」を選択した状態で、インスペクタの Node2D クラスの「Transform」の「Scale」プロパティで x, y の値をそれぞれ 0.5 とする。サイズを半分にするという意味だ。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_26.png" alt="SpriteノードのScaleプロパティ"  />
 </p>
-<p>次に同じく「Paddle」ノードの子ノード「CollisionShape2D」ノードを選択して、2D ワークスペース内でポイントをドラッグして、サイズを「Sprite」ノードに合わせましょう。<br>
+<p>次に同じく「Paddle」ノードの子ノード「CollisionShape2D」ノードを選択して、2D ワークスペース内でポイントをドラッグして、サイズを「Sprite」ノードに合わせよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_27.png" alt="CollisionShape2Dのサイズ調整"  />
 <br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_28.png" alt="CollisionShape2Dのサイズ調整"  />
 </p>
 <blockquote>
-<p><strong>Memo:</strong><br>
-「Paddle」ノードの「Scale」プロパティを直接変更すれば良いのでは？とお思いになる方もいらっしゃるかもしれません。しかし残念ながら、子ノードの「CollisionShape2D」ノードのサイズが変わってなければ、物理エンジンによって「Paddle」ノードの「Scale」プロパティの値が上書きされてしまいます。</p>
+<p><strong><span style="color:teal">Memo:</span>
+</strong><br>
+「Paddle」ノードの「Scale」プロパティを直接変更すれば1回の作業で済むのではないか、とお思いになる方もいらっしゃるかもしれません。しかし残念ながら、子ノードの「CollisionShape2D」ノードのサイズが変わってなければ、物理エンジンによって「Paddle」ノードの「Scale」プロパティの値が上書きされてしまいます。</p>
 </blockquote>
-<p>ボールがパドルから離れてしまったので、「Ball」ノードを選択した状態にして、2D ワークスペース上でドラッグして移動させましょう。この時、ツールバーでピクセルスナップを有効にして、グリッドスナップは無効にしておくと移動しやすいと思います。<br>
+<p>ボールがパドルから離れてしまったので、「Ball」ノードを選択した状態にして、2D ワークスペース上でドラッグして移動させよう。この時、ツールバーでピクセルスナップを有効にして、グリッドスナップは無効にしておくと移動しやすいと思う。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_29.png" alt="Ballノードを移動"  />
 </p>
-<p>さっきより良いバランスになりましたね！<br>
+<p>さっきより良いバランスになった。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_30.png" alt="Ballノードの位置確認"  />
 </p>
-<p>ちなみにインスペクタで「Ball」ノードの「Position」プロパティを確認すると以下のようになっていると思います。<br>
+<p>念のため、インスペクタで「Ball」ノードの「Position」プロパティを確認しておこう。以下のスクリーンショットのようになっていれば問題ないだろう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_31.png" alt="BallノードのPositionプロパティ"  />
+</p>
 <br>
-<br></p>
 <hr>
 <h1 id="ボールを発射する">ボールを発射する<a hidden class="anchor" aria-hidden="true" href="#ボールを発射する">#</a></h1>
-<p>それではここからスクリプトを作ってボールを動かしていきます。シーンドックで「Ball」ノードを選択した状態で、スクリプトをアタッチします。<br>
+<p>それではここからスクリプトを作ってボールを動かしていく。シーンドックで「Ball」ノードを選択した状態で、スクリプトをアタッチする。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_32.png" alt="Ballノードにスクリプトをアタッチ"  />
 </p>
-<p>先に作っておいた「scripts」フォルダに保存したいので、フォルダアイコンをクリックしましょう。<br>
+<p>先に作っておいた「scripts」フォルダに保存したいので、フォルダアイコンをクリックしよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_33.png" alt="フォルダアイコンをクリック"  />
 </p>
-<p>もしパスが「res://scene」になっていたら、一つ上の階層に戻ってから「scripts」フォルダを選択しましょう。パスが「res://scripts」になったら、ファイル名を「Ball.gd」として「開く」をクリックします。<br>
+<p>もしパスが「res://scene」になっていたら、一つ上の階層に戻ってから「scripts」フォルダを選択しよう。パスが「res://scripts」になったら、ファイル名を「Ball.gd」として「開く」をクリックする。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_34.png" alt="scriptsフォルダを選択、ファイル名決定"  />
 </p>
-<p>パスが更新されましたね。「作成」をクリックします。<br>
+<p>パスが更新された。「作成」をクリックする。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_35.png" alt="スクリプトを作成"  />
 </p>
-<p>スクリプトワークスペースが開きました。<br>
+<p>スクリプトワークスペースが開いた。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_36.png" alt="スクリプトワークスペース"  />
 </p>
-<p>今回、スクリプトに記述する全体のコードは以下の通りです。コーディングはちょっと苦手、という方はひとまずこのコードでスクリプトのコードを置き換えてください。</p>
+<p>今回、スクリプトに記述する全体のコードは以下の通りだ。コーディングはちょっと苦手、という方はひとまずこのコードでスクリプトのコードを置き換えてほしい。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">RigidBody2D</span>
 
 
@@ -403,48 +409,51 @@ if (!doNotTrack) {
 	apply_impulse(<span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>ZERO, velocity)
 </code></pre></div><hr>
 <h3 id="スクリプト解説">スクリプト解説<a hidden class="anchor" aria-hidden="true" href="#スクリプト解説">#</a></h3>
-<p>あとで使う<code>_ready()</code>関数以外の部分を削除しましょう。一旦、以下のようになりますね。</p>
+<p>あとで使う<code>_ready()</code>メソッド以外の部分を削除しよう。一旦、以下のようになる。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">RigidBody2D</span>
 
 
 
 <span style="color:#66d9ef">func</span> _ready():
 	<span style="color:#66d9ef">pass</span> <span style="color:#75715e"># Replace with function body.</span>
-</code></pre></div><p>ボールの速さを<code>ball_speed</code>という名前のプロパティで定義します。</p>
+</code></pre></div><p>ボールの速さを<code>ball_speed</code>という名前のプロパティで定義する。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#75715e"># ボールの速さ：1秒間に移動する距離（pixel)</span>
 <span style="color:#66d9ef">export</span> (<span style="color:#a6e22e">float</span>) <span style="color:#66d9ef">var</span> ball_speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">150.0</span>
-</code></pre></div><p>インスペクタで簡単に編集できるように<code>export</code>キーワードを頭につけます。<code>(float)</code>はこのプロパティの値が float というデータ型であることを示しています。int 型でも大きな問題はありませんが、今後ボールがだんだん速くなる仕組みを作る時に、より滑らかにスピードアップできた方が良いので float 型にしています。と、散々説明してきてなんですが、値を<code>150.0</code>と浮動小数で記述していることから、GDScript が自動的に float 型と判断するため、<code>(float)</code>の記述は無くても構いません。</p>
-<p>次に<code>_ready()</code>関数を編集していきます。まずは<code>pass</code>から始まる行を削除して、別のコードに書き換えていきます。</p>
+</code></pre></div><p>インスペクタで簡単に編集できるように<code>export</code>キーワードを頭につける。<code>(float)</code>はこのプロパティの値が float というデータ型であることを示している。int 型でも大きな問題はないが、今後ボールがだんだん速くなる仕組みを作る時に、より滑らかにスピードアップできた方が良いので float 型にしている。と、散々説明しておいてなんだが、値を<code>150.0</code>と浮動小数で記述していることから、GDScript が自動的に float 型と判断するため、<code>(float)</code>の記述は無くても構わない。</p>
+<p>次に<code>_ready()</code>メソッドを編集していく。まずは<code>pass</code>から始まる行を削除して、別のコードに書き換えていく。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">	<span style="color:#66d9ef">pass</span> <span style="color:#75715e"># Replace with function body.</span>
 </code></pre></div><blockquote>
-<p><strong>Memo</strong><br>
-<code>func</code>キーワードで宣言した関数のブロック（インデントで区分されたコードのかたまり）には何かコードを記述しないとエラーになります。まだ記述する内容が決まっていない場合に、一旦<code>pass</code>と入れておくことでそのエラーを回避することができます。<code>pass</code>にはそれ以上の意味は特にありません。</p>
+<p><strong><span style="color:teal">Memo:</span>
+</strong><br>
+<code>func</code>キーワードで宣言したメソッドのブロック（インデントで区分されたコードのかたまり）には何かコードを記述しないとエラーになります。まだ記述する内容が決まっていない場合に、一旦<code>pass</code>と入れておくことで、そのエラーを回避することができます。<code>pass</code>にはそれ以上の意味は特にありません。</p>
 </blockquote>
-<p><code>_ready()</code>関数のブロックに以下のコードを記述します。インデントを忘れないようにご注意ください。</p>
+<p><code>_ready()</code>メソッドのブロックに以下のコードを記述する。インデントを忘れないように注意が必要だ。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">  <span style="color:#75715e"># ボールが発射される向き</span>
   <span style="color:#66d9ef">var</span> direction <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>(<span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>normalized()
-</code></pre></div><p><code>_ready()</code>関数内でプロパティを2つ定義しています。</p>
-<p>一つ目のプロパティは<code>direction</code>です。これはボールが飛んでいく方向を定義しています。<code>Vector2(1, -1)</code>で右上に飛んでいくのはなんとなくおわかりいただけるかと思いますが、<code>.normalized()</code>とはなんでしょう。</p>
-<p>まず、座標上で (0, 0) から (1, -1) までの長さが 1 ではないということを理解するところから始めましょう。(1, 0) と (0, -1) はどちらも (0, 0) からの距離が 1 です。その両方の点と接する円があったとすると、その円周に位置する点は全て (0, 0) からの距離が 1 ということになります。しかし、(1, -1) は、その円より外側にありますので、(0, 0) からの距離は 1 より大きい（厳密には √2 ）ということになります。<br>
+</code></pre></div><p><code>_ready()</code>メソッド内でプロパティを2つ定義している。</p>
+<p>一つ目のプロパティは<code>direction</code>だ。これはボールが飛んでいく方向を定義している。<code>Vector2(1, -1)</code>で右上に飛んでいくのはなんとなくおわかりいただけるかと思うが、<code>.normalized()</code>とはなんだろう。</p>
+<p>まず、座標上 (0, 0) から (1, -1) までの長さが 1 ではないということを理解するところから始めよう。(1, 0) と (0, -1) はどちらも (0, 0) からの距離が 1 だ。その両方の点と接する円があったとすると、その円周に位置する点は全て (0, 0) からの距離が 1 ということになる。しかし、(1, -1) は、その円より外側にあるので、(0, 0) からの距離は 1 より大きい（厳密には √2 ）ということになる。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/figure_1.png" alt="プロジェクト実行"  />
 </p>
-<p>プロパティ<code>direction</code>は方向のみを表すプロパティにしたいので、長さを 1 にする必要があります。そこで長さが 1 より大きい (1, -1) の方向はそのままに、長さだけちょうど 1 にしてくれる便利な関数が<code>normalized()</code>なのです。これは Vector2 クラスの組み込み関数ですので最初から使えます。</p>
-<p>次にボールの速度を表すプロパティ<code>velocity</code>です。単純に先に定義した方向の情報を持たない速さを示すプロパティ<code>ball_speed</code>と方向を示す<code>direction</code>の掛け算で定義しています。</p>
+<p>プロパティ<code>direction</code>は方向のみを表すプロパティにしたいので、長さを 1 にする必要がある。そこで (1, -1) の方向はそのままで、長さだけちょうど 1 にしてくれる便利なメソッドが<code>normalized()</code>なのだ。これは Vector2 クラスでもともと用意されているメソッドなので最初から使える。</p>
+<p>次にボールの速度を表すプロパティ<code>velocity</code>だ。単純に先に定義した方向の情報を持たない速さを示すプロパティ<code>ball_speed</code>と方向を示す<code>direction</code>の掛け算で定義している。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">  <span style="color:#75715e"># ボールの速度（方向の情報をもったスピード：方向 x 速さ）</span>
   <span style="color:#66d9ef">var</span> velocity <span style="color:#f92672">=</span> direction <span style="color:#f92672">*</span> ball_speed
-</code></pre></div><p>最後に RigidBody2D の組み込み関数<code>apply_impulse()</code>を使って、ボールに衝撃を与えます。</p>
+</code></pre></div><p>最後に RigidBody2D のメソッド<code>apply_impulse()</code>を使って、ボールに衝撃を与える。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">  <span style="color:#75715e"># 一回だけオブジェクト（ボール）に衝撃を与える</span>
   apply_impulse(<span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>ZERO, velocity)
-</code></pre></div><p>これを<code>_ready()</code>関数内に記述したのは、シーンを実行した時にゲームの準備処理段階で1回限りの衝撃をボールに加えてゲーム開始と同時にボールを飛ばすためです。第一引数は offset で不要なため<code>Vector2.ZERO</code>で (0, 0) を指定、第二引数は impulse でこれはボールの速度を衝撃として与えるため、先に定義しておいた<code>velocity</code>を指定しています。<code>apply_impulse()</code>関数について詳しくは <a href="https://docs.godotengine.org/ja/stable/classes/class_rigidbody2d.html#class-rigidbody2d-method-apply-impulse" target="_blank">Godot 公式ドキュメンテーション</a>
-をご参照ください。</p>
-<p>それでは右上の実行ボタンをクリックして、プロジェクトを実行してみましょう。ショートカットキー操作も便利ですよ（実行 Windows: F5 / macOS: Cmd + B）。<br>
+</code></pre></div><p>これを<code>_ready()</code>メソッド内に記述したのは、シーンを実行した時にゲームの準備処理段階で1回限りの衝撃をボールに加えてゲーム開始と同時にボールを飛ばすためだ。第一引数の offset は<code>Vector2.ZERO</code>で (0, 0) を指定、第二引数 impulse はボールの速度を衝撃として与えるため、先に定義しておいた<code>velocity</code>を指定している。<code>apply_impulse()</code>メソッドについて詳しくは <a href="https://docs.godotengine.org/ja/stable/classes/class_rigidbody2d.html#class-rigidbody2d-method-apply-impulse" target="_blank">Godot 公式ドキュメンテーション</a>
+参照のこと。</p>
+<p>では改めてプロジェクトを実行してみよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/img_24.png" alt="プロジェクト実行"  />
 </p>
-<p>斜め45°の方向へ真っ直ぐ飛んでいきましたね。<br>
+<p>斜め45°の方向へ真っ直ぐ飛んでいった。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_2/launch_ball.gif" alt="デバッグパネルで確認"  />
+</p>
 <br>
-<br></p>
-<p>Part 2 はここまでです。最後までご覧いただきありがとうございました。次回はボールが画面外に飛んで行かないように壁を作っていきます。それでは Part 3 もお楽しみに！！！</p>
+<hr>
+<h1 id="おわりに">おわりに<a hidden class="anchor" aria-hidden="true" href="#おわりに">#</a></h1>
+<p>Part 2 はここまでで終了だ。次回 Part 3 では、ボールが画面外に飛んで行かないように壁を作っていく。</p>
 
 
   </div>
@@ -454,6 +463,7 @@ if (!doNotTrack) {
       <li><a href="https://www.peanuts-code.com/ja/tags/godot/">Godot</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/">ゲーム開発</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%B4%A9%E3%81%97/">ブロック崩し</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E5%88%9D%E7%B4%9A/">初級</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_3/">
@@ -471,7 +481,7 @@ if (!doNotTrack) {
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るブロック崩し - Part 2 on twitter"
-        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e5%b4%a9%e3%81%97%20-%20Part%202&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0004_breakout_2%2f&amp;hashtags=Godot%2c%e3%82%b2%e3%83%bc%e3%83%a0%e9%96%8b%e7%99%ba%2c%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e5%b4%a9%e3%81%97">
+        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e5%b4%a9%e3%81%97%20-%20Part%202&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0004_breakout_2%2f&amp;hashtags=Godot%2c%e3%82%b2%e3%83%bc%e3%83%a0%e9%96%8b%e7%99%ba%2c%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e5%b4%a9%e3%81%97%2c%e5%88%9d%e7%b4%9a">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />

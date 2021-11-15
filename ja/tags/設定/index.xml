@@ -12,12 +12,12 @@
     <language>ja</language>
     <lastBuildDate>Mon, 01 Nov 2021 12:37:47 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E8%A8%AD%E5%AE%9A/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Godot Engine の言語設定を変更する</title>
+      <title>Godot Engine の言語設定</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</link>
       <pubDate>Mon, 01 Nov 2021 12:37:47 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</guid>
-      <description>Godot Engine で表示される言語の設定を変更する手順について説明します。</description>
+      <description>Godot で表示される言語の設定を変更する手順について解説</description>
     </item>
     
   </channel>

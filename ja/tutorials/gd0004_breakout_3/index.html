@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Godot で作るブロック崩し - Part 3 | Peanuts Code</title>
-<meta name="keywords" content="Godot, ゲーム開発, ブロック崩し" />
+<meta name="keywords" content="Godot, ゲーム開発, ブロック崩し, 初級" />
 <meta name="description" content="- 壁を作ってボールを跳ね返らせよう！ -">
 <meta name="author" content="Masanao Sako">
 <link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_3/" />
@@ -78,10 +78,10 @@ if (!doNotTrack) {
   "name": "Godot で作るブロック崩し - Part 3",
   "description": "- 壁を作ってボールを跳ね返らせよう！ -",
   "keywords": [
-    "Godot", "ゲーム開発", "ブロック崩し"
+    "Godot", "ゲーム開発", "ブロック崩し", "初級"
   ],
-  "articleBody": "Part 2 に引き続きブロック崩しの開発を続けていきましょう。前回はボールのオブジェクトを作って、ゲーム開始時にパドルからボールを自動的に発射するところまでやりました。今回の Part 3 では、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていきます。ただし、画面下部には壁は作らずにボールが落ちるようにします。\n Memo: \nPart 1、Part 2 をまだご覧になっていない方は、そちらを先にご一読いただくことをおすすめします。\nGodot で作るブロック崩し - Part 1 Godot で作るブロック崩し - Part 2 \n 　 壁を作る 壁をゲーム画面のギリギリ外側に作っていきます。シーンドックで「Game」ノードを選択して、壁となる子ノードを追加していきましょう。\n今回は「StaticBody2D」を選択して「作成」をクリックします。\n「Game」ノードに追加された「StaticBody2D」ノードの名前を「Wall」に変更しておきます。右側に⚠️が表示されていますのでクリックしてみましょう。\n以下の警告メッセージが表示されます。\nメッセージの通り、次は「Wall」ノードの子ノードとして「CollisionPolygon2D」を追加します。\nシーンドックを見ると「Wall」ノードの⚠️は消えましたが、今度は「CollisionPolygon2D」の右側に⚠️が表示されています。クリックしてみましょう。\n「CollisionPolygon2D」が空だから衝突の判定ができないという内容のメッセージでした。ということでこれから「CollisionPolygon2D」に衝突を判定するための形を作っていきます。\n「CollisionPolygon2D」ノードでコリジョンの形を作るには、ツールバーの右端にある3つのアイコンの機能を使います。ツールの機能は左から順番に以下の通りです。これらのアイコンは「CollisionPolygon2D」ノードを選択している場合のみツールバーに表示されます。\n 点を作成する 点を編集する 点を消す  といっても、うまく行けば一番左のアイコン（点を作成する）だけで済みます。\nこの後の作業をやりやすくするために、ピクセルスナップは無効にして、グリッドスナップを有効にしましょう。\n慎重に作業する必要がありますが、とにかく「点を作成する」ツールを使って壁の角になる部分に点を打つようにして形を作っていきます。(0, 0)など分かり易いポイントから始めて、ゲーム画面の端が壁の内側と重なるようにします。壁の幅は1グリッド分（8 pixel）でもいいですが、2D ワークスペース上で見やすくなるように今回は2グリッド分を壁の厚みとしました。\n点を打つ場所が少しズレたとしても、気にせず一旦少しいびつな形の壁を作り切ってしまいましょう。あとで「点を編集する」または「点を消す」ツールで修正するのが効率的です。\n「CollisionPolygon2D」ノードから⚠️が消えましたね。\nそれではプロジェクトを実行してみましょう。\n上と左右の壁にボールが跳ね返りましたね！そして、画面下は落ちていきましたね！成功です！\nPart 3 はここまでです。最後までご覧いただきありがとうございました。今回は少し短いチュートリアルでしたが、次回はついにブロックのオブジェクトを作って、それを画面上に配置し、ボールが当たったらブロックが消える仕組みを作っていきます。それでは Part 4 もお楽しみに！！！\n",
-  "wordCount" : "49",
+  "articleBody": "Part 2 に引き続きブロック崩しの開発を続けていこう。前回はボールのオブジェクトを作って、ゲーム開始時にパドルからボールを自動的に発射するところまでやった。今回の Part 3 では、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。\n Memo: \nPart 1、Part 2 をまだご覧になっていない方は、そちらを先にご一読いただくことをおすすめします。\nGodot で作るブロック崩し - Part 1 Godot で作るブロック崩し - Part 2   Memo: \nこのチュートリアルで使用している Godot のバージョン：3.3.4\n  壁を作る 壁をゲーム画面のギリギリ外側に作っていく。シーンドックで「Game」ノードを選択して、壁となる子ノードを追加していこう。\n今回は「StaticBody2D」を選択して「作成」をクリックする。\n「Game」ノードに追加された「StaticBody2D」ノードの名前を「Wall」に変更しておく。右側に⚠️が表示されているのでクリックしてみよう。\n以下の警告メッセージが表示される。\nメッセージの通り、次は「Wall」ノードの子ノードとして「CollisionPolygon2D」を追加する。\nシーンドックを見ると「Wall」ノードの⚠️は消えたが、今度は「CollisionPolygon2D」の右側に⚠️が表示されている。クリックしてみよう。\n「CollisionPolygon2D」が空だから衝突の判定ができないという内容のメッセージだ。ということでこれから「CollisionPolygon2D」に衝突を判定するための形を作っていく。\n「CollisionPolygon2D」ノードでコリジョンの形を作るには、ツールバーの右端にある3つのアイコンの機能を使う。ツールの機能は左から順番に以下の通りだ。これらのアイコンは「CollisionPolygon2D」ノードを選択している場合のみツールバーに表示される。\n 点を作成する 点を編集する 点を消す  といっても、うまく行けば一番左のアイコン（点を作成する）だけで済む。\nこの後の作業をやりやすくするために、スマートスナップは無効にして、グリッドスナップを有効にしよう。\n慎重に作業する必要があるが、とにかく「点を作成する」ツールを使って壁の角になる部分に点を打つようにして形を作っていく。(0, 0)など分かり易いポイントから始めて、ゲーム画面の端が壁の内側と重なるようにする。壁の幅は1グリッド分（8 pixel）でもいいが、2D ワークスペース上で見やすくなるように今回は2グリッド分を壁の厚みとした。\n点を打つ場所が少しズレたとしても、気にせず一旦少しいびつな形の壁を作り切ってしまおう。あとで「点を編集する」または「点を消す」ツールで修正するのが効率的だ。\n「CollisionPolygon2D」ノードから⚠️が消えた。\nそれではプロジェクトを実行してみよう。\n期待通り、上と左右の壁にボールが跳ね返った。そして、ボールが画面下部に到達するとそのまま画面外に落ちていった。大成功だ。\n おわりに Part 3 はここまでで終了だ。今回は少し短いチュートリアルだったが、次回はついにブロックのオブジェクトを作って、それを画面上に配置し、ボールが当たったらブロックが消える仕組みを作っていく。\n",
+  "wordCount" : "51",
   "inLanguage": "ja",
   "image":"https://www.peanuts-code.com/images/tutorials/gd0004_breakout_3/img_0.png","datePublished": "2021-11-09T16:21:24+09:00",
   "dateModified": "2021-11-09T16:21:24+09:00",
@@ -242,76 +242,84 @@ if (!doNotTrack) {
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#%e5%a3%81%e3%82%92%e4%bd%9c%e3%82%8b" aria-label="壁を作る">壁を作る</a>
+                    <a href="#%e5%a3%81%e3%82%92%e4%bd%9c%e3%82%8b" aria-label="壁を作る">壁を作る</a></li>
+                <li>
+                    <a href="#%e3%81%8a%e3%82%8f%e3%82%8a%e3%81%ab" aria-label="おわりに">おわりに</a>
                 </li>
             </ul>
         </div>
     </details>
 </div>
 
-  <div class="post-content"><p>Part 2 に引き続き<strong>ブロック崩し</strong>の開発を続けていきましょう。前回はボールのオブジェクトを作って、ゲーム開始時にパドルからボールを自動的に発射するところまでやりました。今回の Part 3 では、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていきます。ただし、画面下部には壁は作らずにボールが落ちるようにします。<br>
+  <div class="post-content"><p>Part 2 に引き続き<strong>ブロック崩し</strong>の開発を続けていこう。前回はボールのオブジェクトを作って、ゲーム開始時にパドルからボールを自動的に発射するところまでやった。今回の Part 3 では、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。<br>
 <br></p>
 <blockquote>
-<p><em><strong><span style="color:teal">Memo:</span>
+<p><strong><span style="color:teal">Memo:</span>
 </strong><br>
 Part 1、Part 2 をまだご覧になっていない方は、そちらを先にご一読いただくことをおすすめします。<br>
 <a href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_1/" title="Godot で作るブロック崩し - Part 1">Godot で作るブロック崩し - Part 1</a>
 <br>
 <a href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_2/" title="Godot で作るブロック崩し - Part 2">Godot で作るブロック崩し - Part 2</a>
-</em></p>
+</p>
 </blockquote>
-<p>　<br>
-<br></p>
+<blockquote>
+<p><strong><span style="color:teal">Memo:</span>
+</strong><br>
+このチュートリアルで使用している Godot のバージョン：3.3.4</p>
+</blockquote>
+<br>
 <hr>
 <h1 id="壁を作る">壁を作る<a hidden class="anchor" aria-hidden="true" href="#壁を作る">#</a></h1>
-<p>壁をゲーム画面のギリギリ外側に作っていきます。シーンドックで「Game」ノードを選択して、壁となる子ノードを追加していきましょう。<br>
+<p>壁をゲーム画面のギリギリ外側に作っていく。シーンドックで「Game」ノードを選択して、壁となる子ノードを追加していこう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_3/img_1.png" alt="Gameノードを選択"  />
 </p>
-<p>今回は「StaticBody2D」を選択して「作成」をクリックします。<br>
+<p>今回は「StaticBody2D」を選択して「作成」をクリックする。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_3/img_2.png" alt="StaticBody2Dを作成"  />
 </p>
-<p>「Game」ノードに追加された「StaticBody2D」ノードの名前を「Wall」に変更しておきます。右側に⚠️が表示されていますのでクリックしてみましょう。<br>
+<p>「Game」ノードに追加された「StaticBody2D」ノードの名前を「Wall」に変更しておく。右側に⚠️が表示されているのでクリックしてみよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_3/img_3.png" alt="Wallに名前変更"  />
 </p>
-<p>以下の警告メッセージが表示されます。<br>
+<p>以下の警告メッセージが表示される。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_3/img_4.png" alt="警告を表示"  />
 </p>
-<p>メッセージの通り、次は「Wall」ノードの子ノードとして「CollisionPolygon2D」を追加します。<br>
+<p>メッセージの通り、次は「Wall」ノードの子ノードとして「CollisionPolygon2D」を追加する。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_3/img_5.png" alt="CollisionPolygon2Dを作成"  />
 </p>
-<p>シーンドックを見ると「Wall」ノードの⚠️は消えましたが、今度は「CollisionPolygon2D」の右側に⚠️が表示されています。クリックしてみましょう。<br>
+<p>シーンドックを見ると「Wall」ノードの⚠️は消えたが、今度は「CollisionPolygon2D」の右側に⚠️が表示されている。クリックしてみよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_3/img_6.png" alt="シーンドックで警告をクリック"  />
 </p>
-<p>「CollisionPolygon2D」が空だから衝突の判定ができないという内容のメッセージでした。ということでこれから「CollisionPolygon2D」に衝突を判定するための形を作っていきます。<br>
+<p>「CollisionPolygon2D」が空だから衝突の判定ができないという内容のメッセージだ。ということでこれから「CollisionPolygon2D」に衝突を判定するための形を作っていく。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_3/img_7.png" alt="警告を表示"  />
 </p>
-<p>「CollisionPolygon2D」ノードでコリジョンの形を作るには、ツールバーの右端にある3つのアイコンの機能を使います。ツールの機能は左から順番に以下の通りです。これらのアイコンは「CollisionPolygon2D」ノードを選択している場合のみツールバーに表示されます。</p>
+<p>「CollisionPolygon2D」ノードでコリジョンの形を作るには、ツールバーの右端にある3つのアイコンの機能を使う。ツールの機能は左から順番に以下の通りだ。これらのアイコンは「CollisionPolygon2D」ノードを選択している場合のみツールバーに表示される。</p>
 <ul>
 <li>点を作成する</li>
 <li>点を編集する</li>
 <li>点を消す</li>
 </ul>
-<p>といっても、うまく行けば一番左のアイコン（点を作成する）だけで済みます。</p>
+<p>といっても、うまく行けば一番左のアイコン（点を作成する）だけで済む。</p>
 <p><img loading="lazy" src="/images/tutorials/gd0004_breakout_3/img_8.png" alt="CollisionPolygon2Dの点の編集ツール"  />
 </p>
-<p>この後の作業をやりやすくするために、ピクセルスナップは無効にして、グリッドスナップを有効にしましょう。<br>
+<p>この後の作業をやりやすくするために、スマートスナップは無効にして、グリッドスナップを有効にしよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_3/img_9.png" alt="ピクセルスナップ無効グリッドスナップ有効"  />
 </p>
-<p>慎重に作業する必要がありますが、とにかく「点を作成する」ツールを使って壁の角になる部分に点を打つようにして形を作っていきます。(0, 0)など分かり易いポイントから始めて、ゲーム画面の端が壁の内側と重なるようにします。壁の幅は1グリッド分（8 pixel）でもいいですが、2D ワークスペース上で見やすくなるように今回は2グリッド分を壁の厚みとしました。</p>
-<p>点を打つ場所が少しズレたとしても、気にせず一旦少しいびつな形の壁を作り切ってしまいましょう。あとで「点を編集する」または「点を消す」ツールで修正するのが効率的です。<br>
+<p>慎重に作業する必要があるが、とにかく「点を作成する」ツールを使って壁の角になる部分に点を打つようにして形を作っていく。(0, 0)など分かり易いポイントから始めて、ゲーム画面の端が壁の内側と重なるようにする。壁の幅は1グリッド分（8 pixel）でもいいが、2D ワークスペース上で見やすくなるように今回は2グリッド分を壁の厚みとした。</p>
+<p>点を打つ場所が少しズレたとしても、気にせず一旦少しいびつな形の壁を作り切ってしまおう。あとで「点を編集する」または「点を消す」ツールで修正するのが効率的だ。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_3/movie_1.gif" alt="点を打ってポリゴンで形を作る"  />
 </p>
-<p>「CollisionPolygon2D」ノードから⚠️が消えましたね。<br>
+<p>「CollisionPolygon2D」ノードから⚠️が消えた。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_3/img_10.png" alt="シーンドックを確認"  />
 </p>
-<p>それではプロジェクトを実行してみましょう。<br>
+<p>それではプロジェクトを実行してみよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_3/img_11.png" alt="プロジェクトの実行"  />
 </p>
-<p>上と左右の壁にボールが跳ね返りましたね！そして、画面下は落ちていきましたね！成功です！<br>
+<p>期待通り、上と左右の壁にボールが跳ね返った。そして、ボールが画面下部に到達するとそのまま画面外に落ちていった。大成功だ。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout_3/movie_2.gif" alt="デバッグパネルで画面確認"  />
+</p>
 <br>
-<br></p>
-<p>Part 3 はここまでです。最後までご覧いただきありがとうございました。今回は少し短いチュートリアルでしたが、次回はついにブロックのオブジェクトを作って、それを画面上に配置し、ボールが当たったらブロックが消える仕組みを作っていきます。それでは Part 4 もお楽しみに！！！</p>
+<hr>
+<h1 id="おわりに">おわりに<a hidden class="anchor" aria-hidden="true" href="#おわりに">#</a></h1>
+<p>Part 3 はここまでで終了だ。今回は少し短いチュートリアルだったが、次回はついにブロックのオブジェクトを作って、それを画面上に配置し、ボールが当たったらブロックが消える仕組みを作っていく。</p>
 
 
   </div>
@@ -321,6 +329,7 @@ Part 1、Part 2 をまだご覧になっていない方は、そちらを先に�
       <li><a href="https://www.peanuts-code.com/ja/tags/godot/">Godot</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/">ゲーム開発</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%B4%A9%E3%81%97/">ブロック崩し</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E5%88%9D%E7%B4%9A/">初級</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_4/">
@@ -338,7 +347,7 @@ Part 1、Part 2 をまだご覧になっていない方は、そちらを先に�
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るブロック崩し - Part 3 on twitter"
-        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e5%b4%a9%e3%81%97%20-%20Part%203&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0004_breakout_3%2f&amp;hashtags=Godot%2c%e3%82%b2%e3%83%bc%e3%83%a0%e9%96%8b%e7%99%ba%2c%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e5%b4%a9%e3%81%97">
+        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e5%b4%a9%e3%81%97%20-%20Part%203&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0004_breakout_3%2f&amp;hashtags=Godot%2c%e3%82%b2%e3%83%bc%e3%83%a0%e9%96%8b%e7%99%ba%2c%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e5%b4%a9%e3%81%97%2c%e5%88%9d%e7%b4%9a">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
