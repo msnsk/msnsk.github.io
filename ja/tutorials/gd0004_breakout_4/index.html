@@ -23,7 +23,7 @@
 <link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.89.2" />
+<meta name="generator" content="Hugo 0.89.3" />
 <link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_4/" />
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
@@ -422,22 +422,22 @@ Part 1 ~ Part 3 をまだご覧になっていない方は、そちらを先に�
 <p>先にも説明した通り、画面上にブロックを配置する際は「Brick」シーンを雛形（ブループリントや設計図と言っても良いだろう）として、「Brick」シーンのインスタンスを複数作成することになる。複数のインスタンスを作成した後、それらインスタンスに対して何らかの処理を施す場合、それぞれ個別に処理するよりは、それらを一つのグループにまとめて、そのグループに対して1回処理を施したほうが効率的だ。</p>
 <p>ということで、ブロックのグループを作っていく。</p>
 <p>シーンドックで「Brick」ノードを選択したまま、エディタ右側で<strong>インスペクタ</strong>ドックから<strong>ノード</strong>ドックに切り替え、<strong>グループ</strong>タブを開く。枠内にグループ名を入力して、右隣の「追加」をクリックするとグループが出来上がる。今回は「Bricks」というグループ名にした。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_18.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_18.png" alt="ノードのグループを作成"  />
 </p>
 <p>現時点では、作ったグループには「Brick」ノードしか含まれていないが、このノードを雛形にしてインスタンスを大量に作成する際、元の「Brick」ノードがすでにグループに追加されているので、生成されたインスタンスも最初からグループに追加されている形になるというわけだ。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_19.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_19.png" alt="グループ作成完了"  />
 </p>
 <br>
 <hr>
 <h1 id="ボールが当たったらブロックが消えるようにする">ボールが当たったらブロックが消えるようにする<a hidden class="anchor" aria-hidden="true" href="#ボールが当たったらブロックが消えるようにする">#</a></h1>
 <p>それでは久しぶりに「Game」シーンを開こう。「シーン」メニュー＞「シーンを開く」を選択する。ショートカットキー操作でも構わない（シーンを開く Windows: Ctrl + O / macOS: Cmd + O）。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_20.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_20.png" alt="シーンを開く"  />
 </p>
 <p>「Game.tscn」を選択して開く。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_21.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_21.png" alt="シーンを選択する"  />
 </p>
 <p>これから Godot のシグナルの機能を利用して「ボールが当たったらブロックが消える」という仕組みを作っていく。シーンドックで「Ball」ノードを選択しよう。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_22.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_22.png" alt="シーンドックでBallノードを選択"  />
 </p>
 <p>エディタ右側にある<strong>ノード</strong>ドックの<strong>シグナル</strong>タブを開く。あらかじめ様々なシグナルが用意されている。これらはノードの種類によってその数や種類が異なる。</p>
 <blockquote>
@@ -446,16 +446,16 @@ Part 1 ~ Part 3 をまだご覧になっていない方は、そちらを先に�
 シグナルというのは、いわゆる callback で、特定の条件が揃ったら信号を発してくれる便利な機能です。その信号はスクリプト上のメソッドに接続することができ、信号が発せられると接続されているメソッドが発動します。</p>
 </blockquote>
 <p>今回は RigidBody2D ノードに備わっている「body_entered(body: Node)」シグナルを使う。このシグナルを「Ball」ノードのスクリプトに接続していく。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_23.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_23.png" alt="body_enteredシグナルを選択"  />
 </p>
 <p>そのまま「body_entered(body: Node)」シグナルをダブルクリックするか、右下の「接続」をクリックする。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_24.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_24.png" alt="シグナルを接続"  />
 </p>
 <p>「メソッドにシグナルを接続」パネルが表示されたら、「スクリプトに接続」のリストから「Ball」ノードのを選択する。「受信側メソッド」はスクリプトに接続された後に自動的に生成されるメソッドの名前だ。メソッドの名前はデフォルトで「on_ノード名_シグナル名」になる。問題なければ「接続」をクリックする。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_25.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_25.png" alt="シグナルの接続先となるスクリプトを選択"  />
 </p>
 <p>自動的にスクリプトワークスペースで「Ball.gd」スクリプトファイルが開く。スクリプトの一番最後に<code>_on_Ball_body_entered()</code>メソッドが追加されているのがわかるだろう。メソッドが定義されている行の左側にはシグナルに接続していることを示す緑色のアイコンが表示されるので視覚的にもわかりやすい。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_26.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_26.png" alt="スクリプトワークスペース上で接続のアイコンを確認"  />
 </p>
 <p>このメソッドの内容に記述したコードが、シグナルが発せられたタイミングで実行される。今回利用するシグナル「body_entered(body: Node)」の場合は「Ball」ノードにオブジェクトが衝突したら発せられる。メソッドの引数<code>body</code>は「Ball」ノードに衝突したオブジェクトを指す。</p>
 <p>結果的に「Ball.gd」のスクリプト全体は以下のようになっている。</p>
@@ -484,7 +484,7 @@ Part 1 ~ Part 3 をまだご覧になっていない方は、そちらを先に�
 <ul>
 <li>Contacts Reported：1 に変更</li>
 <li>Contact Monitor: オンにする<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_26.1.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_26.1.png" alt="インスペクタでBallノードのプロパティを選択"  />
 </li>
 </ul>
 <br>
@@ -499,65 +499,65 @@ Part 1 ~ Part 3 をまだご覧になっていない方は、そちらを先に�
 <br>
 <h3 id="新規シーンを作成する">新規シーンを作成する<a hidden class="anchor" aria-hidden="true" href="#新規シーンを作成する">#</a></h3>
 <p>「シーン」メニュー＞「新規シーン」を選択する。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_27.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_27.png" alt="新規シーンを選択"  />
 </p>
 <p>「2D シーン」を選択する。これにより、自動的に新規「Node2D」ノードがルートノードとして追加される。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_28.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_28.png" alt="2Dシーンを選択"  />
 </p>
 <p>まず一つ目のレベルシーンを作るので、「Node2D」ノードの名前を「Level1」に変更しよう。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_29.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_29.png" alt="Level1に名前変更"  />
 </p>
 <br>
 <h3 id="level1ノードにbrickシーンのインスタンスを追加する">「Level1」ノードに「Brick」シーンのインスタンスを追加する<a hidden class="anchor" aria-hidden="true" href="#level1ノードにbrickシーンのインスタンスを追加する">#</a></h3>
 <p>「Level1」ノードの子ノードとして、作成済みの「Brick」シーンをインスタンス化して追加する。手順は次のどちらでも構わない。</p>
 <h4 id="手順その1">＜手順その1＞<a hidden class="anchor" aria-hidden="true" href="#手順その1">#</a></h4>
 <p>シーンドック上で「Level1」シーンを右クリックして、「子シーンをインスタンス化」を選択する。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_30.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_30.png" alt="子シーンをインスタンス化"  />
 </p>
 <p>インスタンス化したいシーンのファイルを選択する。ここでは「scene/Brick.tscn」を選択して「開く」をクリックする。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_31.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_31.png" alt="インスタンス化したいシーンを選択"  />
 </p>
 <h4 id="手順その2">＜手順その2＞<a hidden class="anchor" aria-hidden="true" href="#手順その2">#</a></h4>
 <p>ファイルシステムドックから、インスタンス化したいシーンのファイルを、シーンドックの親ノード（ここでは「Level1」ノード）にドラッグ&amp;ドロップする。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_32.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_32.png" alt="ファイルシステムからシーンドックにシーンファイルをドラッグ&amp;amp;ドロップ"  />
 <br>
 <br></p>
 <p>いずれかの手順によって、「Brick」シーンのインスタンスが「Level1」ノードの子ノードとして追加された。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_33.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_33.png" alt="Brickノード追加完了"  />
 </p>
 <p>この後、このノードを量産していく作業をわかりやすくするために、ノードの名前を「Brick<strong>1</strong>」に変更する。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_34.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_34.png" alt="Brick1に名前変更"  />
 </p>
 <p>ちなみに、<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_35.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_35.png" alt="グループのアイコン"  />
  は何らかのノードグループに属していることを示している。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_36.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_36.png" alt="インスタンスのアイコン"  />
 は別のシーンのインスタンスであることを示している。</p>
 <p>ここで一度作成した「Level1」のシーンを保存しておこう。保存先パスは「res://scene」、ファイル名は「Level1.tscn」で問題ない。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_37.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_37.png" alt="Level1シーンを保存"  />
 </p>
 <br>
 <h3 id="brickノードを量産して配置する">「Brick」ノードを量産して配置する<a hidden class="anchor" aria-hidden="true" href="#brickノードを量産して配置する">#</a></h3>
 <p>それでは「Brick1」ノードを複製してそれを移動させる、という作業を繰り返していくための下準備をする。まず、ブロックの色を行によって変えることにする。インスペクタで、1行目の1つ目のブロックとなる「Brick1」ノードの「Brick Color」プロパティを選択してカラーピッカーで色を選択（または入力）してほしい。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_37.1.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_37.1.png" alt="カラーピッカー"  />
 </p>
 <p>色が更新された。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_37.2.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_37.2.png" alt="インスペクタからbrick_colorプロパティの色の変更を確認"  />
 </p>
 <p>次に 2D ワークスペースのグリッドの間隔を調整する。ツールバーの「スナッピングオプション」をクリックして「スナップの設定」をクリックする。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_38.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_38.png" alt="スナップの設定"  />
 </p>
 <p>グリッドのステップを「Brick1」ノードのサイズと同じ横32px、縦16pxに変更して「OK」をクリックする。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_39.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_39.png" alt="グリッドのステップを変更"  />
 </p>
 <p>ツールバーで「移動モード」を有効にし（移動モード Windows: W / macOS W）、グリッドスナップも有効にする。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_40.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_40.png" alt="移動モード、グリッドスナップを有効にする"  />
 </p>
 <p>座標(0, 0)にある「Brick1」ノードを縦に3グリッド分、横に3グリッド分ドラッグして移動させよう。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_41.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_41.png" alt="2D ワークスペースでBrick1をドラッグ"  />
 </p>
 <p>「position」プロパティの値は(96, 48)になっている。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_42.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_42.png" alt="positionプロパティを確認"  />
 </p>
 <p>ここからは簡単だ。以下の操作を10回繰り返して横にブロックが11個並んだ状態を作る。</p>
 <ol>
@@ -565,38 +565,38 @@ Part 1 ~ Part 3 をまだご覧になっていない方は、そちらを先に�
 <li>ショートカットキー（Windows: Ctrl + D / macOS: Cmd + D）で選択したブロックのノードを複製</li>
 <li>複製したブロックを 2D ワークスペース上で横に1グリッド分移動</li>
 </ol>
-<p><img loading="lazy" src="/images/tutorials/gd0004_breakout_4/movie_2.gif" alt=""  />
+<p><img loading="lazy" src="/images/tutorials/gd0004_breakout_4/movie_2.gif" alt="Brickノードの複製、移動を繰り返す"  />
 </p>
 <p>それではシーンを実行して確認していこう。ただし、色も確認したいので、先に「デバッグ」メニュー＞「コリジョン形上の表示」のチェックを外しておく。チェックが入っていると、コリジョン形上を表す半透明の緑色が重なってしまうので、実際のブロックの色を確認できないからだ。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_43.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_43.png" alt="デバッグメニュー＞コリジョン形状の表示をオフ"  />
 </p>
 <p>シーンを実行する。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_44.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_44.png" alt="シーンを実行"  />
 </p>
 <p>自分で指定した色のブロックが横一列に並んでいる。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_45.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_45.png" alt="デバッグパネルでブロックの配置確認"  />
 </p>
 <p>先のブロック複製作業をさらに繰り返して、画面上に4段ほどブロックを並べよう。ゲーム性には直接関係ないが、見た目を少し楽しくするために一段ずつ色を変えていこう。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/movie_3.gif" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/movie_3.gif" alt="残り3段分ブロックを複製、移動"  />
 </p>
 <p>それでは再度シーンを実行して、ブロックの配置を確認しよう。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_46.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_46.png" alt="シーンを実行してデバッグパネルで確認"  />
 </p>
 <br>
 <hr>
 <h1 id="レベルシーンをゲームシーンの子ノードにする">レベルシーンをゲームシーンの子ノードにする<a hidden class="anchor" aria-hidden="true" href="#レベルシーンをゲームシーンの子ノードにする">#</a></h1>
 <p>最初のレベルのシーンである「Level1」が完成したので、これをインスタンス化して「Game」シーンに子ノードとして追加していく。</p>
 <p>「Game」シーンに切り替えたら、「Level1.tscn」のインスタンスを「Game」ノードの子ノードとして追加する。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_47.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_47.png" alt="シーンドックでGameノードにLevel1シーンのインスタンスを追加"  />
 </p>
 <p>ようやく 2D ワークスペースにブロック崩しに必要な全てのノードが揃った。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_48.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_48.png" alt="デバッグパネルで確認"  />
 </p>
 <p>最後にプロジェクトを実行して遊んでみよう。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_49.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/img_49.png" alt="シーンを実行"  />
 </p>
 <p>若干パドルのスピードが遅くてハードモードだが、ボールがブロックに当たった時はブロックが消えて、パドルと壁に当たった時は跳ね返る。パドルが壁をすり抜けていること、ボールの跳ね返る角度が毎回45°であることなど、まだ修正すべき点は残っているが、ひとまず必要最小限の要素でブロック崩しが完成した。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/movie_4.gif" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout_4/movie_4.gif" alt="デバッグパネルで動作確認"  />
 </p>
 <br>
 <hr>
