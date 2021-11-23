@@ -12,61 +12,61 @@
     <language>ja</language>
     <lastBuildDate>Sun, 21 Nov 2021 13:39:21 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godot/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Godot で作るブロック崩し - Part 6</title>
+      <title>Godot で作るブロック崩し Part 6：ゲームスタート/ゲームオーバーの画面を作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_6/</link>
       <pubDate>Sun, 21 Nov 2021 13:39:21 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_6/</guid>
-      <description>- ゲームスタート/ゲームオーバーの画面を作ろう！ -</description>
+      <description>Part 6 の今回は、ゲームスタート画面とゲームオーバーの画面を作り、それらとプレイ画面との間で適宜、画面が遷移するようにしていく。</description>
     </item>
     
     <item>
-      <title>Godot で作るブロック崩し - Part 5</title>
+      <title>Godot で作るブロック崩し Part 5：細かい更新をしてゲーム性を高めよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_5/</link>
       <pubDate>Wed, 17 Nov 2021 12:23:06 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_5/</guid>
-      <description>- 細かいところを更新してゲーム性を高めよう！ -</description>
+      <description>Part 5 の今回は、パドルが壁を通過してしまう問題の修正、衝突するたびにボールのスピードが上がる仕様に変更、プレイヤーの操作でボールが発射される仕様に変更、パドル上のボールが当たった位置によってボールの反射角度が変わる仕様に変更、ついて更新していく。</description>
     </item>
     
     <item>
-      <title>Godot で作るブロック崩し - Part 4</title>
+      <title>Godot で作るブロック崩し Part 4：ブロックを配置してボールを当てて消そう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_4/</link>
       <pubDate>Wed, 10 Nov 2021 17:05:50 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_4/</guid>
-      <description>- 画面に配置したブロックにボールを当てて消してみよう！ -</description>
+      <description>Part 4 の今回は、ブロックのオブジェクトを作って、それを画面上に複数配置し、ボールがそのブロックに衝突したらブロックが消えるようにしていく。</description>
     </item>
     
     <item>
-      <title>Godot で作るブロック崩し - Part 3</title>
+      <title>Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_3/</link>
       <pubDate>Tue, 09 Nov 2021 16:21:24 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_3/</guid>
-      <description>- 壁を作ってボールを跳ね返らせよう！ -</description>
+      <description>Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。</description>
     </item>
     
     <item>
-      <title>Godot で作るブロック崩し - Part 2</title>
+      <title>Godot で作るブロック崩し Part 2：ボールを作って発射しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_2/</link>
       <pubDate>Sat, 06 Nov 2021 23:11:01 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_2/</guid>
-      <description>- ボールを作ってパドルから発射させよう！ -</description>
+      <description>Part 2 の今回は、ボールのオブジェクトを作って、パドルからボールを発射するところまで進めていく。</description>
     </item>
     
     <item>
-      <title>Godot で作るブロック崩し - Part 1</title>
+      <title>Godot で作るブロック崩し Part 1：パドルを作って動かそう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_1/</link>
       <pubDate>Sat, 06 Nov 2021 17:44:27 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_1/</guid>
-      <description>- パドルを作って動かしてみよう -</description>
+      <description>Part 1 の今回は、ゲームのプレイ画面にパドルを配置して動かすところまでやっていく。</description>
     </item>
     
     <item>
-      <title>Godot Engine の言語設定</title>
+      <title>Godot の言語設定</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</link>
       <pubDate>Mon, 01 Nov 2021 12:37:47 +0900</pubDate>
       
