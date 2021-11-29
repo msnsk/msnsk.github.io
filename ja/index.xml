@@ -17,7 +17,7 @@
       <pubDate>Tue, 23 Nov 2021 23:45:05 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_7/</guid>
-      <description>Part 7 の今回は、HUD（ヘッドアップディスプレイ）を作っていく。HUD というのは、例えば、プレイヤーのライフゲージやスコア、残り時間、ステージ番号などのように、ゲームプレイ画面に常に表示されているもののことだ。</description>
+      <description>Part 7 の今回は、HUD（ヘッドアップディスプレイ）を作っていく。HUD というのは、例えば、プレイヤーのライフゲージやスコア、残り時間、レベル（ステージ）の番号などのように、ゲームプレイ画面に常に表示されているもののことだ。</description>
     </item>
     
     <item>
