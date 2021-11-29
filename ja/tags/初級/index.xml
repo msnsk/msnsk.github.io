@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 21 Nov 2021 13:39:21 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E5%88%9D%E7%B4%9A/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Nov 2021 23:45:05 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E5%88%9D%E7%B4%9A/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るブロック崩し Part 7：HUDを作って表示内容を更新してみよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_7/</link>
+      <pubDate>Tue, 23 Nov 2021 23:45:05 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_7/</guid>
+      <description>Part 7 の今回は、HUD（ヘッドアップディスプレイ）を作っていく。HUD というのは、例えば、プレイヤーのライフゲージやスコア、残り時間、ステージ番号などのように、ゲームプレイ画面に常に表示されているもののことだ。</description>
+    </item>
+    
     <item>
       <title>Godot で作るブロック崩し Part 6：ゲームスタート/ゲームオーバーの画面を作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_6/</link>
