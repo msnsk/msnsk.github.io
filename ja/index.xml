@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 23 Nov 2021 23:45:05 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Nov 2021 17:02:30 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るブロック崩し Part 8：ポーズ画面を作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_8/</link>
+      <pubDate>Mon, 29 Nov 2021 17:02:30 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_8/</guid>
+      <description>Part 8 の今回は、ゲームをプレイ中にポーズ（一時停止）する機能とポーズ画面を作っていく。といっても作業はこれまでのおさらい的内容が多くなっているので、気楽にやってみてほしい。</description>
+    </item>
+    
     <item>
       <title>Godot で作るブロック崩し Part 7：HUDを作って表示内容を更新してみよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_7/</link>
