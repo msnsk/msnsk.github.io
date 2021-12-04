@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 29 Nov 2021 17:02:30 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 Dec 2021 22:49:34 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るブロック崩し Part 9：アニメーションを追加しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_9/</link>
+      <pubDate>Thu, 02 Dec 2021 22:49:34 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_9/</guid>
+      <description>Part 9 の今回は、ブロック崩しの一部の要素にアニメーションを追加する。全てのオブジェクトをアニメーションさせると作業量が膨大になるので、今回はパドルとブロックに対象を絞ってに簡単なアニメーションを追加していく。</description>
+    </item>
+    
     <item>
       <title>Godot で作るブロック崩し Part 8：ポーズ画面を作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_8/</link>
