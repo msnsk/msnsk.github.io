@@ -10,7 +10,25 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 02 Dec 2021 22:49:34 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%B4%A9%E3%81%97/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Dec 2021 13:36:54 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%B4%A9%E3%81%97/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るブロック崩し Part 11：パワーアップを実装しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_11/</link>
+      <pubDate>Sat, 11 Dec 2021 13:36:54 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_11/</guid>
+      <description>Part 11 の今回は、ブロック崩しにパワーアップ機能を実装していく。前回の Part 11 でブロックを消すとパワーアップアイテムが落ちてきて、パドルとアイテムが衝突するとパワーアップが適用される、という仕組みの部分を作ったので、今回は個々のパワーアップ機能自体を実装する。</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 10：パワーアップアイテムをドロップさせよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_10/</link>
+      <pubDate>Thu, 02 Dec 2021 22:49:34 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_10/</guid>
+      <description>Alert:</description>
+    </item>
+    
     <item>
       <title>Godot で作るブロック崩し Part 9：アニメーションを追加しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_9/</link>
