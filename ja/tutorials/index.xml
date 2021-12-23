@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 11 Dec 2021 13:36:54 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Dec 2021 00:21:13 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るブロック崩し Part 12：BGMとサウンドエフェクトを追加しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_12/</link>
+      <pubDate>Sun, 19 Dec 2021 00:21:13 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_12/</guid>
+      <description>Part 12 の今回は、ブロック崩しにBGMとサウンドエフェクト（効果音）を追加していく。音なので、テキストベースのチュートリアルでは伝わりにくい部分があるかもしれないが、できるだけわかりやすい文章を心がけてお伝えしていこうと思う。</description>
+    </item>
+    
     <item>
       <title>Godot で作るブロック崩し Part 11：パワーアップを実装しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_11/</link>
