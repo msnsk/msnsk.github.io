@@ -10,14 +10,23 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 19 Dec 2021 00:21:13 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Dec 2021 16:55:59 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るブロック崩し Part 13：ハイスコアのデータを保存しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_13/</link>
+      <pubDate>Thu, 23 Dec 2021 16:55:59 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_13/</guid>
+      <description>Part 13 の今回は、ブロック崩しの HUD にハイスコア、ハイレベル（過去最高クリアレベルのことをこう呼ぶことにする）の要素を追加し、ゲームオーバーになった時点でそのデータが自動的に保存されるようにして、一度ゲームを終了しても記録が消えない仕組みを作っていく。</description>
+    </item>
+    
     <item>
       <title>Godot で作るブロック崩し Part 12：BGMとサウンドエフェクトを追加しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_12/</link>
       <pubDate>Sun, 19 Dec 2021 00:21:13 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_12/</guid>
-      <description>Part 12 の今回は、ブロック崩しにBGMとサウンドエフェクト（効果音）を追加していく。音なので、テキストベースのチュートリアルでは伝わりにくい部分があるかもしれないが、できるだけわかりやすい文章を心がけてお伝えしていこうと思う。</description>
+      <description>Part 12 の今回は、ブロック崩しにBGMとサウンドエフェクト（効果音）を追加していく。今回のチュートリアルにはいつもの GIF ではなく mp4 の動画を載せている。この記事の閲覧環境は様々だと思われるため、デフォルトでは音をミュートしている。動画のコントローラでミュート解除していただきつつ、確認いただければと思う。</description>
     </item>
     
     <item>
