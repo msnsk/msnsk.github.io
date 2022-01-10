@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 31 Dec 2021 02:09:21 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jan 2022 00:18:03 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るブロック崩し Part 15：プロジェクトをエクスポートしよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_15/</link>
+      <pubDate>Mon, 10 Jan 2022 00:18:03 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_15/</guid>
+      <description>Part 15 の今回は、これまで開発してきたブロック崩しのプロジェクトをエクスポートして、開発者以外にもプレイしてもらえるようにする。エクスポートの作業は基本的に、ゲームが完成した段階でそのゲームを配布するために行う。</description>
+    </item>
+    
     <item>
       <title>Godot で作るブロック崩し Part 14：ブロックの種類を増やしてレベルをデザインしよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_14/</link>
