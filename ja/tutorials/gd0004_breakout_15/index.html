@@ -40,12 +40,12 @@ if (!doNotTrack) {
 <meta property="og:description" content="Part 15 の今回は、これまで開発してきたブロック崩しのプロジェクトをエクスポートして、開発者以外にもプレイしてもらえるようにする。エクスポートの作業は基本的に、ゲームが完成した段階でそのゲームを配布するために行う。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout_15/" />
-<meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0004_breakout_15/img_30.gif" /><meta property="article:section" content="tutorials" />
+<meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_15/img_30.gif" /><meta property="article:section" content="tutorials" />
 <meta property="article:published_time" content="2022-01-10T00:18:03&#43;09:00" />
 <meta property="article:modified_time" content="2022-01-10T00:18:03&#43;09:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0004_breakout_15/img_30.gif" />
+<meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_15/img_30.gif" />
 <meta name="twitter:title" content="Godot で作るブロック崩し Part 15：プロジェクトをエクスポートしよう！"/>
 <meta name="twitter:description" content="Part 15 の今回は、これまで開発してきたブロック崩しのプロジェクトをエクスポートして、開発者以外にもプレイしてもらえるようにする。エクスポートの作業は基本的に、ゲームが完成した段階でそのゲームを配布するために行う。"/>
 
@@ -83,7 +83,7 @@ if (!doNotTrack) {
   "articleBody": "Part 15 の今回は、これまで開発してきたブロック崩しのプロジェクトをエクスポートして、開発者以外にもプレイしてもらえるようにする。エクスポートの作業は基本的に、ゲームが完成した段階でそのゲームを配布するために行う。\n友人、知人にエクスポートしたゲームファイルをそのまま渡すこともあるかもしれないが、一般的には、ゲームのプラットフォーム（Windows や Linux の PC、macOS コンピュータ、Nintendo Switch などのコンソール、iOS や Android などのモバイルなど）ごとに Web で販売できるサイトが存在するので、そこにエクスポートしたファイルをアップロードして、世界中から自分の作ったゲームをダウンロードしてもらえるようにする。\nエクスポート手順もプラットフォームによって異なる。今回は macOS 用のゲームとしてエクスポートする手順をメインに解説していく。今後、iOS や Android などのモバイルゲーム用のチュートリアルを作成した時にはそちらのエクスポート方法にも触れたいと思う。\nちなみに、公式ドキュメント でも手順を詳しく解説してくれているので、そちらも是非参照してほしい。\n Memo: \n過去の Part をまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るブロック崩し Part 1：パドルを作って動かそう！ Godot で作るブロック崩し Part 2：ボールを作って発射しよう！ Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！ Godot で作るブロック崩し Part 4：ブロックを配置してボールを当てて消そう！ Godot で作るブロック崩し Part 5：細かい更新をしてゲーム性を高めよう！ Godot で作るブロック崩し Part 6：ゲームスタート/ゲームオーバーの画面を作ろう！ Godot で作るブロック崩し Part 7：HUDを作って表示内容を更新してみよう！ Godot で作るブロック崩し Part 8：ポーズ画面を作ろう！ Godot で作るブロック崩し Part 9：アニメーションを追加しよう！ Godot で作るブロック崩し Part 10：パワーアップアイテムをドロップさせよう！ Godot で作るブロック崩し Part 11：パワーアップを実装しよう！ Godot で作るブロック崩し Part 12：BGMとサウンドエフェクトを追加しよう！ Godot で作るブロック崩し Part 13：ハイスコアのデータを保存しよう！ Godot で作るブロック崩し Part 14：ブロックの種類を増やしてレベルをデザインしよう！   \n (adsbygoogle = window.adsbygoogle || []).push({});   プロジェクトをエクスポートする これまで開発してきたブロック崩しゲームをエクスポートしていこう。エクスポートの手順は大まかには以下の通りだ。\n エクスポートテンプレートを用意する エクスポートプリセットを作成する プロジェクトをエクスポートする  これらの手順を順番に解説していく。\nエクスポートテンプレートを用意する Godot でプロジェクトをエクスポートするには、まずエクスポートテンプレートなるものを用意する必要がある。\nエクスポートテンプレートというのは、公式ドキュメント によると以下のように説明されている。\n エディタを取り除いた最適化版のエンジンで、各プラットフォーム用にプリコンパイルされています。\n Godot 公式のダウンロードページ からでもダウンロードできるが、Godot エディタのメニューからダウンロードする手順の方がしっくりくるだろう。\n Memo: \nGodot を Steam からダウンロードされた場合は、エクスポートテンプレートはすでに含まれています。\n まずは、すでにダウンロード済みかどうかの確認も兼ねて、「エディタ」メニュー＞「エクスポートテンプレートの管理」を選択する。\nこのダイアログで 「現在のバージョン：」 に赤文字で「見つかりません 」と表記されている場合は、その時点では使用中の Godot のバージョンに対応する適切なエクスポートテンプレートがまだダウンロードされていない。その場合は「ダウンロード」ボタンをクリックして、ダウンロードを開始しよう。もし、緑文字で「インストール済み 」と表記されている場合は、ダウンロード済みのためこの手順は不要だ。\n少し待つと、「リストからミラーを選択」のダイアログが表示される。表示されるものをクリックしよう。このチュートリアルを作成している環境では Godot のバージョンが 3.3.4 stable なので「Official 3.3.4 stable [HTTPS]」がリストアップされている。\nダウンロードが開始されるので、プログレスバーが端に到達するまでしばらく待とう。\nダウンロードが完了したら、先ほど赤文字で「見つかりません 」と表記されていた箇所に、今度は緑文字で「インストール済み 」と表記された状態になる。これでエクスポートテンプレートの用意ができた。\n次はエクスポートプリセットを作成していく。\nエクスポートプリセットを作成する エクスポートプリセットを作成する。これはつまりエクスポートに関する設定を行うということだ。\nまずは「プロジェクト」メニュー＞「エクスポート」を選択しよう。\n初めての場合は下のスクリーンショットのようなプリセットが空っぽのウインドウが立ち上がる。プリセットを作成するためにウインドウ上部にある「追加」をクリックする。\n「追加」を押したら、自分のエクスポートしたいプラットフォームを選択する。ここでは macOS 用のエクスポートを例に進めているため「Mac OSX」を選択した。\nこれで左側の「プリセット」セクションに「MacOSX（実行可能）」のアイテムが追加された。ここから、右側の各種設定を調整して、追加したプリセットを完成させていく。\nまず「エクスポート先のパス」に、エクスポートするファイルの保存場所を指定しよう。フォルダアイコンをクリックする。\n複数のエクスポートファイルをまとめて置けるように保存先としてフォルダを作成しておこう。名前は「Export」などわかりやすいものが良いだろう。\n保存先のパスが指定できたらウインドウ下部の「保存」ボタンをクリックする。ただし、プロジェクトのフォルダより外側のパス を指定すること。\nこれでエクスポート先の指定は完了だ。\n次に「Application」セクションの項目を確認していく。\n「Name」にはゲームの名前を入力する。下のスクリーンショットの名前は安直に「Breakout」としているが、本来はより相応しい、唯一無二の名前にしよう。\n次に「Icon」の項目で、アプリケーションのアイコンに使用する画像ファイルを指定する。\n今回は元々用意していた「Icon.png」を指定する。\nこれで「Icon」が指定できた。\n「Identifier」にはそのアプリのIDを入力しよう。Webサイトをお持ちで、そのURLが example.com だとしたら、反対から com.example.app_name というパターンにすると良い。\n「Signature」は署名なので、自分の名前を入れよう。\n「Copyright」は著作権だ。帰属する人や団体・組織の名前を入力しよう。\nひとまずここまでで「オプション」タブの必要最低限の情報は入力できた。\n他のタブも見ておこう。\n「リリース」タブだ。今回は編集不要だが、エクスポートするファイルを細かく追加したり、除外したりして調整することができる。\n「機能」タブも今回は編集不要だ。こちらについて詳しくは公式ドキュメント を参照していただきたい。\n「スクリプト」タブも同様に今回は編集不要だ。\nWindows Desktop のプリセットも「エクスポート先のパス」を設定する以外、このブロック崩しのプロジェクトではデフォルトのままで問題ない。\nLinux/X11 のプリセットも同様に「エクスポート先のパス」を指定する以外はデフォルトのままで良い。\nここまでで、プリセットが用意できた。次はいよいよプロジェクトをエクスポートする。\nプロジェクトをエクスポートする プリセットが完了して、プロジェクトをエクスポートする場合、エクスポートウインドウ下部にある「プロジェクトのエクスポート」ボタンをクリックする。\nすると先ほど設定したエクスポート先のパスが指定された状態で、「ファイルを保存」ウインドウが開く。ここでファイル名を決めて「保存」をクリックしよう。このチュートリアルではファイル名を「breakout_macOS.dmg」とした。\nエクスポートのプログレスバーが表示されるので、あとは 100% の表示がされるまでそのまま待つだけだ。\nエクスポートが終わったら、エクスポートしたファイルを確認する。このチュートリアルでは macOS を例にエクスポートした。（Mac コンピュータをお使いの場合は Finder から）エクスポートされた .dmg または .zip ファイルを開こう。\nプロジェクトの実行系アプリケーションが見つかったら、それをダブルクリックして実行する。\n無事にプロジェクトのゲームが起動してプレイできたら完了だ。\n おわりに 以上で Part 15 は完了だ。そして、ブロック崩しのチュートリアルもこれにて完結とさせていただこうと思う。今回のチュートリアルは、ブロック崩しのゲーム内容とは一切関係のない作業で、決して楽しいものではなかっただろう。しかしゲーム開発を締め括るには相応しいテーマではないかと思い、このシリーズの最後に追加させていただいた。\n今後、他のジャンルのチュートリアルやもう少しコンパクトな Tips 的内容のブログ記事をアップしていきたいと考えているので、興味のある方はぜひたまに覗きにきて欲しい。また、このサイトのコンテンツを更新する際はTwitterでつぶやくので、よかったら Twitter アカウントをフォローいただければと思う。\n \n (adsbygoogle = window.adsbygoogle || []).push({});  ",
   "wordCount" : "203",
   "inLanguage": "ja",
-  "image":"https://www.peanuts-code.com/images/tutorials/gd0004_breakout_15/img_30.gif","datePublished": "2022-01-10T00:18:03+09:00",
+  "image":"https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_15/img_30.gif","datePublished": "2022-01-10T00:18:03+09:00",
   "dateModified": "2022-01-10T00:18:03+09:00",
   "author":{
     "@type": "Person",
@@ -229,10 +229,10 @@ if (!doNotTrack) {
     <div class="post-meta">2022-01-10&nbsp;·&nbsp;1 分&nbsp;·&nbsp;Masanao Sako
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0004_breakout_15/img_30.gif" alt="ブロック崩しPart15サムネイル">
+<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_15/img_30.gif" alt="ブロック崩しPart15サムネイル">
         
 </figure><div class="toc">
-    <details >
+    <details  open>
         <summary accesskey="c" title="(Alt + C)">
             <span class="details">目次</span>
         </summary>
@@ -332,118 +332,118 @@ data-ad-slot="9419515863"></ins></p>
 <em>Godot を Steam からダウンロードされた場合は、エクスポートテンプレートはすでに含まれています。</em></p>
 </blockquote>
 <p>まずは、すでにダウンロード済みかどうかの確認も兼ねて、「エディタ」メニュー＞「エクスポートテンプレートの管理」を選択する。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_1.png" alt="エクスポートテンプレートの管理メニュー"  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_1.png" alt="エクスポートテンプレートの管理メニュー"  />
 </p>
 <p>このダイアログで <strong>「現在のバージョン：」</strong> に赤文字で「<span style="color:salmon">見つかりません</span>
 」と表記されている場合は、その時点では使用中の Godot のバージョンに対応する適切なエクスポートテンプレートがまだダウンロードされていない。その場合は「ダウンロード」ボタンをクリックして、ダウンロードを開始しよう。もし、緑文字で「<span style="color:mediumspringgreen">インストール済み</span>
 」と表記されている場合は、ダウンロード済みのためこの手順は不要だ。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_2.png" alt="エクスポートテンプレートをダウンロード"  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_2.png" alt="エクスポートテンプレートをダウンロード"  />
 </p>
 <p>少し待つと、「リストからミラーを選択」のダイアログが表示される。表示されるものをクリックしよう。このチュートリアルを作成している環境では Godot のバージョンが 3.3.4 stable なので「Official 3.3.4 stable [HTTPS]」がリストアップされている。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_3.png" alt="エクスポートテンプレートを選択"  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_3.png" alt="エクスポートテンプレートを選択"  />
 </p>
 <p>ダウンロードが開始されるので、プログレスバーが端に到達するまでしばらく待とう。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_4.png" alt="エクスポートテンプレートをダウンロード中"  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_4.png" alt="エクスポートテンプレートをダウンロード中"  />
 </p>
 <p>ダウンロードが完了したら、先ほど赤文字で「<span style="color:salmon">見つかりません</span>
 」と表記されていた箇所に、今度は緑文字で「<span style="color:mediumspringgreen">インストール済み</span>
 」と表記された状態になる。これでエクスポートテンプレートの用意ができた。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_5.png" alt="エクスポートテンプレートのダウンロード完了"  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_5.png" alt="エクスポートテンプレートのダウンロード完了"  />
 </p>
 <p>次はエクスポートプリセットを作成していく。</p>
 <br>
 <h2 id="エクスポートプリセットを作成する">エクスポートプリセットを作成する<a hidden class="anchor" aria-hidden="true" href="#エクスポートプリセットを作成する">#</a></h2>
 <p>エクスポートプリセットを作成する。これはつまりエクスポートに関する設定を行うということだ。</p>
 <p>まずは「プロジェクト」メニュー＞「エクスポート」を選択しよう。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_6.png" alt="プロジェクト＞エクスポート"  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_6.png" alt="プロジェクト＞エクスポート"  />
 </p>
 <p>初めての場合は下のスクリーンショットのようなプリセットが空っぽのウインドウが立ち上がる。プリセットを作成するためにウインドウ上部にある「追加」をクリックする。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_7.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_7.png" alt=""  />
 </p>
 <p>「追加」を押したら、自分のエクスポートしたいプラットフォームを選択する。ここでは macOS 用のエクスポートを例に進めているため「Mac OSX」を選択した。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_8.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_8.png" alt=""  />
 </p>
 <p>これで左側の「プリセット」セクションに「MacOSX（実行可能）」のアイテムが追加された。ここから、右側の各種設定を調整して、追加したプリセットを完成させていく。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_9.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_9.png" alt=""  />
 </p>
 <p>まず「エクスポート先のパス」に、エクスポートするファイルの保存場所を指定しよう。フォルダアイコンをクリックする。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_10.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_10.png" alt=""  />
 </p>
 <p>複数のエクスポートファイルをまとめて置けるように保存先としてフォルダを作成しておこう。名前は「Export」などわかりやすいものが良いだろう。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_11.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_11.png" alt=""  />
 </p>
 <p>保存先のパスが指定できたらウインドウ下部の「保存」ボタンをクリックする。ただし、<strong><span style="color:salmon">プロジェクトのフォルダより外側のパス</span>
 </strong>を指定すること。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_12.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_12.png" alt=""  />
 </p>
 <p>これでエクスポート先の指定は完了だ。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_13.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_13.png" alt=""  />
 </p>
 <br>
 <p>次に「Application」セクションの項目を確認していく。</p>
 <p>「Name」にはゲームの名前を入力する。下のスクリーンショットの名前は安直に「Breakout」としているが、本来はより相応しい、唯一無二の名前にしよう。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_14.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_14.png" alt=""  />
 </p>
 <p>次に「Icon」の項目で、アプリケーションのアイコンに使用する画像ファイルを指定する。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_14.1.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_14.1.png" alt=""  />
 </p>
 <p>今回は元々用意していた「Icon.png」を指定する。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_15.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_15.png" alt=""  />
 </p>
 <p>これで「Icon」が指定できた。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_16.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_16.png" alt=""  />
 </p>
 <p>「Identifier」にはそのアプリのIDを入力しよう。Webサイトをお持ちで、そのURLが example.com だとしたら、反対から com.example.app_name というパターンにすると良い。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_17.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_17.png" alt=""  />
 </p>
 <p>「Signature」は署名なので、自分の名前を入れよう。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_18.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_18.png" alt=""  />
 </p>
 <p>「Copyright」は著作権だ。帰属する人や団体・組織の名前を入力しよう。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_19.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_19.png" alt=""  />
 </p>
 <p>ひとまずここまでで「オプション」タブの必要最低限の情報は入力できた。<br>
 他のタブも見ておこう。</p>
 <br>
 <p>「リリース」タブだ。今回は編集不要だが、エクスポートするファイルを細かく追加したり、除外したりして調整することができる。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_20.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_20.png" alt=""  />
 </p>
 <p>「機能」タブも今回は編集不要だ。こちらについて詳しくは<a href="https://docs.godotengine.org/ja/stable/tutorials/export/feature_tags.html" target="_blank">公式ドキュメント</a>
 を参照していただきたい。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_21.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_21.png" alt=""  />
 </p>
 <p>「スクリプト」タブも同様に今回は編集不要だ。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_22.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_22.png" alt=""  />
 </p>
 <br>
 <p>Windows Desktop のプリセットも「エクスポート先のパス」を設定する以外、このブロック崩しのプロジェクトではデフォルトのままで問題ない。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_23.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_23.png" alt=""  />
 </p>
 <p>Linux/X11 のプリセットも同様に「エクスポート先のパス」を指定する以外はデフォルトのままで良い。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_24.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_24.png" alt=""  />
 </p>
 <br>
 <p>ここまでで、プリセットが用意できた。次はいよいよプロジェクトをエクスポートする。</p>
 <br>
 <h2 id="プロジェクトをエクスポートする-1">プロジェクトをエクスポートする<a hidden class="anchor" aria-hidden="true" href="#プロジェクトをエクスポートする-1">#</a></h2>
 <p>プリセットが完了して、プロジェクトをエクスポートする場合、エクスポートウインドウ下部にある「プロジェクトのエクスポート」ボタンをクリックする。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_25.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_25.png" alt=""  />
 </p>
 <p>すると先ほど設定したエクスポート先のパスが指定された状態で、「ファイルを保存」ウインドウが開く。ここでファイル名を決めて「保存」をクリックしよう。このチュートリアルではファイル名を「breakout_macOS.dmg」とした。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_26.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_26.png" alt=""  />
 </p>
 <p>エクスポートのプログレスバーが表示されるので、あとは <strong>100%</strong> の表示がされるまでそのまま待つだけだ。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_27.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_27.png" alt=""  />
 </p>
 <br>
 <p>エクスポートが終わったら、エクスポートしたファイルを確認する。このチュートリアルでは macOS を例にエクスポートした。（Mac コンピュータをお使いの場合は Finder から）エクスポートされた .dmg または .zip ファイルを開こう。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_28.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_28.png" alt=""  />
 </p>
 <p>プロジェクトの実行系アプリケーションが見つかったら、それをダブルクリックして実行する。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_29.png" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_29.png" alt=""  />
 </p>
 <p>無事にプロジェクトのゲームが起動してプレイできたら完了だ。<br>
-<img loading="lazy" src="/images/tutorials/gd0004_breakout_15/img_30.gif" alt=""  />
+<img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_15/img_30.gif" alt=""  />
 </p>
 <br>
 <hr>
