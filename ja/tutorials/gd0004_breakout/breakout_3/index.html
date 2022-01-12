@@ -22,7 +22,7 @@
 <link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.91.2" />
+<meta name="generator" content="Hugo 0.92.0" />
 <link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_3/" />
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
@@ -63,7 +63,7 @@ if (!doNotTrack) {
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "Godot で作るブロック崩し Part 1 ~ 15",
+      "name": "Godot で作るブロック崩し",
       "item": "https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/"
     }, 
     {
@@ -85,8 +85,8 @@ if (!doNotTrack) {
   "keywords": [
     "Godot", "GodotEngine", "ゲーム開発", "チュートリアル", "ブロック崩し", "初級"
   ],
-  "articleBody": "Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。\nそれでは前回に引き続きブロック崩しを開発していこう。\n Memo: \n過去の Part をまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るブロック崩し Part 1：パドルを作って動かそう！ Godot で作るブロック崩し Part 2：ボールを作って発射しよう！   Memo: \nこのチュートリアルで使用している Godot のバージョン：3.3.4\n  \n (adsbygoogle = window.adsbygoogle || []).push({});   壁を作る 壁をゲーム画面のギリギリ外側に作っていく。シーンドックで「Game」ノードを選択して、壁となる子ノードを追加していこう。\n今回は「StaticBody2D」を選択して「作成」をクリックする。\n「Game」ノードに追加された「StaticBody2D」ノードの名前を「Wall」に変更しておく。右側に⚠️が表示されているのでクリックしてみよう。\n以下の警告メッセージが表示される。\nメッセージの通り、次は「Wall」ノードの子ノードとして「CollisionPolygon2D」を追加する。\nシーンドックを見ると「Wall」ノードの⚠️は消えたが、今度は「CollisionPolygon2D」の右側に⚠️が表示されている。クリックしてみよう。\n「CollisionPolygon2D」が空だから衝突の判定ができないという内容のメッセージだ。ということでこれから「CollisionPolygon2D」に衝突を判定するための形を作っていく。\n「CollisionPolygon2D」ノードでコリジョンの形を作るには、ツールバーの右端にある3つのアイコンの機能を使う。ツールの機能は左から順番に以下の通りだ。これらのアイコンは「CollisionPolygon2D」ノードを選択している場合のみツールバーに表示される。\n 点を作成する 点を編集する 点を消す  といっても、うまく行けば一番左のアイコン（点を作成する）だけで済む。\nこの後の作業をやりやすくするために、スマートスナップは無効にして、グリッドスナップを有効にしよう。\n慎重に作業する必要があるが、とにかく「点を作成する」ツールを使って壁の角になる部分に点を打つようにして形を作っていく。(0, 0)など分かり易いポイントから始めて、ゲーム画面の端が壁の内側と重なるようにする。壁の幅は1グリッド分（8 pixel）でもいいが、2D ワークスペース上で見やすくなるように今回は2グリッド分を壁の厚みとした。\n点を打つ場所が少しズレたとしても、気にせず一旦少しいびつな形の壁を作り切ってしまおう。あとで「点を編集する」または「点を消す」ツールで修正するのが効率的だ。\n「CollisionPolygon2D」ノードから⚠️が消えた。\nそれではプロジェクトを実行してみよう。\n期待通り、上と左右の壁にボールが跳ね返った。そして、ボールが画面下部に到達するとそのまま画面外に落ちていった。大成功だ。\n おわりに Part 3 はここまでで終了だ。今回は少し短いチュートリアルだったが、次回はついにブロックのオブジェクトを作って、それを画面上に配置し、ボールが当たったらブロックが消える仕組みを作っていく。\n \n (adsbygoogle = window.adsbygoogle || []).push({});  ",
-  "wordCount" : "56",
+  "articleBody": "Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。\nそれでは前回に引き続きブロック崩しを開発していこう。\n Memo: \n過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るブロック崩し \n  \n (adsbygoogle = window.adsbygoogle || []).push({});   壁を作る 壁をゲーム画面のギリギリ外側に作っていく。シーンドックで「Game」ノードを選択して、壁となる子ノードを追加していこう。\n今回は「StaticBody2D」を選択して「作成」をクリックする。\n「Game」ノードに追加された「StaticBody2D」ノードの名前を「Wall」に変更しておく。右側に⚠️が表示されているのでクリックしてみよう。\n以下の警告メッセージが表示される。\nメッセージの通り、次は「Wall」ノードの子ノードとして「CollisionPolygon2D」を追加する。\nシーンドックを見ると「Wall」ノードの⚠️は消えたが、今度は「CollisionPolygon2D」の右側に⚠️が表示されている。クリックしてみよう。\n「CollisionPolygon2D」が空だから衝突の判定ができないという内容のメッセージだ。ということでこれから「CollisionPolygon2D」に衝突を判定するための形を作っていく。\n「CollisionPolygon2D」ノードでコリジョンの形を作るには、ツールバーの右端にある3つのアイコンの機能を使う。ツールの機能は左から順番に以下の通りだ。これらのアイコンは「CollisionPolygon2D」ノードを選択している場合のみツールバーに表示される。\n 点を作成する 点を編集する 点を消す  といっても、うまく行けば一番左のアイコン（点を作成する）だけで済む。\nこの後の作業をやりやすくするために、スマートスナップは無効にして、グリッドスナップを有効にしよう。\n慎重に作業する必要があるが、とにかく「点を作成する」ツールを使って壁の角になる部分に点を打つようにして形を作っていく。(0, 0)など分かり易いポイントから始めて、ゲーム画面の端が壁の内側と重なるようにする。壁の幅は1グリッド分（8 pixel）でもいいが、2D ワークスペース上で見やすくなるように今回は2グリッド分を壁の厚みとした。\n点を打つ場所が少しズレたとしても、気にせず一旦少しいびつな形の壁を作り切ってしまおう。あとで「点を編集する」または「点を消す」ツールで修正するのが効率的だ。\n「CollisionPolygon2D」ノードから⚠️が消えた。\nそれではプロジェクトを実行してみよう。\n期待通り、上と左右の壁にボールが跳ね返った。そして、ボールが画面下部に到達するとそのまま画面外に落ちていった。大成功だ。\n おわりに Part 3 はここまでで終了だ。今回は少し短いチュートリアルだったが、次回はついにブロックのオブジェクトを作って、それを画面上に配置し、ボールが当たったらブロックが消える仕組みを作っていく。\n \n (adsbygoogle = window.adsbygoogle || []).push({});  ",
+  "wordCount" : "44",
   "inLanguage": "ja",
   "image":"https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_3/movie_2.gif","datePublished": "2021-11-09T16:21:24+09:00",
   "dateModified": "2021-11-09T16:21:24+09:00",
@@ -227,7 +227,7 @@ if (!doNotTrack) {
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/ja/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/">Tutorials</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/">Godot で作るブロック崩し Part 1 ~ 15</a></div>
+    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/ja/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/">Tutorials</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/">Godot で作るブロック崩し</a></div>
     <h1 class="post-title">
       Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！
     </h1>
@@ -257,18 +257,11 @@ if (!doNotTrack) {
 <p>それでは前回に引き続き<strong>ブロック崩し</strong>を開発していこう。</p>
 <br>
 <blockquote>
-<p><strong><span style="color:teal">Memo:</span>
+<p><em><strong><span style="color:teal">Memo:</span>
 </strong><br>
-過去の Part をまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。<br>
-<a href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_1/" title="Godot で作るブロック崩し Part 1：パドルを作って動かそう！">Godot で作るブロック崩し Part 1：パドルを作って動かそう！</a>
-<br>
-<a href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_2/" title="Godot で作るブロック崩し Part 2：ボールを作って発射しよう！">Godot で作るブロック崩し Part 2：ボールを作って発射しよう！</a>
-</p>
-</blockquote>
-<blockquote>
-<p><strong><span style="color:teal">Memo:</span>
-</strong><br>
-このチュートリアルで使用している Godot のバージョン：3.3.4</p>
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。<br>
+<a href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/" title="Godot で作るブロック崩し">Godot で作るブロック崩し</a>
+</em></p>
 </blockquote>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
      crossorigin="anonymous"></script>
