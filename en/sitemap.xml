@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.peanuts-code.com/en/</loc>
-    <lastmod>2021-07-08T01:53:13+09:00</lastmod>
+    <lastmod>2022-01-16T16:56:41+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -15,66 +15,81 @@
                 href="https://www.peanuts-code.com/en/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/about/alarmclockcards/</loc>
-    <lastmod>2021-07-08T01:53:13+09:00</lastmod>
+    <loc>https://www.peanuts-code.com/en/tags/age/</loc>
+    <lastmod>2022-01-16T16:56:41+09:00</lastmod>
   </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/app/</loc>
-    <lastmod>2021-07-08T01:53:13+09:00</lastmod>
+    <loc>https://www.peanuts-code.com/en/posts/post0001/</loc>
+    <lastmod>2022-01-16T16:56:41+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/app/"
+                href="https://www.peanuts-code.com/ja/posts/post0001/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/app/"
+                href="https://www.peanuts-code.com/en/posts/post0001/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/categories/</loc>
-    <lastmod>2021-07-08T01:53:13+09:00</lastmod>
+    <loc>https://www.peanuts-code.com/en/tags/biginner/</loc>
+    <lastmod>2022-01-16T16:56:41+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/blog/</loc>
+    <lastmod>2022-01-16T16:56:41+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/game-dev/</loc>
+    <lastmod>2022-01-16T16:56:41+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/godot/</loc>
+    <lastmod>2022-01-16T16:56:41+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://www.peanuts-code.com/ja/categories/"
+                href="https://www.peanuts-code.com/ja/tags/godot/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.peanuts-code.com/en/categories/"
+                href="https://www.peanuts-code.com/en/tags/godot/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/ios/</loc>
-    <lastmod>2021-07-08T01:53:13+09:00</lastmod>
+    <loc>https://www.peanuts-code.com/en/tags/godotengine/</loc>
+    <lastmod>2022-01-16T16:56:41+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/ios/"
+                href="https://www.peanuts-code.com/ja/tags/godotengine/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/ios/"
+                href="https://www.peanuts-code.com/en/tags/godotengine/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/mobile/</loc>
-    <lastmod>2021-07-08T01:53:13+09:00</lastmod>
+    <loc>https://www.peanuts-code.com/en/tags/indie-dev/</loc>
+    <lastmod>2022-01-16T16:56:41+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/no-experience/</loc>
+    <lastmod>2022-01-16T16:56:41+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/post/</loc>
+    <lastmod>2022-01-16T16:56:41+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/posts/</loc>
+    <lastmod>2022-01-16T16:56:41+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/mobile/"
+                href="https://www.peanuts-code.com/ja/posts/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/mobile/"
+                href="https://www.peanuts-code.com/en/posts/"
                 />
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/categories/portfolio/</loc>
-    <lastmod>2021-07-08T01:53:13+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/</loc>
-    <lastmod>2021-07-08T01:53:13+09:00</lastmod>
+    <lastmod>2022-01-16T16:56:41+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -85,9 +100,6 @@
                 hreflang="en"
                 href="https://www.peanuts-code.com/en/tags/"
                 />
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/about/beautipletimer/</loc>
-    <lastmod>2021-07-08T01:52:57+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/en/about/</loc>
     <lastmod>2021-07-07T00:00:00+00:00</lastmod>
@@ -128,16 +140,16 @@
                 href="https://www.peanuts-code.com/en/homepage/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/posts/</loc>
+    <loc>https://www.peanuts-code.com/en/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://www.peanuts-code.com/ja/posts/"
+                href="https://www.peanuts-code.com/ja/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.peanuts-code.com/en/posts/"
+                href="https://www.peanuts-code.com/en/categories/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/series/</loc>

@@ -11,23 +11,5 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 07 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/about/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Alarm Clock Cards</title>
-      <link>https://www.peanuts-code.com/en/about/alarmclockcards/</link>
-      <pubDate>Thu, 08 Jul 2021 01:53:13 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/about/alarmclockcards/</guid>
-      <description>Here is the best alarm clock app for people who wake up differently depending on the day.</description>
-    </item>
-    
-    <item>
-      <title>Beautipletimer</title>
-      <link>https://www.peanuts-code.com/en/about/beautipletimer/</link>
-      <pubDate>Thu, 08 Jul 2021 01:52:57 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/about/beautipletimer/</guid>
-      <description>A very beautiful and simple timer app is here.</description>
-    </item>
-    
   </channel>
 </rss>
