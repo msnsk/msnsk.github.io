@@ -63,7 +63,7 @@ if (!doNotTrack) {
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "Godot で作るブロック崩し",
+      "name": "シリーズ：Godot で作るブロック崩し",
       "item": "https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/"
     }, 
     {
@@ -85,8 +85,8 @@ if (!doNotTrack) {
   "keywords": [
     "Godot", "GodotEngine", "ゲーム開発", "チュートリアル", "ブロック崩し", "初級"
   ],
-  "articleBody": "Part 6 の今回は、ゲームスタート画面とゲームオーバーの画面を作り、それらとプレイ画面との間で適宜、画面が遷移するようにしていく。\nそれでは前回に引き続きブロック崩しを開発していこう。\n Memo: \n過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るブロック崩し \n  \n (adsbygoogle = window.adsbygoogle || []).push({});   スタート画面を作る ゲームを開始した時、ゲームタイトルが表示され、ボタンを押すなり何らかの操作によってプレイ画面に遷移するのが一般的だし、プレイヤーにとってもそのような流れが馴染み深く、わかりやすいはずだ。では実際にブロック崩しでもスタート画面を作ってプレイ画面へ遷移するようにアップデートしていこう。\nスタート画面のシーンを作って必要なノードを追加する 「シーン」メニュー＞「新規シーン」を選択して新しいシーンを作る。\n続けて緑色の「ユーザーインターフェース」を選択すると、シーンのルートノードとして「Control」クラスのノードが生成される。\n名前を「GameStartView」に変更する。\n続いて「GameStartView」に「VBoxContainer」ノードを追加する。\n名前を「VBox」に変更しよう。\nこの「VBoxContainer」クラスのノードは、単にその子ノードを縦に自動的に配置してくれる箱のようなものだ。頭文字の V は Vertical（垂直方向）の V だ。似たようなクラスで「HBoxContainer」もあり、こちらは Horizontal（水平方向）に子ノードを並べたいときに使う。\nまずは、シーンドックで「VBox」ノードを選択して、ツールバーの「レイアウト」をクリックし、「Rect全面」を選択しよう。\nすると「VBox」ノードが親ノード「GameStartView」の大きさまで目一杯拡大する。\nインスペクタで「Alignment」プロパティを「Center」に変更しておこう。これで「VBox」ノードの子ノードは全て中央に合わせて配置される。\n「VBox」ノードができたら、その子ノードとして「Label」クラスのノードを3つ追加していく。\n追加できたら、それぞれ名前を「Title」、「Message」、「SIL」に変更する。\nここまでできたら、一度シーンを保存しておこう。保存先フォルダを「res://scene/」にして、「GameStartView.tscn」という名前で保存する。\nそれぞれのLabelノードの設定を変更する 次にインスペクタで「Title」ノードの以下のプロパティを変更する。\n Text: 画面に表示したい文言を入力する。ここでは「breakout」と入力。一旦小文字で良い。 Align: テキストの位置を決める。今回は中央に配置したいので「Center」を選択。 Uppercase: これは大文字という意味だ。文字全てを大文字にしたい場合に有効にする。では有効にしよう。先ほど小文字で入力した「Text」プロパティが大文字で表示されているのがわかるだろう。\n  同様に「Message」ノードも以下の内容で設定する。\n Text: 「Press Any Key」と入力。大文字、小文字はお好みで。 Align: 「Center」を選択。  2D ワークスペースにはこのように表示されるはずだ。\nさらに「SIL」ノードも編集していこう。ちなみに、SIL とはフォントのライセンスの一つだ。詳しくはGoogle検索で調べてほしいが、大事なこと部分お伝えすると、このライセンスを保持するフォントデータは、利用は比較的自由だが、ソフトウェアなどに利用する場合は書作権とライセンスの情報を明記する必要がある。後ほどこのライセンスのフォントを一つ利用するので、著作権とSILの情報を明記するためにこのラベルを用意した。\n設定すべき内容は以下のとおりだ。\n Text: 以下の文を改行を含めて設定。   [Press Start 2P]\nDesigned by CodeMan38 (https://fonts.google.com/?query=CodeMan38 )\nLicensed under SIL Open Font License 1.1 (http://scripts.sil.org/OFL )\n©Google Inc.\n Align: 「Center」を選択。  2D ワークスペースの表示はこのようになる。\nここまでできたら、一度シーンを実行してみよう。デバッグパネルは以下のようなに表示されただろうか。\nカスタムフォントを設定する 全ての文字がデフォルトのフォントのままでは、とても味気ないので、Google fontsから SIL のフォントを一つダウンロードし、それをゲームに適用していく。\nまずは Google Fonts のサイト から「Press Start 2P」というフォントをダウンロードしよう。\nダウンロードしたら.zipファイルを展開して、フォントファイルをファイルシステムドックへドラッグ\u0026ドロップする。\n次にシーンドックで「Title」ノードを選択したら、インスペクタで「Custom Fonts」を開き、「Font」プロパティの**[空]**のプルダウンをクリックして「新規 DynamicFont」を選択する。\n続けてインスペクタ上で「Font」を開いておき「Font Data」プロパティの**[空]**を目掛けて、さっきファイルシステムに追加したフォントファイル「PressStart2P-Regular.ttf」をドラッグ\u0026ドロップする。\nこれでフォントファイルが「Title」ノードのテキストに反映したはずだ。\nさらにフォントサイズをタイトルらしく大きく表示したいので、そのままインスペクタにて「Custom Fonts」＞「Settings」＞「Size」プロパティの値を56に変更する。\nここまでカスタムフォントの設定ができたら、シーンを実行してみて実際の画面表示を確認してみよう。ゲームがレトロなのでフォントもレトロにしたが、タイトルは一旦これで良い塩梅になっただろう。\n同様に「Message」ノードの「Custom Fonts」プロパティも同様に「ressStart2P-Regular.ttf」をフォントとして読み込み、設定していこう。ただし、「Settings」＞「Size」プロパティの値は16とする。\nさらに「Custom Colors」＞「Font Color」プロパティで文字の色を変える。ここでは「41b0ff」の水色っぽいカラーを指定したがお好みの色に変えていただいて問題ない。\n「VBox」の子ノード（Label ノード）同志、間隔が狭すぎるので広げよう。「VBox」ノードの「Custom Constants」＞「Separation」プロパティにチェックを入れ、値を入力する。値が大きいほど間隔が広くなる。ここでは48とする。\nここで再度シーンを実行して確認しよう。これでさっきよりスッキリした印象だ。\nスタート画面の背景色を変える それでは最後にスタート画面の背景の色を変えていこう。\nまず、背景用のノードを「GameStartView」ノードに追加する必要がある。「ColorRect」ノードを追加しよう。ちなみに Rect は Rectanble（長方形）の略だ。\n名前を「Background」に変更し、シーンドック上「GameStartView」ノードのすぐ下（子ノードの中で一番上）に移動させる。シーンドック上、上にあるほど画面上では背面に位置することになるので、「Background」ノードが一番後ろに移動した形だ。\nそのまま「Background」を選択した状態で、ツールバーの「レイアウト」＞「Rect前面」を選択しよう。「VBox」ノードの時と同様に、「Background」ノードが画面全体にフィットして拡大する。\n最後に「Background」ノードの色をデフォルトの白から黒に変えてみよう。これは「Backgournd」の「Color」プロパティをインスペクタから 黒（#000000） に変更するだけだ。ここもご自身で設定したい色があれば、その色にしていただいて全く問題ない。ただし、各 Label ノードとのコントラストには要注意だ。\nシーンを実行して確認してみると、グッと引き締まった印象になった。これでスタート画面の見た目は出来上がった。次はスタート画面からプレイ画面への画面遷移を作っていく。\nスタート画面からプレイ画面に遷移させる ゲーム開始時のシーンとして、現在「Game.tscn」ファイルが設定されている。これを先ほど作った「GameStartView.tscn」ファイルに変更する。\n「プロジェクト」メニュー＞「プロジェクト設定」＞「一般」タブを開き、サイドバーから「Application」＞「Run」を選択する。「Main Scene」項目が現在「res://scene/Game.tscn」に設定されているのがわかるだろう。\n「フォルダ」アイコンをクリックし、「res://scene/GameStartView.tscn」ファイルを選択する。\n確認のため、プロジェクトを実行（シーンを実行ではない）してみてほしい。この時、スタート画面が表示されるはずだ。では次に画面遷移を作っていく。\nついでだが、シーンドックで「GameStartView」ノードを選択し、ツールバーにある「オブジェクトの子を選択不可にする」設定を有効にしておこう。これでこのスタート画面一式の位置関係が変わることはない。\n「GameStartView」ノードにスクリプトをアタッチしよう。名前は「GameStartView.gd」のまま、保存先に「scripts」フォルダを選択してスクリプトファイルを作成する。\n「GameStartView.gd」ファイルをスクリプトエディタで開いたら、以下の内容でスクリプトのコードを置き換えてほしい。\n1 2 3 4 5 6 7 8  extends Control func _input(event): if event is InputEventKey: yield(get_tree().create_timer(0.1), \"timeout\") print(\"Input at Game Start: \", event.as_text()) get_tree().change_scene(\"res://scene/Game.tscn\")   \nではスクリプトの内容を確認していこう。\nまずこのスクリプトで唯一の関数_inputは　Node クラスに組み込みのメソッドで、いわゆるコールバック関数だ。何らかの入力操作があれば、そのイベントをevent引数に格納して、関数内のコードを実行する。\nInputEventKeyというのはキーボードのいずれかのキー入力を指す。つまりif event is InputEventKey:の if 構文の意味は、何らかの入力イベントを受信した時に、その入力イベントがキーボードのキー操作だった場合は、という意味だ。\nif 構文の中を見ていこう。\n1  yield(get_tree().create_timer(0.1), \"timeout\")   まず、yieldというコルーチン用の組み込み関数だ。コルーチンとは、関数を途中の任意のタイミングで停止し、その後任意のタイミングで再開できる機能を持つ関数を指す。この停止、再開を担当するのがyieldだ。yieldは引数なしでも使われることが多いが、ここでは引数にオブジェクトとシグナルをとる形で利用している。\n第一引数に割り当てているのは「Timer」クラスのノードだ。ただし、yieldの引数の中でノードが作成されている。get_tree関数はシーンツリーにアクセスする関数で、シーンツリーに「Timer」ノードを作成するのがcreate_timer関数だ。引数0.1はタイマーの長さで、0.1秒のタイマーということになる。第二引数timeoutは「Timer」ノードのシグナルで、タイマーの時間が経過したら発信される。まとめると、0.1 秒のタイマーがセットされた「Timer」ノードがタイムアップしたら、次の行のコードに進む、という意味になる。\nなぜ、このようなコードを記述するかを説明しておこう。スタート画面で何らかのキー入力をした時、もしそのキーがスペースキーだった場合、次のゲームプレイ画面に切り替わった瞬間、即座にパドルからボールが発射してしまう。つまり、スタート画面で入力したスペースキーが次のプレイ画面の操作としても影響してしまうということだ。そのため、プレイヤーがスタート画面で何らかのキー入力をしたら、0.1秒待機させるようにして、キー入力が次のプレイ画面に影響しないようにしているというわけである。\n Memo: コルーチンとyieldについての正確な情報は公式ドキュメント 参照のこと。\n 1  print(\"Input at Game Start: \", event.as_text())   これは出力コンソールにどのキーが入力されたかを出力するために追加している。目的は挙動をチェックする際に本当にキー入力が正しく認識されているかを確認することだ。つまり、コードに不備がなければこの一行のコードは無くても良い。\n1  get_tree().change_scene(\"res://scene/Game.tscn\")   最後にget_tree関数でシーンツリーにアクセスし、change_scene関数で引数で指定したシーンに切り替える。change_scene関数の引数にはゲームプレイ画面のシーンファイルのパス「res://scene/Game.tscn」を入力している。シーンの切り替えは基本的にこのような記述になる。今後よく利用するので頭の片隅に置いておくと良いだろう。\nでは、実際にスタート画面からプレイ画面にきちんと切り替わるか、プロジェクトを実行して見てみよう。スタート画面でスペースキーやエンターキーその他何でも良いので適当にキーを押下して、プレイ画面に遷移したらOKだ。\nもし余力があれば、動作確認として、ぜひyield(get_tree().create_timer(0.1), \"timeout\")の一行をコメントアウトしてプロジェクトを実行してみてほしい。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   ゲームオーバー画面を作る 基本的な手順はスタート画面を作るのと同じなので、細かい解説はなしにしてどんどん進めていこう。\nゲームオーバー画面のシーンを作る 「シーン」メニュー＞「新規シーン」から、「ユーザーインターフェース」を選択して「Control」ノードをルートノードにする。名前は「GameOverView」とする。\nここで先にシーンを保存しておこう。名前はそのまま「GameOverView.tscn」として、「scene」フォルダに保存する。\n「GameOverView」ノードに「ColorRect」クラスのノードを追加する。名前を「Background」に変更しておこう。インスペクタ一番上の「Color」プロパティを黒（000000）に変更する。\n「GameOverView」ノードに「VBoxContainer」クラスのノードを追加し、名前を「VBox」とする。あとは、インスペクタで「Alignment」を「Center」に変更、「Custom Constants」の値を60に変更しよう。\n「Background」、「VBox」それぞれについて、ツールバーの「レイアウト」＞「Rect全面」を選択して画面一杯に広げておこう。\n次に「VBox」ノードの子ノードとして2つの「Label」クラスのノードを追加する。それぞれ名前を「GameOverLabel」、「Message」とする。\nここまででシーンドックは以下のスクリーンショットのようになったはずだ。\nでは「GameOverLabel」ノードのプロパティを以下のように設定しよう。\n 「Text」プロパティに「gameover」と入力 「Align」を「Center」にする 「Uppercase」プロパティをオンにする 「Custom Fonts」＞「Font」に「新規 DynamicFont」を適用 「Custom Fonts」＞「Font」＞「Font Data」にフォントファイルの「PressStart2P」を割り当てる 「Custom Fonts」＞「Settings」＞「Size」の値を48に変更 「Custom Colors」＞「Font Color」に赤色（ff0000）を割り当てて、ゲームオーバーを演出する  続いて「Message」ノードのプロパティを以下のように設定しよう。\n 「Text」プロパティに下記文言を入力\nTo Quit Press Q\nTo Continue Press Enter 「Align」を「Center」にする 「Custom Fonts」＞「Font」に「新規 DynamicFont」を適用 「Custom Fonts」＞「Font」＞「Font Data」にフォントファイルの「PressStart2P」を割り当てる 「Custom Fonts」＞「Settings」＞「Size」の値を12に変更 「Custom Colors」＞「Font Color」に薄いピンク（ffbebe）を割り当てる  シーンドックで「GameOverView」ノードを選択した状態で、ツールバーから「オブジェクトの子を選択不可にする」を有効にして位置関係を固定しておこう。\nここまでできたら、一度シーンを実行してみよう。以下のスクリーンショットのようになっていればOKだ。\nゲームオーバー画面からスタート画面に遷移またはゲームを終了させる 画面遷移の処理も、基本的にはスタート画面でやったことと同じなので、サクサク進めていくが、一つ下準備をしておこう。\n下準備というのはインプットマップの追加だ。ゲームオーバー画面で「Q」キーを押下したらゲームを完全に終了できるようにしていく。ここではひとまず、「プロジェクト」メニュー＞「プロジェクト設定」＞「インプットマップ」タブにて、「Quit」という名前のインプットマップを追加して「Q」キーを割り当てよう。\nそれではスクリプトの方の作業に移ろう。\nまずはシーンドックで「GameOverView」ノードを選択して、新規スクリプトをアタッチしよう。スクリプトは保存先を「res://scripts」、名前を「GameOverView.gd」として保存する。\nスクリプトの内容を以下のコードで置き換えてほしい。\n1 2 3 4 5 6 7 8 9 10  extends Control func _input(event): if event is InputEventKey: print(\"Input at Game Over: \", event.as_text()) if event.is_action_released(\"Quit\"): get_tree().quit() elif event.is_action_released(\"ui_accept\"): get_tree().change_scene(\"res://scene/GameStartView.tscn\")   \nでは、スクリプトの内容を確認していく。\nスタート画面と大まかには同じようなコードだ。組み込みのコールバック関数_inputによって、プレイヤーが何らかの入力をすれば関数内のコードが実行される。\n今回のコードは if 構文が2段階になっている（これをネストという）。まず最初の if 構文で、入力がキーボード入力だった場合、ひとまず入力したキーを出力コンソールに出力して確認するためprint関数を使用している。\nその後、さらに内側の if 構文に進む。\n1  if event.is_action_pressed(\"Quit\"):   これはシンプルに、入力されたイベントがインプットマップの「Quit」の操作だったら、つまりプレイヤーが「Q」のキーを押したら、という意味合いだ。その場合に実行されるのがget_tree().quit()だ。get_tree関数でシーンツリーにアクセスし、そこからquit関数によって、ゲームアプリケーションが終了させられる。なお、iOSデバイス向けにゲームを作る場合は、この関数は機能しないようなので、今後のご自身の開発ではご注意いただきたい。\n次にelifのブロックだ。\n1  elif event.is_action_released(\"ui_accept\"):   elifから始まる行は、最初のifから始まる行の条件に当てはまらなかった場合に実行される。is_action_released関数は、引数のインプットマップの操作があったかどうかを Bool 値で返してくれる。ただし、さきほどのifの行では関数名に pressedが含まれていたが、今回は releasedが名前に含まれている。これは、操作の最後にキーから指が離れたかどうかを確認している。\n具体的に、ここでのコードは『入力操作がインプットマップの「ui_accept」の操作で、最後に指がキーから離れたら』という意味合いになる。そして「ui_accept」はデフォルトで用意されているインプットマップで、スペースキーやエンターキーが割り当てられている。\nその次の最後の行のコードはスタート画面の時と同様の処理で、get_tree関数でシーンツリーにアクセスし、そこから別のシーンに切り替えるための関数change_sceneを実行している。引数には\"res://scene/GameStartView.tscn\"を指定しており、スタート画面に戻るように指定している。\nここまでできたら、シーンを実行して動作確認してみよう。下のGIF画像は次の順序で画面遷移を確認している。\n シーンを実行して「GameOverView」シーンが表示されたところから開始 「Enter」キーを押下 「GameStartView」シーンが表示される 「Space」キーを押下 「Game」シーンが表示される デバッグパネルを一度終了して、再度シーンを実行して「GameOverView」シーンを表示 「Q」キーを押下 デバッグパネルが閉じて終了\n   プレイ画面からゲームオーバー画面に遷移させる 一般的に、ゲームオーバー画面が表示されるのは、プレイ画面で何らかの失敗をした時だ。ブロック崩しではボールが画面下に落ちたら失敗というわかりやすいルールなので、その条件でゲームオーバー画面が表示されるように更新していこう。\nボールが画面下に落ちた瞬間に検知させる 画面下にボールが落ちた瞬間にそのことを検知する必要がある。そのためにはまず「Game.tscn」シーンに切り替えて、「Ball」ノードに「VisibilityNotifier2D」クラスのノードを子ノードとして追加しよう。\nこのノードを追加したのは、このノードのシグナルが便利だからだ。\nさっそく、シーンドックで「VisibilityNotifier2D」ノードを選択した状態から、「ノード」ドックの「シグナル」タブを開こう。使用したいのは「screen_exited()」というシグナルだ。これはノードがスクリーンの外に出た瞬間に発信される。\n「screen_exited()」をダブルクリック、または右下の「接続」をクリックする。\n「Ball」ノードのスクリプトを選択して「接続」をクリックする。なお、受信側メソッドの名前はそのままで良い。\nスクリプトエディタに切り替わり、メソッドが追加され、左側にシグナルとの接続を示す緑色のアイコンが表示されているのが確認できるだろう。ではこのメソッドの中身を編集していこう。\n_on_VisibilityNotifier2D_screen_exitedメソッドを編集した結果、「Ball.gd」スクリプト全体は以下のようなコードになる。追加したメソッドは一番下にある。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44  extends RigidBody2D const MAX_SPEED = 300.0 export (float) var ball_speed = 150.0 export (float) var speed_up = 4.0 var direction: Vector2 var velocity: Vector2 onready var paddle = get_node(\"../Paddle\") func _ready(): direction = Vector2(1, -1).normalized() velocity = direction * ball_speed func _process(delta): if mode == 3: position.x = paddle.position.x if Input.is_action_just_pressed(\"launch_ball\"): mode = 2 apply_impulse(Vector2.ZERO, velocity) func _on_Ball_body_entered(body): ball_speed += speed_up print(\"ball_speed: \"+str(ball_speed)) direction = linear_velocity.normalized() velocity = direction * min(ball_speed, MAX_SPEED) if body.is_in_group(\"Bricks\"): body.queue_free() if body.get_name() == \"Paddle\": direction = (position - body.position).normalized() velocity = direction * min(ball_speed, MAX_SPEED) linear_velocity = velocity func _on_VisibilityNotifier2D_screen_exited(): queue_free() get_tree().change_scene(\"res://scene/GameOverView.tscn\")   _on_VisibilityNotifier2D_screen_exitedメソッドが実行されると、まずqueue_freeという関数が実行される。これはスクリプトがアタッチされているノード自体を開放（シーンツリーから消す）する。つまり、ボールが画面下に落ちたら、「Ball」ノードそのものが消えるということだ。これを実行しないと、画面上には表示されてなくとも、「Ball」ノードは生きたまま落下し続けている状態になる。ただし、開放するタイミングは次のフレームだ。だから「Ball」ノードが消える前に次の行のコードもきっちり処理される。\nそして次の最後の行だが、すっかりお馴染みのchange_scene関数だ。引数に\"res://scene/GameOverView.tscn\"をとって、ゲームオーバー画面に遷移するようにしている。\nこれで、ボールが画面下に落ちたらゲームオーバー画面に切り替わるようになったはずだ。プロジェクトを実行して最初から画面遷移を確認してみよう。\n おわりに 以上で Part 6 は完了だ。今回はスタート画面、ゲームオーバー画面を作って、プレイ画面を含めた画面遷移を完成させた。よりゲームらしさが演出できたのではないだろうか。\n次回 Part 7 では HUD（ヘッドアップディスプレイ）を追加していく。\n \n (adsbygoogle = window.adsbygoogle || []).push({});  ",
-  "wordCount" : "489",
+  "articleBody": "Part 6 の今回は、ゲームスタート画面とゲームオーバーの画面を作り、それらとプレイ画面との間で適宜、画面が遷移するようにしていく。\nそれでは前回に引き続きブロック崩しを開発していこう。\n Memo: \n過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るブロック崩し \n  \n (adsbygoogle = window.adsbygoogle || []).push({});   スタート画面を作る ゲームを開始した時、ゲームタイトルが表示され、ボタンを押すなり何らかの操作によってプレイ画面に遷移するのが一般的だし、プレイヤーにとってもそのような流れが馴染み深く、わかりやすいはずだ。では実際にブロック崩しでもスタート画面を作ってプレイ画面へ遷移するようにアップデートしていこう。\nスタート画面のシーンを作って必要なノードを追加する 「シーン」メニュー＞「新規シーン」を選択して新しいシーンを作る。\n続けて緑色の「ユーザーインターフェース」を選択すると、シーンのルートノードとして「Control」クラスのノードが生成される。\n名前を「GameStartView」に変更する。\n続いて「GameStartView」に「VBoxContainer」ノードを追加する。\n名前を「VBox」に変更しよう。\nこの「VBoxContainer」クラスのノードは、単にその子ノードを縦に自動的に配置してくれる箱のようなものだ。頭文字の V は Vertical（垂直方向）の V だ。似たようなクラスで「HBoxContainer」もあり、こちらは Horizontal（水平方向）に子ノードを並べたいときに使う。\nまずは、シーンドックで「VBox」ノードを選択して、ツールバーの「レイアウト」をクリックし、「Rect全面」を選択しよう。\nすると「VBox」ノードが親ノード「GameStartView」の大きさまで目一杯拡大する。\nインスペクタで「Alignment」プロパティを「Center」に変更しておこう。これで「VBox」ノードの子ノードは全て中央に合わせて配置される。\n「VBox」ノードができたら、その子ノードとして「Label」クラスのノードを3つ追加していく。\n追加できたら、それぞれ名前を「Title」、「Message」、「SIL」に変更する。\nここまでできたら、一度シーンを保存しておこう。保存先フォルダを「res://scene/」にして、「GameStartView.tscn」という名前で保存する。\nそれぞれのLabelノードの設定を変更する 次にインスペクタで「Title」ノードの以下のプロパティを変更する。\n Text: 画面に表示したい文言を入力する。ここでは「breakout」と入力。一旦小文字で良い。 Align: テキストの位置を決める。今回は中央に配置したいので「Center」を選択。 Uppercase: これは大文字という意味だ。文字全てを大文字にしたい場合に有効にする。では有効にしよう。先ほど小文字で入力した「Text」プロパティが大文字で表示されているのがわかるだろう。\n  同様に「Message」ノードも以下の内容で設定する。\n Text: 「Press Any Key」と入力。大文字、小文字はお好みで。 Align: 「Center」を選択。  2D ワークスペースにはこのように表示されるはずだ。\nさらに「SIL」ノードも編集していこう。ちなみに、SIL とはフォントのライセンスの一つだ。詳しくはGoogle検索で調べてほしいが、大事なこと部分お伝えすると、このライセンスを保持するフォントデータは、利用は比較的自由だが、ソフトウェアなどに利用する場合は書作権とライセンスの情報を明記する必要がある。後ほどこのライセンスのフォントを一つ利用するので、著作権とSILの情報を明記するためにこのラベルを用意した。\n設定すべき内容は以下のとおりだ。\n Text: 以下の文を改行を含めて設定。   [Press Start 2P]\nDesigned by CodeMan38 (https://fonts.google.com/?query=CodeMan38 )\nLicensed under SIL Open Font License 1.1 (http://scripts.sil.org/OFL )\n©Google Inc.\n Align: 「Center」を選択。  2D ワークスペースの表示はこのようになる。\nここまでできたら、一度シーンを実行してみよう。デバッグパネルは以下のようなに表示されただろうか。\nカスタムフォントを設定する 全ての文字がデフォルトのフォントのままでは、とても味気ないので、Google fontsから SIL のフォントを一つダウンロードし、それをゲームに適用していく。\nまずは Google Fonts のサイト から「Press Start 2P」というフォントをダウンロードしよう。\nダウンロードしたら.zipファイルを展開して、フォントファイルをファイルシステムドックへドラッグ\u0026ドロップする。\n次にシーンドックで「Title」ノードを選択したら、インスペクタで「Custom Fonts」を開き、「Font」プロパティの**[空]**のプルダウンをクリックして「新規 DynamicFont」を選択する。\n続けてインスペクタ上で「Font」を開いておき「Font Data」プロパティの**[空]**を目掛けて、さっきファイルシステムに追加したフォントファイル「PressStart2P-Regular.ttf」をドラッグ\u0026ドロップする。\nこれでフォントファイルが「Title」ノードのテキストに反映したはずだ。\nさらにフォントサイズをタイトルらしく大きく表示したいので、そのままインスペクタにて「Custom Fonts」＞「Settings」＞「Size」プロパティの値を56に変更する。\nここまでカスタムフォントの設定ができたら、シーンを実行してみて実際の画面表示を確認してみよう。ゲームがレトロなのでフォントもレトロにしたが、タイトルは一旦これで良い塩梅になっただろう。\n同様に「Message」ノードの「Custom Fonts」プロパティも同様に「ressStart2P-Regular.ttf」をフォントとして読み込み、設定していこう。ただし、「Settings」＞「Size」プロパティの値は16とする。\nさらに「Custom Colors」＞「Font Color」プロパティで文字の色を変える。ここでは「41b0ff」の水色っぽいカラーを指定したがお好みの色に変えていただいて問題ない。\n「VBox」の子ノード（Label ノード）同志、間隔が狭すぎるので広げよう。「VBox」ノードの「Custom Constants」＞「Separation」プロパティにチェックを入れ、値を入力する。値が大きいほど間隔が広くなる。ここでは48とする。\nここで再度シーンを実行して確認しよう。これでさっきよりスッキリした印象だ。\nスタート画面の背景色を変える それでは最後にスタート画面の背景の色を変えていこう。\nまず、背景用のノードを「GameStartView」ノードに追加する必要がある。「ColorRect」ノードを追加しよう。ちなみに Rect は Rectanble（長方形）の略だ。\n名前を「Background」に変更し、シーンドック上「GameStartView」ノードのすぐ下（子ノードの中で一番上）に移動させる。シーンドック上、上にあるほど画面上では背面に位置することになるので、「Background」ノードが一番後ろに移動した形だ。\nそのまま「Background」を選択した状態で、ツールバーの「レイアウト」＞「Rect前面」を選択しよう。「VBox」ノードの時と同様に、「Background」ノードが画面全体にフィットして拡大する。\n最後に「Background」ノードの色をデフォルトの白から黒に変えてみよう。これは「Backgournd」の「Color」プロパティをインスペクタから 黒（#000000） に変更するだけだ。ここもご自身で設定したい色があれば、その色にしていただいて全く問題ない。ただし、各 Label ノードとのコントラストには要注意だ。\nシーンを実行して確認してみると、グッと引き締まった印象になった。これでスタート画面の見た目は出来上がった。次はスタート画面からプレイ画面への画面遷移を作っていく。\nスタート画面からプレイ画面に遷移させる ゲーム開始時のシーンとして、現在「Game.tscn」ファイルが設定されている。これを先ほど作った「GameStartView.tscn」ファイルに変更する。\n「プロジェクト」メニュー＞「プロジェクト設定」＞「一般」タブを開き、サイドバーから「Application」＞「Run」を選択する。「Main Scene」項目が現在「res://scene/Game.tscn」に設定されているのがわかるだろう。\n「フォルダ」アイコンをクリックし、「res://scene/GameStartView.tscn」ファイルを選択する。\n確認のため、プロジェクトを実行（シーンを実行ではない）してみてほしい。この時、スタート画面が表示されるはずだ。では次に画面遷移を作っていく。\nついでだが、シーンドックで「GameStartView」ノードを選択し、ツールバーにある「オブジェクトの子を選択不可にする」設定を有効にしておこう。これでこのスタート画面一式の位置関係が変わることはない。\n「GameStartView」ノードにスクリプトをアタッチしよう。名前は「GameStartView.gd」のまま、保存先に「scripts」フォルダを選択してスクリプトファイルを作成する。\n「GameStartView.gd」ファイルをスクリプトエディタで開いたら、以下の内容でスクリプトのコードを置き換えてほしい。\nextends Control func _input(event): if event is InputEventKey: yield(get_tree().create_timer(0.1), \"timeout\") print(\"Input at Game Start: \", event.as_text()) get_tree().change_scene(\"res://scene/Game.tscn\") \nではスクリプトの内容を確認していこう。\nまずこのスクリプトで唯一の関数_inputは　Node クラスに組み込みのメソッドで、いわゆるコールバック関数だ。何らかの入力操作があれば、そのイベントをevent引数に格納して、関数内のコードを実行する。\nInputEventKeyというのはキーボードのいずれかのキー入力を指す。つまりif event is InputEventKey:の if 構文の意味は、何らかの入力イベントを受信した時に、その入力イベントがキーボードのキー操作だった場合は、という意味だ。\nif 構文の中を見ていこう。\nyield(get_tree().create_timer(0.1), \"timeout\") まず、yieldというコルーチン用の組み込み関数だ。コルーチンとは、関数を途中の任意のタイミングで停止し、その後任意のタイミングで再開できる機能を持つ関数を指す。この停止、再開を担当するのがyieldだ。yieldは引数なしでも使われることが多いが、ここでは引数にオブジェクトとシグナルをとる形で利用している。\n第一引数に割り当てているのは「Timer」クラスのノードだ。ただし、yieldの引数の中でノードが作成されている。get_tree関数はシーンツリーにアクセスする関数で、シーンツリーに「Timer」ノードを作成するのがcreate_timer関数だ。引数0.1はタイマーの長さで、0.1秒のタイマーということになる。第二引数timeoutは「Timer」ノードのシグナルで、タイマーの時間が経過したら発信される。まとめると、0.1 秒のタイマーがセットされた「Timer」ノードがタイムアップしたら、次の行のコードに進む、という意味になる。\nなぜ、このようなコードを記述するかを説明しておこう。スタート画面で何らかのキー入力をした時、もしそのキーがスペースキーだった場合、次のゲームプレイ画面に切り替わった瞬間、即座にパドルからボールが発射してしまう。つまり、スタート画面で入力したスペースキーが次のプレイ画面の操作としても影響してしまうということだ。そのため、プレイヤーがスタート画面で何らかのキー入力をしたら、0.1秒待機させるようにして、キー入力が次のプレイ画面に影響しないようにしているというわけである。\n Memo: コルーチンとyieldについての正確な情報は公式ドキュメント 参照のこと。\n print(\"Input at Game Start: \", event.as_text()) これは出力コンソールにどのキーが入力されたかを出力するために追加している。目的は挙動をチェックする際に本当にキー入力が正しく認識されているかを確認することだ。つまり、コードに不備がなければこの一行のコードは無くても良い。\nget_tree().change_scene(\"res://scene/Game.tscn\") 最後にget_tree関数でシーンツリーにアクセスし、change_scene関数で引数で指定したシーンに切り替える。change_scene関数の引数にはゲームプレイ画面のシーンファイルのパス「res://scene/Game.tscn」を入力している。シーンの切り替えは基本的にこのような記述になる。今後よく利用するので頭の片隅に置いておくと良いだろう。\nでは、実際にスタート画面からプレイ画面にきちんと切り替わるか、プロジェクトを実行して見てみよう。スタート画面でスペースキーやエンターキーその他何でも良いので適当にキーを押下して、プレイ画面に遷移したらOKだ。\nもし余力があれば、動作確認として、ぜひyield(get_tree().create_timer(0.1), \"timeout\")の一行をコメントアウトしてプロジェクトを実行してみてほしい。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   ゲームオーバー画面を作る 基本的な手順はスタート画面を作るのと同じなので、細かい解説はなしにしてどんどん進めていこう。\nゲームオーバー画面のシーンを作る 「シーン」メニュー＞「新規シーン」から、「ユーザーインターフェース」を選択して「Control」ノードをルートノードにする。名前は「GameOverView」とする。\nここで先にシーンを保存しておこう。名前はそのまま「GameOverView.tscn」として、「scene」フォルダに保存する。\n「GameOverView」ノードに「ColorRect」クラスのノードを追加する。名前を「Background」に変更しておこう。インスペクタ一番上の「Color」プロパティを黒（000000）に変更する。\n「GameOverView」ノードに「VBoxContainer」クラスのノードを追加し、名前を「VBox」とする。あとは、インスペクタで「Alignment」を「Center」に変更、「Custom Constants」の値を60に変更しよう。\n「Background」、「VBox」それぞれについて、ツールバーの「レイアウト」＞「Rect全面」を選択して画面一杯に広げておこう。\n次に「VBox」ノードの子ノードとして2つの「Label」クラスのノードを追加する。それぞれ名前を「GameOverLabel」、「Message」とする。\nここまででシーンドックは以下のスクリーンショットのようになったはずだ。\nでは「GameOverLabel」ノードのプロパティを以下のように設定しよう。\n 「Text」プロパティに「gameover」と入力 「Align」を「Center」にする 「Uppercase」プロパティをオンにする 「Custom Fonts」＞「Font」に「新規 DynamicFont」を適用 「Custom Fonts」＞「Font」＞「Font Data」にフォントファイルの「PressStart2P」を割り当てる 「Custom Fonts」＞「Settings」＞「Size」の値を48に変更 「Custom Colors」＞「Font Color」に赤色（ff0000）を割り当てて、ゲームオーバーを演出する  続いて「Message」ノードのプロパティを以下のように設定しよう。\n 「Text」プロパティに下記文言を入力\nTo Quit Press Q\nTo Continue Press Enter 「Align」を「Center」にする 「Custom Fonts」＞「Font」に「新規 DynamicFont」を適用 「Custom Fonts」＞「Font」＞「Font Data」にフォントファイルの「PressStart2P」を割り当てる 「Custom Fonts」＞「Settings」＞「Size」の値を12に変更 「Custom Colors」＞「Font Color」に薄いピンク（ffbebe）を割り当てる  シーンドックで「GameOverView」ノードを選択した状態で、ツールバーから「オブジェクトの子を選択不可にする」を有効にして位置関係を固定しておこう。\nここまでできたら、一度シーンを実行してみよう。以下のスクリーンショットのようになっていればOKだ。\nゲームオーバー画面からスタート画面に遷移またはゲームを終了させる 画面遷移の処理も、基本的にはスタート画面でやったことと同じなので、サクサク進めていくが、一つ下準備をしておこう。\n下準備というのはインプットマップの追加だ。ゲームオーバー画面で「Q」キーを押下したらゲームを完全に終了できるようにしていく。ここではひとまず、「プロジェクト」メニュー＞「プロジェクト設定」＞「インプットマップ」タブにて、「Quit」という名前のインプットマップを追加して「Q」キーを割り当てよう。\nそれではスクリプトの方の作業に移ろう。\nまずはシーンドックで「GameOverView」ノードを選択して、新規スクリプトをアタッチしよう。スクリプトは保存先を「res://scripts」、名前を「GameOverView.gd」として保存する。\nスクリプトの内容を以下のコードで置き換えてほしい。\nextends Control func _input(event): if event is InputEventKey: print(\"Input at Game Over: \", event.as_text()) if event.is_action_released(\"Quit\"): get_tree().quit() elif event.is_action_released(\"ui_accept\"): get_tree().change_scene(\"res://scene/GameStartView.tscn\") \nでは、スクリプトの内容を確認していく。\nスタート画面と大まかには同じようなコードだ。組み込みのコールバック関数_inputによって、プレイヤーが何らかの入力をすれば関数内のコードが実行される。\n今回のコードは if 構文が2段階になっている（これをネストという）。まず最初の if 構文で、入力がキーボード入力だった場合、ひとまず入力したキーを出力コンソールに出力して確認するためprint関数を使用している。\nその後、さらに内側の if 構文に進む。\nif event.is_action_pressed(\"Quit\"): これはシンプルに、入力されたイベントがインプットマップの「Quit」の操作だったら、つまりプレイヤーが「Q」のキーを押したら、という意味合いだ。その場合に実行されるのがget_tree().quit()だ。get_tree関数でシーンツリーにアクセスし、そこからquit関数によって、ゲームアプリケーションが終了させられる。なお、iOSデバイス向けにゲームを作る場合は、この関数は機能しないようなので、今後のご自身の開発ではご注意いただきたい。\n次にelifのブロックだ。\nelif event.is_action_released(\"ui_accept\"): elifから始まる行は、最初のifから始まる行の条件に当てはまらなかった場合に実行される。is_action_released関数は、引数のインプットマップの操作があったかどうかを Bool 値で返してくれる。ただし、さきほどのifの行では関数名に pressedが含まれていたが、今回は releasedが名前に含まれている。これは、操作の最後にキーから指が離れたかどうかを確認している。\n具体的に、ここでのコードは『入力操作がインプットマップの「ui_accept」の操作で、最後に指がキーから離れたら』という意味合いになる。そして「ui_accept」はデフォルトで用意されているインプットマップで、スペースキーやエンターキーが割り当てられている。\nその次の最後の行のコードはスタート画面の時と同様の処理で、get_tree関数でシーンツリーにアクセスし、そこから別のシーンに切り替えるための関数change_sceneを実行している。引数には\"res://scene/GameStartView.tscn\"を指定しており、スタート画面に戻るように指定している。\nここまでできたら、シーンを実行して動作確認してみよう。下のGIF画像は次の順序で画面遷移を確認している。\n シーンを実行して「GameOverView」シーンが表示されたところから開始 「Enter」キーを押下 「GameStartView」シーンが表示される 「Space」キーを押下 「Game」シーンが表示される デバッグパネルを一度終了して、再度シーンを実行して「GameOverView」シーンを表示 「Q」キーを押下 デバッグパネルが閉じて終了\n   プレイ画面からゲームオーバー画面に遷移させる 一般的に、ゲームオーバー画面が表示されるのは、プレイ画面で何らかの失敗をした時だ。ブロック崩しではボールが画面下に落ちたら失敗というわかりやすいルールなので、その条件でゲームオーバー画面が表示されるように更新していこう。\nボールが画面下に落ちた瞬間に検知させる 画面下にボールが落ちた瞬間にそのことを検知する必要がある。そのためにはまず「Game.tscn」シーンに切り替えて、「Ball」ノードに「VisibilityNotifier2D」クラスのノードを子ノードとして追加しよう。\nこのノードを追加したのは、このノードのシグナルが便利だからだ。\nさっそく、シーンドックで「VisibilityNotifier2D」ノードを選択した状態から、「ノード」ドックの「シグナル」タブを開こう。使用したいのは「screen_exited()」というシグナルだ。これはノードがスクリーンの外に出た瞬間に発信される。\n「screen_exited()」をダブルクリック、または右下の「接続」をクリックする。\n「Ball」ノードのスクリプトを選択して「接続」をクリックする。なお、受信側メソッドの名前はそのままで良い。\nスクリプトエディタに切り替わり、メソッドが追加され、左側にシグナルとの接続を示す緑色のアイコンが表示されているのが確認できるだろう。ではこのメソッドの中身を編集していこう。\n_on_VisibilityNotifier2D_screen_exitedメソッドを編集した結果、「Ball.gd」スクリプト全体は以下のようなコードになる。追加したメソッドは一番下にある。\nextends RigidBody2D const MAX_SPEED = 300.0 export (float) var ball_speed = 150.0 export (float) var speed_up = 4.0 var direction: Vector2 var velocity: Vector2 onready var paddle = get_node(\"../Paddle\") func _ready(): direction = Vector2(1, -1).normalized() velocity = direction * ball_speed func _process(delta): if mode == 3: position.x = paddle.position.x if Input.is_action_just_pressed(\"launch_ball\"): mode = 2 apply_impulse(Vector2.ZERO, velocity) func _on_Ball_body_entered(body): ball_speed += speed_up print(\"ball_speed: \"+str(ball_speed)) direction = linear_velocity.normalized() velocity = direction * min(ball_speed, MAX_SPEED) if body.is_in_group(\"Bricks\"): body.queue_free() if body.get_name() == \"Paddle\": direction = (position - body.position).normalized() velocity = direction * min(ball_speed, MAX_SPEED) linear_velocity = velocity func _on_VisibilityNotifier2D_screen_exited(): queue_free() get_tree().change_scene(\"res://scene/GameOverView.tscn\") _on_VisibilityNotifier2D_screen_exitedメソッドが実行されると、まずqueue_freeという関数が実行される。これはスクリプトがアタッチされているノード自体を開放（シーンツリーから消す）する。つまり、ボールが画面下に落ちたら、「Ball」ノードそのものが消えるということだ。これを実行しないと、画面上には表示されてなくとも、「Ball」ノードは生きたまま落下し続けている状態になる。ただし、開放するタイミングは次のフレームだ。だから「Ball」ノードが消える前に次の行のコードもきっちり処理される。\nそして次の最後の行だが、すっかりお馴染みのchange_scene関数だ。引数に\"res://scene/GameOverView.tscn\"をとって、ゲームオーバー画面に遷移するようにしている。\nこれで、ボールが画面下に落ちたらゲームオーバー画面に切り替わるようになったはずだ。プロジェクトを実行して最初から画面遷移を確認してみよう。\n おわりに 以上で Part 6 は完了だ。今回はスタート画面、ゲームオーバー画面を作って、プレイ画面を含めた画面遷移を完成させた。よりゲームらしさが演出できたのではないだろうか。\n次回 Part 7 では HUD（ヘッドアップディスプレイ）を追加していく。\n \n (adsbygoogle = window.adsbygoogle || []).push({});  ",
+  "wordCount" : "422",
   "inLanguage": "ja",
   "image":"https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_6/img_44.gif","datePublished": "2021-11-21T13:39:21+09:00",
   "dateModified": "2021-11-21T13:39:21+09:00",
@@ -227,14 +227,14 @@ if (!doNotTrack) {
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/ja/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/">Tutorials</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/">Godot で作るブロック崩し</a></div>
+    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/ja/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/">Tutorials</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/">シリーズ：Godot で作るブロック崩し</a></div>
     <h1 class="post-title">
       Godot で作るブロック崩し Part 6：ゲームスタート/ゲームオーバーの画面を作ろう！
     </h1>
-    <div class="post-meta">2021-11-21&nbsp;·&nbsp;3 分&nbsp;·&nbsp;Masanao Sako
+    <div class="post-meta">2021-11-21&nbsp;·&nbsp;2 分&nbsp;·&nbsp;Masanao Sako
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_6/img_44.gif" alt="ブロック崩しPart6サムネイル">
+<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_6/img_44.gif" alt="ブロック崩し Part 6 サムネイル">
         
 </figure><div class="toc">
     <details  open>
@@ -458,19 +458,7 @@ Licensed under SIL Open Font License 1.1 (<a href="http://scripts.sil.org/OFL" t
 <img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_6/img_33.png" alt="スクリプトをアタッチ"  />
 </p>
 <p>「GameStartView.gd」ファイルをスクリプトエディタで開いたら、以下の内容でスクリプトのコードを置き換えてほしい。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Control</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Control</span>
 
 
 <span style="color:#66d9ef">func</span> _input(event):
@@ -478,22 +466,13 @@ Licensed under SIL Open Font License 1.1 (<a href="http://scripts.sil.org/OFL" t
 		yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.1</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
 		print(<span style="color:#e6db74">&#34;Input at Game Start: &#34;</span>, event<span style="color:#f92672">.</span>as_text())
 		get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://scene/Game.tscn&#34;</span>)
-</code></pre></td></tr></table>
-</div>
-</div><br>
+</code></pre></div><br>
 <p>ではスクリプトの内容を確認していこう。</p>
 <p>まずこのスクリプトで唯一の関数<code>_input</code>は　Node クラスに組み込みのメソッドで、いわゆるコールバック関数だ。何らかの入力操作があれば、そのイベントを<code>event</code>引数に格納して、関数内のコードを実行する。</p>
 <p><code>InputEventKey</code>というのはキーボードのいずれかのキー入力を指す。つまり<code>if event is InputEventKey:</code>の if 構文の意味は、何らかの入力イベントを受信した時に、その入力イベントがキーボードのキー操作だった場合は、という意味だ。</p>
 <p>if 構文の中を見ていこう。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">		yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.1</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
-</code></pre></td></tr></table>
-</div>
-</div><p>まず、<code>yield</code>というコルーチン用の組み込み関数だ。コルーチンとは、関数を途中の任意のタイミングで停止し、その後任意のタイミングで再開できる機能を持つ関数を指す。この停止、再開を担当するのが<code>yield</code>だ。<code>yield</code>は引数なしでも使われることが多いが、ここでは引数にオブジェクトとシグナルをとる形で利用している。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">		yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.1</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</code></pre></div><p>まず、<code>yield</code>というコルーチン用の組み込み関数だ。コルーチンとは、関数を途中の任意のタイミングで停止し、その後任意のタイミングで再開できる機能を持つ関数を指す。この停止、再開を担当するのが<code>yield</code>だ。<code>yield</code>は引数なしでも使われることが多いが、ここでは引数にオブジェクトとシグナルをとる形で利用している。</p>
 <p>第一引数に割り当てているのは「Timer」クラスのノードだ。ただし、<code>yield</code>の引数の中でノードが作成されている。<code>get_tree</code>関数はシーンツリーにアクセスする関数で、シーンツリーに「Timer」ノードを作成するのが<code>create_timer</code>関数だ。引数<code>0.1</code>はタイマーの長さで、0.1秒のタイマーということになる。第二引数<code>timeout</code>は「Timer」ノードのシグナルで、タイマーの時間が経過したら発信される。まとめると、0.1 秒のタイマーがセットされた「Timer」ノードがタイムアップしたら、次の行のコードに進む、という意味になる。</p>
 <p>なぜ、このようなコードを記述するかを説明しておこう。スタート画面で何らかのキー入力をした時、もしそのキーが<strong>スペース</strong>キーだった場合、次のゲームプレイ画面に切り替わった瞬間、即座にパドルからボールが発射してしまう。つまり、スタート画面で入力したスペースキーが次のプレイ画面の操作としても影響してしまうということだ。そのため、プレイヤーがスタート画面で何らかのキー入力をしたら、0.1秒待機させるようにして、キー入力が次のプレイ画面に影響しないようにしているというわけである。</p>
 <blockquote>
@@ -503,25 +482,11 @@ Licensed under SIL Open Font License 1.1 (<a href="http://scripts.sil.org/OFL" t
 参照のこと。</p>
 </blockquote>
 <br>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">print(<span style="color:#e6db74">&#34;Input at Game Start: &#34;</span>, event<span style="color:#f92672">.</span>as_text())
-</code></pre></td></tr></table>
-</div>
-</div><p>これは出力コンソールにどのキーが入力されたかを出力するために追加している。目的は挙動をチェックする際に本当にキー入力が正しく認識されているかを確認することだ。つまり、コードに不備がなければこの一行のコードは無くても良い。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">print(<span style="color:#e6db74">&#34;Input at Game Start: &#34;</span>, event<span style="color:#f92672">.</span>as_text())
+</code></pre></div><p>これは出力コンソールにどのキーが入力されたかを出力するために追加している。目的は挙動をチェックする際に本当にキー入力が正しく認識されているかを確認することだ。つまり、コードに不備がなければこの一行のコードは無くても良い。</p>
 <br>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://scene/Game.tscn&#34;</span>)
-</code></pre></td></tr></table>
-</div>
-</div><p>最後に<code>get_tree</code>関数でシーンツリーにアクセスし、<code>change_scene</code>関数で引数で指定したシーンに切り替える。<code>change_scene</code>関数の引数にはゲームプレイ画面のシーンファイルのパス「res://scene/Game.tscn」を入力している。シーンの切り替えは基本的にこのような記述になる。今後よく利用するので頭の片隅に置いておくと良いだろう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://scene/Game.tscn&#34;</span>)
+</code></pre></div><p>最後に<code>get_tree</code>関数でシーンツリーにアクセスし、<code>change_scene</code>関数で引数で指定したシーンに切り替える。<code>change_scene</code>関数の引数にはゲームプレイ画面のシーンファイルのパス「res://scene/Game.tscn」を入力している。シーンの切り替えは基本的にこのような記述になる。今後よく利用するので頭の片隅に置いておくと良いだろう。</p>
 <br>
 <p>では、実際にスタート画面からプレイ画面にきちんと切り替わるか、<strong>プロジェクト</strong>を実行して見てみよう。スタート画面でスペースキーやエンターキーその他何でも良いので適当にキーを押下して、プレイ画面に遷移したらOKだ。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_6/img_34.gif" alt="スタート画面からプレイ画面への遷移"  />
@@ -589,21 +554,7 @@ To Continue Press Enter</li>
 <p>それではスクリプトの方の作業に移ろう。</p>
 <p>まずはシーンドックで「GameOverView」ノードを選択して、新規スクリプトをアタッチしよう。スクリプトは保存先を「res://scripts」、名前を「GameOverView.gd」として保存する。</p>
 <p>スクリプトの内容を以下のコードで置き換えてほしい。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Control</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Control</span>
 
 
 <span style="color:#66d9ef">func</span> _input(event):
@@ -613,32 +564,16 @@ To Continue Press Enter</li>
 			get_tree()<span style="color:#f92672">.</span>quit()
 		<span style="color:#66d9ef">elif</span> event<span style="color:#f92672">.</span>is_action_released(<span style="color:#e6db74">&#34;ui_accept&#34;</span>):
 			get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://scene/GameStartView.tscn&#34;</span>)
-</code></pre></td></tr></table>
-</div>
-</div><br>
+</code></pre></div><br>
 <p>では、スクリプトの内容を確認していく。</p>
 <p>スタート画面と大まかには同じようなコードだ。組み込みのコールバック関数<code>_input</code>によって、プレイヤーが何らかの入力をすれば関数内のコードが実行される。</p>
 <p>今回のコードは if 構文が2段階になっている（これをネストという）。まず最初の if 構文で、入力がキーボード入力だった場合、ひとまず入力したキーを出力コンソールに出力して確認するため<code>print</code>関数を使用している。</p>
 <p>その後、さらに内側の if 構文に進む。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">		<span style="color:#66d9ef">if</span> event<span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;Quit&#34;</span>):
-</code></pre></td></tr></table>
-</div>
-</div><p>これはシンプルに、入力されたイベントがインプットマップの「Quit」の操作だったら、つまりプレイヤーが「Q」のキーを押したら、という意味合いだ。その場合に実行されるのが<code>get_tree().quit()</code>だ。<code>get_tree</code>関数でシーンツリーにアクセスし、そこから<code>quit</code>関数によって、ゲームアプリケーションが終了させられる。なお、iOSデバイス向けにゲームを作る場合は、この関数は機能しないようなので、今後のご自身の開発ではご注意いただきたい。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">		<span style="color:#66d9ef">if</span> event<span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;Quit&#34;</span>):
+</code></pre></div><p>これはシンプルに、入力されたイベントがインプットマップの「Quit」の操作だったら、つまりプレイヤーが「Q」のキーを押したら、という意味合いだ。その場合に実行されるのが<code>get_tree().quit()</code>だ。<code>get_tree</code>関数でシーンツリーにアクセスし、そこから<code>quit</code>関数によって、ゲームアプリケーションが終了させられる。なお、iOSデバイス向けにゲームを作る場合は、この関数は機能しないようなので、今後のご自身の開発ではご注意いただきたい。</p>
 <p>次に<code>elif</code>のブロックだ。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">		<span style="color:#66d9ef">elif</span> event<span style="color:#f92672">.</span>is_action_released(<span style="color:#e6db74">&#34;ui_accept&#34;</span>):
-</code></pre></td></tr></table>
-</div>
-</div><p><code>elif</code>から始まる行は、最初の<code>if</code>から始まる行の条件に当てはまらなかった場合に実行される。<code>is_action_released</code>関数は、引数のインプットマップの操作があったかどうかを Bool 値で返してくれる。ただし、さきほどの<code>if</code>の行では関数名に <strong>pressed</strong>が含まれていたが、今回は <strong>released</strong>が名前に含まれている。これは、操作の最後にキーから指が離れたかどうかを確認している。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">		<span style="color:#66d9ef">elif</span> event<span style="color:#f92672">.</span>is_action_released(<span style="color:#e6db74">&#34;ui_accept&#34;</span>):
+</code></pre></div><p><code>elif</code>から始まる行は、最初の<code>if</code>から始まる行の条件に当てはまらなかった場合に実行される。<code>is_action_released</code>関数は、引数のインプットマップの操作があったかどうかを Bool 値で返してくれる。ただし、さきほどの<code>if</code>の行では関数名に <strong>pressed</strong>が含まれていたが、今回は <strong>released</strong>が名前に含まれている。これは、操作の最後にキーから指が離れたかどうかを確認している。</p>
 <p>具体的に、ここでのコードは『入力操作がインプットマップの「ui_accept」の操作で、最後に指がキーから離れたら』という意味合いになる。そして「ui_accept」はデフォルトで用意されているインプットマップで、スペースキーやエンターキーが割り当てられている。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_6/img_38.png" alt="インプットマップのui_accept"  />
 </p>
@@ -677,55 +612,7 @@ To Continue Press Enter</li>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_6/img_43.png" alt="スクリプトエディタで接続されたメソッドを確認"  />
 </p>
 <p><code>_on_VisibilityNotifier2D_screen_exited</code>メソッドを編集した結果、「Ball.gd」スクリプト全体は以下のようなコードになる。追加したメソッドは一番下にある。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">RigidBody2D</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">RigidBody2D</span>
 
 
 <span style="color:#66d9ef">const</span> MAX_SPEED <span style="color:#f92672">=</span> <span style="color:#ae81ff">300.0</span>
@@ -769,9 +656,7 @@ To Continue Press Enter</li>
 	queue_free()
 	get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://scene/GameOverView.tscn&#34;</span>)
 
-</code></pre></td></tr></table>
-</div>
-</div><p><code>_on_VisibilityNotifier2D_screen_exited</code>メソッドが実行されると、まず<code>queue_free</code>という関数が実行される。これはスクリプトがアタッチされているノード自体を開放（シーンツリーから消す）する。つまり、ボールが画面下に落ちたら、「Ball」ノードそのものが消えるということだ。これを実行しないと、画面上には表示されてなくとも、「Ball」ノードは生きたまま落下し続けている状態になる。ただし、開放するタイミングは次のフレームだ。だから「Ball」ノードが消える前に次の行のコードもきっちり処理される。</p>
+</code></pre></div><p><code>_on_VisibilityNotifier2D_screen_exited</code>メソッドが実行されると、まず<code>queue_free</code>という関数が実行される。これはスクリプトがアタッチされているノード自体を開放（シーンツリーから消す）する。つまり、ボールが画面下に落ちたら、「Ball」ノードそのものが消えるということだ。これを実行しないと、画面上には表示されてなくとも、「Ball」ノードは生きたまま落下し続けている状態になる。ただし、開放するタイミングは次のフレームだ。だから「Ball」ノードが消える前に次の行のコードもきっちり処理される。</p>
 <p>そして次の最後の行だが、すっかりお馴染みの<code>change_scene</code>関数だ。引数に<code>&quot;res://scene/GameOverView.tscn&quot;</code>をとって、ゲームオーバー画面に遷移するようにしている。</p>
 <p>これで、ボールが画面下に落ちたらゲームオーバー画面に切り替わるようになったはずだ。プロジェクトを実行して最初から画面遷移を確認してみよう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_6/img_44.gif" alt="デバッグパネルで画面遷移を確認"  />

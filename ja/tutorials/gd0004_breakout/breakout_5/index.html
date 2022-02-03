@@ -63,7 +63,7 @@ if (!doNotTrack) {
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "Godot で作るブロック崩し",
+      "name": "シリーズ：Godot で作るブロック崩し",
       "item": "https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/"
     }, 
     {
@@ -85,8 +85,8 @@ if (!doNotTrack) {
   "keywords": [
     "Godot", "GodotEngine", "ゲーム開発", "チュートリアル", "ブロック崩し", "初級"
   ],
-  "articleBody": "Part 5 の今回は、パドルが壁を通過してしまう問題の修正、衝突するたびにボールのスピードが上がる仕様に変更、プレイヤーの操作でボールが発射される仕様に変更、パドル上のボールが当たった位置によってボールの反射角度が変わる仕様に変更、ついて更新していく。\nそれでは前回に引き続きブロック崩しを開発していこう。\n Memo: \n過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るブロック崩し \n  \n (adsbygoogle = window.adsbygoogle || []).push({});   パドルが壁を通過してしまう問題の修正 現状、パドルを画面の右端、左端へ移動させると、そこにあるはずの「Wall」ノードにぶつからずに貫通してしまう。まずはこの問題を修正していく。\n「Paddle」ノードには「CollisionShape2D」ノードが、「Wall」ノードには「CollisionPolygon2D」ノードがそれぞれ追加されているため、衝突判定を自動的にしてくれるはずが、なぜか貫通してしまう。\nここで疑うべきはスクリプトだ。では、「Paddle」ノードにアタッチしている「Paddle.gd」スクリプトを見てみよう。\n1 2 3 4 5 6 7 8 9 10 11 12 13  extends KinematicBody2D export (int) var speed = 150 func _process(delta): var direction = Vector2.ZERO if Input.is_action_pressed(\"move_right\"): direction.x = 1 if Input.is_action_pressed(\"move_left\"): direction.x = -1 position += speed * direction * delta   _process関数内のposition += speed * direction * deltaの一行が問題だ。これにより、衝突判定を度外視して、「Paddle」ノードの「position」プロパティ（パドルの位置）が壁を超えても更新され続けてしまう。\nこの問題を修正するために、もともと「KinematicBody2D」クラスに用意されている物理演算でノードを移動してくれるメソッドを使う。それではスクリプト全体を以下の内容に置き換えよう。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  extends KinematicBody2D export (int) var speed = 150 # この1行は削除またはコメントアウト #func _process(delta): # この1行を追加 func _physics_process(delta): var direction = Vector2.ZERO if Input.is_action_pressed(\"move_right\"): direction.x = 1 if Input.is_action_pressed(\"move_left\"): direction.x = -1 # この1行を削除またはコメントアウト #\tposition += speed * direction * delta # この1行を追加 move_and_slide(speed * direction)   変更点は次の2点だ。\n _process(delta)を_physics_process(delta)に置き換える position += speed * direction * deltaを関数move_and_slide()に置き換える。  まずは、1つ目の変更点について。\n_process関数は、毎フレーム実行される関数で、引数には必ずdeltaをとる。このdeltaというのは、前のフレームにかかった時間を格納している。一方、似たような名前の_physics_process関数も同様にdeltaを引数にとる。この二つの関数の違いが最初はピンと来ないかもしれない。\nそれぞれの使いどころは公式ドキュメント に以下のように記載されている。\n フレームレートに依存するフレーム間のデルタタイムが必要な場合は _process を使用します。オブジェクトデータを更新するコードをできるだけ頻繁に更新する必要がある場合、これが適切な場所です。繰り返しのロジックチェックとデータキャッシングがここで実行されることがよくありますが、更新するために評価が必要になる頻度になります。すべてのフレームを実行する必要がない場合は、Timer-yield-timeoutループを実装することも別のオプションです。\nフレームレートに依存しないフレーム間のデルタタイムが必要な場合は _physics_process を使用します。時間の進み具合に関係なく、コードの経時的な一貫した更新が必要な場合は、これが適切な場所です。繰り返しのキネマティックおよびオブジェクトの幾何学変換操作をここで実行する必要があります。\n 正直、スッと頭に入ってこない説明だ。\n要するに、_processは、毎フレーム実行される関数だが、処理が多ければそのフレームにかかる時間が長くなり、当然その長さを表すdeltaの値が大きくなる。さらに、次のフレームで_processが実行されるタイミングが遅くなる。例えば、deltaを使ってあるノードの位置を毎フレーム同じ速度で移動させた場合、極端に処理が多ければ、単位時間あたりのフレーム数が少なくなるので、滑らかな移動ではなくなり、瞬間移動的な動きになってしまうだろう。\n一方、_physics_processは、_processとは別の時間軸で動いている。そこフレームの間隔は常に一定（デフォルトでは 60 fps: 1秒間に60フレーム）であるため、deltaの値も毎フレーム同じになり、関数内の処理を実行するタイミングもまた一定間隔になる。だから常に一定間隔で実行したい物理演算処理は_physics_processを使うべき、ということのようだ。\n実際には、シーンを実行してみたところで、ブロック崩しくらいの少ないコードであれば_process関数でも同じように動く。しかし、この_physics_process関数内で使用するmove_and_slide関数が、実はdeltaを利用した物理演算を行っているため、厳密には_physics_processの方がより適切だと言える。\n次に2つ目の変更点のについて。\nこの_physics_process関数内で実行されているmove_and_slide()という関数は、「KinematicBody2D」クラスにもともと用意されているメソッドだ。引数をたくさんもつが、第一引数以外はデフォルトの値が決まっているので、基本的には第一引数linear_velocityの値だけ指定してあげれば良い。ちなみに、linear_velocityとは 1 秒あたりのピクセル数で表した速度のことだ。\n上のコードでは、この第一引数にspeed * directionを入れている。さらにこの関数はdeltaを自動的にその第一引数に乗じてくれる。結果として 1 フレームあたりの「KinematicBody2D」ノード（ここでは「Paddle」ノード」）の動きを作ってくれるわけだ。\nなお、公式ドキュメント のmove_and_slideの説明にも、以下のように記載されている。\n This method should be used in Node._physics_process (or in a method called by Node._physics_process), as it uses the physics step’s delta value automatically in calculations. Otherwise, the simulation will run at an incorrect speed.\n シーンを実行して確認してみよう。これで「Paddle」ノードが壁にぶつかったら止まるようになった。\n 衝突するたびにボールのスピードが上がるようにする ずっとボールのスピードが一定だとブロック崩しはとても簡単なゲームのままになってしまう。ボールがどこかに衝突するたびにそのスピードが上がるように変更しよう。必要なスクリプトの更新内容は以下が挙げられる。\n スピードの上限を定義する 一回の衝突あたりに上がるスピードを定義する 衝突ごとにスピードを上げる  「Ball.gd」スクリプトファイルを以下の内容に更新する。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25  extends RigidBody2D const MAX_SPEED = 300.0 # 追加 export (float) var ball_speed = 150.0 export (float) var speed_up = 4.0 # 追加 var direction: Vector2 # 複数の関数で使用する変数のためここで定義 var velocity: Vector2 # 複数の関数で使用する変数のためここで定義 func _ready(): direction = Vector2(1, -1).normalized() # 上で定義済みなので var を削除 velocity = direction * ball_speed # 上で定義済みなので var を削除 apply_impulse(Vector2.ZERO, velocity) func _on_Ball_body_entered(body): ball_speed += speed_up # 追加 print(\"ball_speed: \"+str(ball_speed)) # 追加 direction = linear_velocity.normalized() # 追加 velocity = direction * min(ball_speed, MAX_SPEED) # 追加 linear_velocity = velocity # 追加 if body.is_in_group(\"Bricks\"): body.queue_free()   それでは更新した箇所のうち重要な箇所を説明していこう。\nスピードの上限を定義する 1  const MAX_SPEED = 300.0 # 追加   まず、衝突のたびにボールのスピードを上げるとはいえ、永遠に上がり続けないように上限を設ける。それが上のコードだ。constは定数を定義する。定数とは変数とは違い、一度定義したらその値が変わらない。メモリ管理を最適化する上で、変更の予定がない変数は定数にした方が良い。定数は命名するときに大文字にするのがマナーだ。\n衝突ごとに上がるスピードを定義する 1  export (float) var speed_up = 4.0 # 追加   次に、一回の衝突で上がるスピードをこのコードで定義している。定数でも良いが、こちらは後々調整する可能性が高いので、インスペクタで編集できるようにexportキーワード付きの変数としてspeed_upを定義した。\n衝突ごとにスピードを上げる _on_Ball_body_entered(body)は、「Ball」ノードで以前に「body_entered」シグナルを接続した関数だ。つまり、この関数は「Ball」ノードが何らかのオブジェクトに衝突したら実行される。この関数の中に、コードを追加することによって、衝突ごとにボールの速度を更新してスピードアップを実現している。では、_on_Ball_body_entered(body)関数内に追加したコードを一つずつ見ていこう。\n1 2  ball_speed += speed_up # 追加 print(\"ball_speed: \"+str(ball_speed)) # 追加   先に定義したspeed_upを現在のスピードであるball_speedに加算している。\nその下の行のprint()関数は、デバッグ実行時に出力コンソールに何らかの文字列を表示させたい場合によく利用する。ここでは、現在のスピードを出力コンソールに衝突のたびに出力して、実際にスピードがきちんと上がっているかを確認するために用意した。ゲームプレイには何も影響しないので、開発中に不要になれば、削除かコメントアウトする。\n1  direction = linear_velocity.normalized() # 追加   linear_velocityは、RigidBody2D クラスにもともと用意されているプロパティで、ここでは「Ball」ノードの現在の速度（方向をもった速さ）を示している。最終的にこのプロパティの値を更新することで「Ball」ノードのスピードアップを行うのだが、ここでは一旦、normalized関数によって方向だけの情報を取得してdirection変数にそのVector2型の値を代入している。\n1  velocity = direction * min(ball_speed, MAX_SPEED) # 追加   min関数は第一、第二引数のうち小さい方の値を返す関数だ。つまり_on_Ball_body_entered関数内の計算で、もしball_speedの値がMAX_SPEEDの値を上回ったら、MAX_SPEEDの値が返される。よってこの行では、変数velocityに「Ball」ノードの現在の方向に現在のスピード（または最大スピード）を乗じて得られる速度を代入している。\n1  linear_velocity = velocity # 追加   linear_velocityとは「RigidBody2D」クラスにもともと用意されている、そのノードの速度を表すプロパティだ。「Ball」ノードのlinear_velocityに、先の計算で得られた最新の「Ball」ノードの速度を表すvelocityの値を代入することで、実際の「Ball」ノードの速度を更新している。これで「Ball」ノードのスピードアップ処理が完了する。\n実際にプロジェクトを実行してみよう。体感でもスピードが上がる間隔が得られるだろう。うまくプレイして粘るほどパドルのスピードが追いつかなくなるはずだ。実際に出力コンソールにも変数ball_speedの値が出力され、スピードが上がっているのがよくわかる。\nプレイしてみて、もう少しスピードアップのテンポを上げたい（もしくは下げたい）場合は、シーンドックで「Ball」ノードを選択し、インスペクタで「Speed Up」プロパティの値を変更して欲しい。\n同様に、パドルのスピードも遅いと感じたら、「Paddle」ノードの「Speed」プロパティを変更するといいだろう。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   プレイヤーの操作でボールが発射されるようにする ゲームが始まるやいなや、すぐにボールが斜め45°の方向へ飛んでいくようにしていたが、やはりゲーム開始時のボールを発射するタイミングはプレイヤーが決めたいものだ。以下の内容で仕様を変更していこう。\n 発射用のインプットマップを追加する プレイヤーがボールを発射するまでボールがパドルから離れないようにする  発射用のインプットマップを追加する 「プロジェクト」メニュー＞「プロジェクト設定」＞「インプットマップ」タブで、発射用のインプットを追加しよう。「launch_ball」という名前で「スペース」キーを割り当てることにする。\nプレイヤーがボールを発射するまでボールがパドルから離れないようにする ボールの発射をプレイヤーの操作に委ねると、ボールを発射する前にプレイヤーはパドルを左右に動かしたくなるはずだ。その時、ボールがパドルの上にくっついたまま一緒に動く必要がある。\nそれでは「Ball.gd」ファイルを以下のコードで置き換えよう。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37  extends RigidBody2D const MAX_SPEED = 300.0 export (float) var ball_speed = 150.0 export (float) var speed_up = 4.0 var direction: Vector2 var velocity: Vector2 onready var paddle = get_node(\"../Paddle\") # 追加 func _ready(): direction = Vector2(1, -1).normalized() velocity = direction * ball_speed # 以下のコードは別の関数内に移動するため削除またはコメントアウト #apply_impulse(Vector2.ZERO, velocity) func _process(delta): # まるごと追加 if mode == 3: position.x = paddle.position.x if Input.is_action_just_pressed(\"launch_ball\"): mode = 2 apply_impulse(Vector2.ZERO, velocity) # _ready関数からこちらに移動 func _on_Ball_body_entered(body): ball_speed += speed_up print(\"ball_speed: \"+str(ball_speed)) direction = linear_velocity.normalized() velocity = direction * min(ball_speed, MAX_SPEED) linear_velocity = velocity if body.is_in_group(\"Bricks\"): body.queue_free()   \nそれではスクリプトの変更点について解説していく。\n1  onready var paddle = get_node(\"../Paddle\") # 追加   get_node関数の引数に「Paddle」ノードの相対パスを渡すことで、「Paddle」ノードにアクセスできる。つまり、この1行のコードはpaddle変数に「Paddle」ノードが代入された形で定義されている。ちなみに相対パスを表す際の../は、一つ上の階層のノードを指す。つまりここでは「Ball」ノードの親ノードである「Game」ノードを指している。\nonreadyキーワードは、ゲームを開始する前の準備段階でその変数を宣言するために使う。この変数paddleをゲーム開始前から定義する必要があるのは、ゲーム開始時からボールが発射されるまでずっと_process関数内で「Paddle」ノードの位置情報が必要になるからだ。\n1 2 3 4 5 6  func _process(delta): # まるごと追加 if mode == 3: position.x = paddle.position.x if Input.is_action_just_pressed(\"launch_ball\"): mode = 2 apply_impulse(Vector2.ZERO, velocity) # _ready関数からこちらに移動   _process関数を追加した。この関数内のコードは毎フレーム実行される。\nmodeというプロパティが登場しているが、これは RigidBody2D のプロパティで、オブジェクトをどの種類の物理オブジェクトとして振る舞わせるのかを指定できる。インスペクタにも「Mode」プロパティとして表示されており、以前に「Character」の値を選択していた。しかし、「Character」だと回転はしないがそれ以外は「Rigid」と同じ物理オブジェクトなので、触れている「Paddle」ノードが動くと、その物理的な影響を受けてどこかへ飛んでいってしまう。\nボールがくっついたままパドルを動かせるようにするには、「Mode」プロパティを「Kinematic」にすれば良い。これはインスペクタで設定しよう。なお「Static」にしてしまうと、コードでも「Ball」ノードの位置を変更できず、パドルだけ動いて、ボールは中に浮いたままの状態になってしまう。\nコードの話に戻ろう。modeは enum として定義されており、 0 ~ 3 の値をとる。それぞれの値は以下のとおり、物理オブジェクトの種類を意味している。\n 0: Rigid 1: Static 2: Character 3: Kinematic  つまり、if mode == 3:は、「Ball」ノードの「Mode」プロパティが「Kinematic」だったら、という意味になる。さっきインスペクタで「Kinematic」を選択したので、初期値は必ず3である。もし3の場合は、まだボールを発射していないので、「Ball」ノードの x 座標を「Paddle」ノードの x 座標と常に同じにする、というのがposition.x = paddle.position.xだ。positionプロパティにそのノードの現在の位置が Vector2 型のデータとして格納されている。.xでそのうちの x 座標の値だけを取得しているというわけだ。\nさらに続けて、もし3の場合は、プレイヤーがスペースキーを押した場合にボール発射の処理を実行する。『スペースキーを押した場合は…』というのがif Input.is_action_just_pressed(\"launch_ball\"):のコードだ。そして、この2つ目の if 構文内ですぐにmode = 2として、「Mode」プロパティをもともと設定していた「Character」に変更している。「Character」になったあと、もとは_ready関数内で実行していたapply_impulse(Vector2.ZERO, velocity)を実行して、ボールを発射している。そして「Mode」プロパティが「Kinematic」では無くなったので、if mode == 3:の判定が false になる。つまり、ボールが発射された後は_process関数内の処理は実行されなくなり、ボールはパドルの x 座標と同じになる縛りから解放される。\nでは、プロジェクトを実行して、実際にスペースキーを押して発射されるまでボールがパドルに乗ったまま移動するのかを確認してみよう。\n パドル上のボールが当たった位置によりボールの反射角度を変える 今の時点では、ゲーム開始からボールが何かに当たると45°の角度でしか跳ね返らない。このままでは誰がいつプレイしても毎回同じボールの動きにしかならず、おもしろくない。そこで、パドルにボールが当たった位置によって、跳ね返る角度が変化するように変更していく。\nどのように角度を決定するかというと、パドルに当たった時のボールの位置とパドルの位置の差分を Vector2 型の値として取得し、その値をそのまま跳ね返る角度に利用する、というロジックだ。\nそれでは、改めて「Ball.gd」ファイルを以下のコードで置き換えよう。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38  extends RigidBody2D const MAX_SPEED = 300.0 export (float) var ball_speed = 150.0 export (float) var speed_up = 4.0 var direction: Vector2 var velocity: Vector2 onready var paddle = get_node(\"../Paddle\") func _ready(): direction = Vector2(1, -1).normalized() velocity = direction * ball_speed func _process(delta): if mode == 3: position.x = paddle.position.x if Input.is_action_just_pressed(\"launch_ball\"): mode = 2 apply_impulse(Vector2.ZERO, velocity) func _on_Ball_body_entered(body): ball_speed += speed_up print(\"ball_speed: \"+str(ball_speed)) direction = linear_velocity.normalized() velocity = direction * min(ball_speed, MAX_SPEED) if body.is_in_group(\"Bricks\"): body.queue_free() if body.get_name() == \"Paddle\": # まるごと追加 direction = (position - body.position).normalized() velocity = direction * min(ball_speed, MAX_SPEED) linear_velocity = velocity # 一番下に移動   変更したのは、_on_Ball_body_entered関数の中のみだ。\n1 2 3  if body.get_name() == \"Paddle\": # まるごと追加 direction = (position - body.position).normalized() velocity = direction * min(ball_speed, MAX_SPEED)   この if 構文をまるまる一つ追加した。\nif body.get_name() == \"Paddle\":で、ボールが衝突した対象がパドルだったら、という意味合いだ。もしパドルだった場合に実行する処理が if　構文の中のコードだ。\nシンプルにボールの位置とパドルの位置の差分を Vector2 型のデータとして取得して、それをnormalized関数に通せば、方向の情報だけを持った Vector2 型の値が取り出せる。その値をdirection変数に代入したのがdirection = (position - body.position).normalized()だ。\n現在のボールのスピードは変数ball_speedに格納されているので、「速度 = 方向 x 速さ」に当てはめる形で、速度の変数velocityに最終的な速度を代入しているのがvelocity = direction * min(ball_speed, MAX_SPEED)だ。\nそして、linear_velocity = velocityの一行をこの関数ブロックの最後に持ってきて、実際のボールの速度にパドルに跳ね返る時の角度を反映させた格好だ。\nそれではプロジェクトを実行して、実際にパドルに当たる位置でボールの角度が変わるか見てみよう。\n上のGIF画像で、最後にあっけなくボールを落としてしまっているが、パドルの当たる位置によってボールの跳ね返る角度が変わっているのがわかるだろう。\n おわりに 以上で Part 5 は完了だ。やや細かいが以下の4つの更新を行った。\n パドルが壁を通過してしまう問題の修正 衝突するたびにボールのスピードが上がるようにする プレイヤーの操作でボールが発射されるようにする パドル上のボールが当たった位置によりボールの反射角度を変える  少し細かい内容だったかもしれないが、確実にブロック崩しのゲーム性が向上し、またあなた自身の Godot やゲーム開発全般のスキルが上がったのではないだろうか。\n次回 Part 6 ではスタート画面、ゲームオーバー画面を追加してゲームらしさにさらに磨きをかけていく。\n \n (adsbygoogle = window.adsbygoogle || []).push({});  ",
-  "wordCount" : "826",
+  "articleBody": "Part 5 の今回は、パドルが壁を通過してしまう問題の修正、衝突するたびにボールのスピードが上がる仕様に変更、プレイヤーの操作でボールが発射される仕様に変更、パドル上のボールが当たった位置によってボールの反射角度が変わる仕様に変更、ついて更新していく。\nそれでは前回に引き続きブロック崩しを開発していこう。\n Memo: \n過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るブロック崩し \n  \n (adsbygoogle = window.adsbygoogle || []).push({});   パドルが壁を通過してしまう問題の修正 現状、パドルを画面の右端、左端へ移動させると、そこにあるはずの「Wall」ノードにぶつからずに貫通してしまう。まずはこの問題を修正していく。\n「Paddle」ノードには「CollisionShape2D」ノードが、「Wall」ノードには「CollisionPolygon2D」ノードがそれぞれ追加されているため、衝突判定を自動的にしてくれるはずが、なぜか貫通してしまう。\nここで疑うべきはスクリプトだ。では、「Paddle」ノードにアタッチしている「Paddle.gd」スクリプトを見てみよう。\nextends KinematicBody2D export (int) var speed = 150 func _process(delta): var direction = Vector2.ZERO if Input.is_action_pressed(\"move_right\"): direction.x = 1 if Input.is_action_pressed(\"move_left\"): direction.x = -1 position += speed * direction * delta _process関数内のposition += speed * direction * deltaの一行が問題だ。これにより、衝突判定を度外視して、「Paddle」ノードの「position」プロパティ（パドルの位置）が壁を超えても更新され続けてしまう。\nこの問題を修正するために、もともと「KinematicBody2D」クラスに用意されている物理演算でノードを移動してくれるメソッドを使う。それではスクリプト全体を以下の内容に置き換えよう。\nextends KinematicBody2D export (int) var speed = 150 # この1行は削除またはコメントアウト #func _process(delta): # この1行を追加 func _physics_process(delta): var direction = Vector2.ZERO if Input.is_action_pressed(\"move_right\"): direction.x = 1 if Input.is_action_pressed(\"move_left\"): direction.x = -1 # この1行を削除またはコメントアウト #\tposition += speed * direction * delta # この1行を追加 move_and_slide(speed * direction) 変更点は次の2点だ。\n _process(delta)を_physics_process(delta)に置き換える position += speed * direction * deltaを関数move_and_slide()に置き換える。  まずは、1つ目の変更点について。\n_process関数は、毎フレーム実行される関数で、引数には必ずdeltaをとる。このdeltaというのは、前のフレームにかかった時間を格納している。一方、似たような名前の_physics_process関数も同様にdeltaを引数にとる。この二つの関数の違いが最初はピンと来ないかもしれない。\nそれぞれの使いどころは公式ドキュメント に以下のように記載されている。\n フレームレートに依存するフレーム間のデルタタイムが必要な場合は _process を使用します。オブジェクトデータを更新するコードをできるだけ頻繁に更新する必要がある場合、これが適切な場所です。繰り返しのロジックチェックとデータキャッシングがここで実行されることがよくありますが、更新するために評価が必要になる頻度になります。すべてのフレームを実行する必要がない場合は、Timer-yield-timeoutループを実装することも別のオプションです。\nフレームレートに依存しないフレーム間のデルタタイムが必要な場合は _physics_process を使用します。時間の進み具合に関係なく、コードの経時的な一貫した更新が必要な場合は、これが適切な場所です。繰り返しのキネマティックおよびオブジェクトの幾何学変換操作をここで実行する必要があります。\n 正直、スッと頭に入ってこない説明だ。\n要するに、_processは、毎フレーム実行される関数だが、処理が多ければそのフレームにかかる時間が長くなり、当然その長さを表すdeltaの値が大きくなる。さらに、次のフレームで_processが実行されるタイミングが遅くなる。例えば、deltaを使ってあるノードの位置を毎フレーム同じ速度で移動させた場合、極端に処理が多ければ、単位時間あたりのフレーム数が少なくなるので、滑らかな移動ではなくなり、瞬間移動的な動きになってしまうだろう。\n一方、_physics_processは、_processとは別の時間軸で動いている。そこフレームの間隔は常に一定（デフォルトでは 60 fps: 1秒間に60フレーム）であるため、deltaの値も毎フレーム同じになり、関数内の処理を実行するタイミングもまた一定間隔になる。だから常に一定間隔で実行したい物理演算処理は_physics_processを使うべき、ということのようだ。\n実際には、シーンを実行してみたところで、ブロック崩しくらいの少ないコードであれば_process関数でも同じように動く。しかし、この_physics_process関数内で使用するmove_and_slide関数が、実はdeltaを利用した物理演算を行っているため、厳密には_physics_processの方がより適切だと言える。\n次に2つ目の変更点のについて。\nこの_physics_process関数内で実行されているmove_and_slide()という関数は、「KinematicBody2D」クラスにもともと用意されているメソッドだ。引数をたくさんもつが、第一引数以外はデフォルトの値が決まっているので、基本的には第一引数linear_velocityの値だけ指定してあげれば良い。ちなみに、linear_velocityとは 1 秒あたりのピクセル数で表した速度のことだ。\n上のコードでは、この第一引数にspeed * directionを入れている。さらにこの関数はdeltaを自動的にその第一引数に乗じてくれる。結果として 1 フレームあたりの「KinematicBody2D」ノード（ここでは「Paddle」ノード」）の動きを作ってくれるわけだ。\nなお、公式ドキュメント のmove_and_slideの説明にも、以下のように記載されている。\n This method should be used in Node._physics_process (or in a method called by Node._physics_process), as it uses the physics step’s delta value automatically in calculations. Otherwise, the simulation will run at an incorrect speed.\n シーンを実行して確認してみよう。これで「Paddle」ノードが壁にぶつかったら止まるようになった。\n 衝突するたびにボールのスピードが上がるようにする ずっとボールのスピードが一定だとブロック崩しはとても簡単なゲームのままになってしまう。ボールがどこかに衝突するたびにそのスピードが上がるように変更しよう。必要なスクリプトの更新内容は以下が挙げられる。\n スピードの上限を定義する 一回の衝突あたりに上がるスピードを定義する 衝突ごとにスピードを上げる  「Ball.gd」スクリプトファイルを以下の内容に更新する。\nextends RigidBody2D const MAX_SPEED = 300.0 # 追加 export (float) var ball_speed = 150.0 export (float) var speed_up = 4.0 # 追加 var direction: Vector2 # 複数の関数で使用する変数のためここで定義 var velocity: Vector2 # 複数の関数で使用する変数のためここで定義 func _ready(): direction = Vector2(1, -1).normalized() # 上で定義済みなので var を削除 velocity = direction * ball_speed # 上で定義済みなので var を削除 apply_impulse(Vector2.ZERO, velocity) func _on_Ball_body_entered(body): ball_speed += speed_up # 追加 print(\"ball_speed: \"+str(ball_speed)) # 追加 direction = linear_velocity.normalized() # 追加 velocity = direction * min(ball_speed, MAX_SPEED) # 追加 linear_velocity = velocity # 追加 if body.is_in_group(\"Bricks\"): body.queue_free() それでは更新した箇所のうち重要な箇所を説明していこう。\nスピードの上限を定義する const MAX_SPEED = 300.0 # 追加 まず、衝突のたびにボールのスピードを上げるとはいえ、永遠に上がり続けないように上限を設ける。それが上のコードだ。constは定数を定義する。定数とは変数とは違い、一度定義したらその値が変わらない。メモリ管理を最適化する上で、変更の予定がない変数は定数にした方が良い。定数は命名するときに大文字にするのがマナーだ。\n衝突ごとに上がるスピードを定義する export (float) var speed_up = 4.0 # 追加 次に、一回の衝突で上がるスピードをこのコードで定義している。定数でも良いが、こちらは後々調整する可能性が高いので、インスペクタで編集できるようにexportキーワード付きの変数としてspeed_upを定義した。\n衝突ごとにスピードを上げる _on_Ball_body_entered(body)は、「Ball」ノードで以前に「body_entered」シグナルを接続した関数だ。つまり、この関数は「Ball」ノードが何らかのオブジェクトに衝突したら実行される。この関数の中に、コードを追加することによって、衝突ごとにボールの速度を更新してスピードアップを実現している。では、_on_Ball_body_entered(body)関数内に追加したコードを一つずつ見ていこう。\nball_speed += speed_up # 追加 print(\"ball_speed: \"+str(ball_speed)) # 追加 先に定義したspeed_upを現在のスピードであるball_speedに加算している。\nその下の行のprint()関数は、デバッグ実行時に出力コンソールに何らかの文字列を表示させたい場合によく利用する。ここでは、現在のスピードを出力コンソールに衝突のたびに出力して、実際にスピードがきちんと上がっているかを確認するために用意した。ゲームプレイには何も影響しないので、開発中に不要になれば、削除かコメントアウトする。\ndirection = linear_velocity.normalized() # 追加 linear_velocityは、RigidBody2D クラスにもともと用意されているプロパティで、ここでは「Ball」ノードの現在の速度（方向をもった速さ）を示している。最終的にこのプロパティの値を更新することで「Ball」ノードのスピードアップを行うのだが、ここでは一旦、normalized関数によって方向だけの情報を取得してdirection変数にそのVector2型の値を代入している。\nvelocity = direction * min(ball_speed, MAX_SPEED) # 追加 min関数は第一、第二引数のうち小さい方の値を返す関数だ。つまり_on_Ball_body_entered関数内の計算で、もしball_speedの値がMAX_SPEEDの値を上回ったら、MAX_SPEEDの値が返される。よってこの行では、変数velocityに「Ball」ノードの現在の方向に現在のスピード（または最大スピード）を乗じて得られる速度を代入している。\nlinear_velocity = velocity # 追加 linear_velocityとは「RigidBody2D」クラスにもともと用意されている、そのノードの速度を表すプロパティだ。「Ball」ノードのlinear_velocityに、先の計算で得られた最新の「Ball」ノードの速度を表すvelocityの値を代入することで、実際の「Ball」ノードの速度を更新している。これで「Ball」ノードのスピードアップ処理が完了する。\n実際にプロジェクトを実行してみよう。体感でもスピードが上がる間隔が得られるだろう。うまくプレイして粘るほどパドルのスピードが追いつかなくなるはずだ。実際に出力コンソールにも変数ball_speedの値が出力され、スピードが上がっているのがよくわかる。\nプレイしてみて、もう少しスピードアップのテンポを上げたい（もしくは下げたい）場合は、シーンドックで「Ball」ノードを選択し、インスペクタで「Speed Up」プロパティの値を変更して欲しい。\n同様に、パドルのスピードも遅いと感じたら、「Paddle」ノードの「Speed」プロパティを変更するといいだろう。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   プレイヤーの操作でボールが発射されるようにする ゲームが始まるやいなや、すぐにボールが斜め45°の方向へ飛んでいくようにしていたが、やはりゲーム開始時のボールを発射するタイミングはプレイヤーが決めたいものだ。以下の内容で仕様を変更していこう。\n 発射用のインプットマップを追加する プレイヤーがボールを発射するまでボールがパドルから離れないようにする  発射用のインプットマップを追加する 「プロジェクト」メニュー＞「プロジェクト設定」＞「インプットマップ」タブで、発射用のインプットを追加しよう。「launch_ball」という名前で「スペース」キーを割り当てることにする。\nプレイヤーがボールを発射するまでボールがパドルから離れないようにする ボールの発射をプレイヤーの操作に委ねると、ボールを発射する前にプレイヤーはパドルを左右に動かしたくなるはずだ。その時、ボールがパドルの上にくっついたまま一緒に動く必要がある。\nそれでは「Ball.gd」ファイルを以下のコードで置き換えよう。\nextends RigidBody2D const MAX_SPEED = 300.0 export (float) var ball_speed = 150.0 export (float) var speed_up = 4.0 var direction: Vector2 var velocity: Vector2 onready var paddle = get_node(\"../Paddle\") # 追加 func _ready(): direction = Vector2(1, -1).normalized() velocity = direction * ball_speed # 以下のコードは別の関数内に移動するため削除またはコメントアウト #apply_impulse(Vector2.ZERO, velocity) func _process(delta): # まるごと追加 if mode == 3: position.x = paddle.position.x if Input.is_action_just_pressed(\"launch_ball\"): mode = 2 apply_impulse(Vector2.ZERO, velocity) # _ready関数からこちらに移動 func _on_Ball_body_entered(body): ball_speed += speed_up print(\"ball_speed: \"+str(ball_speed)) direction = linear_velocity.normalized() velocity = direction * min(ball_speed, MAX_SPEED) linear_velocity = velocity if body.is_in_group(\"Bricks\"): body.queue_free() \nそれではスクリプトの変更点について解説していく。\nonready var paddle = get_node(\"../Paddle\") # 追加 get_node関数の引数に「Paddle」ノードの相対パスを渡すことで、「Paddle」ノードにアクセスできる。つまり、この1行のコードはpaddle変数に「Paddle」ノードが代入された形で定義されている。ちなみに相対パスを表す際の../は、一つ上の階層のノードを指す。つまりここでは「Ball」ノードの親ノードである「Game」ノードを指している。\nonreadyキーワードは、ゲームを開始する前の準備段階でその変数を宣言するために使う。この変数paddleをゲーム開始前から定義する必要があるのは、ゲーム開始時からボールが発射されるまでずっと_process関数内で「Paddle」ノードの位置情報が必要になるからだ。\nfunc _process(delta): # まるごと追加 if mode == 3: position.x = paddle.position.x if Input.is_action_just_pressed(\"launch_ball\"): mode = 2 apply_impulse(Vector2.ZERO, velocity) # _ready関数からこちらに移動 _process関数を追加した。この関数内のコードは毎フレーム実行される。\nmodeというプロパティが登場しているが、これは RigidBody2D のプロパティで、オブジェクトをどの種類の物理オブジェクトとして振る舞わせるのかを指定できる。インスペクタにも「Mode」プロパティとして表示されており、以前に「Character」の値を選択していた。しかし、「Character」だと回転はしないがそれ以外は「Rigid」と同じ物理オブジェクトなので、触れている「Paddle」ノードが動くと、その物理的な影響を受けてどこかへ飛んでいってしまう。\nボールがくっついたままパドルを動かせるようにするには、「Mode」プロパティを「Kinematic」にすれば良い。これはインスペクタで設定しよう。なお「Static」にしてしまうと、コードでも「Ball」ノードの位置を変更できず、パドルだけ動いて、ボールは中に浮いたままの状態になってしまう。\nコードの話に戻ろう。modeは enum として定義されており、 0 ~ 3 の値をとる。それぞれの値は以下のとおり、物理オブジェクトの種類を意味している。\n 0: Rigid 1: Static 2: Character 3: Kinematic  つまり、if mode == 3:は、「Ball」ノードの「Mode」プロパティが「Kinematic」だったら、という意味になる。さっきインスペクタで「Kinematic」を選択したので、初期値は必ず3である。もし3の場合は、まだボールを発射していないので、「Ball」ノードの x 座標を「Paddle」ノードの x 座標と常に同じにする、というのがposition.x = paddle.position.xだ。positionプロパティにそのノードの現在の位置が Vector2 型のデータとして格納されている。.xでそのうちの x 座標の値だけを取得しているというわけだ。\nさらに続けて、もし3の場合は、プレイヤーがスペースキーを押した場合にボール発射の処理を実行する。『スペースキーを押した場合は…』というのがif Input.is_action_just_pressed(\"launch_ball\"):のコードだ。そして、この2つ目の if 構文内ですぐにmode = 2として、「Mode」プロパティをもともと設定していた「Character」に変更している。「Character」になったあと、もとは_ready関数内で実行していたapply_impulse(Vector2.ZERO, velocity)を実行して、ボールを発射している。そして「Mode」プロパティが「Kinematic」では無くなったので、if mode == 3:の判定が false になる。つまり、ボールが発射された後は_process関数内の処理は実行されなくなり、ボールはパドルの x 座標と同じになる縛りから解放される。\nでは、プロジェクトを実行して、実際にスペースキーを押して発射されるまでボールがパドルに乗ったまま移動するのかを確認してみよう。\n パドル上のボールが当たった位置によりボールの反射角度を変える 今の時点では、ゲーム開始からボールが何かに当たると45°の角度でしか跳ね返らない。このままでは誰がいつプレイしても毎回同じボールの動きにしかならず、おもしろくない。そこで、パドルにボールが当たった位置によって、跳ね返る角度が変化するように変更していく。\nどのように角度を決定するかというと、パドルに当たった時のボールの位置とパドルの位置の差分を Vector2 型の値として取得し、その値をそのまま跳ね返る角度に利用する、というロジックだ。\nそれでは、改めて「Ball.gd」ファイルを以下のコードで置き換えよう。\nextends RigidBody2D const MAX_SPEED = 300.0 export (float) var ball_speed = 150.0 export (float) var speed_up = 4.0 var direction: Vector2 var velocity: Vector2 onready var paddle = get_node(\"../Paddle\") func _ready(): direction = Vector2(1, -1).normalized() velocity = direction * ball_speed func _process(delta): if mode == 3: position.x = paddle.position.x if Input.is_action_just_pressed(\"launch_ball\"): mode = 2 apply_impulse(Vector2.ZERO, velocity) func _on_Ball_body_entered(body): ball_speed += speed_up print(\"ball_speed: \"+str(ball_speed)) direction = linear_velocity.normalized() velocity = direction * min(ball_speed, MAX_SPEED) if body.is_in_group(\"Bricks\"): body.queue_free() if body.get_name() == \"Paddle\": # まるごと追加 direction = (position - body.position).normalized() velocity = direction * min(ball_speed, MAX_SPEED) linear_velocity = velocity # 一番下に移動 変更したのは、_on_Ball_body_entered関数の中のみだ。\nif body.get_name() == \"Paddle\": # まるごと追加 direction = (position - body.position).normalized() velocity = direction * min(ball_speed, MAX_SPEED) この if 構文をまるまる一つ追加した。\nif body.get_name() == \"Paddle\":で、ボールが衝突した対象がパドルだったら、という意味合いだ。もしパドルだった場合に実行する処理が if　構文の中のコードだ。\nシンプルにボールの位置とパドルの位置の差分を Vector2 型のデータとして取得して、それをnormalized関数に通せば、方向の情報だけを持った Vector2 型の値が取り出せる。その値をdirection変数に代入したのがdirection = (position - body.position).normalized()だ。\n現在のボールのスピードは変数ball_speedに格納されているので、「速度 = 方向 x 速さ」に当てはめる形で、速度の変数velocityに最終的な速度を代入しているのがvelocity = direction * min(ball_speed, MAX_SPEED)だ。\nそして、linear_velocity = velocityの一行をこの関数ブロックの最後に持ってきて、実際のボールの速度にパドルに跳ね返る時の角度を反映させた格好だ。\nそれではプロジェクトを実行して、実際にパドルに当たる位置でボールの角度が変わるか見てみよう。\n上のGIF画像で、最後にあっけなくボールを落としてしまっているが、パドルの当たる位置によってボールの跳ね返る角度が変わっているのがわかるだろう。\n おわりに 以上で Part 5 は完了だ。やや細かいが以下の4つの更新を行った。\n パドルが壁を通過してしまう問題の修正 衝突するたびにボールのスピードが上がるようにする プレイヤーの操作でボールが発射されるようにする パドル上のボールが当たった位置によりボールの反射角度を変える  少し細かい内容だったかもしれないが、確実にブロック崩しのゲーム性が向上し、またあなた自身の Godot やゲーム開発全般のスキルが上がったのではないだろうか。\n次回 Part 6 ではスタート画面、ゲームオーバー画面を追加してゲームらしさにさらに磨きをかけていく。\n \n (adsbygoogle = window.adsbygoogle || []).push({});  ",
+  "wordCount" : "678",
   "inLanguage": "ja",
   "image":"https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_5/img_9.gif","datePublished": "2021-11-17T12:23:06+09:00",
   "dateModified": "2021-11-17T12:23:06+09:00",
@@ -227,14 +227,14 @@ if (!doNotTrack) {
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/ja/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/">Tutorials</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/">Godot で作るブロック崩し</a></div>
+    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/ja/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/">Tutorials</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/">シリーズ：Godot で作るブロック崩し</a></div>
     <h1 class="post-title">
       Godot で作るブロック崩し Part 5：細かい更新をしてゲーム性を高めよう！
     </h1>
     <div class="post-meta">2021-11-17&nbsp;·&nbsp;4 分&nbsp;·&nbsp;Masanao Sako
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_5/img_9.gif" alt="ブロック崩しPart5サムネイル">
+<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_5/img_9.gif" alt="ブロック崩し Part 5 サムネイル">
         
 </figure><div class="toc">
     <details  open>
@@ -306,24 +306,7 @@ data-ad-slot="9419515863"></ins></p>
 </p>
 <p>「Paddle」ノードには「CollisionShape2D」ノードが、「Wall」ノードには「CollisionPolygon2D」ノードがそれぞれ追加されているため、衝突判定を自動的にしてくれるはずが、なぜか貫通してしまう。</p>
 <p>ここで疑うべきはスクリプトだ。では、「Paddle」ノードにアタッチしている「Paddle.gd」スクリプトを見てみよう。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span>
 
 
 <span style="color:#66d9ef">export</span> (<span style="color:#a6e22e">int</span>) <span style="color:#66d9ef">var</span> speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">150</span>
@@ -336,33 +319,9 @@ data-ad-slot="9419515863"></ins></p>
 	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;move_left&#34;</span>):
 		direction<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
 	position <span style="color:#f92672">+=</span> speed <span style="color:#f92672">*</span> direction <span style="color:#f92672">*</span> delta
-</code></pre></td></tr></table>
-</div>
-</div><p><code>_process</code>関数内の<code>position += speed * direction * delta</code>の一行が問題だ。これにより、衝突判定を度外視して、「Paddle」ノードの「position」プロパティ（パドルの位置）が壁を超えても更新され続けてしまう。</p>
+</code></pre></div><p><code>_process</code>関数内の<code>position += speed * direction * delta</code>の一行が問題だ。これにより、衝突判定を度外視して、「Paddle」ノードの「position」プロパティ（パドルの位置）が壁を超えても更新され続けてしまう。</p>
 <p>この問題を修正するために、もともと「KinematicBody2D」クラスに用意されている物理演算でノードを移動してくれるメソッドを使う。それではスクリプト全体を以下の内容に置き換えよう。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span>
 
 
 <span style="color:#66d9ef">export</span> (<span style="color:#a6e22e">int</span>) <span style="color:#66d9ef">var</span> speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">150</span>
@@ -380,9 +339,7 @@ data-ad-slot="9419515863"></ins></p>
 <span style="color:#75715e">#	position += speed * direction * delta</span>
 <span style="color:#75715e"># この1行を追加</span>
 	move_and_slide(speed <span style="color:#f92672">*</span> direction)
-</code></pre></td></tr></table>
-</div>
-</div><p>変更点は次の2点だ。</p>
+</code></pre></div><p>変更点は次の2点だ。</p>
 <ol>
 <li><code>_process(delta)</code>を<code>_physics_process(delta)</code>に置き換える</li>
 <li><code>position += speed * direction * delta</code>を関数<code>move_and_slide()</code>に置き換える。</li>
@@ -421,36 +378,7 @@ data-ad-slot="9419515863"></ins></p>
 <li>衝突ごとにスピードを上げる</li>
 </ol>
 <p>「Ball.gd」スクリプトファイルを以下の内容に更新する。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">RigidBody2D</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">RigidBody2D</span>
 
 
 <span style="color:#66d9ef">const</span> MAX_SPEED <span style="color:#f92672">=</span> <span style="color:#ae81ff">300.0</span> <span style="color:#75715e"># 追加</span>
@@ -475,73 +403,28 @@ data-ad-slot="9419515863"></ins></p>
   
 	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Bricks&#34;</span>):
 		body<span style="color:#f92672">.</span>queue_free()
-</code></pre></td></tr></table>
-</div>
-</div><p>それでは更新した箇所のうち重要な箇所を説明していこう。<br>
+</code></pre></div><p>それでは更新した箇所のうち重要な箇所を説明していこう。<br>
 <br></p>
 <h3 id="スピードの上限を定義する">スピードの上限を定義する<a hidden class="anchor" aria-hidden="true" href="#スピードの上限を定義する">#</a></h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">const</span> MAX_SPEED <span style="color:#f92672">=</span> <span style="color:#ae81ff">300.0</span> <span style="color:#75715e"># 追加</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>まず、衝突のたびにボールのスピードを上げるとはいえ、永遠に上がり続けないように上限を設ける。それが上のコードだ。<code>const</code>は定数を定義する。定数とは変数とは違い、一度定義したらその値が変わらない。メモリ管理を最適化する上で、変更の予定がない変数は定数にした方が良い。定数は命名するときに大文字にするのがマナーだ。<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">const</span> MAX_SPEED <span style="color:#f92672">=</span> <span style="color:#ae81ff">300.0</span> <span style="color:#75715e"># 追加</span>
+</code></pre></div><p>まず、衝突のたびにボールのスピードを上げるとはいえ、永遠に上がり続けないように上限を設ける。それが上のコードだ。<code>const</code>は定数を定義する。定数とは変数とは違い、一度定義したらその値が変わらない。メモリ管理を最適化する上で、変更の予定がない変数は定数にした方が良い。定数は命名するときに大文字にするのがマナーだ。<br>
 <br></p>
 <h3 id="衝突ごとに上がるスピードを定義する">衝突ごとに上がるスピードを定義する<a hidden class="anchor" aria-hidden="true" href="#衝突ごとに上がるスピードを定義する">#</a></h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">export</span> (<span style="color:#a6e22e">float</span>) <span style="color:#66d9ef">var</span> speed_up <span style="color:#f92672">=</span> <span style="color:#ae81ff">4.0</span> <span style="color:#75715e"># 追加</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>次に、一回の衝突で上がるスピードをこのコードで定義している。定数でも良いが、こちらは後々調整する可能性が高いので、インスペクタで編集できるように<code>export</code>キーワード付きの変数として<code>speed_up</code>を定義した。<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">export</span> (<span style="color:#a6e22e">float</span>) <span style="color:#66d9ef">var</span> speed_up <span style="color:#f92672">=</span> <span style="color:#ae81ff">4.0</span> <span style="color:#75715e"># 追加</span>
+</code></pre></div><p>次に、一回の衝突で上がるスピードをこのコードで定義している。定数でも良いが、こちらは後々調整する可能性が高いので、インスペクタで編集できるように<code>export</code>キーワード付きの変数として<code>speed_up</code>を定義した。<br>
 <br></p>
 <h3 id="衝突ごとにスピードを上げる">衝突ごとにスピードを上げる<a hidden class="anchor" aria-hidden="true" href="#衝突ごとにスピードを上げる">#</a></h3>
 <p><code>_on_Ball_body_entered(body)</code>は、「Ball」ノードで以前に「body_entered」シグナルを接続した関数だ。つまり、この関数は「Ball」ノードが何らかのオブジェクトに衝突したら実行される。この関数の中に、コードを追加することによって、衝突ごとにボールの速度を更新してスピードアップを実現している。では、<code>_on_Ball_body_entered(body)</code>関数内に追加したコードを一つずつ見ていこう。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">ball_speed <span style="color:#f92672">+=</span> speed_up <span style="color:#75715e"># 追加</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">ball_speed <span style="color:#f92672">+=</span> speed_up <span style="color:#75715e"># 追加</span>
 print(<span style="color:#e6db74">&#34;ball_speed: &#34;</span><span style="color:#f92672">+</span>str(ball_speed)) <span style="color:#75715e"># 追加</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>先に定義した<code>speed_up</code>を現在のスピードである<code>ball_speed</code>に加算している。</p>
+</code></pre></div><p>先に定義した<code>speed_up</code>を現在のスピードである<code>ball_speed</code>に加算している。</p>
 <p>その下の行の<code>print()</code>関数は、デバッグ実行時に出力コンソールに何らかの文字列を表示させたい場合によく利用する。ここでは、現在のスピードを出力コンソールに衝突のたびに出力して、実際にスピードがきちんと上がっているかを確認するために用意した。ゲームプレイには何も影響しないので、開発中に不要になれば、削除かコメントアウトする。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">direction <span style="color:#f92672">=</span> linear_velocity<span style="color:#f92672">.</span>normalized() <span style="color:#75715e"># 追加</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><code>linear_velocity</code>は、<strong>RigidBody2D</strong> クラスにもともと用意されているプロパティで、ここでは「Ball」ノードの現在の速度（方向をもった速さ）を示している。最終的にこのプロパティの値を更新することで「Ball」ノードのスピードアップを行うのだが、ここでは一旦、<code>normalized</code>関数によって方向だけの情報を取得して<code>direction</code>変数にそのVector2型の値を代入している。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">velocity <span style="color:#f92672">=</span> direction <span style="color:#f92672">*</span> min(ball_speed, MAX_SPEED) <span style="color:#75715e"># 追加</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><code>min</code>関数は第一、第二引数のうち小さい方の値を返す関数だ。つまり<code>_on_Ball_body_entered</code>関数内の計算で、もし<code>ball_speed</code>の値が<code>MAX_SPEED</code>の値を上回ったら、<code>MAX_SPEED</code>の値が返される。よってこの行では、変数<code>velocity</code>に「Ball」ノードの現在の方向に現在のスピード（または最大スピード）を乗じて得られる速度を代入している。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">linear_velocity <span style="color:#f92672">=</span> velocity <span style="color:#75715e"># 追加</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><code>linear_velocity</code>とは「RigidBody2D」クラスにもともと用意されている、そのノードの速度を表すプロパティだ。「Ball」ノードの<code>linear_velocity</code>に、先の計算で得られた最新の「Ball」ノードの速度を表す<code>velocity</code>の値を代入することで、実際の「Ball」ノードの速度を更新している。これで「Ball」ノードのスピードアップ処理が完了する。<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">direction <span style="color:#f92672">=</span> linear_velocity<span style="color:#f92672">.</span>normalized() <span style="color:#75715e"># 追加</span>
+</code></pre></div><p><code>linear_velocity</code>は、<strong>RigidBody2D</strong> クラスにもともと用意されているプロパティで、ここでは「Ball」ノードの現在の速度（方向をもった速さ）を示している。最終的にこのプロパティの値を更新することで「Ball」ノードのスピードアップを行うのだが、ここでは一旦、<code>normalized</code>関数によって方向だけの情報を取得して<code>direction</code>変数にそのVector2型の値を代入している。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">velocity <span style="color:#f92672">=</span> direction <span style="color:#f92672">*</span> min(ball_speed, MAX_SPEED) <span style="color:#75715e"># 追加</span>
+</code></pre></div><p><code>min</code>関数は第一、第二引数のうち小さい方の値を返す関数だ。つまり<code>_on_Ball_body_entered</code>関数内の計算で、もし<code>ball_speed</code>の値が<code>MAX_SPEED</code>の値を上回ったら、<code>MAX_SPEED</code>の値が返される。よってこの行では、変数<code>velocity</code>に「Ball」ノードの現在の方向に現在のスピード（または最大スピード）を乗じて得られる速度を代入している。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript">linear_velocity <span style="color:#f92672">=</span> velocity <span style="color:#75715e"># 追加</span>
+</code></pre></div><p><code>linear_velocity</code>とは「RigidBody2D」クラスにもともと用意されている、そのノードの速度を表すプロパティだ。「Ball」ノードの<code>linear_velocity</code>に、先の計算で得られた最新の「Ball」ノードの速度を表す<code>velocity</code>の値を代入することで、実際の「Ball」ノードの速度を更新している。これで「Ball」ノードのスピードアップ処理が完了する。<br>
 <br></p>
 <p>実際にプロジェクトを実行してみよう。体感でもスピードが上がる間隔が得られるだろう。うまくプレイして粘るほどパドルのスピードが追いつかなくなるはずだ。実際に出力コンソールにも変数<code>ball_speed</code>の値が出力され、スピードが上がっているのがよくわかる。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_5/img_3.png" alt="出力コンソール"  />
@@ -580,48 +463,7 @@ data-ad-slot="9419515863"></ins></p>
 <h3 id="プレイヤーがボールを発射するまでボールがパドルから離れないようにする">プレイヤーがボールを発射するまでボールがパドルから離れないようにする<a hidden class="anchor" aria-hidden="true" href="#プレイヤーがボールを発射するまでボールがパドルから離れないようにする">#</a></h3>
 <p>ボールの発射をプレイヤーの操作に委ねると、ボールを発射する前にプレイヤーはパドルを左右に動かしたくなるはずだ。その時、ボールがパドルの上にくっついたまま一緒に動く必要がある。</p>
 <p>それでは「Ball.gd」ファイルを以下のコードで置き換えよう。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">RigidBody2D</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">RigidBody2D</span>
 
 
 <span style="color:#66d9ef">const</span> MAX_SPEED <span style="color:#f92672">=</span> <span style="color:#ae81ff">300.0</span>
@@ -658,39 +500,18 @@ data-ad-slot="9419515863"></ins></p>
 	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Bricks&#34;</span>):
 		body<span style="color:#f92672">.</span>queue_free()
 
-</code></pre></td></tr></table>
-</div>
-</div><br>
+</code></pre></div><br>
 <p>それではスクリプトの変更点について解説していく。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> paddle <span style="color:#f92672">=</span> get_node(<span style="color:#e6db74">&#34;../Paddle&#34;</span>) <span style="color:#75715e"># 追加</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><code>get_node</code>関数の引数に「Paddle」ノードの相対パスを渡すことで、「Paddle」ノードにアクセスできる。つまり、この1行のコードは<code>paddle</code>変数に「Paddle」ノードが代入された形で定義されている。ちなみに相対パスを表す際の<code>../</code>は、一つ上の階層のノードを指す。つまりここでは「Ball」ノードの親ノードである「Game」ノードを指している。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> paddle <span style="color:#f92672">=</span> get_node(<span style="color:#e6db74">&#34;../Paddle&#34;</span>) <span style="color:#75715e"># 追加</span>
+</code></pre></div><p><code>get_node</code>関数の引数に「Paddle」ノードの相対パスを渡すことで、「Paddle」ノードにアクセスできる。つまり、この1行のコードは<code>paddle</code>変数に「Paddle」ノードが代入された形で定義されている。ちなみに相対パスを表す際の<code>../</code>は、一つ上の階層のノードを指す。つまりここでは「Ball」ノードの親ノードである「Game」ノードを指している。</p>
 <p><code>onready</code>キーワードは、ゲームを開始する前の準備段階でその変数を宣言するために使う。この変数<code>paddle</code>をゲーム開始前から定義する必要があるのは、ゲーム開始時からボールが発射されるまでずっと<code>_process</code>関数内で「Paddle」ノードの位置情報が必要になるからだ。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _process(delta): <span style="color:#75715e"># まるごと追加</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _process(delta): <span style="color:#75715e"># まるごと追加</span>
 	<span style="color:#66d9ef">if</span> mode <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>:
 		position<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> paddle<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>x
 		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;launch_ball&#34;</span>):
 			mode <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
 			apply_impulse(<span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>ZERO, velocity) <span style="color:#75715e"># _ready関数からこちらに移動</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><code>_process</code>関数を追加した。この関数内のコードは毎フレーム実行される。</p>
+</code></pre></div><p><code>_process</code>関数を追加した。この関数内のコードは毎フレーム実行される。</p>
 <p><code>mode</code>というプロパティが登場しているが、これは <strong>RigidBody2D</strong> のプロパティで、オブジェクトをどの種類の物理オブジェクトとして振る舞わせるのかを指定できる。インスペクタにも「Mode」プロパティとして表示されており、以前に「Character」の値を選択していた。しかし、「Character」だと回転はしないがそれ以外は「Rigid」と同じ物理オブジェクトなので、触れている「Paddle」ノードが動くと、その物理的な影響を受けてどこかへ飛んでいってしまう。</p>
 <p>ボールがくっついたままパドルを動かせるようにするには、「Mode」プロパティを「Kinematic」にすれば良い。これはインスペクタで設定しよう。なお「Static」にしてしまうと、コードでも「Ball」ノードの位置を変更できず、パドルだけ動いて、ボールは中に浮いたままの状態になってしまう。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_5/img_7.png" alt="インスペクタでModeをKinematicにする"  />
@@ -713,49 +534,7 @@ data-ad-slot="9419515863"></ins></p>
 <p>今の時点では、ゲーム開始からボールが何かに当たると45°の角度でしか跳ね返らない。このままでは誰がいつプレイしても毎回同じボールの動きにしかならず、おもしろくない。そこで、パドルにボールが当たった位置によって、跳ね返る角度が変化するように変更していく。</p>
 <p>どのように角度を決定するかというと、パドルに当たった時のボールの位置とパドルの位置の差分を Vector2 型の値として取得し、その値をそのまま跳ね返る角度に利用する、というロジックだ。</p>
 <p>それでは、改めて「Ball.gd」ファイルを以下のコードで置き換えよう。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">RigidBody2D</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">RigidBody2D</span>
 
 
 <span style="color:#66d9ef">const</span> MAX_SPEED <span style="color:#f92672">=</span> <span style="color:#ae81ff">300.0</span>
@@ -793,22 +572,11 @@ data-ad-slot="9419515863"></ins></p>
 		velocity <span style="color:#f92672">=</span> direction <span style="color:#f92672">*</span> min(ball_speed, MAX_SPEED)
 	
 	linear_velocity <span style="color:#f92672">=</span> velocity <span style="color:#75715e"># 一番下に移動</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>変更したのは、<code>_on_Ball_body_entered</code>関数の中のみだ。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>get_name() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Paddle&#34;</span>: <span style="color:#75715e"># まるごと追加</span>
+</code></pre></div><p>変更したのは、<code>_on_Ball_body_entered</code>関数の中のみだ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>get_name() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Paddle&#34;</span>: <span style="color:#75715e"># まるごと追加</span>
 		direction <span style="color:#f92672">=</span> (position <span style="color:#f92672">-</span> body<span style="color:#f92672">.</span>position)<span style="color:#f92672">.</span>normalized()
 		velocity <span style="color:#f92672">=</span> direction <span style="color:#f92672">*</span> min(ball_speed, MAX_SPEED)
-</code></pre></td></tr></table>
-</div>
-</div><p>この if 構文をまるまる一つ追加した。</p>
+</code></pre></div><p>この if 構文をまるまる一つ追加した。</p>
 <p><code>if body.get_name() == &quot;Paddle&quot;:</code>で、ボールが衝突した対象がパドルだったら、という意味合いだ。もしパドルだった場合に実行する処理が if　構文の中のコードだ。</p>
 <p>シンプルにボールの位置とパドルの位置の差分を Vector2 型のデータとして取得して、それを<code>normalized</code>関数に通せば、方向の情報だけを持った Vector2 型の値が取り出せる。その値を<code>direction</code>変数に代入したのが<code>direction = (position - body.position).normalized()</code>だ。</p>
 <p>現在のボールのスピードは変数<code>ball_speed</code>に格納されているので、「速度 = 方向 x 速さ」に当てはめる形で、速度の変数<code>velocity</code>に最終的な速度を代入しているのが<code>velocity = direction * min(ball_speed, MAX_SPEED)</code>だ。</p>
