@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 29 Jan 2022 23:38:27 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godot/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Feb 2022 13:30:38 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godot/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot で作るプラットフォーマー Part 1：プレイヤーキャラクターを作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</link>
@@ -28,6 +28,17 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_1/</guid>
       <description>Part 1 の今回は、ゲームのプレイ画面にパドルを配置して動かすところまでやっていく。</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</link>
+      <pubDate>Fri, 04 Feb 2022 13:30:38 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</guid>
+      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。
+なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。
+ 公式オンラインドキュメント：</description>
     </item>
     
     <item>
@@ -159,7 +170,7 @@
     <item>
       <title>シリーズ：Godot で作るプラットフォーマー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</link>
-      <pubDate>Sat, 29 Jan 2022 23:38:27 +0900</pubDate>
+      <pubDate>Fri, 04 Feb 2022 13:30:38 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</guid>
       <description>*シリーズ随時追加作成中 

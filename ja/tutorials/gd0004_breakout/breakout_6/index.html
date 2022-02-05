@@ -289,7 +289,7 @@ if (!doNotTrack) {
 <p>それでは前回に引き続き<strong>ブロック崩し</strong>を開発していこう。</p>
 <br>
 <blockquote>
-<p><em><strong><span style="color:teal">Memo:</span>
+<p><em><strong><span style="color:salmon">Memo:</span>
 </strong><br>
 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。<br>
 <a href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/" title="Godot で作るブロック崩し">Godot で作るブロック崩し</a>
@@ -476,7 +476,7 @@ Licensed under SIL Open Font License 1.1 (<a href="http://scripts.sil.org/OFL" t
 <p>第一引数に割り当てているのは「Timer」クラスのノードだ。ただし、<code>yield</code>の引数の中でノードが作成されている。<code>get_tree</code>関数はシーンツリーにアクセスする関数で、シーンツリーに「Timer」ノードを作成するのが<code>create_timer</code>関数だ。引数<code>0.1</code>はタイマーの長さで、0.1秒のタイマーということになる。第二引数<code>timeout</code>は「Timer」ノードのシグナルで、タイマーの時間が経過したら発信される。まとめると、0.1 秒のタイマーがセットされた「Timer」ノードがタイムアップしたら、次の行のコードに進む、という意味になる。</p>
 <p>なぜ、このようなコードを記述するかを説明しておこう。スタート画面で何らかのキー入力をした時、もしそのキーが<strong>スペース</strong>キーだった場合、次のゲームプレイ画面に切り替わった瞬間、即座にパドルからボールが発射してしまう。つまり、スタート画面で入力したスペースキーが次のプレイ画面の操作としても影響してしまうということだ。そのため、プレイヤーがスタート画面で何らかのキー入力をしたら、0.1秒待機させるようにして、キー入力が次のプレイ画面に影響しないようにしているというわけである。</p>
 <blockquote>
-<p><span style="color:teal">Memo:</span>
+<p><span style="color:salmon">Memo:</span>
 <br>
 コルーチンと<code>yield</code>についての正確な情報は<a href="https://docs.godotengine.org/ja/stable/getting_started/scripting/gdscript/gdscript_basics.html#coroutines-with-yield" target="_blank">公式ドキュメント</a>
 参照のこと。</p>
