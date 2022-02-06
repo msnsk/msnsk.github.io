@@ -12,6 +12,16 @@
     <language>ja</language>
     <lastBuildDate>Fri, 04 Feb 2022 13:30:38 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E6%A8%AA%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>シリーズ：Godot で作るプラットフォーマー</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</link>
+      <pubDate>Fri, 04 Feb 2022 13:30:38 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</guid>
+      <description>*シリーズ随時追加作成中 
+このチュートリアルシリーズでは、Godot を使ってプラットフォーマーというジャンルのゲームを開発する。スーパーマリオシリーズに代表されるオーソドックスな横スクロールアクションゲームで、特に海外で根強い人気がある。ゲーム開発初心者の方、Godot エンジン初心者の方にお勧めの初級〜中級のチュートリアル。</description>
+    </item>
+    
+    <item>
       <title>Godot で作るプラットフォーマー Part 1：プレイヤーキャラクターを作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</link>
       <pubDate>Sat, 29 Jan 2022 23:38:27 +0900</pubDate>
@@ -30,16 +40,6 @@
       <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。
 なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。
  公式オンラインドキュメント：</description>
-    </item>
-    
-    <item>
-      <title>シリーズ：Godot で作るプラットフォーマー</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</link>
-      <pubDate>Fri, 04 Feb 2022 13:30:38 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</guid>
-      <description>*シリーズ随時追加作成中 
-このチュートリアルシリーズでは、Godot を使ってプラットフォーマーというジャンルのゲームを開発する。スーパーマリオシリーズに代表されるオーソドックスな横スクロールアクションゲームで、特に海外で根強い人気がある。ゲーム開発初心者の方、Godot エンジン初心者の方にお勧めの初級〜中級のチュートリアル。</description>
     </item>
     
   </channel>

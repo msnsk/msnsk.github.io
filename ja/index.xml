@@ -12,13 +12,30 @@
     <language>ja</language>
     <lastBuildDate>Fri, 04 Feb 2022 13:30:38 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Godot で作るプラットフォーマー Part 1：プレイヤーキャラクターを作ろう！</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</link>
-      <pubDate>Sat, 29 Jan 2022 23:38:27 +0900</pubDate>
+      <title>Godot をダウンロードする</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</link>
+      <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
       
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</guid>
-      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。今回は、初回ということで、ゲームのプレイ画面にプレイヤーキャラクターを用意して操作するところまでやってみよう。
- Memo:</description>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</guid>
+      <description>ゲームエンジン Godot のダウンロード手順を解説</description>
+    </item>
+    
+    <item>
+      <title>Godot のプロジェクトマネージャー</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</link>
+      <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</guid>
+      <description>ゲームエンジン Godot のプロジェクトマネージャーでできる操作のあれこれを解説</description>
+    </item>
+    
+    <item>
+      <title>Godot の言語設定</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</link>
+      <pubDate>Mon, 01 Nov 2021 12:37:47 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</guid>
+      <description>Godot で表示される言語の設定を変更する手順について解説</description>
     </item>
     
     <item>
@@ -28,17 +45,6 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_1/</guid>
       <description>Part 1 の今回は、ゲームのプレイ画面にパドルを配置して動かすところまでやっていく。</description>
-    </item>
-    
-    <item>
-      <title>Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</link>
-      <pubDate>Fri, 04 Feb 2022 13:30:38 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</guid>
-      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。
-なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。
- 公式オンラインドキュメント：</description>
     </item>
     
     <item>
@@ -168,6 +174,27 @@
     </item>
     
     <item>
+      <title>Godot で作るプラットフォーマー Part 1：プレイヤーキャラクターを作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</link>
+      <pubDate>Sat, 29 Jan 2022 23:38:27 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</guid>
+      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。今回は、初回ということで、ゲームのプレイ画面にプレイヤーキャラクターを用意して操作するところまでやってみよう。
+ Memo:</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</link>
+      <pubDate>Fri, 04 Feb 2022 13:30:38 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</guid>
+      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。
+なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。
+ 公式オンラインドキュメント：</description>
+    </item>
+    
+    <item>
       <title>ゲーム開発を始めるのに年齢は関係ない</title>
       <link>https://www.peanuts-code.com/ja/posts/post0001/</link>
       <pubDate>Sun, 16 Jan 2022 16:56:41 +0900</pubDate>
@@ -176,33 +203,6 @@
       <description>ゲーム開発を始めてみたいけど、年齢を理由に諦める人がなんと多いことか。いや、これはゲーム開発に限らない。ピアノを始めてみたい、YouTuberを始めてみたい、など、あらゆることに当てはまるだろう。
 中年になると、なにかと体力や気力が衰える、という認識はなぜだか割と一般的だ。しかし、本当はそうじゃない。その社会通念が自分に当てはまる根拠はどこにもないのだ。むしろ、中年サラリーマンだろうが、小学1年生だろうが、御年90歳だろうが、年齢は関係ない。やりたいと思ったその瞬間こそ、やり始めるのに一番若いタイミングなのだ。
 人生は結局、やるか、やらないかだ。人生100年時代において、何かを始めるには遅い、というケースはほとんどない。ゲーム開発なんて、なんだか難しそうで自分には無理かもしれない、という漠然とした印象だけで決断するのはもったいない。やってみないと本当のことは何もわからないのだ。</description>
-    </item>
-    
-    <item>
-      <title>Godot の言語設定</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</link>
-      <pubDate>Mon, 01 Nov 2021 12:37:47 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</guid>
-      <description>Godot で表示される言語の設定を変更する手順について解説</description>
-    </item>
-    
-    <item>
-      <title>Godot のプロジェクトマネージャー</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</link>
-      <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</guid>
-      <description>ゲームエンジン Godot のプロジェクトマネージャーでできる操作のあれこれを解説</description>
-    </item>
-    
-    <item>
-      <title>Godot をダウンロードする</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</link>
-      <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</guid>
-      <description>ゲームエンジン Godot のダウンロード手順を解説</description>
     </item>
     
     <item>
