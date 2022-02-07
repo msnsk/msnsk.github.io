@@ -10,11 +10,11 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 04 Feb 2022 13:30:38 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/2d/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Feb 2022 17:16:51 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/2d/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>シリーズ：Godot で作るプラットフォーマー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</link>
-      <pubDate>Fri, 04 Feb 2022 13:30:38 +0900</pubDate>
+      <pubDate>Sat, 05 Feb 2022 17:16:51 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</guid>
       <description>*シリーズ随時追加作成中 
@@ -40,6 +40,15 @@
       <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。
 なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。
  公式オンラインドキュメント：</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 3：カメラを追加しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_3/</link>
+      <pubDate>Sat, 05 Feb 2022 17:16:51 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_3/</guid>
+      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。第3回目の今回は、プレイヤーキャラクターの動きに合わせてカメラが移動し、Part 2 の時より広いタイルマップ上をキャラクターが移動できるようにしていく。</description>
     </item>
     
   </channel>

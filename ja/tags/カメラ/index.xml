@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>カメラ on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/%E3%82%AB%E3%83%A1%E3%83%A9/</link>
+    <description>Recent content in カメラ on Peanuts Code</description>
+    <image>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 05 Feb 2022 17:16:51 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%AB%E3%83%A1%E3%83%A9/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るプラットフォーマー Part 3：カメラを追加しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_3/</link>
+      <pubDate>Sat, 05 Feb 2022 17:16:51 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_3/</guid>
+      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。第3回目の今回は、プレイヤーキャラクターの動きに合わせてカメラが移動し、Part 2 の時より広いタイルマップ上をキャラクターが移動できるようにしていく。</description>
+    </item>
+    
+  </channel>
+</rss>
