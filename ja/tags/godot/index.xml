@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 05 Feb 2022 17:16:51 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godot/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Feb 2022 01:41:29 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godot/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot をダウンロードする</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</link>
@@ -50,7 +50,7 @@
     <item>
       <title>シリーズ：Godot で作るプラットフォーマー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</link>
-      <pubDate>Sat, 05 Feb 2022 17:16:51 +0900</pubDate>
+      <pubDate>Thu, 10 Feb 2022 01:41:29 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</guid>
       <description>*シリーズ随時追加作成中 
@@ -220,6 +220,16 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_3/</guid>
       <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。第3回目の今回は、プレイヤーキャラクターの動きに合わせてカメラが移動し、Part 2 の時より広いタイルマップ上をキャラクターが移動できるようにしていく。</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/</link>
+      <pubDate>Thu, 10 Feb 2022 01:41:29 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/</guid>
+      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。第4回目の今回は、敵キャラクターを作ってタイルマップ上に追加して動かし、プレイヤーキャラクターに踏まれたら消える、という感じの動きを実装してみよう。
+ Memo：</description>
     </item>
     
     <item>

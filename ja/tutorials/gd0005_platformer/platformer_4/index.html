@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ja" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！ | Peanuts Code</title>
+<meta name="keywords" content="Godot, GodotEngine, ゲーム開発, チュートリアル, 初級, 2D, プラットフォーマー, アクションゲーム, 横スクロール, 敵キャラクター" />
+<meta name="description" content="このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。第4回目の今回は、敵キャラクターを作ってタイルマップ上に追加して動かし、プレイヤーキャラクターに踏まれたら消える、という感じの動きを実装してみよう。
+ Memo：">
+<meta name="author" content="Masanao Sako">
+<link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/" />
+<meta name="google-site-verification" content="XYZabc" />
+<meta name="yandex-verification" content="XYZabc" />
+<meta name="msvalidate.01" content="XYZabc" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="/images/logomark.png" as="image">
+<link rel="icon" href="https://www.peanuts-code.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.peanuts-code.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.peanuts-code.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.peanuts-code.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.92.2" />
+<link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-DK0NK2RTTW', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！" />
+<meta property="og:description" content="このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。第4回目の今回は、敵キャラクターを作ってタイルマップ上に追加して動かし、プレイヤーキャラクターに踏まれたら消える、という感じの動きを実装してみよう。
+ Memo：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/" />
+<meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_4/img40.gif" /><meta property="article:section" content="tutorials" />
+<meta property="article:published_time" content="2022-02-10T01:41:29&#43;09:00" />
+<meta property="article:modified_time" content="2022-02-10T01:41:29&#43;09:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_4/img40.gif" />
+<meta name="twitter:title" content="Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！"/>
+<meta name="twitter:description" content="このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。第4回目の今回は、敵キャラクターを作ってタイルマップ上に追加して動かし、プレイヤーキャラクターに踏まれたら消える、という感じの動きを実装してみよう。
+ Memo："/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Tutorials",
+      "item": "https://www.peanuts-code.com/ja/tutorials/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "シリーズ：Godot で作るプラットフォーマー",
+      "item": "https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！",
+      "item": "https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！",
+  "name": "Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！",
+  "description": "このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。第4回目の今回は、敵キャラクターを作ってタイルマップ上に追加して動かし、プレイヤーキャラクターに踏まれたら消える、という感じの動きを実装してみよう。\n Memo：",
+  "keywords": [
+    "Godot", "GodotEngine", "ゲーム開発", "チュートリアル", "初級", "2D", "プラットフォーマー", "アクションゲーム", "横スクロール", "敵キャラクター"
+  ],
+  "articleBody": "このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。第4回目の今回は、敵キャラクターを作ってタイルマップ上に追加して動かし、プレイヤーキャラクターに踏まれたら消える、という感じの動きを実装してみよう。\n Memo： \n過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るプラットフォーマー \n  \n (adsbygoogle = window.adsbygoogle || []).push({});   敵キャラクターの雛形となるシーンを作ろう 一般的に、プラットフォーマーゲームには複数種類の敵キャラクターが存在する。今回のチュートリアルでは、まず 1 種類、敵キャラクターを作る。そして、次回以降 Part でさらに種類を増やしていこう。\nだが、敵キャラクターを一種類ずつ、はじめから作り始めると、それなりに時間がかかる。全ての敵キャラクターに共通の部分を先に雛形のシーンとして作っておき、そのシーンを継承する形でそれぞれの敵キャラクターのシーンを作成すれば効率的だ。\nということで、まずは雛形のシーンから作っていこう。「シーン」メニュー＞「新規シーン」を選択する。\n「ルートノードを生成」のオプションで「＋その他のノード」を選択する。\nここからは、先に必要なノードをシーンツリーに追加していこう。\nルートノードには「KinematicBody2D」クラスのノードを設定する。名前を「Enemy」に変更しておこう。続けてそのルートノードに「AnimatedSprite」ノード、および「CollisionShape2D」ノードを子ノードとして追加する。\nさらに「Enemy」ルートノードに「Area2D」クラスのノードを追加し、名前を「HitBox」に変更する。その「HitBox」ノードに「CollisionShape2D」ノードを追加する。この「HitBox」のコリジョン形状は、プレイヤーキャラクターに踏まれた時の衝突検出に使用するためのものだ。\n最後に「Enemy」ノードに「VisibilityEnabler2D」ノードを追加する。このノードは、敵キャラクターがゲーム画面の範囲内に入った瞬間や、ゲーム画面内にいた敵キャラクターが画面外に消えた時にシグナルを発信できるので、敵キャラクターの動きの制御に後ほど利用する予定だ。\nここまでで、シーンツリーの構造はシーンドック上で以下のようになったはずだ。\nここからは、インスペクターでいくつかノードのプロパティを編集していく。\n「AnimatedSprite」ノードの「Frames」プロパティに「新規 SpriteFrames」を設定する。具体的なアニメーションは、「Enemy」シーンを継承したシーンでそれぞれ行っていく。あとは「Playing」プロパティをオンにしておこう。\n「Enemy」ルートノード直下の「CollisionShape2D」ノードの「Shape」プロパティには「新規 CapsuleShape2D」を設定しておく。ただし、具体的なコリジョン形状の調整は「Enemy」シーンを継承したシーンで行う。\n次に「HitBox」ノードの子ノードの方の「CollisionShape2D」ノードの「Shape」プロパティには「新規 RectangleShape2D」を設定しておく。こちらも、コリジョン形状の調整は「Enemy」シーンを継承したシーンで行う。\n「VisibilityEnabler2D」ノードの「Rect」プロパティの値を「x: -16, y: -16, w: 32, h: 32」にしておこう。\nこのピンクの四角い範囲がゲーム画面を出た時や入った時にノードがシグナルを発信することができる。\nでは、ここまでできたら一度シーンを保存しておこう。シーンを保存するためのフォルダを「Enemies」という名前にして作成し、ファイル名を「Enemy.tscn」として保存しよう。ファイルパスは「res://Enemies/Enemy.tscn」になる。\n Enemy シーンにスクリプトをアタッチする 次に敵キャラクターの共通部分について、スクリプトの方も作成しておこう。\nシーンドックで「Enemy」ルートノードを選択して、スクリプトをアタッチする。この時、先ほどシーンを保存する時に作成した「Enemies」フォルダに保存するようにしよう。スクリプトのファイルパスは「res://Enemies/Enemy.gd」となるはずだ。\nでは、スクリプトエディタが開いたら、まず敵キャラクターに共通するプロパティを用意しておこう。\nextends KinematicBody2D export var gravity: int export var speed: int var velocity = Vector2() onready var sprite = $AnimatedSprite gravity、speedの2つのプロパティは、敵キャラクターによって、違ったほうが面白そうなので、インスペクターで気軽に更新できるようにexportキーワードをつけた。この時点では値を指定せず、データ型をintとして指定したのみだ。\nvelocityはプレイヤーキャラクター同様、_physics_processメソッド内で更新させる予定のため、一旦Vector2()を値にしている。これはx, y座標が(0, 0)の状態だ。\nspriteは「AnimatedSprite」ノードにアクセスするためのプロパティだ。子ノードが読み込まれてから定義する必要があるためonreadyキーワードを付けている。\n次に敵キャラクターが踏まれたら消える仕組みも、全ての敵キャラクターで共通にしたい。これには「HitBox」ノードの子「CollisionShape2D」ノードを利用する。コリジョン形状は敵キャラクターの頭のてっぺんあたりに配置することを想定している。キャラクターがこれに衝突した時に「HitBox」ノードからシグナルを発信して、それをトリガーにして敵が消える処理を実行するようにしていく。\nまずはシグナルの接続からだ。シーンドックで「HitBox」ノードを選択し、ノードドック＞シグナルを開き、「body_entered(body: Node)」シグナルをダブルクリック、または選択して右下の「接続」をクリックする。\nダイアログにて「Enemy.gd」スクリプトに接続しよう。「スクリプトに接続：」欄で「Enemy」を選択して下部の「接続」をクリックすればOKだ。\nすると、以下のようにシグナルをトリガーにして実行される_on_HitBox_body_enteredメソッドが追加されたはずだ。しかし、メソッドの中身は今のところ空っぽ（passのみ）だ。\nfunc _on_HitBox_body_entered(body): pass \nこのメソッドの中身をコーディングする前に、先にやっておきたいのが、ノードのグループ設定だ。以下の手順で「Player」シーンの「Player」ノードを新しくノードグループ「Players」を作成してそれに追加しよう。また直近で必要なのは「Player」ノードのグループだが、ついでに「Enemy」シーンの「Enemy」ノードも「Enemies」を作成して追加しておこう。\n現在の「Enemy.tscn」シーンファイルは保存して、「Player.tscn」シーンファイルを開く。\nシーンドックで「Player」ルートノードを選択する。\nノードドック＞「グループ」タブを選択し、入力欄に「Players」とグループ名を入力して「追加」をクリックする。\nこれで「Player」ノードが「Players」ノードグループに追加された。\n今度は「Enemy.tscn」に切り替えて、同様の手順で「Enemy」ノードを「Enemies」ノードグループに追加しておく。\nそれでは今作ったグループを利用してさっきの_on_HitBox_body_enteredメソッドの中身をコーディングしていこう。このメソッドの引数bodyは、「HitBox」ノードと衝突したノードを指す。このbodyがプレイヤーキャラクターだった場合は、敵キャラクター自身を消す、という内容のコードを記述する。\nfunc _on_HitBox_body_entered(body): if body.is_in_group(\"Players\"): print(\"Player entered in \", self.name) sprite.play(\"hit\") yield(sprite, \"animation_finished\") queue_free() print(self.name, \"died\") if body.is_in_group(\"Players\"):で、『もしbodyが「Players」グループのノードだったら』という条件分岐になる。この条件に当てはまった場合に、以下を実行するプログラムになっている。\n デバッグとして、print関数でプレイヤーキャラクターが「HitBox」に衝突したことを出力する。 「AnimatedSprite」ノードの「hit」アニメーションを再生する（この名前のアニメーションを継承後のシーンで作成予定） yieldにて、「AnimatedSprite」ノードのアニメーションが終了するまでこれ以下のコードの読み込みを一時停止する。 queue_freeメソッドを実行し、この「Enemy」ノード自身を消す。 もう一度デバッグとして、print関数で敵キャラクターが消えたことを出力する。   公式オンラインドキュメント \nコルーチン(yield関数による) \n 「AnimatedSprite」のアニメーションはこれから、「Enemy」シーンを継承した個別のシーンで作成することになる。その時に、踏まれて消える時の「hit」という名前のアニメーションを用意しておく必要があるので、覚えておこう。\nさて、次に実装したいのは、敵キャラクターが画面外にいるときはその動作を停止し、画面内に入ったら動き出す、という仕組みだ。これには「VisibilityEnabler2D」ノードを利用する。このクラスのノードは、画面に表示されていない時は、ルートノードとそれ自身と同階層のノードの動きを停止してくれる。\n 公式オンラインドキュメント \nVisibilityEnabler2D \n ただし、動きというのは、基本的にノードが「RigidBody2D」クラスの場合のノードの動きやアニメーションの動きを指す。このチュートリアルでの敵キャラクターのノードは「KinematicBody2D」クラスであるため、移動に関する制御は別途行う必要がある。\nそこで_readyメソッドで物理プロセスを停止させるようにする。\nfunc _ready(): set_physics_process(false) このように引数をfalseにしてset_physics_processメソッドを実行させれば、物理プロセスは停止する。「Enemy」シーンを継承した個別の敵キャラクターシーンでは_physics_processメソッドでノードを移動させる予定のため、これでゲーム開始時点でノードの動きを止めることができるはずだ。\n次に、画面に敵キャラクターが表示された時に動き出すようにする必要がある。これには「VisibilityEnabler2D」ノードのシグナルを利用する。「VisibilityEnabler2D」ノードを選択したら、ノードドック＞「シグナル」タブにて「screen_entered()」シグナルをスクリプトに接続する。接続するスクリプトは当然「Enemy.gd」スクリプトだ。\n生成されたメソッド_on_VisibilityEnabler2D_screen_enteredのブロック内に実行したいコードを記述しよう。\nfunc _on_VisibilityEnabler2D_screen_entered(): set_physics_process(true) 引数をtrueにして組み込みのset_physics_processメソッドを実行すると、停止していた物理プロセスが動き出す。これで、画面上に敵キャラクターが表示されたら、停止している物理プロセスが再開されようになった。\n同様にして、画面上から敵キャラクターが消えたら、その物理プロセスが停止するようにも設定しておこう。これには「VisibilityEnabler2D」ノードの別のシグナルを利用する。今度は「VisibilityEnabler2D」ノードを選択して、ノードドック＞「シグナル」タブにて「screen_exited()」シグナルを「Enemy.gd」スクリプトに接続しよう。\nfunc _on_VisibilityEnabler2D_screen_exited(): set_physics_process(false) 生成されたメソッド_on_VisibilityEnabler2D_screen_exitedのブロック内に引数をfalseにしてset_physics_processメソッドを記述しておけば、画面上から敵キャラクターが消えたら、物理プロセスが停止し、敵キャラクターの移動も停止するはずだ。\n「Enemy.tscn」シーンと「Enemy.gd」スクリプトを保存し、個別の敵キャラクターのシーンを作成し、おかしなところはそこで修正をかけていこう。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Enemy シーンを継承して Mushroom シーンを作る ここからは先に作成した「Enemy.tscn」シーンを継承する形で、個別の敵キャラクターを作っていく。\nまずはゲームで最弱の敵キャラクターから作っていこう。スーパーマリオシリーズでいうところのクリボーのようなキャラクターだ。便宜上名前を「マッシュルーム」としておく。\nまず「シーン」メニュー＞「新しい継承シーン」を選択する。\nルートノードの名前を「Mushroom」に変更しておこう。\nこの時点で先にシーンを保存しておこう。この時、res://Enemies/ に「Mushroom」フォルダを作成して、その中に「Mushroom.tscn」のファイル名で保存しよう。つまりファイルパスは「res://Enemies/Mushroom/Mushroom.tscn」になる。\n Mushroom シーンの各ノードの設定を更新する 継承したシーンではルートノード以外のノードがグレーアウトして表示されているが、全く編集できないわけではないので安心していただきたい。各ノードの編集を順番に行っていく。\nMushroom ルートノードの Script Variables を編集する まずはルートノードから編集しよう。\nScript Variables とはスクリプト内で定義した変数（プロパティ）のことだ。継承元の「Enemy」シーンですでに定義しておいた「gravity」と「speed」の2つにはexportキーワードをつけておいたので、継承先のシーンでもインスペクターから簡単に値を変更できる。\nシーンドックで「Mushroom」ルートノードを選択し、それぞれのプロパティを以下の値に変更しよう。\n Gravity: 512 Speed: 32\n  AnimatedSprite ノードのアニメーションを編集する 続いて「AnimatedSprite」ノードの編集を行う。\nシーンドックで「AnimatedSprite」ノードを選択したら、インスペクターから「Frames」プロパティで「SpriteFrames」をクリックし、メニューから 「ユニーク化」 を選択する。これにより、この「SpriteFrames」を編集しても、継承元の「Enemy」シーンには影響しない。その結果、今後作成予定の他の「Enemy」からの継承シーンにも影響しない。忘れがちだが、他のシーンへの影響を回避するために重要な操作なので早めの実施を心がけよう。\nここからはアニメーションを作成する。プレイヤーキャラクターでも一度やった作業なので、多少慣れた感じで進めていただけるだろう。\nまずシーンドックで「AnimatedSprite」ノードを選択する。エディタ下部で「スプライトフレーム」パネルが表示されるので、そこで編集していく。\n以下の3つのアニメーションを追加し、それぞれの速度を 24 FPS の設定にする。スプライトシートが「Asset」フォルダにあるので、それぞれに割り当てよう。\n アニメーション名: hit / スプライトシート: res://Assets/Enemies/Mushroom/Hit.png\n アニメーション名: idle / スプライトシート: res://Assets/Enemies/Mushroom/Idle (32x32).png\n アニメーション名: run / スプライトシート: res://Assets/Enemies/Mushroom/Run (32x32).png\n  アニメーション「hit」だけはプレイヤーキャラクターに踏まれた時に一回だけ再生してノードを解放する（消す）予定のため、ループの設定をオフにしておこう。\nところで、もし追加したスプライトフレームの画像にブラーがかかっている（ぼやけている）感じであれば、ファイルシステムで、該当のスプライトシートを選択した状態で、インポートドックにて「2D Pixel」プリセットを読み込み、その設定で「再インポート」するとピクセルアート独特のエッジが効いた見た目に修正される。\n最後に、それぞれのアニメーションをチェックしておこう。\nCollisionShape2D ノードのコリジョン形状を設定する 「Mushroom」シーンには「CollisionShape2D」ノードが2つあるので、それぞれのコリジョン形状を順番に設定していく。\nまずは「Mushroom」ルートノード直下の「CollisionShape2D」ノードのコリジョン形状からやっていこう。このコリジョン形状は、敵キャラクター自身が地面や壁、プレイヤーキャラクターなど他のオブジェクトと衝突したことを検知するために使用する。そのため、できるだけスプライトテクスチャのデザインに近い形状にするのが理想だ。\nインスペクターから「Shape」プロパティの「CapsuleShape2D」をクリックし、また 「ユニーク化」 を選択して適用しておこう。継承元に影響を与えないためだ。\n「CapsuleShape2D」のコリジョン形状は、デフォルトでは縦長の楕円形になっている。「Mushroom」のスプライトテクスチャは、比較的平べったいデザインだ。スプライトテクスチャのデザインにもよるが、横長のデザインの場合は、コリジョン形状を90°回転すると調整しやすいことが多い。\n2Dワークスペースでドラッグ操作でコリジョン形状を調整する場合は、ツールバーの「スナップオプション」から「ピクセルスナップを使用」にチェックを入れておこう。\nだいたい以下のような形状になればOKだ。足が地面との衝突を正確に検知するため、テクスチャデザインの足の先にきっちり合わせておこう。頭のてっぺんには意図的に少しスペースを設けている。理由は、もう一つのコリジョン形状（プレイヤーキャラクターが敵キャラクターを踏んだことを判定するためのコリジョン形状）をそこに配置する予定だからだ。\nこのコリジョン形状の「Radius」と「Height」は以下の数値になっている。ドラッグ操作が煩わしい場合は、こちらに直接入力してもらっても構わない。\n続いて、もう一つの「HitBox」ノードの子になっている「CollisionShape2D」ノードの方を編集していく。作業自体は大体同じだ。まず、シーンドックで該当の「CollisionShape2D」ノードを選択した状態で、インスペクターから「Shape」プロパティの「RectangleShape2D」を選択する。ここでも忘れずに 「ユニーク化」 を適用しておこう。\n今回のコリジョン形状は大体以下のようになればOKだ。ポイントは、ルートノード直下の「CollisionShape2D」の幅より狭くし、それと重ならないようにしてスプライトテクスチャの頭のてっぺんに配置することだ。幅が広いと、踏まずともぶつかっただけでこの敵キャラクターを倒せてしまうし、頭のてっぺんのコリジョン形状が重なると、プレイヤーの方がぶつかられて、やられてしまうかもしれない。\nこのコリジョン形状の「Extents」プロパティは(8, 1)になっている。\nこれで、コリジョン形状の調整ができた。インスペクターで編集する内容はひとまずここまでだ。次はいよいよスクリプトの方を更新していく。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Enemy.gd を継承した Mushroom.gd スクリプトをアタッチする 現時点で「Mushroom」ノードには「Enemy.gd」スクリプトがアタッチされている。「Enemy」シーンを継承しているので当然なのだが、このスクリプトは全敵キャラクター共用のスクリプトなので、「Mushroom」シーンのためだけに更新するわけにはいかない。\nひとまず「Enemy.gd」はデタッチ（紐付け解除）しよう。シーンドックで「Mushroom」ノードを右クリック＞「スクリプトをデタッチ」を選択する。これで簡単にアタッチされていたスクリプトが外れる。\n次に「Mushroom」を選択して、新しいスクリプトをアタッチする。この時、デフォルトの設定のまま作成してしまうと「KinematicBody2D」クラスを継承したスクリプトになってしまう。「継承元」の右側にあるフォルダアイコンをクリックしてみよう。\nすると、作成済みのスクリプトを選択できる。「res://Enemies/Enemy.gd」を選択して「開く」をクリックしてみよう。\nこれで「継承元」として「res://Enemies/Enemy.gd」が選択された状態になった。新しいスクリプトのファイルパスを「res://Enemies/Mushroom/Mushroom.gd」として「作成」をクリックしよう。\nスクリプトエディタに切り替わったら、一行目にextends \"res://Enemies/Enemy.gd\"という記述があることに気がつくだろう。これは先に作成した「Enemy」シーン用の「Enemy.gd」スクリプトを継承していることを示している。\nextends \"res://Enemies/Enemy.gd\" func _ready(): pass このように、自作のスクリプトも簡単に継承することができる。シーンを継承するときはスクリプトも別途継承できることを覚えておこう。\n Mushroom.gd スクリプトを編集する まずは_readyメソッドから編集する。マッシュルームの移動時は「AnimatedSprite」ノードの「run」アニメーションを再生したいので、以下ように編集した。\nfunc _ready(): sprite.play(\"run\") どのアニメーションを最初に再生するかはインスペクターで設定しておけるが、デバッグをしていると、他のアニメーションの再生中に終了して、そのアニメーションの設定がそのまま残ることがある。毎回ゲーム開始時に「run」アニメーションを再生するように_readyメソッド内でアニメーションを指定した。\nでは次に「Mushroom」の移動をスクリプトで制御していこう。例によって今回も_physics_processメソッドを利用する。\nfunc _physics_process(delta): マッシュルームは、最弱キャラでただ速くもないスピードで前進したり止まったりするだけのキャラクターとする。\nまずは基本として以下を満たすようにコーディングしていこう。\n 毎フレームspeedプロパティの値だけ左方向に前進させる 高所から落ちる際は重力で加速しながら落下する  func _physics_process(delta): velocity.x = -speed velocity.y += gravity * delta velocity = move_and_slide(velocity, Vector2.UP) このようなコードになる。velocityの x, y の値をそれぞれ設定し、そのvelocityをmove_and_slideメソッドの第一引数に代入することで、ノードの移動を制御する最低限のコードができた。\nさらに以下を満たすようにコードを追加しよう。\n 壁にぶつかったら進行方向を左右反転する  func _physics_process(delta): if is_on_wall(): speed *= -1 sprite.flip_h = !sprite.flip_h velocity.x = -speed velocity.y += gravity * delta velocity = move_and_slide(velocity, Vector2.UP) is_on_wallメソッドは壁に接していれば true を返す。つまり冒頭に追加した if 構文は『もしマッシュルームが壁に衝突したら』という条件分岐になる。\nこの条件を満たした場合、speedプロパティに -1 を乗算することで x 軸の反対方向に進むようにしている。sprite.flip_hプロパティが true の場合は、『水平方向に「AnimatedSprite」を反転させる』という意味になる。sprite.flip_hプロパティの値に!sprite.flip_hと指定することで、現在のsprite.flip_hの値とは逆の値（現在 true なら false）を設定する、というコードになる（!は not と同様の意味）。\nさてこれでマッシュルームの基本的な動きが出来上がったので、Level1 シーンにインスタンスをノードとして追加してみよう。忘れずに「Mushroom」シーンを保存しておこう。\n Level1 シーンに Mushroom シーンのインスタンスノードを追加する ここまで作成してきた「Mushroom」シーンを「Level1」シーンのノードとしてインスタンス化して追加しよう。\nまずはシーンドックで「Level1」ルートノードを選択したら、チェーンのアイコンをクリックする。\n保存済みのシーンのファイルがリストアップされるので、「Mushroom.tscn」ファイルを選択して「開く」をクリックする。もしここで大量のファイルがある場合は上部の検索バーから検索も可能だ。\n「Mushroom.tscn」がインスタンス化されて「Level1」の子ノードになった。\nでは「Mushroom」ノードを2Dワークスペース上の任意の場所に移動しよう。すぐに挙動が確認できるように、ゲーム開始時のキャラクターの位置に程よく近く、しかしゲームスタート時は画面に入らないような場所が最適だ。\nここで一度プロジェクトを実行してマッシュルームの動きを確認しておこう。\n以下の動作について確認できた。\n マッシュルームがゲーム画面に入ってから動き出した 重力で下に高所から落下した 一定速度で「run」アニメーションを再生しながら前進した ゲーム画面外に出ると動きが止まった プレイヤーキャラクター（今回は壁の代わり）と衝突したら向きを反転した プレイヤーキャラクターに踏まれたら「hit」アニメーション再生後に消えた   Mushroom シーンを編集して動きに変化をつける せっかく「AnimatedSprite」ノードで「idle」アニメーションを用意したので、これを使って、少しマッシュルームの動きに変化をつけてみよう。\n敵キャラクターに少し複雑な動きをつけたい時、「Timer」クラスのノードを追加すると非常に便利だ。では「Mushroom.tscn」シーンに切り替えて、「Mushroom」ルートノードに「Timer」ノードを追加しよう。\n次にインスペクターで「Timer」ノードのプロパティを以下のように設定しよう。\n Wait Time: 4 Autostart: オン\n  これで4秒毎にタイムアウトするタイマーができた。そのタイムアウトのタイミングでプログラムを実行したいので、シグナルを接続しよう。「Timer」ノードを選択して、ノードドックの「シグナル」タブから「timeour()」シグナルを「Mushroom.gd」スクリプトに接続しよう。メソッド名などはデフォルトのままで良い。\n接続できたら、「Mushroom.gd」スクリプトに_on_Timer_timeoutメソッドが追加されただろうか。\nfunc _on_Timer_timeout(): pass 先に、コードをメンテナンスしやすくするために、以下のように変数timerとして「Timer」ノードの参照を定義しておこう。\nonready var timer = $Timer そして_on_Timer_timeoutメソッドの中身を以下のように更新しよう。\nfunc _on_Timer_timeout(): if is_on_floor(): timer.stop() set_physics_process(false) sprite.play(\"idle\") yield(get_tree().create_timer(2), \"timeout\") sprite.play(\"run\") set_physics_process(true) timer.start() 実装したいのは「マッシュルームは最弱なのですぐに息が切れてしまう」という感じの動きだ。息切れを表現するのに「AnimatedSprite」の「idle」アニメーションを利用する。\n空中で息が切れるわけにはいかないので、if 構文でis_on_floorメソッドで true が帰ってきた場合（マッシュルームが地面に接している場合）のみ、それ以下のコードが実行されるようにした。\nif 条件式が true だった場合に、以下の内容を実行するコードになっている。これらの動きが 4 秒ごとに発生する。\n 自動でカウントダウンし続ける「Timer」ノードのstopメソッドにより、タイマーのカウントダウンを停止する。 set_physics_processメソッドで引数に false を渡すことで物理プロセスを停止する。これにより「Mushroom.gd」スクリプト内の_physics_processメソッドが停止するのでマッシュルームは前進しない。 「AnimatedSprite」の「idle」アニメーションを再生する。 yieldにより、一時的な別のタイマーを作成し、待ち時間を2秒にし、これがタイムアウトするまで待つ。つまり「idle」アニメーションを 2 秒続ける。 一時的なタイマーがタイムアウトしたら、「AnimatedSprite」ノードの「run」アニメーションを再び再生させる。 set_physics_processメソッドで引数に true を渡すことで、停止していた物理プロセスを再開する。これでマッシュルームがまた前進を始める。 「Timer」ノードのstartメソッドにより、カウントダウンを再開する。  ではプロジェクトを実行して動きを確認してみよう。\n見事に息が切れている感じを表現できた。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   おわりに 以上で Part 4 は完了だ。今回はマッシュルームしか作れなかった割に、なかなかボリューミーな回となった。\n次回は、もう少し別の動きをする敵キャラクターを数種類追加して、「Level1」シーンに複数配置するところまでやって、敵キャラクターに関する手順を終える予定なのでお楽しみに。\n",
+  "wordCount" : "399",
+  "inLanguage": "ja",
+  "image":"https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_4/img40.gif","datePublished": "2022-02-10T01:41:29+09:00",
+  "dateModified": "2022-02-10T01:41:29+09:00",
+  "author":{
+    "@type": "Person",
+    "name": "Masanao Sako"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Peanuts Code",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.peanuts-code.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://www.peanuts-code.com/ja/" accesskey="h" title="Peanuts Code (Alt + H)">
+                <img src="/images/logomark.png" alt="logo" aria-label="logo"
+                    height="35">Peanuts Code</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://www.peanuts-code.com/en/" title="English"
+                            aria-label="English">En</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://www.peanuts-code.com/ja/" title="ホーム">
+                    <span>ホーム</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/posts/" title="ブログ">
+                    <span>ブログ</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/tutorials/" title="チュートリアル">
+                    <span>チュートリアル</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/tags/" title="タグ">
+                    <span>タグ</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/about/" title="アバウト">
+                    <span>アバウト</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/ja/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/">Tutorials</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/">シリーズ：Godot で作るプラットフォーマー</a></div>
+    <h1 class="post-title">
+      Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！
+    </h1>
+    <div class="post-meta">2022-02-10&nbsp;·&nbsp;2 分&nbsp;·&nbsp;Masanao Sako
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_4/img40.gif" alt="プラットフォーマー Part 4 サムネイル">
+        
+</figure><div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目次</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e6%95%b5%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%81%ae%e9%9b%9b%e5%bd%a2%e3%81%a8%e3%81%aa%e3%82%8b%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86" aria-label="敵キャラクターの雛形となるシーンを作ろう">敵キャラクターの雛形となるシーンを作ろう</a></li>
+                <li>
+                    <a href="#enemy-%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ab%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%82%92%e3%82%a2%e3%82%bf%e3%83%83%e3%83%81%e3%81%99%e3%82%8b" aria-label="Enemy シーンにスクリプトをアタッチする">Enemy シーンにスクリプトをアタッチする</a></li>
+                <li>
+                    <a href="#enemy-%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e7%b6%99%e6%89%bf%e3%81%97%e3%81%a6-mushroom-%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e3%82%8b" aria-label="Enemy シーンを継承して Mushroom シーンを作る">Enemy シーンを継承して Mushroom シーンを作る</a></li>
+                <li>
+                    <a href="#mushroom-%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ae%e5%90%84%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ae%e8%a8%ad%e5%ae%9a%e3%82%92%e6%9b%b4%e6%96%b0%e3%81%99%e3%82%8b" aria-label="Mushroom シーンの各ノードの設定を更新する">Mushroom シーンの各ノードの設定を更新する</a><ul>
+                        
+                <li>
+                    <a href="#mushroom-%e3%83%ab%e3%83%bc%e3%83%88%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ae-script-variables-%e3%82%92%e7%b7%a8%e9%9b%86%e3%81%99%e3%82%8b" aria-label="Mushroom ルートノードの Script Variables を編集する">Mushroom ルートノードの Script Variables を編集する</a></li>
+                <li>
+                    <a href="#animatedsprite-%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ae%e3%82%a2%e3%83%8b%e3%83%a1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%92%e7%b7%a8%e9%9b%86%e3%81%99%e3%82%8b" aria-label="AnimatedSprite ノードのアニメーションを編集する">AnimatedSprite ノードのアニメーションを編集する</a></li>
+                <li>
+                    <a href="#collisionshape2d-%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ae%e3%82%b3%e3%83%aa%e3%82%b8%e3%83%a7%e3%83%b3%e5%bd%a2%e7%8a%b6%e3%82%92%e8%a8%ad%e5%ae%9a%e3%81%99%e3%82%8b" aria-label="CollisionShape2D ノードのコリジョン形状を設定する">CollisionShape2D ノードのコリジョン形状を設定する</a></li></ul>
+                </li>
+                <li>
+                    <a href="#enemygd-%e3%82%92%e7%b6%99%e6%89%bf%e3%81%97%e3%81%9f-mushroomgd-%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%82%92%e3%82%a2%e3%82%bf%e3%83%83%e3%83%81%e3%81%99%e3%82%8b" aria-label="Enemy.gd を継承した Mushroom.gd スクリプトをアタッチする">Enemy.gd を継承した Mushroom.gd スクリプトをアタッチする</a></li>
+                <li>
+                    <a href="#mushroomgd-%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%82%92%e7%b7%a8%e9%9b%86%e3%81%99%e3%82%8b" aria-label="Mushroom.gd スクリプトを編集する">Mushroom.gd スクリプトを編集する</a></li>
+                <li>
+                    <a href="#level1-%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ab-mushroom-%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%82%bf%e3%83%b3%e3%82%b9%e3%83%8e%e3%83%bc%e3%83%89%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b" aria-label="Level1 シーンに Mushroom シーンのインスタンスノードを追加する">Level1 シーンに Mushroom シーンのインスタンスノードを追加する</a></li>
+                <li>
+                    <a href="#mushroom-%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e7%b7%a8%e9%9b%86%e3%81%97%e3%81%a6%e5%8b%95%e3%81%8d%e3%81%ab%e5%a4%89%e5%8c%96%e3%82%92%e3%81%a4%e3%81%91%e3%82%8b" aria-label="Mushroom シーンを編集して動きに変化をつける">Mushroom シーンを編集して動きに変化をつける</a></li>
+                <li>
+                    <a href="#%e3%81%8a%e3%82%8f%e3%82%8a%e3%81%ab" aria-label="おわりに">おわりに</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。第4回目の今回は、敵キャラクターを作ってタイルマップ上に追加して動かし、プレイヤーキャラクターに踏まれたら消える、という感じの動きを実装してみよう。</p>
+<blockquote>
+<p><em><strong><span style="color:salmon">Memo：</span>
+</strong><br>
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。<br>
+<a href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/" title="Godot で作るプラットフォーマー">Godot で作るプラットフォーマー</a>
+</em></p>
+</blockquote>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="敵キャラクターの雛形となるシーンを作ろう">敵キャラクターの雛形となるシーンを作ろう<a hidden class="anchor" aria-hidden="true" href="#敵キャラクターの雛形となるシーンを作ろう">#</a></h1>
+<p>一般的に、プラットフォーマーゲームには複数種類の敵キャラクターが存在する。今回のチュートリアルでは、まず 1 種類、敵キャラクターを作る。そして、次回以降 Part でさらに種類を増やしていこう。</p>
+<p>だが、敵キャラクターを一種類ずつ、はじめから作り始めると、それなりに時間がかかる。全ての敵キャラクターに共通の部分を先に雛形のシーンとして作っておき、そのシーンを継承する形でそれぞれの敵キャラクターのシーンを作成すれば効率的だ。</p>
+<p>ということで、まずは雛形のシーンから作っていこう。「シーン」メニュー＞「新規シーン」を選択する。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img1.png" alt="新規シーンを追加"  />
+</p>
+<p>「ルートノードを生成」のオプションで「＋その他のノード」を選択する。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img2.png" alt="その他のノードを選択"  />
+</p>
+<p>ここからは、先に必要なノードをシーンツリーに追加していこう。</p>
+<p>ルートノードには「KinematicBody2D」クラスのノードを設定する。名前を「Enemy」に変更しておこう。続けてそのルートノードに「AnimatedSprite」ノード、および「CollisionShape2D」ノードを子ノードとして追加する。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img3.png" alt="AnimatedSpriteノードとCollisionShape2Dノードを選択"  />
+</p>
+<p>さらに「Enemy」ルートノードに「Area2D」クラスのノードを追加し、名前を「HitBox」に変更する。その「HitBox」ノードに「CollisionShape2D」ノードを追加する。この「HitBox」のコリジョン形状は、プレイヤーキャラクターに踏まれた時の衝突検出に使用するためのものだ。</p>
+<p>最後に「Enemy」ノードに「VisibilityEnabler2D」ノードを追加する。このノードは、敵キャラクターがゲーム画面の範囲内に入った瞬間や、ゲーム画面内にいた敵キャラクターが画面外に消えた時にシグナルを発信できるので、敵キャラクターの動きの制御に後ほど利用する予定だ。</p>
+<p>ここまでで、シーンツリーの構造はシーンドック上で以下のようになったはずだ。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img4.png" alt="シーンドックを確認"  />
+</p>
+<p>ここからは、インスペクターでいくつかノードのプロパティを編集していく。</p>
+<p>「AnimatedSprite」ノードの「Frames」プロパティに「新規 SpriteFrames」を設定する。具体的なアニメーションは、「Enemy」シーンを継承したシーンでそれぞれ行っていく。あとは「Playing」プロパティを<strong>オン</strong>にしておこう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img4.1.png" alt="AnimatedSpriteのプロパティ編集"  />
+</p>
+<p>「Enemy」ルートノード直下の「CollisionShape2D」ノードの「Shape」プロパティには「新規 CapsuleShape2D」を設定しておく。ただし、具体的なコリジョン形状の調整は「Enemy」シーンを継承したシーンで行う。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img4.2.png" alt="Enemy&amp;gt;CollisionShape2Dのプロパティ編集"  />
+</p>
+<p>次に「HitBox」ノードの子ノードの方の「CollisionShape2D」ノードの「Shape」プロパティには「新規 RectangleShape2D」を設定しておく。こちらも、コリジョン形状の調整は「Enemy」シーンを継承したシーンで行う。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img4.3.png" alt="HitBox&amp;gt;CollisionShape2Dのプロパティ編集"  />
+</p>
+<p>「VisibilityEnabler2D」ノードの「Rect」プロパティの値を「x: -16, y: -16, w: 32, h: 32」にしておこう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img5.png" alt="Rectプロパティの編集"  />
+</p>
+<p>このピンクの四角い範囲がゲーム画面を出た時や入った時にノードがシグナルを発信することができる。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img6.png" alt="Rectの2Dワークスペース上の表示"  />
+</p>
+<p>では、ここまでできたら一度シーンを保存しておこう。シーンを保存するためのフォルダを「Enemies」という名前にして作成し、ファイル名を「Enemy.tscn」として保存しよう。ファイルパスは「res://Enemies/Enemy.tscn」になる。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img7.png" alt="Enemyシーンの保存"  />
+</p>
+<br>
+<hr>
+<h1 id="enemy-シーンにスクリプトをアタッチする">Enemy シーンにスクリプトをアタッチする<a hidden class="anchor" aria-hidden="true" href="#enemy-シーンにスクリプトをアタッチする">#</a></h1>
+<p>次に敵キャラクターの共通部分について、スクリプトの方も作成しておこう。</p>
+<p>シーンドックで「Enemy」ルートノードを選択して、スクリプトをアタッチする。この時、先ほどシーンを保存する時に作成した「Enemies」フォルダに保存するようにしよう。スクリプトのファイルパスは「res://Enemies/Enemy.gd」となるはずだ。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img7.1.png" alt="Enemy.gd スクリプトをアタッチ"  />
+</p>
+<p>では、スクリプトエディタが開いたら、まず敵キャラクターに共通するプロパティを用意しておこう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span>
+
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> gravity: <span style="color:#a6e22e">int</span>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> speed: <span style="color:#a6e22e">int</span>
+<span style="color:#66d9ef">var</span> velocity <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>()
+<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> sprite <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">AnimatedSprite</span>
+</code></pre></div><p><code>gravity</code>、<code>speed</code>の2つのプロパティは、敵キャラクターによって、違ったほうが面白そうなので、インスペクターで気軽に更新できるように<code>export</code>キーワードをつけた。この時点では値を指定せず、データ型を<code>int</code>として指定したのみだ。</p>
+<p><code>velocity</code>はプレイヤーキャラクター同様、<code>_physics_process</code>メソッド内で更新させる予定のため、一旦<code>Vector2()</code>を値にしている。これはx, y座標が(0, 0)の状態だ。</p>
+<p><code>sprite</code>は「AnimatedSprite」ノードにアクセスするためのプロパティだ。子ノードが読み込まれてから定義する必要があるため<code>onready</code>キーワードを付けている。</p>
+<p>次に敵キャラクターが踏まれたら消える仕組みも、全ての敵キャラクターで共通にしたい。これには「HitBox」ノードの子「CollisionShape2D」ノードを利用する。コリジョン形状は敵キャラクターの頭のてっぺんあたりに配置することを想定している。キャラクターがこれに衝突した時に「HitBox」ノードからシグナルを発信して、それをトリガーにして敵が消える処理を実行するようにしていく。</p>
+<p>まずはシグナルの接続からだ。シーンドックで「HitBox」ノードを選択し、<strong>ノード</strong>ドック＞<strong>シグナル</strong>を開き、「body_entered(body: Node)」シグナルをダブルクリック、または選択して右下の「接続」をクリックする。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img8.png" alt="body_entered(body: Node)シグナルを接続"  />
+</p>
+<p>ダイアログにて「Enemy.gd」スクリプトに接続しよう。「スクリプトに接続：」欄で「Enemy」を選択して下部の「接続」をクリックすればOKだ。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img9.png" alt="Enemy.gdスクリプトにシグナルを接続"  />
+</p>
+<p>すると、以下のようにシグナルをトリガーにして実行される<code>_on_HitBox_body_entered</code>メソッドが追加されたはずだ。しかし、メソッドの中身は今のところ空っぽ（<code>pass</code>のみ）だ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _on_HitBox_body_entered(body):
+	<span style="color:#66d9ef">pass</span>
+</code></pre></div><br>
+<p>このメソッドの中身をコーディングする前に、先にやっておきたいのが、ノードのグループ設定だ。以下の手順で「Player」シーンの「Player」ノードを新しくノードグループ「Players」を作成してそれに追加しよう。また直近で必要なのは「Player」ノードのグループだが、ついでに「Enemy」シーンの「Enemy」ノードも「Enemies」を作成して追加しておこう。</p>
+<p>現在の「Enemy.tscn」シーンファイルは保存して、「Player.tscn」シーンファイルを開く。</p>
+<p>シーンドックで「Player」ルートノードを選択する。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img10.png" alt="Enemy.gdスクリプトにシグナルを接続"  />
+</p>
+<p>ノードドック＞「グループ」タブを選択し、入力欄に「Players」とグループ名を入力して「追加」をクリックする。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img11.png" alt="Enemy.gdスクリプトにシグナルを接続"  />
+</p>
+<p>これで「Player」ノードが「Players」ノードグループに追加された。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img12.png" alt="Enemy.gdスクリプトにシグナルを接続"  />
+</p>
+<p>今度は「Enemy.tscn」に切り替えて、同様の手順で「Enemy」ノードを「Enemies」ノードグループに追加しておく。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img13.png" alt="Enemy.gdスクリプトにシグナルを接続"  />
+</p>
+<p>それでは今作ったグループを利用してさっきの<code>_on_HitBox_body_entered</code>メソッドの中身をコーディングしていこう。このメソッドの引数<code>body</code>は、「HitBox」ノードと衝突したノードを指す。この<code>body</code>がプレイヤーキャラクターだった場合は、敵キャラクター自身を消す、という内容のコードを記述する。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _on_HitBox_body_entered(body):
+	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Players&#34;</span>):
+		print(<span style="color:#e6db74">&#34;Player entered in &#34;</span>, self<span style="color:#f92672">.</span>name)
+		sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;hit&#34;</span>)
+		yield(sprite, <span style="color:#e6db74">&#34;animation_finished&#34;</span>)
+		queue_free()
+		print(self<span style="color:#f92672">.</span>name, <span style="color:#e6db74">&#34;died&#34;</span>)
+</code></pre></div><p><code>if body.is_in_group(&quot;Players&quot;):</code>で、『もし<code>body</code>が「Players」グループのノードだったら』という条件分岐になる。この条件に当てはまった場合に、以下を実行するプログラムになっている。</p>
+<ul>
+<li>デバッグとして、<code>print</code>関数でプレイヤーキャラクターが「HitBox」に衝突したことを出力する。</li>
+<li>「AnimatedSprite」ノードの「hit」アニメーションを再生する（この名前のアニメーションを継承後のシーンで作成予定）</li>
+<li><code>yield</code>にて、「AnimatedSprite」ノードのアニメーションが終了するまでこれ以下のコードの読み込みを一時停止する。</li>
+<li><code>queue_free</code>メソッドを実行し、この「Enemy」ノード自身を消す。</li>
+<li>もう一度デバッグとして、<code>print</code>関数で敵キャラクターが消えたことを出力する。</li>
+</ul>
+<blockquote>
+<p><em><strong><span style="color:salmon">公式オンラインドキュメント</span>
+</strong><br>
+<a href="https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#coroutines-with-yield" target="_blank">コルーチン(yield関数による)</a>
+</em></p>
+</blockquote>
+<p>「AnimatedSprite」のアニメーションはこれから、「Enemy」シーンを継承した個別のシーンで作成することになる。その時に、踏まれて消える時の「hit」という名前のアニメーションを用意しておく必要があるので、覚えておこう。</p>
+<p>さて、次に実装したいのは、敵キャラクターが画面外にいるときはその動作を停止し、画面内に入ったら動き出す、という仕組みだ。これには「VisibilityEnabler2D」ノードを利用する。このクラスのノードは、画面に表示されていない時は、ルートノードとそれ自身と同階層のノードの動きを停止してくれる。</p>
+<blockquote>
+<p><em><strong><span style="color:salmon">公式オンラインドキュメント</span>
+</strong><br>
+<a href="https://docs.godotengine.org/ja/stable/classes/class_visibilityenabler2d.html" target="_blank">VisibilityEnabler2D</a>
+</em></p>
+</blockquote>
+<p>ただし、動きというのは、基本的にノードが「RigidBody2D」クラスの場合のノードの動きやアニメーションの動きを指す。このチュートリアルでの敵キャラクターのノードは「KinematicBody2D」クラスであるため、移動に関する制御は別途行う必要がある。</p>
+<p>そこで<code>_ready</code>メソッドで物理プロセスを停止させるようにする。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _ready():
+	set_physics_process(false)
+</code></pre></div><p>このように引数を<code>false</code>にして<code>set_physics_process</code>メソッドを実行させれば、物理プロセスは停止する。「Enemy」シーンを継承した個別の敵キャラクターシーンでは<code>_physics_process</code>メソッドでノードを移動させる予定のため、これでゲーム開始時点でノードの動きを止めることができるはずだ。</p>
+<p>次に、画面に敵キャラクターが表示された時に動き出すようにする必要がある。これには「VisibilityEnabler2D」ノードのシグナルを利用する。「VisibilityEnabler2D」ノードを選択したら、ノードドック＞「シグナル」タブにて「screen_entered()」シグナルをスクリプトに接続する。接続するスクリプトは当然「Enemy.gd」スクリプトだ。</p>
+<p>生成されたメソッド<code>_on_VisibilityEnabler2D_screen_entered</code>のブロック内に実行したいコードを記述しよう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _on_VisibilityEnabler2D_screen_entered():
+	set_physics_process(true)
+</code></pre></div><p>引数を<code>true</code>にして組み込みの<code>set_physics_process</code>メソッドを実行すると、停止していた物理プロセスが動き出す。これで、画面上に敵キャラクターが表示されたら、停止している物理プロセスが再開されようになった。</p>
+<p>同様にして、画面上から敵キャラクターが消えたら、その物理プロセスが停止するようにも設定しておこう。これには「VisibilityEnabler2D」ノードの別のシグナルを利用する。今度は「VisibilityEnabler2D」ノードを選択して、ノードドック＞「シグナル」タブにて「screen_exited()」シグナルを「Enemy.gd」スクリプトに接続しよう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _on_VisibilityEnabler2D_screen_exited():
+	set_physics_process(false)
+</code></pre></div><p>生成されたメソッド<code>_on_VisibilityEnabler2D_screen_exited</code>のブロック内に引数を<code>false</code>にして<code>set_physics_process</code>メソッドを記述しておけば、画面上から敵キャラクターが消えたら、物理プロセスが停止し、敵キャラクターの移動も停止するはずだ。</p>
+<p>「Enemy.tscn」シーンと「Enemy.gd」スクリプトを保存し、個別の敵キャラクターのシーンを作成し、おかしなところはそこで修正をかけていこう。</p>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="enemy-シーンを継承して-mushroom-シーンを作る">Enemy シーンを継承して Mushroom シーンを作る<a hidden class="anchor" aria-hidden="true" href="#enemy-シーンを継承して-mushroom-シーンを作る">#</a></h1>
+<p>ここからは先に作成した「Enemy.tscn」シーンを継承する形で、個別の敵キャラクターを作っていく。</p>
+<p>まずはゲームで最弱の敵キャラクターから作っていこう。スーパーマリオシリーズでいうところのクリボーのようなキャラクターだ。便宜上名前を「マッシュルーム」としておく。</p>
+<p>まず「シーン」メニュー＞「新しい継承シーン」を選択する。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img14.png" alt="シーン＞新しい継承シーン"  />
+</p>
+<p>ルートノードの名前を「Mushroom」に変更しておこう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img15.png" alt="Mushroomにルートノードの名前を変更"  />
+</p>
+<p>この時点で先にシーンを保存しておこう。この時、res://Enemies/ に「Mushroom」フォルダを作成して、その中に「Mushroom.tscn」のファイル名で保存しよう。つまりファイルパスは「res://Enemies/Mushroom/Mushroom.tscn」になる。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img16.png" alt="Mushroom.tscnとして保存"  />
+</p>
+<br>
+<hr>
+<h1 id="mushroom-シーンの各ノードの設定を更新する">Mushroom シーンの各ノードの設定を更新する<a hidden class="anchor" aria-hidden="true" href="#mushroom-シーンの各ノードの設定を更新する">#</a></h1>
+<p>継承したシーンではルートノード以外のノードがグレーアウトして表示されているが、全く編集できないわけではないので安心していただきたい。各ノードの編集を順番に行っていく。</p>
+<br>
+<h2 id="mushroom-ルートノードの-script-variables-を編集する">Mushroom ルートノードの Script Variables を編集する<a hidden class="anchor" aria-hidden="true" href="#mushroom-ルートノードの-script-variables-を編集する">#</a></h2>
+<p>まずはルートノードから編集しよう。</p>
+<p>Script Variables とはスクリプト内で定義した変数（プロパティ）のことだ。継承元の「Enemy」シーンですでに定義しておいた「gravity」と「speed」の2つには<code>export</code>キーワードをつけておいたので、継承先のシーンでもインスペクターから簡単に値を変更できる。</p>
+<p>シーンドックで「Mushroom」ルートノードを選択し、それぞれのプロパティを以下の値に変更しよう。</p>
+<ul>
+<li>Gravity: 512</li>
+<li>Speed: 32<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img16.1.png" alt="MushroomのScript Variablesの編集"  />
+</li>
+</ul>
+<br>
+<h2 id="animatedsprite-ノードのアニメーションを編集する">AnimatedSprite ノードのアニメーションを編集する<a hidden class="anchor" aria-hidden="true" href="#animatedsprite-ノードのアニメーションを編集する">#</a></h2>
+<p>続いて「AnimatedSprite」ノードの編集を行う。</p>
+<p>シーンドックで「AnimatedSprite」ノードを選択したら、インスペクターから「Frames」プロパティで「SpriteFrames」をクリックし、メニューから <strong>「ユニーク化」</strong> を選択する。これにより、この「SpriteFrames」を編集しても、継承元の「Enemy」シーンには影響しない。その結果、今後作成予定の他の「Enemy」からの継承シーンにも影響しない。忘れがちだが、他のシーンへの影響を回避するために重要な操作なので早めの実施を心がけよう。</p>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img17.png" alt="SpriteFramesをユニーク化"  />
+</p>
+<p>ここからはアニメーションを作成する。プレイヤーキャラクターでも一度やった作業なので、多少慣れた感じで進めていただけるだろう。</p>
+<p>まずシーンドックで「AnimatedSprite」ノードを選択する。エディタ下部で「スプライトフレーム」パネルが表示されるので、そこで編集していく。</p>
+<p>以下の3つのアニメーションを追加し、それぞれの速度を 24 FPS の設定にする。スプライトシートが「Asset」フォルダにあるので、それぞれに割り当てよう。</p>
+<ul>
+<li>アニメーション名: hit / スプライトシート: res://Assets/Enemies/Mushroom/Hit.png<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img18.png" alt="Hitのアニメーション"  />
+</li>
+<li>アニメーション名: idle / スプライトシート: res://Assets/Enemies/Mushroom/Idle (32x32).png<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img19.png" alt="idleのアニメーション"  />
+</li>
+<li>アニメーション名: run / スプライトシート: res://Assets/Enemies/Mushroom/Run (32x32).png<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img20.png" alt="runのアニメーション"  />
+</li>
+</ul>
+<p>アニメーション「hit」だけはプレイヤーキャラクターに踏まれた時に一回だけ再生してノードを解放する（消す）予定のため、ループの設定をオフにしておこう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img21.png" alt="hitのループをオフ"  />
+</p>
+<p>ところで、もし追加したスプライトフレームの画像にブラーがかかっている（ぼやけている）感じであれば、ファイルシステムで、該当のスプライトシートを選択した状態で、インポートドックにて「2D Pixel」プリセットを読み込み、その設定で「再インポート」するとピクセルアート独特のエッジが効いた見た目に修正される。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img21.1.png" alt="2D Pixel のプリセット"  />
+</p>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img21.2.png" alt="再インポート"  />
+</p>
+<p>最後に、それぞれのアニメーションをチェックしておこう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img22.gif" alt="アニメーションをチェック"  />
+</p>
+<br>
+<h2 id="collisionshape2d-ノードのコリジョン形状を設定する">CollisionShape2D ノードのコリジョン形状を設定する<a hidden class="anchor" aria-hidden="true" href="#collisionshape2d-ノードのコリジョン形状を設定する">#</a></h2>
+<p>「Mushroom」シーンには「CollisionShape2D」ノードが2つあるので、それぞれのコリジョン形状を順番に設定していく。</p>
+<p>まずは「Mushroom」ルートノード直下の「CollisionShape2D」ノードのコリジョン形状からやっていこう。このコリジョン形状は、敵キャラクター自身が地面や壁、プレイヤーキャラクターなど他のオブジェクトと衝突したことを検知するために使用する。そのため、できるだけスプライトテクスチャのデザインに近い形状にするのが理想だ。</p>
+<p>インスペクターから「Shape」プロパティの「CapsuleShape2D」をクリックし、また <strong>「ユニーク化」</strong> を選択して適用しておこう。継承元に影響を与えないためだ。</p>
+<p>「CapsuleShape2D」のコリジョン形状は、デフォルトでは縦長の楕円形になっている。「Mushroom」のスプライトテクスチャは、比較的平べったいデザインだ。スプライトテクスチャのデザインにもよるが、横長のデザインの場合は、コリジョン形状を90°回転すると調整しやすいことが多い。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img23.png" alt="Rotation Degrees を 90 に設定"  />
+</p>
+<p>2Dワークスペースでドラッグ操作でコリジョン形状を調整する場合は、ツールバーの「スナップオプション」から「ピクセルスナップを使用」にチェックを入れておこう。</p>
+<p>だいたい以下のような形状になればOKだ。足が地面との衝突を正確に検知するため、テクスチャデザインの足の先にきっちり合わせておこう。頭のてっぺんには意図的に少しスペースを設けている。理由は、もう一つのコリジョン形状（プレイヤーキャラクターが敵キャラクターを踏んだことを判定するためのコリジョン形状）をそこに配置する予定だからだ。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img24.png" alt="CollisionShape2Dのコリジョン形状"  />
+<br>
+このコリジョン形状の「Radius」と「Height」は以下の数値になっている。ドラッグ操作が煩わしい場合は、こちらに直接入力してもらっても構わない。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img25.png" alt="CollisionShape2Dのコリジョン形状のプロパティ"  />
+</p>
+<p>続いて、もう一つの「HitBox」ノードの子になっている「CollisionShape2D」ノードの方を編集していく。作業自体は大体同じだ。まず、シーンドックで該当の「CollisionShape2D」ノードを選択した状態で、インスペクターから「Shape」プロパティの「RectangleShape2D」を選択する。ここでも忘れずに <strong>「ユニーク化」</strong> を適用しておこう。</p>
+<p>今回のコリジョン形状は大体以下のようになればOKだ。ポイントは、ルートノード直下の「CollisionShape2D」の幅より狭くし、それと重ならないようにしてスプライトテクスチャの頭のてっぺんに配置することだ。幅が広いと、踏まずともぶつかっただけでこの敵キャラクターを倒せてしまうし、頭のてっぺんのコリジョン形状が重なると、プレイヤーの方がぶつかられて、やられてしまうかもしれない。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img26.png" alt="CollisionShape2Dのコリジョン形状その2"  />
+</p>
+<p>このコリジョン形状の「Extents」プロパティは(8, 1)になっている。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img27.png" alt="CollisionShape2Dのコリジョン形状のプロパティその2"  />
+</p>
+<p>これで、コリジョン形状の調整ができた。インスペクターで編集する内容はひとまずここまでだ。次はいよいよスクリプトの方を更新していく。</p>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="enemygd-を継承した-mushroomgd-スクリプトをアタッチする">Enemy.gd を継承した Mushroom.gd スクリプトをアタッチする<a hidden class="anchor" aria-hidden="true" href="#enemygd-を継承した-mushroomgd-スクリプトをアタッチする">#</a></h1>
+<p>現時点で「Mushroom」ノードには「Enemy.gd」スクリプトがアタッチされている。「Enemy」シーンを継承しているので当然なのだが、このスクリプトは全敵キャラクター共用のスクリプトなので、「Mushroom」シーンのためだけに更新するわけにはいかない。</p>
+<p>ひとまず「Enemy.gd」はデタッチ（紐付け解除）しよう。シーンドックで「Mushroom」ノードを右クリック＞「スクリプトをデタッチ」を選択する。これで簡単にアタッチされていたスクリプトが外れる。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img28.png" alt=""  />
+</p>
+<p>次に「Mushroom」を選択して、新しいスクリプトをアタッチする。この時、デフォルトの設定のまま作成してしまうと「KinematicBody2D」クラスを継承したスクリプトになってしまう。「継承元」の右側にあるフォルダアイコンをクリックしてみよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img29.png" alt="デフォルトのスクリプトアタッチ設定"  />
+</p>
+<p>すると、作成済みのスクリプトを選択できる。「res://Enemies/Enemy.gd」を選択して「開く」をクリックしてみよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img30.png" alt="継承元にEnemy.gdを選択して開く"  />
+</p>
+<p>これで「継承元」として「res://Enemies/Enemy.gd」が選択された状態になった。新しいスクリプトのファイルパスを「res://Enemies/Mushroom/Mushroom.gd」として「作成」をクリックしよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img31.png" alt="継承元にEnemy.gdを選択して開く"  />
+</p>
+<p>スクリプトエディタに切り替わったら、一行目に<code>extends &quot;res://Enemies/Enemy.gd&quot;</code>という記述があることに気がつくだろう。これは先に作成した「Enemy」シーン用の「Enemy.gd」スクリプトを継承していることを示している。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#e6db74">&#34;res://Enemies/Enemy.gd&#34;</span>
+
+
+<span style="color:#66d9ef">func</span> _ready():
+	<span style="color:#66d9ef">pass</span>
+</code></pre></div><p>このように、自作のスクリプトも簡単に継承することができる。シーンを継承するときはスクリプトも別途継承できることを覚えておこう。</p>
+<br>
+<hr>
+<h1 id="mushroomgd-スクリプトを編集する">Mushroom.gd スクリプトを編集する<a hidden class="anchor" aria-hidden="true" href="#mushroomgd-スクリプトを編集する">#</a></h1>
+<p>まずは<code>_ready</code>メソッドから編集する。マッシュルームの移動時は「AnimatedSprite」ノードの「run」アニメーションを再生したいので、以下ように編集した。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _ready():
+	sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;run&#34;</span>) 
+</code></pre></div><p>どのアニメーションを最初に再生するかはインスペクターで設定しておけるが、デバッグをしていると、他のアニメーションの再生中に終了して、そのアニメーションの設定がそのまま残ることがある。毎回ゲーム開始時に「run」アニメーションを再生するように<code>_ready</code>メソッド内でアニメーションを指定した。</p>
+<p>では次に「Mushroom」の移動をスクリプトで制御していこう。例によって今回も<code>_physics_process</code>メソッドを利用する。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _physics_process(delta):
+</code></pre></div><p>マッシュルームは、最弱キャラでただ速くもないスピードで前進したり止まったりするだけのキャラクターとする。</p>
+<p>まずは基本として以下を満たすようにコーディングしていこう。</p>
+<ul>
+<li>毎フレーム<code>speed</code>プロパティの値だけ左方向に前進させる</li>
+<li>高所から落ちる際は重力で加速しながら落下する</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _physics_process(delta):
+	velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>speed 
+	velocity<span style="color:#f92672">.</span>y <span style="color:#f92672">+=</span> gravity <span style="color:#f92672">*</span> delta
+	
+	velocity <span style="color:#f92672">=</span> move_and_slide(velocity, <span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>UP)
+</code></pre></div><p>このようなコードになる。<code>velocity</code>の x, y の値をそれぞれ設定し、その<code>velocity</code>を<code>move_and_slide</code>メソッドの第一引数に代入することで、ノードの移動を制御する最低限のコードができた。</p>
+<p>さらに以下を満たすようにコードを追加しよう。</p>
+<ul>
+<li>壁にぶつかったら進行方向を左右反転する</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _physics_process(delta):
+	<span style="color:#66d9ef">if</span> is_on_wall():
+		speed <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+		sprite<span style="color:#f92672">.</span>flip_h <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>sprite<span style="color:#f92672">.</span>flip_h
+	
+	velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>speed
+	velocity<span style="color:#f92672">.</span>y <span style="color:#f92672">+=</span> gravity <span style="color:#f92672">*</span> delta
+	
+	velocity <span style="color:#f92672">=</span> move_and_slide(velocity, <span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>UP)
+</code></pre></div><p><code>is_on_wall</code>メソッドは壁に接していれば true を返す。つまり冒頭に追加した if 構文は『もしマッシュルームが壁に衝突したら』という条件分岐になる。</p>
+<p>この条件を満たした場合、<code>speed</code>プロパティに -1 を乗算することで x 軸の反対方向に進むようにしている。<code>sprite.flip_h</code>プロパティが true の場合は、『水平方向に「AnimatedSprite」を反転させる』という意味になる。<code>sprite.flip_h</code>プロパティの値に<code>!sprite.flip_h</code>と指定することで、現在の<code>sprite.flip_h</code>の値とは逆の値（現在 true なら false）を設定する、というコードになる（<code>!</code>は not と同様の意味）。</p>
+<p>さてこれでマッシュルームの基本的な動きが出来上がったので、Level1 シーンにインスタンスをノードとして追加してみよう。忘れずに「Mushroom」シーンを保存しておこう。</p>
+<br>
+<hr>
+<h1 id="level1-シーンに-mushroom-シーンのインスタンスノードを追加する">Level1 シーンに Mushroom シーンのインスタンスノードを追加する<a hidden class="anchor" aria-hidden="true" href="#level1-シーンに-mushroom-シーンのインスタンスノードを追加する">#</a></h1>
+<p>ここまで作成してきた「Mushroom」シーンを「Level1」シーンのノードとしてインスタンス化して追加しよう。</p>
+<p>まずはシーンドックで「Level1」ルートノードを選択したら、チェーンのアイコンをクリックする。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img32.png" alt="シーンからインスタンスにしてノードに追加"  />
+</p>
+<p>保存済みのシーンのファイルがリストアップされるので、「Mushroom.tscn」ファイルを選択して「開く」をクリックする。もしここで大量のファイルがある場合は上部の検索バーから検索も可能だ。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img33.png" alt="Mushroom.tscnを選択して開く"  />
+</p>
+<p>「Mushroom.tscn」がインスタンス化されて「Level1」の子ノードになった。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img34.png" alt="Mushroom.tscnを選択して開く"  />
+</p>
+<p>では「Mushroom」ノードを2Dワークスペース上の任意の場所に移動しよう。すぐに挙動が確認できるように、ゲーム開始時のキャラクターの位置に程よく近く、しかしゲームスタート時は画面に入らないような場所が最適だ。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img35.png" alt="2Dワークスペースにマッシュルームを設置"  />
+</p>
+<p>ここで一度プロジェクトを実行してマッシュルームの動きを確認しておこう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img36.gif" alt="デバッグ：マッシュルームの動きを確認"  />
+</p>
+<p>以下の動作について確認できた。</p>
+<ul>
+<li>マッシュルームがゲーム画面に入ってから動き出した</li>
+<li>重力で下に高所から落下した</li>
+<li>一定速度で「run」アニメーションを再生しながら前進した</li>
+<li>ゲーム画面外に出ると動きが止まった</li>
+<li>プレイヤーキャラクター（今回は壁の代わり）と衝突したら向きを反転した</li>
+<li>プレイヤーキャラクターに踏まれたら「hit」アニメーション再生後に消えた</li>
+</ul>
+<br>
+<hr>
+<h1 id="mushroom-シーンを編集して動きに変化をつける">Mushroom シーンを編集して動きに変化をつける<a hidden class="anchor" aria-hidden="true" href="#mushroom-シーンを編集して動きに変化をつける">#</a></h1>
+<p>せっかく「AnimatedSprite」ノードで「idle」アニメーションを用意したので、これを使って、少しマッシュルームの動きに変化をつけてみよう。</p>
+<p>敵キャラクターに少し複雑な動きをつけたい時、「Timer」クラスのノードを追加すると非常に便利だ。では「Mushroom.tscn」シーンに切り替えて、「Mushroom」ルートノードに「Timer」ノードを追加しよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img37.png" alt="Timerノードを追加"  />
+</p>
+<p>次にインスペクターで「Timer」ノードのプロパティを以下のように設定しよう。</p>
+<ul>
+<li>Wait Time: 4</li>
+<li>Autostart: オン<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img38.png" alt="Timerノードのプロパティをインスペクターで編集"  />
+</li>
+</ul>
+<p>これで4秒毎にタイムアウトするタイマーができた。そのタイムアウトのタイミングでプログラムを実行したいので、シグナルを接続しよう。「Timer」ノードを選択して、ノードドックの「シグナル」タブから「timeour()」シグナルを「Mushroom.gd」スクリプトに接続しよう。メソッド名などはデフォルトのままで良い。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img39.png" alt="Timerノードのtimeoutシグナルを接続"  />
+</p>
+<p>接続できたら、「Mushroom.gd」スクリプトに<code>_on_Timer_timeout</code>メソッドが追加されただろうか。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _on_Timer_timeout():
+	<span style="color:#66d9ef">pass</span>
+</code></pre></div><p>先に、コードをメンテナンスしやすくするために、以下のように変数<code>timer</code>として「Timer」ノードの参照を定義しておこう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> timer <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">Timer</span>
+</code></pre></div><p>そして<code>_on_Timer_timeout</code>メソッドの中身を以下のように更新しよう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _on_Timer_timeout():
+	<span style="color:#66d9ef">if</span> is_on_floor():
+		timer<span style="color:#f92672">.</span>stop()
+		set_physics_process(false)
+		sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;idle&#34;</span>)
+		yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">2</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+		sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;run&#34;</span>)
+		set_physics_process(true)
+		timer<span style="color:#f92672">.</span>start()
+</code></pre></div><p>実装したいのは「マッシュルームは最弱なのですぐに息が切れてしまう」という感じの動きだ。息切れを表現するのに「AnimatedSprite」の「idle」アニメーションを利用する。<br>
+空中で息が切れるわけにはいかないので、if 構文で<code>is_on_floor</code>メソッドで true が帰ってきた場合（マッシュルームが地面に接している場合）のみ、それ以下のコードが実行されるようにした。</p>
+<p>if 条件式が true だった場合に、以下の内容を実行するコードになっている。これらの動きが 4 秒ごとに発生する。</p>
+<ul>
+<li>自動でカウントダウンし続ける「Timer」ノードの<code>stop</code>メソッドにより、タイマーのカウントダウンを停止する。</li>
+<li><code>set_physics_process</code>メソッドで引数に false を渡すことで物理プロセスを停止する。これにより「Mushroom.gd」スクリプト内の<code>_physics_process</code>メソッドが停止するのでマッシュルームは前進しない。</li>
+<li>「AnimatedSprite」の「idle」アニメーションを再生する。</li>
+<li><code>yield</code>により、一時的な別のタイマーを作成し、待ち時間を2秒にし、これがタイムアウトするまで待つ。つまり「idle」アニメーションを 2 秒続ける。</li>
+<li>一時的なタイマーがタイムアウトしたら、「AnimatedSprite」ノードの「run」アニメーションを再び再生させる。</li>
+<li><code>set_physics_process</code>メソッドで引数に true を渡すことで、停止していた物理プロセスを再開する。これでマッシュルームがまた前進を始める。</li>
+<li>「Timer」ノードの<code>start</code>メソッドにより、カウントダウンを再開する。</li>
+</ul>
+<p>ではプロジェクトを実行して動きを確認してみよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_4/img40.gif" alt="マッシュルームの息切れの動きを確認"  />
+</p>
+<p>見事に息が切れている感じを表現できた。</p>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="おわりに">おわりに<a hidden class="anchor" aria-hidden="true" href="#おわりに">#</a></h1>
+<p>以上で Part 4 は完了だ。今回はマッシュルームしか作れなかった割に、なかなかボリューミーな回となった。</p>
+<p>次回は、もう少し別の動きをする敵キャラクターを数種類追加して、「Level1」シーンに複数配置するところまでやって、敵キャラクターに関する手順を終える予定なのでお楽しみに。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/ja/tags/godot/">Godot</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/">ゲーム開発</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/">チュートリアル</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E5%88%9D%E7%B4%9A/">初級</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%BC/">プラットフォーマー</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%A0/">アクションゲーム</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E6%A8%AA%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB/">横スクロール</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E6%95%B5%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%BC/">敵キャラクター</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_3/">
+    <span class="title">« 前のページ</span>
+    <br>
+    <span>Godot で作るプラットフォーマー Part 3：カメラを追加しよう！</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！ on twitter"
+        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%204%ef%bc%9a%e6%95%b5%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86%ef%bc%81&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_4%2f&amp;hashtags=Godot%2cGodotEngine%2c%e3%82%b2%e3%83%bc%e3%83%a0%e9%96%8b%e7%99%ba%2c%e3%83%81%e3%83%a5%e3%83%bc%e3%83%88%e3%83%aa%e3%82%a2%e3%83%ab%2c%e5%88%9d%e7%b4%9a%2c2D%2c%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%2c%e3%82%a2%e3%82%af%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%b2%e3%83%bc%e3%83%a0%2c%e6%a8%aa%e3%82%b9%e3%82%af%e3%83%ad%e3%83%bc%e3%83%ab%2c%e6%95%b5%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！ on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_4%2f&amp;title=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%204%ef%bc%9a%e6%95%b5%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86%ef%bc%81&amp;summary=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%204%ef%bc%9a%e6%95%b5%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86%ef%bc%81&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_4%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！ on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_4%2f&title=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%204%ef%bc%9a%e6%95%b5%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86%ef%bc%81">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！ on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_4%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！ on whatsapp"
+        href="https://api.whatsapp.com/send?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%204%ef%bc%9a%e6%95%b5%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86%ef%bc%81%20-%20https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_4%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！ on telegram"
+        href="https://telegram.me/share/url?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%204%ef%bc%9a%e6%95%b5%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86%ef%bc%81&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_4%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://www.peanuts-code.com/ja/">Peanuts Code</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
