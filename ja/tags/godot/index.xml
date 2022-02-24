@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 18 Feb 2022 15:00:38 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godot/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Feb 2022 16:17:02 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godot/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot をダウンロードする</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</link>
@@ -50,7 +50,7 @@
     <item>
       <title>シリーズ：Godot で作るプラットフォーマー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</link>
-      <pubDate>Fri, 18 Feb 2022 15:00:38 +0900</pubDate>
+      <pubDate>Sat, 19 Feb 2022 16:17:02 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</guid>
       <description>*シリーズ随時追加作成中 
@@ -208,7 +208,7 @@
       <pubDate>Fri, 04 Feb 2022 13:30:38 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</guid>
-      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。
+      <description>今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。
 なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。
  公式オンラインドキュメント：</description>
     </item>
@@ -219,7 +219,7 @@
       <pubDate>Sat, 05 Feb 2022 17:16:51 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_3/</guid>
-      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。第3回目の今回は、プレイヤーキャラクターの動きに合わせてカメラが移動し、Part 2 の時より広いタイルマップ上をキャラクターが移動できるようにしていく。</description>
+      <description>第3回目の今回は、プレイヤーキャラクターの動きに合わせてカメラが移動し、Part 2 の時より広いタイルマップ上をキャラクターが移動できるようにしていく。</description>
     </item>
     
     <item>
@@ -228,7 +228,7 @@
       <pubDate>Thu, 10 Feb 2022 01:41:29 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/</guid>
-      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。第4回目の今回は、敵キャラクターの雛形となるシーンを作成し、それを継承する形で個別の敵キャラクターを一つ作っていく。そのあと、その敵キャラクターをレベルシーンに配置して、プレイヤーキャラクターに踏まれたら消えるところまで実装してみよう。
+      <description>第4回目の今回は、敵キャラクターの雛形となるシーンを作成し、それを継承する形で個別の敵キャラクターを一つ作っていく。そのあと、その敵キャラクターをレベルシーンに配置して、プレイヤーキャラクターに踏まれたら消えるところまで実装してみよう。
  Memo：</description>
     </item>
     
@@ -238,8 +238,18 @@
       <pubDate>Fri, 18 Feb 2022 15:00:38 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_5/</guid>
-      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。第5回目の今回は、さらに敵キャラクターの種類を増やしていく。それぞれの敵キャラクターの動きに違いを持たせ、それらをタイルマップ上に複数配置してゲームの難易度を高めていこう。具体的に今回は以下の敵キャラクターを作成していく。
+      <description>第5回目の今回は、さらに敵キャラクターの種類を増やしていく。それぞれの敵キャラクターの動きに違いを持たせ、それらをタイルマップ上に複数配置してゲームの難易度を高めていこう。具体的に今回は以下の敵キャラクターを作成していく。
  バニー（うさぎ） カメレオン プラント（植物）   Memo：</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 6：アイテムを作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_6/</link>
+      <pubDate>Sat, 19 Feb 2022 16:17:02 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_6/</guid>
+      <description>第6回目の今回は、アイテムを作る。アイテムというのは、ちょうどスーパーマリオシリーズのコインのような、当たるとポイントを獲得できてちょっと嬉しい存在だ。さらに、下から小突くとアイテムが出てくる箱、その名もアイテムボックスを作る。それぞれスクリプトで動作を制御し、最後はレベルシーンに配置するところまでやっていこう。
+ Memo：</description>
     </item>
     
     <item>
