@@ -22,7 +22,7 @@
 <link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.93.0" />
 <link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_13/" />
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
@@ -85,7 +85,7 @@ if (!doNotTrack) {
   "keywords": [
     "Godot", "GodotEngine", "ゲーム開発", "チュートリアル", "ブロック崩し", "初級"
   ],
-  "articleBody": "Part 13 の今回は、ブロック崩しの HUD にハイスコア、ハイレベル（過去最高クリアレベルのことをこう呼ぶことにする）の要素を追加し、ゲームオーバーになった時点でそのデータが自動的に保存されるようにして、一度ゲームを終了しても記録が消えない仕組みを作っていく。\n Memo: \n過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るブロック崩し \n  \n (adsbygoogle = window.adsbygoogle || []).push({});   HUD をアップデートする 今回、「ハイスコア」と「ハイレベル」の要素をゲームに追加する。これに伴い、HUD にもそれぞれのノードを追加して、プロパティを編集していく。\nでは、「Game.tscn」シーンを開いて手順を進めていこう。\nノードを追加する 「HUD」ノードの「LeftBox」ノードの次に、新たに「VBoxContainer」クラスのノードを追加し、名前を「MidBox」に変更しよう。\nさらに「MidBox」ノードには「Label」クラスのノードを 2 つ追加し、それぞれの名前を「HighScore」、「HighLevel」に変更しよう。これで「HUD」ノードの構成は以下のようになったはずだ。\n追加したノードのプロパティを編集する 「LeftBox」ノードと「MidBox」ノードの位置と枠の大きさを編集する。HUD のレイアウトは、ブロックの配置の都合上、全て画面上端に並べる必要がある。\n2D ワークスペースで「MidBox」をドラッグして画面上端中央に配置しても問題ないが、インスペクタドックで数値を調整するならそれぞれのノードで「Margin」プロパティが以下の値になるようにしよう。\n 「LeftBox」ノード\n 「MidBox」ノード\n  これで、画面上端中央に「MidBox」ノードが配置された。\n次にインスペクタドックで、「MidBox」ノードの子ノードである「HighScore」ノードと「HighLevel」ノードの「Text」プロパティを設定する。\n 「HighScore」ノードの「Text」プロパティ：「H Scr: 0」 「HighLevel」ノードの「Text」プロパティ：「H Lvl: 1」  この時点で、ゲーム画面は以下のようになったはずだ。\nGame.gd スクリプトを更新する HUD の見た目は更新できたので、次はスクリプトで表示される値を制御していく。ここで、ゲームデータを保存する機能と保存されたゲームデータを読み込む機能を新たに実装していく。\nではここから「Game.gd」スクリプトを開いて編集していこう。\n必要な定数と変数を追加する まずは新たにいくつか変数を定義していく。「# 追加」のコメントを記述している行が今回定義した定数と変数だ。\nextends Node2D const POINT = 100 const MAX_LIFE = 5 const SCORE_FILE_PATH = \"user://score_record.save\" # 追加 export var drop_rate = 0.2 var level_num: int = 1 var high_level_num: int = 0 # 追加 var score: int = 0 var high_score: int = 0 # 追加 #（中略） onready var hud_level = $HUD/LeftBox/Level onready var hud_high_level = $HUD/MidBox/HighLevel # 追加 onready var hud_score = $HUD/LeftBox/Score onready var hud_high_score = $HUD/MidBox/HighScore # 追加 #（後略） まずconstキーワードで定義しているのはSCORE_FILE_PATHという定数だ。その値を\"user://score_record.save\"としてデータの保存先となるファイルパスを指定した。\nこのように、データを保存するファイルの頭にuser://をつけるとプロジェクトの所定の場所にデータを保存してくれる。このファイルにデータを書き込めば、シーンを切り替えたり、ゲームを一度終了してから再開しても、ファイルからデータを読み込んで、以前プレイした時の状態を引き継ぐことが可能だ。\n次に変数high_level_numだが、これはゲーム開始時に前回までのハイレベルを渡しておくためのものだ。同様に、もう一つの変数high_scoreには、ゲーム開始時に前回までのハイスコアを渡しておく。また、ゲームオーバーの時に、記録が更新される際にも利用する。\n続いてonreadyキーワード付きの変数だが、これらは特定のノードを指すのに使っている。hud_high_levelは「HighLevel」ノードを、hud_high_scoreは「HighScore」ノードを指している。\n保存用のメソッドを追加する 引き続き「Game.gd」スクリプトに、ゲームのデータを保存するためのメソッドを追加する。\nfunc save_data(): var data = { \"last_level\": level_num, \"high_level\": high_level_num, \"last_score\": score, \"high_score\": high_score, } var file = File.new() file.open(SCORE_FILE_PATH, File.WRITE) file.store_line(to_json(data)) file.close() save_dataというメソッドを定義した。まず変数dataをメソッド内で定義している。メソッド内で定義した変数は、そのメソッドの外では使えないので注意してほしい。dataは辞書型データで{\"key\": value}の組み合わせで複数のデータをまとめることができる。\nここではデータとして保存したい値を格納したlevel_num、high_level_num、score、high_scoreの4つの変数それぞれを Value とし、対応する Key を\"last_level\"、“high_level”、“last_score”、“high_score\"として定義した。\nそのあとはfileという変数を定義している。newメソッドを実行して作成されたFileクラスのノードを値として代入している。これ以降Fileクラスのメソッドが続く。\nデータを保存するには保存先のファイルを開く必要がある。openは第一引数で指定したパスのファイルを開くメソッドだ。ここでは、先に定義した定数SCORE_FILE_PATH（\"user://score_record.save\"）を第一引数として渡している。第二引数にはファイルを開くときのモードを指定する。ここではデータを書き込んで保存したいので、WRITEを指定して書き込みモードにしている。\n次にstore_lineメソッドでファイルにデータを書き込んでいる。store_xxxという名前のメソッドは他にもいくつかあるが、このstore_lineは1行のstring型データをファイルに書き込む。そして、store_lineの引数が書き込むデータになるが、ここでは先に定義した辞書型の変数dataをto_jsonで変換した値を指定している。dataは辞書型データで、スクリプト上は見やすさのため改行しているが、実際には1行のデータだ。\nここでto_jsonについても説明しておく。まず「JSON」というのは「JavaScript Object Notation」の略で、JavaScript というプログラミング言語でのオブジェクトの記述方式で保存されたデータフォーマットだ。そして、その構造は GDScript を含む各種プログラミング言語の辞書型データにもそっくりの{\"key\": value}という形式だ。先に保存したいデータを辞書型でまとめておき、保存データを指定するときにその辞書型データをto_jsonメソッドの引数にして、JSON形式に変換して保存するようにしたというわけだ。\n最後にcloseメソッドでファイルを閉じている。開きっぱなしにして、メモリを消耗しないよう注意しよう。\n読み込み用のメソッドを追加する 「Game.gd」スクリプトで、今度は保存したデータを読み込むメソッドを追加する。\nfunc load_data(): var file = File.new() if file.file_exists(SCORE_FILE_PATH): file.open(SCORE_FILE_PATH, File.READ) var data = parse_json(file.get_line()) if data != null: high_score = data[\"high_score\"] high_level_num = data[\"high_level\"] file.close() hud_high_score.text = \"H Scr: \" + str(high_score) hud_high_level.text = \"H Lvl: \" + str(high_level_num) データを読み込むのはload_dataというメソッドだ。\n先ほどの書き込みメソッドsave_dataと同様に、まずはFileクラスのnewメソッドにより、Fileクラスのノードを作成する。そこからまたFileクラスのメソッドが続くが順番に見ていこう。\nまずはif構文で、file_existsメソッドによりデータ保存先のファイル（定数SCORE_FILE_PATHの値）があるか確認している。ファイルがあればifブロックの中の処理を続行する。\nではifブロックの中のコードを見ていこう。まず、ファイルをopenメソッドで開く。ここではモードをREADにして読み込みモードにしている。\n次はget_lineメソッドでファイルに保存されている一行のデータを読み込む。この時、この読み込んだデータはJSON形式なので、これをparse_jsonメソッド GDScript の辞書型データに変換して、変数dataに格納している。\n2段回目のif構文だが、もし変数dataが空っぽのnullでなければ、変数high_scoreにファイルに保存しているハイスコアのデータを、変数high_level_numにはファイルに保存しているハイレベルのデータを代入する。\nそこまでできたら、忘れずにファイルをcloseメソッドで閉じる。\n最後に、ファイルから得たそれぞれのデータをstring形に変換して、頭にH Str: 、H Lvl: を付け足して、HUD の「HighScore」ノードと「HighLevel」ノードそれぞれの「Text」プロパティに適用している。\n追加したメソッドを適切なタイミングで実行させる データを保存するメソッドと保存したデータを読み込むメソッドを用意できたので、それらのメソッドを適切なタイミングで実行するようにコードを更新していく。\nまずは_readyメソッドを編集する。\nfunc _ready(): randomize() add_new_level() add_new_ball() update_hud_life() load_data() # 追加 単純に、先ほど作成したload_dataメソッドを追加しただけだ。これで、ゲーム開始前にデータを保存しているファイルからハイスコアやハイレベルの値を取得して HUD に反映してくれる。\n次に_on_Ball_tree_exitedメソッドを編集する。ちなみにこのメソッドは、ボールオブジェクトが消える時に発信されるシグナルによって呼ばれる。\nfunc _on_Ball_tree_exited(): print(\"_on_Ball_tree_exited() called\") var no_ball = true for child in get_children(): if child.is_in_group(\"Balls\"): print(\"found ball\") no_ball = false break if no_ball: if is_playing: life -= 1 if life  0: if high_score  score: # 追加 high_score = score if high_level_num  level_num: # 追加 high_level_num = level_num save_data() # 追加 get_tree().change_scene(\"res://scene/GameOverView.tscn\") else: update_hud_life() life_down_sound.play() #（後略） このメソッド内のif no_ball:でネストされたif is_playing:でさらにネストされたif life ブロック内を編集する。このブロック内のコードは、『画面からボールが一つも無くなった場合』、『ゲームプレイ中であり』、『ライフが 0』の場合に実行される。つまり、ゲームオーバーになる場合だ。\n元々このブロックには、シーンを「GameOverView.tscn」に切り替えて、ゲームオーバー画面に遷移するためのコードget_tree().change_scene(\"res://scene/GameOverView.tscn\")のみを記述していた。今回はそのコードの前に、ハイスコアとハイレベルを更新するコードを追加した。\n具体的には、これまでのハイスコアを表す変数high_scoreの値が今プレイしていた時のスコアを表す変数scoreの値より小さければ、scoreの値を新しいハイスコアとしてhigh_scoreへ代入する、というプログラムをif構文で記述した。\n同様に、これまでのハイレベルを表す変数high_level_numの値が今プレイしていた時のレベルを表す変数level_numの値より小さければ、level_numの値を新しいハイレベルとしてhigh_level_numへ代入するよう記述した。\n ゲームオーバー画面を更新する 次にハイスコア、ハイレベルの表示が必要なのがゲームオーバー画面だ。プレイヤーの心情としては、ゲームオーバーになった時に、最終的に自分のスコアがどの程度でどのレベルまで到達したのかを確認したい。さらに、その結果はこれまでの最高記録を塗り替えたのかどうかも知りたいものだ。\nしたがって、ゲームオーバー画面には以下の4つの結果を表示するようにしていく。\n ハイスコア（過去最高獲得スコア） ラストスコア（今のプレイで最終的に獲得したスコア） ハイレベル（過去最高到達レベル） ラストレベル（今のプレイで最終的に到達したレベル）  それでは「GameOverView.tscn」シーンを開いて編集していこう。\nノードを追加して、プロパティを編集する 以下の手順で、シーンドックおよびインスペクタドックにて、必要なノードを追加し、プロパティを編集していこう。\n  シーンドックで「VBox」ノードに「VBoxContainer」クラスのノードを一つ追加して、名前を「ResultsContainer」に変更する。\n  シーンドックで「ResultsContainer」ノードの順番を「GameOverLavel」ノードの下、「Message」ノードの前に移動する。\n  インスペクタドックで「ResultsContainer」ノードの「Custom Constants」＞「Separation」プロパティを10にして有効にする。\n  シーンドックで「ResultsContainer」ノードに「Label」クラスのノードを 1 つ追加し、名前を「HighScore」に変更する。\n  インスペクタドックで「HighScore」ノードの「Align」プロパティを「Center」に変更する。\n  インスペクタドックで「HighScore」ノードの「Uppercase」プロパティを「オン」にする。\n  インスペクタドックで既存の「Message」ノードの「Custom Fonts」＞「Font」をコピーする。\n  インスペクタドックで「HighScore」ノードの「Custom Fonts」＞「Font」に貼り付けする。\n  さらに「HighScore」ノードの「Custom Fonts」＞「Font」をユニーク化する。\n  さらに「HighScore」ノードの「Custom Fonts」＞「Settings」＞「Size」プロパティを16にする。\n  シーンドックで「HighScore」ノードを3つ複製し、それらの名前を上から順番に「LastScore」、「HighLevel」、「LastLevel」に変更する。この時点でシーンドックは以下のようになる。\n  インスペクタドックで「HighScore」ノードの「Text」プロパティを「High Score: 0」にする。\n  同様に「LastScore」ノードの「Text」プロパティを「Last Score: 0」にする。\n  同様に「HighLevel」ノードの「Text」プロパティを「High Level: 0」にする。\n  同様に「LastLevel」ノードの「Text」プロパティを「Last Level: 0」にする。\n  ここまでの手順ができたら、2D ワークスペースから以下のようになっているのを確認できるはずだ。\nGameOverView.gd スクリプトを更新する ゲームオーバー画面のノードの追加と編集ができたので、ここからはスクリプトでゲームオーバー画面に切り替わる際のデータの読み込みを実装していく。ちなみに、ゲームオーバー画面なので、データの保存機能は不要だ。\nそれでは「GameOverView.gd」スクリプトを開いて編集していこう。\n必要な変数を追加する データの読み込みとその読み込んだデータを画面に反映させるために、まずは変数をいくつか追加しておく。\nconst SCORE_FILE_PATH = \"user://score_record.save\" onready var high_score = $VBox/ResultsContainer/HighScore onready var last_score = $VBox/ResultsContainer/LastScore onready var high_level = $VBox/ResultsContainer/HighLevel onready var last_level = $VBox/ResultsContainer/LastLevel #（後略） constキーワードで定数SCORE_FILE_PATHを定義した。値はデータが保存されいているファイルのパスだ。「Game.gd」スクリプトでも同じ定数を定義したところである。\n次にonreadyキーワード付きの変数をhigh_scoreをはじめとして 4 つ定義しているが、これらは今回追加した「Label」クラスのそれぞれのノードを指している。\n読み込み用のメソッドを追加する ほどんど「Game.gd」スクリプトで実装した内容と同じになるが、「GameOverView.gd」スクリプトの方でも、データ読み込み用のメソッドを追加する必要がある。\nfunc load_data(): var file = File.new() if file.file_exists(SCORE_FILE_PATH): file.open(SCORE_FILE_PATH, File.READ) var data = parse_json(file.get_line()) if data != null: high_score.text = \"High Score: \" + str(data[\"high_score\"]) last_score.text = \"Last Score: \" + str(data[\"last_score\"]) high_level.text = \"High Level: \" + str(data[\"high_level\"]) last_level.text = \"Last Level: \" + str(data[\"last_level\"]) file.close() laod_dataという名前で読み込み用メソッドを定義した。if data != null:の行までは「Game.gd」スクリプトと全く同じだが、そのifブロックの中のコードがゲームオーバー画面仕様になっている。\nこのメソッドのコードを要約すると、データ保存先のファイルがあればファイルを開き、そのあとデータが空っぽでなければ、単純に「HighScore」、「LastScore」、「HighLevel」、「LastLevel」それぞれのノードの「Text」プロパティに、ファイルから取得したJSONデータを最終的にstring型に変換して反映する。もしファイルがない、またはデータがなければ、「Text」プロパティの値はデフォルトの設定で表示される。\nなお、繰り返しになるが、最後のファイルを閉じるcloseメソッドは忘れてはいけない。\n追加したメソッドを適切なタイミングで実行させる 読み込み用メソッドが定義できたので、これを_readyメソッド内で実行させる。コードは至ってシンプルだ。\nfunc _ready(): load_data() これだけで、ゲームオーバー画面に遷移した時にファイルの読み込みに失敗さえしなければ、きちんと画面上にデータを表示してくれるはずだ。今はまだデータファイルが作成されていないので、シーンを実行するとデフォルトの値で表示される。\n 最終確認 それでは最後にデータの保存とデータの読み込みがうまくいくかプロジェクトを実行して確認してみよう。\n 初回プレイ時、ライフが 0 になったタイミングでデータがファイルに保存され、ゲームオーバー画面に遷移した時にそのファイルのデータが読み込まれ画面上に結果が表示された。 2回目、3回目プレイ時は、最初からファイルのデータが読み込まれ HUD 中央のハイスコアに反映された。 2回目プレイで初回より高いスコアを獲得してからゲームオーバーになった時、画面には更新されたハイスコアが表示された。 3回目プレイで2回目プレイより低いスコアでゲームオーバーになった時、画面には2回目プレイ時のハイスコアが表示された。 1 ~ 3回目のプレイでのゲームオーバー画面でその時々のスコアが「Last Score」に反映された。  以上のことが確認できたので、今回のデータの保存と読み込みは問題なく実装できたと判断できる。なお、レベルの方の確認はカットするが、こちらも問題ないはずだ。\nところで、実際にデバッグ作業を行う中で、作成されたデータファイルを削除したい場合も発生するだろう。その場合は、ご利用のOSのファイルマネージャー（Windows なら Explorer、macOS なら Finder）から保存先のフォルダパスへアクセスして削除してほしい。なお、データの保存先は以下の通りだ。\n Windows: %APPDATA%¥Godot¥app_userdata¥[ProjectName]¥ macOS: ~/Library/Application Support/Godot/app_userdata/[ProjectName]/ Linux: ~/.local/share/godot/app_userdata/[ProjectName]/   Memo: \n詳細は公式ドキュメントの File paths in Godot projects の項目をご参照ください。\n 最後に今回編集した「Game.gd」と「GameOverView.gd」のスクリプト全体のコードもここに公開しておく。\n 「Game.gd」スクリプト全体を見る extends Node2D const POINT = 100 const MAX_LIFE = 5 # Added @ P11 const SCORE_FILE_PATH = \"user://score_record.save\" # Added @ P13 export var drop_rate = 0.2 var level_num: int = 1 var high_level_num: int = 0 # Added @ P13 var score: int = 0 var high_score: int = 0 # Added @ P13 var bonus_rate = 1.0 var life = 3 var is_playing = true var is_multiple_on = false # Added @ P11 var is_laser_on = false # Added @ P11 #onready var level = $Level1 # Removed @ P11 onready var next_screen = $NextScreen onready var next_screen_level = $NextScreen/VBox/Level onready var next_screen_score = $NextScreen/VBox/Score onready var next_screen_life = $NextScreen/VBox/HBox/Life onready var hud_level = $HUD/LeftBox/Level onready var hud_high_level = $HUD/MidBox/HighLevel # Added @ P13 onready var hud_score = $HUD/LeftBox/Score onready var hud_high_score = $HUD/MidBox/HighScore # Added @ P13 onready var hud_rightbox = $HUD/RightBox onready var paddle = $Paddle #onready var ball = $Ball # Removed @ P11 onready var pause_screen = $PauseScreen onready var life_down_sound = $LifeDownSound onready var slow_collide_sound = $SlowCollideSound onready var expand_collide_sound = $ExpandCollideSound onready var multiple_collide_sound = $MultipleCollideSound onready var laser_collide_sound = $LaserCollideSound onready var life_collide_sound = $LifeCollideSound onready var play_bgm = $PlayBGM onready var paddle_position = paddle.position onready var paddle_scale = paddle.scale # Added @ P11 #onready var ball_position = ball.position # Removed @ P11 onready var ball = preload(\"res://scene/Ball.tscn\") # Added @ P11 onready var laser = preload(\"res://scene/Laser.tscn\") # Added @ P11 onready var powerup = preload(\"res://scene/Powerup.tscn\") # Added @ P10 onready var level = null # Updated @ P11 func _ready(): randomize() # Added @ P10 add_new_level() # Added @ P11 add_new_ball() # Added @ P11 update_hud_life() load_data() # Added @ P13 # For debug #leave_one_brick(43) # Moved @ P11 #ball.connect(\"tree_exited\", self, \"_on_Ball_tree_exited\") # Removed @ P11 #for brick in level.get_children(): # Removed @ P11 #brick.connect(\"tree_exited\", self, \"_on_Brick_tree_exited\", [brick.global_position]) # Updated @ P10 func _process(_delta): # Added @ P11 if is_multiple_on and Input.is_action_just_pressed(\"launch_ball\"): add_new_ball() if is_laser_on and Input.is_action_just_pressed(\"ui_up\"): fire_laser() # For debug func leave_one_brick(brick_num: int): for child in level.get_children(): if child.get_name() == \"Brick\" + str(brick_num): continue child.queue_free() # Method receiving Ball signal func _on_Ball_tree_exited(): print(\"_on_Ball_tree_exited() called\") var no_ball = true # Added @ P11 for child in get_children(): # Added @ P11 if child.is_in_group(\"Balls\"): print(\"found ball\") no_ball = false break if no_ball: # Added and Edited @ P11 if is_playing: life -= 1 if life  0: if high_score  score: # Added @ P13 high_score = score if high_level_num  level_num: # Added @ P13 high_level_num = level_num save_data() # Added @ P13 get_tree().change_scene(\"res://scene/GameOverView.tscn\") else: update_hud_life() life_down_sound.play() else: is_playing = true # Clear powerup items for child in get_children(): # Added @ P10 if child.is_in_group(\"PowerupItems\"): child.queue_free() # Set Paddle and Balls as default is_multiple_on = false # Added @ P11 is_laser_on = false # Added @ P11 paddle.position = paddle_position paddle.scale = paddle_scale # Added @ P11 add_new_ball() # Added @ P11 #ball = load(\"res://scene/Ball.tscn\").instance() # Removed @ P11 #call_deferred(\"add_child\", ball) # Removed @ P11 #call_deferred(\"move_child\", ball, 3) # Removed @ P11 #ball.connect(\"tree_exited\", self, \"_on_Ball_tree_exited\") # Removed @ P11 # Set life nodes shown and hidden as life variable func update_hud_life(): var count = 0 for child in hud_rightbox.get_children(): count += 1 if count  life: child.show() else: child.hide() # Add a new ball func add_new_ball(): # Added @ P11 print(\"add_new_ball() called\") var instance = ball.instance() instance.position = Vector2(paddle.position.x, paddle.position.y - 10) # Added @ P11 call_deferred(\"add_child\", instance) call_deferred(\"move_child\", instance, 4) instance.connect(\"tree_exited\", self, \"_on_Ball_tree_exited\")\t#instance.mode = 3 # Removed @ P11 # Method receiving Brick signal func _on_Brick_tree_exited(brick_position): # Update Score score += POINT * bonus_rate bonus_rate += 0.1 hud_score.text = \"Score: \" + str(score) # Exit current Level node if level.get_child_count()  0: set_next_level() else: # Added @ P11 # Drop powerup item drop_powerup(brick_position) # Added @ P10 func drop_powerup(brick_position: Vector2): # Added @ P10 if randf()  drop_rate: var powerup_instance = powerup.instance() powerup_instance.position = brick_position call_deferred(\"add_child\", powerup_instance) call_deferred(\"move_child\", powerup_instance, 5) # Added @ P 11 powerup_instance.connect(\"item_collided\", self, \"_on_Powerup_item_collided\") # Action when powerup item collided func _on_Powerup_item_collided(item): # Updated @ P11 match item: 0: # SLOW slow_balls() 1: # EXPAND expand_paddle() 2: # MULTIPLE enable_multiple_balls() 3: # LASER enable_laser() 4: # LIFE add_life() # slow balls func slow_balls(): # Added @ P11 slow_collide_sound.play() # Added @ P12 for child in get_children(): if child.is_in_group(\"Balls\"): child.ball_speed = child.first_speed # Stretch paddle func expand_paddle(): # Added @ P11 expand_collide_sound.play() # Added @ P12 if paddle.scale  paddle_scale: paddle.scale.x *= 2 yield(get_tree().create_timer(10), \"timeout\") paddle.scale = paddle_scale # enable powerup Multiple func enable_multiple_balls(): # Added @ P11 multiple_collide_sound.play() # Added @ P12 if not is_multiple_on: is_multiple_on = true yield(get_tree().create_timer(3), \"timeout\") is_multiple_on = false # enable powerup Laser func enable_laser(): # Added @ P11 laser_collide_sound.play() # Added @ P12 if not is_laser_on: is_laser_on = true yield(get_tree().create_timer(3), \"timeout\") is_laser_on = false # fire laser beam func fire_laser(): var instance = laser.instance() call_deferred(\"add_child\", instance) call_deferred(\"move_child\", instance, 6) instance.position.x = paddle.position.x instance.position.y = paddle.position.y - 16 # Add a life if less than 5 func add_life(): # Added @ P11 life_collide_sound.play() # Added @ P12 if life  MAX_LIFE: life += 1 update_hud_life() # set next level func set_next_level(): print(\"set_next_level() called\") # Change status is_playing = false is_multiple_on = false # Added @ P11 is_laser_on = false # Added @ P11 # Clear left objects level.queue_free() for child in get_children(): if child.is_in_group(\"Balls\") or child.is_in_group(\"Lasers\"): # 追加 child.queue_free() # Increment level number level_num += 1 # Stop PauseScreen node pause_screen.pause_mode = 1 # Show NextScreen node next_screen.pause_mode = 2 next_screen_level.text = \"Level: \" + str(level_num) next_screen_score.text = \"Score: \" + str(score) next_screen_life.text = \"x \" + str(life) next_screen.show() # Set Level of HUD the next level hud_level.text = \"Level: \" + str(level_num) # Set Paddle and Ball the first position #paddle.position = paddle_position # Removed @ P11 #paddle.scale = paddle_scale # Removed @ P11 #ball.position = ball_position # Removed @ P11 #ball.mode = 3 # Removed @ P11 # Set next Level node add_new_level() # Added @ P11 #level = load(\"res://scene/Level\" + str(level_num) + \".tscn\").instance() # Removed @ P11 #add_child(level) # Removed @ P11 #move_child(level, 5) # Removed @ P11 #for child in level.get_children(): # Removed @ P11 #child.connect(\"tree_exited\", self, \"_on_Brick_tree_exited\") # Removed @ P11 # Pause game until NextScreen is hidden get_tree().paused = true # Add new level func add_new_level(): # Added @ P11 level = load(\"res://scene/Level\" + str(level_num) + \".tscn\").instance() add_child(level) move_child(level, 3) # Changed from 5 to 3 @ P11 for child in level.get_children(): child.connect(\"tree_exited\", self, \"_on_Brick_tree_exited\", [child.global_position]) # Updated to add th 4th arg @ P11  func _on_PauseScreen_visibility_changed(): play_bgm.stream_paused = not play_bgm.stream_paused # Save data func save_data(): # Added @ P13 var data = { \"last_level\": level_num, \"high_level\": high_level_num, \"last_score\": score, \"high_score\": high_score, } var file = File.new() file.open(SCORE_FILE_PATH, File.WRITE) file.store_line(to_json(data)) file.close() # Load data func load_data(): # Added @ P13 var file = File.new() if file.file_exists(SCORE_FILE_PATH): file.open(SCORE_FILE_PATH, File.READ) var data = parse_json(file.get_line()) if data != null: high_score = data[\"high_score\"] high_level_num = data[\"high_level\"] file.close() hud_high_score.text = \"H Scr: \" + str(high_score) hud_high_level.text = \"H Lvl: \" + str(high_level_num)   「GameOverView.gd」スクリプト全体を見る extends Control const SCORE_FILE_PATH = \"user://score_record.save\" # Added @ P13 onready var high_score = $VBox/ResultsContainer/HighScore # Added @ P13 onready var last_score = $VBox/ResultsContainer/LastScore # Added @ P13 onready var high_level = $VBox/ResultsContainer/HighLevel # Added @ P13 onready var last_level = $VBox/ResultsContainer/LastLevel # Added @ P13 onready var sound = $KeySound func _ready(): # Added @ P13 load_data() func _input(event): if event is InputEventKey: print(\"Input at Game Over: \", event.as_text()) if event.is_action_released(\"Quit\"): sound.play() yield(sound, \"finished\") get_tree().quit() elif event.is_action_released(\"ui_accept\"): sound.play() yield(sound, \"finished\") get_tree().change_scene(\"res://scene/GameStartView.tscn\") func load_data(): # Added @ P13 var file = File.new() if file.file_exists(SCORE_FILE_PATH): file.open(SCORE_FILE_PATH, File.READ) var data = parse_json(file.get_line()) if data != null: high_score.text = \"High Score: \" + str(data[\"high_score\"]) last_score.text = \"Last Score: \" + str(data[\"last_score\"]) high_level.text = \"High Level: \" + str(data[\"high_level\"]) last_level.text = \"Last Level: \" + str(data[\"last_level\"]) file.close()    \n (adsbygoogle = window.adsbygoogle || []).push({});  おわりに 以上で Part 13 は完了だ。今回はデータを保存する機能、保存したデータを読み込む機能を実装した。ゲームによって、保存したいデータは変わり、規模が大きくなるほど、保存するデータも複雑化するだろう。しかし、何事も基本が重要なので、今回のチュートリアルの内容をぜひ今後の開発に役立てていただければと思う。\n次回 Part 14 ではブロックの種類（例えば一回の衝突では消えない硬いブロックなど）を増やして、レベルに応じて難易度の幅を広くできるように調整し、複数のレベルをデザインする。\n",
+  "articleBody": "Part 13 の今回は、ブロック崩しの HUD にハイスコア、ハイレベル（過去最高クリアレベルのことをこう呼ぶことにする）の要素を追加し、ゲームオーバーになった時点でそのデータが自動的に保存されるようにして、一度ゲームを終了しても記録が消えない仕組みを作っていく。\n Memo: \n過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るブロック崩し \n  \n (adsbygoogle = window.adsbygoogle || []).push({});   HUD をアップデートする 今回、「ハイスコア」と「ハイレベル」の要素をゲームに追加する。これに伴い、HUD にもそれぞれのノードを追加して、プロパティを編集していく。\nでは、「Game.tscn」シーンを開いて手順を進めていこう。\nノードを追加する 「HUD」ノードの「LeftBox」ノードの次に、新たに「VBoxContainer」クラスのノードを追加し、名前を「MidBox」に変更しよう。\nさらに「MidBox」ノードには「Label」クラスのノードを 2 つ追加し、それぞれの名前を「HighScore」、「HighLevel」に変更しよう。これで「HUD」ノードの構成は以下のようになったはずだ。\n追加したノードのプロパティを編集する 「LeftBox」ノードと「MidBox」ノードの位置と枠の大きさを編集する。HUD のレイアウトは、ブロックの配置の都合上、全て画面上端に並べる必要がある。\n2D ワークスペースで「MidBox」をドラッグして画面上端中央に配置しても問題ないが、インスペクタドックで数値を調整するならそれぞれのノードで「Margin」プロパティが以下の値になるようにしよう。\n 「LeftBox」ノード\n 「MidBox」ノード\n  これで、画面上端中央に「MidBox」ノードが配置された。\n次にインスペクタドックで、「MidBox」ノードの子ノードである「HighScore」ノードと「HighLevel」ノードの「Text」プロパティを設定する。\n 「HighScore」ノードの「Text」プロパティ：「H Scr: 0」 「HighLevel」ノードの「Text」プロパティ：「H Lvl: 1」  この時点で、ゲーム画面は以下のようになったはずだ。\nGame.gd スクリプトを更新する HUD の見た目は更新できたので、次はスクリプトで表示される値を制御していく。ここで、ゲームデータを保存する機能と保存されたゲームデータを読み込む機能を新たに実装していく。\nではここから「Game.gd」スクリプトを開いて編集していこう。\n必要な定数と変数を追加する まずは新たにいくつか変数を定義していく。「# 追加」のコメントを記述している行が今回定義した定数と変数だ。\nextends Node2D  const POINT = 100 const MAX_LIFE = 5 const SCORE_FILE_PATH = \"user://score_record.save\" # 追加  export var drop_rate = 0.2  var level_num: int = 1 var high_level_num: int = 0 # 追加 var score: int = 0 var high_score: int = 0 # 追加  #（中略）  onready var hud_level = $HUD/LeftBox/Level onready var hud_high_level = $HUD/MidBox/HighLevel # 追加 onready var hud_score = $HUD/LeftBox/Score onready var hud_high_score = $HUD/MidBox/HighScore # 追加  #（後略） まずconstキーワードで定義しているのはSCORE_FILE_PATHという定数だ。その値を\"user://score_record.save\"としてデータの保存先となるファイルパスを指定した。\nこのように、データを保存するファイルの頭にuser://をつけるとプロジェクトの所定の場所にデータを保存してくれる。このファイルにデータを書き込めば、シーンを切り替えたり、ゲームを一度終了してから再開しても、ファイルからデータを読み込んで、以前プレイした時の状態を引き継ぐことが可能だ。\n次に変数high_level_numだが、これはゲーム開始時に前回までのハイレベルを渡しておくためのものだ。同様に、もう一つの変数high_scoreには、ゲーム開始時に前回までのハイスコアを渡しておく。また、ゲームオーバーの時に、記録が更新される際にも利用する。\n続いてonreadyキーワード付きの変数だが、これらは特定のノードを指すのに使っている。hud_high_levelは「HighLevel」ノードを、hud_high_scoreは「HighScore」ノードを指している。\n保存用のメソッドを追加する 引き続き「Game.gd」スクリプトに、ゲームのデータを保存するためのメソッドを追加する。\nfunc save_data(): \tvar data = { \t\"last_level\": level_num, \t\"high_level\": high_level_num, \t\"last_score\": score, \t\"high_score\": high_score, \t} \tvar file = File.new() \tfile.open(SCORE_FILE_PATH, File.WRITE) \tfile.store_line(to_json(data)) \tfile.close() save_dataというメソッドを定義した。まず変数dataをメソッド内で定義している。メソッド内で定義した変数は、そのメソッドの外では使えないので注意してほしい。dataは辞書型データで{\"key\": value}の組み合わせで複数のデータをまとめることができる。\nここではデータとして保存したい値を格納したlevel_num、high_level_num、score、high_scoreの4つの変数それぞれを Value とし、対応する Key を\"last_level\"、“high_level”、“last_score”、“high_score\"として定義した。\nそのあとはfileという変数を定義している。newメソッドを実行して作成されたFileクラスのノードを値として代入している。これ以降Fileクラスのメソッドが続く。\nデータを保存するには保存先のファイルを開く必要がある。openは第一引数で指定したパスのファイルを開くメソッドだ。ここでは、先に定義した定数SCORE_FILE_PATH（\"user://score_record.save\"）を第一引数として渡している。第二引数にはファイルを開くときのモードを指定する。ここではデータを書き込んで保存したいので、WRITEを指定して書き込みモードにしている。\n次にstore_lineメソッドでファイルにデータを書き込んでいる。store_xxxという名前のメソッドは他にもいくつかあるが、このstore_lineは1行のstring型データをファイルに書き込む。そして、store_lineの引数が書き込むデータになるが、ここでは先に定義した辞書型の変数dataをto_jsonで変換した値を指定している。dataは辞書型データで、スクリプト上は見やすさのため改行しているが、実際には1行のデータだ。\nここでto_jsonについても説明しておく。まず「JSON」というのは「JavaScript Object Notation」の略で、JavaScript というプログラミング言語でのオブジェクトの記述方式で保存されたデータフォーマットだ。そして、その構造は GDScript を含む各種プログラミング言語の辞書型データにもそっくりの{\"key\": value}という形式だ。先に保存したいデータを辞書型でまとめておき、保存データを指定するときにその辞書型データをto_jsonメソッドの引数にして、JSON形式に変換して保存するようにしたというわけだ。\n最後にcloseメソッドでファイルを閉じている。開きっぱなしにして、メモリを消耗しないよう注意しよう。\n読み込み用のメソッドを追加する 「Game.gd」スクリプトで、今度は保存したデータを読み込むメソッドを追加する。\nfunc load_data(): \tvar file = File.new() \tif file.file_exists(SCORE_FILE_PATH): \tfile.open(SCORE_FILE_PATH, File.READ) \tvar data = parse_json(file.get_line()) \tif data != null: \thigh_score = data[\"high_score\"] \thigh_level_num = data[\"high_level\"] \tfile.close() \thud_high_score.text = \"H Scr: \" + str(high_score) \thud_high_level.text = \"H Lvl: \" + str(high_level_num) データを読み込むのはload_dataというメソッドだ。\n先ほどの書き込みメソッドsave_dataと同様に、まずはFileクラスのnewメソッドにより、Fileクラスのノードを作成する。そこからまたFileクラスのメソッドが続くが順番に見ていこう。\nまずはif構文で、file_existsメソッドによりデータ保存先のファイル（定数SCORE_FILE_PATHの値）があるか確認している。ファイルがあればifブロックの中の処理を続行する。\nではifブロックの中のコードを見ていこう。まず、ファイルをopenメソッドで開く。ここではモードをREADにして読み込みモードにしている。\n次はget_lineメソッドでファイルに保存されている一行のデータを読み込む。この時、この読み込んだデータはJSON形式なので、これをparse_jsonメソッド GDScript の辞書型データに変換して、変数dataに格納している。\n2段回目のif構文だが、もし変数dataが空っぽのnullでなければ、変数high_scoreにファイルに保存しているハイスコアのデータを、変数high_level_numにはファイルに保存しているハイレベルのデータを代入する。\nそこまでできたら、忘れずにファイルをcloseメソッドで閉じる。\n最後に、ファイルから得たそれぞれのデータをstring形に変換して、頭にH Str: 、H Lvl: を付け足して、HUD の「HighScore」ノードと「HighLevel」ノードそれぞれの「Text」プロパティに適用している。\n追加したメソッドを適切なタイミングで実行させる データを保存するメソッドと保存したデータを読み込むメソッドを用意できたので、それらのメソッドを適切なタイミングで実行するようにコードを更新していく。\nまずは_readyメソッドを編集する。\nfunc _ready(): \trandomize() \tadd_new_level() \tadd_new_ball() \tupdate_hud_life() \tload_data() # 追加 単純に、先ほど作成したload_dataメソッドを追加しただけだ。これで、ゲーム開始前にデータを保存しているファイルからハイスコアやハイレベルの値を取得して HUD に反映してくれる。\n次に_on_Ball_tree_exitedメソッドを編集する。ちなみにこのメソッドは、ボールオブジェクトが消える時に発信されるシグナルによって呼ばれる。\nfunc _on_Ball_tree_exited(): \tprint(\"_on_Ball_tree_exited() called\") \tvar no_ball = true \tfor child in get_children(): \tif child.is_in_group(\"Balls\"): \tprint(\"found ball\") \tno_ball = false \tbreak \t\tif no_ball: \tif is_playing: \tlife -= 1 \tif life  0: \tif high_score  score: # 追加 \thigh_score = score \tif high_level_num  level_num: # 追加 \thigh_level_num = level_num \tsave_data() # 追加 \tget_tree().change_scene(\"res://scene/GameOverView.tscn\") \telse: \tupdate_hud_life() \tlife_down_sound.play()  \t#（後略） このメソッド内のif no_ball:でネストされたif is_playing:でさらにネストされたif life ブロック内を編集する。このブロック内のコードは、『画面からボールが一つも無くなった場合』、『ゲームプレイ中であり』、『ライフが 0』の場合に実行される。つまり、ゲームオーバーになる場合だ。\n元々このブロックには、シーンを「GameOverView.tscn」に切り替えて、ゲームオーバー画面に遷移するためのコードget_tree().change_scene(\"res://scene/GameOverView.tscn\")のみを記述していた。今回はそのコードの前に、ハイスコアとハイレベルを更新するコードを追加した。\n具体的には、これまでのハイスコアを表す変数high_scoreの値が今プレイしていた時のスコアを表す変数scoreの値より小さければ、scoreの値を新しいハイスコアとしてhigh_scoreへ代入する、というプログラムをif構文で記述した。\n同様に、これまでのハイレベルを表す変数high_level_numの値が今プレイしていた時のレベルを表す変数level_numの値より小さければ、level_numの値を新しいハイレベルとしてhigh_level_numへ代入するよう記述した。\n ゲームオーバー画面を更新する 次にハイスコア、ハイレベルの表示が必要なのがゲームオーバー画面だ。プレイヤーの心情としては、ゲームオーバーになった時に、最終的に自分のスコアがどの程度でどのレベルまで到達したのかを確認したい。さらに、その結果はこれまでの最高記録を塗り替えたのかどうかも知りたいものだ。\nしたがって、ゲームオーバー画面には以下の4つの結果を表示するようにしていく。\n ハイスコア（過去最高獲得スコア） ラストスコア（今のプレイで最終的に獲得したスコア） ハイレベル（過去最高到達レベル） ラストレベル（今のプレイで最終的に到達したレベル）  それでは「GameOverView.tscn」シーンを開いて編集していこう。\nノードを追加して、プロパティを編集する 以下の手順で、シーンドックおよびインスペクタドックにて、必要なノードを追加し、プロパティを編集していこう。\n  シーンドックで「VBox」ノードに「VBoxContainer」クラスのノードを一つ追加して、名前を「ResultsContainer」に変更する。\n  シーンドックで「ResultsContainer」ノードの順番を「GameOverLavel」ノードの下、「Message」ノードの前に移動する。\n  インスペクタドックで「ResultsContainer」ノードの「Custom Constants」＞「Separation」プロパティを10にして有効にする。\n  シーンドックで「ResultsContainer」ノードに「Label」クラスのノードを 1 つ追加し、名前を「HighScore」に変更する。\n  インスペクタドックで「HighScore」ノードの「Align」プロパティを「Center」に変更する。\n  インスペクタドックで「HighScore」ノードの「Uppercase」プロパティを「オン」にする。\n  インスペクタドックで既存の「Message」ノードの「Custom Fonts」＞「Font」をコピーする。\n  インスペクタドックで「HighScore」ノードの「Custom Fonts」＞「Font」に貼り付けする。\n  さらに「HighScore」ノードの「Custom Fonts」＞「Font」をユニーク化する。\n  さらに「HighScore」ノードの「Custom Fonts」＞「Settings」＞「Size」プロパティを16にする。\n  シーンドックで「HighScore」ノードを3つ複製し、それらの名前を上から順番に「LastScore」、「HighLevel」、「LastLevel」に変更する。この時点でシーンドックは以下のようになる。\n  インスペクタドックで「HighScore」ノードの「Text」プロパティを「High Score: 0」にする。\n  同様に「LastScore」ノードの「Text」プロパティを「Last Score: 0」にする。\n  同様に「HighLevel」ノードの「Text」プロパティを「High Level: 0」にする。\n  同様に「LastLevel」ノードの「Text」プロパティを「Last Level: 0」にする。\n  ここまでの手順ができたら、2D ワークスペースから以下のようになっているのを確認できるはずだ。\nGameOverView.gd スクリプトを更新する ゲームオーバー画面のノードの追加と編集ができたので、ここからはスクリプトでゲームオーバー画面に切り替わる際のデータの読み込みを実装していく。ちなみに、ゲームオーバー画面なので、データの保存機能は不要だ。\nそれでは「GameOverView.gd」スクリプトを開いて編集していこう。\n必要な変数を追加する データの読み込みとその読み込んだデータを画面に反映させるために、まずは変数をいくつか追加しておく。\nconst SCORE_FILE_PATH = \"user://score_record.save\"  onready var high_score = $VBox/ResultsContainer/HighScore onready var last_score = $VBox/ResultsContainer/LastScore onready var high_level = $VBox/ResultsContainer/HighLevel onready var last_level = $VBox/ResultsContainer/LastLevel  #（後略） constキーワードで定数SCORE_FILE_PATHを定義した。値はデータが保存されいているファイルのパスだ。「Game.gd」スクリプトでも同じ定数を定義したところである。\n次にonreadyキーワード付きの変数をhigh_scoreをはじめとして 4 つ定義しているが、これらは今回追加した「Label」クラスのそれぞれのノードを指している。\n読み込み用のメソッドを追加する ほどんど「Game.gd」スクリプトで実装した内容と同じになるが、「GameOverView.gd」スクリプトの方でも、データ読み込み用のメソッドを追加する必要がある。\nfunc load_data(): \tvar file = File.new() \tif file.file_exists(SCORE_FILE_PATH): \tfile.open(SCORE_FILE_PATH, File.READ) \tvar data = parse_json(file.get_line()) \tif data != null: \thigh_score.text = \"High Score: \" + str(data[\"high_score\"]) \tlast_score.text = \"Last Score: \" + str(data[\"last_score\"]) \thigh_level.text = \"High Level: \" + str(data[\"high_level\"]) \tlast_level.text = \"Last Level: \" + str(data[\"last_level\"]) \tfile.close() laod_dataという名前で読み込み用メソッドを定義した。if data != null:の行までは「Game.gd」スクリプトと全く同じだが、そのifブロックの中のコードがゲームオーバー画面仕様になっている。\nこのメソッドのコードを要約すると、データ保存先のファイルがあればファイルを開き、そのあとデータが空っぽでなければ、単純に「HighScore」、「LastScore」、「HighLevel」、「LastLevel」それぞれのノードの「Text」プロパティに、ファイルから取得したJSONデータを最終的にstring型に変換して反映する。もしファイルがない、またはデータがなければ、「Text」プロパティの値はデフォルトの設定で表示される。\nなお、繰り返しになるが、最後のファイルを閉じるcloseメソッドは忘れてはいけない。\n追加したメソッドを適切なタイミングで実行させる 読み込み用メソッドが定義できたので、これを_readyメソッド内で実行させる。コードは至ってシンプルだ。\nfunc _ready(): \tload_data() これだけで、ゲームオーバー画面に遷移した時にファイルの読み込みに失敗さえしなければ、きちんと画面上にデータを表示してくれるはずだ。今はまだデータファイルが作成されていないので、シーンを実行するとデフォルトの値で表示される。\n 最終確認 それでは最後にデータの保存とデータの読み込みがうまくいくかプロジェクトを実行して確認してみよう。\n 初回プレイ時、ライフが 0 になったタイミングでデータがファイルに保存され、ゲームオーバー画面に遷移した時にそのファイルのデータが読み込まれ画面上に結果が表示された。 2回目、3回目プレイ時は、最初からファイルのデータが読み込まれ HUD 中央のハイスコアに反映された。 2回目プレイで初回より高いスコアを獲得してからゲームオーバーになった時、画面には更新されたハイスコアが表示された。 3回目プレイで2回目プレイより低いスコアでゲームオーバーになった時、画面には2回目プレイ時のハイスコアが表示された。 1 ~ 3回目のプレイでのゲームオーバー画面でその時々のスコアが「Last Score」に反映された。  以上のことが確認できたので、今回のデータの保存と読み込みは問題なく実装できたと判断できる。なお、レベルの方の確認はカットするが、こちらも問題ないはずだ。\nところで、実際にデバッグ作業を行う中で、作成されたデータファイルを削除したい場合も発生するだろう。その場合は、ご利用のOSのファイルマネージャー（Windows なら Explorer、macOS なら Finder）から保存先のフォルダパスへアクセスして削除してほしい。なお、データの保存先は以下の通りだ。\n Windows: %APPDATA%¥Godot¥app_userdata¥[ProjectName]¥ macOS: ~/Library/Application Support/Godot/app_userdata/[ProjectName]/ Linux: ~/.local/share/godot/app_userdata/[ProjectName]/   Memo: \n詳細は公式ドキュメントの File paths in Godot projects の項目をご参照ください。\n 最後に今回編集した「Game.gd」と「GameOverView.gd」のスクリプト全体のコードもここに公開しておく。\n 「Game.gd」スクリプト全体を見る extends Node2D  const POINT = 100 const MAX_LIFE = 5 # Added @ P11 const SCORE_FILE_PATH = \"user://score_record.save\" # Added @ P13  export var drop_rate = 0.2  var level_num: int = 1 var high_level_num: int = 0 # Added @ P13 var score: int = 0 var high_score: int = 0 # Added @ P13 var bonus_rate = 1.0 var life = 3 var is_playing = true var is_multiple_on = false # Added @ P11 var is_laser_on = false # Added @ P11  #onready var level = $Level1 # Removed @ P11 onready var next_screen = $NextScreen onready var next_screen_level = $NextScreen/VBox/Level onready var next_screen_score = $NextScreen/VBox/Score onready var next_screen_life = $NextScreen/VBox/HBox/Life onready var hud_level = $HUD/LeftBox/Level onready var hud_high_level = $HUD/MidBox/HighLevel # Added @ P13 onready var hud_score = $HUD/LeftBox/Score onready var hud_high_score = $HUD/MidBox/HighScore # Added @ P13 onready var hud_rightbox = $HUD/RightBox onready var paddle = $Paddle #onready var ball = $Ball # Removed @ P11 onready var pause_screen = $PauseScreen onready var life_down_sound = $LifeDownSound onready var slow_collide_sound = $SlowCollideSound onready var expand_collide_sound = $ExpandCollideSound onready var multiple_collide_sound = $MultipleCollideSound onready var laser_collide_sound = $LaserCollideSound onready var life_collide_sound = $LifeCollideSound onready var play_bgm = $PlayBGM  onready var paddle_position = paddle.position onready var paddle_scale = paddle.scale # Added @ P11 #onready var ball_position = ball.position # Removed @ P11 onready var ball = preload(\"res://scene/Ball.tscn\") # Added @ P11 onready var laser = preload(\"res://scene/Laser.tscn\") # Added @ P11 onready var powerup = preload(\"res://scene/Powerup.tscn\") # Added @ P10 onready var level = null # Updated @ P11  func _ready(): \trandomize() # Added @ P10 \tadd_new_level() # Added @ P11 \tadd_new_ball() # Added @ P11 \tupdate_hud_life() \tload_data() # Added @ P13 \t# For debug \t#leave_one_brick(43) # Moved @ P11 \t#ball.connect(\"tree_exited\", self, \"_on_Ball_tree_exited\") # Removed @ P11 \t#for brick in level.get_children(): # Removed @ P11 \t#brick.connect(\"tree_exited\", self, \"_on_Brick_tree_exited\", [brick.global_position]) # Updated @ P10   func _process(_delta): # Added @ P11 \tif is_multiple_on and Input.is_action_just_pressed(\"launch_ball\"): \tadd_new_ball() \tif is_laser_on and Input.is_action_just_pressed(\"ui_up\"): \tfire_laser()   # For debug func leave_one_brick(brick_num: int): \tfor child in level.get_children(): \tif child.get_name() == \"Brick\" + str(brick_num): \tcontinue \tchild.queue_free()  # Method receiving Ball signal func _on_Ball_tree_exited(): \tprint(\"_on_Ball_tree_exited() called\") \tvar no_ball = true # Added @ P11 \tfor child in get_children(): # Added @ P11 \tif child.is_in_group(\"Balls\"): \tprint(\"found ball\") \tno_ball = false \tbreak \t\tif no_ball: # Added and Edited @ P11 \tif is_playing: \tlife -= 1 \tif life  0: \tif high_score  score: # Added @ P13 \thigh_score = score \tif high_level_num  level_num: # Added @ P13 \thigh_level_num = level_num \tsave_data() # Added @ P13 \tget_tree().change_scene(\"res://scene/GameOverView.tscn\") \telse: \tupdate_hud_life() \tlife_down_sound.play() \telse: \tis_playing = true \t# Clear powerup items \tfor child in get_children(): # Added @ P10 \tif child.is_in_group(\"PowerupItems\"): \tchild.queue_free() \t# Set Paddle and Balls as default \tis_multiple_on = false # Added @ P11 \tis_laser_on = false # Added @ P11 \tpaddle.position = paddle_position \tpaddle.scale = paddle_scale # Added @ P11 \tadd_new_ball() # Added @ P11 \t#ball = load(\"res://scene/Ball.tscn\").instance() # Removed @ P11 \t#call_deferred(\"add_child\", ball) # Removed @ P11 \t#call_deferred(\"move_child\", ball, 3) # Removed @ P11 \t#ball.connect(\"tree_exited\", self, \"_on_Ball_tree_exited\") # Removed @ P11   # Set life nodes shown and hidden as life variable func update_hud_life(): \tvar count = 0 \tfor child in hud_rightbox.get_children(): \tcount += 1 \tif count  life: \tchild.show() \telse: \tchild.hide()   # Add a new ball func add_new_ball(): # Added @ P11 \tprint(\"add_new_ball() called\") \tvar instance = ball.instance() \tinstance.position = Vector2(paddle.position.x, paddle.position.y - 10) # Added @ P11 \tcall_deferred(\"add_child\", instance) \tcall_deferred(\"move_child\", instance, 4) \tinstance.connect(\"tree_exited\", self, \"_on_Ball_tree_exited\")\t\t#instance.mode = 3 # Removed @ P11   # Method receiving Brick signal func _on_Brick_tree_exited(brick_position): \t# Update Score \tscore += POINT * bonus_rate \tbonus_rate += 0.1 \thud_score.text = \"Score: \" + str(score)  \t# Exit current Level node \tif level.get_child_count()  0: \tset_next_level() \telse: # Added @ P11 \t# Drop powerup item \tdrop_powerup(brick_position) # Added @ P10   func drop_powerup(brick_position: Vector2): # Added @ P10 \tif randf()  drop_rate: \tvar powerup_instance = powerup.instance() \tpowerup_instance.position = brick_position \tcall_deferred(\"add_child\", powerup_instance) \tcall_deferred(\"move_child\", powerup_instance, 5) # Added @ P 11 \tpowerup_instance.connect(\"item_collided\", self, \"_on_Powerup_item_collided\")  # Action when powerup item collided func _on_Powerup_item_collided(item): # Updated @ P11 \tmatch item: \t0: # SLOW \tslow_balls() \t1: # EXPAND \texpand_paddle() \t2: # MULTIPLE \tenable_multiple_balls() \t3: # LASER \tenable_laser() \t4: # LIFE \tadd_life()  # slow balls func slow_balls(): # Added @ P11 \tslow_collide_sound.play() # Added @ P12 \tfor child in get_children(): \tif child.is_in_group(\"Balls\"): \tchild.ball_speed = child.first_speed  # Stretch paddle func expand_paddle(): # Added @ P11 \texpand_collide_sound.play() # Added @ P12 \tif paddle.scale  paddle_scale: \tpaddle.scale.x *= 2 \tyield(get_tree().create_timer(10), \"timeout\") \tpaddle.scale = paddle_scale  # enable powerup Multiple func enable_multiple_balls(): # Added @ P11 \tmultiple_collide_sound.play() # Added @ P12 \tif not is_multiple_on: \tis_multiple_on = true \tyield(get_tree().create_timer(3), \"timeout\") \tis_multiple_on = false  # enable powerup Laser func enable_laser(): # Added @ P11 \tlaser_collide_sound.play() # Added @ P12 \tif not is_laser_on: \tis_laser_on = true \tyield(get_tree().create_timer(3), \"timeout\") \tis_laser_on = false  # fire laser beam func fire_laser(): \tvar instance = laser.instance() \tcall_deferred(\"add_child\", instance) \tcall_deferred(\"move_child\", instance, 6) \tinstance.position.x = paddle.position.x \tinstance.position.y = paddle.position.y - 16  # Add a life if less than 5 func add_life(): # Added @ P11 \tlife_collide_sound.play() # Added @ P12 \tif life  MAX_LIFE: \tlife += 1 \tupdate_hud_life()  # set next level func set_next_level(): \tprint(\"set_next_level() called\") \t# Change status \tis_playing = false \tis_multiple_on = false # Added @ P11 \tis_laser_on = false # Added @ P11 \t\t# Clear left objects \tlevel.queue_free() \tfor child in get_children(): \tif child.is_in_group(\"Balls\") or child.is_in_group(\"Lasers\"): # 追加 \tchild.queue_free() \t\t# Increment level number \tlevel_num += 1 \t# Stop PauseScreen node \tpause_screen.pause_mode = 1 \t# Show NextScreen node \tnext_screen.pause_mode = 2 \tnext_screen_level.text = \"Level: \" + str(level_num) \tnext_screen_score.text = \"Score: \" + str(score) \tnext_screen_life.text = \"x \" + str(life) \tnext_screen.show() \t# Set Level of HUD the next level \thud_level.text = \"Level: \" + str(level_num) \t# Set Paddle and Ball the first position \t#paddle.position = paddle_position # Removed @ P11 \t#paddle.scale = paddle_scale # Removed @ P11 \t#ball.position = ball_position # Removed @ P11 \t#ball.mode = 3 # Removed @ P11 \t# Set next Level node \tadd_new_level() # Added @ P11 \t#level = load(\"res://scene/Level\" + str(level_num) + \".tscn\").instance() # Removed @ P11 \t#add_child(level) # Removed @ P11 \t#move_child(level, 5) # Removed @ P11 \t#for child in level.get_children(): # Removed @ P11 \t#child.connect(\"tree_exited\", self, \"_on_Brick_tree_exited\") # Removed @ P11 \t# Pause game until NextScreen is hidden \tget_tree().paused = true  # Add new level func add_new_level(): # Added @ P11 \tlevel = load(\"res://scene/Level\" + str(level_num) + \".tscn\").instance() \tadd_child(level) \tmove_child(level, 3) # Changed from 5 to 3 @ P11 \tfor child in level.get_children(): \tchild.connect(\"tree_exited\", self, \"_on_Brick_tree_exited\", [child.global_position]) # Updated to add th 4th arg @ P11    func _on_PauseScreen_visibility_changed(): \tplay_bgm.stream_paused = not play_bgm.stream_paused   # Save data func save_data(): # Added @ P13 \tvar data = { \t\"last_level\": level_num, \t\"high_level\": high_level_num, \t\"last_score\": score, \t\"high_score\": high_score, \t} \tvar file = File.new() \tfile.open(SCORE_FILE_PATH, File.WRITE) \tfile.store_line(to_json(data)) \tfile.close()   # Load data func load_data(): # Added @ P13 \tvar file = File.new() \tif file.file_exists(SCORE_FILE_PATH): \tfile.open(SCORE_FILE_PATH, File.READ) \tvar data = parse_json(file.get_line()) \tif data != null: \thigh_score = data[\"high_score\"] \thigh_level_num = data[\"high_level\"] \tfile.close() \thud_high_score.text = \"H Scr: \" + str(high_score) \thud_high_level.text = \"H Lvl: \" + str(high_level_num)    「GameOverView.gd」スクリプト全体を見る extends Control   const SCORE_FILE_PATH = \"user://score_record.save\" # Added @ P13  onready var high_score = $VBox/ResultsContainer/HighScore # Added @ P13 onready var last_score = $VBox/ResultsContainer/LastScore # Added @ P13 onready var high_level = $VBox/ResultsContainer/HighLevel # Added @ P13 onready var last_level = $VBox/ResultsContainer/LastLevel # Added @ P13 onready var sound = $KeySound   func _ready(): # Added @ P13 \tload_data() \t func _input(event): \tif event is InputEventKey: \tprint(\"Input at Game Over: \", event.as_text()) \tif event.is_action_released(\"Quit\"): \tsound.play() \tyield(sound, \"finished\") \tget_tree().quit() \telif event.is_action_released(\"ui_accept\"): \tsound.play() \tyield(sound, \"finished\") \tget_tree().change_scene(\"res://scene/GameStartView.tscn\")   func load_data(): # Added @ P13 \tvar file = File.new() \tif file.file_exists(SCORE_FILE_PATH): \tfile.open(SCORE_FILE_PATH, File.READ) \tvar data = parse_json(file.get_line()) \tif data != null: \thigh_score.text = \"High Score: \" + str(data[\"high_score\"]) \tlast_score.text = \"Last Score: \" + str(data[\"last_score\"]) \thigh_level.text = \"High Level: \" + str(data[\"high_level\"]) \tlast_level.text = \"Last Level: \" + str(data[\"last_level\"]) \tfile.close()    \n (adsbygoogle = window.adsbygoogle || []).push({});  おわりに 以上で Part 13 は完了だ。今回はデータを保存する機能、保存したデータを読み込む機能を実装した。ゲームによって、保存したいデータは変わり、規模が大きくなるほど、保存するデータも複雑化するだろう。しかし、何事も基本が重要なので、今回のチュートリアルの内容をぜひ今後の開発に役立てていただければと思う。\n次回 Part 14 ではブロックの種類（例えば一回の衝突では消えない硬いブロックなど）を増やして、レベルに応じて難易度の幅を広くできるように調整し、複数のレベルをデザインする。\n",
   "wordCount" : "1791",
   "inLanguage": "ja",
   "image":"https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_13/img_16.gif","datePublished": "2021-12-23T16:55:59+09:00",
@@ -347,46 +347,46 @@ data-ad-slot="9419515863"></ins></p>
 <br>
 <h3 id="必要な定数と変数を追加する">必要な定数と変数を追加する<a hidden class="anchor" aria-hidden="true" href="#必要な定数と変数を追加する">#</a></h3>
 <p>まずは新たにいくつか変数を定義していく。「# 追加」のコメントを記述している行が今回定義した定数と変数だ。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node2D</span>
-
-<span style="color:#66d9ef">const</span> POINT <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
-<span style="color:#66d9ef">const</span> MAX_LIFE <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
-<span style="color:#66d9ef">const</span> SCORE_FILE_PATH <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;user://score_record.save&#34;</span> <span style="color:#75715e"># 追加</span>
-
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> drop_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>
-
-<span style="color:#66d9ef">var</span> level_num: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-<span style="color:#66d9ef">var</span> high_level_num: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># 追加</span>
-<span style="color:#66d9ef">var</span> score: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-<span style="color:#66d9ef">var</span> high_score: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># 追加</span>
-
-<span style="color:#75715e">#（中略）</span>
-
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>LeftBox<span style="color:#f92672">/</span>Level
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_high_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>MidBox<span style="color:#f92672">/</span>HighLevel <span style="color:#75715e"># 追加</span>
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>LeftBox<span style="color:#f92672">/</span>Score
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_high_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>MidBox<span style="color:#f92672">/</span>HighScore <span style="color:#75715e"># 追加</span>
-
-<span style="color:#75715e">#（後略）</span>
-</code></pre></div><p>まず<code>const</code>キーワードで定義しているのは<code>SCORE_FILE_PATH</code>という定数だ。その値を<code>&quot;user://score_record.save&quot;</code>としてデータの保存先となるファイルパスを指定した。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> POINT <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> MAX_LIFE <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> SCORE_FILE_PATH <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;user://score_record.save&#34;</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> drop_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> level_num: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> high_level_num: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> score: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> high_score: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#（中略）</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>LeftBox<span style="color:#f92672">/</span>Level
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_high_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>MidBox<span style="color:#f92672">/</span>HighLevel <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>LeftBox<span style="color:#f92672">/</span>Score
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_high_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>MidBox<span style="color:#f92672">/</span>HighScore <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#（後略）</span>
+</span></span></code></pre></div><p>まず<code>const</code>キーワードで定義しているのは<code>SCORE_FILE_PATH</code>という定数だ。その値を<code>&quot;user://score_record.save&quot;</code>としてデータの保存先となるファイルパスを指定した。</p>
 <p>このように、データを保存するファイルの頭に<code>user://</code>をつけるとプロジェクトの所定の場所にデータを保存してくれる。このファイルにデータを書き込めば、シーンを切り替えたり、ゲームを一度終了してから再開しても、ファイルからデータを読み込んで、以前プレイした時の状態を引き継ぐことが可能だ。</p>
 <p>次に変数<code>high_level_num</code>だが、これはゲーム開始時に前回までのハイレベルを渡しておくためのものだ。同様に、もう一つの変数<code>high_score</code>には、ゲーム開始時に前回までのハイスコアを渡しておく。また、ゲームオーバーの時に、記録が更新される際にも利用する。</p>
 <p>続いて<code>onready</code>キーワード付きの変数だが、これらは特定のノードを指すのに使っている。<code>hud_high_level</code>は「HighLevel」ノードを、<code>hud_high_score</code>は「HighScore」ノードを指している。</p>
 <br>
 <h3 id="保存用のメソッドを追加する">保存用のメソッドを追加する<a hidden class="anchor" aria-hidden="true" href="#保存用のメソッドを追加する">#</a></h3>
 <p>引き続き「Game.gd」スクリプトに、ゲームのデータを保存するためのメソッドを追加する。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> save_data():
-	<span style="color:#66d9ef">var</span> data <span style="color:#f92672">=</span> {
-	<span style="color:#e6db74">&#34;last_level&#34;</span>: level_num,
-	<span style="color:#e6db74">&#34;high_level&#34;</span>: high_level_num,
-	<span style="color:#e6db74">&#34;last_score&#34;</span>: score,
-	<span style="color:#e6db74">&#34;high_score&#34;</span>: high_score,
-	}
-	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>new()
-	file<span style="color:#f92672">.</span>open(SCORE_FILE_PATH, <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>WRITE)
-	file<span style="color:#f92672">.</span>store_line(to_json(data))
-	file<span style="color:#f92672">.</span>close()
-</code></pre></div><p><code>save_data</code>というメソッドを定義した。まず変数<code>data</code>をメソッド内で定義している。メソッド内で定義した変数は、そのメソッドの外では使えないので注意してほしい。<code>data</code>は辞書型データで<code>{&quot;key&quot;: value}</code>の組み合わせで複数のデータをまとめることができる。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> save_data():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> data <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;last_level&#34;</span>: level_num,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;high_level&#34;</span>: high_level_num,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;last_score&#34;</span>: score,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;high_score&#34;</span>: high_score,
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>	file<span style="color:#f92672">.</span>open(SCORE_FILE_PATH, <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>WRITE)
+</span></span><span style="display:flex;"><span>	file<span style="color:#f92672">.</span>store_line(to_json(data))
+</span></span><span style="display:flex;"><span>	file<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><p><code>save_data</code>というメソッドを定義した。まず変数<code>data</code>をメソッド内で定義している。メソッド内で定義した変数は、そのメソッドの外では使えないので注意してほしい。<code>data</code>は辞書型データで<code>{&quot;key&quot;: value}</code>の組み合わせで複数のデータをまとめることができる。</p>
 <p>ここではデータとして保存したい値を格納した<code>level_num</code>、<code>high_level_num</code>、<code>score</code>、<code>high_score</code>の4つの変数それぞれを Value とし、対応する Key を&quot;last_level&quot;、&ldquo;high_level&rdquo;、&ldquo;last_score&rdquo;、&ldquo;high_score&quot;として定義した。</p>
 <p>そのあとは<code>file</code>という変数を定義している。<code>new</code>メソッドを実行して作成された<code>File</code>クラスのノードを値として代入している。これ以降<code>File</code>クラスのメソッドが続く。</p>
 <p>データを保存するには保存先のファイルを開く必要がある。<code>open</code>は第一引数で指定したパスのファイルを開くメソッドだ。ここでは、先に定義した定数<code>SCORE_FILE_PATH</code>（<code>&quot;user://score_record.save&quot;</code>）を第一引数として渡している。第二引数にはファイルを開くときのモードを指定する。ここではデータを書き込んで保存したいので、<code>WRITE</code>を指定して書き込みモードにしている。</p>
@@ -396,18 +396,18 @@ data-ad-slot="9419515863"></ins></p>
 <br>
 <h3 id="読み込み用のメソッドを追加する">読み込み用のメソッドを追加する<a hidden class="anchor" aria-hidden="true" href="#読み込み用のメソッドを追加する">#</a></h3>
 <p>「Game.gd」スクリプトで、今度は保存したデータを読み込むメソッドを追加する。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> load_data():
-	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>new()
-	<span style="color:#66d9ef">if</span> file<span style="color:#f92672">.</span>file_exists(SCORE_FILE_PATH):
-		file<span style="color:#f92672">.</span>open(SCORE_FILE_PATH, <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>READ)
-		<span style="color:#66d9ef">var</span> data <span style="color:#f92672">=</span> parse_json(file<span style="color:#f92672">.</span>get_line())
-		<span style="color:#66d9ef">if</span> data <span style="color:#f92672">!=</span> null:
-			high_score <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#34;high_score&#34;</span>]
-			high_level_num <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#34;high_level&#34;</span>]
-		file<span style="color:#f92672">.</span>close()
-	hud_high_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;H Scr: &#34;</span> <span style="color:#f92672">+</span> str(high_score)
-	hud_high_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;H Lvl: &#34;</span> <span style="color:#f92672">+</span> str(high_level_num)
-</code></pre></div><p>データを読み込むのは<code>load_data</code>というメソッドだ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> load_data():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> file<span style="color:#f92672">.</span>file_exists(SCORE_FILE_PATH):
+</span></span><span style="display:flex;"><span>		file<span style="color:#f92672">.</span>open(SCORE_FILE_PATH, <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>READ)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> data <span style="color:#f92672">=</span> parse_json(file<span style="color:#f92672">.</span>get_line())
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> data <span style="color:#f92672">!=</span> null:
+</span></span><span style="display:flex;"><span>			high_score <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#34;high_score&#34;</span>]
+</span></span><span style="display:flex;"><span>			high_level_num <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#34;high_level&#34;</span>]
+</span></span><span style="display:flex;"><span>		file<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>	hud_high_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;H Scr: &#34;</span> <span style="color:#f92672">+</span> str(high_score)
+</span></span><span style="display:flex;"><span>	hud_high_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;H Lvl: &#34;</span> <span style="color:#f92672">+</span> str(high_level_num)
+</span></span></code></pre></div><p>データを読み込むのは<code>load_data</code>というメソッドだ。</p>
 <p>先ほどの書き込みメソッド<code>save_data</code>と同様に、まずは<code>File</code>クラスの<code>new</code>メソッドにより、<code>File</code>クラスのノードを作成する。そこからまた<code>File</code>クラスのメソッドが続くが順番に見ていこう。</p>
 <p>まずは<code>if</code>構文で、<code>file_exists</code>メソッドによりデータ保存先のファイル（定数<code>SCORE_FILE_PATH</code>の値）があるか確認している。ファイルがあれば<code>if</code>ブロックの中の処理を続行する。</p>
 <p>では<code>if</code>ブロックの中のコードを見ていこう。まず、ファイルを<code>open</code>メソッドで開く。ここではモードを<code>READ</code>にして読み込みモードにしている。</p>
@@ -419,40 +419,40 @@ data-ad-slot="9419515863"></ins></p>
 <h3 id="追加したメソッドを適切なタイミングで実行させる">追加したメソッドを適切なタイミングで実行させる<a hidden class="anchor" aria-hidden="true" href="#追加したメソッドを適切なタイミングで実行させる">#</a></h3>
 <p>データを保存するメソッドと保存したデータを読み込むメソッドを用意できたので、それらのメソッドを適切なタイミングで実行するようにコードを更新していく。</p>
 <p>まずは<code>_ready</code>メソッドを編集する。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _ready():
-	randomize()
-	add_new_level()
-	add_new_ball()
-	update_hud_life()
-	load_data() <span style="color:#75715e"># 追加</span>
-</code></pre></div><p>単純に、先ほど作成した<code>load_data</code>メソッドを追加しただけだ。これで、ゲーム開始前にデータを保存しているファイルからハイスコアやハイレベルの値を取得して HUD に反映してくれる。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	randomize()
+</span></span><span style="display:flex;"><span>	add_new_level()
+</span></span><span style="display:flex;"><span>	add_new_ball()
+</span></span><span style="display:flex;"><span>	update_hud_life()
+</span></span><span style="display:flex;"><span>	load_data() <span style="color:#75715e"># 追加</span>
+</span></span></code></pre></div><p>単純に、先ほど作成した<code>load_data</code>メソッドを追加しただけだ。これで、ゲーム開始前にデータを保存しているファイルからハイスコアやハイレベルの値を取得して HUD に反映してくれる。</p>
 <br>
 <p>次に<code>_on_Ball_tree_exited</code>メソッドを編集する。ちなみにこのメソッドは、ボールオブジェクトが消える時に発信されるシグナルによって呼ばれる。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _on_Ball_tree_exited():
-	print(<span style="color:#e6db74">&#34;_on_Ball_tree_exited() called&#34;</span>)
-	<span style="color:#66d9ef">var</span> no_ball <span style="color:#f92672">=</span> true
-	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> get_children():
-		<span style="color:#66d9ef">if</span> child<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Balls&#34;</span>):
-			print(<span style="color:#e6db74">&#34;found ball&#34;</span>)
-			no_ball <span style="color:#f92672">=</span> false
-			<span style="color:#66d9ef">break</span>
-	
-	<span style="color:#66d9ef">if</span> no_ball:
-		<span style="color:#66d9ef">if</span> is_playing:
-			life <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
-			<span style="color:#66d9ef">if</span> life <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>:
-				<span style="color:#66d9ef">if</span> high_score <span style="color:#f92672">&lt;</span> score: <span style="color:#75715e"># 追加</span>
-					high_score <span style="color:#f92672">=</span> score
-				<span style="color:#66d9ef">if</span> high_level_num <span style="color:#f92672">&lt;</span> level_num: <span style="color:#75715e"># 追加</span>
-					high_level_num <span style="color:#f92672">=</span> level_num
-				save_data() <span style="color:#75715e"># 追加</span>
-				get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://scene/GameOverView.tscn&#34;</span>)
-			<span style="color:#66d9ef">else</span>:
-				update_hud_life()
-				life_down_sound<span style="color:#f92672">.</span>play()
-
-		<span style="color:#75715e">#（後略）</span>
-</code></pre></div><p>このメソッド内の<code>if no_ball:</code>でネストされた<code>if is_playing:</code>でさらにネストされた<code>if life &lt;= 0:</code>ブロック内を編集する。このブロック内のコードは、『画面からボールが一つも無くなった場合』、『ゲームプレイ中であり』、『ライフが 0』の場合に実行される。つまり、ゲームオーバーになる場合だ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Ball_tree_exited():
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;_on_Ball_tree_exited() called&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> no_ball <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> get_children():
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> child<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Balls&#34;</span>):
+</span></span><span style="display:flex;"><span>			print(<span style="color:#e6db74">&#34;found ball&#34;</span>)
+</span></span><span style="display:flex;"><span>			no_ball <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> no_ball:
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> is_playing:
+</span></span><span style="display:flex;"><span>			life <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> life <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> high_score <span style="color:#f92672">&lt;</span> score: <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>					high_score <span style="color:#f92672">=</span> score
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> high_level_num <span style="color:#f92672">&lt;</span> level_num: <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>					high_level_num <span style="color:#f92672">=</span> level_num
+</span></span><span style="display:flex;"><span>				save_data() <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>				get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://scene/GameOverView.tscn&#34;</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>				update_hud_life()
+</span></span><span style="display:flex;"><span>				life_down_sound<span style="color:#f92672">.</span>play()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">#（後略）</span>
+</span></span></code></pre></div><p>このメソッド内の<code>if no_ball:</code>でネストされた<code>if is_playing:</code>でさらにネストされた<code>if life &lt;= 0:</code>ブロック内を編集する。このブロック内のコードは、『画面からボールが一つも無くなった場合』、『ゲームプレイ中であり』、『ライフが 0』の場合に実行される。つまり、ゲームオーバーになる場合だ。</p>
 <p>元々このブロックには、シーンを「GameOverView.tscn」に切り替えて、ゲームオーバー画面に遷移するためのコード<code>get_tree().change_scene(&quot;res://scene/GameOverView.tscn&quot;)</code>のみを記述していた。今回はそのコードの前に、ハイスコアとハイレベルを更新するコードを追加した。</p>
 <p>具体的には、これまでのハイスコアを表す変数<code>high_score</code>の値が今プレイしていた時のスコアを表す変数<code>score</code>の値より小さければ、<code>score</code>の値を新しいハイスコアとして<code>high_score</code>へ代入する、というプログラムを<code>if</code>構文で記述した。</p>
 <p>同様に、これまでのハイレベルを表す変数<code>high_level_num</code>の値が今プレイしていた時のレベルを表す変数<code>level_num</code>の値より小さければ、<code>level_num</code>の値を新しいハイレベルとして<code>high_level_num</code>へ代入するよう記述した。</p>
@@ -550,39 +550,39 @@ data-ad-slot="9419515863"></ins></p>
 <br>
 <h3 id="必要な変数を追加する">必要な変数を追加する<a hidden class="anchor" aria-hidden="true" href="#必要な変数を追加する">#</a></h3>
 <p>データの読み込みとその読み込んだデータを画面に反映させるために、まずは変数をいくつか追加しておく。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">const</span> SCORE_FILE_PATH <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;user://score_record.save&#34;</span>
-
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> high_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>HighScore
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> last_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>LastScore
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> high_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>HighLevel
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> last_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>LastLevel
-
-<span style="color:#75715e">#（後略）</span>
-</code></pre></div><p><code>const</code>キーワードで定数<code>SCORE_FILE_PATH</code>を定義した。値はデータが保存されいているファイルのパスだ。「Game.gd」スクリプトでも同じ定数を定義したところである。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> SCORE_FILE_PATH <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;user://score_record.save&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> high_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>HighScore
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> last_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>LastScore
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> high_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>HighLevel
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> last_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>LastLevel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#（後略）</span>
+</span></span></code></pre></div><p><code>const</code>キーワードで定数<code>SCORE_FILE_PATH</code>を定義した。値はデータが保存されいているファイルのパスだ。「Game.gd」スクリプトでも同じ定数を定義したところである。</p>
 <p>次に<code>onready</code>キーワード付きの変数を<code>high_score</code>をはじめとして 4 つ定義しているが、これらは今回追加した「Label」クラスのそれぞれのノードを指している。</p>
 <br>
 <h3 id="読み込み用のメソッドを追加する-1">読み込み用のメソッドを追加する<a hidden class="anchor" aria-hidden="true" href="#読み込み用のメソッドを追加する-1">#</a></h3>
 <p>ほどんど「Game.gd」スクリプトで実装した内容と同じになるが、「GameOverView.gd」スクリプトの方でも、データ読み込み用のメソッドを追加する必要がある。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> load_data():
-	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>new()
-	<span style="color:#66d9ef">if</span> file<span style="color:#f92672">.</span>file_exists(SCORE_FILE_PATH):
-		file<span style="color:#f92672">.</span>open(SCORE_FILE_PATH, <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>READ)
-		<span style="color:#66d9ef">var</span> data <span style="color:#f92672">=</span> parse_json(file<span style="color:#f92672">.</span>get_line())
-		<span style="color:#66d9ef">if</span> data <span style="color:#f92672">!=</span> null:
-			high_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;High Score: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;high_score&#34;</span>])
-			last_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Last Score: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;last_score&#34;</span>])
-			high_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;High Level: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;high_level&#34;</span>])
-			last_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Last Level: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;last_level&#34;</span>])
-		file<span style="color:#f92672">.</span>close()
-</code></pre></div><p><code>laod_data</code>という名前で読み込み用メソッドを定義した。<code>if data != null:</code>の行までは「Game.gd」スクリプトと全く同じだが、その<code>if</code>ブロックの中のコードがゲームオーバー画面仕様になっている。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> load_data():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> file<span style="color:#f92672">.</span>file_exists(SCORE_FILE_PATH):
+</span></span><span style="display:flex;"><span>		file<span style="color:#f92672">.</span>open(SCORE_FILE_PATH, <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>READ)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> data <span style="color:#f92672">=</span> parse_json(file<span style="color:#f92672">.</span>get_line())
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> data <span style="color:#f92672">!=</span> null:
+</span></span><span style="display:flex;"><span>			high_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;High Score: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;high_score&#34;</span>])
+</span></span><span style="display:flex;"><span>			last_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Last Score: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;last_score&#34;</span>])
+</span></span><span style="display:flex;"><span>			high_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;High Level: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;high_level&#34;</span>])
+</span></span><span style="display:flex;"><span>			last_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Last Level: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;last_level&#34;</span>])
+</span></span><span style="display:flex;"><span>		file<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><p><code>laod_data</code>という名前で読み込み用メソッドを定義した。<code>if data != null:</code>の行までは「Game.gd」スクリプトと全く同じだが、その<code>if</code>ブロックの中のコードがゲームオーバー画面仕様になっている。</p>
 <p>このメソッドのコードを要約すると、データ保存先のファイルがあればファイルを開き、そのあとデータが空っぽでなければ、単純に「HighScore」、「LastScore」、「HighLevel」、「LastLevel」それぞれのノードの「Text」プロパティに、ファイルから取得したJSONデータを最終的に<code>string</code>型に変換して反映する。もしファイルがない、またはデータがなければ、「Text」プロパティの値はデフォルトの設定で表示される。</p>
 <p>なお、繰り返しになるが、最後のファイルを閉じる<code>close</code>メソッドは忘れてはいけない。</p>
 <br>
 <h3 id="追加したメソッドを適切なタイミングで実行させる-1">追加したメソッドを適切なタイミングで実行させる<a hidden class="anchor" aria-hidden="true" href="#追加したメソッドを適切なタイミングで実行させる-1">#</a></h3>
 <p>読み込み用メソッドが定義できたので、これを<code>_ready</code>メソッド内で実行させる。コードは至ってシンプルだ。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">func</span> _ready():
-	load_data()
-</code></pre></div><p>これだけで、ゲームオーバー画面に遷移した時にファイルの読み込みに失敗さえしなければ、きちんと画面上にデータを表示してくれるはずだ。今はまだデータファイルが作成されていないので、シーンを実行するとデフォルトの値で表示される。<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	load_data()
+</span></span></code></pre></div><p>これだけで、ゲームオーバー画面に遷移した時にファイルの読み込みに失敗さえしなければ、きちんと画面上にデータを表示してくれるはずだ。今はまだデータファイルが作成されていないので、シーンを実行するとデフォルトの値で表示される。<br>
 <img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_13/img_15.png" alt="GameOverViewシーンを実行"  />
 </p>
 <br>
@@ -615,352 +615,352 @@ data-ad-slot="9419515863"></ins></p>
 <p>最後に今回編集した「Game.gd」と「GameOverView.gd」のスクリプト全体のコードもここに公開しておく。</p>
 <details>
 <summary>「Game.gd」スクリプト全体を見る</summary>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node2D</span>
-
-<span style="color:#66d9ef">const</span> POINT <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
-<span style="color:#66d9ef">const</span> MAX_LIFE <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span> <span style="color:#75715e"># Added @ P11</span>
-<span style="color:#66d9ef">const</span> SCORE_FILE_PATH <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;user://score_record.save&#34;</span> <span style="color:#75715e"># Added @ P13</span>
-
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> drop_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>
-
-<span style="color:#66d9ef">var</span> level_num: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-<span style="color:#66d9ef">var</span> high_level_num: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># Added @ P13</span>
-<span style="color:#66d9ef">var</span> score: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-<span style="color:#66d9ef">var</span> high_score: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># Added @ P13</span>
-<span style="color:#66d9ef">var</span> bonus_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
-<span style="color:#66d9ef">var</span> life <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
-<span style="color:#66d9ef">var</span> is_playing <span style="color:#f92672">=</span> true
-<span style="color:#66d9ef">var</span> is_multiple_on <span style="color:#f92672">=</span> false <span style="color:#75715e"># Added @ P11</span>
-<span style="color:#66d9ef">var</span> is_laser_on <span style="color:#f92672">=</span> false <span style="color:#75715e"># Added @ P11</span>
-
-<span style="color:#75715e">#onready var level = $Level1 # Removed @ P11</span>
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> next_screen <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>NextScreen
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> next_screen_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>NextScreen<span style="color:#f92672">/</span>VBox<span style="color:#f92672">/</span>Level
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> next_screen_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>NextScreen<span style="color:#f92672">/</span>VBox<span style="color:#f92672">/</span>Score
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> next_screen_life <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>NextScreen<span style="color:#f92672">/</span>VBox<span style="color:#f92672">/</span>HBox<span style="color:#f92672">/</span>Life
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>LeftBox<span style="color:#f92672">/</span>Level
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_high_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>MidBox<span style="color:#f92672">/</span>HighLevel <span style="color:#75715e"># Added @ P13</span>
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>LeftBox<span style="color:#f92672">/</span>Score
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_high_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>MidBox<span style="color:#f92672">/</span>HighScore <span style="color:#75715e"># Added @ P13</span>
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_rightbox <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>RightBox
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> paddle <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>Paddle
-<span style="color:#75715e">#onready var ball = $Ball # Removed @ P11</span>
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> pause_screen <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>PauseScreen
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> life_down_sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>LifeDownSound
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> slow_collide_sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>SlowCollideSound
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> expand_collide_sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>ExpandCollideSound
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> multiple_collide_sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>MultipleCollideSound
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> laser_collide_sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>LaserCollideSound
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> life_collide_sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>LifeCollideSound
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> play_bgm <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>PlayBGM
-
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> paddle_position <span style="color:#f92672">=</span> paddle<span style="color:#f92672">.</span>position
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> paddle_scale <span style="color:#f92672">=</span> paddle<span style="color:#f92672">.</span>scale <span style="color:#75715e"># Added @ P11</span>
-<span style="color:#75715e">#onready var ball_position = ball.position # Removed @ P11</span>
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> ball <span style="color:#f92672">=</span> preload(<span style="color:#e6db74">&#34;res://scene/Ball.tscn&#34;</span>) <span style="color:#75715e"># Added @ P11</span>
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> laser <span style="color:#f92672">=</span> preload(<span style="color:#e6db74">&#34;res://scene/Laser.tscn&#34;</span>) <span style="color:#75715e"># Added @ P11</span>
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> powerup <span style="color:#f92672">=</span> preload(<span style="color:#e6db74">&#34;res://scene/Powerup.tscn&#34;</span>) <span style="color:#75715e"># Added @ P10</span>
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> level <span style="color:#f92672">=</span> null <span style="color:#75715e"># Updated @ P11</span>
-
-<span style="color:#66d9ef">func</span> _ready():
-	randomize() <span style="color:#75715e"># Added @ P10</span>
-	add_new_level() <span style="color:#75715e"># Added @ P11</span>
-	add_new_ball() <span style="color:#75715e"># Added @ P11</span>
-	update_hud_life()
-	load_data() <span style="color:#75715e"># Added @ P13</span>
-	<span style="color:#75715e"># For debug</span>
-	<span style="color:#75715e">#leave_one_brick(43) # Moved @ P11</span>
-	<span style="color:#75715e">#ball.connect(&#34;tree_exited&#34;, self, &#34;_on_Ball_tree_exited&#34;) # Removed @ P11</span>
-	<span style="color:#75715e">#for brick in level.get_children(): # Removed @ P11</span>
-		<span style="color:#75715e">#brick.connect(&#34;tree_exited&#34;, self, &#34;_on_Brick_tree_exited&#34;, [brick.global_position]) # Updated @ P10</span>
-
-
-<span style="color:#66d9ef">func</span> _process(_delta): <span style="color:#75715e"># Added @ P11</span>
-	<span style="color:#66d9ef">if</span> is_multiple_on <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;launch_ball&#34;</span>):
-		add_new_ball()
-	<span style="color:#66d9ef">if</span> is_laser_on <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;ui_up&#34;</span>):
-		fire_laser()
-
-
-<span style="color:#75715e"># For debug</span>
-<span style="color:#66d9ef">func</span> leave_one_brick(brick_num: <span style="color:#a6e22e">int</span>):
-	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> level<span style="color:#f92672">.</span>get_children():
-		<span style="color:#66d9ef">if</span> child<span style="color:#f92672">.</span>get_name() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Brick&#34;</span> <span style="color:#f92672">+</span> str(brick_num):
-			<span style="color:#66d9ef">continue</span>
-		child<span style="color:#f92672">.</span>queue_free()
-
-<span style="color:#75715e"># Method receiving Ball signal</span>
-<span style="color:#66d9ef">func</span> _on_Ball_tree_exited():
-	print(<span style="color:#e6db74">&#34;_on_Ball_tree_exited() called&#34;</span>)
-	<span style="color:#66d9ef">var</span> no_ball <span style="color:#f92672">=</span> true <span style="color:#75715e"># Added @ P11</span>
-	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> get_children(): <span style="color:#75715e"># Added @ P11</span>
-		<span style="color:#66d9ef">if</span> child<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Balls&#34;</span>):
-			print(<span style="color:#e6db74">&#34;found ball&#34;</span>)
-			no_ball <span style="color:#f92672">=</span> false
-			<span style="color:#66d9ef">break</span>
-	
-	<span style="color:#66d9ef">if</span> no_ball: <span style="color:#75715e"># Added and Edited @ P11</span>
-		<span style="color:#66d9ef">if</span> is_playing:
-			life <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
-			<span style="color:#66d9ef">if</span> life <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>:
-				<span style="color:#66d9ef">if</span> high_score <span style="color:#f92672">&lt;</span> score: <span style="color:#75715e"># Added @ P13</span>
-					high_score <span style="color:#f92672">=</span> score
-				<span style="color:#66d9ef">if</span> high_level_num <span style="color:#f92672">&lt;</span> level_num: <span style="color:#75715e"># Added @ P13</span>
-					high_level_num <span style="color:#f92672">=</span> level_num
-				save_data() <span style="color:#75715e"># Added @ P13</span>
-				get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://scene/GameOverView.tscn&#34;</span>)
-			<span style="color:#66d9ef">else</span>:
-				update_hud_life()
-				life_down_sound<span style="color:#f92672">.</span>play()
-		<span style="color:#66d9ef">else</span>:
-			is_playing <span style="color:#f92672">=</span> true
-		<span style="color:#75715e"># Clear powerup items</span>
-		<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> get_children(): <span style="color:#75715e"># Added @ P10</span>
-			<span style="color:#66d9ef">if</span> child<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;PowerupItems&#34;</span>):
-				child<span style="color:#f92672">.</span>queue_free()
-		<span style="color:#75715e"># Set Paddle and Balls as default</span>
-		is_multiple_on <span style="color:#f92672">=</span> false <span style="color:#75715e"># Added @ P11</span>
-		is_laser_on <span style="color:#f92672">=</span> false <span style="color:#75715e"># Added @ P11</span>
-		paddle<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> paddle_position
-		paddle<span style="color:#f92672">.</span>scale <span style="color:#f92672">=</span> paddle_scale <span style="color:#75715e"># Added @ P11</span>
-		add_new_ball() <span style="color:#75715e"># Added @ P11</span>
-		<span style="color:#75715e">#ball = load(&#34;res://scene/Ball.tscn&#34;).instance() # Removed @ P11</span>
-		<span style="color:#75715e">#call_deferred(&#34;add_child&#34;, ball) # Removed @ P11</span>
-		<span style="color:#75715e">#call_deferred(&#34;move_child&#34;, ball, 3) # Removed @ P11</span>
-		<span style="color:#75715e">#ball.connect(&#34;tree_exited&#34;, self, &#34;_on_Ball_tree_exited&#34;) # Removed @ P11</span>
-
-
-<span style="color:#75715e"># Set life nodes shown and hidden as life variable</span>
-<span style="color:#66d9ef">func</span> update_hud_life():
-	<span style="color:#66d9ef">var</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> hud_rightbox<span style="color:#f92672">.</span>get_children():
-		count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-		<span style="color:#66d9ef">if</span> count <span style="color:#f92672">&lt;=</span> life:
-			child<span style="color:#f92672">.</span>show()
-		<span style="color:#66d9ef">else</span>:
-			child<span style="color:#f92672">.</span>hide()
-
-
-<span style="color:#75715e"># Add a new ball</span>
-<span style="color:#66d9ef">func</span> add_new_ball(): <span style="color:#75715e"># Added @ P11</span>
-	print(<span style="color:#e6db74">&#34;add_new_ball() called&#34;</span>)
-	<span style="color:#66d9ef">var</span> instance <span style="color:#f92672">=</span> ball<span style="color:#f92672">.</span>instance()
-	instance<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>(paddle<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>x, paddle<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>y <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span>) <span style="color:#75715e"># Added @ P11</span>
-	call_deferred(<span style="color:#e6db74">&#34;add_child&#34;</span>, instance)
-	call_deferred(<span style="color:#e6db74">&#34;move_child&#34;</span>, instance, <span style="color:#ae81ff">4</span>)
-	instance<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;tree_exited&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Ball_tree_exited&#34;</span>)	
-	<span style="color:#75715e">#instance.mode = 3 # Removed @ P11</span>
-
-
-<span style="color:#75715e"># Method receiving Brick signal</span>
-<span style="color:#66d9ef">func</span> _on_Brick_tree_exited(brick_position):
-	<span style="color:#75715e"># Update Score</span>
-	score <span style="color:#f92672">+=</span> POINT <span style="color:#f92672">*</span> bonus_rate
-	bonus_rate <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0.1</span>
-	hud_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Score: &#34;</span> <span style="color:#f92672">+</span> str(score)
-
-	<span style="color:#75715e"># Exit current Level node</span>
-	<span style="color:#66d9ef">if</span> level<span style="color:#f92672">.</span>get_child_count() <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>:
-		set_next_level()
-	<span style="color:#66d9ef">else</span>: <span style="color:#75715e"># Added @ P11</span>
-		<span style="color:#75715e"># Drop powerup item</span>
-		drop_powerup(brick_position) <span style="color:#75715e"># Added @ P10</span>
-
-
-<span style="color:#66d9ef">func</span> drop_powerup(brick_position: <span style="color:#a6e22e">Vector2</span>): <span style="color:#75715e"># Added @ P10</span>
-	<span style="color:#66d9ef">if</span> randf() <span style="color:#f92672">&lt;=</span> drop_rate:
-		<span style="color:#66d9ef">var</span> powerup_instance <span style="color:#f92672">=</span> powerup<span style="color:#f92672">.</span>instance()
-		powerup_instance<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> brick_position
-		call_deferred(<span style="color:#e6db74">&#34;add_child&#34;</span>, powerup_instance)
-		call_deferred(<span style="color:#e6db74">&#34;move_child&#34;</span>, powerup_instance, <span style="color:#ae81ff">5</span>) <span style="color:#75715e"># Added @ P 11</span>
-		powerup_instance<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;item_collided&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Powerup_item_collided&#34;</span>) 
-
-<span style="color:#75715e"># Action when powerup item collided</span>
-<span style="color:#66d9ef">func</span> _on_Powerup_item_collided(item): <span style="color:#75715e"># Updated @ P11</span>
-	match item:
-		<span style="color:#ae81ff">0</span>: <span style="color:#75715e"># SLOW</span>
-			slow_balls()
-		<span style="color:#ae81ff">1</span>: <span style="color:#75715e"># EXPAND</span>
-			expand_paddle()
-		<span style="color:#ae81ff">2</span>: <span style="color:#75715e"># MULTIPLE</span>
-			enable_multiple_balls()
-		<span style="color:#ae81ff">3</span>: <span style="color:#75715e"># LASER</span>
-			enable_laser()
-		<span style="color:#ae81ff">4</span>: <span style="color:#75715e"># LIFE</span>
-			add_life()
-
-<span style="color:#75715e"># slow balls</span>
-<span style="color:#66d9ef">func</span> slow_balls(): <span style="color:#75715e"># Added @ P11</span>
-	slow_collide_sound<span style="color:#f92672">.</span>play() <span style="color:#75715e"># Added @ P12</span>
-	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> get_children():
-		<span style="color:#66d9ef">if</span> child<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Balls&#34;</span>):
-			child<span style="color:#f92672">.</span>ball_speed <span style="color:#f92672">=</span> child<span style="color:#f92672">.</span>first_speed
-
-<span style="color:#75715e"># Stretch paddle</span>
-<span style="color:#66d9ef">func</span> expand_paddle(): <span style="color:#75715e"># Added @ P11</span>
-	expand_collide_sound<span style="color:#f92672">.</span>play() <span style="color:#75715e"># Added @ P12</span>
-	<span style="color:#66d9ef">if</span> paddle<span style="color:#f92672">.</span>scale <span style="color:#f92672">&lt;=</span> paddle_scale:
-		paddle<span style="color:#f92672">.</span>scale<span style="color:#f92672">.</span>x <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>
-		yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">10</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
-		paddle<span style="color:#f92672">.</span>scale <span style="color:#f92672">=</span> paddle_scale
-
-<span style="color:#75715e"># enable powerup Multiple</span>
-<span style="color:#66d9ef">func</span> enable_multiple_balls(): <span style="color:#75715e"># Added @ P11</span>
-	multiple_collide_sound<span style="color:#f92672">.</span>play() <span style="color:#75715e"># Added @ P12</span>
-	<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> is_multiple_on:
-		is_multiple_on <span style="color:#f92672">=</span> true
-		yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
-		is_multiple_on <span style="color:#f92672">=</span> false
-
-<span style="color:#75715e"># enable powerup Laser</span>
-<span style="color:#66d9ef">func</span> enable_laser(): <span style="color:#75715e"># Added @ P11</span>
-	laser_collide_sound<span style="color:#f92672">.</span>play() <span style="color:#75715e"># Added @ P12</span>
-	<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> is_laser_on:
-		is_laser_on <span style="color:#f92672">=</span> true
-		yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
-		is_laser_on <span style="color:#f92672">=</span> false
-
-<span style="color:#75715e"># fire laser beam</span>
-<span style="color:#66d9ef">func</span> fire_laser():
-	<span style="color:#66d9ef">var</span> instance <span style="color:#f92672">=</span> laser<span style="color:#f92672">.</span>instance()
-	call_deferred(<span style="color:#e6db74">&#34;add_child&#34;</span>, instance)
-	call_deferred(<span style="color:#e6db74">&#34;move_child&#34;</span>, instance, <span style="color:#ae81ff">6</span>)
-	instance<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> paddle<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>x
-	instance<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> paddle<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>y <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span>
-
-<span style="color:#75715e"># Add a life if less than 5</span>
-<span style="color:#66d9ef">func</span> add_life(): <span style="color:#75715e"># Added @ P11</span>
-	life_collide_sound<span style="color:#f92672">.</span>play() <span style="color:#75715e"># Added @ P12</span>
-	<span style="color:#66d9ef">if</span> life <span style="color:#f92672">&lt;</span> MAX_LIFE:
-		life <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-		update_hud_life()
-
-<span style="color:#75715e"># set next level</span>
-<span style="color:#66d9ef">func</span> set_next_level():
-	print(<span style="color:#e6db74">&#34;set_next_level() called&#34;</span>)
-	<span style="color:#75715e"># Change status</span>
-	is_playing <span style="color:#f92672">=</span> false
-	is_multiple_on <span style="color:#f92672">=</span> false <span style="color:#75715e"># Added @ P11</span>
-	is_laser_on <span style="color:#f92672">=</span> false <span style="color:#75715e"># Added @ P11</span>
-	
-	<span style="color:#75715e"># Clear left objects</span>
-	level<span style="color:#f92672">.</span>queue_free()
-	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> get_children():
-		<span style="color:#66d9ef">if</span> child<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Balls&#34;</span>) <span style="color:#f92672">or</span> child<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Lasers&#34;</span>): <span style="color:#75715e"># 追加</span>
-			child<span style="color:#f92672">.</span>queue_free()
-	
-	<span style="color:#75715e"># Increment level number</span>
-	level_num <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-	<span style="color:#75715e"># Stop PauseScreen node</span>
-	pause_screen<span style="color:#f92672">.</span>pause_mode <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-	<span style="color:#75715e"># Show NextScreen node</span>
-	next_screen<span style="color:#f92672">.</span>pause_mode <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
-	next_screen_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Level: &#34;</span> <span style="color:#f92672">+</span> str(level_num)
-	next_screen_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Score: &#34;</span> <span style="color:#f92672">+</span> str(score)
-	next_screen_life<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;x &#34;</span> <span style="color:#f92672">+</span> str(life)
-	next_screen<span style="color:#f92672">.</span>show()
-	<span style="color:#75715e"># Set Level of HUD the next level</span>
-	hud_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Level: &#34;</span> <span style="color:#f92672">+</span> str(level_num)
-	<span style="color:#75715e"># Set Paddle and Ball the first position</span>
-	<span style="color:#75715e">#paddle.position = paddle_position # Removed @ P11</span>
-	<span style="color:#75715e">#paddle.scale = paddle_scale # Removed @ P11</span>
-	<span style="color:#75715e">#ball.position = ball_position # Removed @ P11</span>
-	<span style="color:#75715e">#ball.mode = 3 # Removed @ P11</span>
-	<span style="color:#75715e"># Set next Level node</span>
-	add_new_level() <span style="color:#75715e"># Added @ P11</span>
-	<span style="color:#75715e">#level = load(&#34;res://scene/Level&#34; + str(level_num) + &#34;.tscn&#34;).instance() # Removed @ P11</span>
-	<span style="color:#75715e">#add_child(level) # Removed @ P11</span>
-	<span style="color:#75715e">#move_child(level, 5) # Removed @ P11</span>
-	<span style="color:#75715e">#for child in level.get_children(): # Removed @ P11</span>
-		<span style="color:#75715e">#child.connect(&#34;tree_exited&#34;, self, &#34;_on_Brick_tree_exited&#34;) # Removed @ P11</span>
-	<span style="color:#75715e"># Pause game until NextScreen is hidden</span>
-	get_tree()<span style="color:#f92672">.</span>paused <span style="color:#f92672">=</span> true
-
-<span style="color:#75715e"># Add new level</span>
-<span style="color:#66d9ef">func</span> add_new_level(): <span style="color:#75715e"># Added @ P11</span>
-	level <span style="color:#f92672">=</span> load(<span style="color:#e6db74">&#34;res://scene/Level&#34;</span> <span style="color:#f92672">+</span> str(level_num) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.tscn&#34;</span>)<span style="color:#f92672">.</span>instance()
-	add_child(level)
-	move_child(level, <span style="color:#ae81ff">3</span>) <span style="color:#75715e"># Changed from 5 to 3 @ P11</span>
-	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> level<span style="color:#f92672">.</span>get_children():
-		child<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;tree_exited&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Brick_tree_exited&#34;</span>, [child<span style="color:#f92672">.</span>global_position]) <span style="color:#75715e"># Updated to add th 4th arg @ P11 </span>
-
-
-<span style="color:#66d9ef">func</span> _on_PauseScreen_visibility_changed():
-	play_bgm<span style="color:#f92672">.</span>stream_paused <span style="color:#f92672">=</span> <span style="color:#f92672">not</span> play_bgm<span style="color:#f92672">.</span>stream_paused
-
-
-<span style="color:#75715e"># Save data</span>
-<span style="color:#66d9ef">func</span> save_data(): <span style="color:#75715e"># Added @ P13</span>
-	<span style="color:#66d9ef">var</span> data <span style="color:#f92672">=</span> {
-	<span style="color:#e6db74">&#34;last_level&#34;</span>: level_num,
-	<span style="color:#e6db74">&#34;high_level&#34;</span>: high_level_num,
-	<span style="color:#e6db74">&#34;last_score&#34;</span>: score,
-	<span style="color:#e6db74">&#34;high_score&#34;</span>: high_score,
-	}
-	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>new()
-	file<span style="color:#f92672">.</span>open(SCORE_FILE_PATH, <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>WRITE)
-	file<span style="color:#f92672">.</span>store_line(to_json(data))
-	file<span style="color:#f92672">.</span>close()
-
-
-<span style="color:#75715e"># Load data</span>
-<span style="color:#66d9ef">func</span> load_data(): <span style="color:#75715e"># Added @ P13</span>
-	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>new()
-	<span style="color:#66d9ef">if</span> file<span style="color:#f92672">.</span>file_exists(SCORE_FILE_PATH):
-		file<span style="color:#f92672">.</span>open(SCORE_FILE_PATH, <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>READ)
-		<span style="color:#66d9ef">var</span> data <span style="color:#f92672">=</span> parse_json(file<span style="color:#f92672">.</span>get_line())
-		<span style="color:#66d9ef">if</span> data <span style="color:#f92672">!=</span> null:
-			high_score <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#34;high_score&#34;</span>]
-			high_level_num <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#34;high_level&#34;</span>]
-		file<span style="color:#f92672">.</span>close()
-	hud_high_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;H Scr: &#34;</span> <span style="color:#f92672">+</span> str(high_score)
-	hud_high_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;H Lvl: &#34;</span> <span style="color:#f92672">+</span> str(high_level_num)
-  
-</code></pre></div></details>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> POINT <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> MAX_LIFE <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span> <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> SCORE_FILE_PATH <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;user://score_record.save&#34;</span> <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> drop_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> level_num: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> high_level_num: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> score: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> high_score: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> bonus_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> life <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> is_playing <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> is_multiple_on <span style="color:#f92672">=</span> false <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> is_laser_on <span style="color:#f92672">=</span> false <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#onready var level = $Level1 # Removed @ P11</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> next_screen <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>NextScreen
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> next_screen_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>NextScreen<span style="color:#f92672">/</span>VBox<span style="color:#f92672">/</span>Level
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> next_screen_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>NextScreen<span style="color:#f92672">/</span>VBox<span style="color:#f92672">/</span>Score
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> next_screen_life <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>NextScreen<span style="color:#f92672">/</span>VBox<span style="color:#f92672">/</span>HBox<span style="color:#f92672">/</span>Life
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>LeftBox<span style="color:#f92672">/</span>Level
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_high_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>MidBox<span style="color:#f92672">/</span>HighLevel <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>LeftBox<span style="color:#f92672">/</span>Score
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_high_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>MidBox<span style="color:#f92672">/</span>HighScore <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud_rightbox <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUD<span style="color:#f92672">/</span>RightBox
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> paddle <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>Paddle
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#onready var ball = $Ball # Removed @ P11</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> pause_screen <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>PauseScreen
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> life_down_sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>LifeDownSound
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> slow_collide_sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>SlowCollideSound
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> expand_collide_sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>ExpandCollideSound
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> multiple_collide_sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>MultipleCollideSound
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> laser_collide_sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>LaserCollideSound
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> life_collide_sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>LifeCollideSound
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> play_bgm <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>PlayBGM
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> paddle_position <span style="color:#f92672">=</span> paddle<span style="color:#f92672">.</span>position
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> paddle_scale <span style="color:#f92672">=</span> paddle<span style="color:#f92672">.</span>scale <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#onready var ball_position = ball.position # Removed @ P11</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> ball <span style="color:#f92672">=</span> preload(<span style="color:#e6db74">&#34;res://scene/Ball.tscn&#34;</span>) <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> laser <span style="color:#f92672">=</span> preload(<span style="color:#e6db74">&#34;res://scene/Laser.tscn&#34;</span>) <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> powerup <span style="color:#f92672">=</span> preload(<span style="color:#e6db74">&#34;res://scene/Powerup.tscn&#34;</span>) <span style="color:#75715e"># Added @ P10</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> level <span style="color:#f92672">=</span> null <span style="color:#75715e"># Updated @ P11</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	randomize() <span style="color:#75715e"># Added @ P10</span>
+</span></span><span style="display:flex;"><span>	add_new_level() <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	add_new_ball() <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	update_hud_life()
+</span></span><span style="display:flex;"><span>	load_data() <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># For debug</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#leave_one_brick(43) # Moved @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#ball.connect(&#34;tree_exited&#34;, self, &#34;_on_Ball_tree_exited&#34;) # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#for brick in level.get_children(): # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">#brick.connect(&#34;tree_exited&#34;, self, &#34;_on_Brick_tree_exited&#34;, [brick.global_position]) # Updated @ P10</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _process(_delta): <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> is_multiple_on <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;launch_ball&#34;</span>):
+</span></span><span style="display:flex;"><span>		add_new_ball()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> is_laser_on <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;ui_up&#34;</span>):
+</span></span><span style="display:flex;"><span>		fire_laser()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># For debug</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> leave_one_brick(brick_num: <span style="color:#a6e22e">int</span>):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> level<span style="color:#f92672">.</span>get_children():
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> child<span style="color:#f92672">.</span>get_name() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Brick&#34;</span> <span style="color:#f92672">+</span> str(brick_num):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>		child<span style="color:#f92672">.</span>queue_free()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method receiving Ball signal</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Ball_tree_exited():
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;_on_Ball_tree_exited() called&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> no_ball <span style="color:#f92672">=</span> true <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> get_children(): <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> child<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Balls&#34;</span>):
+</span></span><span style="display:flex;"><span>			print(<span style="color:#e6db74">&#34;found ball&#34;</span>)
+</span></span><span style="display:flex;"><span>			no_ball <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> no_ball: <span style="color:#75715e"># Added and Edited @ P11</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> is_playing:
+</span></span><span style="display:flex;"><span>			life <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> life <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> high_score <span style="color:#f92672">&lt;</span> score: <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span>					high_score <span style="color:#f92672">=</span> score
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> high_level_num <span style="color:#f92672">&lt;</span> level_num: <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span>					high_level_num <span style="color:#f92672">=</span> level_num
+</span></span><span style="display:flex;"><span>				save_data() <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span>				get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://scene/GameOverView.tscn&#34;</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>				update_hud_life()
+</span></span><span style="display:flex;"><span>				life_down_sound<span style="color:#f92672">.</span>play()
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			is_playing <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Clear powerup items</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> get_children(): <span style="color:#75715e"># Added @ P10</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> child<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;PowerupItems&#34;</span>):
+</span></span><span style="display:flex;"><span>				child<span style="color:#f92672">.</span>queue_free()
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Set Paddle and Balls as default</span>
+</span></span><span style="display:flex;"><span>		is_multiple_on <span style="color:#f92672">=</span> false <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>		is_laser_on <span style="color:#f92672">=</span> false <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>		paddle<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> paddle_position
+</span></span><span style="display:flex;"><span>		paddle<span style="color:#f92672">.</span>scale <span style="color:#f92672">=</span> paddle_scale <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>		add_new_ball() <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">#ball = load(&#34;res://scene/Ball.tscn&#34;).instance() # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">#call_deferred(&#34;add_child&#34;, ball) # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">#call_deferred(&#34;move_child&#34;, ball, 3) # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">#ball.connect(&#34;tree_exited&#34;, self, &#34;_on_Ball_tree_exited&#34;) # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set life nodes shown and hidden as life variable</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> update_hud_life():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> hud_rightbox<span style="color:#f92672">.</span>get_children():
+</span></span><span style="display:flex;"><span>		count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> count <span style="color:#f92672">&lt;=</span> life:
+</span></span><span style="display:flex;"><span>			child<span style="color:#f92672">.</span>show()
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			child<span style="color:#f92672">.</span>hide()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add a new ball</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> add_new_ball(): <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;add_new_ball() called&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> instance <span style="color:#f92672">=</span> ball<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>	instance<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>(paddle<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>x, paddle<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>y <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span>) <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	call_deferred(<span style="color:#e6db74">&#34;add_child&#34;</span>, instance)
+</span></span><span style="display:flex;"><span>	call_deferred(<span style="color:#e6db74">&#34;move_child&#34;</span>, instance, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>	instance<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;tree_exited&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Ball_tree_exited&#34;</span>)	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#instance.mode = 3 # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method receiving Brick signal</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Brick_tree_exited(brick_position):
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Update Score</span>
+</span></span><span style="display:flex;"><span>	score <span style="color:#f92672">+=</span> POINT <span style="color:#f92672">*</span> bonus_rate
+</span></span><span style="display:flex;"><span>	bonus_rate <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0.1</span>
+</span></span><span style="display:flex;"><span>	hud_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Score: &#34;</span> <span style="color:#f92672">+</span> str(score)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Exit current Level node</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> level<span style="color:#f92672">.</span>get_child_count() <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>		set_next_level()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>: <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Drop powerup item</span>
+</span></span><span style="display:flex;"><span>		drop_powerup(brick_position) <span style="color:#75715e"># Added @ P10</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> drop_powerup(brick_position: <span style="color:#a6e22e">Vector2</span>): <span style="color:#75715e"># Added @ P10</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> randf() <span style="color:#f92672">&lt;=</span> drop_rate:
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> powerup_instance <span style="color:#f92672">=</span> powerup<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>		powerup_instance<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> brick_position
+</span></span><span style="display:flex;"><span>		call_deferred(<span style="color:#e6db74">&#34;add_child&#34;</span>, powerup_instance)
+</span></span><span style="display:flex;"><span>		call_deferred(<span style="color:#e6db74">&#34;move_child&#34;</span>, powerup_instance, <span style="color:#ae81ff">5</span>) <span style="color:#75715e"># Added @ P 11</span>
+</span></span><span style="display:flex;"><span>		powerup_instance<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;item_collided&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Powerup_item_collided&#34;</span>) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Action when powerup item collided</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Powerup_item_collided(item): <span style="color:#75715e"># Updated @ P11</span>
+</span></span><span style="display:flex;"><span>	match item:
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">0</span>: <span style="color:#75715e"># SLOW</span>
+</span></span><span style="display:flex;"><span>			slow_balls()
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">1</span>: <span style="color:#75715e"># EXPAND</span>
+</span></span><span style="display:flex;"><span>			expand_paddle()
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">2</span>: <span style="color:#75715e"># MULTIPLE</span>
+</span></span><span style="display:flex;"><span>			enable_multiple_balls()
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">3</span>: <span style="color:#75715e"># LASER</span>
+</span></span><span style="display:flex;"><span>			enable_laser()
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">4</span>: <span style="color:#75715e"># LIFE</span>
+</span></span><span style="display:flex;"><span>			add_life()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># slow balls</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> slow_balls(): <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	slow_collide_sound<span style="color:#f92672">.</span>play() <span style="color:#75715e"># Added @ P12</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> get_children():
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> child<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Balls&#34;</span>):
+</span></span><span style="display:flex;"><span>			child<span style="color:#f92672">.</span>ball_speed <span style="color:#f92672">=</span> child<span style="color:#f92672">.</span>first_speed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Stretch paddle</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> expand_paddle(): <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	expand_collide_sound<span style="color:#f92672">.</span>play() <span style="color:#75715e"># Added @ P12</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> paddle<span style="color:#f92672">.</span>scale <span style="color:#f92672">&lt;=</span> paddle_scale:
+</span></span><span style="display:flex;"><span>		paddle<span style="color:#f92672">.</span>scale<span style="color:#f92672">.</span>x <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>		yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">10</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>		paddle<span style="color:#f92672">.</span>scale <span style="color:#f92672">=</span> paddle_scale
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># enable powerup Multiple</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> enable_multiple_balls(): <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	multiple_collide_sound<span style="color:#f92672">.</span>play() <span style="color:#75715e"># Added @ P12</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> is_multiple_on:
+</span></span><span style="display:flex;"><span>		is_multiple_on <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>		yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>		is_multiple_on <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># enable powerup Laser</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> enable_laser(): <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	laser_collide_sound<span style="color:#f92672">.</span>play() <span style="color:#75715e"># Added @ P12</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> is_laser_on:
+</span></span><span style="display:flex;"><span>		is_laser_on <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>		yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>		is_laser_on <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># fire laser beam</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> fire_laser():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> instance <span style="color:#f92672">=</span> laser<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>	call_deferred(<span style="color:#e6db74">&#34;add_child&#34;</span>, instance)
+</span></span><span style="display:flex;"><span>	call_deferred(<span style="color:#e6db74">&#34;move_child&#34;</span>, instance, <span style="color:#ae81ff">6</span>)
+</span></span><span style="display:flex;"><span>	instance<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> paddle<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>x
+</span></span><span style="display:flex;"><span>	instance<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> paddle<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>y <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add a life if less than 5</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> add_life(): <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	life_collide_sound<span style="color:#f92672">.</span>play() <span style="color:#75715e"># Added @ P12</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> life <span style="color:#f92672">&lt;</span> MAX_LIFE:
+</span></span><span style="display:flex;"><span>		life <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>		update_hud_life()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># set next level</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> set_next_level():
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;set_next_level() called&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Change status</span>
+</span></span><span style="display:flex;"><span>	is_playing <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>	is_multiple_on <span style="color:#f92672">=</span> false <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	is_laser_on <span style="color:#f92672">=</span> false <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Clear left objects</span>
+</span></span><span style="display:flex;"><span>	level<span style="color:#f92672">.</span>queue_free()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> get_children():
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> child<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Balls&#34;</span>) <span style="color:#f92672">or</span> child<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Lasers&#34;</span>): <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>			child<span style="color:#f92672">.</span>queue_free()
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Increment level number</span>
+</span></span><span style="display:flex;"><span>	level_num <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Stop PauseScreen node</span>
+</span></span><span style="display:flex;"><span>	pause_screen<span style="color:#f92672">.</span>pause_mode <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Show NextScreen node</span>
+</span></span><span style="display:flex;"><span>	next_screen<span style="color:#f92672">.</span>pause_mode <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>	next_screen_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Level: &#34;</span> <span style="color:#f92672">+</span> str(level_num)
+</span></span><span style="display:flex;"><span>	next_screen_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Score: &#34;</span> <span style="color:#f92672">+</span> str(score)
+</span></span><span style="display:flex;"><span>	next_screen_life<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;x &#34;</span> <span style="color:#f92672">+</span> str(life)
+</span></span><span style="display:flex;"><span>	next_screen<span style="color:#f92672">.</span>show()
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Set Level of HUD the next level</span>
+</span></span><span style="display:flex;"><span>	hud_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Level: &#34;</span> <span style="color:#f92672">+</span> str(level_num)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Set Paddle and Ball the first position</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#paddle.position = paddle_position # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#paddle.scale = paddle_scale # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#ball.position = ball_position # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#ball.mode = 3 # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Set next Level node</span>
+</span></span><span style="display:flex;"><span>	add_new_level() <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#level = load(&#34;res://scene/Level&#34; + str(level_num) + &#34;.tscn&#34;).instance() # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#add_child(level) # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#move_child(level, 5) # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#for child in level.get_children(): # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">#child.connect(&#34;tree_exited&#34;, self, &#34;_on_Brick_tree_exited&#34;) # Removed @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Pause game until NextScreen is hidden</span>
+</span></span><span style="display:flex;"><span>	get_tree()<span style="color:#f92672">.</span>paused <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add new level</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> add_new_level(): <span style="color:#75715e"># Added @ P11</span>
+</span></span><span style="display:flex;"><span>	level <span style="color:#f92672">=</span> load(<span style="color:#e6db74">&#34;res://scene/Level&#34;</span> <span style="color:#f92672">+</span> str(level_num) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.tscn&#34;</span>)<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>	add_child(level)
+</span></span><span style="display:flex;"><span>	move_child(level, <span style="color:#ae81ff">3</span>) <span style="color:#75715e"># Changed from 5 to 3 @ P11</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> child <span style="color:#f92672">in</span> level<span style="color:#f92672">.</span>get_children():
+</span></span><span style="display:flex;"><span>		child<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;tree_exited&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Brick_tree_exited&#34;</span>, [child<span style="color:#f92672">.</span>global_position]) <span style="color:#75715e"># Updated to add th 4th arg @ P11 </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_PauseScreen_visibility_changed():
+</span></span><span style="display:flex;"><span>	play_bgm<span style="color:#f92672">.</span>stream_paused <span style="color:#f92672">=</span> <span style="color:#f92672">not</span> play_bgm<span style="color:#f92672">.</span>stream_paused
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Save data</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> save_data(): <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> data <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;last_level&#34;</span>: level_num,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;high_level&#34;</span>: high_level_num,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;last_score&#34;</span>: score,
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;high_score&#34;</span>: high_score,
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>	file<span style="color:#f92672">.</span>open(SCORE_FILE_PATH, <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>WRITE)
+</span></span><span style="display:flex;"><span>	file<span style="color:#f92672">.</span>store_line(to_json(data))
+</span></span><span style="display:flex;"><span>	file<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load data</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> load_data(): <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> file<span style="color:#f92672">.</span>file_exists(SCORE_FILE_PATH):
+</span></span><span style="display:flex;"><span>		file<span style="color:#f92672">.</span>open(SCORE_FILE_PATH, <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>READ)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> data <span style="color:#f92672">=</span> parse_json(file<span style="color:#f92672">.</span>get_line())
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> data <span style="color:#f92672">!=</span> null:
+</span></span><span style="display:flex;"><span>			high_score <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#34;high_score&#34;</span>]
+</span></span><span style="display:flex;"><span>			high_level_num <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#34;high_level&#34;</span>]
+</span></span><span style="display:flex;"><span>		file<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>	hud_high_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;H Scr: &#34;</span> <span style="color:#f92672">+</span> str(high_score)
+</span></span><span style="display:flex;"><span>	hud_high_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;H Lvl: &#34;</span> <span style="color:#f92672">+</span> str(high_level_num)
+</span></span><span style="display:flex;"><span>  
+</span></span></code></pre></div></details>
 <br>
 <details>
 <summary>「GameOverView.gd」スクリプト全体を見る</summary>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-GDScript" data-lang="GDScript"><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Control</span>
-
-
-<span style="color:#66d9ef">const</span> SCORE_FILE_PATH <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;user://score_record.save&#34;</span> <span style="color:#75715e"># Added @ P13</span>
-
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> high_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>HighScore <span style="color:#75715e"># Added @ P13</span>
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> last_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>LastScore <span style="color:#75715e"># Added @ P13</span>
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> high_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>HighLevel <span style="color:#75715e"># Added @ P13</span>
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> last_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>LastLevel <span style="color:#75715e"># Added @ P13</span>
-<span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>KeySound
-
-
-<span style="color:#66d9ef">func</span> _ready(): <span style="color:#75715e"># Added @ P13</span>
-	load_data()
-	
-
-<span style="color:#66d9ef">func</span> _input(event):
-	<span style="color:#66d9ef">if</span> event is <span style="color:#a6e22e">InputEventKey</span>:
-		print(<span style="color:#e6db74">&#34;Input at Game Over: &#34;</span>, event<span style="color:#f92672">.</span>as_text())
-		<span style="color:#66d9ef">if</span> event<span style="color:#f92672">.</span>is_action_released(<span style="color:#e6db74">&#34;Quit&#34;</span>):
-			sound<span style="color:#f92672">.</span>play()
-			yield(sound, <span style="color:#e6db74">&#34;finished&#34;</span>)
-			get_tree()<span style="color:#f92672">.</span>quit()
-		<span style="color:#66d9ef">elif</span> event<span style="color:#f92672">.</span>is_action_released(<span style="color:#e6db74">&#34;ui_accept&#34;</span>):
-			sound<span style="color:#f92672">.</span>play()
-			yield(sound, <span style="color:#e6db74">&#34;finished&#34;</span>)
-			get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://scene/GameStartView.tscn&#34;</span>)
-
-
-<span style="color:#66d9ef">func</span> load_data(): <span style="color:#75715e"># Added @ P13</span>
-	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>new()
-	<span style="color:#66d9ef">if</span> file<span style="color:#f92672">.</span>file_exists(SCORE_FILE_PATH):
-		file<span style="color:#f92672">.</span>open(SCORE_FILE_PATH, <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>READ)
-		<span style="color:#66d9ef">var</span> data <span style="color:#f92672">=</span> parse_json(file<span style="color:#f92672">.</span>get_line())
-		<span style="color:#66d9ef">if</span> data <span style="color:#f92672">!=</span> null:
-			high_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;High Score: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;high_score&#34;</span>])
-			last_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Last Score: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;last_score&#34;</span>])
-			high_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;High Level: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;high_level&#34;</span>])
-			last_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Last Level: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;last_level&#34;</span>])
-		file<span style="color:#f92672">.</span>close()
-</code></pre></div></details>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Control</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> SCORE_FILE_PATH <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;user://score_record.save&#34;</span> <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> high_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>HighScore <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> last_score <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>LastScore <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> high_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>HighLevel <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> last_level <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>VBox<span style="color:#f92672">/</span>ResultsContainer<span style="color:#f92672">/</span>LastLevel <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> sound <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>KeySound
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready(): <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span>	load_data()
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _input(event):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> event is <span style="color:#a6e22e">InputEventKey</span>:
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Input at Game Over: &#34;</span>, event<span style="color:#f92672">.</span>as_text())
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> event<span style="color:#f92672">.</span>is_action_released(<span style="color:#e6db74">&#34;Quit&#34;</span>):
+</span></span><span style="display:flex;"><span>			sound<span style="color:#f92672">.</span>play()
+</span></span><span style="display:flex;"><span>			yield(sound, <span style="color:#e6db74">&#34;finished&#34;</span>)
+</span></span><span style="display:flex;"><span>			get_tree()<span style="color:#f92672">.</span>quit()
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> event<span style="color:#f92672">.</span>is_action_released(<span style="color:#e6db74">&#34;ui_accept&#34;</span>):
+</span></span><span style="display:flex;"><span>			sound<span style="color:#f92672">.</span>play()
+</span></span><span style="display:flex;"><span>			yield(sound, <span style="color:#e6db74">&#34;finished&#34;</span>)
+</span></span><span style="display:flex;"><span>			get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://scene/GameStartView.tscn&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> load_data(): <span style="color:#75715e"># Added @ P13</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> file<span style="color:#f92672">.</span>file_exists(SCORE_FILE_PATH):
+</span></span><span style="display:flex;"><span>		file<span style="color:#f92672">.</span>open(SCORE_FILE_PATH, <span style="color:#a6e22e">File</span><span style="color:#f92672">.</span>READ)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> data <span style="color:#f92672">=</span> parse_json(file<span style="color:#f92672">.</span>get_line())
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> data <span style="color:#f92672">!=</span> null:
+</span></span><span style="display:flex;"><span>			high_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;High Score: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;high_score&#34;</span>])
+</span></span><span style="display:flex;"><span>			last_score<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Last Score: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;last_score&#34;</span>])
+</span></span><span style="display:flex;"><span>			high_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;High Level: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;high_level&#34;</span>])
+</span></span><span style="display:flex;"><span>			last_level<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Last Level: &#34;</span> <span style="color:#f92672">+</span> str(data[<span style="color:#e6db74">&#34;last_level&#34;</span>])
+</span></span><span style="display:flex;"><span>		file<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div></details>
 <hr>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
      crossorigin="anonymous"></script>
