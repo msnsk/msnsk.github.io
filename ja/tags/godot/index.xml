@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 19 Feb 2022 16:17:02 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godot/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Mar 2022 15:11:20 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godot/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot をダウンロードする</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</link>
@@ -50,7 +50,7 @@
     <item>
       <title>シリーズ：Godot で作るプラットフォーマー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</link>
-      <pubDate>Sat, 19 Feb 2022 16:17:02 +0900</pubDate>
+      <pubDate>Thu, 03 Mar 2022 15:11:20 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</guid>
       <description>*シリーズ随時追加作成中 
@@ -249,6 +249,16 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_6/</guid>
       <description>第6回目の今回は、アイテムを作る。アイテムというのは、ちょうどスーパーマリオシリーズのコインのような、当たるとポイントを獲得できてちょっと嬉しい存在だ。さらに、下から小突くとアイテムが出てくる箱、その名もアイテムボックスを作る。それぞれスクリプトで動作を制御し、最後はレベルシーンに配置するところまでやっていこう。
+ Memo：</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 7：次のレベルに遷移させよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_7/</link>
+      <pubDate>Thu, 03 Mar 2022 15:11:20 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_7/</guid>
+      <description>第7回目の今回は、レベルのマップ上にスタートポイント、中間のチェックポイント、そしてエンドポイントを配置し、エンドポイントに到達した時に次のレベルに遷移する仕組みを実装していく。併せて、現在レベルシーンは「Level1」だけなので、次の「Level2」シーンも作成していく。
  Memo：</description>
     </item>
     
