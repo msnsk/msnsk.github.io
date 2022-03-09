@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="ja" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Godot で作るプラットフォーマー Part 8：HUD を追加しよう！ | Peanuts Code</title>
+<meta name="keywords" content="Godot, GodotEngine, ゲーム開発, チュートリアル, 初級, 2D, プラットフォーマー, アクションゲーム, 横スクロール, HUD, ヘッズアップディスプレイ, UI, ユーザーインターフェース" />
+<meta name="description" content="第8回目の今回は、HUD を実装していく。
+HUD というのは、ヘッズアップディスプレイ（Heads Up Display）の略で、ゲームプレイ中に常に画面上に表示されている UI の一つだ。例えば、プレイヤーの残りのライフ（海外での呼称 Health に合わせてこれ以降はヘルスと呼ぶ）や、獲得したスコアなどがわかりやすいだろう。HUD を実装する目的は現在のゲームの状態を視覚的にわかりやすくすることだ。">
+<meta name="author" content="Masanao Sako">
+<link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_8/" />
+<meta name="google-site-verification" content="XYZabc" />
+<meta name="yandex-verification" content="XYZabc" />
+<meta name="msvalidate.01" content="XYZabc" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="/images/logomark.png" as="image">
+<link rel="icon" href="https://www.peanuts-code.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.peanuts-code.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.peanuts-code.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.peanuts-code.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.93.3" />
+<link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_8/" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-DK0NK2RTTW', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="Godot で作るプラットフォーマー Part 8：HUD を追加しよう！" />
+<meta property="og:description" content="第8回目の今回は、HUD を実装していく。
+HUD というのは、ヘッズアップディスプレイ（Heads Up Display）の略で、ゲームプレイ中に常に画面上に表示されている UI の一つだ。例えば、プレイヤーの残りのライフ（海外での呼称 Health に合わせてこれ以降はヘルスと呼ぶ）や、獲得したスコアなどがわかりやすいだろう。HUD を実装する目的は現在のゲームの状態を視覚的にわかりやすくすることだ。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_8/" />
+<meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_8/img23.gif" /><meta property="article:section" content="tutorials" />
+<meta property="article:published_time" content="2022-03-04T13:16:21&#43;09:00" />
+<meta property="article:modified_time" content="2022-03-10T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_8/img23.gif" />
+<meta name="twitter:title" content="Godot で作るプラットフォーマー Part 8：HUD を追加しよう！"/>
+<meta name="twitter:description" content="第8回目の今回は、HUD を実装していく。
+HUD というのは、ヘッズアップディスプレイ（Heads Up Display）の略で、ゲームプレイ中に常に画面上に表示されている UI の一つだ。例えば、プレイヤーの残りのライフ（海外での呼称 Health に合わせてこれ以降はヘルスと呼ぶ）や、獲得したスコアなどがわかりやすいだろう。HUD を実装する目的は現在のゲームの状態を視覚的にわかりやすくすることだ。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Tutorials",
+      "item": "https://www.peanuts-code.com/ja/tutorials/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "シリーズ：Godot で作るプラットフォーマー",
+      "item": "https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Godot で作るプラットフォーマー Part 8：HUD を追加しよう！",
+      "item": "https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_8/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Godot で作るプラットフォーマー Part 8：HUD を追加しよう！",
+  "name": "Godot で作るプラットフォーマー Part 8：HUD を追加しよう！",
+  "description": "第8回目の今回は、HUD を実装していく。\nHUD というのは、ヘッズアップディスプレイ（Heads Up Display）の略で、ゲームプレイ中に常に画面上に表示されている UI の一つだ。例えば、プレイヤーの残りのライフ（海外での呼称 Health に合わせてこれ以降はヘルスと呼ぶ）や、獲得したスコアなどがわかりやすいだろう。HUD を実装する目的は現在のゲームの状態を視覚的にわかりやすくすることだ。",
+  "keywords": [
+    "Godot", "GodotEngine", "ゲーム開発", "チュートリアル", "初級", "2D", "プラットフォーマー", "アクションゲーム", "横スクロール", "HUD", "ヘッズアップディスプレイ", "UI", "ユーザーインターフェース"
+  ],
+  "articleBody": "第8回目の今回は、HUD を実装していく。\nHUD というのは、ヘッズアップディスプレイ（Heads Up Display）の略で、ゲームプレイ中に常に画面上に表示されている UI の一つだ。例えば、プレイヤーの残りのライフ（海外での呼称 Health に合わせてこれ以降はヘルスと呼ぶ）や、獲得したスコアなどがわかりやすいだろう。HUD を実装する目的は現在のゲームの状態を視覚的にわかりやすくすることだ。\nこのチュートリアルでは、プレイヤーキャラクターのヘルスとスコアと現在のレベルを画面の上部に表示する HUD を作っていく。プレイヤーキャラクターがダメージを受ける仕組みが未実装なので、その仕組みも併せて追加していく。\n Memo： \n過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るプラットフォーマー \n  \n (adsbygoogle = window.adsbygoogle || []).push({});   フォントのアセットをファイルシステムに追加する HUD を作るにあたって、HUD 内に表示する文字のフォントもできればレトロゲーム風なものにしたいところだ。\nまずは Godot のアセットライブラリにアクセスして使えそうなフォントアセットをダウンロードしよう。Godot Engine エディタ上部の「AssetLib」からアクセス可能だ。\nアクセスできたら検索ボックスに「font」と入力して検索してみよう。すると「Open Font Package」というアセットが見つかるはずだ（2022/03/05 現在）。\n見つかったらそれをクリックしてダウンロードする。\nこの時、おそらく「icon.png」が競合していると警告される。競合するファイルはインストールする前にチェックを外しておこう。\nインストールが完了したら OK をクリックする。\nファイルシステムを覗いてみると、ダウンロードしたフォントアセットが見つかるはずだ。\n HUD シーンを作る 新規シーンを作成して必要なノードを追加する まずは新規で HUD のシーンを作ろう。\n 「シーン」メニュー＞「新規シーン」を選択する 「ルートノードの生成」で「ユーザーインターフェース」を選択し、「Control」クラスのルートノードにし、名前を「HUD」に変更する 「HUD」に「HBoxContainer」を追加し、名前を「HUDHBox」にする 「HUDHBox」に「HBoxContainer」ノードを追加し、名前を「HealthHBox」にする 「HealthHBox」に「Label」ノードを追加し、名前を「HealthText」にする 「HealthHBox」に「TextureProgress」ノードを追加し、名前を「HealthBar」にする 「HUDHBox」に「Label」ノードを追加し、名前を「ScoreText」にする 「HUDHBox」に「HBoxContainer」ノードを追加し、名前を「LevelHBox」にする 「LevelHBox」に「Label」ノードを追加し、名前を「LevelText」にする 「LevelHBox」に「TextureRect」ノードを追加し、名前を「LevelTexture」にする 「UI」フォルダを作成し、ファイルパスを「res://UI/HUD.tscn」としてシーンを保存する  シーンツリーに必要なノードは揃ったので、次はそれぞれのノードのプロパティを編集する。\n新しく登場するノードがあるので、それぞれ簡単に用途を説明しておこう。公式オンラインドキュメントのそれぞれのクラスの説明ページも必要に応じて確認いただきたい。\n「Control」クラスは全てのユーザーインターフェース（UI）系のクラス( ○ こういう緑色のアイコンのクラス)の継承元になっている基本のクラスだ。今回作成したシーンではルートノードとして利用したが、これは単に、子ノードが全てUI系のノードのため、不都合のない入れ物として使っているだけだ。\n 公式オンラインドキュメント \nControl \n 「HBoxContainer」クラスの\"H\"は\"Horizontal\"の頭文字から来ており、その名の通り、水平方向に子ノードを並べて表示するための収納箱（コンテナ）のような役割をする。今回、HUD の要素は画面上部に横並びにしたかったので、このクラスのノードを利用している。お察しかもしれないが垂直方向（Vertical）用に「VBoxContainer」クラスもある。\n 公式オンラインドキュメント \nHBoxContainer VBoxContainer \n 「Label」クラスは、UIに文字列を表示させたい時に利用する。このクラスは、シンプルに文字列にフォントファイルを適用して表示するだけのシンプルなものだ。リッチテキストを表示したい場合は「RichTextLabel」という別のクラスを利用する。このチュートリアルでは、「HEALTH」、「SCORE」、「LEVEL」という文字を HUD に表示するために利用する。\n 公式オンラインドキュメント \nLabel RichTextLabel \n 「TextureProgress」クラスは、プログレスバー系のクラスの一つで、割り当てたテクスチャを利用してプログレスバーを作成することができる。このチュートリアルではヘルスの状態を直感的にわかりやすく表示するのに利用する。これは割と一般的な使い方だ。別の「ProgressBar」というクラスもあるが、これはどちらかというとデータ読み込み中などに利用するものだ。\n 公式オンラインドキュメント \nTextureProgress ProgressBar \n 「TextureRect」クラスは、四角い図形にテクスチャを割り当てて表示するクラスで、“Rect\"は\"Rectangle\"の略だ。もちろんテクスチャの画像が透過部分のある PNG イメージなら、四角に限らずあらゆるイメージを表示できる。用途としては、テクスチャで画面全体を覆ってゲームの背景に利用することもあれば、HUD やインベントリシステムなど UI の一部のイメージとして使用したり、HUD の範囲だけの背景として使われることもあり、様々な場面で役に立つクラスだ。今回は、現在のレベルを示す数字を画像で表示するために利用する（元々用意したアセットにレベルの数字の画像があり、せっかくなので）。\n 公式オンラインドキュメント \nTextureRect \n 各ノードのプロパティを編集する HUD ルートノード 「HUD」ルートノードを選択したら、ツールバーで「レイアウト」＞「Rect全面」を選択して、画面一杯に広げる\nHUDHBox ノード  ツールバーで「レイアウト」＞「上伸長」を選択して、画面上部で横一杯に広げる 「HUDHBox」を選択してインスペクターから「Alignment」プロパティを「Center」にする 「Margin」プロパティを（Left: 8, Top: 8, Right: -8, Bottom: 0）にして画面端に少し余白を作る 「Theme Overrides」＞「Constants」＞「Separation」プロパティを 16 にする\n  HealthHBox ノード このノードのプロパティは編集不要だ。\nHealthText ノード  「HealthText」ノードを選択して、インスペクターから「Text」プロパティに「health」と入力する 「Uppercase」プロパティをオンにする\n 「Theme Overrides」＞「Fonts」＞「Font」プロパティに、ファイルシステムから「res://fonts/poco/Poco.tres」（事前に準備したフォント）をドラッグ\u0026ドロップして適用する。 追加したフォントをクリックし、「Settings」＞「Size」プロパティを 16 にする さらに「Extra Spacing」＞「Top」プロパティを -8 にする\n  HealthBar ノード  「HealthBar」ノードを選択したら、インスペクターで「Nine Patch Stretch」をオンにして、テクスチャのサイズを柔軟に変更できるようにする\n 「Textures」＞「Under」にファイルシステムから「res://Assets/Background/Pink.png」をドラッグ\u0026ドロップして適用する（ヘルスバー用のアセットがないのであり物でやりくりするのだ） 今回「Textures」＞「Over」プロパティは設定せずそのまま 同様に「Textures」＞「Progress」プロパティにファイルシステムから「res://Assets/Background/Green.png」をドラッグ\u0026ドロップして適用する テクスチャの柄が目立たないように「Tint」「Under」プロパティの値を # 000000 にして大幅に色を変える 同様に「Tint」＞「Progress」プロパティの値を # 26ab3c にする\n 「Range」＞「Value」プロパティの値を 100 にする（この値に連動して「Progress」のテクスチャサイズが変化する）\n 「Rect」＞「Min Size」プロパティの x の値を 100 にする\n  ScoreText ノード 「HealthText」ノードと同様の手順だ。\n 「ScoreText」ノードを選択したら、インスペクターで「Text」プロパティに「score 0」と入力する 「Uppercase」プロパティをオンにする 「Size Flags」＞「Horizontal」で「Fill」と「Expand」にチェックを入れる\n 「Theme Overrides」＞「Fonts」「Font」プロパティに、ファイルシステムから「res://fonts/poco/Poco.tres」をドラッグ\u0026ドロップして適用する。  LevelHBox ノード このノードのプロパティは編集不要だ。\nLevelText ノード 「HealthText」ノードや「ScoreText」と同様の手順だ。\n 「LevelText」ノードを選択したら、インスペクターで「Text」プロパティに「level」と入力する 「Uppercase」プロパティをオンにする 「Theme Overrides」＞「Fonts」「Font」プロパティに、ファイルシステムから「res://fonts/poco/Poco.tres」をドラッグ\u0026ドロップして適用する。  LevelTexture ノード 「LevelTexture」ノードを選択したら、インスペクターで「Texture」プロパティに、ファイルシステムから「res://Assets/Menu/Levels/01.png」をドラッグ\u0026ドロップして適用する\nちなみに画像にブラーがかかっていたら、インポートドックで Pixel 2D のプリセットを適用して再インポートしておこう。\n HUD シーンをインスタンス化して Game シーンに追加する それでは、ここまでに作成した「HUD」シーンを「Game」シーンに追加していこう。\n まずは「Game.tscn」を開く 「Game」ルートノードに「CanvasLayer」ノードを追加し、名前を「HUDLayer」に変更する 「HUDLayer」ノードに「HUD.tscn」シーンをインスタンス化して追加する  シーンツリーが以下のようになればOKだ。\nちなみに「CanvasLayer」クラスのノードを追加した理由は、このゲームのカメラを担当する「Camera2D」ノードとはレイヤーを別ける必要があったからだ。そうしないと、プレイヤキャラクターを操作するやいなや、HUDの位置がズレていってしまう。「CanvasLayer」の子として「HUD」ノードを追加することで、HUD がカメラとは別レイヤーになり、常に画面上の指定の位置に HUD が固定された状態を維持できるのだ。\nでは実際にプロジェクトを実行して HUD の表示を確認してみよう。\nプレイヤーキャラクターが移動しても HUD は画面上部に固定されたままで、問題なさそうだ。小休止したら次のスクリプトの手順に進もう。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   HUD ノードにスクリプトをアタッチする 「HUD」ルートノードにスクリプトをアタッチしよう。ファイルパスを「res://UI/HUD.gd」として作成する。スクリプトエディタを開いたら、以下のコードを記述してほしい。\nextends Control  # 値の変更が必要なプロパティをもつノードの参照 onready var health_bar = $HUDHBox/HealthHBox/HealthBar onready var score_text = $HUDHBox/ScoreText onready var level_texture = $HUDHBox/LevelHBox/LevelTexture   # ゲーム開始時にヘルスバーを満タンにする func _ready(): \thealth_bar.value = 100  # 以下の3つのこのメソッドは Game.gd から呼び出す予定  # HealthBar ノードの Value プロパティに引数 health の値を適用する func update_health(health): \thealth_bar.value = health  # ScoreText ノードの Text プロパティに引数 score の値を文字列に変換して適用する func update_score(score): \tscore_text.text = \"score \" + str(score)  # LevelTexture ノードの Texture プロパティに現在のレベル数と同じテクスチャ画像を適用する func update_level(level): \t# 文字列型のレベル数を格納するための変数を定義 \tvar str_level \t# レベルが 10 未満だったら \tif level  10: \t# 頭に 0 をつけた文字列型のレベル数表記に変換 \tstr_level = \"0\" + str(level) \t# レベルが 10 以上 50 以下だったら（アセットが 50 までしかないため） \telif level  50: \t# そのまま文字列型のレベル数表記に変換 \tstr_level = str(level) \t# アセットのファイル名の数字の部分に str_level 変数の値を利用してテクスチャファイル読み込み \tvar file = load(\"res://Assets/Menu/Levels/\" + str_level + \".png\") \t# LevelTexture ノードの Texture プロパティに読み込んだテクスチャを適用 \tlevel_texture.texture = file 上記「HUD.gd」スクリプトでは、値の変更が発生するプロパティを持つノードを参照するプロパティを3つ定義した。また、それらのプロパティを更新するためのメソッドもそれぞれ作成した。これら3つのメソッドは「Game.gd」スクリプト側から呼び出すことになる。理由は、「Game.gd」の方で、プレイヤーキャラクターのヘルス、スコア、および現在のレベル数を管理したいからだ。\nさて、ここから複数のノードのスクリプトが絡み合っていくのでちょっとややこしいかもしれない。こういう時は図を書くとわかりやすい。紙と鉛筆で良いので、以下のような図を書いて頭の中を整理してからコーディング作業を開始するのがおすすめだ。ちなみにこの図はhealthおよびscoreプロパティの値が最終的に HUD へ反映するまでの流れを示している。自分の頭が整理できさえすれば細かい図のクオリティを気にする必要はない（筆者も普段は鉛筆で大雑把に書く）。\nではこの流れでまずは「Game.gd」スクリプトを編集していこう。「Game.gd」を開いたら、冒頭の_readyメソッドまでのコードを以下の内容に更新する。「# 追加」とコメントしているところが更新箇所だ。\nextends Node  # 現在のヘルスを格納するプロパティ var health: float = 100.0 # 追加 # 現在のスコアを格納するプロパティ var score: int = 0 # 追加  var level: Node2D # Player ノードの参照（予定） var player: KinematicBody2D # 追加  export var current_level = 1 export var final_level = 2 # HUD ノードの参照 onready var hud = $HUDLayer/HUD # 追加   func _ready(): \tadd_level() \t# HUD ノードの update_health メソッドの引数に health プロパティの値を渡して実行 \thud.update_health(health) # 追加 \t# HUD ノードの update_score メソッドの引数に score プロパティの値を渡して実行 \thud.update_score(score) # 追加 \t# HUD ノードの update_level メソッドの引数に current_level プロパティの値を渡して実行 \thud.update_level(current_level) # 追加  #　以下省略 今回「Game.gd」スクリプト内で、プレイヤーキャラクターのヘルスの管理用にhealthプロパティを、スコアの管理用にscoreプロパティを新たに定義した。\nそして、先に「HUD.gd」で定義した3つのメソッドも、さっそく「Game.gd」の_readyメソッドの中で実行している。これにより、ゲーム開始時にhealth、score、levelの3つのプロパティの初期値が HUD に反映される。\n HUD にプレイヤーキャラクターが受けたダメージを反映させる ここからは、プレイヤーのヘルス管理を実装していく。\nPlayer シーンに HitBox を追加する 長らく放置していた、プレイヤーキャラクターのダメージを受ける仕組みを作る時が来た。敵に当たった時にシグナルを発信させてダメージ処理を行いたいので、敵キャラクターと同様に、下記手順でプレイヤーキャラクターにも「HitBox」を作成するところから始めていこう。\n 「Player.tscn」を開く 「Player」ルートノードに「Area2D」ノードを追加し、名前を「HitBox」に変更する 「HitBox」ノードに「CollisionShape2D」ノードを追加する\n 追加した「CollisionShape2D」の「Shape」プロパティに「新規RectangleShape2D」を設定する。 追加した「CollisionShape2D」のコリジョン形状を編集する。「Player」直下の「CollisionShape2D」の形状より横幅が 1 px だけ大きくなるようにし、足元は敵キャラクターを踏む際にダメージを受けないように少し空けておく。関連プロパティは以下の値になった。  Extents: (7, 8.5) Position: (0, 3.5)\n    スクリプトでプレイヤーキャラクターが敵キャラクターに当たった時のダメージ処理を実装をする Player.gd プレイヤーキャラクターが敵キャラクターに当たった時の処理をコーディングしていく。「Player.gd」スクリプトを開こう。\nまずは、プレイヤーが敵キャラクターに当たって、ダメージを受けた瞬間に HUD へ反映させるためには、シグナルが必要だ。残念ながら「Player」ルートノードのクラスである「KinematicBody2D」には、「Area2D」クラスの「body_entered(body)」のようなシグナルがない。そこで、ひとまず自分でシグナルを定義する。\nextends KinematicBody2D  signal enemy_hit(damage) # 追加  # 以下省略 これでenemy_hitというシグナルが定義できた。(damage)というふうにシグナルに引数を定義しておくことで、シグナルを発信したときにこの引数の値を、接続先のメソッドの引数に渡すことができる。つまり、この引数damageに敵キャラクターから受けたダメージを入れてシグナルを発信し、シグナルの接続先メソッドへダメージの値を渡すことができるということだ。\n次に、先ほど追加した「HitBox」ノードのシグナルを接続する。「HitBox」ノードの「body_entered(body)」シグナルを「Player.gd」スクリプトに接続しよう。\nすると、「Player.gd」スクリプトに、_on_HitBox_body_enteredメソッドが追加されたはずだ。このメソッド内で、先に定義したenemy_hitシグナルを発信させる。具体的には以下のようにコードを更新しよう。\n# プレイヤーキャラクターに物理ボディが当たったら呼ばれるメソッド func _on_HitBox_body_entered(body): # 追加 \t# もし当たったのが敵キャラクターだったら \tif body.is_in_group(\"Enemies\"): \t# デバッグ用 \tprint(\"Enemy hit player. Damage is \", body.damage) \t# enemy_hit シグナルを発信する（敵キャラクターから受けるダメージの damage プロパティを引数に渡す） \temit_signal(\"enemy_hit\", body.damage) \t# AnimatedSprite の hit アニメーションを再生する \tsprite.play(\"hit\") \nEnemy.gd さて上のスクリプトで先に登場している「Enemy」ノードのdamageプロパティだが、これはまだ定義していないので、さっそく「Enemy.gd」を開いて定義しよう。\nextends KinematicBody2D   export var gravity: int export var speed: int export var damage: float # Added @ 追加  # 以下省略 値は何も入れずに、型だけ小数点を含む数値のfloatとして定義しておこう。exportキーワードを追加したので、「Enemy.tscn」を継承するそれぞれの敵キャラクターのシーンで、当たったときに受けるダメージの値をインスペクター上で設定する予定だ。\nところで、なぜdamageプロパティの型を整数のint型で定義しないのかというと、このdamageの値を「Game」ノードのfloat型で定義したhealthの値から減算することになるのだが、そのときに型が異なるとエラーになるからだ。ではなぜhealthプロパティもfloat型に定義したかというと、最終的にこの値を割り当てる先がfloat型の値をとる「HUD」シーンの「HealthBar」ノードの「Value」プロパティだからだ。\nプログラムで何らかの計算をさせるのに型を揃えるのは、プログラミング全般で共通のルールなので、この機会に覚えておこう。\nChameleon.gd ここで気をつけておきたい一つ目のポイントは、カメレオンだ。この敵キャラクターは舌を伸ばして攻撃してくる。この舌に当たるとプレイヤーはダメージを受けなければならないが、この舌の部分は「Chameleon」ルートノード（KinematicBody2Dクラス）直下の「CollisionShape2D」のコリジョン形状とは重なっておらず、当たっても物理ボディとは判定されない。この場合は、「Chameleon.gd」スクリプト側で「RayCast2D」ノードの衝突判定を利用して「Player」のenemy_hitシグナルを発動させる。では「Chameleon.gd」を開こう。\n更新は2箇所、ステータス管理用のプロパティを一つ追加することと、スクリプトの一番最後で定義しているattackメソッドを更新することだ。attackメソッド内の最後に追加したifブロック丸ごと追加している（「# 追加」とコメントしている行が更新箇所だ）。\nextends \"res://Enemies/Enemy.gd\"  # 舌の当たり判定が有効かどうか（初期値は有効） var tongue_hit_enabled = true # 追加  # 中略  func attack(): \tsprite.play(\"attack\") \tif sprite.frame == 6 or sprite.frame == 7: \tif raycast.is_colliding() and raycast.get_collider().name == \"Player\": \tif position.distance_to(raycast.get_collision_point())  50: \t# 舌の当たり判定が有効な場合は \tif tongue_hit_enabled: # 追加 \t# デバッグ用 \tprint(\"Chameleon's tongue hits player.\") \t# Player の enemy_hit シグナルを damage プロパティ付きで発信 \traycast.get_collider().emit_signal(\"enemy_hit\", damage) # 追加 \t# 舌の当たり判定を無効にする \ttongue_hit_enabled = false # 追加 \t# 0.83秒（attack アニメーションの約1回分の長さ）待つ \tyield(get_tree().create_timer(0.83), \"timeout\") # 追加 \t# 舌の当たり判定を有効にする \ttongue_hit_enabled = true # 追加 今までのコードのままだと、_physics_processメソッド内でのattackメソッドが 60 FPS に合わせて 1 秒間に 60 回呼ばれる。つまり、1秒間に 60 回のペースで舌への当たり判定が発生し、プレイヤーのヘルスは一瞬で 0 になってしまう。\nこれを避けるために、舌の当たり判定のステータス管理用にtongue_hit_enabledというステータスを用意した。初期値はtrueで、その時は当たり判定が有効だ。この状態で、カメレオンの舌が一度プレイヤーキャラクターに当たると、「Chameleon.gd」スクリプト側から「Player」のenemy_hitシグナルが発信される。その後、直ちに舌の当たり判定をfalseにする。さらにそこから、カメレオンの「attack」アニメーション一周分のおおよその所要時間である 0.83 秒待機したら、また舌の当たり判定を有効にする。これにより、1回の舌を伸ばすアニメーションにつき1回しかダメージを受けない仕組みを作った。\nSeed.gd そして、もう一つ忘れてはいけないのが、プラントという敵キャラクターは種を飛ばしてくる。この種のシーンである「Seed.tscn」は「Enemy.tscn」を継承していないので、別途damageプロパティを定義しておく必要がある。また、「Enemies」グループに属しておらず、ルートノードが「Area2D」クラスであり物理ボディでもないので、ここで諸々の修正を行っておこう。\nでは「Seed.tscn」を開いてほしい。まずは「Seed」ノードを「Enemies」グループに追加しよう。\nシーンドックで「Seed」ルートノードを右クリックし、「型を変更」を選択する。そして「StaticBody2D」を選択しよう。これで種も物理ボディになった。\nしかし、スクリプトの方はまだ「Area2D」を継承した形になっているので、修正する。「Seed.gd」スクリプトを開き、以下のように更新しよう。ここでついでにdamageプロパティも定義しておく。\n#extends Area2D # 削除 extends StaticBody2D # 追加   export var speed = 150 export var damage: float = 32 # 追加 「StaticBody2D」ノードにはbody_entered(body)シグナルがないので、_on_Seed_body_enteredメソッドはひとまず削除しておこう。\n#func _on_Seed_body_entered(body): # 削除 #\tif body.name == \"Player\": #\tprint(\"Seed hits player.\") #\tqueue_free() しかし、このままでは種がプレイヤーキャラクターに当たっても消えず、そのまま物理ボディ同士の衝突により、押し続けてくる。そこで、子ノードとして改めて「Area2D」ノードを加え、物理ボディとの接触により種が解放されるようにする。\nまずはシーンドックで「Seed」ルートノードに「Area2D」ノードを追加。さらに「Area2D」ノードに「CollisionShape2D」ノードを追加する。\n「CollisionShape2D」のコリジョン形状を調整する。「Shape」プロパティに「新規 CircleShape2D」を割り当てる。2Dワークスペースで、「Seed」ルートノード直下の「CollisionShape2D」の形状より 1 px 大きめに設定した。「Radius」プロパティは 5 だ。\n「Area2D」ノードを選択した状態で、ノードドック＞「シグナル」タブから「body_entered」シグナルを「Seed.gd」スクリプトに接続する。\nこれで「Seed.gd」スクリプトに_on_Area2D_body_enteredメソッドが追加されたので、メソッドの中身を以下のように記述しよう。\nfunc _on_Area2D_body_entered(body): # 追加 \tif body.name != \"Seed\": \tprint(body.name, \" hits seed.\") \tqueue_free() if body.name != \"Seed\":の!=は「一致しない」という意味だ。このif構文がなければ、種が自身の物理ボディとの衝突により、インスタンスが生成された瞬間にすぐ解放される事になる。\nこれで、種が物理ボディ（主にプレイヤーキャラクター）に当たったら消える仕組みが復元できた。\nGame.gd 最後に「Game.gd」スクリプトに戻って、必要な更新をしておこう。「# 追加」のコメントがある部分が更新箇所だ。\n# ここまで省略  func add_level(): \tlevel = load(\"res://Levels/Level\" + str(current_level) + \".tscn\").instance() \tlevel.connect(\"tree_exited\", self, \"change_level\") \tadd_child(level) \t# Player ノードを参照するプロパティを定義 \tplayer = level.get_node(\"Player\") # 追加 \t# enemy_hit シグナルを _on_Player_enemy_hit メソッドにコードで接続 \tplayer.connect(\"enemy_hit\", self, \"_on_Player_enemy_hit\") # 追加   func change_level(): \t#メソッド内省略   func _on_Player_enemy_hit(damage): # 追加 \thealth -= damage \thud.update_health(health) add_levelメソッドはゲーム開始時やレベルクリア時に次のレベルシーンのインスタンスを「Game」ルートノードに追加するためのメソッドだ。このメソッドが実行されるまでは「Game」シーンツリーに「Player」ノードは存在しない。そのため、このadd_levelメソッドで「Level_」シーンのインスタンスが「Game」シーンに追加されてから、「Player」ノードの自作のシグナルenemy_hitを、その後に新たに定義している_on_Player_enemy_hitメソッドに接続している。このようにconnectメソッドを使えばコードでシグナルを接続できる。\nそして新たに定義した_on_Player_enemy_hitメソッドだが、これは通常ノードドックからのシグナル接続時に生成されるメソッドと同じだと思っていただければわかりやすいだろう。メソッド名もそれっぽくしたが、実際には何でも良い。enemy_hitシグナル発信時にこのメソッドが呼ばれる。引数のdamageにはシグナル発信メソッドemit_signalの引数damageの値が入る。処理として、まずhealthプロパティの値から引数damageが減算される。そのあと「HUD」ノードのupdate_healthメソッドが呼ばれ、引数には更新されたhealthプロパティの値が渡される。update_healthメソッドが実行されると「HUD」シーンの「HealthBar」が更新される（つまり緑色のバーが減る）。\nそれぞれの敵キャラクターのダメージを設定する それぞれの敵キャラクターの.tscnファイルを開き、インスペクターで「Damege」プロパティの値を設定しよう。\nあなたのお好みの数値にしていただいて構わない。以下はサンプルとしてこのチュートリアル用に設定した値だ。\n Mushroom - Damage: 8 Bunny - Damage: 32 Chameleon - Damage: 40 Plant - Damage: 24  Seed - Damage: 32    ここまでできたら、HUD のヘルスバーが正しく変動するか、一度プロジェクトを実行してみよう。\n敵キャラクター自体への衝突、カメレオンの舌との衝突、およびプラントの種との衝突でダメージの処理がうまくいっているようなので、良しとしよう。次はスコアの処理だ。ここらで一度、小休憩を入れようじゃないか。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   HUD に獲得したポイントの合計スコアを反映させる 以前 Part 6 のチュートリアルで「Item.gd」スクリプトにexportキーワード付きでpointというプロパティを用意し、インスペクター上でそれぞれのアイテム（フルーツ）のポイントを設定したことは覚えているだろうか。\n サイト内記事リンク： \nGodot で作るプラットフォーマー Part 6：アイテムを作ろう！ \n 今まではただプレイヤーキャラクターがアイテムに当たったらそのポイントがふわりと画面上に出て消えるだけだったが、今回は以下の流れを作っていく。\n 「Player」ノードが「Item」ノードに当たる 「Player」ノードのitem_hitシグナルが発信される 発信されたitem_hitシグナルの引数にpointプロパティの値が渡される item_hitシグナルが接続されている「Game」ノードの_on_Player_item_hitメソッドが呼ばれる _on_Player_item_hitメソッドにより、「Game」ノードのscoreプロパティの値にpointの値が加算される 更新されたscoreプロパティの値が「HUD」ノードのupdate_scoreメソッドの引数として渡される update_scoreメソッドにより、「HUD」ノードの子である「ScoreText」ノードの「Text」プロパティの値に最新のscoreの値が反映される  スクリプトでプレイヤーキャラクターがアイテムに当たった時の制御をする Item.gd まずは「Item.gd」スクリプト側で、プレイヤーキャラクターがアイテムに当たった時に「Player」ノードのitem_hitシグナルを発信する仕組みを実装する。\n「Item.gd」スクリプトを開いたら、以下のように編集しよう。\nfunc _on_Item_body_entered(body): \tif body.name == \"Player\": \tprint(\"Player hit Item\") \thit(body) # 引数に body を追加   func hit(player): # 新たに引数 player を定義 \tprint(\"Got \", point, \" point.\") \tplayer.emit_signal(\"item_hit\", point) # 追加、Player の item_hit シグナルを発信 \tanim_player.play(\"hit\") \tyield(anim_player, \"animation_finished\") \tqueue_free() コード上の表記と順番が逆になるが、先にhitメソッドを更新した。引数playerを追加し、その引数に「Player」ノードが代入されるのを前提に、player.emit_signalメソッドでitem_hitシグナルを発信するように更新した。\n次に、_on_Item_body_enteredメソッドの最後でhitメソッドが呼ばれるが、その引数には「Player」ノードとイコールであるbodyを代入している。\n実は、hitメソッドはアイテムボックスの方のスクリプトでも呼ばれている。「ItemBox.gd」スクリプトを確認してみよう。編集したのは、アイテムボックス下部をプレイヤーキャラクターが小突いた時にシグナルで呼ばれる_on_Area2D_body_enteredというメソッドだ。\nfunc _on_Area2D_body_entered(body): \tif body.name == \"Player\": \tprint(\"ItemBox  Area2D entered by player\") \t\tif timer_unused: \ttimer.start() \ttimer_unused = false \t\tsprite.play(\"hit\") \tyield(sprite, \"animation_finished\") \tsprite.play(\"idle\") \t\tif items.empty(): \tprint(\"ItemBox is empty.\") \tsprite.visible = false \tvar broken_box = broken_box_tscn.instance() \tparent.add_child(broken_box) \tbroken_box.position = position \tqueue_free() \tprint(self.name, \" removed.\") \telse: \tprint(\"ItemBox is not empty.\") \tvar item = items.pop_front().instance() \tadd_child(item) \titem.position.y -= 12 \titem.hit(body) # 引数に body を追加 プレイヤーがアイテムボックス下部の「Area2D」のコリジョン形状に当たって、その時アイテムボックスが空っぽではなかった場合（一番最後のelseブロック）、最後に「Item」ノードのhitメソッドが呼ばれる。さっきちょうど更新したメソッドだ。ここでもbodyイコール「Player」ノードなので、hitメソッドの引数playerにbodyを代入して実行している。これで、アイテムボックスからアイテムが飛び出すたびに「Player」ノードのitem_hitシグナルが発信するようになった。\nGame.gd 次に「Game.gd」スクリプトを開いて編集しよう。\nadd_levelメソッドの編集から始める。\nfunc add_level(): \tlevel = load(\"res://Levels/Level\" + str(current_level) + \".tscn\").instance() \tlevel.connect(\"tree_exited\", self, \"change_level\") \tadd_child(level) \tplayer = level.get_node(\"Player\") # さっき追加した \tplayer.connect(\"enemy_hit\", self, \"_on_Player_enemy_hit\") # さっき追加した \tplayer.connect(\"item_hit\", self, \"_on_Player_item_hit\") # 追加 「Player」ノードのitem_hitシグナルを_on_Player_item_hitというメソッドに接続する。このメソッドはこの後定義する。\nfunc _on_Player_item_hit(point): # 追加 \tscore += point \thud.update_score(score) _on_Player_item_hitを定義した。このメソッドの引数にはitem_hitシグナルの引数pointの値が入る。scoreからそのpointが減算されて、更新されたscoreを引数として「HUD」ノードのupdate_scoreメソッドが呼ばれる。これで HUD のスコア表示に最新のscoreプロパティの値が反映する。\nではプロジェクトを実行して、アイテムに当たった時の HUD の変化を確認してみよう。\n（マッシュルームを踏んだ時にダメージをくらっているが）直接アイテムに当たった時も、アイテムボックスでアイテムが飛び出した時も、両方ともスコアに獲得したポイントが加算されたので、想定通りの挙動と言って良いだろう。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   HUD に現在のレベル数を反映させる HUD のレベル数の変化をスクリプトで制御していこう。と言っても、このセクションが一番簡単だから安心してほしい。「Game.gd」スクリプトを開いて、change_levelメソッドを以下のように編集しよう。「# 追加」とコメントしている行だ。\nfunc change_level(): \tprint(\"change_level() called.\") \tif current_level  final_level: \tprint(\"change to next level.\") \tlevel.queue_free() \tcurrent_level += 1 \thud.update_level(current_level) # 追加 \tadd_level() \telse: \tprint(\"Game Clear! Congrats!\") \tget_tree().quit() 「HUD」ノードのupdate_levelメソッドは事前に定義済みなので、これでレベル1をクリアしてレベル2に遷移するときに HUD の Level の表記が更新されるはずだ。\nでは、実際にプロジェクトを実行して確認してみよう。\nきちんとレベルが 1 から 2 に切り替わったのが確認できた。問題ないだろう。以上で今回のチュートリアルの HUD 実装作業は完了だ。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Part 8 で編集したスクリプトのコード 最後に今回の Part 8 で編集したスクリプトのコードを共有しておくので、必要に応じて確認してほしい。\n HUD.gd の全コード extends Control   var score = 0 onready var health_bar = $HUDHBox/HealthHBox/HealthBar onready var score_text = $HUDHBox/ScoreText onready var level_texture = $HUDHBox/LevelHBox/LevelTexture   func _ready(): \thealth_bar.value = 100   func update_health(health): \thealth_bar.value = health   func update_score(score): \tscore_text.text = \"score \" + str(score)   func update_level(level): \tvar str_level \tif level  10: \tstr_level = \"0\" + str(level) \telif level  51: \tstr_level = str(level) \tvar file = load(\"res://Assets/Menu/Levels/\" + str_level + \".png\") \tlevel_texture.texture = file   Game.gd の全コード extends Node  var health: float = 100.0 # 追加 var score: int = 0 # 追加 var level: Node2D var player: KinematicBody2D  export var current_level = 1 export var final_level = 2  onready var hud = $HUDLayer/HUD # 追加   func _ready(): \tadd_level() \thud.update_health(health) # 追加 \thud.update_score(score) # 追加 \thud.update_level(current_level) # 追加   func add_level(): \tlevel = load(\"res://Levels/Level\" + str(current_level) + \".tscn\").instance() \tlevel.connect(\"tree_exited\", self, \"change_level\") \tadd_child(level) \tplayer = level.get_node(\"Player\") # 追加 \tplayer.connect(\"enemy_hit\", self, \"_on_Player_enemy_hit\") # 追加 \tplayer.connect(\"item_hit\", self, \"_on_Player_item_hit\") # 追加   func change_level(): \tprint(\"change_level() called.\") \tif current_level  final_level: \tprint(\"change to next level.\") \tlevel.queue_free() \tcurrent_level += 1 \thud.update_level(current_level) # 追加 \tadd_level() \telse: \tprint(\"Game Clear! Congrats!\") \tget_tree().quit()   func _on_Player_enemy_hit(damage): # 追加 \tprint(\"Health updated: \", health) \thealth -= damage \thud.update_health(health)   func _on_Player_item_hit(point): # 追加 \tscore += point \thud.update_score(score)   Player.gd の全コード extends KinematicBody2D # Created @ Part 1  signal enemy_hit(damage) # 追加 signal item_hit(point) # 追加  export var acceleration = 256 export var max_speed = 64 export var max_dash_speed = 200 export var friction = 0.1 export var gravity = 512 export var jump_force = 224 export var air_resistance = 0.02 var velocity = Vector2() onready var sprite = $AnimatedSprite onready var anim_player = $AnimationPlayer # Added @ Part 7   func _ready(): # Added @ Part 7 \tsprite.position = Vector2(0, 0) \tsprite.scale = Vector2(1, 1) \tsprite.modulate = Color(1, 1, 1, 1)   func _physics_process(delta): \tvelocity.y += gravity * delta \tvar x_input = Input.get_action_strength(\"move_right\") - Input.get_action_strength(\"move_left\") \t\tif x_input != 0: \tvelocity.x += x_input * acceleration \tif Input.is_action_pressed(\"dash\"): \tvelocity.x = clamp(velocity.x, -max_dash_speed, max_dash_speed) \telse: \tvelocity.x = clamp(velocity.x, -max_speed, max_speed) \tsprite.flip_h = x_input  0 \t\tif is_on_floor(): \tif x_input == 0: \tsprite.play(\"idle\") \tvelocity.x = lerp(velocity.x, 0, friction) \telse: \tsprite.play(\"run\")  \tif Input.is_action_just_pressed(\"jump\"): \tsprite.play(\"jump\") \tvelocity.y = -jump_force  \telse: \tif x_input == 0: \tvelocity.x = lerp(velocity.x, 0, air_resistance)  \tif Input.is_action_just_released(\"jump\") and velocity.y  -jump_force / 2: \tvelocity.y = -jump_force / 2  \tvelocity = move_and_slide(velocity, Vector2.UP)  \t# Added @ Part 3 \tif position.x  16: \tposition.x = 16   func _on_HitBox_body_entered(body): # 追加 \tif body.is_in_group(\"Enemies\"): \tprint(\"Enemy hit player. Damage is \", body.damage) \temit_signal(\"enemy_hit\", body.damage) \tsprite.play(\"hit\")   Enemy.gd の全コード extends KinematicBody2D # Added @ Part 4   export var gravity: int export var speed: int export var damage: float # 追加 var velocity = Vector2() onready var sprite = $AnimatedSprite   func _ready(): \tset_physics_process(false)   func _on_HitBox_body_entered(body): \tif body.is_in_group(\"Players\"): \tprint(\"Player entered in \", self.name) \tsprite.play(\"hit\") \tyield(sprite, \"animation_finished\") \tqueue_free() \tprint(self.name, \" died\")   func _on_VisibilityEnabler2D_screen_entered(): \tset_physics_process(true)   func _on_VisibilityEnabler2D_screen_exited(): \tset_physics_process(false)   Seed.gd の全コード extends StaticBody2D # Added @ Part 5 / Modified @ Part 8   export var speed = 150 export var damage = 32 # 追加   func _physics_process(delta): \tposition.x -= speed * delta   #func _on_Seed_body_entered(body): # 削除 #\tif body.name == \"Player\": #\tprint(\"Seed hits player.\") #\tqueue_free()   func _on_VisibilityNotifier2D_viewport_exited(viewport): \tprint(\"viewport_exited method called\") \tqueue_free()   func _on_Area2D_body_entered(body): # 追加 \tif body.name != \"Seed\": \tprint(body.name, \" hits seed.\") \tqueue_free()   Chameleon.gd の全コード extends \"res://Enemies/Enemy.gd\" # Added @ Part 5  var tongue_hit_enabled = true # 追加 onready var raycast = $RayCast2D   func _ready(): \tsprite.play(\"idle\") \t func _physics_process(delta): \tif raycast.is_colliding(): \tif raycast.get_collider().name == \"Player\": \tif position.distance_to(raycast.get_collision_point())  80: \trun() \telse: \tattack() \tvelocity.x = 0 \telse: \tsprite.play(\"idle\") \tvelocity.x = 0 \tvelocity.y += gravity * delta \tvelocity = move_and_slide(velocity, Vector2.UP)   func run(): \tsprite.play(\"run\") \tif is_on_wall(): \tspeed *= -1 \tsprite.flip_h = !sprite.flip_h \tsprite.position.x *= -1 \traycast.cast_to.x *= -1 \tvelocity.x = -speed   func attack(): \tsprite.play(\"attack\") \tif sprite.frame == 6 or sprite.frame == 7: \tif raycast.is_colliding() and raycast.get_collider().name == \"Player\": \tif position.distance_to(raycast.get_collision_point())  50: \tprint(\"Chameleon's tongue hits player.\") \tif tongue_hit_enabled: # 追加 \traycast.get_collider().emit_signal(\"enemy_hit\", damage) \ttongue_hit_enabled = false \tyield(get_tree().create_timer(0.83), \"timeout\") \ttongue_hit_enabled = true   Item.gd の全コード extends Area2D # Added @ Part 6   export var point = 100 onready var sprite = $AnimatedSprite onready var label = $Label onready var anim_player = $AnimationPlayer   func _ready(): \tsprite.modulate = Color(1, 1, 1, 1) \tsprite.position = Vector2.ZERO \tsprite.scale = Vector2.ONE \tlabel.modulate = Color(1, 1, 1, 0) \tlabel.rect_position = Vector2(-32, -20) \tlabel.text = str(point)   func _on_Item_body_entered(body): \tif body.name == \"Player\": \tprint(\"Player hit Item\") \thit(body) # 変更  func hit(body): # 変更 \tprint(\"Got \", point, \" point.\") \tbody.emit_signal(\"item_hit\", point) # 追加 \tanim_player.play(\"hit\") \tyield(anim_player, \"animation_finished\") \tqueue_free()   ItemBox.gd の全コード extends StaticBody2D # Added @ Part 6  var timer_unused = true onready var sprite = $AnimatedSprite onready var timer = $Timer onready var parent = get_parent() onready var broken_box_tscn = preload(\"res://Items/BrokenBox.tscn\") onready var items = [ \tpreload(\"res://Items/Apple.tscn\"), \tpreload(\"res://Items/Bananas.tscn\"), \tpreload(\"res://Items/Cherries.tscn\"), \tpreload(\"res://Items/Kiwi.tscn\"), \tpreload(\"res://Items/Melon.tscn\"), \tpreload(\"res://Items/Orange.tscn\"), \tpreload(\"res://Items/Pineapple.tscn\"), \tpreload(\"res://Items/Strawberry.tscn\"), ]   func _ready(): \tsprite.play(\"idle\")   func _on_Timer_timeout(): \tprint(\"ItemBox  Timer timeout\") \tif not items.empty(): \titems.clear() \tprint(\"items size: \", items.size())   func _on_Area2D_body_entered(body): \tif body.name == \"Player\": \tprint(\"ItemBox  Area2D entered by player\") \t\tif timer_unused: \ttimer.start() \ttimer_unused = false \t\tsprite.play(\"hit\") \tyield(sprite, \"animation_finished\") \tsprite.play(\"idle\") \t\tif items.empty(): \tprint(\"ItemBox is empty.\") \tsprite.visible = false \tvar broken_box = broken_box_tscn.instance() \tparent.add_child(broken_box) \tbroken_box.position = position \tqueue_free() \tprint(self.name, \" removed.\") \telse: \tprint(\"ItemBox is not empty.\") \tvar item = items.pop_front().instance() \tadd_child(item) \titem.position.y -= 12 \titem.hit(body) # 変更   おわりに 以上で Part 8 は完了だ。今回は HUD を実装した。HUD の見た目を作るまではそれなりにサクサクと進められたと思う。しかし、複数のスクリプトを跨いだデータの受け渡しは、なかなか複雑でややこしいと感じる人は多いのではないだろうか。今回のチュートリアルでもお伝えしたように、先に図や絵を描いて頭の中を整理すると、その後のコーディングもよりスムーズに進められることが多い。今後もしあなた自身のオリジナルプロジェクトを作る場面で役立ちそうであれば、ぜひお試しいただければと思う。急がば回れ、である。\nさて、次回のチュートリアルでは、ゲームオーバー画面を実装していく予定だ。プレイヤーキャラクターのヘルスが 0 になるか、画面下に落ちたらゲームオーバーになる仕組みを実装していく予定だ。では次回もお楽しみに。\n",
+  "wordCount" : "1857",
+  "inLanguage": "ja",
+  "image":"https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_8/img23.gif","datePublished": "2022-03-04T13:16:21+09:00",
+  "dateModified": "2022-03-10T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Masanao Sako"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_8/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Peanuts Code",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.peanuts-code.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://www.peanuts-code.com/ja/" accesskey="h" title="Peanuts Code (Alt + H)">
+                <img src="/images/logomark.png" alt="logo" aria-label="logo"
+                    height="35">Peanuts Code</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://www.peanuts-code.com/en/" title="English"
+                            aria-label="English">En</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://www.peanuts-code.com/ja/" title="ホーム">
+                    <span>ホーム</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/posts/" title="ブログ">
+                    <span>ブログ</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/tutorials/" title="チュートリアル">
+                    <span>チュートリアル</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/tags/" title="タグ">
+                    <span>タグ</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/about/" title="アバウト">
+                    <span>アバウト</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/ja/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/">Tutorials</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/">シリーズ：Godot で作るプラットフォーマー</a></div>
+    <h1 class="post-title">
+      Godot で作るプラットフォーマー Part 8：HUD を追加しよう！
+    </h1>
+    <div class="post-meta">2022-03-04&nbsp;·&nbsp;9 分&nbsp;·&nbsp;Masanao Sako
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_8/img23.gif" alt="プラットフォーマー Part 8 サムネイル">
+        
+</figure><div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目次</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e3%83%95%e3%82%a9%e3%83%b3%e3%83%88%e3%81%ae%e3%82%a2%e3%82%bb%e3%83%83%e3%83%88%e3%82%92%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e3%81%ab%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b" aria-label="フォントのアセットをファイルシステムに追加する">フォントのアセットをファイルシステムに追加する</a></li>
+                <li>
+                    <a href="#hud-%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e3%82%8b" aria-label="HUD シーンを作る">HUD シーンを作る</a><ul>
+                        
+                <li>
+                    <a href="#%e6%96%b0%e8%a6%8f%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e6%88%90%e3%81%97%e3%81%a6%e5%bf%85%e8%a6%81%e3%81%aa%e3%83%8e%e3%83%bc%e3%83%89%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b" aria-label="新規シーンを作成して必要なノードを追加する">新規シーンを作成して必要なノードを追加する</a></li>
+                <li>
+                    <a href="#%e5%90%84%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ae%e3%83%97%e3%83%ad%e3%83%91%e3%83%86%e3%82%a3%e3%82%92%e7%b7%a8%e9%9b%86%e3%81%99%e3%82%8b" aria-label="各ノードのプロパティを編集する">各ノードのプロパティを編集する</a><ul>
+                        
+                <li>
+                    <a href="#hud-%e3%83%ab%e3%83%bc%e3%83%88%e3%83%8e%e3%83%bc%e3%83%89" aria-label="HUD ルートノード">HUD ルートノード</a></li>
+                <li>
+                    <a href="#hudhbox-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="HUDHBox ノード">HUDHBox ノード</a></li>
+                <li>
+                    <a href="#healthhbox-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="HealthHBox ノード">HealthHBox ノード</a></li>
+                <li>
+                    <a href="#healthtext-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="HealthText ノード">HealthText ノード</a></li>
+                <li>
+                    <a href="#healthbar-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="HealthBar ノード">HealthBar ノード</a></li>
+                <li>
+                    <a href="#scoretext-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="ScoreText ノード">ScoreText ノード</a></li>
+                <li>
+                    <a href="#levelhbox-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="LevelHBox ノード">LevelHBox ノード</a></li>
+                <li>
+                    <a href="#leveltext-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="LevelText ノード">LevelText ノード</a></li>
+                <li>
+                    <a href="#leveltexture-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="LevelTexture ノード">LevelTexture ノード</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#hud-%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e3%82%a4%e3%83%b3%e3%82%b9%e3%82%bf%e3%83%b3%e3%82%b9%e5%8c%96%e3%81%97%e3%81%a6-game-%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ab%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b" aria-label="HUD シーンをインスタンス化して Game シーンに追加する">HUD シーンをインスタンス化して Game シーンに追加する</a></li>
+                <li>
+                    <a href="#hud-%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ab%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%82%92%e3%82%a2%e3%82%bf%e3%83%83%e3%83%81%e3%81%99%e3%82%8b" aria-label="HUD ノードにスクリプトをアタッチする">HUD ノードにスクリプトをアタッチする</a></li>
+                <li>
+                    <a href="#hud-%e3%81%ab%e3%83%97%e3%83%ac%e3%82%a4%e3%83%a4%e3%83%bc%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%81%8c%e5%8f%97%e3%81%91%e3%81%9f%e3%83%80%e3%83%a1%e3%83%bc%e3%82%b8%e3%82%92%e5%8f%8d%e6%98%a0%e3%81%95%e3%81%9b%e3%82%8b" aria-label="HUD にプレイヤーキャラクターが受けたダメージを反映させる">HUD にプレイヤーキャラクターが受けたダメージを反映させる</a><ul>
+                        
+                <li>
+                    <a href="#player-%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ab-hitbox-%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b" aria-label="Player シーンに HitBox を追加する">Player シーンに HitBox を追加する</a></li>
+                <li>
+                    <a href="#%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%81%a7%e3%83%97%e3%83%ac%e3%82%a4%e3%83%a4%e3%83%bc%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%81%8c%e6%95%b5%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%81%ab%e5%bd%93%e3%81%9f%e3%81%a3%e3%81%9f%e6%99%82%e3%81%ae%e3%83%80%e3%83%a1%e3%83%bc%e3%82%b8%e5%87%a6%e7%90%86%e3%82%92%e5%ae%9f%e8%a3%85%e3%82%92%e3%81%99%e3%82%8b" aria-label="スクリプトでプレイヤーキャラクターが敵キャラクターに当たった時のダメージ処理を実装をする">スクリプトでプレイヤーキャラクターが敵キャラクターに当たった時のダメージ処理を実装をする</a><ul>
+                        
+                <li>
+                    <a href="#playergd" aria-label="Player.gd">Player.gd</a></li>
+                <li>
+                    <a href="#enemygd" aria-label="Enemy.gd">Enemy.gd</a></li>
+                <li>
+                    <a href="#chameleongd" aria-label="Chameleon.gd">Chameleon.gd</a></li>
+                <li>
+                    <a href="#seedgd" aria-label="Seed.gd">Seed.gd</a></li>
+                <li>
+                    <a href="#gamegd" aria-label="Game.gd">Game.gd</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e3%81%9d%e3%82%8c%e3%81%9e%e3%82%8c%e3%81%ae%e6%95%b5%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%81%ae%e3%83%80%e3%83%a1%e3%83%bc%e3%82%b8%e3%82%92%e8%a8%ad%e5%ae%9a%e3%81%99%e3%82%8b" aria-label="それぞれの敵キャラクターのダメージを設定する">それぞれの敵キャラクターのダメージを設定する</a></li></ul>
+                </li>
+                <li>
+                    <a href="#hud-%e3%81%ab%e7%8d%b2%e5%be%97%e3%81%97%e3%81%9f%e3%83%9d%e3%82%a4%e3%83%b3%e3%83%88%e3%81%ae%e5%90%88%e8%a8%88%e3%82%b9%e3%82%b3%e3%82%a2%e3%82%92%e5%8f%8d%e6%98%a0%e3%81%95%e3%81%9b%e3%82%8b" aria-label="HUD に獲得したポイントの合計スコアを反映させる">HUD に獲得したポイントの合計スコアを反映させる</a><ul>
+                        
+                <li>
+                    <a href="#%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%81%a7%e3%83%97%e3%83%ac%e3%82%a4%e3%83%a4%e3%83%bc%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%81%8c%e3%82%a2%e3%82%a4%e3%83%86%e3%83%a0%e3%81%ab%e5%bd%93%e3%81%9f%e3%81%a3%e3%81%9f%e6%99%82%e3%81%ae%e5%88%b6%e5%be%a1%e3%82%92%e3%81%99%e3%82%8b" aria-label="スクリプトでプレイヤーキャラクターがアイテムに当たった時の制御をする">スクリプトでプレイヤーキャラクターがアイテムに当たった時の制御をする</a><ul>
+                        
+                <li>
+                    <a href="#itemgd" aria-label="Item.gd">Item.gd</a></li>
+                <li>
+                    <a href="#gamegd-1" aria-label="Game.gd">Game.gd</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#hud-%e3%81%ab%e7%8f%be%e5%9c%a8%e3%81%ae%e3%83%ac%e3%83%99%e3%83%ab%e6%95%b0%e3%82%92%e5%8f%8d%e6%98%a0%e3%81%95%e3%81%9b%e3%82%8b" aria-label="HUD に現在のレベル数を反映させる">HUD に現在のレベル数を反映させる</a></li>
+                <li>
+                    <a href="#part-8-%e3%81%a7%e7%b7%a8%e9%9b%86%e3%81%97%e3%81%9f%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%81%ae%e3%82%b3%e3%83%bc%e3%83%89" aria-label="Part 8 で編集したスクリプトのコード">Part 8 で編集したスクリプトのコード</a></li>
+                <li>
+                    <a href="#%e3%81%8a%e3%82%8f%e3%82%8a%e3%81%ab" aria-label="おわりに">おわりに</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>第8回目の今回は、HUD を実装していく。</p>
+<p>HUD というのは、ヘッズアップディスプレイ（Heads Up Display）の略で、ゲームプレイ中に常に画面上に表示されている UI の一つだ。例えば、プレイヤーの残りのライフ（海外での呼称 Health に合わせてこれ以降はヘルスと呼ぶ）や、獲得したスコアなどがわかりやすいだろう。HUD を実装する目的は現在のゲームの状態を視覚的にわかりやすくすることだ。</p>
+<p>このチュートリアルでは、プレイヤーキャラクターのヘルスとスコアと現在のレベルを画面の上部に表示する HUD を作っていく。プレイヤーキャラクターがダメージを受ける仕組みが未実装なので、その仕組みも併せて追加していく。</p>
+<blockquote>
+<p><em><strong><span style="color:salmon">Memo：</span>
+</strong><br>
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。<br>
+<a href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/" title="Godot で作るプラットフォーマー">Godot で作るプラットフォーマー</a>
+</em></p>
+</blockquote>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="フォントのアセットをファイルシステムに追加する">フォントのアセットをファイルシステムに追加する<a hidden class="anchor" aria-hidden="true" href="#フォントのアセットをファイルシステムに追加する">#</a></h1>
+<p>HUD を作るにあたって、HUD 内に表示する文字のフォントもできればレトロゲーム風なものにしたいところだ。</p>
+<p>まずは Godot のアセットライブラリにアクセスして使えそうなフォントアセットをダウンロードしよう。Godot Engine エディタ上部の「AssetLib」からアクセス可能だ。</p>
+<p>アクセスできたら検索ボックスに「font」と入力して検索してみよう。すると「Open Font Package」というアセットが見つかるはずだ（2022/03/05 現在）。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img1.png" alt="AssetLib"  />
+</p>
+<p>見つかったらそれをクリックしてダウンロードする。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img2.png" alt="フォントアセットをダウンロード"  />
+</p>
+<p>この時、おそらく「icon.png」が競合していると警告される。競合するファイルはインストールする前にチェックを外しておこう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img2.1.png" alt="競合は対象から外す"  />
+</p>
+<p>インストールが完了したら OK をクリックする。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img3.png" alt="インストール完了でOK"  />
+</p>
+<p>ファイルシステムを覗いてみると、ダウンロードしたフォントアセットが見つかるはずだ。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img3.1.png" alt="ファイルシステムにフォントがある"  />
+</p>
+<br>
+<hr>
+<h1 id="hud-シーンを作る">HUD シーンを作る<a hidden class="anchor" aria-hidden="true" href="#hud-シーンを作る">#</a></h1>
+<h2 id="新規シーンを作成して必要なノードを追加する">新規シーンを作成して必要なノードを追加する<a hidden class="anchor" aria-hidden="true" href="#新規シーンを作成して必要なノードを追加する">#</a></h2>
+<p>まずは新規で HUD のシーンを作ろう。</p>
+<ol>
+<li>「シーン」メニュー＞「新規シーン」を選択する</li>
+<li>「ルートノードの生成」で「ユーザーインターフェース」を選択し、「Control」クラスのルートノードにし、名前を「HUD」に変更する</li>
+<li>「HUD」に「HBoxContainer」を追加し、名前を「HUDHBox」にする</li>
+<li>「HUDHBox」に「HBoxContainer」ノードを追加し、名前を「HealthHBox」にする</li>
+<li>「HealthHBox」に「Label」ノードを追加し、名前を「HealthText」にする</li>
+<li>「HealthHBox」に「TextureProgress」ノードを追加し、名前を「HealthBar」にする</li>
+<li>「HUDHBox」に「Label」ノードを追加し、名前を「ScoreText」にする</li>
+<li>「HUDHBox」に「HBoxContainer」ノードを追加し、名前を「LevelHBox」にする</li>
+<li>「LevelHBox」に「Label」ノードを追加し、名前を「LevelText」にする</li>
+<li>「LevelHBox」に「TextureRect」ノードを追加し、名前を「LevelTexture」にする</li>
+<li>「UI」フォルダを作成し、ファイルパスを「res://UI/HUD.tscn」としてシーンを保存する</li>
+</ol>
+<p>シーンツリーに必要なノードは揃ったので、次はそれぞれのノードのプロパティを編集する。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img4.png" alt="HUDシーンツリー"  />
+</p>
+<p>新しく登場するノードがあるので、それぞれ簡単に用途を説明しておこう。公式オンラインドキュメントのそれぞれのクラスの説明ページも必要に応じて確認いただきたい。</p>
+<p>「Control」クラスは全てのユーザーインターフェース（UI）系のクラス( <strong><span style="color:palegreen">○</span>
+</strong>こういう緑色のアイコンのクラス)の継承元になっている基本のクラスだ。今回作成したシーンではルートノードとして利用したが、これは単に、子ノードが全てUI系のノードのため、不都合のない入れ物として使っているだけだ。</p>
+<blockquote>
+<p><em><strong><span style="color:salmon">公式オンラインドキュメント</span>
+</strong><br>
+<a href="https://docs.godotengine.org/ja/stable/classes/class_control.html" target="_blank">Control</a>
+</em></p>
+</blockquote>
+<p>「HBoxContainer」クラスの&quot;H&quot;は&quot;Horizontal&quot;の頭文字から来ており、その名の通り、水平方向に子ノードを並べて表示するための収納箱（コンテナ）のような役割をする。今回、HUD の要素は画面上部に横並びにしたかったので、このクラスのノードを利用している。お察しかもしれないが垂直方向（Vertical）用に「VBoxContainer」クラスもある。</p>
+<blockquote>
+<p><em><strong><span style="color:salmon">公式オンラインドキュメント</span>
+</strong><br>
+<a href="https://docs.godotengine.org/ja/stable/classes/class_hboxcontainer.html" target="_blank">HBoxContainer</a>
+<br>
+<a href="https://docs.godotengine.org/ja/stable/classes/class_vboxcontainer.html" target="_blank">VBoxContainer</a>
+</em></p>
+</blockquote>
+<p>「Label」クラスは、UIに文字列を表示させたい時に利用する。このクラスは、シンプルに文字列にフォントファイルを適用して表示するだけのシンプルなものだ。リッチテキストを表示したい場合は「RichTextLabel」という別のクラスを利用する。このチュートリアルでは、「HEALTH」、「SCORE」、「LEVEL」という文字を HUD に表示するために利用する。</p>
+<blockquote>
+<p><em><strong><span style="color:salmon">公式オンラインドキュメント</span>
+</strong><br>
+<a href="https://docs.godotengine.org/ja/stable/classes/class_label.html" target="_blank">Label</a>
+<br>
+<a href="https://docs.godotengine.org/ja/stable/classes/class_richtextlabel.html" target="_blank">RichTextLabel</a>
+</em></p>
+</blockquote>
+<p>「TextureProgress」クラスは、プログレスバー系のクラスの一つで、割り当てたテクスチャを利用してプログレスバーを作成することができる。このチュートリアルではヘルスの状態を直感的にわかりやすく表示するのに利用する。これは割と一般的な使い方だ。別の「ProgressBar」というクラスもあるが、これはどちらかというとデータ読み込み中などに利用するものだ。</p>
+<blockquote>
+<p><em><strong><span style="color:salmon">公式オンラインドキュメント</span>
+</strong><br>
+<a href="https://docs.godotengine.org/ja/stable/classes/class_textureprogress.html" target="_blank">TextureProgress</a>
+<br>
+<a href="https://docs.godotengine.org/ja/stable/classes/class_progressbar.html" target="_blank">ProgressBar</a>
+</em></p>
+</blockquote>
+<p>「TextureRect」クラスは、四角い図形にテクスチャを割り当てて表示するクラスで、&ldquo;Rect&quot;は&quot;Rectangle&quot;の略だ。もちろんテクスチャの画像が透過部分のある PNG イメージなら、四角に限らずあらゆるイメージを表示できる。用途としては、テクスチャで画面全体を覆ってゲームの背景に利用することもあれば、HUD やインベントリシステムなど UI の一部のイメージとして使用したり、HUD の範囲だけの背景として使われることもあり、様々な場面で役に立つクラスだ。今回は、現在のレベルを示す数字を画像で表示するために利用する（元々用意したアセットにレベルの数字の画像があり、せっかくなので）。</p>
+<blockquote>
+<p><em><strong><span style="color:salmon">公式オンラインドキュメント</span>
+</strong><br>
+<a href="https://docs.godotengine.org/ja/stable/classes/class_texturerect.html" target="_blank">TextureRect</a>
+</em></p>
+</blockquote>
+<br>
+<h2 id="各ノードのプロパティを編集する">各ノードのプロパティを編集する<a hidden class="anchor" aria-hidden="true" href="#各ノードのプロパティを編集する">#</a></h2>
+<h3 id="hud-ルートノード">HUD ルートノード<a hidden class="anchor" aria-hidden="true" href="#hud-ルートノード">#</a></h3>
+<p>「HUD」ルートノードを選択したら、ツールバーで「レイアウト」＞「Rect全面」を選択して、画面一杯に広げる<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img5.png" alt="Rect全面"  />
+</p>
+<br>
+<h3 id="hudhbox-ノード">HUDHBox ノード<a hidden class="anchor" aria-hidden="true" href="#hudhbox-ノード">#</a></h3>
+<ol>
+<li>ツールバーで「レイアウト」＞「上伸長」を選択して、画面上部で横一杯に広げる</li>
+<li>「HUDHBox」を選択してインスペクターから「Alignment」プロパティを「Center」にする</li>
+<li>「Margin」プロパティを（Left: 8, Top: 8, Right: -8, Bottom: 0）にして画面端に少し余白を作る</li>
+<li>「Theme Overrides」＞「Constants」＞「Separation」プロパティを 16 にする<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img6.png" alt="HUDHBoxのインスペクター"  />
+</li>
+</ol>
+<br>
+<h3 id="healthhbox-ノード">HealthHBox ノード<a hidden class="anchor" aria-hidden="true" href="#healthhbox-ノード">#</a></h3>
+<p>このノードのプロパティは編集不要だ。</p>
+<br>
+<h3 id="healthtext-ノード">HealthText ノード<a hidden class="anchor" aria-hidden="true" href="#healthtext-ノード">#</a></h3>
+<ol>
+<li>「HealthText」ノードを選択して、インスペクターから「Text」プロパティに「health」と入力する</li>
+<li>「Uppercase」プロパティをオンにする<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img7.png" alt="HealthTextプロパティ"  />
+</li>
+<li>「Theme Overrides」＞「Fonts」＞「Font」プロパティに、ファイルシステムから「res://fonts/poco/Poco.tres」（事前に準備したフォント）をドラッグ&amp;ドロップして適用する。</li>
+<li>追加したフォントをクリックし、「Settings」＞「Size」プロパティを 16 にする</li>
+<li>さらに「Extra Spacing」＞「Top」プロパティを -8 にする<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img8.png" alt="HealthTextプロパティ"  />
+</li>
+</ol>
+<br>
+<h3 id="healthbar-ノード">HealthBar ノード<a hidden class="anchor" aria-hidden="true" href="#healthbar-ノード">#</a></h3>
+<ol>
+<li>「HealthBar」ノードを選択したら、インスペクターで「Nine Patch Stretch」をオンにして、テクスチャのサイズを柔軟に変更できるようにする<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img9.png" alt="HealthBarプロパティ"  />
+</li>
+<li>「Textures」＞「Under」にファイルシステムから「res://Assets/Background/Pink.png」をドラッグ&amp;ドロップして適用する（ヘルスバー用のアセットがないのであり物でやりくりするのだ）</li>
+<li>今回「Textures」＞「Over」プロパティは設定せずそのまま</li>
+<li>同様に「Textures」＞「Progress」プロパティにファイルシステムから「res://Assets/Background/Green.png」をドラッグ&amp;ドロップして適用する</li>
+<li>テクスチャの柄が目立たないように「Tint」&gt;「Under」プロパティの値を # 000000 にして大幅に色を変える</li>
+<li>同様に「Tint」＞「Progress」プロパティの値を # 26ab3c にする<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img10.png" alt="HealthBarプロパティ"  />
+</li>
+<li>「Range」＞「Value」プロパティの値を 100 にする（この値に連動して「Progress」のテクスチャサイズが変化する）<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img11.png" alt="HealthBarプロパティ"  />
+</li>
+<li>「Rect」＞「Min Size」プロパティの x の値を 100 にする<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img11.0.1.png" alt="HealthBarプロパティ"  />
+</li>
+</ol>
+<br>
+<h3 id="scoretext-ノード">ScoreText ノード<a hidden class="anchor" aria-hidden="true" href="#scoretext-ノード">#</a></h3>
+<p>「HealthText」ノードと同様の手順だ。</p>
+<ol>
+<li>「ScoreText」ノードを選択したら、インスペクターで「Text」プロパティに「score 0」と入力する</li>
+<li>「Uppercase」プロパティをオンにする</li>
+<li>「Size Flags」＞「Horizontal」で「Fill」と「Expand」にチェックを入れる<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img11.1.png" alt="ScoreTextプロパティ"  />
+</li>
+<li>「Theme Overrides」＞「Fonts」&gt;「Font」プロパティに、ファイルシステムから「res://fonts/poco/Poco.tres」をドラッグ&amp;ドロップして適用する。</li>
+</ol>
+<br>
+<h3 id="levelhbox-ノード">LevelHBox ノード<a hidden class="anchor" aria-hidden="true" href="#levelhbox-ノード">#</a></h3>
+<p>このノードのプロパティは編集不要だ。</p>
+<br>
+<h3 id="leveltext-ノード">LevelText ノード<a hidden class="anchor" aria-hidden="true" href="#leveltext-ノード">#</a></h3>
+<p>「HealthText」ノードや「ScoreText」と同様の手順だ。</p>
+<ol>
+<li>「LevelText」ノードを選択したら、インスペクターで「Text」プロパティに「level」と入力する</li>
+<li>「Uppercase」プロパティをオンにする</li>
+<li>「Theme Overrides」＞「Fonts」&gt;「Font」プロパティに、ファイルシステムから「res://fonts/poco/Poco.tres」をドラッグ&amp;ドロップして適用する。</li>
+</ol>
+<br>
+<h3 id="leveltexture-ノード">LevelTexture ノード<a hidden class="anchor" aria-hidden="true" href="#leveltexture-ノード">#</a></h3>
+<p>「LevelTexture」ノードを選択したら、インスペクターで「Texture」プロパティに、ファイルシステムから「res://Assets/Menu/Levels/01.png」をドラッグ&amp;ドロップして適用する<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img12.png" alt="LevelTextureプロパティ"  />
+</p>
+<p>ちなみに画像にブラーがかかっていたら、インポートドックで Pixel 2D のプリセットを適用して再インポートしておこう。</p>
+<br>
+<hr>
+<h1 id="hud-シーンをインスタンス化して-game-シーンに追加する">HUD シーンをインスタンス化して Game シーンに追加する<a hidden class="anchor" aria-hidden="true" href="#hud-シーンをインスタンス化して-game-シーンに追加する">#</a></h1>
+<p>それでは、ここまでに作成した「HUD」シーンを「Game」シーンに追加していこう。</p>
+<ol>
+<li>まずは「Game.tscn」を開く</li>
+<li>「Game」ルートノードに「CanvasLayer」ノードを追加し、名前を「HUDLayer」に変更する</li>
+<li>「HUDLayer」ノードに「HUD.tscn」シーンをインスタンス化して追加する</li>
+</ol>
+<p>シーンツリーが以下のようになればOKだ。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img13.png" alt="GameにHUDを追加"  />
+</p>
+<p>ちなみに「CanvasLayer」クラスのノードを追加した理由は、このゲームのカメラを担当する「Camera2D」ノードとはレイヤーを別ける必要があったからだ。そうしないと、プレイヤキャラクターを操作するやいなや、HUDの位置がズレていってしまう。「CanvasLayer」の子として「HUD」ノードを追加することで、HUD がカメラとは別レイヤーになり、常に画面上の指定の位置に HUD が固定された状態を維持できるのだ。</p>
+<p>では実際にプロジェクトを実行して HUD の表示を確認してみよう。</p>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img14.1.gif" alt="プロジェクトを実行してHUDの確認"  />
+</p>
+<p>プレイヤーキャラクターが移動しても HUD は画面上部に固定されたままで、問題なさそうだ。小休止したら次のスクリプトの手順に進もう。</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="hud-ノードにスクリプトをアタッチする">HUD ノードにスクリプトをアタッチする<a hidden class="anchor" aria-hidden="true" href="#hud-ノードにスクリプトをアタッチする">#</a></h1>
+<p>「HUD」ルートノードにスクリプトをアタッチしよう。ファイルパスを「res://UI/HUD.gd」として作成する。スクリプトエディタを開いたら、以下のコードを記述してほしい。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Control</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 値の変更が必要なプロパティをもつノードの参照</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> health_bar <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUDHBox<span style="color:#f92672">/</span>HealthHBox<span style="color:#f92672">/</span>HealthBar
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> score_text <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUDHBox<span style="color:#f92672">/</span>ScoreText
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> level_texture <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUDHBox<span style="color:#f92672">/</span>LevelHBox<span style="color:#f92672">/</span>LevelTexture
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ゲーム開始時にヘルスバーを満タンにする</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	health_bar<span style="color:#f92672">.</span>value <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 以下の3つのこのメソッドは Game.gd から呼び出す予定</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># HealthBar ノードの Value プロパティに引数 health の値を適用する</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> update_health(health):
+</span></span><span style="display:flex;"><span>	health_bar<span style="color:#f92672">.</span>value <span style="color:#f92672">=</span> health
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ScoreText ノードの Text プロパティに引数 score の値を文字列に変換して適用する</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> update_score(score):
+</span></span><span style="display:flex;"><span>	score_text<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;score &#34;</span> <span style="color:#f92672">+</span> str(score)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># LevelTexture ノードの Texture プロパティに現在のレベル数と同じテクスチャ画像を適用する</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> update_level(level):
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 文字列型のレベル数を格納するための変数を定義</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> str_level
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># レベルが 10 未満だったら</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> level <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># 頭に 0 をつけた文字列型のレベル数表記に変換</span>
+</span></span><span style="display:flex;"><span>		str_level <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">+</span> str(level)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># レベルが 10 以上 50 以下だったら（アセットが 50 までしかないため）</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> level <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">50</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># そのまま文字列型のレベル数表記に変換</span>
+</span></span><span style="display:flex;"><span>		str_level <span style="color:#f92672">=</span> str(level)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># アセットのファイル名の数字の部分に str_level 変数の値を利用してテクスチャファイル読み込み</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> load(<span style="color:#e6db74">&#34;res://Assets/Menu/Levels/&#34;</span> <span style="color:#f92672">+</span> str_level <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.png&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># LevelTexture ノードの Texture プロパティに読み込んだテクスチャを適用</span>
+</span></span><span style="display:flex;"><span>	level_texture<span style="color:#f92672">.</span>texture <span style="color:#f92672">=</span> file
+</span></span></code></pre></div><p>上記「HUD.gd」スクリプトでは、値の変更が発生するプロパティを持つノードを参照するプロパティを3つ定義した。また、それらのプロパティを更新するためのメソッドもそれぞれ作成した。これら3つのメソッドは「Game.gd」スクリプト側から呼び出すことになる。理由は、「Game.gd」の方で、プレイヤーキャラクターのヘルス、スコア、および現在のレベル数を管理したいからだ。</p>
+<p>さて、ここから複数のノードのスクリプトが絡み合っていくのでちょっとややこしいかもしれない。こういう時は図を書くとわかりやすい。紙と鉛筆で良いので、以下のような図を書いて頭の中を整理してからコーディング作業を開始するのがおすすめだ。ちなみにこの図は<code>health</code>および<code>score</code>プロパティの値が最終的に HUD へ反映するまでの流れを示している。自分の頭が整理できさえすれば細かい図のクオリティを気にする必要はない（筆者も普段は鉛筆で大雑把に書く）。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img15.png" alt="図"  />
+</p>
+<p>ではこの流れでまずは「Game.gd」スクリプトを編集していこう。「Game.gd」を開いたら、冒頭の<code>_ready</code>メソッドまでのコードを以下の内容に更新する。「# 追加」とコメントしているところが更新箇所だ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 現在のヘルスを格納するプロパティ</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> health: <span style="color:#a6e22e">float</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100.0</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 現在のスコアを格納するプロパティ</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> score: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> level: <span style="color:#a6e22e">Node2D</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Player ノードの参照（予定）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> player: <span style="color:#a6e22e">KinematicBody2D</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> current_level <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> final_level <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># HUD ノードの参照</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUDLayer<span style="color:#f92672">/</span>HUD <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	add_level()
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># HUD ノードの update_health メソッドの引数に health プロパティの値を渡して実行</span>
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_health(health) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># HUD ノードの update_score メソッドの引数に score プロパティの値を渡して実行</span>
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_score(score) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># HUD ノードの update_level メソッドの引数に current_level プロパティの値を渡して実行</span>
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_level(current_level) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#　以下省略</span>
+</span></span></code></pre></div><p>今回「Game.gd」スクリプト内で、プレイヤーキャラクターのヘルスの管理用に<code>health</code>プロパティを、スコアの管理用に<code>score</code>プロパティを新たに定義した。</p>
+<p>そして、先に「HUD.gd」で定義した3つのメソッドも、さっそく「Game.gd」の<code>_ready</code>メソッドの中で実行している。これにより、ゲーム開始時に<code>health</code>、<code>score</code>、<code>level</code>の3つのプロパティの初期値が HUD に反映される。</p>
+<br>
+<hr>
+<h1 id="hud-にプレイヤーキャラクターが受けたダメージを反映させる">HUD にプレイヤーキャラクターが受けたダメージを反映させる<a hidden class="anchor" aria-hidden="true" href="#hud-にプレイヤーキャラクターが受けたダメージを反映させる">#</a></h1>
+<p>ここからは、プレイヤーのヘルス管理を実装していく。</p>
+<h2 id="player-シーンに-hitbox-を追加する">Player シーンに HitBox を追加する<a hidden class="anchor" aria-hidden="true" href="#player-シーンに-hitbox-を追加する">#</a></h2>
+<p>長らく放置していた、プレイヤーキャラクターのダメージを受ける仕組みを作る時が来た。敵に当たった時にシグナルを発信させてダメージ処理を行いたいので、敵キャラクターと同様に、下記手順でプレイヤーキャラクターにも「HitBox」を作成するところから始めていこう。</p>
+<ol>
+<li>「Player.tscn」を開く</li>
+<li>「Player」ルートノードに「Area2D」ノードを追加し、名前を「HitBox」に変更する</li>
+<li>「HitBox」ノードに「CollisionShape2D」ノードを追加する<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img16.png" alt="Playerのシーンツリー"  />
+</li>
+<li>追加した「CollisionShape2D」の「Shape」プロパティに「新規RectangleShape2D」を設定する。</li>
+<li>追加した「CollisionShape2D」のコリジョン形状を編集する。「Player」直下の「CollisionShape2D」の形状より横幅が 1 px だけ大きくなるようにし、足元は敵キャラクターを踏む際にダメージを受けないように少し空けておく。関連プロパティは以下の値になった。
+<ul>
+<li>Extents: (7, 8.5)</li>
+<li>Position: (0, 3.5)<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img17.png" alt="コリジョン形状の編集"  />
+</li>
+</ul>
+</li>
+</ol>
+<br>
+<h2 id="スクリプトでプレイヤーキャラクターが敵キャラクターに当たった時のダメージ処理を実装をする">スクリプトでプレイヤーキャラクターが敵キャラクターに当たった時のダメージ処理を実装をする<a hidden class="anchor" aria-hidden="true" href="#スクリプトでプレイヤーキャラクターが敵キャラクターに当たった時のダメージ処理を実装をする">#</a></h2>
+<h3 id="playergd">Player.gd<a hidden class="anchor" aria-hidden="true" href="#playergd">#</a></h3>
+<p>プレイヤーキャラクターが敵キャラクターに当たった時の処理をコーディングしていく。「Player.gd」スクリプトを開こう。</p>
+<p>まずは、プレイヤーが敵キャラクターに当たって、ダメージを受けた瞬間に HUD へ反映させるためには、シグナルが必要だ。残念ながら「Player」ルートノードのクラスである「KinematicBody2D」には、「Area2D」クラスの「body_entered(body)」のようなシグナルがない。そこで、ひとまず自分でシグナルを定義する。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">signal</span> enemy_hit(damage) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 以下省略</span>
+</span></span></code></pre></div><p>これで<code>enemy_hit</code>というシグナルが定義できた。<code>(damage)</code>というふうにシグナルに引数を定義しておくことで、シグナルを発信したときにこの引数の値を、接続先のメソッドの引数に渡すことができる。つまり、この引数<code>damage</code>に敵キャラクターから受けたダメージを入れてシグナルを発信し、シグナルの接続先メソッドへダメージの値を渡すことができるということだ。</p>
+<p>次に、先ほど追加した「HitBox」ノードのシグナルを接続する。「HitBox」ノードの「body_entered(body)」シグナルを「Player.gd」スクリプトに接続しよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img18.png" alt="HitBoxのシグナルを接続"  />
+</p>
+<p>すると、「Player.gd」スクリプトに、<code>_on_HitBox_body_entered</code>メソッドが追加されたはずだ。このメソッド内で、先に定義した<code>enemy_hit</code>シグナルを発信させる。具体的には以下のようにコードを更新しよう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e"># プレイヤーキャラクターに物理ボディが当たったら呼ばれるメソッド</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_HitBox_body_entered(body): <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># もし当たったのが敵キャラクターだったら</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Enemies&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># デバッグ用</span>
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Enemy hit player. Damage is &#34;</span>, body<span style="color:#f92672">.</span>damage)
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># enemy_hit シグナルを発信する（敵キャラクターから受けるダメージの damage プロパティを引数に渡す）</span>
+</span></span><span style="display:flex;"><span>		emit_signal(<span style="color:#e6db74">&#34;enemy_hit&#34;</span>, body<span style="color:#f92672">.</span>damage)
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># AnimatedSprite の hit アニメーションを再生する</span>
+</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;hit&#34;</span>)
+</span></span></code></pre></div><br>
+<h3 id="enemygd">Enemy.gd<a hidden class="anchor" aria-hidden="true" href="#enemygd">#</a></h3>
+<p>さて上のスクリプトで先に登場している「Enemy」ノードの<code>damage</code>プロパティだが、これはまだ定義していないので、さっそく「Enemy.gd」を開いて定義しよう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> gravity: <span style="color:#a6e22e">int</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> speed: <span style="color:#a6e22e">int</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> damage: <span style="color:#a6e22e">float</span> <span style="color:#75715e"># Added @ 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 以下省略</span>
+</span></span></code></pre></div><p>値は何も入れずに、型だけ小数点を含む数値の<code>float</code>として定義しておこう。<code>export</code>キーワードを追加したので、「Enemy.tscn」を継承するそれぞれの敵キャラクターのシーンで、当たったときに受けるダメージの値をインスペクター上で設定する予定だ。</p>
+<p>ところで、なぜ<code>damage</code>プロパティの型を整数の<code>int</code>型で定義しないのかというと、この<code>damage</code>の値を「Game」ノードの<code>float</code>型で定義した<code>health</code>の値から減算することになるのだが、そのときに型が異なるとエラーになるからだ。ではなぜ<code>health</code>プロパティも<code>float</code>型に定義したかというと、最終的にこの値を割り当てる先が<code>float</code>型の値をとる「HUD」シーンの「HealthBar」ノードの「Value」プロパティだからだ。</p>
+<p>プログラムで何らかの計算をさせるのに型を揃えるのは、プログラミング全般で共通のルールなので、この機会に覚えておこう。</p>
+<br>
+<h3 id="chameleongd">Chameleon.gd<a hidden class="anchor" aria-hidden="true" href="#chameleongd">#</a></h3>
+<p>ここで気をつけておきたい一つ目のポイントは、カメレオンだ。この敵キャラクターは舌を伸ばして攻撃してくる。この舌に当たるとプレイヤーはダメージを受けなければならないが、この舌の部分は「Chameleon」ルートノード（KinematicBody2Dクラス）直下の「CollisionShape2D」のコリジョン形状とは重なっておらず、当たっても物理ボディとは判定されない。この場合は、「Chameleon.gd」スクリプト側で「RayCast2D」ノードの衝突判定を利用して「Player」の<code>enemy_hit</code>シグナルを発動させる。では「Chameleon.gd」を開こう。</p>
+<p>更新は2箇所、ステータス管理用のプロパティを一つ追加することと、スクリプトの一番最後で定義している<code>attack</code>メソッドを更新することだ。<code>attack</code>メソッド内の最後に追加した<code>if</code>ブロック丸ごと追加している（「# 追加」とコメントしている行が更新箇所だ）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#e6db74">&#34;res://Enemies/Enemy.gd&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 舌の当たり判定が有効かどうか（初期値は有効）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> tongue_hit_enabled <span style="color:#f92672">=</span> true <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 中略</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> attack():
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;attack&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> sprite<span style="color:#f92672">.</span>frame <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">or</span> sprite<span style="color:#f92672">.</span>frame <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> raycast<span style="color:#f92672">.</span>is_colliding() <span style="color:#f92672">and</span> raycast<span style="color:#f92672">.</span>get_collider()<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Player&#34;</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> position<span style="color:#f92672">.</span>distance_to(raycast<span style="color:#f92672">.</span>get_collision_point()) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">50</span>:
+</span></span><span style="display:flex;"><span>				<span style="color:#75715e"># 舌の当たり判定が有効な場合は</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> tongue_hit_enabled: <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e"># デバッグ用</span>
+</span></span><span style="display:flex;"><span>					print(<span style="color:#e6db74">&#34;Chameleon&#39;s tongue hits player.&#34;</span>)
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e"># Player の enemy_hit シグナルを damage プロパティ付きで発信</span>
+</span></span><span style="display:flex;"><span>					raycast<span style="color:#f92672">.</span>get_collider()<span style="color:#f92672">.</span>emit_signal(<span style="color:#e6db74">&#34;enemy_hit&#34;</span>, damage) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e"># 舌の当たり判定を無効にする</span>
+</span></span><span style="display:flex;"><span>					tongue_hit_enabled <span style="color:#f92672">=</span> false <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e"># 0.83秒（attack アニメーションの約1回分の長さ）待つ</span>
+</span></span><span style="display:flex;"><span>					yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.83</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#75715e"># 舌の当たり判定を有効にする</span>
+</span></span><span style="display:flex;"><span>					tongue_hit_enabled <span style="color:#f92672">=</span> true <span style="color:#75715e"># 追加</span>
+</span></span></code></pre></div><p>今までのコードのままだと、<code>_physics_process</code>メソッド内での<code>attack</code>メソッドが 60 FPS に合わせて 1 秒間に 60 回呼ばれる。つまり、1秒間に 60 回のペースで舌への当たり判定が発生し、プレイヤーのヘルスは一瞬で 0 になってしまう。</p>
+<p>これを避けるために、舌の当たり判定のステータス管理用に<code>tongue_hit_enabled</code>というステータスを用意した。初期値は<code>true</code>で、その時は当たり判定が有効だ。この状態で、カメレオンの舌が一度プレイヤーキャラクターに当たると、「Chameleon.gd」スクリプト側から「Player」の<code>enemy_hit</code>シグナルが発信される。その後、直ちに舌の当たり判定を<code>false</code>にする。さらにそこから、カメレオンの「attack」アニメーション一周分のおおよその所要時間である 0.83 秒待機したら、また舌の当たり判定を有効にする。これにより、1回の舌を伸ばすアニメーションにつき1回しかダメージを受けない仕組みを作った。</p>
+<br>
+<h3 id="seedgd">Seed.gd<a hidden class="anchor" aria-hidden="true" href="#seedgd">#</a></h3>
+<p>そして、もう一つ忘れてはいけないのが、プラントという敵キャラクターは種を飛ばしてくる。この種のシーンである「Seed.tscn」は「Enemy.tscn」を継承していないので、別途<code>damage</code>プロパティを定義しておく必要がある。また、「Enemies」グループに属しておらず、ルートノードが「Area2D」クラスであり物理ボディでもないので、ここで諸々の修正を行っておこう。</p>
+<p>では「Seed.tscn」を開いてほしい。まずは「Seed」ノードを「Enemies」グループに追加しよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img19.png" alt="SeedをEnemiesグループに追加"  />
+</p>
+<p>シーンドックで「Seed」ルートノードを右クリックし、「型を変更」を選択する。そして「StaticBody2D」を選択しよう。これで種も物理ボディになった。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img20.png" alt="Seedの型を変更"  />
+</p>
+<p>しかし、スクリプトの方はまだ「Area2D」を継承した形になっているので、修正する。「Seed.gd」スクリプトを開き、以下のように更新しよう。ここでついでに<code>damage</code>プロパティも定義しておく。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">#extends Area2D # 削除</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">StaticBody2D</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">150</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> damage: <span style="color:#a6e22e">float</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span> <span style="color:#75715e"># 追加</span>
+</span></span></code></pre></div><p>「StaticBody2D」ノードには<code>body_entered(body)</code>シグナルがないので、<code>_on_Seed_body_entered</code>メソッドはひとまず削除しておこう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">#func _on_Seed_body_entered(body): # 削除</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#	if body.name == &#34;Player&#34;:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#		print(&#34;Seed hits player.&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#	queue_free()</span>
+</span></span></code></pre></div><p>しかし、このままでは種がプレイヤーキャラクターに当たっても消えず、そのまま物理ボディ同士の衝突により、押し続けてくる。そこで、子ノードとして改めて「Area2D」ノードを加え、物理ボディとの接触により種が解放されるようにする。</p>
+<p>まずはシーンドックで「Seed」ルートノードに「Area2D」ノードを追加。さらに「Area2D」ノードに「CollisionShape2D」ノードを追加する。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img20.1.png" alt="シーンドックでSeedにArea2D追加"  />
+</p>
+<p>「CollisionShape2D」のコリジョン形状を調整する。「Shape」プロパティに「新規 CircleShape2D」を割り当てる。2Dワークスペースで、「Seed」ルートノード直下の「CollisionShape2D」の形状より 1 px 大きめに設定した。「Radius」プロパティは 5 だ。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img20.1.1.png" alt="CollisionShape2Dのコリジョン形状編集"  />
+</p>
+<p>「Area2D」ノードを選択した状態で、ノードドック＞「シグナル」タブから「body_entered」シグナルを「Seed.gd」スクリプトに接続する。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img20.2.png" alt="Area2Dのシグナル接続"  />
+</p>
+<p>これで「Seed.gd」スクリプトに<code>_on_Area2D_body_entered</code>メソッドが追加されたので、メソッドの中身を以下のように記述しよう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Area2D_body_entered(body): <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>name <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;Seed&#34;</span>:
+</span></span><span style="display:flex;"><span>		print(body<span style="color:#f92672">.</span>name, <span style="color:#e6db74">&#34; hits seed.&#34;</span>)
+</span></span><span style="display:flex;"><span>		queue_free()
+</span></span></code></pre></div><p><code>if body.name != &quot;Seed&quot;:</code>の<code>!=</code>は「一致しない」という意味だ。この<code>if</code>構文がなければ、種が自身の物理ボディとの衝突により、インスタンスが生成された瞬間にすぐ解放される事になる。</p>
+<p>これで、種が物理ボディ（主にプレイヤーキャラクター）に当たったら消える仕組みが復元できた。</p>
+<br>
+<h3 id="gamegd">Game.gd<a hidden class="anchor" aria-hidden="true" href="#gamegd">#</a></h3>
+<p>最後に「Game.gd」スクリプトに戻って、必要な更新をしておこう。「# 追加」のコメントがある部分が更新箇所だ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e"># ここまで省略</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> add_level():
+</span></span><span style="display:flex;"><span>	level <span style="color:#f92672">=</span> load(<span style="color:#e6db74">&#34;res://Levels/Level&#34;</span> <span style="color:#f92672">+</span> str(current_level) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.tscn&#34;</span>)<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>	level<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;tree_exited&#34;</span>, self, <span style="color:#e6db74">&#34;change_level&#34;</span>)
+</span></span><span style="display:flex;"><span>	add_child(level)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Player ノードを参照するプロパティを定義</span>
+</span></span><span style="display:flex;"><span>	player <span style="color:#f92672">=</span> level<span style="color:#f92672">.</span>get_node(<span style="color:#e6db74">&#34;Player&#34;</span>) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># enemy_hit シグナルを _on_Player_enemy_hit メソッドにコードで接続</span>
+</span></span><span style="display:flex;"><span>	player<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;enemy_hit&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Player_enemy_hit&#34;</span>) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> change_level():
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#メソッド内省略</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Player_enemy_hit(damage): <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	health <span style="color:#f92672">-=</span> damage
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_health(health)
+</span></span></code></pre></div><p><code>add_level</code>メソッドはゲーム開始時やレベルクリア時に次のレベルシーンのインスタンスを「Game」ルートノードに追加するためのメソッドだ。このメソッドが実行されるまでは「Game」シーンツリーに「Player」ノードは存在しない。そのため、この<code>add_level</code>メソッドで「Level_」シーンのインスタンスが「Game」シーンに追加されてから、「Player」ノードの自作のシグナル<code>enemy_hit</code>を、その後に新たに定義している<code>_on_Player_enemy_hit</code>メソッドに接続している。このように<code>connect</code>メソッドを使えばコードでシグナルを接続できる。</p>
+<p>そして新たに定義した<code>_on_Player_enemy_hit</code>メソッドだが、これは通常ノードドックからのシグナル接続時に生成されるメソッドと同じだと思っていただければわかりやすいだろう。メソッド名もそれっぽくしたが、実際には何でも良い。<code>enemy_hit</code>シグナル発信時にこのメソッドが呼ばれる。引数の<code>damage</code>にはシグナル発信メソッド<code>emit_signal</code>の引数<code>damage</code>の値が入る。処理として、まず<code>health</code>プロパティの値から引数<code>damage</code>が減算される。そのあと「HUD」ノードの<code>update_health</code>メソッドが呼ばれ、引数には更新された<code>health</code>プロパティの値が渡される。<code>update_health</code>メソッドが実行されると「HUD」シーンの「HealthBar」が更新される（つまり緑色のバーが減る）。</p>
+<br>
+<h2 id="それぞれの敵キャラクターのダメージを設定する">それぞれの敵キャラクターのダメージを設定する<a hidden class="anchor" aria-hidden="true" href="#それぞれの敵キャラクターのダメージを設定する">#</a></h2>
+<p>それぞれの敵キャラクターの.tscnファイルを開き、インスペクターで「Damege」プロパティの値を設定しよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img21.png" alt="インスペクターでdamageプロパティ設定"  />
+</p>
+<p>あなたのお好みの数値にしていただいて構わない。以下はサンプルとしてこのチュートリアル用に設定した値だ。</p>
+<ul>
+<li>Mushroom - Damage: 8</li>
+<li>Bunny - Damage: 32</li>
+<li>Chameleon - Damage: 40</li>
+<li>Plant - Damage: 24
+<ul>
+<li>Seed - Damage: 32</li>
+</ul>
+</li>
+</ul>
+<br>
+<p>ここまでできたら、HUD のヘルスバーが正しく変動するか、一度プロジェクトを実行してみよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img22.gif" alt="ヘルスバーのデバッグ"  />
+</p>
+<p>敵キャラクター自体への衝突、カメレオンの舌との衝突、およびプラントの種との衝突でダメージの処理がうまくいっているようなので、良しとしよう。次はスコアの処理だ。ここらで一度、小休憩を入れようじゃないか。</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="hud-に獲得したポイントの合計スコアを反映させる">HUD に獲得したポイントの合計スコアを反映させる<a hidden class="anchor" aria-hidden="true" href="#hud-に獲得したポイントの合計スコアを反映させる">#</a></h1>
+<p>以前 Part 6 のチュートリアルで「Item.gd」スクリプトに<code>export</code>キーワード付きで<code>point</code>というプロパティを用意し、インスペクター上でそれぞれのアイテム（フルーツ）のポイントを設定したことは覚えているだろうか。</p>
+<blockquote>
+<p><em><strong><span style="color:salmon">サイト内記事リンク：</span>
+</strong><br>
+<a href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/" title="Godot で作るプラットフォーマー Part 6：アイテムを作ろう！">Godot で作るプラットフォーマー Part 6：アイテムを作ろう！</a>
+</em></p>
+</blockquote>
+<p>今まではただプレイヤーキャラクターがアイテムに当たったらそのポイントがふわりと画面上に出て消えるだけだったが、今回は以下の流れを作っていく。</p>
+<ol>
+<li>「Player」ノードが「Item」ノードに当たる</li>
+<li>「Player」ノードの<code>item_hit</code>シグナルが発信される</li>
+<li>発信された<code>item_hit</code>シグナルの引数に<code>point</code>プロパティの値が渡される</li>
+<li><code>item_hit</code>シグナルが接続されている「Game」ノードの<code>_on_Player_item_hit</code>メソッドが呼ばれる</li>
+<li><code>_on_Player_item_hit</code>メソッドにより、「Game」ノードの<code>score</code>プロパティの値に<code>point</code>の値が加算される</li>
+<li>更新された<code>score</code>プロパティの値が「HUD」ノードの<code>update_score</code>メソッドの引数として渡される</li>
+<li><code>update_score</code>メソッドにより、「HUD」ノードの子である「ScoreText」ノードの「Text」プロパティの値に最新の<code>score</code>の値が反映される</li>
+</ol>
+<br>
+<h2 id="スクリプトでプレイヤーキャラクターがアイテムに当たった時の制御をする">スクリプトでプレイヤーキャラクターがアイテムに当たった時の制御をする<a hidden class="anchor" aria-hidden="true" href="#スクリプトでプレイヤーキャラクターがアイテムに当たった時の制御をする">#</a></h2>
+<h3 id="itemgd">Item.gd<a hidden class="anchor" aria-hidden="true" href="#itemgd">#</a></h3>
+<p>まずは「Item.gd」スクリプト側で、プレイヤーキャラクターがアイテムに当たった時に「Player」ノードの<code>item_hit</code>シグナルを発信する仕組みを実装する。</p>
+<p>「Item.gd」スクリプトを開いたら、以下のように編集しよう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Item_body_entered(body):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Player&#34;</span>:
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Player hit Item&#34;</span>)
+</span></span><span style="display:flex;"><span>		hit(body) <span style="color:#75715e"># 引数に body を追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> hit(player): <span style="color:#75715e"># 新たに引数 player を定義</span>
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;Got &#34;</span>, point, <span style="color:#e6db74">&#34; point.&#34;</span>)
+</span></span><span style="display:flex;"><span>	player<span style="color:#f92672">.</span>emit_signal(<span style="color:#e6db74">&#34;item_hit&#34;</span>, point) <span style="color:#75715e"># 追加、Player の item_hit シグナルを発信</span>
+</span></span><span style="display:flex;"><span>	anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;hit&#34;</span>)
+</span></span><span style="display:flex;"><span>	yield(anim_player, <span style="color:#e6db74">&#34;animation_finished&#34;</span>)
+</span></span><span style="display:flex;"><span>	queue_free()
+</span></span></code></pre></div><p>コード上の表記と順番が逆になるが、先に<code>hit</code>メソッドを更新した。引数<code>player</code>を追加し、その引数に「Player」ノードが代入されるのを前提に、<code>player.emit_signal</code>メソッドで<code>item_hit</code>シグナルを発信するように更新した。</p>
+<p>次に、<code>_on_Item_body_entered</code>メソッドの最後で<code>hit</code>メソッドが呼ばれるが、その引数には「Player」ノードとイコールである<code>body</code>を代入している。</p>
+<p>実は、<code>hit</code>メソッドはアイテムボックスの方のスクリプトでも呼ばれている。「ItemBox.gd」スクリプトを確認してみよう。編集したのは、アイテムボックス下部をプレイヤーキャラクターが小突いた時にシグナルで呼ばれる<code>_on_Area2D_body_entered</code>というメソッドだ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Area2D_body_entered(body):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Player&#34;</span>:
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;ItemBox &gt; Area2D entered by player&#34;</span>)
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> timer_unused:
+</span></span><span style="display:flex;"><span>			timer<span style="color:#f92672">.</span>start()
+</span></span><span style="display:flex;"><span>			timer_unused <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;hit&#34;</span>)
+</span></span><span style="display:flex;"><span>		yield(sprite, <span style="color:#e6db74">&#34;animation_finished&#34;</span>)
+</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;idle&#34;</span>)
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> items<span style="color:#f92672">.</span>empty():
+</span></span><span style="display:flex;"><span>			print(<span style="color:#e6db74">&#34;ItemBox is empty.&#34;</span>)
+</span></span><span style="display:flex;"><span>			sprite<span style="color:#f92672">.</span>visible <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> broken_box <span style="color:#f92672">=</span> broken_box_tscn<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>			parent<span style="color:#f92672">.</span>add_child(broken_box)
+</span></span><span style="display:flex;"><span>			broken_box<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> position
+</span></span><span style="display:flex;"><span>			queue_free()
+</span></span><span style="display:flex;"><span>			print(self<span style="color:#f92672">.</span>name, <span style="color:#e6db74">&#34; removed.&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			print(<span style="color:#e6db74">&#34;ItemBox is not empty.&#34;</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> item <span style="color:#f92672">=</span> items<span style="color:#f92672">.</span>pop_front()<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>			add_child(item)
+</span></span><span style="display:flex;"><span>			item<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>y <span style="color:#f92672">-=</span> <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>			item<span style="color:#f92672">.</span>hit(body) <span style="color:#75715e"># 引数に body を追加</span>
+</span></span></code></pre></div><p>プレイヤーがアイテムボックス下部の「Area2D」のコリジョン形状に当たって、その時アイテムボックスが空っぽではなかった場合（一番最後の<code>else</code>ブロック）、最後に「Item」ノードの<code>hit</code>メソッドが呼ばれる。さっきちょうど更新したメソッドだ。ここでも<code>body</code>イコール「Player」ノードなので、<code>hit</code>メソッドの引数<code>player</code>に<code>body</code>を代入して実行している。これで、アイテムボックスからアイテムが飛び出すたびに「Player」ノードの<code>item_hit</code>シグナルが発信するようになった。</p>
+<h3 id="gamegd-1">Game.gd<a hidden class="anchor" aria-hidden="true" href="#gamegd-1">#</a></h3>
+<p>次に「Game.gd」スクリプトを開いて編集しよう。</p>
+<p><code>add_level</code>メソッドの編集から始める。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> add_level():
+</span></span><span style="display:flex;"><span>	level <span style="color:#f92672">=</span> load(<span style="color:#e6db74">&#34;res://Levels/Level&#34;</span> <span style="color:#f92672">+</span> str(current_level) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.tscn&#34;</span>)<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>	level<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;tree_exited&#34;</span>, self, <span style="color:#e6db74">&#34;change_level&#34;</span>)
+</span></span><span style="display:flex;"><span>	add_child(level)
+</span></span><span style="display:flex;"><span>	player <span style="color:#f92672">=</span> level<span style="color:#f92672">.</span>get_node(<span style="color:#e6db74">&#34;Player&#34;</span>) <span style="color:#75715e"># さっき追加した</span>
+</span></span><span style="display:flex;"><span>	player<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;enemy_hit&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Player_enemy_hit&#34;</span>) <span style="color:#75715e"># さっき追加した</span>
+</span></span><span style="display:flex;"><span>	player<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;item_hit&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Player_item_hit&#34;</span>) <span style="color:#75715e"># 追加</span>
+</span></span></code></pre></div><p>「Player」ノードの<code>item_hit</code>シグナルを<code>_on_Player_item_hit</code>というメソッドに接続する。このメソッドはこの後定義する。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Player_item_hit(point): <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	score <span style="color:#f92672">+=</span> point
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_score(score)
+</span></span></code></pre></div><p><code>_on_Player_item_hit</code>を定義した。このメソッドの引数には<code>item_hit</code>シグナルの引数<code>point</code>の値が入る。<code>score</code>からその<code>point</code>が減算されて、更新された<code>score</code>を引数として「HUD」ノードの<code>update_score</code>メソッドが呼ばれる。これで HUD のスコア表示に最新の<code>score</code>プロパティの値が反映する。</p>
+<p>ではプロジェクトを実行して、アイテムに当たった時の HUD の変化を確認してみよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img23.gif" alt="スコアのデバッグ"  />
+</p>
+<p>（マッシュルームを踏んだ時にダメージをくらっているが）直接アイテムに当たった時も、アイテムボックスでアイテムが飛び出した時も、両方ともスコアに獲得したポイントが加算されたので、想定通りの挙動と言って良いだろう。</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="hud-に現在のレベル数を反映させる">HUD に現在のレベル数を反映させる<a hidden class="anchor" aria-hidden="true" href="#hud-に現在のレベル数を反映させる">#</a></h1>
+<p>HUD のレベル数の変化をスクリプトで制御していこう。と言っても、このセクションが一番簡単だから安心してほしい。「Game.gd」スクリプトを開いて、<code>change_level</code>メソッドを以下のように編集しよう。「# 追加」とコメントしている行だ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> change_level():
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;change_level() called.&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> current_level <span style="color:#f92672">&lt;</span> final_level:
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;change to next level.&#34;</span>)
+</span></span><span style="display:flex;"><span>		level<span style="color:#f92672">.</span>queue_free()
+</span></span><span style="display:flex;"><span>		current_level <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>		hud<span style="color:#f92672">.</span>update_level(current_level) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>		add_level()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Game Clear! Congrats!&#34;</span>)
+</span></span><span style="display:flex;"><span>		get_tree()<span style="color:#f92672">.</span>quit()
+</span></span></code></pre></div><p>「HUD」ノードの<code>update_level</code>メソッドは事前に定義済みなので、これでレベル1をクリアしてレベル2に遷移するときに HUD の Level の表記が更新されるはずだ。</p>
+<p>では、実際にプロジェクトを実行して確認してみよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_8/img24.gif" alt="レベルのデバッグ"  />
+</p>
+<p>きちんとレベルが 1 から 2 に切り替わったのが確認できた。問題ないだろう。以上で今回のチュートリアルの HUD 実装作業は完了だ。</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="part-8-で編集したスクリプトのコード">Part 8 で編集したスクリプトのコード<a hidden class="anchor" aria-hidden="true" href="#part-8-で編集したスクリプトのコード">#</a></h1>
+<p>最後に今回の Part 8 で編集したスクリプトのコードを共有しておくので、必要に応じて確認してほしい。</p>
+<details>
+<summary>HUD.gd の全コード</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Control</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> score <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> health_bar <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUDHBox<span style="color:#f92672">/</span>HealthHBox<span style="color:#f92672">/</span>HealthBar
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> score_text <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUDHBox<span style="color:#f92672">/</span>ScoreText
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> level_texture <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUDHBox<span style="color:#f92672">/</span>LevelHBox<span style="color:#f92672">/</span>LevelTexture
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	health_bar<span style="color:#f92672">.</span>value <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> update_health(health):
+</span></span><span style="display:flex;"><span>	health_bar<span style="color:#f92672">.</span>value <span style="color:#f92672">=</span> health
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> update_score(score):
+</span></span><span style="display:flex;"><span>	score_text<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;score &#34;</span> <span style="color:#f92672">+</span> str(score)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> update_level(level):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> str_level
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> level <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>:
+</span></span><span style="display:flex;"><span>		str_level <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">+</span> str(level)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> level <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">51</span>:
+</span></span><span style="display:flex;"><span>		str_level <span style="color:#f92672">=</span> str(level)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> file <span style="color:#f92672">=</span> load(<span style="color:#e6db74">&#34;res://Assets/Menu/Levels/&#34;</span> <span style="color:#f92672">+</span> str_level <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.png&#34;</span>)
+</span></span><span style="display:flex;"><span>	level_texture<span style="color:#f92672">.</span>texture <span style="color:#f92672">=</span> file
+</span></span></code></pre></div></details>
+<br>
+<details>
+<summary>Game.gd の全コード</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> health: <span style="color:#a6e22e">float</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100.0</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> score: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> level: <span style="color:#a6e22e">Node2D</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> player: <span style="color:#a6e22e">KinematicBody2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> current_level <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> final_level <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>HUDLayer<span style="color:#f92672">/</span>HUD <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	add_level()
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_health(health) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_score(score) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_level(current_level) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> add_level():
+</span></span><span style="display:flex;"><span>	level <span style="color:#f92672">=</span> load(<span style="color:#e6db74">&#34;res://Levels/Level&#34;</span> <span style="color:#f92672">+</span> str(current_level) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.tscn&#34;</span>)<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>	level<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;tree_exited&#34;</span>, self, <span style="color:#e6db74">&#34;change_level&#34;</span>)
+</span></span><span style="display:flex;"><span>	add_child(level)
+</span></span><span style="display:flex;"><span>	player <span style="color:#f92672">=</span> level<span style="color:#f92672">.</span>get_node(<span style="color:#e6db74">&#34;Player&#34;</span>) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	player<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;enemy_hit&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Player_enemy_hit&#34;</span>) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	player<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;item_hit&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Player_item_hit&#34;</span>) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> change_level():
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;change_level() called.&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> current_level <span style="color:#f92672">&lt;</span> final_level:
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;change to next level.&#34;</span>)
+</span></span><span style="display:flex;"><span>		level<span style="color:#f92672">.</span>queue_free()
+</span></span><span style="display:flex;"><span>		current_level <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>		hud<span style="color:#f92672">.</span>update_level(current_level) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>		add_level()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Game Clear! Congrats!&#34;</span>)
+</span></span><span style="display:flex;"><span>		get_tree()<span style="color:#f92672">.</span>quit()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Player_enemy_hit(damage): <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;Health updated: &#34;</span>, health)
+</span></span><span style="display:flex;"><span>	health <span style="color:#f92672">-=</span> damage
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_health(health)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Player_item_hit(point): <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	score <span style="color:#f92672">+=</span> point
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_score(score)
+</span></span></code></pre></div></details>
+<br>
+<details>
+<summary>Player.gd の全コード</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span> <span style="color:#75715e"># Created @ Part 1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">signal</span> enemy_hit(damage) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">signal</span> item_hit(point) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> acceleration <span style="color:#f92672">=</span> <span style="color:#ae81ff">256</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> max_speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> max_dash_speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> friction <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> gravity <span style="color:#f92672">=</span> <span style="color:#ae81ff">512</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> jump_force <span style="color:#f92672">=</span> <span style="color:#ae81ff">224</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> air_resistance <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.02</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> velocity <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> sprite <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">AnimatedSprite</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> anim_player <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">AnimationPlayer</span> <span style="color:#75715e"># Added @ Part 7</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready(): <span style="color:#75715e"># Added @ Part 7</span>
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>scale <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>modulate <span style="color:#f92672">=</span> <span style="color:#a6e22e">Color</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _physics_process(delta):
+</span></span><span style="display:flex;"><span>	velocity<span style="color:#f92672">.</span>y <span style="color:#f92672">+=</span> gravity <span style="color:#f92672">*</span> delta
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> x_input <span style="color:#f92672">=</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>get_action_strength(<span style="color:#e6db74">&#34;move_right&#34;</span>) <span style="color:#f92672">-</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>get_action_strength(<span style="color:#e6db74">&#34;move_left&#34;</span>)
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> x_input <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>		velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">+=</span> x_input <span style="color:#f92672">*</span> acceleration
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;dash&#34;</span>):
+</span></span><span style="display:flex;"><span>			velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> clamp(velocity<span style="color:#f92672">.</span>x, <span style="color:#f92672">-</span>max_dash_speed, max_dash_speed)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> clamp(velocity<span style="color:#f92672">.</span>x, <span style="color:#f92672">-</span>max_speed, max_speed)
+</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>flip_h <span style="color:#f92672">=</span> x_input <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> is_on_floor():
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> x_input <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>			sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;idle&#34;</span>)
+</span></span><span style="display:flex;"><span>			velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> lerp(velocity<span style="color:#f92672">.</span>x, <span style="color:#ae81ff">0</span>, friction)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;run&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;jump&#34;</span>):
+</span></span><span style="display:flex;"><span>			sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;jump&#34;</span>)
+</span></span><span style="display:flex;"><span>			velocity<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>jump_force
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> x_input <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>			velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> lerp(velocity<span style="color:#f92672">.</span>x, <span style="color:#ae81ff">0</span>, air_resistance)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_released(<span style="color:#e6db74">&#34;jump&#34;</span>) <span style="color:#f92672">and</span> velocity<span style="color:#f92672">.</span>y <span style="color:#f92672">&lt;</span> <span style="color:#f92672">-</span>jump_force <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>			velocity<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>jump_force <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	velocity <span style="color:#f92672">=</span> move_and_slide(velocity, <span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>UP)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Added @ Part 3</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> position<span style="color:#f92672">.</span>x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">16</span>:
+</span></span><span style="display:flex;"><span>		position<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_HitBox_body_entered(body): <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Enemies&#34;</span>):
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Enemy hit player. Damage is &#34;</span>, body<span style="color:#f92672">.</span>damage)
+</span></span><span style="display:flex;"><span>		emit_signal(<span style="color:#e6db74">&#34;enemy_hit&#34;</span>, body<span style="color:#f92672">.</span>damage)
+</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;hit&#34;</span>)
+</span></span></code></pre></div></details>
+<br>
+<details>
+<summary>Enemy.gd の全コード</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span> <span style="color:#75715e"># Added @ Part 4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> gravity: <span style="color:#a6e22e">int</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> speed: <span style="color:#a6e22e">int</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> damage: <span style="color:#a6e22e">float</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> velocity <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> sprite <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">AnimatedSprite</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	set_physics_process(false)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_HitBox_body_entered(body):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Players&#34;</span>):
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Player entered in &#34;</span>, self<span style="color:#f92672">.</span>name)
+</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;hit&#34;</span>)
+</span></span><span style="display:flex;"><span>		yield(sprite, <span style="color:#e6db74">&#34;animation_finished&#34;</span>)
+</span></span><span style="display:flex;"><span>		queue_free()
+</span></span><span style="display:flex;"><span>		print(self<span style="color:#f92672">.</span>name, <span style="color:#e6db74">&#34; died&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_VisibilityEnabler2D_screen_entered():
+</span></span><span style="display:flex;"><span>	set_physics_process(true)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_VisibilityEnabler2D_screen_exited():
+</span></span><span style="display:flex;"><span>	set_physics_process(false)
+</span></span></code></pre></div></details>
+<br>
+<details>
+<summary>Seed.gd の全コード</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">StaticBody2D</span> <span style="color:#75715e"># Added @ Part 5 / Modified @ Part 8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">150</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> damage <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _physics_process(delta):
+</span></span><span style="display:flex;"><span>	position<span style="color:#f92672">.</span>x <span style="color:#f92672">-=</span> speed <span style="color:#f92672">*</span> delta
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#func _on_Seed_body_entered(body): # 削除</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#	if body.name == &#34;Player&#34;:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#		print(&#34;Seed hits player.&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#	queue_free()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_VisibilityNotifier2D_viewport_exited(viewport):
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;viewport_exited method called&#34;</span>)
+</span></span><span style="display:flex;"><span>	queue_free()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Area2D_body_entered(body): <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>name <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;Seed&#34;</span>:
+</span></span><span style="display:flex;"><span>		print(body<span style="color:#f92672">.</span>name, <span style="color:#e6db74">&#34; hits seed.&#34;</span>)
+</span></span><span style="display:flex;"><span>		queue_free()
+</span></span></code></pre></div></details>
+<br>
+<details>
+<summary>Chameleon.gd の全コード</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#e6db74">&#34;res://Enemies/Enemy.gd&#34;</span> <span style="color:#75715e"># Added @ Part 5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> tongue_hit_enabled <span style="color:#f92672">=</span> true <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> raycast <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">RayCast2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;idle&#34;</span>)
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _physics_process(delta):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> raycast<span style="color:#f92672">.</span>is_colliding():
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> raycast<span style="color:#f92672">.</span>get_collider()<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Player&#34;</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> position<span style="color:#f92672">.</span>distance_to(raycast<span style="color:#f92672">.</span>get_collision_point()) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">80</span>: 
+</span></span><span style="display:flex;"><span>				run()
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>				attack()
+</span></span><span style="display:flex;"><span>				velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;idle&#34;</span>)
+</span></span><span style="display:flex;"><span>		velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	velocity<span style="color:#f92672">.</span>y <span style="color:#f92672">+=</span> gravity <span style="color:#f92672">*</span> delta
+</span></span><span style="display:flex;"><span>	velocity <span style="color:#f92672">=</span> move_and_slide(velocity, <span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>UP)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> run():
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;run&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> is_on_wall():
+</span></span><span style="display:flex;"><span>		speed <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>flip_h <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>sprite<span style="color:#f92672">.</span>flip_h
+</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>x <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>		raycast<span style="color:#f92672">.</span>cast_to<span style="color:#f92672">.</span>x <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>	velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>speed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> attack():
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;attack&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> sprite<span style="color:#f92672">.</span>frame <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">or</span> sprite<span style="color:#f92672">.</span>frame <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> raycast<span style="color:#f92672">.</span>is_colliding() <span style="color:#f92672">and</span> raycast<span style="color:#f92672">.</span>get_collider()<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Player&#34;</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> position<span style="color:#f92672">.</span>distance_to(raycast<span style="color:#f92672">.</span>get_collision_point()) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">50</span>:
+</span></span><span style="display:flex;"><span>				print(<span style="color:#e6db74">&#34;Chameleon&#39;s tongue hits player.&#34;</span>)
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> tongue_hit_enabled: <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>					raycast<span style="color:#f92672">.</span>get_collider()<span style="color:#f92672">.</span>emit_signal(<span style="color:#e6db74">&#34;enemy_hit&#34;</span>, damage)
+</span></span><span style="display:flex;"><span>					tongue_hit_enabled <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>					yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.83</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>					tongue_hit_enabled <span style="color:#f92672">=</span> true
+</span></span></code></pre></div></details>
+<br>
+<details>
+<summary>Item.gd の全コード</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Area2D</span> <span style="color:#75715e"># Added @ Part 6</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> point <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> sprite <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">AnimatedSprite</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> label <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">Label</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> anim_player <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">AnimationPlayer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>modulate <span style="color:#f92672">=</span> <span style="color:#a6e22e">Color</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>ZERO
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>scale <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>ONE
+</span></span><span style="display:flex;"><span>	label<span style="color:#f92672">.</span>modulate <span style="color:#f92672">=</span> <span style="color:#a6e22e">Color</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>	label<span style="color:#f92672">.</span>rect_position <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">32</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>	label<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> str(point)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Item_body_entered(body):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Player&#34;</span>:
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Player hit Item&#34;</span>)
+</span></span><span style="display:flex;"><span>		hit(body) <span style="color:#75715e"># 変更</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> hit(body): <span style="color:#75715e"># 変更</span>
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;Got &#34;</span>, point, <span style="color:#e6db74">&#34; point.&#34;</span>)
+</span></span><span style="display:flex;"><span>	body<span style="color:#f92672">.</span>emit_signal(<span style="color:#e6db74">&#34;item_hit&#34;</span>, point) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;hit&#34;</span>)
+</span></span><span style="display:flex;"><span>	yield(anim_player, <span style="color:#e6db74">&#34;animation_finished&#34;</span>)
+</span></span><span style="display:flex;"><span>	queue_free()
+</span></span></code></pre></div></details>
+<br>
+<details>
+<summary>ItemBox.gd の全コード</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">StaticBody2D</span> <span style="color:#75715e"># Added @ Part 6</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> timer_unused <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> sprite <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">AnimatedSprite</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> timer <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">Timer</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> parent <span style="color:#f92672">=</span> get_parent()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> broken_box_tscn <span style="color:#f92672">=</span> preload(<span style="color:#e6db74">&#34;res://Items/BrokenBox.tscn&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> items <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://Items/Apple.tscn&#34;</span>),
+</span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://Items/Bananas.tscn&#34;</span>),
+</span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://Items/Cherries.tscn&#34;</span>),
+</span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://Items/Kiwi.tscn&#34;</span>),
+</span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://Items/Melon.tscn&#34;</span>),
+</span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://Items/Orange.tscn&#34;</span>),
+</span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://Items/Pineapple.tscn&#34;</span>),
+</span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://Items/Strawberry.tscn&#34;</span>),
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;idle&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Timer_timeout():
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;ItemBox &gt; Timer timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> items<span style="color:#f92672">.</span>empty():
+</span></span><span style="display:flex;"><span>		items<span style="color:#f92672">.</span>clear()
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;items size: &#34;</span>, items<span style="color:#f92672">.</span>size())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Area2D_body_entered(body):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Player&#34;</span>:
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;ItemBox &gt; Area2D entered by player&#34;</span>)
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> timer_unused:
+</span></span><span style="display:flex;"><span>			timer<span style="color:#f92672">.</span>start()
+</span></span><span style="display:flex;"><span>			timer_unused <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;hit&#34;</span>)
+</span></span><span style="display:flex;"><span>		yield(sprite, <span style="color:#e6db74">&#34;animation_finished&#34;</span>)
+</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;idle&#34;</span>)
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> items<span style="color:#f92672">.</span>empty():
+</span></span><span style="display:flex;"><span>			print(<span style="color:#e6db74">&#34;ItemBox is empty.&#34;</span>)
+</span></span><span style="display:flex;"><span>			sprite<span style="color:#f92672">.</span>visible <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> broken_box <span style="color:#f92672">=</span> broken_box_tscn<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>			parent<span style="color:#f92672">.</span>add_child(broken_box)
+</span></span><span style="display:flex;"><span>			broken_box<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> position
+</span></span><span style="display:flex;"><span>			queue_free()
+</span></span><span style="display:flex;"><span>			print(self<span style="color:#f92672">.</span>name, <span style="color:#e6db74">&#34; removed.&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			print(<span style="color:#e6db74">&#34;ItemBox is not empty.&#34;</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> item <span style="color:#f92672">=</span> items<span style="color:#f92672">.</span>pop_front()<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>			add_child(item)
+</span></span><span style="display:flex;"><span>			item<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>y <span style="color:#f92672">-=</span> <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>			item<span style="color:#f92672">.</span>hit(body) <span style="color:#75715e"># 変更</span>
+</span></span></code></pre></div></details>
+<br>
+<hr>
+<h1 id="おわりに">おわりに<a hidden class="anchor" aria-hidden="true" href="#おわりに">#</a></h1>
+<p>以上で Part 8 は完了だ。今回は HUD を実装した。HUD の見た目を作るまではそれなりにサクサクと進められたと思う。しかし、複数のスクリプトを跨いだデータの受け渡しは、なかなか複雑でややこしいと感じる人は多いのではないだろうか。今回のチュートリアルでもお伝えしたように、先に図や絵を描いて頭の中を整理すると、その後のコーディングもよりスムーズに進められることが多い。今後もしあなた自身のオリジナルプロジェクトを作る場面で役立ちそうであれば、ぜひお試しいただければと思う。急がば回れ、である。</p>
+<p>さて、次回のチュートリアルでは、ゲームオーバー画面を実装していく予定だ。プレイヤーキャラクターのヘルスが 0 になるか、画面下に落ちたらゲームオーバーになる仕組みを実装していく予定だ。では次回もお楽しみに。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/ja/tags/godot/">Godot</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/">ゲーム開発</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/">チュートリアル</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E5%88%9D%E7%B4%9A/">初級</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%BC/">プラットフォーマー</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%A0/">アクションゲーム</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E6%A8%AA%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB/">横スクロール</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/hud/">HUD</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%98%E3%83%83%E3%82%BA%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%82%A3%E3%82%B9%E3%83%97%E3%83%AC%E3%82%A4/">ヘッズアップディスプレイ</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/ui/">UI</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9/">ユーザーインターフェース</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_7/">
+    <span class="title">« 前のページ</span>
+    <br>
+    <span>Godot で作るプラットフォーマー Part 7：次のレベルに遷移させよう！</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 8：HUD を追加しよう！ on twitter"
+        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%208%ef%bc%9aHUD%20%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%97%e3%82%88%e3%81%86%ef%bc%81&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_8%2f&amp;hashtags=Godot%2cGodotEngine%2c%e3%82%b2%e3%83%bc%e3%83%a0%e9%96%8b%e7%99%ba%2c%e3%83%81%e3%83%a5%e3%83%bc%e3%83%88%e3%83%aa%e3%82%a2%e3%83%ab%2c%e5%88%9d%e7%b4%9a%2c2D%2c%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%2c%e3%82%a2%e3%82%af%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%b2%e3%83%bc%e3%83%a0%2c%e6%a8%aa%e3%82%b9%e3%82%af%e3%83%ad%e3%83%bc%e3%83%ab%2cHUD%2c%e3%83%98%e3%83%83%e3%82%ba%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%82%a3%e3%82%b9%e3%83%97%e3%83%ac%e3%82%a4%2cUI%2c%e3%83%a6%e3%83%bc%e3%82%b6%e3%83%bc%e3%82%a4%e3%83%b3%e3%82%bf%e3%83%bc%e3%83%95%e3%82%a7%e3%83%bc%e3%82%b9">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 8：HUD を追加しよう！ on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_8%2f&amp;title=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%208%ef%bc%9aHUD%20%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%97%e3%82%88%e3%81%86%ef%bc%81&amp;summary=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%208%ef%bc%9aHUD%20%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%97%e3%82%88%e3%81%86%ef%bc%81&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_8%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 8：HUD を追加しよう！ on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_8%2f&title=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%208%ef%bc%9aHUD%20%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%97%e3%82%88%e3%81%86%ef%bc%81">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 8：HUD を追加しよう！ on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_8%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 8：HUD を追加しよう！ on whatsapp"
+        href="https://api.whatsapp.com/send?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%208%ef%bc%9aHUD%20%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%97%e3%82%88%e3%81%86%ef%bc%81%20-%20https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_8%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 8：HUD を追加しよう！ on telegram"
+        href="https://telegram.me/share/url?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%208%ef%bc%9aHUD%20%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%97%e3%82%88%e3%81%86%ef%bc%81&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_8%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://www.peanuts-code.com/ja/">Peanuts Code</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ユーザーインターフェース on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9/</link>
+    <description>Recent content in ユーザーインターフェース on Peanuts Code</description>
+    <image>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 04 Mar 2022 13:16:21 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るプラットフォーマー Part 8：HUD を追加しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_8/</link>
+      <pubDate>Fri, 04 Mar 2022 13:16:21 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_8/</guid>
+      <description>第8回目の今回は、HUD を実装していく。
+HUD というのは、ヘッズアップディスプレイ（Heads Up Display）の略で、ゲームプレイ中に常に画面上に表示されている UI の一つだ。例えば、プレイヤーの残りのライフ（海外での呼称 Health に合わせてこれ以降はヘルスと呼ぶ）や、獲得したスコアなどがわかりやすいだろう。HUD を実装する目的は現在のゲームの状態を視覚的にわかりやすくすることだ。</description>
+    </item>
+    
+  </channel>
+</rss>
