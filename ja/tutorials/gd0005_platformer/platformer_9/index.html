@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="ja" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！ | Peanuts Code</title>
+<meta name="keywords" content="Godot, GodotEngine, ゲーム開発, チュートリアル, 初級, 2D, プラットフォーマー, アクションゲーム, 横スクロール, ゲームオーバー" />
+<meta name="description" content="第9回目の今回は、ゲームオーバーの仕組みを実装していく。
+世に出ているプラットフォーマーゲームにはほぼ確実にゲームオーバーの仕組みが存在する。ゲームオーバーになるかもしれない緊張感がなければプラットフォーマーの面白さは激減する。だから、ゲームオーバーの実装は必要不可欠だ。さらに、ゲームオーバーの条件設定もまたゲームの難易度を左右するため非常に重要だ。
+一般的にゲームオーバーの条件としては、敵や敵の攻撃に一回でも当たるか、当たってヘルス（ライフ）が 0 になるか、画面下部に落下した時などにゲームオーバーになることが多い。">
+<meta name="author" content="Masanao Sako">
+<link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_9/" />
+<meta name="google-site-verification" content="XYZabc" />
+<meta name="yandex-verification" content="XYZabc" />
+<meta name="msvalidate.01" content="XYZabc" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="/images/logomark.png" as="image">
+<link rel="icon" href="https://www.peanuts-code.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.peanuts-code.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.peanuts-code.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.peanuts-code.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.94.2" />
+<link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_9/" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-DK0NK2RTTW', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！" />
+<meta property="og:description" content="第9回目の今回は、ゲームオーバーの仕組みを実装していく。
+世に出ているプラットフォーマーゲームにはほぼ確実にゲームオーバーの仕組みが存在する。ゲームオーバーになるかもしれない緊張感がなければプラットフォーマーの面白さは激減する。だから、ゲームオーバーの実装は必要不可欠だ。さらに、ゲームオーバーの条件設定もまたゲームの難易度を左右するため非常に重要だ。
+一般的にゲームオーバーの条件としては、敵や敵の攻撃に一回でも当たるか、当たってヘルス（ライフ）が 0 になるか、画面下部に落下した時などにゲームオーバーになることが多い。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_9/" />
+<meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_9/img34.gif" /><meta property="article:section" content="tutorials" />
+<meta property="article:published_time" content="2022-03-14T01:59:44&#43;09:00" />
+<meta property="article:modified_time" content="2022-03-15T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_9/img34.gif" />
+<meta name="twitter:title" content="Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！"/>
+<meta name="twitter:description" content="第9回目の今回は、ゲームオーバーの仕組みを実装していく。
+世に出ているプラットフォーマーゲームにはほぼ確実にゲームオーバーの仕組みが存在する。ゲームオーバーになるかもしれない緊張感がなければプラットフォーマーの面白さは激減する。だから、ゲームオーバーの実装は必要不可欠だ。さらに、ゲームオーバーの条件設定もまたゲームの難易度を左右するため非常に重要だ。
+一般的にゲームオーバーの条件としては、敵や敵の攻撃に一回でも当たるか、当たってヘルス（ライフ）が 0 になるか、画面下部に落下した時などにゲームオーバーになることが多い。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Tutorials",
+      "item": "https://www.peanuts-code.com/ja/tutorials/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "シリーズ：Godot で作るプラットフォーマー",
+      "item": "https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！",
+      "item": "https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_9/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！",
+  "name": "Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！",
+  "description": "第9回目の今回は、ゲームオーバーの仕組みを実装していく。\n世に出ているプラットフォーマーゲームにはほぼ確実にゲームオーバーの仕組みが存在する。ゲームオーバーになるかもしれない緊張感がなければプラットフォーマーの面白さは激減する。だから、ゲームオーバーの実装は必要不可欠だ。さらに、ゲームオーバーの条件設定もまたゲームの難易度を左右するため非常に重要だ。\n一般的にゲームオーバーの条件としては、敵や敵の攻撃に一回でも当たるか、当たってヘルス（ライフ）が 0 になるか、画面下部に落下した時などにゲームオーバーになることが多い。",
+  "keywords": [
+    "Godot", "GodotEngine", "ゲーム開発", "チュートリアル", "初級", "2D", "プラットフォーマー", "アクションゲーム", "横スクロール", "ゲームオーバー"
+  ],
+  "articleBody": "第9回目の今回は、ゲームオーバーの仕組みを実装していく。\n世に出ているプラットフォーマーゲームにはほぼ確実にゲームオーバーの仕組みが存在する。ゲームオーバーになるかもしれない緊張感がなければプラットフォーマーの面白さは激減する。だから、ゲームオーバーの実装は必要不可欠だ。さらに、ゲームオーバーの条件設定もまたゲームの難易度を左右するため非常に重要だ。\n一般的にゲームオーバーの条件としては、敵や敵の攻撃に一回でも当たるか、当たってヘルス（ライフ）が 0 になるか、画面下部に落下した時などにゲームオーバーになることが多い。\n今回のチュートリアルでは、ゲームーオーバーの仕組みとして以下の作業を行う。\n ゲームオーバー画面のシーンを作る。 ゲームオーバー画面から再度ゲーム開始またはゲーム終了する仕組みを作る。 プレイヤーキャラクターが敵キャラクターに当たってヘルスが 0 になった時のゲームオーバー画面への遷移を実装する。 プレイヤーキャラクターが地面のないところから画面外へ落下した時のゲームオーバー画面への遷移を実装する。   Memo： \n過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るプラットフォーマー \n  \n (adsbygoogle = window.adsbygoogle || []).push({});   GameOver シーンを作る 新規シーンを作成して必要なノードを追加する それではまず以下の手順で「GameOver」シーンを新規作成しよう。\n 「シーン」メニュー＞「新規シーン」を選択する。 「ルートノードを生成」で「ユーザーインターフェース」を選択する。 「Control」ルートノードが追加されたら、名前を「GameOver」に変更する。 「GameOver」ルートノードに「TextureRect」ノードを追加する。 「TextureRect」ノードに「VBoxContainer」ノードを追加する。 「VBoxContainer」ノードに「Label」ノードを追加し、名前を「GameOverLabel」に変更する。 「VBoxContainer」ノードに「HBoxContainer」ノードを追加し、名前を「ButtonsHBox」に変更する。 「ButtonsHBox」ノードに「VBoxContainer」ノードを2つ追加し、名前をそれぞれ「RestartVBox」、および「QuitVBox」に変更する。 「RestartVBox」ノードに「TextureButton」ノードを追加し、名前を「RestartButton」に変更する。 同じく「RestartVBox」ノードに「Label」ノードを追加し、名前を「RestartLabel」に変更する。 「QuitVBox」ノードに「TextureButton」ノードを追加し、名前を「QuitButton」に変更する。 同じく「QuitVBox」ノードに「Label」ノードを追加し、名前を「QuitLabel」に変更する。 「GameOver」ルートノードに「ColorRect」ノードを追加する。 さらに「GameOver」ルートノードに「ConfirmationDialog」ノードを追加する。  「GameOver」のシーンツリーは以下のスクリーンショットのようになった。\nシーンドックを見ると「ConfirmationDialog」ノードの右側に警告マークがついている。これをクリックすると、以下のダイアログが表示される。（日本語のローカライズ時にタイポがあった様子だが）このノードは基本的に非表示になるようだ。\nシーンドック上でこのノードの右側にある目のアイコンをクリックして非表示に切り替えれば、警告は消えるが、2Dワークスペース上にこのノードは表示されなくなる。お好みで表示/非表示を切り替えてほしい。\nここまでできたらシーンを保存しておこう。とその前に、「GameOver」シーンは UI なので、このタイミングでファイルシステム上のフォルダ構成を編集しておく。「res://UI/」に「HUD」フォルダを作成し、以前作成した以下の HUD 関連ファイルをそこへ移動しよう。\n res://UI/HUD/HUD.gd res://UI/HUD/HUD.tscn  さらに「res://UI/」に「GameOver」フォルダを作成し、今作ったシーンのファイルパスが「res://UI/GameOver/GameOver.tscn」となるように「GameOver.tscn」という名前で保存しよう。\n各ノードのプロパティを編集する では「GameOver」シーンのそれぞれのノードのプロパティを編集していこう。\nGameOver この「GameOver」シーンで、ルートノードは単なる子ノードの入れ物的役割にしているが、プロパティを一つ更新しておく。これは非常に重要だ。\n シーンドックで「GameOver」ルートノードを選択し、インスペクターで「Pause Mode」プロパティを「Process」に変更する\n  この設定の意味を説明しておこう。\nゲームオーバー画面を表示している間、メインのゲームは一時停止状態にしたい。その場合、「Game」ノードの「Paused」というプロパティを true にすることで、ゲームは一時停止させられる。\nしかし、基本的に全てのノードの「Pause Mode」プロパティは「Inherit」（継承という意味）の設定になっているので、親ノードの「Pause Mode」の値を継承する。つまり、ゲームを一時停止させようと思って、シーンツリーの最上位にある「Game」ノードの「Paused」プロパティを true にすると、ゲームオーバー画面を含むゲームの全てが停止してしまう。\nそこで、「GameOver」ブランチのみ機能させたい場合に、このノードの「Pause Mode」プロパティを「Process」に変更する。そうすると、親ノードの「Pause Mode」は継承されず、裏でゲームが停止中でもゲームオーバー画面だけは動作し操作可能となるのだ。\nTextureRect このノードはゲームオーバー画面の背景テクスチャを設定するためのものだ。\n 「TextureRect」ノードを選択したら、2Dワークスペースのツールバー＞「レイアウト」にて「Rect全面」を選択する。 インスペクターの「Texture」プロパティの [空] 目掛けて、ファイルシステムドックから「res://Assets/Background/Gray.png」をドラッグ\u0026ドロップする。 「Stretch Mode」プロパティを「Tile」に設定する。  以上で、グレーの菱形模様の背景が設定できた。\nVBoxContainer このノードは自身の子ノードを垂直方向に並べるコンテナだ。子ノードを全て中央揃えにしたいので、設定は以下のみ。\n インスペクターで「Alignment」プロパティを「Center」にする。  GameOverLabel このノードは「Game Over」という文字列を画面上に大きく表示するために使用する。\n インスペクターにて、「Text」プロパティの値として「game over」を入力する。 「Align」プロパティを「Center」にする。 「Uppercase」プロパティをオンにする。 「Theme Overrides」＞「Fonts」＞「Font」プロパティに「新規 DynamicFont」を割り当てる。 「Theme Overrides」＞「Fonts」＞「Font」プロパティの追加したフォントをクリックし、「Font」＞「Font Data」プロパティめがけて、ファイルシステムドックからフォントファイル「res://fonts/connection_ii/ConnectionII.tres」をドラッグ\u0026ドロップする。 「Theme Overrides」＞「Fonts」＞「Font」プロパティの追加したフォントをクリックし、「Settings」＞「Size」プロパティを 64 にする。\n 「Visibility」＞「Modulate」プロパティで色を # e44a4a （赤）に変更する。\n  これで、「Game Over」の赤い文字が中央揃えで大きく表示された。フォントも「ConnectionII.tres」により、レトロ感を演出できた。\nButtonsHBox このノードは、子ノードである「RestartVBox」と「QuitVBox」を水平方向に格納するコンテナだ。それら2つの子ノードもまたコンテナだが、いずれも主な要素はボタンである。それらのボタンを2つ横並びに表示するためにこのノードを利用する。\n インスペクターで「Alignment」プロパティを「Center」にする。 「Theme Overrides」＞「Constants」＞「Separation」プロパティの値を 48 にする。  これでこのノードが中央揃えで配置され、格納する子ノードの間隔が 48 px で横並びになる。\nRestartVBox このノードは、ゲームオーバーになった時に、ゲームをはじめから再開するための「Restart」ボタンとその説明用のラベルを格納するためのものだ。それらの子ノードは中央揃えにして、ボタンアイコンが上、説明用ラベルが下になるように並べる。VBox のため子ノードは自動的に縦並びに配置される。プロパティの編集は以下の1つだけだ。\n インスペクターで「Alignment」プロパティを「Center」にする。  RestartButton このノードは「Restart」ボタンのアイコンを作るために使用する。「TextureButton」クラスは、ボタン機能を有しており、かつ見た目の設定としてテクスチャ画像ファイルを適用できる。\n インスペクターで「Expand」プロパティをオンにする。 「Stretch Mode」プロパティを「Keep Aspect Center」にする。 「Textures」＞「Normal」プロパティに、ファイルシステムドックから「res://Assets/Menu/Buttons/Restart.png」をドラッグ\u0026ドロップする。\nなお、ボタンを押した時のテクスチャを設定する「Pressed」、カーソルがボタンに重なった時のテクスチャ「Hover」など細かく設定可能だが、今回はアセットの種類の関係で、「Normal」のみ設定する。 「Rect」＞「Min Size」プロパティを (56, 56) に設定する。  現在、「Restart」ボタンが水平方向で中央に配置されているが、後ほど「Quit」ボタンのテクスチャを設定すれば、2つのボタンの中間が中央に来るように自動的に調整されるので、現時点ではこのままで良い。\nRestartLabel このノードは単なるボタンアイコンの説明だ。アイコンだけだと何のボタンかわかりにくいかもしれないので、ボタンの下に小さめの文字で「RESTART」と表示するために使用する。\n インスペクターで「Text」プロパティの値として「restart」と入力する。 「Align」プロパティを「Center」にする。 「Uppercase」プロパティをオンにする。 「Theme Overrides」＞「Fonts」＞「Font」プロパティに「新規 DynamicFont」を割り当てる。 「Theme Overrides」＞「Fonts」＞「Font」プロパティの追加したフォントをクリックし、「Font」＞「Font Data」プロパティめがけて、ファイルシステムドックからフォントファイル「res://fonts/poco/Poco.tres」をドラッグ\u0026ドロップする。 「Font」＞「Font Data」プロパティの矢印「v」をクリックし「ユニーク化」する。\n 「Visibility」＞「Modulate」プロパティで色を # 000000 （黒）に変更する。  QuitVBox このノードは、ゲームオーバーになった時に、ゲームを完全に終了するための「Quit」ボタンと説明用のラベルを格納するためのものだ。「RestartVBox」同様だが、それらの子ノードは中央揃えにして、ボタンアイコンが上、説明用ラベルが下になるように並べる。VBox なので、子ノードは自動的に縦並びに配置される。プロパティの編集は以下の1つだけだ。\n インスペクターで「Alignment」プロパティを「Center」にする。  QuitButton このノードは「RestartButton」ノードと同様に「Quit」ボタンのアイコンを作るために使用する。\n インスペクターで「Expand」プロパティをオンにする。 「Stretch Mode」プロパティを「Keep Aspect Center」にする。 「Textures」＞「Normal」プロパティに、ファイルシステムドックから「res://Assets/Menu/Buttons/Close.png」をドラッグ\u0026ドロップする。このノードもテクスチャは「Normal」プロパティのみ設定する。 「Rect」＞「Min Size」プロパティを (56, 56) に設定する。  「Quit」ボタンの垂直方向の位置が「Restart」ボタンより低いが、この後「QuitLabel」ノードの設定をすれば同じ高さになるので、今はこのままで良い。\nQuitLabel このノードは、「RestartLabel」ノード同様、単なるボタンアイコンの説明だ。\n インスペクターで「Text」プロパティの値として「quit」と入力する。 「Align」プロパティを「Center」にする。 「Uppercase」プロパティをオンにする。 「Theme Overrides」＞「Fonts」＞「Font」プロパティに「新規 DynamicFont」を割り当てる。 「Theme Overrides」＞「Fonts」＞「Font」プロパティの追加したフォントをクリックし、「Font」＞「Font Data」プロパティめがけて、ファイルシステムドックからフォントファイル「res://fonts/poco/Poco.tres」をドラッグ\u0026ドロップする。 「Font」＞「Font Data」プロパティの矢印「v」をクリックし「ユニーク化」する。\n 「Visibility」＞「Modulate」プロパティで色を # 000000 （黒）に変更する。  ColorRect この後「Restart」または「Quit」のボタンを押した時にダイアログが表示されるようにするのだが、ダイアログに注目してもらうために、その時だけダイアログの後ろにあるゲームオーバー画面を暗くしたい。そこで、この「ColorRect」ノードで半透明の黒いスクリーンを作り、ゲームオーバー画面に重ねることで、後ろのゲームオーバー画面が暗くなったように見せる。\n 2Dワークスペースのツールバー＞「レイアウト」＞「Rect全面」を選択する。 インスペクターから「Color」プロパティで色を # a0000000 （R:0, G:0, B:0, A: 160）に設定する。\n このノードは、デフォルトでは非表示にしておき、ボタンを押した時だけ表示したいので、ひとまずシーンドック上で目のアイコンをクリックして非表示にしておく。\n  ConfirmationDialog Confirmation とは日本語で確認という意味だ。このノードはプレイヤーに対してダイアログで確認のメッセージを表示し、それに対して OK / Cancel のボタンを選択してもらうために使用する。「Restart」ボタンも「Quit」ボタンも、誤って押してしまった場合を考慮して、ボタンを押したら、本当にそれで良いのかプレイヤーに確認するダイアログが表示されるようにする。\n インスペクターで「Dialog」＞「Text」プロパティには何も入れずに置いておく。後ほど、スクリプトでどっちのボタンを押したかによって、このプロパティの値を切り替えるようにする。 「Dialog」＞「Hide On OK」プロパティはオフにする。ダイアログ上の「OK」ボタンをクリックした時の挙動をスクリプトで制御したいのでここはオフにする必要がある。 「Window Title」には「Confirmation」と入力する。これは単にダイアログ上部のタイトルだ。 「Popup」＞「Exclusive」プロパティはオフにする。これがオンだとダイアログの外をクリックすればキャンセル扱いになって便利ではある。しかし残念ながら、ダイアログのすぐ下あたりに「Restart」と「Quit」のボタンがあるため、ダイアログをキャンセルしようと思って外側をクリックしたつもりが、ボタンの上をクリックしてしまい、すぐさまダイアログが再表示されるという挙動になってしまう。ダイアログのサイズを大きくして背後のボタンを隠しても良いが、少し見た目に違和感があるため、今回はこのプロパティをオフにして対処することにした。 「Rect」＞「Min Size」を（200, 50）に設定する。  以上で各ノードのプロパティの編集は完了だ。次はスクリプトで動的な制御を施していく。\nGameOver ノードにスクリプトをアタッチする それでは「GameOver」ルートノードにスクリプトを新規でアタッチしよう。ファイルパスを「res://UI/GameOver/GameOver.gd」としてスクリプトファイルを作成してほしい。\nスクリプトエディタで「GameOver.gd」を開いたら、まずは以下のコードを記述しよう。\nextends Control # Added @ Part 9  # どちらのボタンをクリックしたかわかるようにボタンの種類をenumで定義 enum { \tRESTART, \tQUIT, }  # 上のenumで定義したパラメータを格納する（ボタン押下前は null） var selected_option = null # Restart ボタンを押した時に ConfirmationDialog の dialog_text プロパティに適用するテキスト var restart_text = \"Do you really want to restart the game?\" # Quit ボタンを押した時に ConfirmationDialog の dialog_text プロパティに適用するテキスト var quit_text = \"Do you really want to quit the game?\" # RestartButton ノードの参照 onready var restart_btn = $VBoxContainer/ButtonsHBox/RestartVBox/RestartButton # QuitButton ノードの参照 onready var quit_btn = $VBoxContainer/ButtonsHBox/QuitVBox/QuitButton # ColorRect ノードの参照 onready var color_rect = $ColorRect # ConfirmationDialog ノードの参照 onready var confirmation = $ConfirmationDialog   func _ready(): \t# ゲーム開始時は ColorRect ノードを非表示にする \tcolor_rect.visible = false \nここから必要なシグナルをこのスクリプトに接続していく。\nまずは「Restart」ボタンをクリックした時にシグナルを発信させ、それをトリガーにして「ConfirmationDialog」ノードを表示させる。\nシーンドックで「RestartButton」ノードを選択したら、ノードドック＞シグナルタブを開き、「button_up()」シグナルをこの「GameOver.gd」スクリプトに接続しよう。\nこのシグナルは、ボタンをクリックした時にクリックした指が離れたら発動される。逆にクリックした指が押し続けている間は発動しない。\nシグナルを接続すると、スクリプトに_on_RestartButton_button_upメソッドが追加されるはずだ。このメソッドを以下のように編集しよう。\nfunc _on_RestartButton_button_up(): \twork_at_button_up(RESTART) 「Restart」ボタンをクリックしたらwork_at_button_upメソッドが呼ばれるようにした。このメソッドはあとで定義する。引数には定義済みの enum のパラメータを取る形式にする予定だ。「Quit」ボタンを押した時も同じメソッドを呼ぶ形にするので、先に「QuitButton」のシグナル接続からやってしまおう。\nシーンドックで「QuitButton」ノードを選択し、ノードドック＞シグナルタブを開き、「button_up()」シグナルをこの「GameOver.gd」スクリプトに接続しよう。\n今度はスクリプトに_on_QuitButton_button_upメソッドが追加される。このメソッドも、先ほどと同様に以下のように編集する。引数には enum のパラメータQUITの方を渡した。\nfunc _on_QuitButton_button_up(): \twork_at_button_up(QUIT) では、どちらのボタンをクリックした時も呼ばれるwork_at_button_upメソッドを定義しよう。メソッドにはボタンをクリックした時に実行してほしい処理をコーディングしていく。\n# ボタンをクリックした時に呼ばれるメソッドを定義 func work_at_button_up(option): \t# どちらのボタンを押したのか引数の enum パラメータを渡す \tselected_option = option \t# ColorRect ノードを表示して後ろを暗くする \tcolor_rect.visible = true \t# もし Restart ボタンが押された場合 \tif selected_option == RESTART: \t# ConfirmationDialog ノードの Text プロパティに restart_text プロパティの文字列を適用する \tconfirmation.dialog_text = restart_text \t# もし Quit ボタンが押された場合 \telif selected_option == QUIT: \t# ConfirmationDialog ノードの Text プロパティに quit_text プロパティの文字列を適用する \tconfirmation.dialog_text = quit_text \t# ConfirmationDialog を画面中央に表示する \tconfirmation.popup_centered() これで、どちらのボタンを押しても、必要な設定を施したダイアログが表示されるようになった。\n次に「ConfirmationDialog」ノードのダイアログが表示された後の操作を制御していこう。まずは、このノードのシグナルを利用する。シーンドックで「ConfirmationDialog」ノードを選択し、ノードドック＞シグナルタブにて「confirmed()」シグナルを「GameOver.gd」スクリプトに接続しよう。\nこのシグナルは、ダイアログ上の「OK」ボタンをクリックした時に発信される。つまり、「Restart」か「Quit」の選択を確定した時に発信されるのだ。\n_on_ConfirmationDialog_confirmedメソッドが生成されたら、その中に、選択を確定した時に必要な処理をコーディングしていこう。\nfunc _on_ConfirmationDialog_confirmed(): \t# Restart ボタンを押した場合 \tif selected_option == RESTART: \t# シーンツリーの一時停止を再開する（一時停止は Game.gd 側に実装予定） \tget_tree().paused = false \t# デバッグ用 \tprint(\"Scene tree paused: \", get_tree().paused) \t# Game.tscn シーンを読み込み直し、ゲームをはじめから再開する \tget_tree().change_scene(\"res://Game/Game.tscn\") \t# デバッグ用 \tprint(\"The game is restarted.\") \t# Quit ボタンを押した場合 \telif selected_option == QUIT: \t# ゲームを完全に終了する \tget_tree().quit() \t# デバッグ用 \tprint(\"The game is quited.\") これで「Restart」ボタン、「Quit」ボタンをクリックして選択を確定したあとの挙動が実装できた。\n次に「Cancel」ボタンをクリックしてダイアログを閉じる時の挙動を制御していく。こちらもまずはシグナルを接続するところから始める。シーンドックで「ConfirmationDialog」ノードを選択したら、ノードドック＞シグナルタブにて「popup_hide()」シグナルをスクリプトに接続しよう。\n_on_ConfirmationDialog_popup_hideメソッドが生成されたら以下のように編集しよう。ダイアログが表示された時の設定を元に戻すようにコーディングしている。\nfunc _on_ConfirmationDialog_popup_hide(): \t# ボタン選択ステータスをリセットする（値なし状態にする） \tselected_option = null \t# ConfirmationDialog ノードの dialog_text プロパティのテキストを消す \tconfirmation.dialog_text = \"\" \t# ColorRect ノードを非表示に戻す \tcolor_rect.visible = false \nシーンを実行して挙動を確認しておこう。\n良い感じである。ここらで一度休憩しよう。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   GameOver シーンをインスタンス化して Game シーンに追加する 出来上がった「GameOver」シーンをインスタンス化して「Ggame」シーンツリーにブランチとして追加しよう。\n プレイヤーのヘルスが 0 になったらゲームオーバーになる仕組みを実装する ここからはスクリプトをコーディングして、プレイヤーのヘルスが 0 になった時にゲームオーバーになる仕組みを実装していく。\nプレイヤーのヘルスが 0 になった時のアニメーションを作る プレイヤーのヘルスが 0 になった時のアニメーションを追加したい。\n久しぶりに「Player.tscn」シーンを開き、エディタ下部のアニメーションパネルを開いたら、以下の内容で新しい「die」という名前のアニメーションを作成しよう。\n アニメーションの名前： die アニメーションの長さ（秒）：0.9 以下のトラックを追加   トラック 1: AnimatedSprite ノード  scale プロパティ  Time: 0秒 / Value: (0, 0) / Easing: 50 Time: 0.9秒 / Value: (10, 0) / Easing: 1.00   トラック 2: AnimatedSprite ノード  modulate プロパティ  Time: 0秒 / Value: # ffffff / Easing: 1.00 Time: 0.1秒 / Value: # 00ffffff / Easing: 1.00 Time: 0.2秒 / Value: # ffffff / Easing: 1.00 Time: 0.3秒 / Value: # 00ffffff / Easing: 1.00 Time: 0.4秒 / Value: # ffffff / Easing: 1.00 Time: 0.5秒 / Value: # 00ffffff / Easing: 1.00 Time: 0.6秒 / Value: # ffffff / Easing: 1.00 Time: 0.7秒 / Value: # 00ffffff / Easing: 1.00 Time: 0.8秒 / Value: # ffffff / Easing: 1.00 Time: 0.9秒 / Value: # 00ffffff / Easing: 1.00 補完モード: 近傍\n    アニメーションパネルは以下のようになったはずだ。\nアニメーションの内容としては、まず modulate プロパティのトラックにて、プレイヤーキャラクターの透明度を 0 と 100 の間で 0.1 秒周期で切り替え、明滅したように見せる。さらに scale プロパティのトラックにては最後の 0.9 秒で一気に横に引き伸ばしつつ縦に潰すことで、プレイヤーキャラクターのテクスチャが消える。\nアニメーションを確認してみよう。\nこのあと、スクリプトで今作成したアニメーションをプレイヤーのヘルスが 0 になった時に再生させる。\nスクリプトで制御する スクリプトでプレイヤーのヘルスとゲームオーバーを連動させる。「Game.gd」スクリプトを開いたら、以下のようにコードをアップデートしよう。「# 追加」のコメントがある行が更新箇所だ。\nextends Node  # 中略  onready var hud = $UI/HUD onready var gameover = $UI/GameOver # 追加：GameOver ノードの参照  func _ready(): \tgameover.visible = false # 追加：ゲーム開始時に GameOver ノードを非表示にする \tadd_level() \thud.update_health(health) \thud.update_score(score) \thud.update_level(current_level)  # 以下省略 これでゲームプレイ中はゲームオーバー画面は非表示になった。\n続いて、いくつかのメソッドも編集する。\n # 中略  func _on_Player_enemy_hit(damage): \tmanage_health(damage) # 変更  # 中略  func manage_health(damage): # 追加：引数にダメージの数値をとる \thealth -= damage # 移動：_on_Player_enemy_hit()メソッドから \tprint(\"Health updated: \", health) # 移動：Moved from _on_Player_enemy_hit()メソッドから \thud.update_health(health) # 移動： _on_Player_enemy_hit()メソッドから \t# もし ヘルスが 0 以下になったら \tif health  0: # 追加 \t# Player の AnimationPlayer ノードで「die」アニメーションを再生する \tplayer.anim_player.play(\"die\") \t# アニメーションが終了するまで待つ \tyield(player.anim_player, \"animation_finished\") \t# ゲームオーバー画面を表示する \tgameover.visible = true \t# デバッグ用 \tprint(\"Game over screen is shown up.\") \t# シーンツリーを一時停止する（GameOver ブランチは Process） \tget_tree().paused = true \t# デバッグ用 \tprint(\"Scene tree paused: \", get_tree().paused) 今回manage_health(damage)というメソッドを新たに作成し、そちらでプレイヤーのヘルスの更新を処理するようにした。メソッドの中身の前半は、以前_on_Player_enemy_hit()メソッドの中にあったコードだ。if health ブロックが今回新しく追加した、ヘルスが 0 になった場合の処理だ。\nプロジェクトを実行して、挙動を確認してみよう。\n敵キャラクターに当たってヘルスが 0 になったら「die」アニメーションのあとゲームオーバー画面に遷移した。問題なさそうだ。ちなみに、裏では「GameOver」ノード以外は一時停止している。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   プレイヤーキャラクターが画面下に落下した時にゲームオーバーになる仕組みを実装する 画面下に落下した時もゲームオーバー画面を表示させたい。少ない工数で実装するには、ヘルスが 0 になった時の処理を流用するのが良いだろう。つまり、画面下に落下したらヘルスが 0 になるようにすれば良い。\n画面下部への落下の判定は、「Level.gd」スクリプトで行う。理由は、プレイヤーキャラクターの位置がカメラの位置の画面下方向のリミットを超えた場合（つまり、画面下方向に落下したキャラクターが画面から消えた場合）にゲームオーバーにすれば良いので、プレイヤーキャラクターとカメラの両方を子ノードとして持つ「Level_」ノードのスクリプトで制御するのが最適だからだ。\nでは「Level.gd」スクリプトを開いて、編集しよう。\nextends Node2D  # オリジナルのシグナル：プレイヤーキャラクターが画面外へ落下した時に発信する signal player_dropped # 追加  # 中略  func _process(_delta): \tcamera.global_position = player.global_position \t# プレイヤーキャラクターの位置の y 座標の値が、カメラの下方向のリミットより大きい場合 \tif player.global_position.y  camera.limit_bottom: # 追加: if ブロック \t# player_dropped シグナルを発信 \temit_signal(\"player_dropped\") \t# デバッグ用 \tprint(\"player dropped and die.\") \t# プロセスを停止してプレイヤーキャラクターが落下し続けるのを止める \tset_process(false) これで、プレイヤーキャラクターが落下してカメラの外に出てしまった時に、シグナルが発信するようになった。では「Game.gd」スクリプトへ戻ろう。\n# 中略  func add_level(): \tlevel = load(\"res://Levels/Level\" + str(current_level) + \".tscn\").instance() \tlevel.connect(\"tree_exited\", self, \"change_level\") \t# シグナル player_dropped をこのスクリプトの _on_Level_player_dropped メソッドに接続 \tlevel.connect(\"player_dropped\", self, \"_on_Level_player_dropped\") # 追加 \tadd_child(level) \tplayer = level.get_node(\"Player\") \tplayer.connect(\"enemy_hit\", self, \"_on_Player_enemy_hit\") \tplayer.connect(\"item_hit\", self, \"_on_Player_item_hit\")  # 中略  # シグナル player_dropped で呼ばれるメソッド func _on_Level_player_dropped(): # 追加 \t# メソッド manage_helth の引数 damage に 100 を渡して実行 \tmanage_health(100) これで以下の流れが出来上がった。\n Gameノードへの「Level_」インスタンス追加時にシグナル「player_dropped」を「Game.gd」に接続する。 プレイヤーキャラクターが画面下に落下する。 シグナルが発信される。 ダメージを 100 受けヘルスが 0 以下になる。 ゲームオーバーになる  ではプレイヤーキャラクターを落下させてみよう。\n落下直後、プレイヤーのヘルスは一気に 0 になり、そのあとすぐにゲームオーバー画面が表示された。想定通りだ。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Part 9 で編集したスクリプトのコード 最後に今回の Part 9 で編集したスクリプトのコードを共有しておくので、必要に応じて確認してほしい。\n GameOver.gd の全コード extends Control # Added @ Part 9   enum { \tRESTART, \tQUIT, }  var selected_option = null var restart_text = \"Do you really want to restart the game?\" var quit_text = \"Do you really want to quit the game?\" onready var restart_btn = $VBoxContainer/ButtonsHBox/RestartVBox/RestartButton onready var quit_btn = $VBoxContainer/ButtonsHBox/QuitVBox/QuitButton onready var color_rect = $ColorRect onready var confirmation = $ConfirmationDialog   func _ready(): \tcolor_rect.visible = false   func _on_RestartButton_button_up(): \twork_at_button_up(RESTART)   func _on_QuitButton_button_up(): \twork_at_button_up(QUIT)   func work_at_button_up(option): \tselected_option = option \tcolor_rect.visible = true \tif selected_option == RESTART: \tconfirmation.dialog_text = restart_text \telif selected_option == QUIT: \tconfirmation.dialog_text = quit_text \tconfirmation.popup_centered()   func _on_ConfirmationDialog_confirmed(): \tif selected_option == RESTART: \tget_tree().paused = false \tprint(\"Scene tree paused: \", get_tree().paused) \tget_tree().change_scene(\"res://Game/Game.tscn\") \tprint(\"The game is restarted.\") \telif selected_option == QUIT: \tget_tree().quit() \tprint(\"The game is quited.\")   func _on_ConfirmationDialog_popup_hide(): \tselected_option = null \tconfirmation.dialog_text = \"\" \tcolor_rect.visible = false   Game.gd の全コード extends Node # Added @ Part 7  var health: float = 100.0 # Added @ Part 8 var score: int = 0 # Added @ Part 8 var level: Node2D var player: KinematicBody2D  export var current_level = 1 export var final_level = 2  onready var hud = $UI/HUD # Added @ Part 8 onready var gameover = $UI/GameOver # Added @ Part 9  func _ready(): \tgameover.visible = false # Added @ Part 9 \tadd_level() \thud.update_health(health) # Added @ Part 8 \thud.update_score(score) # Added @ Part 8 \thud.update_level(current_level) # Added @ Part 8   func add_level(): \tlevel = load(\"res://Levels/Level\" + str(current_level) + \".tscn\").instance() \tlevel.connect(\"tree_exited\", self, \"change_level\") \tlevel.connect(\"player_dropped\", self, \"_on_Level_player_dropped\") # Added @ Part 9 \tadd_child(level) \tplayer = level.get_node(\"Player\") # Added @ Part 8 \tplayer.connect(\"enemy_hit\", self, \"_on_Player_enemy_hit\") # Added @ Part 8 \tplayer.connect(\"item_hit\", self, \"_on_Player_item_hit\") # Added @ Part 8   func change_level(): \tprint(\"change_level() called.\") \tif current_level  final_level: \tprint(\"change to next level.\") \tlevel.queue_free() \tcurrent_level += 1 \thud.update_level(current_level) # Added @ Part 8 \tadd_level() \telse: \tprint(\"Game Clear! Congrats!\") \tget_tree().quit()   func _on_Player_enemy_hit(damage): # Added @ Part 8 \tmanage_health(damage) # Modified @ Part 9   func _on_Player_item_hit(point): # Added @ Part 8 \tscore += point \thud.update_score(score)   func _on_Level_player_dropped(): # Added @ Part 9 \tmanage_health(100)   func manage_health(damage): # Added @ Part 9 \thealth -= damage # Moved from _on_Player_enemy_hit() @ Part 9 \tprint(\"Health updated: \", health) # Moved from _on_Player_enemy_hit() @ Part 9 \thud.update_health(health) # Moved from _on_Player_enemy_hit() @ Part 9 \t# Added @ Part 9 \tif health  0: \tplayer.anim_player.play(\"die\") \tyield(player.anim_player, \"animation_finished\") \tgameover.visible = true \tprint(\"Game over screen is shown up.\") \tget_tree().paused = true \tprint(\"Scene tree paused: \", get_tree().paused)   Level.gd の全コード extends Node2D # Created @ Part 3  signal player_dropped # Added @ Part 9  onready var player = $Player onready var map = $TileMap onready var camera = $Camera2D   func _ready(): \tadjust_camera()   func _process(_delta): \tcamera.global_position = player.global_position \tif player.global_position.y  camera.limit_bottom: # Added @ Par 9 \temit_signal(\"player_dropped\") \tprint(\"player dropped and die.\") \tset_process(false)   func adjust_camera(): \tvar map_limits = map.get_used_rect() \tprint(\"map_limits\", map_limits) \tvar map_cell_size = map.cell_size \tprint(\"map_cell_size\", map_cell_size) \tcamera.limit_left = map_limits.position.x * map_cell_size.x \tcamera.limit_right = map_limits.end.x * map_cell_size.x \t#camera.limit_top = map_limits.position.y * map_cell_size.y # 指定しない \tcamera.limit_bottom = map_limits.end.y * map_cell_size.y \tcamera.limit_smoothed = true   おわりに 以上で Part 9 は完了だ。今回はゲームオーバーの仕組みを実装した。ゲームオーバー画面も UI の一つなので、「Control」系クラスのノードばかりで構成した。各クラスにはそれぞれ異なる機能が割り当てられているのがご理解いただけただろう。今回使用した以外にも「Control」系クラスはまだまだたくさんある。それぞれの役割を少しずつ覚えていけば、今後さまざまな UI を作れるようになるだろう。\nまた UI 上のプレイヤー操作に対するゲームの制御において、シグナルの役割は大きいことも実感いただけたのではないだろうか。何かをトリガーにして実行したい処理がある場合、シグナルを積極的に利用していこう。デフォルトで用意されているシグナルだけでなく、自作のシグナルもスクリプトなら簡単に利用できることを覚えておこう。\nさて、次回のチュートリアルでは、スタート画面を実装する予定だ（やっぱりな、というご意見が多そうだが）。ただ単にスタートボタンを押すだけの UI では面白くないので、プレイヤーキャラクターの種類を増やして、スタート画面でキャラクター選択もできるようにする予定だ（あくまで予定だ）。\nでは次回もお楽しみに。\n",
+  "wordCount" : "1406",
+  "inLanguage": "ja",
+  "image":"https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_9/img34.gif","datePublished": "2022-03-14T01:59:44+09:00",
+  "dateModified": "2022-03-15T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Masanao Sako"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_9/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Peanuts Code",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.peanuts-code.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://www.peanuts-code.com/ja/" accesskey="h" title="Peanuts Code (Alt + H)">
+                <img src="/images/logomark.png" alt="logo" aria-label="logo"
+                    height="35">Peanuts Code</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://www.peanuts-code.com/en/" title="English"
+                            aria-label="English">En</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://www.peanuts-code.com/ja/" title="ホーム">
+                    <span>ホーム</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/posts/" title="ブログ">
+                    <span>ブログ</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/tutorials/" title="チュートリアル">
+                    <span>チュートリアル</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/tags/" title="タグ">
+                    <span>タグ</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/about/" title="アバウト">
+                    <span>アバウト</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/ja/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/">Tutorials</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/">シリーズ：Godot で作るプラットフォーマー</a></div>
+    <h1 class="post-title">
+      Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！
+    </h1>
+    <div class="post-meta">2022-03-14&nbsp;·&nbsp;7 分&nbsp;·&nbsp;Masanao Sako
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_9/img34.gif" alt="プラットフォーマー Part 9 サムネイル">
+        
+</figure><div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目次</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#gameover-%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e3%82%8b" aria-label="GameOver シーンを作る">GameOver シーンを作る</a><ul>
+                        
+                <li>
+                    <a href="#%e6%96%b0%e8%a6%8f%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e6%88%90%e3%81%97%e3%81%a6%e5%bf%85%e8%a6%81%e3%81%aa%e3%83%8e%e3%83%bc%e3%83%89%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b" aria-label="新規シーンを作成して必要なノードを追加する">新規シーンを作成して必要なノードを追加する</a></li>
+                <li>
+                    <a href="#%e5%90%84%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ae%e3%83%97%e3%83%ad%e3%83%91%e3%83%86%e3%82%a3%e3%82%92%e7%b7%a8%e9%9b%86%e3%81%99%e3%82%8b" aria-label="各ノードのプロパティを編集する">各ノードのプロパティを編集する</a><ul>
+                        
+                <li>
+                    <a href="#gameover" aria-label="GameOver">GameOver</a></li>
+                <li>
+                    <a href="#texturerect" aria-label="TextureRect">TextureRect</a></li>
+                <li>
+                    <a href="#vboxcontainer" aria-label="VBoxContainer">VBoxContainer</a></li>
+                <li>
+                    <a href="#gameoverlabel" aria-label="GameOverLabel">GameOverLabel</a></li>
+                <li>
+                    <a href="#buttonshbox" aria-label="ButtonsHBox">ButtonsHBox</a></li>
+                <li>
+                    <a href="#restartvbox" aria-label="RestartVBox">RestartVBox</a></li>
+                <li>
+                    <a href="#restartbutton" aria-label="RestartButton">RestartButton</a></li>
+                <li>
+                    <a href="#restartlabel" aria-label="RestartLabel">RestartLabel</a></li>
+                <li>
+                    <a href="#quitvbox" aria-label="QuitVBox">QuitVBox</a></li>
+                <li>
+                    <a href="#quitbutton" aria-label="QuitButton">QuitButton</a></li>
+                <li>
+                    <a href="#quitlabel" aria-label="QuitLabel">QuitLabel</a></li>
+                <li>
+                    <a href="#colorrect" aria-label="ColorRect">ColorRect</a></li>
+                <li>
+                    <a href="#confirmationdialog" aria-label="ConfirmationDialog">ConfirmationDialog</a></li></ul>
+                </li>
+                <li>
+                    <a href="#gameover-%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ab%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%82%92%e3%82%a2%e3%82%bf%e3%83%83%e3%83%81%e3%81%99%e3%82%8b" aria-label="GameOver ノードにスクリプトをアタッチする">GameOver ノードにスクリプトをアタッチする</a></li></ul>
+                </li>
+                <li>
+                    <a href="#gameover-%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e3%82%a4%e3%83%b3%e3%82%b9%e3%82%bf%e3%83%b3%e3%82%b9%e5%8c%96%e3%81%97%e3%81%a6-game-%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ab%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b" aria-label="GameOver シーンをインスタンス化して Game シーンに追加する">GameOver シーンをインスタンス化して Game シーンに追加する</a></li>
+                <li>
+                    <a href="#%e3%83%97%e3%83%ac%e3%82%a4%e3%83%a4%e3%83%bc%e3%81%ae%e3%83%98%e3%83%ab%e3%82%b9%e3%81%8c-0-%e3%81%ab%e3%81%aa%e3%81%a3%e3%81%9f%e3%82%89%e3%82%b2%e3%83%bc%e3%83%a0%e3%82%aa%e3%83%bc%e3%83%90%e3%83%bc%e3%81%ab%e3%81%aa%e3%82%8b%e4%bb%95%e7%b5%84%e3%81%bf%e3%82%92%e5%ae%9f%e8%a3%85%e3%81%99%e3%82%8b" aria-label="プレイヤーのヘルスが 0 になったらゲームオーバーになる仕組みを実装する">プレイヤーのヘルスが 0 になったらゲームオーバーになる仕組みを実装する</a><ul>
+                        
+                <li>
+                    <a href="#%e3%83%97%e3%83%ac%e3%82%a4%e3%83%a4%e3%83%bc%e3%81%ae%e3%83%98%e3%83%ab%e3%82%b9%e3%81%8c-0-%e3%81%ab%e3%81%aa%e3%81%a3%e3%81%9f%e6%99%82%e3%81%ae%e3%82%a2%e3%83%8b%e3%83%a1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%92%e4%bd%9c%e3%82%8b" aria-label="プレイヤーのヘルスが 0 になった時のアニメーションを作る">プレイヤーのヘルスが 0 になった時のアニメーションを作る</a></li>
+                <li>
+                    <a href="#%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%81%a7%e5%88%b6%e5%be%a1%e3%81%99%e3%82%8b" aria-label="スクリプトで制御する">スクリプトで制御する</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e3%83%97%e3%83%ac%e3%82%a4%e3%83%a4%e3%83%bc%e3%82%ad%e3%83%a3%e3%83%a9%e3%82%af%e3%82%bf%e3%83%bc%e3%81%8c%e7%94%bb%e9%9d%a2%e4%b8%8b%e3%81%ab%e8%90%bd%e4%b8%8b%e3%81%97%e3%81%9f%e6%99%82%e3%81%ab%e3%82%b2%e3%83%bc%e3%83%a0%e3%82%aa%e3%83%bc%e3%83%90%e3%83%bc%e3%81%ab%e3%81%aa%e3%82%8b%e4%bb%95%e7%b5%84%e3%81%bf%e3%82%92%e5%ae%9f%e8%a3%85%e3%81%99%e3%82%8b" aria-label="プレイヤーキャラクターが画面下に落下した時にゲームオーバーになる仕組みを実装する">プレイヤーキャラクターが画面下に落下した時にゲームオーバーになる仕組みを実装する</a></li>
+                <li>
+                    <a href="#part-9-%e3%81%a7%e7%b7%a8%e9%9b%86%e3%81%97%e3%81%9f%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%81%ae%e3%82%b3%e3%83%bc%e3%83%89" aria-label="Part 9 で編集したスクリプトのコード">Part 9 で編集したスクリプトのコード</a></li>
+                <li>
+                    <a href="#%e3%81%8a%e3%82%8f%e3%82%8a%e3%81%ab" aria-label="おわりに">おわりに</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>第9回目の今回は、ゲームオーバーの仕組みを実装していく。</p>
+<p>世に出ているプラットフォーマーゲームにはほぼ確実にゲームオーバーの仕組みが存在する。ゲームオーバーになるかもしれない緊張感がなければプラットフォーマーの面白さは激減する。だから、ゲームオーバーの実装は必要不可欠だ。さらに、ゲームオーバーの条件設定もまたゲームの難易度を左右するため非常に重要だ。</p>
+<p>一般的にゲームオーバーの条件としては、敵や敵の攻撃に一回でも当たるか、当たってヘルス（ライフ）が 0 になるか、画面下部に落下した時などにゲームオーバーになることが多い。</p>
+<p>今回のチュートリアルでは、ゲームーオーバーの仕組みとして以下の作業を行う。</p>
+<ul>
+<li>ゲームオーバー画面のシーンを作る。</li>
+<li>ゲームオーバー画面から再度ゲーム開始またはゲーム終了する仕組みを作る。</li>
+<li>プレイヤーキャラクターが敵キャラクターに当たってヘルスが 0 になった時のゲームオーバー画面への遷移を実装する。</li>
+<li>プレイヤーキャラクターが地面のないところから画面外へ落下した時のゲームオーバー画面への遷移を実装する。</li>
+</ul>
+<blockquote>
+<p><em><strong><span style="color:salmon">Memo：</span>
+</strong><br>
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。<br>
+<a href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/" title="Godot で作るプラットフォーマー">Godot で作るプラットフォーマー</a>
+</em></p>
+</blockquote>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="gameover-シーンを作る">GameOver シーンを作る<a hidden class="anchor" aria-hidden="true" href="#gameover-シーンを作る">#</a></h1>
+<h2 id="新規シーンを作成して必要なノードを追加する">新規シーンを作成して必要なノードを追加する<a hidden class="anchor" aria-hidden="true" href="#新規シーンを作成して必要なノードを追加する">#</a></h2>
+<p>それではまず以下の手順で「GameOver」シーンを新規作成しよう。</p>
+<ol>
+<li>「シーン」メニュー＞「新規シーン」を選択する。</li>
+<li>「ルートノードを生成」で「ユーザーインターフェース」を選択する。</li>
+<li>「Control」ルートノードが追加されたら、名前を「GameOver」に変更する。</li>
+<li>「GameOver」ルートノードに「TextureRect」ノードを追加する。</li>
+<li>「TextureRect」ノードに「VBoxContainer」ノードを追加する。</li>
+<li>「VBoxContainer」ノードに「Label」ノードを追加し、名前を「GameOverLabel」に変更する。</li>
+<li>「VBoxContainer」ノードに「HBoxContainer」ノードを追加し、名前を「ButtonsHBox」に変更する。</li>
+<li>「ButtonsHBox」ノードに「VBoxContainer」ノードを2つ追加し、名前をそれぞれ「RestartVBox」、および「QuitVBox」に変更する。</li>
+<li>「RestartVBox」ノードに「TextureButton」ノードを追加し、名前を「RestartButton」に変更する。</li>
+<li>同じく「RestartVBox」ノードに「Label」ノードを追加し、名前を「RestartLabel」に変更する。</li>
+<li>「QuitVBox」ノードに「TextureButton」ノードを追加し、名前を「QuitButton」に変更する。</li>
+<li>同じく「QuitVBox」ノードに「Label」ノードを追加し、名前を「QuitLabel」に変更する。</li>
+<li>「GameOver」ルートノードに「ColorRect」ノードを追加する。</li>
+<li>さらに「GameOver」ルートノードに「ConfirmationDialog」ノードを追加する。</li>
+</ol>
+<p>「GameOver」のシーンツリーは以下のスクリーンショットのようになった。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img1.png" alt="GameOverシーンツリー"  />
+</p>
+<p>シーンドックを見ると「ConfirmationDialog」ノードの右側に警告マークがついている。これをクリックすると、以下のダイアログが表示される。（日本語のローカライズ時にタイポがあった様子だが）このノードは基本的に非表示になるようだ。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img2.png" alt="ConfirmationDialogの警告ダイアログ"  />
+</p>
+<p>シーンドック上でこのノードの右側にある目のアイコンをクリックして非表示に切り替えれば、警告は消えるが、2Dワークスペース上にこのノードは表示されなくなる。お好みで表示/非表示を切り替えてほしい。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img3.png" alt="ConfirmationDialogを非表示"  />
+</p>
+<p>ここまでできたらシーンを保存しておこう。とその前に、「GameOver」シーンは UI なので、このタイミングでファイルシステム上のフォルダ構成を編集しておく。「res://UI/」に「HUD」フォルダを作成し、以前作成した以下の HUD 関連ファイルをそこへ移動しよう。</p>
+<ul>
+<li>res://UI/HUD/HUD.gd</li>
+<li>res://UI/HUD/HUD.tscn</li>
+</ul>
+<p>さらに「res://UI/」に「GameOver」フォルダを作成し、今作ったシーンのファイルパスが「res://UI/GameOver/GameOver.tscn」となるように「GameOver.tscn」という名前で保存しよう。</p>
+<br>
+<h2 id="各ノードのプロパティを編集する">各ノードのプロパティを編集する<a hidden class="anchor" aria-hidden="true" href="#各ノードのプロパティを編集する">#</a></h2>
+<p>では「GameOver」シーンのそれぞれのノードのプロパティを編集していこう。</p>
+<br>
+<h3 id="gameover">GameOver<a hidden class="anchor" aria-hidden="true" href="#gameover">#</a></h3>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img3.1.png" alt="GameOverノード"  />
+</p>
+<p>この「GameOver」シーンで、ルートノードは単なる子ノードの入れ物的役割にしているが、プロパティを一つ更新しておく。これは非常に重要だ。</p>
+<ol>
+<li>シーンドックで「GameOver」ルートノードを選択し、インスペクターで「Pause Mode」プロパティを「Process」に変更する<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img3.2.png" alt="GameOverのPause ModeをProcessにする"  />
+</li>
+</ol>
+<p>この設定の意味を説明しておこう。</p>
+<p>ゲームオーバー画面を表示している間、メインのゲームは一時停止状態にしたい。その場合、「Game」ノードの「Paused」というプロパティを true にすることで、ゲームは一時停止させられる。</p>
+<p>しかし、基本的に全てのノードの「Pause Mode」プロパティは「Inherit」（継承という意味）の設定になっているので、親ノードの「Pause Mode」の値を継承する。つまり、ゲームを一時停止させようと思って、シーンツリーの最上位にある「Game」ノードの「Paused」プロパティを true にすると、ゲームオーバー画面を含むゲームの全てが停止してしまう。</p>
+<p>そこで、「GameOver」ブランチのみ機能させたい場合に、このノードの「Pause Mode」プロパティを「Process」に変更する。そうすると、親ノードの「Pause Mode」は継承されず、裏でゲームが停止中でもゲームオーバー画面だけは動作し操作可能となるのだ。</p>
+<br>
+<h3 id="texturerect">TextureRect<a hidden class="anchor" aria-hidden="true" href="#texturerect">#</a></h3>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img4.png" alt="TextureRectノード"  />
+</p>
+<p>このノードはゲームオーバー画面の背景テクスチャを設定するためのものだ。</p>
+<ol>
+<li>「TextureRect」ノードを選択したら、2Dワークスペースのツールバー＞「レイアウト」にて「Rect全面」を選択する。</li>
+<li>インスペクターの「Texture」プロパティの [空] 目掛けて、ファイルシステムドックから「res://Assets/Background/Gray.png」をドラッグ&amp;ドロップする。</li>
+<li>「Stretch Mode」プロパティを「Tile」に設定する。</li>
+</ol>
+<p>以上で、グレーの菱形模様の背景が設定できた。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img5.png" alt="TextureRectデバッグ"  />
+</p>
+<br>
+<h3 id="vboxcontainer">VBoxContainer<a hidden class="anchor" aria-hidden="true" href="#vboxcontainer">#</a></h3>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img6.png" alt="VBoxContainerノード"  />
+</p>
+<p>このノードは自身の子ノードを垂直方向に並べるコンテナだ。子ノードを全て中央揃えにしたいので、設定は以下のみ。</p>
+<ol>
+<li>インスペクターで「Alignment」プロパティを「Center」にする。</li>
+</ol>
+<br>
+<h3 id="gameoverlabel">GameOverLabel<a hidden class="anchor" aria-hidden="true" href="#gameoverlabel">#</a></h3>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img7.png" alt="GameOverLabelノード"  />
+</p>
+<p>このノードは「Game Over」という文字列を画面上に大きく表示するために使用する。</p>
+<ol>
+<li>インスペクターにて、「Text」プロパティの値として「game over」を入力する。</li>
+<li>「Align」プロパティを「Center」にする。</li>
+<li>「Uppercase」プロパティをオンにする。</li>
+<li>「Theme Overrides」＞「Fonts」＞「Font」プロパティに「新規 DynamicFont」を割り当てる。</li>
+<li>「Theme Overrides」＞「Fonts」＞「Font」プロパティの追加したフォントをクリックし、「Font」＞「Font Data」プロパティめがけて、ファイルシステムドックからフォントファイル「res://fonts/connection_ii/ConnectionII.tres」をドラッグ&amp;ドロップする。</li>
+<li>「Theme Overrides」＞「Fonts」＞「Font」プロパティの追加したフォントをクリックし、「Settings」＞「Size」プロパティを 64 にする。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img8.png" alt="GameOverLabelノードのプロパティ"  />
+</li>
+<li>「Visibility」＞「Modulate」プロパティで色を # e44a4a （赤）に変更する。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img9.png" alt="GameOverLabelノードのプロパティ"  />
+</li>
+</ol>
+<p>これで、「Game Over」の赤い文字が中央揃えで大きく表示された。フォントも「ConnectionII.tres」により、レトロ感を演出できた。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img9.1.png" alt="シーンを実行してGameOverLabelノードの確認"  />
+</p>
+<br>
+<h3 id="buttonshbox">ButtonsHBox<a hidden class="anchor" aria-hidden="true" href="#buttonshbox">#</a></h3>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img10.png" alt="ButtonsHBoxノード"  />
+</p>
+<p>このノードは、子ノードである「RestartVBox」と「QuitVBox」を水平方向に格納するコンテナだ。それら2つの子ノードもまたコンテナだが、いずれも主な要素はボタンである。それらのボタンを2つ横並びに表示するためにこのノードを利用する。</p>
+<ol>
+<li>インスペクターで「Alignment」プロパティを「Center」にする。</li>
+<li>「Theme Overrides」＞「Constants」＞「Separation」プロパティの値を 48 にする。</li>
+</ol>
+<p>これでこのノードが中央揃えで配置され、格納する子ノードの間隔が 48 px で横並びになる。</p>
+<br>
+<h3 id="restartvbox">RestartVBox<a hidden class="anchor" aria-hidden="true" href="#restartvbox">#</a></h3>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img11.png" alt="RestartVBoxノード"  />
+</p>
+<p>このノードは、ゲームオーバーになった時に、ゲームをはじめから再開するための「Restart」ボタンとその説明用のラベルを格納するためのものだ。それらの子ノードは中央揃えにして、ボタンアイコンが上、説明用ラベルが下になるように並べる。VBox のため子ノードは自動的に縦並びに配置される。プロパティの編集は以下の1つだけだ。</p>
+<ol>
+<li>インスペクターで「Alignment」プロパティを「Center」にする。</li>
+</ol>
+<br>
+<h3 id="restartbutton">RestartButton<a hidden class="anchor" aria-hidden="true" href="#restartbutton">#</a></h3>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img12.png" alt="RestartButtonノード"  />
+</p>
+<p>このノードは「Restart」ボタンのアイコンを作るために使用する。「TextureButton」クラスは、ボタン機能を有しており、かつ見た目の設定としてテクスチャ画像ファイルを適用できる。</p>
+<ol>
+<li>インスペクターで「Expand」プロパティをオンにする。</li>
+<li>「Stretch Mode」プロパティを「Keep Aspect Center」にする。</li>
+<li>「Textures」＞「Normal」プロパティに、ファイルシステムドックから「res://Assets/Menu/Buttons/Restart.png」をドラッグ&amp;ドロップする。<br>
+なお、ボタンを押した時のテクスチャを設定する「Pressed」、カーソルがボタンに重なった時のテクスチャ「Hover」など細かく設定可能だが、今回はアセットの種類の関係で、「Normal」のみ設定する。</li>
+<li>「Rect」＞「Min Size」プロパティを (56, 56) に設定する。</li>
+</ol>
+<p>現在、「Restart」ボタンが水平方向で中央に配置されているが、後ほど「Quit」ボタンのテクスチャを設定すれば、2つのボタンの中間が中央に来るように自動的に調整されるので、現時点ではこのままで良い。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img13.png" alt="RestartButtonノードの確認"  />
+</p>
+<br>
+<h3 id="restartlabel">RestartLabel<a hidden class="anchor" aria-hidden="true" href="#restartlabel">#</a></h3>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img14.png" alt="RestartLabelノード"  />
+</p>
+<p>このノードは単なるボタンアイコンの説明だ。アイコンだけだと何のボタンかわかりにくいかもしれないので、ボタンの下に小さめの文字で「RESTART」と表示するために使用する。</p>
+<ol>
+<li>インスペクターで「Text」プロパティの値として「restart」と入力する。</li>
+<li>「Align」プロパティを「Center」にする。</li>
+<li>「Uppercase」プロパティをオンにする。</li>
+<li>「Theme Overrides」＞「Fonts」＞「Font」プロパティに「新規 DynamicFont」を割り当てる。</li>
+<li>「Theme Overrides」＞「Fonts」＞「Font」プロパティの追加したフォントをクリックし、「Font」＞「Font Data」プロパティめがけて、ファイルシステムドックからフォントファイル「res://fonts/poco/Poco.tres」をドラッグ&amp;ドロップする。</li>
+<li>「Font」＞「Font Data」プロパティの矢印「v」をクリックし「ユニーク化」する。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img15.png" alt="RestartLabelノードのプロパティ"  />
+</li>
+<li>「Visibility」＞「Modulate」プロパティで色を # 000000 （黒）に変更する。</li>
+</ol>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img16.png" alt="RestartLabelノードの確認"  />
+</p>
+<br>
+<h3 id="quitvbox">QuitVBox<a hidden class="anchor" aria-hidden="true" href="#quitvbox">#</a></h3>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img17.png" alt="QuitVBoxノード"  />
+</p>
+<p>このノードは、ゲームオーバーになった時に、ゲームを完全に終了するための「Quit」ボタンと説明用のラベルを格納するためのものだ。「RestartVBox」同様だが、それらの子ノードは中央揃えにして、ボタンアイコンが上、説明用ラベルが下になるように並べる。VBox なので、子ノードは自動的に縦並びに配置される。プロパティの編集は以下の1つだけだ。</p>
+<ol>
+<li>インスペクターで「Alignment」プロパティを「Center」にする。</li>
+</ol>
+<br>
+<h3 id="quitbutton">QuitButton<a hidden class="anchor" aria-hidden="true" href="#quitbutton">#</a></h3>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img18.png" alt="QuitButtonノード"  />
+</p>
+<p>このノードは「RestartButton」ノードと同様に「Quit」ボタンのアイコンを作るために使用する。</p>
+<ol>
+<li>インスペクターで「Expand」プロパティをオンにする。</li>
+<li>「Stretch Mode」プロパティを「Keep Aspect Center」にする。</li>
+<li>「Textures」＞「Normal」プロパティに、ファイルシステムドックから「res://Assets/Menu/Buttons/Close.png」をドラッグ&amp;ドロップする。このノードもテクスチャは「Normal」プロパティのみ設定する。</li>
+<li>「Rect」＞「Min Size」プロパティを (56, 56) に設定する。</li>
+</ol>
+<p>「Quit」ボタンの垂直方向の位置が「Restart」ボタンより低いが、この後「QuitLabel」ノードの設定をすれば同じ高さになるので、今はこのままで良い。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img19.png" alt="QuitButtonノードの確認"  />
+</p>
+<br>
+<h3 id="quitlabel">QuitLabel<a hidden class="anchor" aria-hidden="true" href="#quitlabel">#</a></h3>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img20.png" alt="QuitLabelノード"  />
+</p>
+<p>このノードは、「RestartLabel」ノード同様、単なるボタンアイコンの説明だ。</p>
+<ol>
+<li>インスペクターで「Text」プロパティの値として「quit」と入力する。</li>
+<li>「Align」プロパティを「Center」にする。</li>
+<li>「Uppercase」プロパティをオンにする。</li>
+<li>「Theme Overrides」＞「Fonts」＞「Font」プロパティに「新規 DynamicFont」を割り当てる。</li>
+<li>「Theme Overrides」＞「Fonts」＞「Font」プロパティの追加したフォントをクリックし、「Font」＞「Font Data」プロパティめがけて、ファイルシステムドックからフォントファイル「res://fonts/poco/Poco.tres」をドラッグ&amp;ドロップする。</li>
+<li>「Font」＞「Font Data」プロパティの矢印「v」をクリックし「ユニーク化」する。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img15.png" alt="RestartLabelノードのプロパティ"  />
+</li>
+<li>「Visibility」＞「Modulate」プロパティで色を # 000000 （黒）に変更する。</li>
+</ol>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img21.png" alt="QuitLabelノードの確認"  />
+</p>
+<h3 id="colorrect">ColorRect<a hidden class="anchor" aria-hidden="true" href="#colorrect">#</a></h3>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img22.png" alt="ColorRectノード"  />
+</p>
+<p>この後「Restart」または「Quit」のボタンを押した時にダイアログが表示されるようにするのだが、ダイアログに注目してもらうために、その時だけダイアログの後ろにあるゲームオーバー画面を暗くしたい。そこで、この「ColorRect」ノードで半透明の黒いスクリーンを作り、ゲームオーバー画面に重ねることで、後ろのゲームオーバー画面が暗くなったように見せる。</p>
+<ol>
+<li>2Dワークスペースのツールバー＞「レイアウト」＞「Rect全面」を選択する。</li>
+<li>インスペクターから「Color」プロパティで色を # a0000000 （R:0, G:0, B:0, A: 160）に設定する。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img23.png" alt="ColorRectノードの確認"  />
+</li>
+<li>このノードは、デフォルトでは非表示にしておき、ボタンを押した時だけ表示したいので、ひとまずシーンドック上で目のアイコンをクリックして非表示にしておく。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img24.png" alt="ColorRectノードを非表示"  />
+</li>
+</ol>
+<br>
+<h3 id="confirmationdialog">ConfirmationDialog<a hidden class="anchor" aria-hidden="true" href="#confirmationdialog">#</a></h3>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img25.png" alt="ConfirmationDialogノード"  />
+</p>
+<p>Confirmation とは日本語で確認という意味だ。このノードはプレイヤーに対してダイアログで確認のメッセージを表示し、それに対して OK / Cancel のボタンを選択してもらうために使用する。「Restart」ボタンも「Quit」ボタンも、誤って押してしまった場合を考慮して、ボタンを押したら、本当にそれで良いのかプレイヤーに確認するダイアログが表示されるようにする。</p>
+<ol>
+<li>インスペクターで「Dialog」＞「Text」プロパティには何も入れずに置いておく。後ほど、スクリプトでどっちのボタンを押したかによって、このプロパティの値を切り替えるようにする。</li>
+<li>「Dialog」＞「Hide On OK」プロパティはオフにする。ダイアログ上の「OK」ボタンをクリックした時の挙動をスクリプトで制御したいのでここはオフにする必要がある。</li>
+<li>「Window Title」には「Confirmation」と入力する。これは単にダイアログ上部のタイトルだ。</li>
+<li>「Popup」＞「Exclusive」プロパティはオフにする。これがオンだとダイアログの外をクリックすればキャンセル扱いになって便利ではある。しかし残念ながら、ダイアログのすぐ下あたりに「Restart」と「Quit」のボタンがあるため、ダイアログをキャンセルしようと思って外側をクリックしたつもりが、ボタンの上をクリックしてしまい、すぐさまダイアログが再表示されるという挙動になってしまう。ダイアログのサイズを大きくして背後のボタンを隠しても良いが、少し見た目に違和感があるため、今回はこのプロパティをオフにして対処することにした。</li>
+<li>「Rect」＞「Min Size」を（200, 50）に設定する。</li>
+</ol>
+<br>
+<p>以上で各ノードのプロパティの編集は完了だ。次はスクリプトで動的な制御を施していく。</p>
+<br>
+<h2 id="gameover-ノードにスクリプトをアタッチする">GameOver ノードにスクリプトをアタッチする<a hidden class="anchor" aria-hidden="true" href="#gameover-ノードにスクリプトをアタッチする">#</a></h2>
+<p>それでは「GameOver」ルートノードにスクリプトを新規でアタッチしよう。ファイルパスを「res://UI/GameOver/GameOver.gd」としてスクリプトファイルを作成してほしい。</p>
+<p>スクリプトエディタで「GameOver.gd」を開いたら、まずは以下のコードを記述しよう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Control</span> <span style="color:#75715e"># Added @ Part 9</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># どちらのボタンをクリックしたかわかるようにボタンの種類をenumで定義</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> {
+</span></span><span style="display:flex;"><span>	RESTART,
+</span></span><span style="display:flex;"><span>	QUIT,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 上のenumで定義したパラメータを格納する（ボタン押下前は null）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> selected_option <span style="color:#f92672">=</span> null
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Restart ボタンを押した時に ConfirmationDialog の dialog_text プロパティに適用するテキスト</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> restart_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Do you really want to restart the game?&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Quit ボタンを押した時に ConfirmationDialog の dialog_text プロパティに適用するテキスト</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> quit_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Do you really want to quit the game?&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># RestartButton ノードの参照</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> restart_btn <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">VBoxContainer</span><span style="color:#f92672">/</span>ButtonsHBox<span style="color:#f92672">/</span>RestartVBox<span style="color:#f92672">/</span>RestartButton
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># QuitButton ノードの参照</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> quit_btn <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">VBoxContainer</span><span style="color:#f92672">/</span>ButtonsHBox<span style="color:#f92672">/</span>QuitVBox<span style="color:#f92672">/</span>QuitButton
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ColorRect ノードの参照</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> color_rect <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>ColorRect
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ConfirmationDialog ノードの参照</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> confirmation <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">ConfirmationDialog</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># ゲーム開始時は ColorRect ノードを非表示にする</span>
+</span></span><span style="display:flex;"><span>	color_rect<span style="color:#f92672">.</span>visible <span style="color:#f92672">=</span> false
+</span></span></code></pre></div><br>
+<p>ここから必要なシグナルをこのスクリプトに接続していく。</p>
+<p>まずは「Restart」ボタンをクリックした時にシグナルを発信させ、それをトリガーにして「ConfirmationDialog」ノードを表示させる。</p>
+<p>シーンドックで「RestartButton」ノードを選択したら、ノードドック＞シグナルタブを開き、「button_up()」シグナルをこの「GameOver.gd」スクリプトに接続しよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img26.png" alt="button_upシグナルを接続"  />
+</p>
+<br>
+<p>このシグナルは、ボタンをクリックした時にクリックした指が離れたら発動される。逆にクリックした指が押し続けている間は発動しない。</p>
+<p>シグナルを接続すると、スクリプトに<code>_on_RestartButton_button_up</code>メソッドが追加されるはずだ。このメソッドを以下のように編集しよう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_RestartButton_button_up():
+</span></span><span style="display:flex;"><span>	work_at_button_up(RESTART)
+</span></span></code></pre></div><p>「Restart」ボタンをクリックしたら<code>work_at_button_up</code>メソッドが呼ばれるようにした。このメソッドはあとで定義する。引数には定義済みの enum のパラメータを取る形式にする予定だ。「Quit」ボタンを押した時も同じメソッドを呼ぶ形にするので、先に「QuitButton」のシグナル接続からやってしまおう。</p>
+<p>シーンドックで「QuitButton」ノードを選択し、ノードドック＞シグナルタブを開き、「button_up()」シグナルをこの「GameOver.gd」スクリプトに接続しよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img26.png" alt="button_upシグナルを接続"  />
+</p>
+<br>
+<p>今度はスクリプトに<code>_on_QuitButton_button_up</code>メソッドが追加される。このメソッドも、先ほどと同様に以下のように編集する。引数には enum のパラメータ<code>QUIT</code>の方を渡した。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_QuitButton_button_up():
+</span></span><span style="display:flex;"><span>	work_at_button_up(QUIT)
+</span></span></code></pre></div><p>では、どちらのボタンをクリックした時も呼ばれる<code>work_at_button_up</code>メソッドを定義しよう。メソッドにはボタンをクリックした時に実行してほしい処理をコーディングしていく。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e"># ボタンをクリックした時に呼ばれるメソッドを定義</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> work_at_button_up(option):
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># どちらのボタンを押したのか引数の enum パラメータを渡す</span>
+</span></span><span style="display:flex;"><span>	selected_option <span style="color:#f92672">=</span> option
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># ColorRect ノードを表示して後ろを暗くする</span>
+</span></span><span style="display:flex;"><span>	color_rect<span style="color:#f92672">.</span>visible <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># もし Restart ボタンが押された場合</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> selected_option <span style="color:#f92672">==</span> RESTART:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># ConfirmationDialog ノードの Text プロパティに restart_text プロパティの文字列を適用する</span>
+</span></span><span style="display:flex;"><span>		confirmation<span style="color:#f92672">.</span>dialog_text <span style="color:#f92672">=</span> restart_text
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># もし Quit ボタンが押された場合</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> selected_option <span style="color:#f92672">==</span> QUIT:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># ConfirmationDialog ノードの Text プロパティに quit_text プロパティの文字列を適用する</span>
+</span></span><span style="display:flex;"><span>		confirmation<span style="color:#f92672">.</span>dialog_text <span style="color:#f92672">=</span> quit_text
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># ConfirmationDialog を画面中央に表示する</span>
+</span></span><span style="display:flex;"><span>	confirmation<span style="color:#f92672">.</span>popup_centered()
+</span></span></code></pre></div><p>これで、どちらのボタンを押しても、必要な設定を施したダイアログが表示されるようになった。</p>
+<p>次に「ConfirmationDialog」ノードのダイアログが表示された後の操作を制御していこう。まずは、このノードのシグナルを利用する。シーンドックで「ConfirmationDialog」ノードを選択し、ノードドック＞シグナルタブにて「confirmed()」シグナルを「GameOver.gd」スクリプトに接続しよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img27.png" alt="confirmedシグナルを接続"  />
+</p>
+<p>このシグナルは、ダイアログ上の「OK」ボタンをクリックした時に発信される。つまり、「Restart」か「Quit」の選択を確定した時に発信されるのだ。</p>
+<p><code>_on_ConfirmationDialog_confirmed</code>メソッドが生成されたら、その中に、選択を確定した時に必要な処理をコーディングしていこう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_ConfirmationDialog_confirmed():
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Restart ボタンを押した場合</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> selected_option <span style="color:#f92672">==</span> RESTART:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># シーンツリーの一時停止を再開する（一時停止は Game.gd 側に実装予定）</span>
+</span></span><span style="display:flex;"><span>		get_tree()<span style="color:#f92672">.</span>paused <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># デバッグ用</span>
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Scene tree paused: &#34;</span>, get_tree()<span style="color:#f92672">.</span>paused)
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Game.tscn シーンを読み込み直し、ゲームをはじめから再開する</span>
+</span></span><span style="display:flex;"><span>		get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://Game/Game.tscn&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># デバッグ用</span>
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;The game is restarted.&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Quit ボタンを押した場合</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> selected_option <span style="color:#f92672">==</span> QUIT:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># ゲームを完全に終了する</span>
+</span></span><span style="display:flex;"><span>		get_tree()<span style="color:#f92672">.</span>quit()
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># デバッグ用</span>
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;The game is quited.&#34;</span>)
+</span></span></code></pre></div><p>これで「Restart」ボタン、「Quit」ボタンをクリックして選択を確定したあとの挙動が実装できた。</p>
+<p>次に「Cancel」ボタンをクリックしてダイアログを閉じる時の挙動を制御していく。こちらもまずはシグナルを接続するところから始める。シーンドックで「ConfirmationDialog」ノードを選択したら、ノードドック＞シグナルタブにて「popup_hide()」シグナルをスクリプトに接続しよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img28.png" alt="popup_hideシグナルを接続"  />
+</p>
+<br>
+<p><code>_on_ConfirmationDialog_popup_hide</code>メソッドが生成されたら以下のように編集しよう。ダイアログが表示された時の設定を元に戻すようにコーディングしている。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_ConfirmationDialog_popup_hide():
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># ボタン選択ステータスをリセットする（値なし状態にする）</span>
+</span></span><span style="display:flex;"><span>	selected_option <span style="color:#f92672">=</span> null
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># ConfirmationDialog ノードの dialog_text プロパティのテキストを消す</span>
+</span></span><span style="display:flex;"><span>	confirmation<span style="color:#f92672">.</span>dialog_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># ColorRect ノードを非表示に戻す</span>
+</span></span><span style="display:flex;"><span>	color_rect<span style="color:#f92672">.</span>visible <span style="color:#f92672">=</span> false
+</span></span></code></pre></div><br>
+<p>シーンを実行して挙動を確認しておこう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img29.gif" alt="popup_hideシグナルを接続"  />
+</p>
+<p>良い感じである。ここらで一度休憩しよう。</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="gameover-シーンをインスタンス化して-game-シーンに追加する">GameOver シーンをインスタンス化して Game シーンに追加する<a hidden class="anchor" aria-hidden="true" href="#gameover-シーンをインスタンス化して-game-シーンに追加する">#</a></h1>
+<p>出来上がった「GameOver」シーンをインスタンス化して「Ggame」シーンツリーにブランチとして追加しよう。</p>
+<p><img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img30.png" alt="popup_hideシグナルを接続"  />
+</p>
+<br>
+<hr>
+<h1 id="プレイヤーのヘルスが-0-になったらゲームオーバーになる仕組みを実装する">プレイヤーのヘルスが 0 になったらゲームオーバーになる仕組みを実装する<a hidden class="anchor" aria-hidden="true" href="#プレイヤーのヘルスが-0-になったらゲームオーバーになる仕組みを実装する">#</a></h1>
+<p>ここからはスクリプトをコーディングして、プレイヤーのヘルスが 0 になった時にゲームオーバーになる仕組みを実装していく。</p>
+<br>
+<h2 id="プレイヤーのヘルスが-0-になった時のアニメーションを作る">プレイヤーのヘルスが 0 になった時のアニメーションを作る<a hidden class="anchor" aria-hidden="true" href="#プレイヤーのヘルスが-0-になった時のアニメーションを作る">#</a></h2>
+<p>プレイヤーのヘルスが 0 になった時のアニメーションを追加したい。</p>
+<p>久しぶりに「Player.tscn」シーンを開き、エディタ下部のアニメーションパネルを開いたら、以下の内容で新しい「die」という名前のアニメーションを作成しよう。</p>
+<ol>
+<li>アニメーションの名前： die</li>
+<li>アニメーションの長さ（秒）：0.9</li>
+<li>以下のトラックを追加</li>
+</ol>
+<ul>
+<li>トラック 1: AnimatedSprite ノード &gt; scale プロパティ
+<ul>
+<li>Time: 0秒 / Value: (0, 0) / Easing: 50</li>
+<li>Time: 0.9秒 / Value: (10, 0) / Easing: 1.00</li>
+</ul>
+</li>
+<li>トラック 2: AnimatedSprite ノード &gt; modulate プロパティ
+<ul>
+<li>Time: 0秒 / Value: # ffffff / Easing: 1.00</li>
+<li>Time: 0.1秒 / Value: # 00ffffff / Easing: 1.00</li>
+<li>Time: 0.2秒 / Value: # ffffff / Easing: 1.00</li>
+<li>Time: 0.3秒 / Value: # 00ffffff / Easing: 1.00</li>
+<li>Time: 0.4秒 / Value: # ffffff / Easing: 1.00</li>
+<li>Time: 0.5秒 / Value: # 00ffffff / Easing: 1.00</li>
+<li>Time: 0.6秒 / Value: # ffffff / Easing: 1.00</li>
+<li>Time: 0.7秒 / Value: # 00ffffff / Easing: 1.00</li>
+<li>Time: 0.8秒 / Value: # ffffff / Easing: 1.00</li>
+<li>Time: 0.9秒 / Value: # 00ffffff / Easing: 1.00</li>
+<li>補完モード: 近傍<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img30.1.png" alt="トラック：補完モード：近傍"  />
+</li>
+</ul>
+</li>
+</ul>
+<p>アニメーションパネルは以下のようになったはずだ。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img31.png" alt="PlayerシーンAnimationPlayerノードアニメーションパネル"  />
+</p>
+<p>アニメーションの内容としては、まず modulate プロパティのトラックにて、プレイヤーキャラクターの透明度を 0 と 100 の間で 0.1 秒周期で切り替え、明滅したように見せる。さらに scale プロパティのトラックにては最後の 0.9 秒で一気に横に引き伸ばしつつ縦に潰すことで、プレイヤーキャラクターのテクスチャが消える。</p>
+<p>アニメーションを確認してみよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img32.gif" alt="PlayerシーンAnimationPlayerノードアニメーション再生"  />
+</p>
+<p>このあと、スクリプトで今作成したアニメーションをプレイヤーのヘルスが 0 になった時に再生させる。</p>
+<br>
+<h2 id="スクリプトで制御する">スクリプトで制御する<a hidden class="anchor" aria-hidden="true" href="#スクリプトで制御する">#</a></h2>
+<p>スクリプトでプレイヤーのヘルスとゲームオーバーを連動させる。「Game.gd」スクリプトを開いたら、以下のようにコードをアップデートしよう。「# 追加」のコメントがある行が更新箇所だ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 中略</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>UI<span style="color:#f92672">/</span>HUD
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> gameover <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>UI<span style="color:#f92672">/</span>GameOver <span style="color:#75715e"># 追加：GameOver ノードの参照</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	gameover<span style="color:#f92672">.</span>visible <span style="color:#f92672">=</span> false <span style="color:#75715e"># 追加：ゲーム開始時に GameOver ノードを非表示にする</span>
+</span></span><span style="display:flex;"><span>	add_level()
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_health(health)
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_score(score)
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_level(current_level)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 以下省略</span>
+</span></span></code></pre></div><p>これでゲームプレイ中はゲームオーバー画面は非表示になった。</p>
+<p>続いて、いくつかのメソッドも編集する。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 中略</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Player_enemy_hit(damage):
+</span></span><span style="display:flex;"><span>	manage_health(damage) <span style="color:#75715e"># 変更</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 中略</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> manage_health(damage): <span style="color:#75715e"># 追加：引数にダメージの数値をとる</span>
+</span></span><span style="display:flex;"><span>	health <span style="color:#f92672">-=</span> damage <span style="color:#75715e"># 移動：_on_Player_enemy_hit()メソッドから</span>
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;Health updated: &#34;</span>, health) <span style="color:#75715e"># 移動：Moved from _on_Player_enemy_hit()メソッドから</span>
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_health(health) <span style="color:#75715e"># 移動： _on_Player_enemy_hit()メソッドから</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># もし ヘルスが 0 以下になったら</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> health <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>: <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Player の AnimationPlayer ノードで「die」アニメーションを再生する</span>
+</span></span><span style="display:flex;"><span>		player<span style="color:#f92672">.</span>anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;die&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># アニメーションが終了するまで待つ</span>
+</span></span><span style="display:flex;"><span>		yield(player<span style="color:#f92672">.</span>anim_player, <span style="color:#e6db74">&#34;animation_finished&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># ゲームオーバー画面を表示する</span>
+</span></span><span style="display:flex;"><span>		gameover<span style="color:#f92672">.</span>visible <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># デバッグ用</span>
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Game over screen is shown up.&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># シーンツリーを一時停止する（GameOver ブランチは Process）</span>
+</span></span><span style="display:flex;"><span>		get_tree()<span style="color:#f92672">.</span>paused <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># デバッグ用</span>
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Scene tree paused: &#34;</span>, get_tree()<span style="color:#f92672">.</span>paused)
+</span></span></code></pre></div><p>今回<code>manage_health(damage)</code>というメソッドを新たに作成し、そちらでプレイヤーのヘルスの更新を処理するようにした。メソッドの中身の前半は、以前<code>_on_Player_enemy_hit()</code>メソッドの中にあったコードだ。<code>if health &lt;= 0:</code>ブロックが今回新しく追加した、ヘルスが 0 になった場合の処理だ。</p>
+<p>プロジェクトを実行して、挙動を確認してみよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img33.gif" alt="ヘルス0になった時の挙動確認"  />
+</p>
+<p>敵キャラクターに当たってヘルスが 0 になったら「die」アニメーションのあとゲームオーバー画面に遷移した。問題なさそうだ。ちなみに、裏では「GameOver」ノード以外は一時停止している。</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="プレイヤーキャラクターが画面下に落下した時にゲームオーバーになる仕組みを実装する">プレイヤーキャラクターが画面下に落下した時にゲームオーバーになる仕組みを実装する<a hidden class="anchor" aria-hidden="true" href="#プレイヤーキャラクターが画面下に落下した時にゲームオーバーになる仕組みを実装する">#</a></h1>
+<p>画面下に落下した時もゲームオーバー画面を表示させたい。少ない工数で実装するには、ヘルスが 0 になった時の処理を流用するのが良いだろう。つまり、画面下に落下したらヘルスが 0 になるようにすれば良い。</p>
+<p>画面下部への落下の判定は、「Level.gd」スクリプトで行う。理由は、プレイヤーキャラクターの位置がカメラの位置の画面下方向のリミットを超えた場合（つまり、画面下方向に落下したキャラクターが画面から消えた場合）にゲームオーバーにすれば良いので、プレイヤーキャラクターとカメラの両方を子ノードとして持つ「Level_」ノードのスクリプトで制御するのが最適だからだ。</p>
+<p>では「Level.gd」スクリプトを開いて、編集しよう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node2D</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># オリジナルのシグナル：プレイヤーキャラクターが画面外へ落下した時に発信する</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">signal</span> player_dropped <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 中略</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _process(_delta):
+</span></span><span style="display:flex;"><span>	camera<span style="color:#f92672">.</span>global_position <span style="color:#f92672">=</span> player<span style="color:#f92672">.</span>global_position
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># プレイヤーキャラクターの位置の y 座標の値が、カメラの下方向のリミットより大きい場合</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> player<span style="color:#f92672">.</span>global_position<span style="color:#f92672">.</span>y <span style="color:#f92672">&gt;</span> camera<span style="color:#f92672">.</span>limit_bottom: <span style="color:#75715e"># 追加: if ブロック</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># player_dropped シグナルを発信</span>
+</span></span><span style="display:flex;"><span>		emit_signal(<span style="color:#e6db74">&#34;player_dropped&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># デバッグ用</span>
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;player dropped and die.&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># プロセスを停止してプレイヤーキャラクターが落下し続けるのを止める</span>
+</span></span><span style="display:flex;"><span>		set_process(false)
+</span></span></code></pre></div><p>これで、プレイヤーキャラクターが落下してカメラの外に出てしまった時に、シグナルが発信するようになった。では「Game.gd」スクリプトへ戻ろう。</p>
+<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e"># 中略</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> add_level():
+</span></span><span style="display:flex;"><span>	level <span style="color:#f92672">=</span> load(<span style="color:#e6db74">&#34;res://Levels/Level&#34;</span> <span style="color:#f92672">+</span> str(current_level) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.tscn&#34;</span>)<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>	level<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;tree_exited&#34;</span>, self, <span style="color:#e6db74">&#34;change_level&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># シグナル player_dropped をこのスクリプトの _on_Level_player_dropped メソッドに接続</span>
+</span></span><span style="display:flex;"><span>	level<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;player_dropped&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Level_player_dropped&#34;</span>) <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	add_child(level)
+</span></span><span style="display:flex;"><span>	player <span style="color:#f92672">=</span> level<span style="color:#f92672">.</span>get_node(<span style="color:#e6db74">&#34;Player&#34;</span>)
+</span></span><span style="display:flex;"><span>	player<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;enemy_hit&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Player_enemy_hit&#34;</span>) 
+</span></span><span style="display:flex;"><span>	player<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;item_hit&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Player_item_hit&#34;</span>) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 中略</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># シグナル player_dropped で呼ばれるメソッド</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Level_player_dropped(): <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># メソッド manage_helth の引数 damage に 100 を渡して実行</span>
+</span></span><span style="display:flex;"><span>	manage_health(<span style="color:#ae81ff">100</span>)
+</span></span></code></pre></div><p>これで以下の流れが出来上がった。</p>
+<ol>
+<li>Gameノードへの「Level_」インスタンス追加時にシグナル「player_dropped」を「Game.gd」に接続する。</li>
+<li>プレイヤーキャラクターが画面下に落下する。</li>
+<li>シグナルが発信される。</li>
+<li>ダメージを 100 受けヘルスが 0 以下になる。</li>
+<li>ゲームオーバーになる</li>
+</ol>
+<p>ではプレイヤーキャラクターを落下させてみよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0005_platformer/platformer_9/img34.gif" alt="プレイヤーキャラクターが画面下に落下した時の挙動確認"  />
+</p>
+<p>落下直後、プレイヤーのヘルスは一気に 0 になり、そのあとすぐにゲームオーバー画面が表示された。想定通りだ。</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="part-9-で編集したスクリプトのコード">Part 9 で編集したスクリプトのコード<a hidden class="anchor" aria-hidden="true" href="#part-9-で編集したスクリプトのコード">#</a></h1>
+<p>最後に今回の Part 9 で編集したスクリプトのコードを共有しておくので、必要に応じて確認してほしい。</p>
+<details>
+<summary>GameOver.gd の全コード</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Control</span> <span style="color:#75715e"># Added @ Part 9</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> {
+</span></span><span style="display:flex;"><span>	RESTART,
+</span></span><span style="display:flex;"><span>	QUIT,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> selected_option <span style="color:#f92672">=</span> null
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> restart_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Do you really want to restart the game?&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> quit_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Do you really want to quit the game?&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> restart_btn <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">VBoxContainer</span><span style="color:#f92672">/</span>ButtonsHBox<span style="color:#f92672">/</span>RestartVBox<span style="color:#f92672">/</span>RestartButton
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> quit_btn <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">VBoxContainer</span><span style="color:#f92672">/</span>ButtonsHBox<span style="color:#f92672">/</span>QuitVBox<span style="color:#f92672">/</span>QuitButton
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> color_rect <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>ColorRect
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> confirmation <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">ConfirmationDialog</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	color_rect<span style="color:#f92672">.</span>visible <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_RestartButton_button_up():
+</span></span><span style="display:flex;"><span>	work_at_button_up(RESTART)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_QuitButton_button_up():
+</span></span><span style="display:flex;"><span>	work_at_button_up(QUIT)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> work_at_button_up(option):
+</span></span><span style="display:flex;"><span>	selected_option <span style="color:#f92672">=</span> option
+</span></span><span style="display:flex;"><span>	color_rect<span style="color:#f92672">.</span>visible <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> selected_option <span style="color:#f92672">==</span> RESTART:
+</span></span><span style="display:flex;"><span>		confirmation<span style="color:#f92672">.</span>dialog_text <span style="color:#f92672">=</span> restart_text
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> selected_option <span style="color:#f92672">==</span> QUIT:
+</span></span><span style="display:flex;"><span>		confirmation<span style="color:#f92672">.</span>dialog_text <span style="color:#f92672">=</span> quit_text
+</span></span><span style="display:flex;"><span>	confirmation<span style="color:#f92672">.</span>popup_centered()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_ConfirmationDialog_confirmed():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> selected_option <span style="color:#f92672">==</span> RESTART:
+</span></span><span style="display:flex;"><span>		get_tree()<span style="color:#f92672">.</span>paused <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Scene tree paused: &#34;</span>, get_tree()<span style="color:#f92672">.</span>paused)
+</span></span><span style="display:flex;"><span>		get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://Game/Game.tscn&#34;</span>)
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;The game is restarted.&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> selected_option <span style="color:#f92672">==</span> QUIT:
+</span></span><span style="display:flex;"><span>		get_tree()<span style="color:#f92672">.</span>quit()
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;The game is quited.&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_ConfirmationDialog_popup_hide():
+</span></span><span style="display:flex;"><span>	selected_option <span style="color:#f92672">=</span> null
+</span></span><span style="display:flex;"><span>	confirmation<span style="color:#f92672">.</span>dialog_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>	color_rect<span style="color:#f92672">.</span>visible <span style="color:#f92672">=</span> false
+</span></span></code></pre></div></details>
+<br>
+<details>
+<summary>Game.gd の全コード</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node</span> <span style="color:#75715e"># Added @ Part 7</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> health: <span style="color:#a6e22e">float</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100.0</span> <span style="color:#75715e"># Added @ Part 8</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> score: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># Added @ Part 8</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> level: <span style="color:#a6e22e">Node2D</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> player: <span style="color:#a6e22e">KinematicBody2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> current_level <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> final_level <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> hud <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>UI<span style="color:#f92672">/</span>HUD <span style="color:#75715e"># Added @ Part 8</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> gameover <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>UI<span style="color:#f92672">/</span>GameOver <span style="color:#75715e"># Added @ Part 9</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	gameover<span style="color:#f92672">.</span>visible <span style="color:#f92672">=</span> false <span style="color:#75715e"># Added @ Part 9</span>
+</span></span><span style="display:flex;"><span>	add_level()
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_health(health) <span style="color:#75715e"># Added @ Part 8</span>
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_score(score) <span style="color:#75715e"># Added @ Part 8</span>
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_level(current_level) <span style="color:#75715e"># Added @ Part 8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> add_level():
+</span></span><span style="display:flex;"><span>	level <span style="color:#f92672">=</span> load(<span style="color:#e6db74">&#34;res://Levels/Level&#34;</span> <span style="color:#f92672">+</span> str(current_level) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.tscn&#34;</span>)<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>	level<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;tree_exited&#34;</span>, self, <span style="color:#e6db74">&#34;change_level&#34;</span>)
+</span></span><span style="display:flex;"><span>	level<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;player_dropped&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Level_player_dropped&#34;</span>) <span style="color:#75715e"># Added @ Part 9</span>
+</span></span><span style="display:flex;"><span>	add_child(level)
+</span></span><span style="display:flex;"><span>	player <span style="color:#f92672">=</span> level<span style="color:#f92672">.</span>get_node(<span style="color:#e6db74">&#34;Player&#34;</span>) <span style="color:#75715e"># Added @ Part 8</span>
+</span></span><span style="display:flex;"><span>	player<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;enemy_hit&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Player_enemy_hit&#34;</span>) <span style="color:#75715e"># Added @ Part 8</span>
+</span></span><span style="display:flex;"><span>	player<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;item_hit&#34;</span>, self, <span style="color:#e6db74">&#34;_on_Player_item_hit&#34;</span>) <span style="color:#75715e"># Added @ Part 8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> change_level():
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;change_level() called.&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> current_level <span style="color:#f92672">&lt;</span> final_level:
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;change to next level.&#34;</span>)
+</span></span><span style="display:flex;"><span>		level<span style="color:#f92672">.</span>queue_free()
+</span></span><span style="display:flex;"><span>		current_level <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>		hud<span style="color:#f92672">.</span>update_level(current_level) <span style="color:#75715e"># Added @ Part 8</span>
+</span></span><span style="display:flex;"><span>		add_level()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Game Clear! Congrats!&#34;</span>)
+</span></span><span style="display:flex;"><span>		get_tree()<span style="color:#f92672">.</span>quit()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Player_enemy_hit(damage): <span style="color:#75715e"># Added @ Part 8</span>
+</span></span><span style="display:flex;"><span>	manage_health(damage) <span style="color:#75715e"># Modified @ Part 9</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Player_item_hit(point): <span style="color:#75715e"># Added @ Part 8</span>
+</span></span><span style="display:flex;"><span>	score <span style="color:#f92672">+=</span> point
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_score(score)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Level_player_dropped(): <span style="color:#75715e"># Added @ Part 9</span>
+</span></span><span style="display:flex;"><span>	manage_health(<span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> manage_health(damage): <span style="color:#75715e"># Added @ Part 9</span>
+</span></span><span style="display:flex;"><span>	health <span style="color:#f92672">-=</span> damage <span style="color:#75715e"># Moved from _on_Player_enemy_hit() @ Part 9</span>
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;Health updated: &#34;</span>, health) <span style="color:#75715e"># Moved from _on_Player_enemy_hit() @ Part 9</span>
+</span></span><span style="display:flex;"><span>	hud<span style="color:#f92672">.</span>update_health(health) <span style="color:#75715e"># Moved from _on_Player_enemy_hit() @ Part 9</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Added @ Part 9</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> health <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>		player<span style="color:#f92672">.</span>anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;die&#34;</span>)
+</span></span><span style="display:flex;"><span>		yield(player<span style="color:#f92672">.</span>anim_player, <span style="color:#e6db74">&#34;animation_finished&#34;</span>)
+</span></span><span style="display:flex;"><span>		gameover<span style="color:#f92672">.</span>visible <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Game over screen is shown up.&#34;</span>)
+</span></span><span style="display:flex;"><span>		get_tree()<span style="color:#f92672">.</span>paused <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Scene tree paused: &#34;</span>, get_tree()<span style="color:#f92672">.</span>paused)
+</span></span></code></pre></div></details>
+<br>
+<details>
+<summary>Level.gd の全コード</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node2D</span> <span style="color:#75715e"># Created @ Part 3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">signal</span> player_dropped <span style="color:#75715e"># Added @ Part 9</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> player <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>Player
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> map <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">TileMap</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> camera <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">Camera2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	adjust_camera()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _process(_delta):
+</span></span><span style="display:flex;"><span>	camera<span style="color:#f92672">.</span>global_position <span style="color:#f92672">=</span> player<span style="color:#f92672">.</span>global_position
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> player<span style="color:#f92672">.</span>global_position<span style="color:#f92672">.</span>y <span style="color:#f92672">&gt;</span> camera<span style="color:#f92672">.</span>limit_bottom: <span style="color:#75715e"># Added @ Par 9</span>
+</span></span><span style="display:flex;"><span>		emit_signal(<span style="color:#e6db74">&#34;player_dropped&#34;</span>)
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;player dropped and die.&#34;</span>)
+</span></span><span style="display:flex;"><span>		set_process(false)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> adjust_camera():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> map_limits <span style="color:#f92672">=</span> map<span style="color:#f92672">.</span>get_used_rect()
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;map_limits&#34;</span>, map_limits)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> map_cell_size <span style="color:#f92672">=</span> map<span style="color:#f92672">.</span>cell_size
+</span></span><span style="display:flex;"><span>	print(<span style="color:#e6db74">&#34;map_cell_size&#34;</span>, map_cell_size)
+</span></span><span style="display:flex;"><span>	camera<span style="color:#f92672">.</span>limit_left <span style="color:#f92672">=</span> map_limits<span style="color:#f92672">.</span>position<span style="color:#f92672">.</span>x <span style="color:#f92672">*</span> map_cell_size<span style="color:#f92672">.</span>x
+</span></span><span style="display:flex;"><span>	camera<span style="color:#f92672">.</span>limit_right <span style="color:#f92672">=</span> map_limits<span style="color:#f92672">.</span>end<span style="color:#f92672">.</span>x <span style="color:#f92672">*</span> map_cell_size<span style="color:#f92672">.</span>x
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#camera.limit_top = map_limits.position.y * map_cell_size.y # 指定しない</span>
+</span></span><span style="display:flex;"><span>	camera<span style="color:#f92672">.</span>limit_bottom <span style="color:#f92672">=</span> map_limits<span style="color:#f92672">.</span>end<span style="color:#f92672">.</span>y <span style="color:#f92672">*</span> map_cell_size<span style="color:#f92672">.</span>y
+</span></span><span style="display:flex;"><span>	camera<span style="color:#f92672">.</span>limit_smoothed <span style="color:#f92672">=</span> true
+</span></span></code></pre></div></details>
+<br>
+<hr>
+<h1 id="おわりに">おわりに<a hidden class="anchor" aria-hidden="true" href="#おわりに">#</a></h1>
+<p>以上で Part 9 は完了だ。今回はゲームオーバーの仕組みを実装した。ゲームオーバー画面も UI の一つなので、「Control」系クラスのノードばかりで構成した。各クラスにはそれぞれ異なる機能が割り当てられているのがご理解いただけただろう。今回使用した以外にも「Control」系クラスはまだまだたくさんある。それぞれの役割を少しずつ覚えていけば、今後さまざまな UI を作れるようになるだろう。</p>
+<p>また UI 上のプレイヤー操作に対するゲームの制御において、シグナルの役割は大きいことも実感いただけたのではないだろうか。何かをトリガーにして実行したい処理がある場合、シグナルを積極的に利用していこう。デフォルトで用意されているシグナルだけでなく、自作のシグナルもスクリプトなら簡単に利用できることを覚えておこう。</p>
+<p>さて、次回のチュートリアルでは、スタート画面を実装する予定だ（やっぱりな、というご意見が多そうだが）。ただ単にスタートボタンを押すだけの UI では面白くないので、プレイヤーキャラクターの種類を増やして、スタート画面でキャラクター選択もできるようにする予定だ（あくまで予定だ）。</p>
+<p>では次回もお楽しみに。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/ja/tags/godot/">Godot</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/">ゲーム開発</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/">チュートリアル</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E5%88%9D%E7%B4%9A/">初級</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%BC/">プラットフォーマー</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%A0/">アクションゲーム</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E6%A8%AA%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB/">横スクロール</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC/">ゲームオーバー</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_8/">
+    <span class="title">« 前のページ</span>
+    <br>
+    <span>Godot で作るプラットフォーマー Part 8：HUD を追加しよう！</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！ on twitter"
+        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%209%ef%bc%9a%e3%82%b2%e3%83%bc%e3%83%a0%e3%82%aa%e3%83%bc%e3%83%90%e3%83%bc%e3%81%ae%e4%bb%95%e7%b5%84%e3%81%bf%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86%ef%bc%81&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_9%2f&amp;hashtags=Godot%2cGodotEngine%2c%e3%82%b2%e3%83%bc%e3%83%a0%e9%96%8b%e7%99%ba%2c%e3%83%81%e3%83%a5%e3%83%bc%e3%83%88%e3%83%aa%e3%82%a2%e3%83%ab%2c%e5%88%9d%e7%b4%9a%2c2D%2c%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%2c%e3%82%a2%e3%82%af%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%b2%e3%83%bc%e3%83%a0%2c%e6%a8%aa%e3%82%b9%e3%82%af%e3%83%ad%e3%83%bc%e3%83%ab%2c%e3%82%b2%e3%83%bc%e3%83%a0%e3%82%aa%e3%83%bc%e3%83%90%e3%83%bc">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！ on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_9%2f&amp;title=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%209%ef%bc%9a%e3%82%b2%e3%83%bc%e3%83%a0%e3%82%aa%e3%83%bc%e3%83%90%e3%83%bc%e3%81%ae%e4%bb%95%e7%b5%84%e3%81%bf%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86%ef%bc%81&amp;summary=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%209%ef%bc%9a%e3%82%b2%e3%83%bc%e3%83%a0%e3%82%aa%e3%83%bc%e3%83%90%e3%83%bc%e3%81%ae%e4%bb%95%e7%b5%84%e3%81%bf%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86%ef%bc%81&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_9%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！ on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_9%2f&title=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%209%ef%bc%9a%e3%82%b2%e3%83%bc%e3%83%a0%e3%82%aa%e3%83%bc%e3%83%90%e3%83%bc%e3%81%ae%e4%bb%95%e7%b5%84%e3%81%bf%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86%ef%bc%81">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！ on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_9%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！ on whatsapp"
+        href="https://api.whatsapp.com/send?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%209%ef%bc%9a%e3%82%b2%e3%83%bc%e3%83%a0%e3%82%aa%e3%83%bc%e3%83%90%e3%83%bc%e3%81%ae%e4%bb%95%e7%b5%84%e3%81%bf%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86%ef%bc%81%20-%20https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_9%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！ on telegram"
+        href="https://telegram.me/share/url?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%9e%e3%83%bc%20Part%209%ef%bc%9a%e3%82%b2%e3%83%bc%e3%83%a0%e3%82%aa%e3%83%bc%e3%83%90%e3%83%bc%e3%81%ae%e4%bb%95%e7%b5%84%e3%81%bf%e3%82%92%e4%bd%9c%e3%82%8d%e3%81%86%ef%bc%81&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0005_platformer%2fplatformer_9%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://www.peanuts-code.com/ja/">Peanuts Code</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
