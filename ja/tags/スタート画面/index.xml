@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>スタート画面 on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E7%94%BB%E9%9D%A2/</link>
+    <description>Recent content in スタート画面 on Peanuts Code</description>
+    <image>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Tue, 22 Mar 2022 17:32:43 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E7%94%BB%E9%9D%A2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るプラットフォーマー Part 10：スタート画面を作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_10/</link>
+      <pubDate>Tue, 22 Mar 2022 17:32:43 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_10/</guid>
+      <description>第10回目の今回は、ゲーム開始時に表示されるスタート画面を作る。タイトル画面、スタートメニューとも言う。
+それだけだと、前回と比べて簡単すぎるので、ゲーム開始時にプレイヤーキャラクターを選択できる仕組みも実装する。画面遷移のイメージは以下の通りだ。
+ まずゲームを始めるとスタート画面が表示される。 スタートボタンを押すとプレイヤーキャラクター選択画面に遷移する。 プレイヤーキャラクターを選択するとゲームプレイ開始。  ということで、今回の作業は以下の通りだ。</description>
+    </item>
+    
+  </channel>
+</rss>
