@@ -10,11 +10,11 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 22 Mar 2022 17:32:43 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%A0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Mar 2022 22:31:30 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%A0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>シリーズ：Godot で作るプラットフォーマー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</link>
-      <pubDate>Tue, 22 Mar 2022 17:32:43 +0900</pubDate>
+      <pubDate>Fri, 25 Mar 2022 22:31:30 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</guid>
       <description>*シリーズ随時追加作成中 
@@ -121,6 +121,16 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
       <description>第10回目の今回は、ゲーム開始時に表示されるスタート画面を作る。タイトル画面、スタートメニューとも言う。
 それだけだと、前回と比べて簡単すぎるので、ゲーム開始時にプレイヤーキャラクターを選択できる仕組みも実装する。画面遷移のイメージは以下の通りだ。
  まずゲームを始めるとスタート画面が表示される。 スタートボタンを押すとプレイヤーキャラクター選択画面に遷移する。 プレイヤーキャラクターを選択するとゲームプレイ開始。  ということで、今回の作業は以下の通りだ。</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 11：背景を作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_11/</link>
+      <pubDate>Fri, 25 Mar 2022 22:31:30 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_11/</guid>
+      <description>第11回目の今回は、ゲームプレイ画面の背景を作る。
+背景と言っても、ただテクスチャ画像を一枚ペタリと貼り付けて終わりだと面白くない。それに、カメラがどれだけ動いても背景が途切れなく繋がっている状態を作るには、ちょっとした工夫（というか Godot の機能）が必要だ。</description>
     </item>
     
   </channel>
