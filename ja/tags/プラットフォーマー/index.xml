@@ -10,11 +10,11 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 25 Mar 2022 22:31:30 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Mar 2022 00:25:27 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>シリーズ：Godot で作るプラットフォーマー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</link>
-      <pubDate>Fri, 25 Mar 2022 22:31:30 +0900</pubDate>
+      <pubDate>Sat, 26 Mar 2022 00:25:27 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</guid>
       <description>*シリーズ随時追加作成中 
@@ -131,6 +131,16 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_11/</guid>
       <description>第11回目の今回は、ゲームプレイ画面の背景を作る。
 背景と言っても、ただテクスチャ画像を一枚ペタリと貼り付けて終わりだと面白くない。それに、カメラがどれだけ動いても背景が途切れなく繋がっている状態を作るには、ちょっとした工夫（というか Godot の機能）が必要だ。</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 12：光と影を演出しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_12/</link>
+      <pubDate>Sat, 26 Mar 2022 00:25:27 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_12/</guid>
+      <description>第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので、気楽にやっていこう。
+ Memo：</description>
     </item>
     
   </channel>
