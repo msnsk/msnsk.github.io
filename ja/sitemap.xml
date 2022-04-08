@@ -15,7 +15,7 @@
     <lastmod>2022-01-10T00:18:03+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</loc>
-    <lastmod>2022-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_1/</loc>
     <lastmod>2021-11-06T17:44:27+09:00</lastmod>
@@ -98,8 +98,11 @@
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_12/</loc>
     <lastmod>2022-03-26T00:25:27+09:00</lastmod>
   </url><url>
+    <loc>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_13/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
     <loc>https://www.peanuts-code.com/ja/</loc>
-    <lastmod>2022-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -112,10 +115,16 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/2d/</loc>
-    <lastmod>2022-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/audio/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/bgm/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/godot/</loc>
-    <lastmod>2022-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -128,7 +137,7 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/godotengine/</loc>
-    <lastmod>2022-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -140,8 +149,11 @@
                 href="https://www.peanuts-code.com/ja/tags/godotengine/"
                 />
   </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/sfx/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/</loc>
-    <lastmod>2022-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -154,7 +166,7 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/</loc>
-    <lastmod>2022-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -167,34 +179,49 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%A0/</loc>
-    <lastmod>2022-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E3%82%AA%E3%83%BC%E3%83%87%E3%82%A3%E3%82%AA/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E3%82%B5%E3%82%A6%E3%83%B3%E3%83%89%E3%82%A8%E3%83%95%E3%82%A7%E3%82%AF%E3%83%88/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%BC/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E3%83%AB%E3%83%BC%E3%83%97%E5%86%8D%E7%94%9F/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E5%88%9D%E7%B4%9A/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E5%8A%B9%E6%9E%9C%E9%9F%B3/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E6%A8%AA%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E9%9F%B3%E6%A5%BD/</loc>
+    <lastmod>2022-04-08T19:42:19+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E3%82%AA%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3/</loc>
     <lastmod>2022-03-26T00:25:27+09:00</lastmod>
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/</loc>
-    <lastmod>2022-03-26T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E3%82%B7%E3%83%A3%E3%83%89%E3%82%A6/</loc>
     <lastmod>2022-03-26T00:25:27+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/</loc>
-    <lastmod>2022-03-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%BC/</loc>
-    <lastmod>2022-03-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E3%83%A9%E3%82%A4%E3%83%88/</loc>
     <lastmod>2022-03-26T00:25:27+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E5%85%89%E3%81%A8%E5%BD%B1/</loc>
     <lastmod>2022-03-26T00:25:27+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/%E5%88%9D%E7%B4%9A/</loc>
-    <lastmod>2022-03-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/%E6%A8%AA%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB/</loc>
-    <lastmod>2022-03-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/parallax/</loc>
     <lastmod>2022-03-25T22:31:30+09:00</lastmod>

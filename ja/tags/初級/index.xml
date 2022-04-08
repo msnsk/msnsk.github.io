@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 26 Mar 2022 00:25:27 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E5%88%9D%E7%B4%9A/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Apr 2022 19:42:19 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E5%88%9D%E7%B4%9A/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot をダウンロードする</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</link>
@@ -50,7 +50,7 @@
     <item>
       <title>シリーズ：Godot で作るプラットフォーマー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</link>
-      <pubDate>Sat, 26 Mar 2022 00:25:27 +0900</pubDate>
+      <pubDate>Fri, 08 Apr 2022 19:42:19 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</guid>
       <description>*シリーズ随時追加作成中 
@@ -312,6 +312,15 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_12/</guid>
       <description>第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので、気楽にやっていこう。
  Memo：</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 13：サウンドを追加しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_13/</link>
+      <pubDate>Fri, 08 Apr 2022 19:42:19 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_13/</guid>
+      <description>第13回目の今回は、ゲームにサウンドを追加する。ゲームに使われるサウンドというのは、大きく分けて2種類ある。バックグラウンドミュージック（BGM）と効果音（サウンドエフェクト：SFX）だ。Godot Engine ではどちらも追加する方法に大きな違いはない。素材さえ用意すれば、追加するのは比較的簡単だ。特定のタイミングでサウンドを鳴らしたい時、例えば、プレイヤーキャラクターがジャンプした時にジャンプの効果音を鳴らしたい場合などには、プログラミングして制御する必要があるが、複雑なコードにはならないので安心してほしい。</description>
     </item>
     
   </channel>

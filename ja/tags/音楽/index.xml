@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>音楽 on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/%E9%9F%B3%E6%A5%BD/</link>
+    <description>Recent content in 音楽 on Peanuts Code</description>
+    <image>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 08 Apr 2022 19:42:19 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E9%9F%B3%E6%A5%BD/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るプラットフォーマー Part 13：サウンドを追加しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_13/</link>
+      <pubDate>Fri, 08 Apr 2022 19:42:19 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_13/</guid>
+      <description>第13回目の今回は、ゲームにサウンドを追加する。ゲームに使われるサウンドというのは、大きく分けて2種類ある。バックグラウンドミュージック（BGM）と効果音（サウンドエフェクト：SFX）だ。Godot Engine ではどちらも追加する方法に大きな違いはない。素材さえ用意すれば、追加するのは比較的簡単だ。特定のタイミングでサウンドを鳴らしたい時、例えば、プレイヤーキャラクターがジャンプした時にジャンプの効果音を鳴らしたい場合などには、プログラミングして制御する必要があるが、複雑なコードにはならないので安心してほしい。</description>
+    </item>
+    
+  </channel>
+</rss>
