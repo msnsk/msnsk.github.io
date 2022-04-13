@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 08 Apr 2022 19:42:19 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Apr 2022 02:07:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>シリーズ：Godot で作るブロック崩し</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/</link>
@@ -23,7 +23,7 @@
     <item>
       <title>シリーズ：Godot で作るプラットフォーマー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</link>
-      <pubDate>Fri, 08 Apr 2022 19:42:19 +0900</pubDate>
+      <pubDate>Thu, 14 Apr 2022 02:07:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</guid>
       <description>*シリーズ随時追加作成中 
@@ -294,6 +294,16 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_13/</guid>
       <description>第13回目の今回は、ゲームにサウンドを追加する。ゲームに使われるサウンドというのは、大きく分けて2種類ある。バックグラウンドミュージック（BGM）と効果音（サウンドエフェクト：SFX）だ。Godot Engine ではどちらも追加する方法に大きな違いはない。素材さえ用意すれば、追加するのは比較的簡単だ。特定のタイミングでサウンドを鳴らしたい時、例えば、プレイヤーキャラクターがジャンプした時にジャンプの効果音を鳴らしたい場合などには、プログラミングして制御する必要があるが、複雑なコードにはならないので安心してほしい。</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 14：プレイヤーキャラクターのアクションをアップデートしよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_14/</link>
+      <pubDate>Thu, 14 Apr 2022 02:07:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_14/</guid>
+      <description>第14回目の今回は、プレイヤーキャラクターのアクションをアップデートしていく。具体的には以下にリストアップしたジャンプとダッシュの動きや演出を追加していく。
+ 落下時のアニメーション 壁ジャンプ ダブルジャンプ（2段ジャンプ） 走っている時の砂埃 ダッシュ時のゴーストエフェクト（残像効果）  おまけのような内容だが、作って実際にプレイすると非常に楽しいところなので、是非やってみてほしい。</description>
     </item>
     
   </channel>
