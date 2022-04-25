@@ -146,7 +146,7 @@
                 href="https://www.peanuts-code.com/ja/tags/godot/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/posts/tip0001_various_search/</loc>
+    <loc>https://www.peanuts-code.com/ja/posts/tip0001_various_searches/</loc>
     <lastmod>2022-04-25T17:08:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/godotengine/</loc>
@@ -177,6 +177,9 @@
                 hreflang="ja"
                 href="https://www.peanuts-code.com/ja/tags/"
                 />
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/tips/</loc>
+    <lastmod>2022-04-25T17:08:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/</loc>
     <lastmod>2022-04-25T17:08:00+09:00</lastmod>

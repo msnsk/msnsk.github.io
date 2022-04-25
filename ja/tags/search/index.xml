@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>search on Peanuts Code</title>
+    <title>Search on Peanuts Code</title>
     <link>https://www.peanuts-code.com/ja/tags/search/</link>
-    <description>Recent content in search on Peanuts Code</description>
+    <description>Recent content in Search on Peanuts Code</description>
     <image>
       <url>https://www.peanuts-code.com/105</url>
       <link>https://www.peanuts-code.com/105</link>
@@ -13,10 +13,10 @@
     <lastBuildDate>Mon, 25 Apr 2022 17:08:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/search/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot エディタの便利な検索機能</title>
-      <link>https://www.peanuts-code.com/ja/posts/tip0001_various_search/</link>
+      <link>https://www.peanuts-code.com/ja/posts/tip0001_various_searches/</link>
       <pubDate>Mon, 25 Apr 2022 17:08:00 +0900</pubDate>
       
-      <guid>https://www.peanuts-code.com/ja/posts/tip0001_various_search/</guid>
+      <guid>https://www.peanuts-code.com/ja/posts/tip0001_various_searches/</guid>
       <description>Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこに行ったかわからなくなったりすることがあるかもしれない。
 今回は Godot エディタに備わっているキーボードショートカットでの便利な検索機能を紹介する。これらを知っているだけで「見つからない何かを探す」という、おそらく最も楽しくない時間を激減させることができるだろう。なんなら、ファイルシステムやスクリプトエディタで直接ファイルにカーソルを合わせてクリックして選択していた手順を、毎回検索する手順に切り替えてしまっても良いだろう。</description>
     </item>
