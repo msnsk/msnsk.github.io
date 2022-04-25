@@ -10,13 +10,23 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 16 Jan 2022 16:56:41 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%96%E3%83%AD%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Apr 2022 17:08:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%96%E3%83%AD%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot エディタの便利な検索機能</title>
+      <link>https://www.peanuts-code.com/ja/posts/tip0001_various_search/</link>
+      <pubDate>Mon, 25 Apr 2022 17:08:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/posts/tip0001_various_search/</guid>
+      <description>Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこに行ったかわからなくなったりすることがあるかもしれない。
+今回は Godot エディタに備わっているキーボードショートカットでの便利な検索機能を紹介する。これらを知っているだけで「見つからない何かを探す」という、おそらく最も楽しくない時間を激減させることができるだろう。なんなら、ファイルシステムやスクリプトエディタで直接ファイルにカーソルを合わせてクリックして選択していた手順を、毎回検索する手順に切り替えてしまっても良いだろう。</description>
+    </item>
+    
     <item>
       <title>ゲーム開発を始めるのに年齢は関係ない</title>
-      <link>https://www.peanuts-code.com/ja/posts/post0001/</link>
+      <link>https://www.peanuts-code.com/ja/posts/post0001_no_matter_how_old/</link>
       <pubDate>Sun, 16 Jan 2022 16:56:41 +0900</pubDate>
       
-      <guid>https://www.peanuts-code.com/ja/posts/post0001/</guid>
+      <guid>https://www.peanuts-code.com/ja/posts/post0001_no_matter_how_old/</guid>
       <description>ゲーム開発を始めてみたいけど、年齢を理由に諦める人がなんと多いことか。いや、これはゲーム開発に限らない。ピアノを始めてみたい、YouTuberを始めてみたい、など、あらゆることに当てはまるだろう。
 中年になると、なにかと体力や気力が衰える、という認識はなぜだか割と一般的だ。しかし、本当はそうじゃない。その社会通念が自分に当てはまる根拠はどこにもないのだ。むしろ、中年サラリーマンだろうが、小学1年生だろうが、御年90歳だろうが、年齢は関係ない。やりたいと思ったその瞬間こそ、やり始めるのに一番若いタイミングなのだ。
 人生は結局、やるか、やらないかだ。人生100年時代において、何かを始めるには遅い、というケースはほとんどない。ゲーム開発なんて、なんだか難しそうで自分には無理かもしれない、という漠然とした印象だけで決断するのはもったいない。やってみないと本当のことは何もわからないのだ。</description>
