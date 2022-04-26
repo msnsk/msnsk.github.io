@@ -148,6 +148,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/posts/tip0001_various_searches/</loc>
     <lastmod>2022-04-25T17:08:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/posts/tip0001_various_searches/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/posts/tip0001_various_searches/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/godotengine/</loc>
     <lastmod>2022-04-25T17:08:00+09:00</lastmod>
@@ -164,6 +174,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/search/</loc>
     <lastmod>2022-04-25T17:08:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/search/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/search/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/</loc>
     <lastmod>2022-04-25T17:08:00+09:00</lastmod>
@@ -180,6 +200,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/tips/</loc>
     <lastmod>2022-04-25T17:08:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/tips/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/tips/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/</loc>
     <lastmod>2022-04-25T17:08:00+09:00</lastmod>
