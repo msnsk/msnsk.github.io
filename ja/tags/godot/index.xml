@@ -10,34 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 25 Apr 2022 17:08:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godot/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Godot をダウンロードする</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</link>
-      <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</guid>
-      <description>ゲームエンジン Godot のダウンロード手順を解説</description>
-    </item>
-    
-    <item>
-      <title>Godot のプロジェクトマネージャー</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</link>
-      <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</guid>
-      <description>ゲームエンジン Godot のプロジェクトマネージャーでできる操作のあれこれを解説</description>
-    </item>
-    
-    <item>
-      <title>Godot の言語設定</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</link>
-      <pubDate>Mon, 01 Nov 2021 12:37:47 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</guid>
-      <description>Godot で表示される言語の設定を変更する手順について解説</description>
-    </item>
-    
+    <lastBuildDate>Wed, 04 May 2022 01:30:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godot/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>シリーズ：Godot で作るブロック崩し</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/</link>
@@ -343,6 +316,16 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
     </item>
     
     <item>
+      <title>Godot で作るトップダウンシューティングの 4 種類の銃</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/</link>
+      <pubDate>Wed, 04 May 2022 01:30:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/</guid>
+      <description>今回のチュートリアルでは、2Dトップダウンシューティングゲーム（見下ろし型シューティングゲーム）で一般的によく登場する銃を4種類作っていく。具体的には以下の通りだ。
+ ハンドガン ショットガン マシンガン レーザーガン  このチュートリアルでは、銃の作成にフォーカスするため、以下は予め用意しておいた。</description>
+    </item>
+    
+    <item>
       <title>Godot エディタの便利な検索機能</title>
       <link>https://www.peanuts-code.com/ja/posts/tip0001_various_searches/</link>
       <pubDate>Mon, 25 Apr 2022 17:08:00 +0900</pubDate>
@@ -361,6 +344,33 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
       <description>ゲーム開発を始めてみたいけど、年齢を理由に諦める人がなんと多いことか。いや、これはゲーム開発に限らない。ピアノを始めてみたい、YouTuberを始めてみたい、など、あらゆることに当てはまるだろう。
 中年になると、なにかと体力や気力が衰える、という認識はなぜだか割と一般的だ。しかし、本当はそうじゃない。その社会通念が自分に当てはまる根拠はどこにもないのだ。むしろ、中年サラリーマンだろうが、小学1年生だろうが、御年90歳だろうが、年齢は関係ない。やりたいと思ったその瞬間こそ、やり始めるのに一番若いタイミングなのだ。
 人生は結局、やるか、やらないかだ。人生100年時代において、何かを始めるには遅い、というケースはほとんどない。ゲーム開発なんて、なんだか難しそうで自分には無理かもしれない、という漠然とした印象だけで決断するのはもったいない。やってみないと本当のことは何もわからないのだ。</description>
+    </item>
+    
+    <item>
+      <title>Godot の言語設定</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</link>
+      <pubDate>Mon, 01 Nov 2021 12:37:47 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</guid>
+      <description>Godot で表示される言語の設定を変更する手順について解説</description>
+    </item>
+    
+    <item>
+      <title>Godot のプロジェクトマネージャー</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</link>
+      <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</guid>
+      <description>ゲームエンジン Godot のプロジェクトマネージャーでできる操作のあれこれを解説</description>
+    </item>
+    
+    <item>
+      <title>Godot をダウンロードする</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</link>
+      <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</guid>
+      <description>ゲームエンジン Godot のダウンロード手順を解説</description>
     </item>
     
   </channel>
