@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Four types of guns for top-down shooting made by Godot | Peanuts Code</title>
+<meta name="keywords" content="Godot, GodotEngine, GameDev, Tutorials, 2D, Top-down, shooter, Guns" />
+<meta name="description" content="In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters.">
+<meta name="author" content="Masanao Sako">
+<link rel="canonical" href="https://www.peanuts-code.com/en/tutorials/gd0006_guns_of_topdown_shooter/" />
+<meta name="google-site-verification" content="XYZabc" />
+<meta name="yandex-verification" content="XYZabc" />
+<meta name="msvalidate.01" content="XYZabc" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="/images/logomark.png" as="image">
+<link rel="icon" href="https://www.peanuts-code.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.peanuts-code.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.peanuts-code.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.peanuts-code.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.98.0" />
+<link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/" />
+<link rel="alternate" hreflang="en" href="https://www.peanuts-code.com/en/tutorials/gd0006_guns_of_topdown_shooter/" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-DK0NK2RTTW', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="Four types of guns for top-down shooting made by Godot" />
+<meta property="og:description" content="In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.peanuts-code.com/en/tutorials/gd0006_guns_of_topdown_shooter/" />
+<meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img37.gif" /><meta property="article:section" content="tutorials" />
+<meta property="article:published_time" content="2022-05-07T22:05:00&#43;09:00" />
+<meta property="article:modified_time" content="2022-05-07T22:05:00&#43;09:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img37.gif" />
+<meta name="twitter:title" content="Four types of guns for top-down shooting made by Godot"/>
+<meta name="twitter:description" content="In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Tutorials",
+      "item": "https://www.peanuts-code.com/en/tutorials/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Four types of guns for top-down shooting made by Godot",
+      "item": "https://www.peanuts-code.com/en/tutorials/gd0006_guns_of_topdown_shooter/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Four types of guns for top-down shooting made by Godot",
+  "name": "Four types of guns for top-down shooting made by Godot",
+  "description": "In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters.",
+  "keywords": [
+    "Godot", "GodotEngine", "GameDev", "Tutorials", "2D", "Top-down", "shooter", "Guns"
+  ],
+  "articleBody": "In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters. Specifically, they are as follows.\n Handgun Shotgun Machine gun Laser Gun   Environment \nThis tutorial was created in the following environment\n・Godot version: 3.4.2\n・Computer OS version: macOS 11.6.5\n Since this tutorial will focus on gun creation, the following has been prepared in advance.\n  Game world\nA scene called “World.tscn” was prepared, and the appearance was simply created by adding a “TileMap” node. In addition to the “TileMap” node, a “Player” node and several “Obstacle” nodes were added. For these, we created individual scenes and added the instances.\n  Player Character\nCreated as “Player.tscn” scene. The root node is the “KinematicBody2D” class, and the “Sprite” and the “CollisionShape2D” were added as child nodes. The texture of the “Sprite” node is a hitman with a gun. A node named “Muzzle” of the “Position2D” class was placed at the tip of the image of the gun held by the hitman. This will be used later to specify the position where the bullet instance is generated when the gun is fired.\nThe following actions have already been added to the input map. Used to move the player character, shoot, and switch guns.\n up: W key - used to move the player character forward down: S key - used to move the player character backward. fire: Left mouse button - fires the gun. switch: Right mouse button: Switches between gun types.\nNote that, for the sake of brevity in the tutorial, the player character’s sprite remains the same, even if the gun type is changed. Let’s say it looks like a handgun, but it can be a machine gun, a laser gun, or anything else.    Obstacle\nWe created a scene called “Obstacle.tscn”. All the brown crate objects on the screen are instances of this scene. The root node is the “StaticBody2D” class, and the “Sprite” and the “CollisionShape2D” were added as its child nodes.\n  With these preparations, when the project is executed, the world, hitman, and obstacles are drawn as shown below, and the hitman is currently only capable of movement operations.\nThe project files for this tutorial are located at GitHub repository . If you download the .zip file and import the “Start” folder into Godot Engine, you can start from the project with only the above preparations completed. If you want to check the completed project immediately, you can import the “End” folder.\nIn addition, all of the assets that have been imported into this project were downloaded from the KENNEY  website. We would like to thank KENNEY for providing us with a wide variety of very easy-to-use assets with the license CC0. The following asset packs were used this time.\n  Topdown Shooter  Particle Pack    Now let’s proceed with the implementation of the gun.\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Create a bullet scene First, let’s create the bullet scene. Since the bullet scene can be used for all three types of guns (handgun, shotgun, and machine gun), let’s create the bullet scene first.\n Select “Scene” menu  “New Scene”. Select “Other Node” for “Create Root Node”. Select the “Area2D” class as the root node and rename it to “Bullet”. Add a child node of the “Line2D” class to the root node. The only use of this node in this tutorial is to create the appearance of a bullet. Of course, you may prepare a texture image for the bullet and make it the “Sprite” instead of the “Line2D”. Add a child node of the “CollisionShape2D” class to the root node. Add a child node of the “VisibilityNotifier2D” class to the root node. This is used to signal when a bullet fired by a gun goes off the screen and to release the bullet instance. save the scene once. The destination folder is provided, so save the scene so that the file path is “res://Bullet/Bullet.tscn”.  The scene tree should now look like the following.\nThen, edit each node.\nDraw a path for the “Line2D” node in the 2D workspace. Draw a straight line path by first hitting the first point at (-5, 0) and then the second point at (5, 0). You can also type directly in the inspector.\n In the inspector, set the value of the “Width” property of the “Line2D” node to 16.\n Specify the bullet color with the “Default Color” property. Of course, you can set the color to your own preference. In this tutorial, I specified a bluish-gray color #708293 as a sample.\n Set the “Capping”  “End Cap Mode” property to “Round”. The end of the path (the second point) should now be rounded. This is much more bullet-like, isn’t it?\nOn the 2D workspace, the “Line2D” should now look like this.\n Assign a “new RectangleShape2D” resource to the “Shape” property of the “CollisionShape2D” node. Adjust the collision shape to match the bullet shape created by the “Line2D” in the 2D workspace. You can make it exactly the same size as the bullet, or you can make it slightly smaller than the bullet size. In this sample, the value of the “Extents” property of the resource “RectangleShape2D” is (5, 2).\n Adjust the shape of the “VisibilityNotifier2D” node in the 2D workspace. We will use the signal that is emitted when this shape goes off the screen. The length in the y-axis is the same. The size of the shape can be approximate. In this sample, the “Scale” property value is (0.5, 0.1).\n  That’s it for adding nodes and editing the properties of each node.\nNow we will attach the script to the root node and start coding.\n Attach the script to the root node. Create the file path as “res://Bullet/Bullet.gd”. Edit the “Bullet.gd” script as follows.  ### Bullet.gd ### extends Area2D  # Bullet speed per second var speed = 1500 # Direction vector of bullet flying: once (0, 0) var direction = Vector2.ZERO  # physics process: built-in method called 60 times/second func _physics_process(delta): \t# Get the x value of the direction vector from which the bullet will be fired by cosine function from the bullet's current rotation angle \tdirection.x = cos(global_rotation) \t# Get the y value of the direction vector from which the bullet will be fired by  as a sine function from the current rotation angle of the bullet \tdirection.y = sin(global_rotation) \t# Move the bullet every frame by direction * speed \ttranslate(direction * speed * delta) \nNext, let’s connect the signal that is sent out when the bullet hits the physics body to this script. Since the root node “Bullet” is an “Area2D” class, select the root node “Bullet” in the scene tree dock, select the “body_entered(body)” signal in the node dock  Signal tab, and click “Connect” button to connect it (or double-click the signal name).\nbody_entered signal connected Once connected, edit the automatically added method _on_Bullet_body_entered as follows.\n### Bullet.gd ### # Method called by the signal emitted when the bullet hits the physics body func _on_Bullet_body_entered(body): \t# if the body hit is an obstacle \tif body.is_in_group(\"Obstacles\"): \t# free the obstacle object \tbody.queue_free() \t# free the bullet instance \tqueue_free() Note that I have already added the root node of the “Obstacle” scene to the group “Obstacles” in advance.\nNow, if it hits an outer wall, only the bullets will be freed, and if it hits an obstacle, the obstacle and the bullets will be freed.\nWe will add one more signal. Let’s connect the “screen_exited()” signal, which is emitted when the “VisibilityNotifier2D” node disappears from the screen, to the “Bullet.gd” script. The procedure is the same as the previous signal connection, just select the “VisibilityNotifier2D” node in the scene tree dock and connect the “screen_exited()” signal in the Node Dock  Signal tab.\nOnce connected, edit the automatically added method _on_VisibilityNotifier2D_screen_exited as follows.\n### Bullet.gd ### # Method called by the signal emitted when a VisibilityNotifier2D node goes off-screen func _on_VisibilityNotifier2D_screen_exited(): \t# free the bullet instance \tqueue_free() The bullet will now be freed when it goes off-screen.\nThe bullet scene is now complete.\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Implementing the handgun Let’s start with the simplest handgun (pistol) to shoot. The script to be edited is the “Player.gd,” but since some code has already been prepared in the preliminary stage, let’s check that first.\n See the prep part of the Player.gd code ### Player.gd ### extends KinematicBody2D  # Preloaded bullet scene reference const bullet_scn = preload(\"res://Bullet/Bullet.tscn\")  # Guns currently in use (comment below for index and gun type var gun = 0 # 0: hand # 1: shot # 2: machine # 3: lazer  # Speed of player character var speed = 200 # Speed with direction of player character var velocity = Vector2()  # Referencing the Muzzle node onready var muzzle = $Muzzle  # Method called when the scene is loaded func _ready(): \trotation_degrees = 270 # Make the player look up at the start of the game \t# Physics process: method called 60 times/sec by default func _physics_process(delta): \tmove()　# call method to move player character \tswitch_gun() # call method to switch gun type \tfire() # call method to fire the gun \t# Method to move player character func move(): \tlook_at(get_global_mouse_position()) # make the character look towards the mouse cursor \tvelocity = Vector2() # initialize velocity to (0, 0) \tif Input.is_action_pressed(\"down\"): # if S key is pressed... \tvelocity = Vector2(-speed, 0).rotated(rotation) # set velocity backwards \tif Input.is_action_pressed(\"up\"): # if W key is pressed... \tvelocity = Vector2(speed, 0).rotated(rotation) # set velocity forward \tvelocity = move_and_slide(velocity) # move according to velocity  # Method to switch gun type func switch_gun(): \tif Input.is_action_just_pressed(\"switch\"): # if mouse right button click... \tif gun  3: # if gun assignment number is less than 3... \tgun += 1 # increment the assigned number by 1 \telse: # if gun assignment number is 3 (last number)... \tgun = 0 # set the gun's assigned number to 0 \tprint(\"Switched to \", gun) # Display in output panel for debugging  # Method to fire the gun func fire(): \tpass  So the fire method is currently empty. Update it as follows.\n### Player.gd ###  # Method to fire the gun func fire(): \t# If the gun type is handgun (0) and the left mouse button is clicked \tif gun == 0 and Input.is_action_just_pressed(\"fire\"): \t# Call a method to create and fire a bullet instance \tput_bullet() The method put_bullet appears here, which is the method we are going to define. Let’s define it by adding the following code under the fire method.\n### Player.gd ###  # Method to create and fire a bullet instance func put_bullet(): \t# reference to a bullet scene instance \tvar bullet = bullet_scn.instance() \t# make the position of the bullet instance the same as the muzzle position \tbullet.global_position = muzzle.global_position \t# set the orientation of the bullet instance to be the same as the Player's orientation \tbullet.rotation_degrees = rotation_degrees \t# Make it a child of its parent node (World node) instead of Player node \tget_parent().add_child(bullet) \t# make it the second child of World (front from the tile map, back from the player character) \tget_parent().move_child(bullet, 1) \nYou should now have a handgun implementation. Let’s run the project and check it out.\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Implementing the shotgun The next step is to implement a shotgun. A shotgun in a top-down shooter would generally be designed to have multiple bullets each flying forward at a slightly different angle. This is a powerful gun that can wipe out multiple objects over a wide area in a single shot.\nLet’s start by updating the fire method.\n### Player.gd ###  func fire(): \tif gun == 0 and Input.is_action_just_pressed(\"fire\"): \tput_bullet() \t# If the gun type is shotgun (1) and the left mouse button is clicked \tif gun == 1 and Input.is_action_just_pressed(\"fire\"): \t# 5 loops \tfor n in 5: \t# Call the method that creates an instance of the bullet and fires it, passing a value as an argument. \tput_bullet(n) Added a second if block to the fire method. If the property gun has a value of 1 (the assigned number of the shotgun), the shotgun can be fired with a left mouse click. The content of the if block calls put_bullet 5 times in a for loop, but unlike the previous handgun, the argument is passed n, the number of times around the loop. We will see how this method handles the arguments it receives as we update the put_bullet method later.\nfunc put_bullet(dir_offset = 2): # Added argument dir_offset, default value is 2 \tvar bullet = bullet_scn.instance() \tbullet.global_position = muzzle.global_position \tbullet.rotation_degrees = rotation_degrees + (20 - 10 * dir_offset) # 更新 \tget_parent().add_child(bullet) \tget_parent().move_child(bullet, 1) It is a little complicated, but if the argument dir_offset is not entered when the method is called, the default value of 2 is automatically passed as an argument. The third line in the method block specifies the rotation angle (direction) of the bullet, but in the case of a handgun, for example, the method is called without specifying an argument, so the default value of 2 is passed as the argument, the 20 - 10 * dir_offset part becomes 0, and the bullet’s angle is the same as the player character is facing.\nOn the other hand, in the case of a shotgun, this put_bullet method is called 5 times in the for loop in the fire method, and the number of loop laps n (counting from 0 to 4) is passed as the argument dir_offset. Therefore, the angle of the bullet changes as follows, depending on how many times the loop has looped.\n Loop 0: The angle the player character is facing + 20° Loop 1: The angle the player character is facing + 10° Loop 2: The angle the player character is facinge + 0° Loop 3, The angle the player character is facing + -10° Loop 4, The angle the player character is facing + -20.  With the above code, five bullets are fired simultaneously at different angles of 10° in the range from -20° to +20° relative to the direction the Player is facing, completing a gun that can fire a wide range of bullets at once. The computer processes a loop of about five times in an instant, so the bullets will be fired at different angles at about the same time.\nYou should now have a shotgun implementation. When you run the project to check it out, click the right mouse button once to switch to shotgun and then try firing it.\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Implementing the machine guns Next, let’s look at machine guns. Unlike guns that require a single pull of the trigger to fire, machine guns can fire automatically and continuously as long as the trigger is pulled. Although machine guns cannot fire over a wide area in a single shot as shotguns can, they fire automatically at high speed and can wipe out a wide range of objects as soon as the player character himself turns.\nNow let’s add the code for the machine gun to the “Player.gd” script.\nFirst, we added the property interval.\n### Player.gd ###  var speed = 200 var velocity = Vector2() # Count until the next bullet of the machine gun is fired var interval: int = 0 # 追加 The specification of the machine gun is to automatically fire bullets continuously if the left mouse button is held down, but if the fire method is called every frame in the _physics_process method, the interval between bullets is too short and the bullets appear to stop (see GIF image below).\nThe frame rate of 60 FPS for the physical process is quite fast. So this time, we will add +1 to the interval property every frame so that a bullet is fired when the count exceeds 5. In other words, the bullet will be fired once every 5 frames.\nSo let’s add an if block for the machine gun to the fire method.\nfunc fire(): \tif gun == 0 and Input.is_action_just_pressed(\"fire\"): \tput_bullet() \tif gun == 1 and Input.is_action_just_pressed(\"fire\"): \tfor n in 5: \tput_bullet(n) \t# If the gun type is machine gun (2) and the left mouse button is pressed \tif gun == 2 and Input.is_action_pressed(\"fire\"): \t# +1 count to the next bullet \tinterval += 1 \t# If the count is greater than 5 \tif interval = 5: \t# Set count back to 0. \tinterval = 0 \t# Call a method that creates and fires a bullet instance with no arguments \tput_bullet() Note that the handgun and shotgun use the is_action_just_pressed method of the Input class for the if condition, but this method does not continuously detect the input even if the left button is pressed continuously. On the other hand, the machine gun uses the is_action_pressed method. This method has a similar name only without “just,” but this one is suitable for use in “press-and-hold” operations, since input is detected every frame even if the button is kept pressed.\nYou should now have a machine gun implemented. When you run the project to check it, click the right mouse button twice to switch to machine gun and then try to fire it.\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Create a laser scene The last step is to implement the laser gun. A laser gun fires lasers, not bullets, so let’s start by creating the scene of the laser being fired. Add particles and animations to give it a minimal effect.\n Select “Scene” menu  “New Scene”. Select “Other Node” for “Generate Root Node”. Select the “RayCast2D” class as the root node and rename it to “Laser”. Add a child node of the “Line2D” class to the root node. It will be used to create the look of the laser as well as the bullet scene. Of course, there is a way to prepare a texture image for the laser and make it the “Sprite” instead of the “Line2D,” but we did not use it this time. Add a child node of the “Particle2D” class to the root node. This is used to add the effect of bubbling particles when the laser hits the object. Add a child node of the “Tween” class to the root node. This will be used to slowly increase the width of the laser from 0 to a certain width when the laser is fired, and vice versa when the laser ends. Save the scene. The destination folder is already prepared, so save the scene so that the file path is “res://Laser/Laser.tscn”.  The scene tree should now look like the following.\nNext, edit each node.\nIn the Inspector, turn on the “Enabled” property of the root “Laser” node and set the “Cast To” property to (2000, 0).\nIt should now look like the following screenshot on the 2D workspace.\n Draw the path of the “Line2D” node in the 2D workspace. Draw a straight-line path by hitting the first point at (0, 0) and then the second point at (200, 0). You can also type directly in the inspector. The second point is controlled by a script, so if the y value is 0, the x value can be any value that is easy to see in the 2D workspace.\n In the inspector, set the “Width” property of the “Line2D” node to 16.\n Specify the color of the laser with the “Default Color” property. Of course, you can set the color of the laser to your image. In this tutorial, we use #00b1ff blue as a sample.\nOn the 2D workspace, the “Line2D” should now look roughly like this.\n from here, edit the properties of the “Particle2D” node as follows. It is going to be hard work because there are many properties to be edited, but let’s do our best.  First, apply the resource “res://Assets/circle_05.png” to the “Textures”  “Texture” property.\n Turn on the “Emitting” property.\n Set the value of the “Drawing”  “Visibility Rect” property to (x: -50, y: -50, w: 100, h: 100).\n Set the “Transform”  “Position” property to (x: 200, y: 0) and “Transform”  “Scale” property to (x: 0.1, y: 0.1)\n Assign a “New ParticleMaterial” to the “Process Material” property.\nFrom here, we will edit the properties of the “ParticleMaterial” resource we have just assigned.\n  “Emission Shape” ＞\n Change the “Shape” property to “Box”.\n    “Direction” ＞\n Set the “Direction” property to (x: -1, y: 0, z: 0), which is the negative direction of the x axis. Set the “Spread” property to 60 in order to spread particles with a width of 60°.\n    “Gravity” ＞\n Set the “Gravity” property to (x: -300, y: 0, z: 0). This will add gravity in the negative direction of the x axis.\n    “Initial Velocity” ＞\n Set the “Velocity” property to 800. This is probably the speed per second.\n    “Scale” ＞\n Assign the resource “New CurveTexture” to the “Scale Curve” property.\nNext, edit the properties of the assigned resource. “CurveTexture” ＞  Assign the “New Curve” property to the “Curve” property and hit two points as shown in the screenshot below to create a curve and set the change in value. Now, each particle will gradually become smaller as time passes.\n      “Color\"＞\n Assign the resource “New GradientTexture” to the “Color Ramp” property. This is for the purpose of gradually changing the color of the particles from the time they are created to the time they disappear.\n Assign the resource “New Gradient” to the “GradientTexture” resource property assigned above.\n Edit the properties of the “Gradient” resource. In the inspector, intuitively specify three colors as the basis for the gradient.\n Leftmost: #001096 (deep blue) Slightly left of center: #2780ff (light blue) Rightmost: #00ffffff (white with opacity 0)\nThis would result in the following resource properties.\n            This completes the process of adding nodes and editing the properties of each node.\nFrom here, attach the script to the root node “Laser” and start coding.\n Attach the script to the root node “Laser” and create the file path as “res://Laser/Laser.gd Edit the “Laser.gd” script as follows.  ### Laser.gd ### extends RayCast2D  # Reference to the Line2D node onready var line = $Line2D # Reference to the Particle2D node onready var particle = $Particles2D # Reference to the Tween node onready var tween = $Tween  # Methods called when the scene is loaded func _ready(): \t# Turn off the Emitting property of the Particle2D node... \t# ...to prevent it from being left on in the inspector \tparticle.emitting = false \t# Set up the animation of the tween node... \t# ...change the Width property of the Line2D from 0 to 10 over 0.5 seconds \ttween.interpolate_property(line, \"width\", 0, 10.0, 0.5) \t# Start the animation of the tween node \ttween.start()  # Physics process: Method called at 60FPS func _physics_process(delta): \t# if RayCast2D (root node) is colliding with the physics body... \tif is_colliding(): \t# set the position of the second point (endpoint) of the Line2D node to the position where RayCast2D collides with the physics body \tline.set_point_position(1, to_local(get_collision_point()))) \t\t# if the object collided with was an obstacle... \tif get_collider().is_in_group(\"Obstacles\"): \t# Referencing an obstacle instance \tvar obstacle = get_collider() \t# Add the value of delta to the laser irradiation time of the obstacle instance \tobstacle.irradiated_time += delta \t# If the laser irradiation time exceeds the maximum irradiation time... \tif obstacle.irradiated_time  obstacle.max_irradiation: \t# Free the obstacle instance \tobstacle.queue_free() \t\t# If RayCast2D (root node) does not collide with the physical body... \telse: \t# Set the position of the second point (end) of the Line2D node to be the same as the position of the tip of the RayCast2D (root node) \tline.set_point_position(1, cast_to) \t\t# Set the position of the Particle2D node to be the same as the end position of the path of the Line2D node \tparticle.position = line.points[1]. \t# Turn on the Emitting property of the Particle2D node (start particle animation) \tparticle.emitting = true \t\t# If the finger is released from the left mouse button... \tif Input.is_action_just_released(\"fire\"): \t# Call the method to stop the laser \tstop_laser()  # Define a method to stop the laser func stop_laser(): \t# Set up the animation of a tween node: change the Width property of the Line2D node from 10 to 0 over 0.5 seconds \ttween.interpolate_property(line, \"width\", 10.0, 0, 0.5) \t# Start the animation of the tween node \ttween.start() \t# Wait for the tween node to finish animating \tyield(tween, \"tween_completed\") \t# Free the tween node \tqueue_free() A few additional notes on this code. In the script “Obstacle.gd” attached to the root node of the obstacle scene “Obstacle.tscn” that has been created as a preliminary step, two properties, irradiated_time and max_irradiation, are defined. The former is the irradiation time of the laser, and the latter is the maximum irradiation time of the laser. This system was created based on the idea that rather than destroying obstacles immediately after the laser strikes them, it would be more laser-like if the obstacles were destroyed after a certain amount of time (maximum irradiation time: 0.2 seconds).\nThe laser scene is now ready. The next step is to update the “Player” scene so that it can fire the laser.\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Implementing the laser gun Now that we have a laser scene, let’s implement the laser gun. The first specification for the laser gun is to add an instance of “Laser.tscn” created earlier to the “Player” scene when it fires. The player’s control should be the same as that of the machine gun, so that the gun will continue to fire as long as the left mouse button is held down. On the other hand, when the finger is released from the button, the “Laser.gd” script coded earlier will make the laser disappear and the instance will be released.\nNow let’s edit the “Player.gd” script in concrete terms. First, I want you to add the fourth if block in the fire method as follows.\n### Player.gd ###  func fire(): \tif gun == 0 and Input.is_action_just_pressed(\"fire\"): \tput_bullet() \tif gun == 1 and Input.is_action_just_pressed(\"fire\"): \tfor n in 5: \tput_bullet(n) \tif gun == 2 and Input.is_action_pressed(\"fire\"): \tinterval += 1 \tif interval = 5: \tinterval = 0 \tput_bullet() \t# If the gun-type is laser gun (3) and the left mouse button is pressed \tif gun == 3 and Input.is_action_just_pressed(\"fire\"): \t# Call a method to create and fire a laser instance \tload_laser() The fourth if block I added calls the load_laser method as long as the left mouse button is held down when the gun is the laser. This method is just about to be defined. Let’s add the following code under the put_bullet method.\n### Player.gd ###  # Methods to create and fire laser instances func load_laser(): \t# Referencing instances of Laser.tscn \tvar laser = laser_scn.instance() \t# Position the Laser instance at the same location as the muzzle \tlaser.position = muzzle.position \t# Adds a Laser instance as a child node to the Player root node \tadd_child(laser) \t# Move the Laser instance node to the 0th (backmost) of the Player root node's child nodes \tmove_child(laser, 0) After the “Laser” instance is created by pressing the left mouse button, the “Laser.gd” script controls the position, direction, length, and width of the laser, as well as the position of the particle at the tip. This includes freeing the “Laser” instance when the finger leaves.\nThat completes the implementation of the laser gun. When executing and checking the project, click the right mouse button three times to switch to the laser gun before firing.\nAfter it was completed, I realized that the laser might have been better in another color. It looks like a water gun or a high water pressure washer.\nLet’s run the project one last time, switching between the four guns as we play.\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Conclusion This time, we implemented four types of guns that are often implemented in top-down shooter games. If you want to make them more detailed, it might be more interesting to add the following elements, for example\n Change the appearance and speed of bullets depending on the gun type. When switching guns, the sprite of the player character should also be changed. Add animations and pauses for reloading bullets and filling the laser with energy. Add particles like smoke and debris when bullets hit objects and are released. Set the damage to objects hit by each type of gun, and set a certain life value on the object side, such as HP, so that the object can be destroyed when its life reaches 0.   リンク  KENNEY  Godot online documentation: 2D Move Overview  Godot online documentation: Line2D  Godot online documentation: RayCast2D  Godot online documentation: Particle System (2D)  Godot online documentation: Particles2D  Godot online documentation: ParticlesMaterial   ",
+  "wordCount" : "4745",
+  "inLanguage": "en",
+  "image":"https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img37.gif","datePublished": "2022-05-07T22:05:00+09:00",
+  "dateModified": "2022-05-07T22:05:00+09:00",
+  "author":{
+    "@type": "Person",
+    "name": "Masanao Sako"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.peanuts-code.com/en/tutorials/gd0006_guns_of_topdown_shooter/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Peanuts Code",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.peanuts-code.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://www.peanuts-code.com/en/" accesskey="h" title="Peanuts Code (Alt + H)">
+                <img src="/images/logomark.png" alt="logo" aria-label="logo"
+                    height="35">Peanuts Code</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://www.peanuts-code.com/ja/" title="日本語"
+                            aria-label="日本語">Ja</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://www.peanuts-code.com/en/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/tutorials/" title="Tutorials">
+                    <span>Tutorials</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/en/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/en/tutorials/">Tutorials</a></div>
+    <h1 class="post-title">
+      Four types of guns for top-down shooting made by Godot
+    </h1>
+    <div class="post-meta">2022-05-07&nbsp;·&nbsp;23 min&nbsp;·&nbsp;Masanao Sako&nbsp;|&nbsp;
+<ul class="i18n_list">Translations:
+    <li>
+        <a href="https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/">Ja</a>
+    </li>
+</ul>
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img37.gif" alt="Four types of guns for top-down shooting made by Godot">
+        
+</figure><div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#create-a-bullet-scene" aria-label="Create a bullet scene">Create a bullet scene</a></li>
+                <li>
+                    <a href="#implementing-the-handgun" aria-label="Implementing the handgun">Implementing the handgun</a></li>
+                <li>
+                    <a href="#implementing-the-shotgun" aria-label="Implementing the shotgun">Implementing the shotgun</a></li>
+                <li>
+                    <a href="#implementing-the-machine-guns" aria-label="Implementing the machine guns">Implementing the machine guns</a></li>
+                <li>
+                    <a href="#create-a-laser-scene" aria-label="Create a laser scene">Create a laser scene</a></li>
+                <li>
+                    <a href="#implementing-the-laser-gun" aria-label="Implementing the laser gun">Implementing the laser gun</a></li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+                <li>
+                    <a href="#%e3%83%aa%e3%83%b3%e3%82%af" aria-label="リンク">リンク</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters. Specifically, they are as follows.</p>
+<ul>
+<li>Handgun</li>
+<li>Shotgun</li>
+<li>Machine gun</li>
+<li>Laser Gun</li>
+</ul>
+<br>
+<blockquote>
+<p><em><strong><span style="color:salmon">Environment</span>
+</strong><br>
+This tutorial was created in the following environment</em><br>
+・<em>Godot version: <strong>3.4.2</strong></em><br>
+・<em>Computer OS version: <strong>macOS 11.6.5</strong></em></p>
+</blockquote>
+<br>
+<p>Since this tutorial will focus on gun creation, the following has been prepared in advance.</p>
+<ol>
+<li>
+<p><strong>Game world</strong><br>
+A scene called &ldquo;World.tscn&rdquo; was prepared, and the appearance was simply created by adding a &ldquo;TileMap&rdquo; node. In addition to the &ldquo;TileMap&rdquo; node, a &ldquo;Player&rdquo; node and several &ldquo;Obstacle&rdquo; nodes were added. For these, we created individual scenes and added the instances.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img0.1.png" alt="World scene tree"  />
+</p>
+</li>
+<li>
+<p><strong>Player Character</strong><br>
+Created as &ldquo;Player.tscn&rdquo; scene. The root node is the &ldquo;KinematicBody2D&rdquo; class, and the &ldquo;Sprite&rdquo; and the &ldquo;CollisionShape2D&rdquo; were added as child nodes. The texture of the &ldquo;Sprite&rdquo; node is a hitman with a gun. A node named &ldquo;Muzzle&rdquo; of the &ldquo;Position2D&rdquo; class was placed at the tip of the image of the gun held by the hitman. This will be used later to specify the position where the bullet instance is generated when the gun is fired.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img0.2.png" alt="Player scene tree"  />
+<br>
+The following actions have already been added to the input map. Used to move the player character, shoot, and switch guns.</p>
+<ul>
+<li><strong>up</strong>: W key - used to move the player character forward</li>
+<li><strong>down</strong>: S key - used to move the player character backward.</li>
+<li><strong>fire</strong>: Left mouse button - fires the gun.</li>
+<li><strong>switch</strong>: Right mouse button: Switches between gun types.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img1.png" alt="inputmap"  />
+<br>
+Note that, for the sake of brevity in the tutorial, the player character&rsquo;s sprite remains the same, even if the gun type is changed. Let&rsquo;s say it looks like a handgun, but it can be a machine gun, a laser gun, or anything else.</li>
+</ul>
+</li>
+<li>
+<p><strong>Obstacle</strong><br>
+We created a scene called &ldquo;Obstacle.tscn&rdquo;. All the brown crate objects on the screen are instances of this scene. The root node is the &ldquo;StaticBody2D&rdquo; class, and the &ldquo;Sprite&rdquo; and the &ldquo;CollisionShape2D&rdquo; were added as its child nodes.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img1.1.png" alt="Obstacle scene tree"  />
+</p>
+</li>
+</ol>
+<br>
+<p>With these preparations, when the project is executed, the world, hitman, and obstacles are drawn as shown below, and the hitman is currently only capable of movement operations.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img2.gif" alt="Run project"  />
+</p>
+<br>
+<p>The project files for this tutorial are located at <strong><a href="https://github.com/msnsk/GunsOfTopdownShooter.git" target="_blank">GitHub repository</a>
+</strong>. If you download the .zip file and import the &ldquo;Start&rdquo; folder into Godot Engine, you can start from the project with only the above preparations completed. If you want to check the completed project immediately, you can import the &ldquo;End&rdquo; folder.</p>
+<p>In addition, all of the assets that have been imported into this project were downloaded from the <strong><a href="https://www.kenney.nl/assets" target="_blank">KENNEY</a>
+</strong> website. We would like to thank KENNEY for providing us with a wide variety of very easy-to-use assets with the license CC0. The following asset packs were used this time.</p>
+<blockquote>
+<ul>
+<li><a href="https://www.kenney.nl/assets/topdown-shooter" target="_blank">Topdown Shooter</a>
+</li>
+<li><a href="https://www.kenney.nl/assets/particle-pack" target="_blank">Particle Pack</a>
+</li>
+</ul>
+</blockquote>
+<br>
+<p>Now let&rsquo;s proceed with the implementation of the gun.</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="create-a-bullet-scene">Create a bullet scene<a hidden class="anchor" aria-hidden="true" href="#create-a-bullet-scene">#</a></h1>
+<p>First, let&rsquo;s create the bullet scene. Since the bullet scene can be used for all three types of guns (handgun, shotgun, and machine gun), let&rsquo;s create the bullet scene first.</p>
+<ol>
+<li>Select &ldquo;Scene&rdquo; menu &gt; &ldquo;New Scene&rdquo;.</li>
+<li>Select &ldquo;Other Node&rdquo; for &ldquo;Create Root Node&rdquo;.</li>
+<li>Select the &ldquo;Area2D&rdquo; class as the root node and rename it to &ldquo;Bullet&rdquo;.</li>
+<li>Add a child node of the &ldquo;Line2D&rdquo; class to the root node. The only use of this node in this tutorial is to create the appearance of a bullet. Of course, you may prepare a texture image for the bullet and make it the &ldquo;Sprite&rdquo; instead of the &ldquo;Line2D&rdquo;.</li>
+<li>Add a child node of the &ldquo;CollisionShape2D&rdquo; class to the root node.</li>
+<li>Add a child node of the &ldquo;VisibilityNotifier2D&rdquo; class to the root node. This is used to signal when a bullet fired by a gun goes off the screen and to release the bullet instance.</li>
+<li>save the scene once. The destination folder is provided, so save the scene so that the file path is &ldquo;res://Bullet/Bullet.tscn&rdquo;.</li>
+</ol>
+<p>The scene tree should now look like the following.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img3.png" alt="プロジェクトを実行"  />
+</p>
+<br>
+<p>Then, edit each node.</p>
+<ol start="8">
+<li>Draw a path for the &ldquo;Line2D&rdquo; node in the 2D workspace. Draw a straight line path by first hitting the first point at (-5, 0) and then the second point at (5, 0). You can also type directly in the inspector.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img4.png" alt="Line2D property"  />
+</li>
+<li>In the inspector, set the value of the &ldquo;Width&rdquo; property of the &ldquo;Line2D&rdquo; node to 16.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img5.png" alt="Line2D property"  />
+</li>
+<li>Specify the bullet color with the &ldquo;Default Color&rdquo; property. Of course, you can set the color to your own preference. In this tutorial, I specified a bluish-gray color #708293 as a sample.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img6.png" alt="Line2D property"  />
+</li>
+<li>Set the &ldquo;Capping&rdquo; &gt; &ldquo;End Cap Mode&rdquo; property to &ldquo;Round&rdquo;. The end of the path (the second point) should now be rounded. This is much more bullet-like, isn&rsquo;t it?<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img7.png" alt="Line2D property"  />
+<br>
+On the 2D workspace, the &ldquo;Line2D&rdquo; should now look like this.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img8.png" alt="Line2D in 2D workspace"  />
+</li>
+<li>Assign a &ldquo;new RectangleShape2D&rdquo; resource to the &ldquo;Shape&rdquo; property of the &ldquo;CollisionShape2D&rdquo; node.</li>
+<li>Adjust the collision shape to match the bullet shape created by the &ldquo;Line2D&rdquo; in the 2D workspace. You can make it exactly the same size as the bullet, or you can make it slightly smaller than the bullet size. In this sample, the value of the &ldquo;Extents&rdquo; property of the resource &ldquo;RectangleShape2D&rdquo; is (5, 2).<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img10.png" alt="CollisionShape2D property"  />
+<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img9.png" alt="Line2D in 2D workspace"  />
+</li>
+<li>Adjust the shape of the &ldquo;VisibilityNotifier2D&rdquo; node in the 2D workspace. We will use the signal that is emitted when this shape goes off the screen. The length in the y-axis is the same. The size of the shape can be approximate. In this sample, the &ldquo;Scale&rdquo; property value is (0.5, 0.1).<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img11.png" alt="VisibilityNotifier2D property"  />
+<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img12.png" alt="VisibilityNotifier2D property"  />
+</li>
+</ol>
+<p>That&rsquo;s it for adding nodes and editing the properties of each node.</p>
+<br>
+<p>Now we will attach the script to the root node and start coding.</p>
+<ol>
+<li>Attach the script to the root node. Create the file path as &ldquo;res://Bullet/Bullet.gd&rdquo;.</li>
+<li>Edit the &ldquo;Bullet.gd&rdquo; script as follows.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Bullet.gd ###</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Area2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Bullet speed per second</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">1500</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Direction vector of bullet flying: once (0, 0)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> direction <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>ZERO
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># physics process: built-in method called 60 times/second</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _physics_process(delta):
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Get the x value of the direction vector from which the bullet will be fired by cosine function from the bullet&#39;s current rotation angle</span>
+</span></span><span style="display:flex;"><span>	direction<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> cos(global_rotation)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Get the y value of the direction vector from which the bullet will be fired by</span>
+</span></span><span style="display:flex;"><span>  as a sine function from the current rotation angle of the bullet
+</span></span><span style="display:flex;"><span>	direction<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> sin(global_rotation)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Move the bullet every frame by direction * speed</span>
+</span></span><span style="display:flex;"><span>	translate(direction <span style="color:#f92672">*</span> speed <span style="color:#f92672">*</span> delta)
+</span></span></code></pre></div><br>
+<p>Next, let&rsquo;s connect the signal that is sent out when the bullet hits the physics body to this script. Since the root node &ldquo;Bullet&rdquo; is an &ldquo;Area2D&rdquo; class, select the root node &ldquo;Bullet&rdquo; in the scene tree dock, select the &ldquo;body_entered(body)&rdquo; signal in the node dock &gt; Signal tab, and click &ldquo;Connect&rdquo; button to connect it (or double-click the signal name).<br>
+<a href="/images/tutorials/gd0006_GunsOfTopdownShooter/img12.1.png">body_entered signal connected</a>
+</p>
+<p>Once connected, edit the automatically added method <code>_on_Bullet_body_entered</code> as follows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Bullet.gd ###</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method called by the signal emitted when the bullet hits the physics body</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Bullet_body_entered(body):
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># if the body hit is an obstacle</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Obstacles&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># free the obstacle object</span>
+</span></span><span style="display:flex;"><span>		body<span style="color:#f92672">.</span>queue_free()
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># free the bullet instance</span>
+</span></span><span style="display:flex;"><span>	queue_free()
+</span></span></code></pre></div><p>Note that I have already added the root node of the &ldquo;Obstacle&rdquo; scene to the group &ldquo;Obstacles&rdquo; in advance.</p>
+<p><img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img13.png" alt="Obstacles Group"  />
+</p>
+<p>Now, if it hits an outer wall, only the bullets will be freed, and if it hits an obstacle, the obstacle and the bullets will be freed.</p>
+<br>
+<p>We will add one more signal. Let&rsquo;s connect the &ldquo;screen_exited()&rdquo; signal, which is emitted when the &ldquo;VisibilityNotifier2D&rdquo; node disappears from the screen, to the &ldquo;Bullet.gd&rdquo; script. The procedure is the same as the previous signal connection, just select the &ldquo;VisibilityNotifier2D&rdquo; node in the scene tree dock and connect the &ldquo;screen_exited()&rdquo; signal in the Node Dock &gt; Signal tab.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img13.1.png" alt="screen_exited() signal connected"  />
+</p>
+<p>Once connected, edit the automatically added method <code>_on_VisibilityNotifier2D_screen_exited</code> as follows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Bullet.gd ###</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method called by the signal emitted when a VisibilityNotifier2D node goes off-screen</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_VisibilityNotifier2D_screen_exited():
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># free the bullet instance</span>
+</span></span><span style="display:flex;"><span>	queue_free()
+</span></span></code></pre></div><p>The bullet will now be freed when it goes off-screen.</p>
+<br>
+<p>The bullet scene is now complete.</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="implementing-the-handgun">Implementing the handgun<a hidden class="anchor" aria-hidden="true" href="#implementing-the-handgun">#</a></h1>
+<p>Let&rsquo;s start with the simplest handgun (pistol) to shoot. The script to be edited is the &ldquo;Player.gd,&rdquo; but since some code has already been prepared in the preliminary stage, let&rsquo;s check that first.</p>
+<details>
+<summary>See the prep part of the Player.gd code</summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Player.gd ###</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Preloaded bullet scene reference</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> bullet_scn <span style="color:#f92672">=</span> preload(<span style="color:#e6db74">&#34;res://Bullet/Bullet.tscn&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Guns currently in use (comment below for index and gun type</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> gun <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 0: hand</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1: shot</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2: machine</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3: lazer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Speed of player character</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Speed with direction of player character</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> velocity <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Referencing the Muzzle node</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> muzzle <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>Muzzle
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method called when the scene is loaded</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	rotation_degrees <span style="color:#f92672">=</span> <span style="color:#ae81ff">270</span>  <span style="color:#75715e"># Make the player look up at the start of the game</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Physics process: method called 60 times/sec by default</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _physics_process(delta):
+</span></span><span style="display:flex;"><span>	move()　<span style="color:#75715e"># call method to move player character</span>
+</span></span><span style="display:flex;"><span>	switch_gun() <span style="color:#75715e"># call method to switch gun type</span>
+</span></span><span style="display:flex;"><span>	fire() <span style="color:#75715e"># call method to fire the gun</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to move player character</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> move():
+</span></span><span style="display:flex;"><span>	look_at(get_global_mouse_position()) <span style="color:#75715e"># make the character look towards the mouse cursor</span>
+</span></span><span style="display:flex;"><span>	velocity <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>() <span style="color:#75715e"># initialize velocity to (0, 0)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;down&#34;</span>): <span style="color:#75715e"># if S key is pressed...</span>
+</span></span><span style="display:flex;"><span>		velocity <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>(<span style="color:#f92672">-</span>speed, <span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>rotated(rotation) <span style="color:#75715e"># set velocity backwards</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;up&#34;</span>): <span style="color:#75715e"># if W key is pressed...</span>
+</span></span><span style="display:flex;"><span>		velocity <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>(speed, <span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>rotated(rotation)  <span style="color:#75715e"># set velocity forward</span>
+</span></span><span style="display:flex;"><span>	velocity <span style="color:#f92672">=</span> move_and_slide(velocity) <span style="color:#75715e"># move according to velocity</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to switch gun type</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> switch_gun():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;switch&#34;</span>):  <span style="color:#75715e"># if mouse right button click...</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> gun <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>: <span style="color:#75715e"># if gun assignment number is less than 3...</span>
+</span></span><span style="display:flex;"><span>			gun <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e"># increment the assigned number by 1</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>: <span style="color:#75715e"># if gun assignment number is 3 (last number)...</span>
+</span></span><span style="display:flex;"><span>			gun <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># set the gun&#39;s assigned number to 0</span>
+</span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Switched to &#34;</span>, gun) <span style="color:#75715e"># Display in output panel for debugging</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to fire the gun</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> fire():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">pass</span>
+</span></span></code></pre></div></details>
+<br>
+<br>
+<p>So the <code>fire</code> method is currently empty. Update it as follows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Player.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to fire the gun</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> fire():
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># If the gun type is handgun (0) and the left mouse button is clicked</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> gun <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;fire&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Call a method to create and fire a bullet instance</span>
+</span></span><span style="display:flex;"><span>		put_bullet()
+</span></span></code></pre></div><p>The method <code>put_bullet</code> appears here, which is the method we are going to define. Let&rsquo;s define it by adding the following code under the <code>fire</code> method.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Player.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to create and fire a bullet instance</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> put_bullet():
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># reference to a bullet scene instance</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> bullet <span style="color:#f92672">=</span> bullet_scn<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># make the position of the bullet instance the same as the muzzle position</span>
+</span></span><span style="display:flex;"><span>	bullet<span style="color:#f92672">.</span>global_position <span style="color:#f92672">=</span> muzzle<span style="color:#f92672">.</span>global_position 
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># set the orientation of the bullet instance to be the same as the Player&#39;s orientation</span>
+</span></span><span style="display:flex;"><span>	bullet<span style="color:#f92672">.</span>rotation_degrees <span style="color:#f92672">=</span> rotation_degrees
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Make it a child of its parent node (World node) instead of Player node</span>
+</span></span><span style="display:flex;"><span>	get_parent()<span style="color:#f92672">.</span>add_child(bullet)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># make it the second child of World (front from the tile map, back from the player character)</span>
+</span></span><span style="display:flex;"><span>	get_parent()<span style="color:#f92672">.</span>move_child(bullet, <span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><br>
+<p>You should now have a handgun implementation. Let&rsquo;s run the project and check it out.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img14.gif" alt="Handgun"  />
+</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="implementing-the-shotgun">Implementing the shotgun<a hidden class="anchor" aria-hidden="true" href="#implementing-the-shotgun">#</a></h1>
+<p>The next step is to implement a shotgun. A shotgun in a top-down shooter would generally be designed to have multiple bullets each flying forward at a slightly different angle. This is a powerful gun that can wipe out multiple objects over a wide area in a single shot.</p>
+<p>Let&rsquo;s start by updating the <code>fire</code> method.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Player.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> fire():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> gun <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;fire&#34;</span>):
+</span></span><span style="display:flex;"><span>		put_bullet()
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># If the gun type is shotgun (1) and the left mouse button is clicked</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> gun <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;fire&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># 5 loops</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> <span style="color:#ae81ff">5</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># Call the method that creates an instance of the bullet and fires it, passing a value as an argument.</span>
+</span></span><span style="display:flex;"><span>			put_bullet(n)
+</span></span></code></pre></div><p>Added a second <code>if</code> block to the <code>fire</code> method. If the property <code>gun</code> has a value of 1 (the assigned number of the shotgun), the shotgun can be fired with a left mouse click. The content of the <code>if</code> block calls <code>put_bullet</code> 5 times in a <code>for</code> loop, but unlike the previous handgun, the argument is passed <code>n</code>, the number of times around the loop. We will see how this method handles the arguments it receives as we update the <code>put_bullet</code> method later.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> put_bullet(dir_offset <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>): <span style="color:#75715e"># Added argument dir_offset, default value is 2</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> bullet <span style="color:#f92672">=</span> bullet_scn<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>	bullet<span style="color:#f92672">.</span>global_position <span style="color:#f92672">=</span> muzzle<span style="color:#f92672">.</span>global_position
+</span></span><span style="display:flex;"><span>	bullet<span style="color:#f92672">.</span>rotation_degrees <span style="color:#f92672">=</span> rotation_degrees <span style="color:#f92672">+</span> (<span style="color:#ae81ff">20</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> dir_offset) <span style="color:#75715e"># 更新</span>
+</span></span><span style="display:flex;"><span>	get_parent()<span style="color:#f92672">.</span>add_child(bullet)
+</span></span><span style="display:flex;"><span>	get_parent()<span style="color:#f92672">.</span>move_child(bullet, <span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><p>It is a little complicated, but if the argument <code>dir_offset</code> is not entered when the method is called, the default value of 2 is automatically passed as an argument. The third line in the method block specifies the rotation angle (direction) of the bullet, but in the case of a handgun, for example, the method is called without specifying an argument, so the default value of 2 is passed as the argument, the <code>20 - 10 * dir_offset</code> part becomes 0, and the bullet&rsquo;s angle is the same as the player character is facing.</p>
+<p>On the other hand, in the case of a shotgun, this <code>put_bullet</code> method is called 5 times in the <code>for</code> loop in the <code>fire</code> method, and the number of loop laps n (counting from 0 to 4) is passed as the argument <code>dir_offset</code>. Therefore, the angle of the bullet changes as follows, depending on how many times the loop has looped.</p>
+<ul>
+<li>Loop 0: The angle the player character is facing + 20°</li>
+<li>Loop 1: The angle the player character is facing + 10°</li>
+<li>Loop 2: The angle the player character is facinge + 0°</li>
+<li>Loop 3, The angle the player character is facing + -10°</li>
+<li>Loop 4, The angle the player character is facing + -20.</li>
+</ul>
+<p>With the above code, five bullets are fired simultaneously at different angles of 10° in the range from -20° to +20° relative to the direction the Player is facing, completing a gun that can fire a wide range of bullets at once. The computer processes a loop of about five times in an instant, so the bullets will be fired at different angles at about the same time.</p>
+<br>
+<p>You should now have a shotgun implementation. When you run the project to check it out, click the right mouse button once to switch to shotgun and then try firing it.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img15.gif" alt="shotgun"  />
+</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="implementing-the-machine-guns">Implementing the machine guns<a hidden class="anchor" aria-hidden="true" href="#implementing-the-machine-guns">#</a></h1>
+<p>Next, let&rsquo;s look at machine guns. Unlike guns that require a single pull of the trigger to fire, machine guns can fire automatically and continuously as long as the trigger is pulled. Although machine guns cannot fire over a wide area in a single shot as shotguns can, they fire automatically at high speed and can wipe out a wide range of objects as soon as the player character himself turns.</p>
+<p>Now let&rsquo;s add the code for the machine gun to the &ldquo;Player.gd&rdquo; script.</p>
+<p>First, we added the property <code>interval</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Player.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> velocity <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Count until the next bullet of the machine gun is fired</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> interval: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># 追加</span>
+</span></span></code></pre></div><p>The specification of the machine gun is to automatically fire bullets continuously if the left mouse button is held down, but if the <code>fire</code> method is called every frame in the <code>_physics_process</code> method, the interval between bullets is too short and the bullets appear to stop (see GIF image below).<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img16.gif" alt="Machine gun firing every frame"  />
+</p>
+<p>The frame rate of 60 FPS for the physical process is quite fast. So this time, we will add +1 to the <code>interval</code> property every frame so that a bullet is fired when the count exceeds 5. In other words, the bullet will be fired once every 5 frames.</p>
+<p>So let&rsquo;s add an <code>if</code> block for the machine gun to the <code>fire</code> method.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> fire():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> gun <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;fire&#34;</span>):
+</span></span><span style="display:flex;"><span>		put_bullet()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> gun <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;fire&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> <span style="color:#ae81ff">5</span>:
+</span></span><span style="display:flex;"><span>			put_bullet(n)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># If the gun type is machine gun (2) and the left mouse button is pressed</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> gun <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;fire&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># +1 count to the next bullet</span>
+</span></span><span style="display:flex;"><span>		interval <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># If the count is greater than 5</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> interval <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">5</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># Set count back to 0.</span>
+</span></span><span style="display:flex;"><span>			interval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># Call a method that creates and fires a bullet instance with no arguments</span>
+</span></span><span style="display:flex;"><span>			put_bullet()
+</span></span></code></pre></div><p>Note that the handgun and shotgun use the <code>is_action_just_pressed</code> method of the <code>Input</code> class for the <code>if</code> condition, but this method does not continuously detect the input even if the left button is pressed continuously. On the other hand, the machine gun uses the <code>is_action_pressed</code> method. This method has a similar name only without &ldquo;just,&rdquo; but this one is suitable for use in &ldquo;press-and-hold&rdquo; operations, since input is detected every frame even if the button is kept pressed.</p>
+<br>
+<p>You should now have a machine gun implemented. When you run the project to check it, click the right mouse button twice to switch to machine gun and then try to fire it.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img17.gif" alt="Machine gun"  />
+</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="create-a-laser-scene">Create a laser scene<a hidden class="anchor" aria-hidden="true" href="#create-a-laser-scene">#</a></h1>
+<p>The last step is to implement the laser gun. A laser gun fires lasers, not bullets, so let&rsquo;s start by creating the scene of the laser being fired. Add particles and animations to give it a minimal effect.</p>
+<ol>
+<li>Select &ldquo;Scene&rdquo; menu &gt; &ldquo;New Scene&rdquo;.</li>
+<li>Select &ldquo;Other Node&rdquo; for &ldquo;Generate Root Node&rdquo;.</li>
+<li>Select the &ldquo;RayCast2D&rdquo; class as the root node and rename it to &ldquo;Laser&rdquo;.</li>
+<li>Add a child node of the &ldquo;Line2D&rdquo; class to the root node. It will be used to create the look of the laser as well as the bullet scene. Of course, there is a way to prepare a texture image for the laser and make it the &ldquo;Sprite&rdquo; instead of the &ldquo;Line2D,&rdquo; but we did not use it this time.</li>
+<li>Add a child node of the &ldquo;Particle2D&rdquo; class to the root node. This is used to add the effect of bubbling particles when the laser hits the object.</li>
+<li>Add a child node of the &ldquo;Tween&rdquo; class to the root node. This will be used to slowly increase the width of the laser from 0 to a certain width when the laser is fired, and vice versa when the laser ends.</li>
+<li>Save the scene. The destination folder is already prepared, so save the scene so that the file path is &ldquo;res://Laser/Laser.tscn&rdquo;.</li>
+</ol>
+<p>The scene tree should now look like the following.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img18.png" alt="Laser scene tree"  />
+</p>
+<br>
+<p>Next, edit each node.</p>
+<ol start="8">
+<li>In the Inspector, turn on the &ldquo;Enabled&rdquo; property of the root &ldquo;Laser&rdquo; node and set the &ldquo;Cast To&rdquo; property to (2000, 0).<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img20.png" alt="Laser node properties"  />
+<br>
+It should now look like the following screenshot on the 2D workspace.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img19.png" alt="Laser node on 2D workspace"  />
+</li>
+<li>Draw the path of the &ldquo;Line2D&rdquo; node in the 2D workspace. Draw a straight-line path by hitting the first point at (0, 0) and then the second point at (200, 0). You can also type directly in the inspector. The second point is controlled by a script, so if the <strong>y</strong> value is 0, the <strong>x</strong> value can be any value that is easy to see in the 2D workspace.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img21.png" alt="Properties of Line2D node"  />
+</li>
+<li>In the inspector, set the &ldquo;Width&rdquo; property of the &ldquo;Line2D&rdquo; node to 16.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img22.png" alt="Property of Line2D node"  />
+</li>
+<li>Specify the color of the laser with the &ldquo;Default Color&rdquo; property. Of course, you can set the color of the laser to your image. In this tutorial, we use #00b1ff blue as a sample.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img23.png" alt="Line2D node properties"  />
+<br>
+On the 2D workspace, the &ldquo;Line2D&rdquo; should now look roughly like this.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img24.png" alt="Line2D in 2D workspace"  />
+</li>
+<li>from here, edit the properties of the &ldquo;Particle2D&rdquo; node as follows. It is going to be hard work because there are many properties to be edited, but let&rsquo;s do our best.
+<ol>
+<li>First, apply the resource &ldquo;res://Assets/circle_05.png&rdquo; to the &ldquo;Textures&rdquo; &gt; &ldquo;Texture&rdquo; property.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img25.png" alt="Particle2D node property"  />
+</li>
+<li>Turn on the &ldquo;Emitting&rdquo; property.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img26.png" alt="Particle2D node property"  />
+</li>
+<li>Set the value of the &ldquo;Drawing&rdquo; &gt; &ldquo;Visibility Rect&rdquo; property to (x: -50, y: -50, w: 100, h: 100).<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img27.png" alt="Particle2D node property"  />
+</li>
+<li>Set the &ldquo;Transform&rdquo; &gt; &ldquo;Position&rdquo; property to (x: 200, y: 0) and &ldquo;Transform&rdquo; &gt; &ldquo;Scale&rdquo; property to (x: 0.1, y: 0.1)<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img28.png" alt="Particle2D node property"  />
+</li>
+<li>Assign a &ldquo;New ParticleMaterial&rdquo; to the &ldquo;Process Material&rdquo; property.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img29.png" alt="Particle2D node property"  />
+<br>
+From here, we will edit the properties of the &ldquo;ParticleMaterial&rdquo; resource we have just assigned.<br>
+<br>
+<ul>
+<li>
+<p>&ldquo;Emission Shape&rdquo; ＞</p>
+<ul>
+<li>Change the &ldquo;Shape&rdquo; property to &ldquo;Box&rdquo;.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img30.png" alt="Particle2D node property"  />
+</li>
+</ul>
+</li>
+<li>
+<p>&ldquo;Direction&rdquo; ＞</p>
+<ul>
+<li>Set the &ldquo;Direction&rdquo; property to (x: -1, y: 0, z: 0), which is the negative direction of the x axis.</li>
+<li>Set the &ldquo;Spread&rdquo; property to 60 in order to spread particles with a width of 60°.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img31.png" alt="Particle2D node property"  />
+</li>
+</ul>
+</li>
+<li>
+<p>&ldquo;Gravity&rdquo; ＞</p>
+<ul>
+<li>Set the &ldquo;Gravity&rdquo; property to (x: -300, y: 0, z: 0). This will add gravity in the negative direction of the x axis.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img32.png" alt="Particle2D node property"  />
+</li>
+</ul>
+</li>
+<li>
+<p>&ldquo;Initial Velocity&rdquo; ＞</p>
+<ul>
+<li>Set the &ldquo;Velocity&rdquo; property to 800. This is probably the speed per second.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img33.png" alt="Particle2D node property"  />
+</li>
+</ul>
+</li>
+<li>
+<p>&ldquo;Scale&rdquo; ＞</p>
+<ul>
+<li>Assign the resource &ldquo;New CurveTexture&rdquo; to the &ldquo;Scale Curve&rdquo; property.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img34.png" alt="Particle2D node property"  />
+<br>
+Next, edit the properties of the assigned resource.</li>
+<li>&ldquo;CurveTexture&rdquo; ＞
+<ul>
+<li>Assign the &ldquo;New Curve&rdquo; property to the &ldquo;Curve&rdquo; property and hit two points as shown in the screenshot below to create a curve and set the change in value. Now, each particle will gradually become smaller as time passes.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img34.1.png" alt="Particle2D node property"  />
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>&ldquo;Color&quot;＞</p>
+<ul>
+<li>Assign the resource &ldquo;New GradientTexture&rdquo; to the &ldquo;Color Ramp&rdquo; property. This is for the purpose of gradually changing the color of the particles from the time they are created to the time they disappear.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img35.png" alt="Particle2D node property"  />
+</li>
+<li>Assign the resource &ldquo;New Gradient&rdquo; to the &ldquo;GradientTexture&rdquo; resource property assigned above.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img35.1.png" alt="Particle2D node property"  />
+
+<ul>
+<li>Edit the properties of the &ldquo;Gradient&rdquo; resource. In the inspector, intuitively specify three colors as the basis for the gradient.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img35.2.png" alt="Particle2D node property"  />
+
+<ul>
+<li>Leftmost: #001096 (deep blue)</li>
+<li>Slightly left of center: #2780ff (light blue)</li>
+<li>Rightmost: #00ffffff (white with opacity 0)<br>
+This would result in the following resource properties.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img35.3.png" alt="Particle2D node property"  />
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p>This completes the process of adding nodes and editing the properties of each node.</p>
+<br>
+<p>From here, attach the script to the root node &ldquo;Laser&rdquo; and start coding.</p>
+<ol>
+<li>Attach the script to the root node &ldquo;Laser&rdquo; and create the file path as &ldquo;res://Laser/Laser.gd</li>
+<li>Edit the &ldquo;Laser.gd&rdquo; script as follows.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Laser.gd ###</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">RayCast2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reference to the Line2D node</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> line <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>Line2D
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reference to the Particle2D node</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> particle <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">Particles2D</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reference to the Tween node</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> tween <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">Tween</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Methods called when the scene is loaded</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Turn off the Emitting property of the Particle2D node...</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># ...to prevent it from being left on in the inspector</span>
+</span></span><span style="display:flex;"><span>	particle<span style="color:#f92672">.</span>emitting <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Set up the animation of the tween node...</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># ...change the Width property of the Line2D from 0 to 10 over 0.5 seconds</span>
+</span></span><span style="display:flex;"><span>	tween<span style="color:#f92672">.</span>interpolate_property(line, <span style="color:#e6db74">&#34;width&#34;</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10.0</span>, <span style="color:#ae81ff">0.5</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Start the animation of the tween node</span>
+</span></span><span style="display:flex;"><span>	tween<span style="color:#f92672">.</span>start()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Physics process: Method called at 60FPS</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _physics_process(delta):
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># if RayCast2D (root node) is colliding with the physics body...</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> is_colliding():
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># set the position of the second point (endpoint) of the Line2D node to the position where RayCast2D collides with the physics body</span>
+</span></span><span style="display:flex;"><span>		line<span style="color:#f92672">.</span>set_point_position(<span style="color:#ae81ff">1</span>, to_local(get_collision_point())))
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># if the object collided with was an obstacle...</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> get_collider()<span style="color:#f92672">.</span>is_in_group(<span style="color:#e6db74">&#34;Obstacles&#34;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># Referencing an obstacle instance</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> obstacle <span style="color:#f92672">=</span> get_collider()
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># Add the value of delta to the laser irradiation time of the obstacle instance</span>
+</span></span><span style="display:flex;"><span>			obstacle<span style="color:#f92672">.</span>irradiated_time <span style="color:#f92672">+=</span> delta
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># If the laser irradiation time exceeds the maximum irradiation time...</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> obstacle<span style="color:#f92672">.</span>irradiated_time <span style="color:#f92672">&gt;</span> obstacle<span style="color:#f92672">.</span>max_irradiation: 
+</span></span><span style="display:flex;"><span>				<span style="color:#75715e"># Free the obstacle instance</span>
+</span></span><span style="display:flex;"><span>				obstacle<span style="color:#f92672">.</span>queue_free()
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># If RayCast2D (root node) does not collide with the physical body...</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Set the position of the second point (end) of the Line2D node to be the same as the position of the tip of the RayCast2D (root node)</span>
+</span></span><span style="display:flex;"><span>		line<span style="color:#f92672">.</span>set_point_position(<span style="color:#ae81ff">1</span>, cast_to)
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Set the position of the Particle2D node to be the same as the end position of the path of the Line2D node</span>
+</span></span><span style="display:flex;"><span>	particle<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> line<span style="color:#f92672">.</span>points[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Turn on the Emitting property of the Particle2D node (start particle animation)</span>
+</span></span><span style="display:flex;"><span>	particle<span style="color:#f92672">.</span>emitting <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># If the finger is released from the left mouse button...</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_released(<span style="color:#e6db74">&#34;fire&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Call the method to stop the laser</span>
+</span></span><span style="display:flex;"><span>		stop_laser()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define a method to stop the laser</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> stop_laser():
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Set up the animation of a tween node: change the Width property of the Line2D node from 10 to 0 over 0.5 seconds</span>
+</span></span><span style="display:flex;"><span>	tween<span style="color:#f92672">.</span>interpolate_property(line, <span style="color:#e6db74">&#34;width&#34;</span>, <span style="color:#ae81ff">10.0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.5</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Start the animation of the tween node</span>
+</span></span><span style="display:flex;"><span>	tween<span style="color:#f92672">.</span>start()
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Wait for the tween node to finish animating</span>
+</span></span><span style="display:flex;"><span>	yield(tween, <span style="color:#e6db74">&#34;tween_completed&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Free the tween node</span>
+</span></span><span style="display:flex;"><span>	queue_free()
+</span></span></code></pre></div><p>A few additional notes on this code. In the script &ldquo;Obstacle.gd&rdquo; attached to the root node of the obstacle scene &ldquo;Obstacle.tscn&rdquo; that has been created as a preliminary step, two properties, <code>irradiated_time</code> and <code>max_irradiation</code>, are defined.  The former is the irradiation time of the laser, and the latter is the maximum irradiation time of the laser. This system was created based on the idea that rather than destroying obstacles immediately after the laser strikes them, it would be more laser-like if the obstacles were destroyed after a certain amount of time (maximum irradiation time: 0.2 seconds).</p>
+<br>
+<p>The laser scene is now ready. The next step is to update the &ldquo;Player&rdquo; scene so that it can fire the laser.</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="implementing-the-laser-gun">Implementing the laser gun<a hidden class="anchor" aria-hidden="true" href="#implementing-the-laser-gun">#</a></h1>
+<p>Now that we have a laser scene, let&rsquo;s implement the laser gun. The first specification for the laser gun is to add an instance of &ldquo;Laser.tscn&rdquo; created earlier to the &ldquo;Player&rdquo; scene when it fires. The player&rsquo;s control should be the same as that of the machine gun, so that the gun will continue to fire as long as the left mouse button is held down. On the other hand, when the finger is released from the button, the &ldquo;Laser.gd&rdquo; script coded earlier will make the laser disappear and the instance will be released.</p>
+<p>Now let&rsquo;s edit the &ldquo;Player.gd&rdquo; script in concrete terms. First, I want you to add the fourth <code>if</code> block in the <code>fire</code> method as follows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Player.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> fire():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> gun <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;fire&#34;</span>):
+</span></span><span style="display:flex;"><span>		put_bullet()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> gun <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;fire&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> <span style="color:#ae81ff">5</span>:
+</span></span><span style="display:flex;"><span>			put_bullet(n)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> gun <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;fire&#34;</span>):
+</span></span><span style="display:flex;"><span>		interval <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> interval <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">5</span>:
+</span></span><span style="display:flex;"><span>			interval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>			put_bullet()
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># If the gun-type is laser gun (3) and the left mouse button is pressed</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> gun <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">and</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;fire&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Call a method to create and fire a laser instance</span>
+</span></span><span style="display:flex;"><span>		load_laser()
+</span></span></code></pre></div><p>The fourth <code>if</code> block I added calls the <code>load_laser</code> method as long as the left mouse button is held down when the gun is the laser. This method is just about to be defined. Let&rsquo;s add the following code under the <code>put_bullet</code> method.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Player.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Methods to create and fire laser instances</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> load_laser():
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Referencing instances of Laser.tscn</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> laser <span style="color:#f92672">=</span> laser_scn<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Position the Laser instance at the same location as the muzzle</span>
+</span></span><span style="display:flex;"><span>	laser<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> muzzle<span style="color:#f92672">.</span>position
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Adds a Laser instance as a child node to the Player root node</span>
+</span></span><span style="display:flex;"><span>	add_child(laser)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Move the Laser instance node to the 0th (backmost) of the Player root node&#39;s child nodes</span>
+</span></span><span style="display:flex;"><span>	move_child(laser, <span style="color:#ae81ff">0</span>)
+</span></span></code></pre></div><p>After the &ldquo;Laser&rdquo; instance is created by pressing the left mouse button, the &ldquo;Laser.gd&rdquo; script controls the position, direction, length, and width of the laser, as well as the position of the particle at the tip. This includes freeing the &ldquo;Laser&rdquo; instance when the finger leaves.</p>
+<br>
+<p>That completes the implementation of the laser gun. When executing and checking the project, click the right mouse button three times to switch to the laser gun before firing.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img36.gif" alt="Run the project and check the laser gun"  />
+</p>
+<p>After it was completed, I realized that the laser might have been better in another color. It looks like a water gun or a high water pressure washer.</p>
+<br>
+<p>Let&rsquo;s run the project one last time, switching between the four guns as we play.<br>
+<img loading="lazy" src="/images/tutorials/gd0006_GunsOfTopdownShooter/img37.gif" alt="Run the project and check all types of guns"  />
+</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h1>
+<p>This time, we implemented four types of guns that are often implemented in top-down shooter games. If you want to make them more detailed, it might be more interesting to add the following elements, for example</p>
+<ul>
+<li>Change the appearance and speed of bullets depending on the gun type.</li>
+<li>When switching guns, the sprite of the player character should also be changed.</li>
+<li>Add animations and pauses for reloading bullets and filling the laser with energy.</li>
+<li>Add particles like smoke and debris when bullets hit objects and are released.</li>
+<li>Set the damage to objects hit by each type of gun, and set a certain life value on the object side, such as HP, so that the object can be destroyed when its life reaches 0.</li>
+</ul>
+<br>
+<hr>
+<h1 id="リンク">リンク<a hidden class="anchor" aria-hidden="true" href="#リンク">#</a></h1>
+<ul>
+<li><a href="https://www.kenney.nl/" target="_blank">KENNEY</a>
+</li>
+<li><a href="https://docs.godotengine.org/ja/stable/tutorials/2d/2d_movement.html" target="_blank">Godot online documentation: 2D Move Overview</a>
+</li>
+<li><a href="https://docs.godotengine.org/ja/stable/classes/class_line2d.html" target="_blank">Godot online documentation: Line2D</a>
+</li>
+<li><a href="https://docs.godotengine.org/ja/stable/classes/class_raycast2d.html" target="_blank">Godot online documentation: RayCast2D</a>
+</li>
+<li><a href="https://docs.godotengine.org/ja/stable/tutorials/2d/particle_systems_2d.html" target="_blank">Godot online documentation: Particle System (2D)</a>
+</li>
+<li><a href="https://docs.godotengine.org/ja/stable/classes/class_particles2d.html#class-particles2d" target="_blank">Godot online documentation: Particles2D</a>
+</li>
+<li><a href="https://docs.godotengine.org/ja/stable/classes/class_particlesmaterial.html#class-particlesmaterial" target="_blank">Godot online documentation: ParticlesMaterial</a>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/en/tags/godot/">Godot</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/tutorials/">Tutorials</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/2d/">2D</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/top-down/">Top-down</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/shooter/">shooter</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/guns/">Guns</a></li>
+    </ul>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Four types of guns for top-down shooting made by Godot on twitter"
+        href="https://twitter.com/intent/tweet/?text=Four%20types%20of%20guns%20for%20top-down%20shooting%20made%20by%20Godot&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0006_guns_of_topdown_shooter%2f&amp;hashtags=Godot%2cGodotEngine%2cGameDev%2cTutorials%2c2D%2cTop-down%2cshooter%2cGuns">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Four types of guns for top-down shooting made by Godot on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0006_guns_of_topdown_shooter%2f&amp;title=Four%20types%20of%20guns%20for%20top-down%20shooting%20made%20by%20Godot&amp;summary=Four%20types%20of%20guns%20for%20top-down%20shooting%20made%20by%20Godot&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0006_guns_of_topdown_shooter%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Four types of guns for top-down shooting made by Godot on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0006_guns_of_topdown_shooter%2f&title=Four%20types%20of%20guns%20for%20top-down%20shooting%20made%20by%20Godot">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Four types of guns for top-down shooting made by Godot on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0006_guns_of_topdown_shooter%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Four types of guns for top-down shooting made by Godot on whatsapp"
+        href="https://api.whatsapp.com/send?text=Four%20types%20of%20guns%20for%20top-down%20shooting%20made%20by%20Godot%20-%20https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0006_guns_of_topdown_shooter%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Four types of guns for top-down shooting made by Godot on telegram"
+        href="https://telegram.me/share/url?text=Four%20types%20of%20guns%20for%20top-down%20shooting%20made%20by%20Godot&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0006_guns_of_topdown_shooter%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://www.peanuts-code.com/en/">Peanuts Code</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
