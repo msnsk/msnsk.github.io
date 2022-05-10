@@ -10,20 +10,29 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 May 2022 22:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 May 2022 02:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>2D</title>
-      <link>https://www.peanuts-code.com/en/tags/2d/</link>
-      <pubDate>Sat, 07 May 2022 22:05:00 +0900</pubDate>
+      <title>biginner</title>
+      <link>https://www.peanuts-code.com/en/tags/biginner/</link>
+      <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
       
-      <guid>https://www.peanuts-code.com/en/tags/2d/</guid>
+      <guid>https://www.peanuts-code.com/en/tags/biginner/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blog</title>
+      <link>https://www.peanuts-code.com/en/tags/blog/</link>
+      <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/blog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GameDev</title>
       <link>https://www.peanuts-code.com/en/tags/gamedev/</link>
-      <pubDate>Sat, 07 May 2022 22:05:00 +0900</pubDate>
+      <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/gamedev/</guid>
       <description></description>
@@ -32,7 +41,7 @@
     <item>
       <title>Godot</title>
       <link>https://www.peanuts-code.com/en/tags/godot/</link>
-      <pubDate>Sat, 07 May 2022 22:05:00 +0900</pubDate>
+      <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/godot/</guid>
       <description></description>
@@ -41,9 +50,45 @@
     <item>
       <title>GodotEngine</title>
       <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
-      <pubDate>Sat, 07 May 2022 22:05:00 +0900</pubDate>
+      <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IndieDev</title>
+      <link>https://www.peanuts-code.com/en/tags/indiedev/</link>
+      <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/indiedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NoExperience</title>
+      <link>https://www.peanuts-code.com/en/tags/noexperience/</link>
+      <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/noexperience/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Post</title>
+      <link>https://www.peanuts-code.com/en/tags/post/</link>
+      <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/post/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>2D</title>
+      <link>https://www.peanuts-code.com/en/tags/2d/</link>
+      <pubDate>Sat, 07 May 2022 22:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/2d/</guid>
       <description></description>
     </item>
     
@@ -84,33 +129,6 @@
     </item>
     
     <item>
-      <title>blog</title>
-      <link>https://www.peanuts-code.com/en/tags/blog/</link>
-      <pubDate>Wed, 27 Apr 2022 02:44:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>IndieDev</title>
-      <link>https://www.peanuts-code.com/en/tags/indiedev/</link>
-      <pubDate>Wed, 27 Apr 2022 02:44:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/indiedev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>post</title>
-      <link>https://www.peanuts-code.com/en/tags/post/</link>
-      <pubDate>Wed, 27 Apr 2022 02:44:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/post/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Search</title>
       <link>https://www.peanuts-code.com/en/tags/search/</link>
       <pubDate>Wed, 27 Apr 2022 02:44:00 +0900</pubDate>
@@ -134,42 +152,6 @@
       <pubDate>Sun, 16 Jan 2022 16:56:41 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/age/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>biginner</title>
-      <link>https://www.peanuts-code.com/en/tags/biginner/</link>
-      <pubDate>Sun, 16 Jan 2022 16:56:41 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/biginner/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>game dev</title>
-      <link>https://www.peanuts-code.com/en/tags/game-dev/</link>
-      <pubDate>Sun, 16 Jan 2022 16:56:41 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/game-dev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>indie dev</title>
-      <link>https://www.peanuts-code.com/en/tags/indie-dev/</link>
-      <pubDate>Sun, 16 Jan 2022 16:56:41 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/indie-dev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>no experience</title>
-      <link>https://www.peanuts-code.com/en/tags/no-experience/</link>
-      <pubDate>Sun, 16 Jan 2022 16:56:41 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/no-experience/</guid>
       <description></description>
     </item>
     
