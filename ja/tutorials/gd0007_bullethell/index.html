@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="ja" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Godot で作る弾幕シューティングの弾幕 | Peanuts Code</title>
+<meta name="keywords" content="Godot, GodotEngine, ゲーム開発, チュートリアル, 2D, トップダウン, 見下ろし型, シューティング, 弾幕" />
+<meta name="description" content="今回のチュートリアルでは、弾幕シューティングゲームの「弾幕」を作っていく。弾幕というのは、敵キャラクターから放たれる大量の弾（またはそれに類似する遠隔攻撃）のことで、弾が幕のように隙間なく飛んでくるので「弾幕」という。プレイヤーはその隙間を縫うようにうまくかわしながら、敵キャラクターを射撃して倒していくゲームを弾幕シューティングゲームという。単に弾幕をかわすことに特化したゲームもある。イメージに合う宇宙船や戦闘機をモチーフにしたゲームが多いのも特徴だ（今回は魔法使いとモンスターの地上戦だが）。
+このチュートリアルでは、弾幕の作成のみにフォーカスする。また、弾幕も様々な形状があるが、今回取り扱うのは回転式の弾幕だ。
+ Environment">
+<meta name="author" content="Masanao Sako">
+<link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/" />
+<meta name="google-site-verification" content="XYZabc" />
+<meta name="yandex-verification" content="XYZabc" />
+<meta name="msvalidate.01" content="XYZabc" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="/images/logomark.png" as="image">
+<link rel="icon" href="https://www.peanuts-code.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.peanuts-code.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.peanuts-code.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.peanuts-code.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.99.1" />
+<link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-DK0NK2RTTW', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="Godot で作る弾幕シューティングの弾幕" />
+<meta property="og:description" content="今回のチュートリアルでは、弾幕シューティングゲームの「弾幕」を作っていく。弾幕というのは、敵キャラクターから放たれる大量の弾（またはそれに類似する遠隔攻撃）のことで、弾が幕のように隙間なく飛んでくるので「弾幕」という。プレイヤーはその隙間を縫うようにうまくかわしながら、敵キャラクターを射撃して倒していくゲームを弾幕シューティングゲームという。単に弾幕をかわすことに特化したゲームもある。イメージに合う宇宙船や戦闘機をモチーフにしたゲームが多いのも特徴だ（今回は魔法使いとモンスターの地上戦だが）。
+このチュートリアルでは、弾幕の作成のみにフォーカスする。また、弾幕も様々な形状があるが、今回取り扱うのは回転式の弾幕だ。
+ Environment" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/" />
+<meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0007_BulletHell/img20.gif" /><meta property="article:section" content="tutorials" />
+<meta property="article:published_time" content="2022-05-21T17:10:00&#43;09:00" />
+<meta property="article:modified_time" content="2022-05-21T17:10:00&#43;09:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0007_BulletHell/img20.gif" />
+<meta name="twitter:title" content="Godot で作る弾幕シューティングの弾幕"/>
+<meta name="twitter:description" content="今回のチュートリアルでは、弾幕シューティングゲームの「弾幕」を作っていく。弾幕というのは、敵キャラクターから放たれる大量の弾（またはそれに類似する遠隔攻撃）のことで、弾が幕のように隙間なく飛んでくるので「弾幕」という。プレイヤーはその隙間を縫うようにうまくかわしながら、敵キャラクターを射撃して倒していくゲームを弾幕シューティングゲームという。単に弾幕をかわすことに特化したゲームもある。イメージに合う宇宙船や戦闘機をモチーフにしたゲームが多いのも特徴だ（今回は魔法使いとモンスターの地上戦だが）。
+このチュートリアルでは、弾幕の作成のみにフォーカスする。また、弾幕も様々な形状があるが、今回取り扱うのは回転式の弾幕だ。
+ Environment"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Tutorials",
+      "item": "https://www.peanuts-code.com/ja/tutorials/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Godot で作る弾幕シューティングの弾幕",
+      "item": "https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Godot で作る弾幕シューティングの弾幕",
+  "name": "Godot で作る弾幕シューティングの弾幕",
+  "description": "今回のチュートリアルでは、弾幕シューティングゲームの「弾幕」を作っていく。弾幕というのは、敵キャラクターから放たれる大量の弾（またはそれに類似する遠隔攻撃）のことで、弾が幕のように隙間なく飛んでくるので「弾幕」という。プレイヤーはその隙間を縫うようにうまくかわしながら、敵キャラクターを射撃して倒していくゲームを弾幕シューティングゲームという。単に弾幕をかわすことに特化したゲームもある。イメージに合う宇宙船や戦闘機をモチーフにしたゲームが多いのも特徴だ（今回は魔法使いとモンスターの地上戦だが）。\nこのチュートリアルでは、弾幕の作成のみにフォーカスする。また、弾幕も様々な形状があるが、今回取り扱うのは回転式の弾幕だ。\n Environment",
+  "keywords": [
+    "Godot", "GodotEngine", "ゲーム開発", "チュートリアル", "2D", "トップダウン", "見下ろし型", "シューティング", "弾幕"
+  ],
+  "articleBody": "今回のチュートリアルでは、弾幕シューティングゲームの「弾幕」を作っていく。弾幕というのは、敵キャラクターから放たれる大量の弾（またはそれに類似する遠隔攻撃）のことで、弾が幕のように隙間なく飛んでくるので「弾幕」という。プレイヤーはその隙間を縫うようにうまくかわしながら、敵キャラクターを射撃して倒していくゲームを弾幕シューティングゲームという。単に弾幕をかわすことに特化したゲームもある。イメージに合う宇宙船や戦闘機をモチーフにしたゲームが多いのも特徴だ（今回は魔法使いとモンスターの地上戦だが）。\nこのチュートリアルでは、弾幕の作成のみにフォーカスする。また、弾幕も様々な形状があるが、今回取り扱うのは回転式の弾幕だ。\n Environment \nこのチュートリアルは以下の環境で作成しました。\n・Godot のバージョン: 3.4.2\n・コンピュータのOS: macOS 11.6.5\n このチュートリアルのプロジェクトファイルは GitHubリポジトリ  に置いている。.zipファイルをダウンロードしていただき、「Start」フォルダの中の「project.godot」ファイルを Godot Engine にインポートしていただければ、下準備だけ完了したプロジェクトから開始できる。また、取り急ぎ完成形を確認されたい場合は「End」フォルダの方の「project.godot」ファイルをインポートしていただければOKだ。\nなお、今回プロジェクトにインポートしてあるアセットは全て KENNEY（ケニー）  のサイトからダウンロードさせていただいた。今回利用したのは 1-Bit Pack  というアセットパックだ。この素晴らしすぎる無料の素材に感謝せずにはいられない。\nさて、Godot Engine で「Start」フォルダの方のプロジェクトを開くと、あらかじめ以下は作成済みの状態になっている。\n プレイヤーキャラクター（魔法使い） プレイヤーキャラクターの遠距離攻撃（魔法） 敵キャラクター（モンスター、今回はこれに弾幕を放たせる） ゲームワールド（上記のオブジェクトが存在するゲームの世界）  まずは一度、下準備だけ完了している「Start」フォルダの方のプロジェクトを実行してどのような状態か確認してみてほしい。\nゲームの設定は以下のようになっている。\n プレイヤーキャラクターは移動操作と魔法の遠隔攻撃が可能。 プレイヤーキャラクターは敵キャラクターの弾が10回ヒットしたら死ぬ。 プレイヤーキャラクターが死んだらゲームオーバー（自動的にデバッグパネルが閉じる）。 敵キャラクターは現時点では移動のみ可能。 敵キャラクターは2秒おきにプレイヤーキャラクターの方へ向かってくる。 敵キャラクターは魔法が5回ヒットすると死ぬ。 敵キャラクターに魔法がヒットして赤白点滅している間は魔法が効かない。 敵キャラクターが死ぬと、次の敵キャラクターがプレイヤーキャラクターから半径50px以内に出現する。 敵キャラクターの見た目は毎回ランダムで変わる プレイヤーキャラクターの魔法は放たれてから1秒後に消える。 ゲームの世界は無制限に移動できる。   \n (adsbygoogle = window.adsbygoogle || []).push({});   弾を作る 弾幕を作るにはそれを構成する一つひとつの弾が必要だ。ということで、まずは弾のシーンから作成していく。\nシーンを作成する 以下の手順で弾のシーンを新規で作成する。\n 「シーン」メニュー＞「新規シーン」を選択する。 「ルートノードを生成」にて「その他のノード」を選択する。 「Area2D」クラスのノードをルートノードとして選択。 ルートノード「Area2D」の名前を「Bullet」に変更する。 一旦ここでシーンを保存しておく。ファイルパスを「res://Enemy/Bullet.tscn」とする。  シーンにノードを追加する 次にルートノード「Bullet」に子ノードを追加していく。\n ルートノード「Bullet」に「Sprite」クラスのノードを追加する。これは弾の見た目だ。 ルートノード「Bullet」に「CollisionShape2D」クラスのノードを追加する。これは弾が物理ボディと衝突したことを検知するために利用する。 ルートノード「Bullet」に「VisibilityNotifier2D」クラスのノードを追加する。これは弾が画面外に出たことを検知するために利用する。   公式オンラインドキュメント: \nVisibilityNotifier2D \n シーンツリーは以下のようになったはずだ。\nノードのプロパティを編集する 続けてそれぞれのノードのプロパティを編集していく。\nBullet（Area2D）ノード このルートノードのプロパティの編集は不要。\nSprite ノード 今回は、たくさんのテクスチャをまとめた1枚のスプライトシートから使いたいテクスチャの範囲を指定してスプライトのテクスチャを設定する方法を採用する。\n インスペクターにて、「Sprite」ノードの「Texture」プロパティにリソースファイル「res://colored-transparent_packed.png」を適用する。\n 「Region」＞「Enabled」をオンにする。\n エディタ下部の「テクスチャ領域」パネルを開き、スプライトシートの中の利用したいテクスチャの領域を指定する。\n まず、見やすいようにパネルをエディタ最上部まで広げたら、スプライトシートを見やすい大きさまで拡大する。 「テクスチャ領域」パネル上部の「snapモード」で「グリッドスナップ」を選択する。\n 同じくパネル上部の「ステップ」を 16px 16px にする。これでグリッドのサイズがスプライトシートのスプライトと同じサイズになる。\n スプライトシート上で弾に適用したいテクスチャを選択する。このチュートリアルではドクロのテクスチャを選択した。モンスターがドクロの弾幕を放ってくるというのが、なんとも恐怖である。\n   インスペクターに戻り、「Visibility」＞「Modulate」プロパティで色をお好みの弾の色に変更する。ここではサンプルとしてやや不気味な紫系の色 #9da4d8 にした。\n  CollisionShape2D ノード  インスペクターにて、「Shape」プロパティに「新規CircleShape2D」リソースを適用する。\n 2Dワークスペースにて、コリジョン形状を「Sprite」ノードのテクスチャのサイズに合わせる。\nインスペクターで直接入力する場合は、「CircleShape2D」リソースの「Radius」プロパティを 8 にする。\n  VisibilityNotifier2D ノード このノードのプロパティの編集は不要。\nスクリプトで弾を制御する 次はスクリプトをプログラミングして、弾を制御する。ルートノード「Bullet」に新しいスクリプトをアタッチしよう。ファイルパスを「res://Enemy/Bullet.gd」として作成する。\nまずは以下のようにスクリプトを編集しよう。\n### Bullet.gd ### extends Node2D  # 弾の秒速 export var speed = 150  # 物理プロセス（60回/秒呼ばれるメソッド） func _physics_process(delta): \t# 現在の弾の位置に現在の弾の方向×秒速×1フレームの時間を加算して毎フレーム弾を移動させる \tposition += transform.x * speed * delta \n次に、ルートノード「Bullet」は Area2D クラスなので、このシグナルを利用して、物理ボディに衝突したら弾が消えるようにする。さっそくインスペクターで「Bullet」を選択し、ノードドック＞シグナルタブでシグナル「body_entered(body)」をこの「Bullet.gd」スクリプトに接続しよう。\nシグナルを接続して生成されたメソッド_on_Bullet_body_entered内でメソッドqueue_freeを実行する。\n### Bullet.gd ### # 物理ボディが衝突したら発信されるシグナルで呼ばれるメソッド func _on_Bullet_body_entered(body): \t# Bullet を解放する \tqueue_free() \n同様に、「VisibilityNotifier2D」ノードのシグナルを利用して、画面外に出たら弾が消えるようにする。「VisibilityNotifier2D」のシグナル「screen_exited()」をこの「Bullet.gd」スクリプトに接続しよう。\nシグナルを接続して生成されたメソッド_on_VisibilityNotifier2D_screen_exitedの中にメソッドqueue_freeを実行する。\n### Bullet.gd ### # 画面外に出たら発信されるシグナルで呼ばれるメソッド func _on_VisibilityNotifier2D_screen_exited(): \t#\tBullet を解放する \tqueue_free() これで弾の完成だ。このあとは、作成した弾シーンのインスタンスを敵キャラクターのシーンツリーに追加する形で、敵キャラクターが弾を放てるようにしていく。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   弾幕を作る スクリプトで弾幕を制御する ここからは、敵キャラクターの「Enemy.tscn」シーンのルートノード「Enemy」にアタッチしているスクリプト「Enemy.gd」を編集して、弾幕を制御していく。スクリプトエディタで「Enemy.gd」を開いたら、まずは必要なプロパティを定義しよう。以下のコードの中の「# 追加」とコメントしている箇所のコードを追加してほしい。\n### Enemy.gd ### extends KinematicBody2D  signal died  # 追加：プリロードしたBullet.tscnシーンファイルの参照 const bullet_scn = preload(\"res://Enemy/Bullet.tscn\")  var enemy_life = 5 var enemy_speed = 800 var delta_count = 0  # 追加：Enemyの中心から弾の発射位置までの距離 var radius = 20 # 追加：Enemyを中心とした弾の発射位置の回転速度 export var rotate_speed = 40 # 追加：弾を発射する間隔（秒） export var interval = 0.4 # 追加：一度に発射する弾の数 export var spawning_count = 4 コード内のコメントだけでは少しイメージしにくいかもしれないので、図をつけておく。\nご覧の通り、「Enemy」を中心とし、プロパティradiusの値を半径とした円をイメージするとわかりやすい。プロパティspawning_countで指定した一度に発射される弾のうち、1つ目の発射位置を必ず（x: radius, y: 0）として、２つ目以降の弾はそこからこの円の円周上に等間隔（角度差）で配置されるようにする。それらの弾の発射位置をプロパティintervalで指定した秒数ごとに、時計回りにプロパティrotate_speed分だけずらしては発射、ずらしては発射することで弾幕が生成される仕組みだ。\n続いて、シーンが読み込まれた時に最初に呼ばれる_readyメソッドを編集する。メソッド内に、弾幕生成に必要な初期化を行うためのコードを追加する。上の図をイメージしながら確認いただくとわかりやすいはずだ。\n### Enemy.gd ### func _ready(): \tanim_player.play(\"spawn\") \t\trandomize() \tsprite.frame = randi() % sprite.hframes # int, max: 5 \t\t# 以下全て追加： \t# 一度に発射する弾の間隔（角度差）を step として定義する \t# step は 180° x 2 = 360° を プロパティSpawning_countの値で割った値 \tvar step = PI * 2 / spawning_count \t# spawning_count の値の数だけループ（spawning_count が 4 の場合は i に 0 ~ 3 が順に入る） \tfor i in spawning_count: \t# 弾の発射位置の目印として使う Node2Dノードを新規作成し、それを spawn_point として定義する \tvar spawn_point = Node2D.new() \t# 発射位置を pos として定義する \t# pos は基準位置(x: radius, y: 0)から(step x i)だけ回転した位置とする \tvar pos = Vector2(radius, 0).rotated(step * i) \t# spawn_pointを弾の発射位置に配置する \tspawn_point.position = pos \t# spawn_pointの向きを正のx軸から発射位置までの角度に合わせる \tspawn_point.rotation = pos.angle() \t# spawn_point を回転するためのノードとして予め用意してある Rotater ノード（Node2D）の子にする \trotater.add_child(spawn_point)  \t# Timer ノードの wait_time プロパティを interval プロパティの値でセット \ttimer.wait_time = interval \t# AnimationPlayerノードのアニメーションが終わるまで待機 \tyield(anim_player, \"animation_finished\") \t# Timerノードのタイマーを開始する \ttimer.start() \nあとは「Timer」ノードがタイムアウトするたびに、先に作った「Bullet.tscn」シーンのインスタンスを「Rotater」ノードの子ノード（上のコードのspawn_point）と同じ位置に配置してあげれば、自動的に弾が飛んでいくようになるはずだ。では「Timer」ノードの「timeout」シグナルで呼ばれる_on_Timer_timeoutメソッドを編集しよう。下準備にてシグナルはすでに接続済みなので、メソッド内のpassを以下の内容で置き換えてほしい。\n### Enemy.gd ### # Timer ノードの timeout シグナルで呼ばれるメソッド func _on_Timer_timeout(): \t# Rotaterノードの子ノードに対してループ処理 \tfor node2d in rotater.get_children(): \t# Bullet.tscn のインスタンス \tvar bullet = bullet_scn.instance() \t# Bullet インスタンスノードを Enemy ノードではなく、その親ノード（Worldノード）の子にする \tget_parent().add_child(bullet) \t# Bullet インスタンスの位置を Rotater の子ノードの位置と同じにする \tbullet.position = node2d.global_position \t# Bullet インスタンスの方向を Rotater の子ノードの方向と同じにする \tbullet.rotation = node2d.global_rotation 発射位置は変わらないが、ひとまずこれで指定した弾の数だけ指定した時間差で発射されるはずだ。プロジェクトを実行してみよう。\nうまくいったので、次は弾の発射位置を少しずつ回転させて、より弾幕らしくしていこう。次は_physics_processメソッドに少しコードを更新する。以下のコードの「# 追加」とコメントしている箇所を追加してほしい。\n### Enemy.gd ### func _physics_process(delta): \tdelta_count += delta \tif delta_count  2: \tdelta_count = 0 \tif get_parent().has_node(\"Player\"): \tanim_player.stop() \tanim_player.play(\"move\") \tvar direction = global_position.direction_to(get_parent().get_node(\"Player\").global_position) \tvar velocity = direction * enemy_speed \tvelocity = move_and_slide(velocity) \t\t# 追加：次の方向（角度）を new_rotation として定義 \t# new_rotation は Rotater ノードの現在の方向（角度） x rotate_speed x 1フレームの時間とする \tvar new_rotation = rotater.rotation + rotate_speed * delta \t# 追加：new_rotation を 360 で割った余り（角度）だけ Rotater ノードを回転する \trotater.rotate(fmod(new_rotation, 360)) \nこれで弾の発射位置がintervalプロパティに指定している0.4秒ごとに回転するはずだ。期待通りの挙動になるか、プロジェクトを再度実行して確認してみよう。\n弾幕をカスタマイズする スクリプト内で定義したプロパティも、最初にexportキーワードをつけていればインスペクターで手軽に値を編集可能だ。値を変更して、さっきのとは異なる弾幕を作成してみよう。\n  サンプル1\n Rotate Speed: 45 Interval: 0.5 Spawning Count: 10\n    サンプル2\n Rotate Speed: 10 Interval: 0.1 Spawning Count: 8\n    サンプル2の方は、かなり鬼畜なゲームになってしまった。しかし、なんともスリリングで楽しい。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   ランダム性を追加する 下準備時点で、敵キャラクターの見た目（スプライトのテクスチャ）は、6種類からランダムで決まるようにコーディングしている。弾幕のプロパティもランダムで決まるようにすれば、毎回どんな弾幕が放たれるのか予想できないので、面白いかもしれない。実はここまでに記述したスクリプトに少しコードを足すだけで、意外と簡単に実装できるのだ。\nではスクリプトエディタで「Enemy.gd」スクリプトを開いてほしい。まずは、すでに用意している弾幕を形成するための各プロパティの上限値と下限値を別のプロパティで定義する。以下のコードの「# 追加」および「# 変更」とコメントしている行を更新しよう。\n### Enemy.gd ### var radius = 20 export var rotate_speed: float # 変更：型だけ定義して値を未定義にする export var max_rotate_speed = 80 # 追加 export var min_rotate_speed = 20 # 追加 export var interval: float # 変更：型だけ定義して値を未定義にする export var max_interval = 0.8 # 追加 export var min_interval = 0.2 # 追加 export var spawning_count: int # 変更：型だけ定義して値を未定義にする export var max_spawning_count = 10 # 追加 export var min_spawning_count = 2 # 追加 \n次に、シーンが読み込まれたタイミングで各プロパティにランダムな値を適用する必要があるので、_readyメソッドを編集する。「# 追加」のコメントがある箇所が更新箇所だ。\nfunc _ready(): \tanim_player.play(\"spawn\") \t\t# ランダム値生成を有効にする \trandomize() \tsprite.frame = randi() % sprite.hframes # int, max: 5 \t\t# 追加：min_rotate_speed を下限、max_rotate_speed を上限にしたランダム小数を rotate_speed に代入 \trotate_speed = rand_range(min_rotate_speed, max_rotate_speed) \t# 追加：min_interval を下限、max_interval を上限にしたランダム小数を interval に代入 \tinterval = rand_range(min_interval, max_interval) \t# 追加：この後の計算で上限値が指定した値より -1 されるので先に +1 して調整 \tmax_spawning_count += 1 \t# 追加：min_spawning_count を下限、max_spawning_count を上限にしたランダム整数を spawning_count に代入 \tspawning_count = randi() % max_spawning_count + min_spawning_count # int \t\tvar step = PI * 2 / spawning_count \tfor i in spawning_count: \tvar spawn_point = Node2D.new() \tvar pos = Vector2(radius, 0).rotated(step * i) \tspawn_point.position = pos \tspawn_point.rotation = pos.angle() \trotater.add_child(spawn_point)  \ttimer.wait_time = interval \tyield(anim_player, \"animation_finished\") \ttimer.start() 少しランダム値の生成について補足しておく。\nまずrand_rangeはその第一引数を下限、第二引数を上限としたランダムな小数を返す。そのため、型を小数で定義しているプロパティrotate_speedとintervalで利用した。\n次にrandiはランダムな整数を返すメソッドだが、引数を取らないため、上限や下限を指定できない。そこで、返された値を上限値で割った時の余りが 0 以上かつ (上限値 -1) 以下 になることを利用する（最大値が指定した上限値 -1 なので、1行前のコードmax_spawning_count += 1で +1 している）。%（モジュロ） の記号を利用すれば a % b で a を b で割った時の余りが求められる。さらにその値に c を足して a % b + c とすれば、c より小さな値にはならない。つまり上限と下限のあるランダムな整数を求める場合は randi() % 上限値 + 下限値 で表すことができる。ただし返される値の最大値が上限値 -1 であることを覚えておこう。\nなお、今回は下準備にてrandomizeメソッドを先に記述しておいたが、これがないと毎回同じ結果になるので、ランダム値を返すメソッドを利用する場合は必ず_readyメソッドの冒頭に記述することも覚えておくと良いだろう。\nでは最後に、出現するモンスターごとに異なる弾幕になるか、プロジェクトを実行して確認してみよう。\n \n (adsbygoogle = window.adsbygoogle || []).push({});   おわりに 今回のチュートリアルでは、弾幕シューティングの弾幕を作った。今回のような回転式の弾幕の場合、以下がポイントになるだろう。\n 円の半径、発射位置の回転速度、発射の時間差、同時発射弾数をプロパティでセット 回転用のノードを用意しておく 発射位置を円の半径と同時発射弾数から計算 回転用ノードに発射位置の目印用の子ノードを追加する タイマーの時間を発射の時間差にセット 物理プロセスにて常に回転用ノードを回転速度に合わせて回転させる タイマーがタイムアウトしたら弾のインスタンスを目印用ノードの位置に生成する  他にも実装方法はあるはずなので、いろいろ試して良いものを最終的に採用していただければと思う。\nまた、実際の弾幕シューティングゲームでは、今回のような回転式のものばかりではなく、波型、扇型など、多様だ。気になる場合はぜひ調べてみてほしい。\n リンク  Godot Docs: 行列と変換  YouTube: How to Make a Bullet Hell Projectile Pattern Generator in Godot  YouTube: How to Make a Bullet Hell Game in Godot [P1] - Basic Collisions   ",
+  "wordCount" : "731",
+  "inLanguage": "ja",
+  "image":"https://www.peanuts-code.com/images/tutorials/gd0007_BulletHell/img20.gif","datePublished": "2022-05-21T17:10:00+09:00",
+  "dateModified": "2022-05-21T17:10:00+09:00",
+  "author":{
+    "@type": "Person",
+    "name": "Masanao Sako"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Peanuts Code",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.peanuts-code.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://www.peanuts-code.com/ja/" accesskey="h" title="Peanuts Code (Alt + H)">
+                <img src="/images/logomark.png" alt="logo" aria-label="logo"
+                    height="35">Peanuts Code</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://www.peanuts-code.com/en/" title="English"
+                            aria-label="English">En</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://www.peanuts-code.com/ja/" title="ホーム">
+                    <span>ホーム</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/posts/" title="ブログ">
+                    <span>ブログ</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/tutorials/" title="チュートリアル">
+                    <span>チュートリアル</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/tags/" title="タグ">
+                    <span>タグ</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/ja/about/" title="アバウト">
+                    <span>アバウト</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/ja/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/">Tutorials</a></div>
+    <h1 class="post-title">
+      Godot で作る弾幕シューティングの弾幕
+    </h1>
+    <div class="post-meta">2022-05-21&nbsp;·&nbsp;4 分&nbsp;·&nbsp;Masanao Sako
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0007_BulletHell/img20.gif" alt="Godot で作る弾幕シューティングの弾幕">
+        
+</figure><div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目次</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%bc%be%e3%82%92%e4%bd%9c%e3%82%8b" aria-label="弾を作る">弾を作る</a><ul>
+                        
+                <li>
+                    <a href="#%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e6%88%90%e3%81%99%e3%82%8b" aria-label="シーンを作成する">シーンを作成する</a></li>
+                <li>
+                    <a href="#%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ab%e3%83%8e%e3%83%bc%e3%83%89%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b" aria-label="シーンにノードを追加する">シーンにノードを追加する</a></li>
+                <li>
+                    <a href="#%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ae%e3%83%97%e3%83%ad%e3%83%91%e3%83%86%e3%82%a3%e3%82%92%e7%b7%a8%e9%9b%86%e3%81%99%e3%82%8b" aria-label="ノードのプロパティを編集する">ノードのプロパティを編集する</a><ul>
+                        
+                <li>
+                    <a href="#bulletarea2d%e3%83%8e%e3%83%bc%e3%83%89" aria-label="Bullet（Area2D）ノード">Bullet（Area2D）ノード</a></li>
+                <li>
+                    <a href="#sprite-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="Sprite ノード">Sprite ノード</a></li>
+                <li>
+                    <a href="#collisionshape2d-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="CollisionShape2D ノード">CollisionShape2D ノード</a></li>
+                <li>
+                    <a href="#visibilitynotifier2d-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="VisibilityNotifier2D ノード">VisibilityNotifier2D ノード</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%81%a7%e5%bc%be%e3%82%92%e5%88%b6%e5%be%a1%e3%81%99%e3%82%8b" aria-label="スクリプトで弾を制御する">スクリプトで弾を制御する</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bc%be%e5%b9%95%e3%82%92%e4%bd%9c%e3%82%8b" aria-label="弾幕を作る">弾幕を作る</a><ul>
+                        
+                <li>
+                    <a href="#%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%81%a7%e5%bc%be%e5%b9%95%e3%82%92%e5%88%b6%e5%be%a1%e3%81%99%e3%82%8b" aria-label="スクリプトで弾幕を制御する">スクリプトで弾幕を制御する</a></li>
+                <li>
+                    <a href="#%e5%bc%be%e5%b9%95%e3%82%92%e3%82%ab%e3%82%b9%e3%82%bf%e3%83%9e%e3%82%a4%e3%82%ba%e3%81%99%e3%82%8b" aria-label="弾幕をカスタマイズする">弾幕をカスタマイズする</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e3%83%a9%e3%83%b3%e3%83%80%e3%83%a0%e6%80%a7%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b" aria-label="ランダム性を追加する">ランダム性を追加する</a></li>
+                <li>
+                    <a href="#%e3%81%8a%e3%82%8f%e3%82%8a%e3%81%ab" aria-label="おわりに">おわりに</a></li>
+                <li>
+                    <a href="#%e3%83%aa%e3%83%b3%e3%82%af" aria-label="リンク">リンク</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>今回のチュートリアルでは、弾幕シューティングゲームの「弾幕」を作っていく。弾幕というのは、敵キャラクターから放たれる大量の弾（またはそれに類似する遠隔攻撃）のことで、弾が幕のように隙間なく飛んでくるので「弾幕」という。プレイヤーはその隙間を縫うようにうまくかわしながら、敵キャラクターを射撃して倒していくゲームを弾幕シューティングゲームという。単に弾幕をかわすことに特化したゲームもある。イメージに合う宇宙船や戦闘機をモチーフにしたゲームが多いのも特徴だ（今回は魔法使いとモンスターの地上戦だが）。</p>
+<p>このチュートリアルでは、弾幕の作成のみにフォーカスする。また、弾幕も様々な形状があるが、今回取り扱うのは回転式の弾幕だ。</p>
+<blockquote>
+<p><em><strong><span style="color:salmon">Environment</span>
+</strong><br>
+このチュートリアルは以下の環境で作成しました。</em><br>
+・<em>Godot のバージョン: <strong>3.4.2</strong></em><br>
+・<em>コンピュータのOS: <strong>macOS 11.6.5</strong></em></p>
+</blockquote>
+<br>
+<p>このチュートリアルのプロジェクトファイルは <strong><a href="https://github.com/msnsk/BulletHell.git" target="_blank">GitHubリポジトリ</a>
+</strong> に置いている。.zipファイルをダウンロードしていただき、「Start」フォルダの中の「project.godot」ファイルを Godot Engine にインポートしていただければ、下準備だけ完了したプロジェクトから開始できる。また、取り急ぎ完成形を確認されたい場合は「End」フォルダの方の「project.godot」ファイルをインポートしていただければOKだ。</p>
+<p>なお、今回プロジェクトにインポートしてあるアセットは全て <strong><a href="https://www.kenney.nl/assets" target="_blank">KENNEY（ケニー）</a>
+</strong> のサイトからダウンロードさせていただいた。今回利用したのは <strong><a href="https://www.kenney.nl/assets/bit-pack" target="_blank">1-Bit Pack</a>
+</strong> というアセットパックだ。この素晴らしすぎる無料の素材に感謝せずにはいられない。</p>
+<br>
+<p>さて、Godot Engine で「Start」フォルダの方のプロジェクトを開くと、あらかじめ以下は作成済みの状態になっている。</p>
+<ol>
+<li><strong>プレイヤーキャラクター（魔法使い）</strong></li>
+<li><strong>プレイヤーキャラクターの遠距離攻撃（魔法）</strong></li>
+<li><strong>敵キャラクター（モンスター、今回はこれに弾幕を放たせる）</strong></li>
+<li><strong>ゲームワールド（上記のオブジェクトが存在するゲームの世界）</strong></li>
+</ol>
+<br>
+<p>まずは一度、下準備だけ完了している「Start」フォルダの方のプロジェクトを実行してどのような状態か確認してみてほしい。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img1.gif" alt="プロジェクトを実行"  />
+</p>
+<p>ゲームの設定は以下のようになっている。</p>
+<ul>
+<li>プレイヤーキャラクターは移動操作と魔法の遠隔攻撃が可能。</li>
+<li>プレイヤーキャラクターは敵キャラクターの弾が10回ヒットしたら死ぬ。</li>
+<li>プレイヤーキャラクターが死んだらゲームオーバー（自動的にデバッグパネルが閉じる）。</li>
+<li>敵キャラクターは現時点では移動のみ可能。</li>
+<li>敵キャラクターは2秒おきにプレイヤーキャラクターの方へ向かってくる。</li>
+<li>敵キャラクターは魔法が5回ヒットすると死ぬ。</li>
+<li>敵キャラクターに魔法がヒットして赤白点滅している間は魔法が効かない。</li>
+<li>敵キャラクターが死ぬと、次の敵キャラクターがプレイヤーキャラクターから半径50px以内に出現する。</li>
+<li>敵キャラクターの見た目は毎回ランダムで変わる</li>
+<li>プレイヤーキャラクターの魔法は放たれてから1秒後に消える。</li>
+<li>ゲームの世界は無制限に移動できる。</li>
+</ul>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="弾を作る">弾を作る<a hidden class="anchor" aria-hidden="true" href="#弾を作る">#</a></h1>
+<p>弾幕を作るにはそれを構成する一つひとつの弾が必要だ。ということで、まずは弾のシーンから作成していく。</p>
+<br>
+<h2 id="シーンを作成する">シーンを作成する<a hidden class="anchor" aria-hidden="true" href="#シーンを作成する">#</a></h2>
+<p>以下の手順で弾のシーンを新規で作成する。</p>
+<ol>
+<li>「シーン」メニュー＞「新規シーン」を選択する。</li>
+<li>「ルートノードを生成」にて「その他のノード」を選択する。</li>
+<li>「Area2D」クラスのノードをルートノードとして選択。</li>
+<li>ルートノード「Area2D」の名前を「Bullet」に変更する。</li>
+<li>一旦ここでシーンを保存しておく。ファイルパスを「res://Enemy/Bullet.tscn」とする。</li>
+</ol>
+<br>
+<h2 id="シーンにノードを追加する">シーンにノードを追加する<a hidden class="anchor" aria-hidden="true" href="#シーンにノードを追加する">#</a></h2>
+<p>次にルートノード「Bullet」に子ノードを追加していく。</p>
+<ol>
+<li>ルートノード「Bullet」に「Sprite」クラスのノードを追加する。これは弾の見た目だ。</li>
+<li>ルートノード「Bullet」に「CollisionShape2D」クラスのノードを追加する。これは弾が物理ボディと衝突したことを検知するために利用する。</li>
+<li>ルートノード「Bullet」に「VisibilityNotifier2D」クラスのノードを追加する。これは弾が画面外に出たことを検知するために利用する。</li>
+</ol>
+<blockquote>
+<p><em><strong><span style="color:salmon">公式オンラインドキュメント:</span>
+</strong><br>
+<a href="https://docs.godotengine.org/ja/stable/classes/class_visibilitynotifier2d.html" target="_blank">VisibilityNotifier2D</a>
+</em></p>
+</blockquote>
+<p>シーンツリーは以下のようになったはずだ。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img2.png" alt="Bullet Scene Tree"  />
+</p>
+<br>
+<h2 id="ノードのプロパティを編集する">ノードのプロパティを編集する<a hidden class="anchor" aria-hidden="true" href="#ノードのプロパティを編集する">#</a></h2>
+<p>続けてそれぞれのノードのプロパティを編集していく。<br>
+<br></p>
+<h3 id="bulletarea2dノード">Bullet（Area2D）ノード<a hidden class="anchor" aria-hidden="true" href="#bulletarea2dノード">#</a></h3>
+<p>このルートノードのプロパティの編集は不要。<br>
+<br></p>
+<h3 id="sprite-ノード">Sprite ノード<a hidden class="anchor" aria-hidden="true" href="#sprite-ノード">#</a></h3>
+<p>今回は、たくさんのテクスチャをまとめた1枚のスプライトシートから使いたいテクスチャの範囲を指定してスプライトのテクスチャを設定する方法を採用する。</p>
+<ol>
+<li>インスペクターにて、「Sprite」ノードの「Texture」プロパティにリソースファイル「res://colored-transparent_packed.png」を適用する。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img3.png" alt="Texture property of Sprite"  />
+</li>
+<li>「Region」＞「Enabled」をオンにする。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img4.png" alt="Region&amp;gt;Enabled property of Sprite"  />
+</li>
+<li>エディタ下部の「テクスチャ領域」パネルを開き、スプライトシートの中の利用したいテクスチャの領域を指定する。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img5.png" alt="Region pannel"  />
+
+<ol>
+<li>まず、見やすいようにパネルをエディタ最上部まで広げたら、スプライトシートを見やすい大きさまで拡大する。</li>
+<li>「テクスチャ領域」パネル上部の「snapモード」で「グリッドスナップ」を選択する。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img6.png" alt="Region pannel &amp;gt; choose grid snap"  />
+</li>
+<li>同じくパネル上部の「ステップ」を 16px 16px にする。これでグリッドのサイズがスプライトシートのスプライトと同じサイズになる。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img7.png" alt="Region pannel &amp;gt; input grid step"  />
+</li>
+<li>スプライトシート上で弾に適用したいテクスチャを選択する。このチュートリアルではドクロのテクスチャを選択した。モンスターがドクロの弾幕を放ってくるというのが、なんとも恐怖である。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img8.png" alt="Region pannel Select region"  />
+</li>
+</ol>
+</li>
+<li>インスペクターに戻り、「Visibility」＞「Modulate」プロパティで色をお好みの弾の色に変更する。ここではサンプルとしてやや不気味な紫系の色 #9da4d8 にした。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img9.png" alt="Visibility&amp;gt;Modulate property"  />
+</li>
+</ol>
+<br>
+<h3 id="collisionshape2d-ノード">CollisionShape2D ノード<a hidden class="anchor" aria-hidden="true" href="#collisionshape2d-ノード">#</a></h3>
+<ol>
+<li>インスペクターにて、「Shape」プロパティに「新規CircleShape2D」リソースを適用する。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img10.png" alt="Shape property"  />
+</li>
+<li>2Dワークスペースにて、コリジョン形状を「Sprite」ノードのテクスチャのサイズに合わせる。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img11.png" alt="CollisionShape in 2D workspace"  />
+<br>
+インスペクターで直接入力する場合は、「CircleShape2D」リソースの「Radius」プロパティを 8 にする。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img12.png" alt="Visibility&amp;gt;Modulate property"  />
+</li>
+</ol>
+<br>
+<h3 id="visibilitynotifier2d-ノード">VisibilityNotifier2D ノード<a hidden class="anchor" aria-hidden="true" href="#visibilitynotifier2d-ノード">#</a></h3>
+<p>このノードのプロパティの編集は不要。</p>
+<br>
+<h2 id="スクリプトで弾を制御する">スクリプトで弾を制御する<a hidden class="anchor" aria-hidden="true" href="#スクリプトで弾を制御する">#</a></h2>
+<p>次はスクリプトをプログラミングして、弾を制御する。ルートノード「Bullet」に新しいスクリプトをアタッチしよう。ファイルパスを「res://Enemy/Bullet.gd」として作成する。</p>
+<p>まずは以下のようにスクリプトを編集しよう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Bullet.gd ###</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 弾の秒速</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">150</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 物理プロセス（60回/秒呼ばれるメソッド）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _physics_process(delta): 
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 現在の弾の位置に現在の弾の方向×秒速×1フレームの時間を加算して毎フレーム弾を移動させる</span>
+</span></span><span style="display:flex;"><span>	position <span style="color:#f92672">+=</span> transform<span style="color:#f92672">.</span>x <span style="color:#f92672">*</span> speed <span style="color:#f92672">*</span> delta
+</span></span></code></pre></div><br>
+<p>次に、ルートノード「Bullet」は Area2D クラスなので、このシグナルを利用して、物理ボディに衝突したら弾が消えるようにする。さっそくインスペクターで「Bullet」を選択し、ノードドック＞シグナルタブでシグナル「body_entered(body)」をこの「Bullet.gd」スクリプトに接続しよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img13.png" alt="connect signal body_entered"  />
+</p>
+<p>シグナルを接続して生成されたメソッド<code>_on_Bullet_body_entered</code>内でメソッド<code>queue_free</code>を実行する。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Bullet.gd ###</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 物理ボディが衝突したら発信されるシグナルで呼ばれるメソッド</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Bullet_body_entered(body):
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Bullet を解放する</span>
+</span></span><span style="display:flex;"><span>	queue_free()
+</span></span></code></pre></div><br>
+<p>同様に、「VisibilityNotifier2D」ノードのシグナルを利用して、画面外に出たら弾が消えるようにする。「VisibilityNotifier2D」のシグナル「screen_exited()」をこの「Bullet.gd」スクリプトに接続しよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img14.png" alt="connect signal screen_exited"  />
+</p>
+<p>シグナルを接続して生成されたメソッド<code>_on_VisibilityNotifier2D_screen_exited</code>の中にメソッド<code>queue_free</code>を実行する。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Bullet.gd ###</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 画面外に出たら発信されるシグナルで呼ばれるメソッド</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_VisibilityNotifier2D_screen_exited():
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#	Bullet を解放する</span>
+</span></span><span style="display:flex;"><span>	queue_free()
+</span></span></code></pre></div><p>これで弾の完成だ。このあとは、作成した弾シーンのインスタンスを敵キャラクターのシーンツリーに追加する形で、敵キャラクターが弾を放てるようにしていく。</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="弾幕を作る">弾幕を作る<a hidden class="anchor" aria-hidden="true" href="#弾幕を作る">#</a></h1>
+<h2 id="スクリプトで弾幕を制御する">スクリプトで弾幕を制御する<a hidden class="anchor" aria-hidden="true" href="#スクリプトで弾幕を制御する">#</a></h2>
+<p>ここからは、敵キャラクターの「Enemy.tscn」シーンのルートノード「Enemy」にアタッチしているスクリプト「Enemy.gd」を編集して、弾幕を制御していく。スクリプトエディタで「Enemy.gd」を開いたら、まずは必要なプロパティを定義しよう。以下のコードの中の「# 追加」とコメントしている箇所のコードを追加してほしい。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Enemy.gd ###</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">signal</span> died
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 追加：プリロードしたBullet.tscnシーンファイルの参照</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> bullet_scn <span style="color:#f92672">=</span> preload(<span style="color:#e6db74">&#34;res://Enemy/Bullet.tscn&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> enemy_life <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> enemy_speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">800</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> delta_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 追加：Enemyの中心から弾の発射位置までの距離</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> radius <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 追加：Enemyを中心とした弾の発射位置の回転速度</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> rotate_speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">40</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 追加：弾を発射する間隔（秒）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> interval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.4</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 追加：一度に発射する弾の数</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> spawning_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
+</span></span></code></pre></div><p>コード内のコメントだけでは少しイメージしにくいかもしれないので、図をつけておく。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/figure1.png" alt="figure"  />
+</p>
+<p>ご覧の通り、「Enemy」を中心とし、プロパティ<code>radius</code>の値を半径とした円をイメージするとわかりやすい。プロパティ<code>spawning_count</code>で指定した一度に発射される弾のうち、1つ目の発射位置を必ず（x: radius, y: 0）として、２つ目以降の弾はそこからこの円の円周上に等間隔（角度差）で配置されるようにする。それらの弾の発射位置をプロパティ<code>interval</code>で指定した秒数ごとに、時計回りにプロパティ<code>rotate_speed</code>分だけずらしては発射、ずらしては発射することで弾幕が生成される仕組みだ。</p>
+<br>
+<p>続いて、シーンが読み込まれた時に最初に呼ばれる<code>_ready</code>メソッドを編集する。メソッド内に、弾幕生成に必要な初期化を行うためのコードを追加する。上の図をイメージしながら確認いただくとわかりやすいはずだ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Enemy.gd ###</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;spawn&#34;</span>)
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	randomize()
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>frame <span style="color:#f92672">=</span> randi() <span style="color:#f92672">%</span> sprite<span style="color:#f92672">.</span>hframes <span style="color:#75715e"># int, max: 5</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 以下全て追加：</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 一度に発射する弾の間隔（角度差）を step として定義する</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># step は 180° x 2 = 360° を プロパティSpawning_countの値で割った値</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> step <span style="color:#f92672">=</span> PI <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">/</span> spawning_count
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># spawning_count の値の数だけループ（spawning_count が 4 の場合は i に 0 ~ 3 が順に入る）</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> spawning_count:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># 弾の発射位置の目印として使う Node2Dノードを新規作成し、それを spawn_point として定義する</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> spawn_point <span style="color:#f92672">=</span> <span style="color:#a6e22e">Node2D</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># 発射位置を pos として定義する</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># pos は基準位置(x: radius, y: 0)から(step x i)だけ回転した位置とする</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> pos <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>(radius, <span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>rotated(step <span style="color:#f92672">*</span> i)
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># spawn_pointを弾の発射位置に配置する</span>
+</span></span><span style="display:flex;"><span>		spawn_point<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> pos
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># spawn_pointの向きを正のx軸から発射位置までの角度に合わせる</span>
+</span></span><span style="display:flex;"><span>		spawn_point<span style="color:#f92672">.</span>rotation <span style="color:#f92672">=</span> pos<span style="color:#f92672">.</span>angle()
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># spawn_point を回転するためのノードとして予め用意してある Rotater ノード（Node2D）の子にする</span>
+</span></span><span style="display:flex;"><span>		rotater<span style="color:#f92672">.</span>add_child(spawn_point)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Timer ノードの wait_time プロパティを interval プロパティの値でセット</span>
+</span></span><span style="display:flex;"><span>	timer<span style="color:#f92672">.</span>wait_time <span style="color:#f92672">=</span> interval
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># AnimationPlayerノードのアニメーションが終わるまで待機</span>
+</span></span><span style="display:flex;"><span>	yield(anim_player, <span style="color:#e6db74">&#34;animation_finished&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Timerノードのタイマーを開始する</span>
+</span></span><span style="display:flex;"><span>	timer<span style="color:#f92672">.</span>start()
+</span></span></code></pre></div><br>
+<p>あとは「Timer」ノードがタイムアウトするたびに、先に作った「Bullet.tscn」シーンのインスタンスを「Rotater」ノードの子ノード（上のコードの<code>spawn_point</code>）と同じ位置に配置してあげれば、自動的に弾が飛んでいくようになるはずだ。では「Timer」ノードの「timeout」シグナルで呼ばれる<code>_on_Timer_timeout</code>メソッドを編集しよう。下準備にてシグナルはすでに接続済みなので、メソッド内の<code>pass</code>を以下の内容で置き換えてほしい。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Enemy.gd ###</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Timer ノードの timeout シグナルで呼ばれるメソッド</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Timer_timeout():
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Rotaterノードの子ノードに対してループ処理</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> node2d <span style="color:#f92672">in</span> rotater<span style="color:#f92672">.</span>get_children():
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Bullet.tscn のインスタンス</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> bullet <span style="color:#f92672">=</span> bullet_scn<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Bullet インスタンスノードを Enemy ノードではなく、その親ノード（Worldノード）の子にする</span>
+</span></span><span style="display:flex;"><span>		get_parent()<span style="color:#f92672">.</span>add_child(bullet)
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Bullet インスタンスの位置を Rotater の子ノードの位置と同じにする</span>
+</span></span><span style="display:flex;"><span>		bullet<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> node2d<span style="color:#f92672">.</span>global_position
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Bullet インスタンスの方向を Rotater の子ノードの方向と同じにする</span>
+</span></span><span style="display:flex;"><span>		bullet<span style="color:#f92672">.</span>rotation <span style="color:#f92672">=</span> node2d<span style="color:#f92672">.</span>global_rotation
+</span></span></code></pre></div><p>発射位置は変わらないが、ひとまずこれで指定した弾の数だけ指定した時間差で発射されるはずだ。プロジェクトを実行してみよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img15.gif" alt="run project"  />
+</p>
+<br>
+<p>うまくいったので、次は弾の発射位置を少しずつ回転させて、より弾幕らしくしていこう。次は<code>_physics_process</code>メソッドに少しコードを更新する。以下のコードの「# 追加」とコメントしている箇所を追加してほしい。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Enemy.gd ###</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _physics_process(delta):
+</span></span><span style="display:flex;"><span>	delta_count <span style="color:#f92672">+=</span> delta
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> delta_count <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>		delta_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> get_parent()<span style="color:#f92672">.</span>has_node(<span style="color:#e6db74">&#34;Player&#34;</span>):
+</span></span><span style="display:flex;"><span>			anim_player<span style="color:#f92672">.</span>stop()
+</span></span><span style="display:flex;"><span>			anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;move&#34;</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> direction <span style="color:#f92672">=</span> global_position<span style="color:#f92672">.</span>direction_to(get_parent()<span style="color:#f92672">.</span>get_node(<span style="color:#e6db74">&#34;Player&#34;</span>)<span style="color:#f92672">.</span>global_position)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> velocity <span style="color:#f92672">=</span> direction <span style="color:#f92672">*</span> enemy_speed
+</span></span><span style="display:flex;"><span>			velocity <span style="color:#f92672">=</span> move_and_slide(velocity)
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 追加：次の方向（角度）を new_rotation として定義</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># new_rotation は Rotater ノードの現在の方向（角度） x rotate_speed x 1フレームの時間とする</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> new_rotation <span style="color:#f92672">=</span> rotater<span style="color:#f92672">.</span>rotation <span style="color:#f92672">+</span> rotate_speed <span style="color:#f92672">*</span> delta
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 追加：new_rotation を 360 で割った余り（角度）だけ Rotater ノードを回転する</span>
+</span></span><span style="display:flex;"><span>	rotater<span style="color:#f92672">.</span>rotate(fmod(new_rotation, <span style="color:#ae81ff">360</span>))
+</span></span></code></pre></div><br>
+<p>これで弾の発射位置が<code>interval</code>プロパティに指定している<code>0.4</code>秒ごとに回転するはずだ。期待通りの挙動になるか、プロジェクトを再度実行して確認してみよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img16.gif" alt="run project"  />
+</p>
+<br>
+<h2 id="弾幕をカスタマイズする">弾幕をカスタマイズする<a hidden class="anchor" aria-hidden="true" href="#弾幕をカスタマイズする">#</a></h2>
+<p>スクリプト内で定義したプロパティも、最初に<code>export</code>キーワードをつけていればインスペクターで手軽に値を編集可能だ。値を変更して、さっきのとは異なる弾幕を作成してみよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img17.png" alt="run project"  />
+</p>
+<br>
+<ul>
+<li>
+<p>サンプル1</p>
+<ul>
+<li>Rotate Speed: 45</li>
+<li>Interval: 0.5</li>
+<li>Spawning Count: 10<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img18.gif" alt="run project"  />
+</li>
+</ul>
+</li>
+<li>
+<p>サンプル2</p>
+<ul>
+<li>Rotate Speed: 10</li>
+<li>Interval: 0.1</li>
+<li>Spawning Count: 8<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img19.gif" alt="run project"  />
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<p>サンプル2の方は、かなり鬼畜なゲームになってしまった。しかし、なんともスリリングで楽しい。</p>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="ランダム性を追加する">ランダム性を追加する<a hidden class="anchor" aria-hidden="true" href="#ランダム性を追加する">#</a></h1>
+<p>下準備時点で、敵キャラクターの見た目（スプライトのテクスチャ）は、6種類からランダムで決まるようにコーディングしている。弾幕のプロパティもランダムで決まるようにすれば、毎回どんな弾幕が放たれるのか予想できないので、面白いかもしれない。実はここまでに記述したスクリプトに少しコードを足すだけで、意外と簡単に実装できるのだ。</p>
+<p>ではスクリプトエディタで「Enemy.gd」スクリプトを開いてほしい。まずは、すでに用意している弾幕を形成するための各プロパティの上限値と下限値を別のプロパティで定義する。以下のコードの「# 追加」および「# 変更」とコメントしている行を更新しよう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Enemy.gd ###</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> radius <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> rotate_speed: <span style="color:#a6e22e">float</span> <span style="color:#75715e"># 変更：型だけ定義して値を未定義にする</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> max_rotate_speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">80</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> min_rotate_speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> interval: <span style="color:#a6e22e">float</span> <span style="color:#75715e"># 変更：型だけ定義して値を未定義にする</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> max_interval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> min_interval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> spawning_count: <span style="color:#a6e22e">int</span> <span style="color:#75715e"># 変更：型だけ定義して値を未定義にする</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> max_spawning_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#75715e"># 追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> min_spawning_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e"># 追加</span>
+</span></span></code></pre></div><br>
+<p>次に、シーンが読み込まれたタイミングで各プロパティにランダムな値を適用する必要があるので、<code>_ready</code>メソッドを編集する。「# 追加」のコメントがある箇所が更新箇所だ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;spawn&#34;</span>)
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># ランダム値生成を有効にする</span>
+</span></span><span style="display:flex;"><span>	randomize()
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>frame <span style="color:#f92672">=</span> randi() <span style="color:#f92672">%</span> sprite<span style="color:#f92672">.</span>hframes <span style="color:#75715e"># int, max: 5</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 追加：min_rotate_speed を下限、max_rotate_speed を上限にしたランダム小数を rotate_speed に代入</span>
+</span></span><span style="display:flex;"><span>	rotate_speed <span style="color:#f92672">=</span> rand_range(min_rotate_speed, max_rotate_speed)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 追加：min_interval を下限、max_interval を上限にしたランダム小数を interval に代入</span>
+</span></span><span style="display:flex;"><span>	interval <span style="color:#f92672">=</span> rand_range(min_interval, max_interval)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 追加：この後の計算で上限値が指定した値より -1 されるので先に +1 して調整</span>
+</span></span><span style="display:flex;"><span>	max_spawning_count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 追加：min_spawning_count を下限、max_spawning_count を上限にしたランダム整数を spawning_count に代入</span>
+</span></span><span style="display:flex;"><span>	spawning_count <span style="color:#f92672">=</span> randi() <span style="color:#f92672">%</span> max_spawning_count <span style="color:#f92672">+</span> min_spawning_count <span style="color:#75715e"># int</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> step <span style="color:#f92672">=</span> PI <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">/</span> spawning_count
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> spawning_count:
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> spawn_point <span style="color:#f92672">=</span> <span style="color:#a6e22e">Node2D</span><span style="color:#f92672">.</span>new()
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> pos <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>(radius, <span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>rotated(step <span style="color:#f92672">*</span> i)
+</span></span><span style="display:flex;"><span>		spawn_point<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> pos
+</span></span><span style="display:flex;"><span>		spawn_point<span style="color:#f92672">.</span>rotation <span style="color:#f92672">=</span> pos<span style="color:#f92672">.</span>angle()
+</span></span><span style="display:flex;"><span>		rotater<span style="color:#f92672">.</span>add_child(spawn_point)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	timer<span style="color:#f92672">.</span>wait_time <span style="color:#f92672">=</span> interval
+</span></span><span style="display:flex;"><span>	yield(anim_player, <span style="color:#e6db74">&#34;animation_finished&#34;</span>)
+</span></span><span style="display:flex;"><span>	timer<span style="color:#f92672">.</span>start()
+</span></span></code></pre></div><p>少しランダム値の生成について補足しておく。</p>
+<p>まず<code>rand_range</code>はその第一引数を下限、第二引数を上限としたランダムな小数を返す。そのため、型を小数で定義しているプロパティ<code>rotate_speed</code>と<code>interval</code>で利用した。</p>
+<p>次に<code>randi</code>はランダムな整数を返すメソッドだが、引数を取らないため、上限や下限を指定できない。そこで、返された値を上限値で割った時の余りが <strong>0 以上かつ (上限値 -1) 以下</strong> になることを利用する（最大値が指定した上限値 -1 なので、1行前のコード<code>max_spawning_count += 1</code>で +1 している）。<strong>%（モジュロ）</strong> の記号を利用すれば <strong>a % b</strong> で <strong>a</strong> を <strong>b</strong> で割った時の余りが求められる。さらにその値に <strong>c</strong> を足して <strong>a % b + c</strong> とすれば、<strong>c</strong> より小さな値にはならない。つまり上限と下限のあるランダムな整数を求める場合は <strong><code>randi() % 上限値 + 下限値</code></strong> で表すことができる。ただし返される値の最大値が上限値 -1 であることを覚えておこう。</p>
+<p>なお、今回は下準備にて<code>randomize</code>メソッドを先に記述しておいたが、これがないと毎回同じ結果になるので、ランダム値を返すメソッドを利用する場合は必ず<code>_ready</code>メソッドの冒頭に記述することも覚えておくと良いだろう。</p>
+<p>では最後に、出現するモンスターごとに異なる弾幕になるか、プロジェクトを実行して確認してみよう。<br>
+<img loading="lazy" src="/images/tutorials/gd0007_BulletHell/img20.gif" alt="run project"  />
+</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="おわりに">おわりに<a hidden class="anchor" aria-hidden="true" href="#おわりに">#</a></h1>
+<p>今回のチュートリアルでは、弾幕シューティングの弾幕を作った。今回のような回転式の弾幕の場合、以下がポイントになるだろう。</p>
+<ul>
+<li>円の半径、発射位置の回転速度、発射の時間差、同時発射弾数をプロパティでセット</li>
+<li>回転用のノードを用意しておく</li>
+<li>発射位置を円の半径と同時発射弾数から計算</li>
+<li>回転用ノードに発射位置の目印用の子ノードを追加する</li>
+<li>タイマーの時間を発射の時間差にセット</li>
+<li>物理プロセスにて常に回転用ノードを回転速度に合わせて回転させる</li>
+<li>タイマーがタイムアウトしたら弾のインスタンスを目印用ノードの位置に生成する</li>
+</ul>
+<p>他にも実装方法はあるはずなので、いろいろ試して良いものを最終的に採用していただければと思う。</p>
+<p>また、実際の弾幕シューティングゲームでは、今回のような回転式のものばかりではなく、波型、扇型など、多様だ。気になる場合はぜひ調べてみてほしい。<br>
+<br></p>
+<hr>
+<h1 id="リンク">リンク<a hidden class="anchor" aria-hidden="true" href="#リンク">#</a></h1>
+<ul>
+<li><a href="https://docs.godotengine.org/ja/stable/tutorials/math/matrices_and_transforms.html" target="_blank">Godot Docs: 行列と変換</a>
+</li>
+<li><a href="https://www.youtube.com/watch?v=Z2TaFnN7cdU&amp;t=477s" target="_blank">YouTube: How to Make a Bullet Hell Projectile Pattern Generator in Godot</a>
+</li>
+<li><a href="https://www.youtube.com/watch?v=NMNl9Ix6ng8" target="_blank">YouTube: How to Make a Bullet Hell Game in Godot [P1] - Basic Collisions</a>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/ja/tags/godot/">Godot</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/">ゲーム開発</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/">チュートリアル</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%88%E3%83%83%E3%83%97%E3%83%80%E3%82%A6%E3%83%B3/">トップダウン</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E8%A6%8B%E4%B8%8B%E3%82%8D%E3%81%97%E5%9E%8B/">見下ろし型</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0/">シューティング</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E5%BC%BE%E5%B9%95/">弾幕</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/">
+    <span class="title">« 前のページ</span>
+    <br>
+    <span>Godot で作るプラットフォーマー Part 15：いろいろな仕掛けを追加しよう！</span>
+  </a>
+  <a class="next" href="https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/">
+    <span class="title">次のページ »</span>
+    <br>
+    <span>Godot で作るトップダウンシューティングの 4 種類の銃</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作る弾幕シューティングの弾幕 on twitter"
+        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e5%bc%be%e5%b9%95%e3%82%b7%e3%83%a5%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0%e3%81%ae%e5%bc%be%e5%b9%95&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0007_bullethell%2f&amp;hashtags=Godot%2cGodotEngine%2c%e3%82%b2%e3%83%bc%e3%83%a0%e9%96%8b%e7%99%ba%2c%e3%83%81%e3%83%a5%e3%83%bc%e3%83%88%e3%83%aa%e3%82%a2%e3%83%ab%2c2D%2c%e3%83%88%e3%83%83%e3%83%97%e3%83%80%e3%82%a6%e3%83%b3%2c%e8%a6%8b%e4%b8%8b%e3%82%8d%e3%81%97%e5%9e%8b%2c%e3%82%b7%e3%83%a5%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0%2c%e5%bc%be%e5%b9%95">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作る弾幕シューティングの弾幕 on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0007_bullethell%2f&amp;title=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e5%bc%be%e5%b9%95%e3%82%b7%e3%83%a5%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0%e3%81%ae%e5%bc%be%e5%b9%95&amp;summary=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e5%bc%be%e5%b9%95%e3%82%b7%e3%83%a5%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0%e3%81%ae%e5%bc%be%e5%b9%95&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0007_bullethell%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作る弾幕シューティングの弾幕 on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0007_bullethell%2f&title=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e5%bc%be%e5%b9%95%e3%82%b7%e3%83%a5%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0%e3%81%ae%e5%bc%be%e5%b9%95">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作る弾幕シューティングの弾幕 on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0007_bullethell%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作る弾幕シューティングの弾幕 on whatsapp"
+        href="https://api.whatsapp.com/send?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e5%bc%be%e5%b9%95%e3%82%b7%e3%83%a5%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0%e3%81%ae%e5%bc%be%e5%b9%95%20-%20https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0007_bullethell%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作る弾幕シューティングの弾幕 on telegram"
+        href="https://telegram.me/share/url?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e5%bc%be%e5%b9%95%e3%82%b7%e3%83%a5%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0%e3%81%ae%e5%bc%be%e5%b9%95&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0007_bullethell%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://www.peanuts-code.com/ja/">Peanuts Code</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
