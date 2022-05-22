@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.peanuts-code.com/en/</loc>
-    <lastmod>2022-05-11T02:05:00+09:00</lastmod>
+    <lastmod>2022-05-23T01:30:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -13,6 +13,99 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.peanuts-code.com/en/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/2d/</loc>
+    <lastmod>2022-05-23T01:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/2d/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/2d/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tutorials/gd0007_bullethell/</loc>
+    <lastmod>2022-05-23T01:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tutorials/gd0007_bullethell/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/bullethell/</loc>
+    <lastmod>2022-05-23T01:30:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/gamedev/</loc>
+    <lastmod>2022-05-23T01:30:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/godot/</loc>
+    <lastmod>2022-05-23T01:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/godot/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/godot/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/godotengine/</loc>
+    <lastmod>2022-05-23T01:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/godotengine/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/godotengine/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/shooter/</loc>
+    <lastmod>2022-05-23T01:30:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/</loc>
+    <lastmod>2022-05-23T01:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/top-down/</loc>
+    <lastmod>2022-05-23T01:30:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/tutorials/</loc>
+    <lastmod>2022-05-23T01:30:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tutorials/</loc>
+    <lastmod>2022-05-23T01:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tutorials/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tutorials/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/biginner/</loc>
@@ -32,35 +125,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.peanuts-code.com/en/posts/post0002_development_starts_small/"
-                />
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/gamedev/</loc>
-    <lastmod>2022-05-11T02:05:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/godot/</loc>
-    <lastmod>2022-05-11T02:05:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/godot/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/godot/"
-                />
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/godotengine/</loc>
-    <lastmod>2022-05-11T02:05:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/godotengine/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/godotengine/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/indiedev/</loc>
@@ -85,32 +149,6 @@
                 href="https://www.peanuts-code.com/en/posts/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/</loc>
-    <lastmod>2022-05-11T02:05:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/"
-                />
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/2d/</loc>
-    <lastmod>2022-05-07T22:05:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/2d/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/2d/"
-                />
-  </url><url>
     <loc>https://www.peanuts-code.com/en/tutorials/gd0006_guns_of_topdown_shooter/</loc>
     <lastmod>2022-05-07T22:05:00+09:00</lastmod>
     <xhtml:link
@@ -126,28 +164,6 @@
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/guns/</loc>
     <lastmod>2022-05-07T22:05:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/shooter/</loc>
-    <lastmod>2022-05-07T22:05:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/top-down/</loc>
-    <lastmod>2022-05-07T22:05:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/tutorials/</loc>
-    <lastmod>2022-05-07T22:05:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tutorials/</loc>
-    <lastmod>2022-05-07T22:05:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tutorials/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tutorials/"
-                />
   </url><url>
     <loc>https://www.peanuts-code.com/en/posts/tip0001_various_searches/</loc>
     <lastmod>2022-04-27T02:44:00+09:00</lastmod>
