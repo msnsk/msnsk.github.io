@@ -10,17 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 27 May 2022 12:20:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tutorials/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Godot で作るホーミングミサイル</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</link>
-      <pubDate>Fri, 27 May 2022 12:20:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</guid>
-      <description>今回のチュートリアルでは、2Dトップダウンシューティングにおける「ホーミングミサイル」を作っていく。ホーミングミサイルというのは、ターゲットを追跡するミサイルのことだ。
- Environment</description>
-    </item>
-    
+    <lastBuildDate>Sat, 21 May 2022 17:10:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tutorials/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot で作る弾幕シューティングの弾幕</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/</link>
