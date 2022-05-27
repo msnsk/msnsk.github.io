@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！ | Peanuts Code</title>
-<meta name="keywords" content="Godot, GodotEngine, ゲーム開発, チュートリアル, ブロック崩し, 初級" />
+<meta name="keywords" content="Godot, GodotEngine, ゲーム開発, チュートリアル, ブロック崩し, 2D" />
 <meta name="description" content="Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。">
 <meta name="author" content="Masanao Sako">
 <link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_3/" />
@@ -83,7 +83,7 @@ if (!doNotTrack) {
   "name": "Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！",
   "description": "Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。",
   "keywords": [
-    "Godot", "GodotEngine", "ゲーム開発", "チュートリアル", "ブロック崩し", "初級"
+    "Godot", "GodotEngine", "ゲーム開発", "チュートリアル", "ブロック崩し", "2D"
   ],
   "articleBody": "Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。\nそれでは前回に引き続きブロック崩しを開発していこう。\n Memo: \n過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るブロック崩し \n  \n (adsbygoogle = window.adsbygoogle || []).push({});   壁を作る 壁をゲーム画面のギリギリ外側に作っていく。シーンドックで「Game」ノードを選択して、壁となる子ノードを追加していこう。\n今回は「StaticBody2D」を選択して「作成」をクリックする。\n「Game」ノードに追加された「StaticBody2D」ノードの名前を「Wall」に変更しておく。右側に⚠️が表示されているのでクリックしてみよう。\n以下の警告メッセージが表示される。\nメッセージの通り、次は「Wall」ノードの子ノードとして「CollisionPolygon2D」を追加する。\nシーンドックを見ると「Wall」ノードの⚠️は消えたが、今度は「CollisionPolygon2D」の右側に⚠️が表示されている。クリックしてみよう。\n「CollisionPolygon2D」が空だから衝突の判定ができないという内容のメッセージだ。ということでこれから「CollisionPolygon2D」に衝突を判定するための形を作っていく。\n「CollisionPolygon2D」ノードでコリジョンの形を作るには、ツールバーの右端にある3つのアイコンの機能を使う。ツールの機能は左から順番に以下の通りだ。これらのアイコンは「CollisionPolygon2D」ノードを選択している場合のみツールバーに表示される。\n 点を作成する 点を編集する 点を消す  といっても、うまく行けば一番左のアイコン（点を作成する）だけで済む。\nこの後の作業をやりやすくするために、スマートスナップは無効にして、グリッドスナップを有効にしよう。\n慎重に作業する必要があるが、とにかく「点を作成する」ツールを使って壁の角になる部分に点を打つようにして形を作っていく。(0, 0)など分かり易いポイントから始めて、ゲーム画面の端が壁の内側と重なるようにする。壁の幅は1グリッド分（8 pixel）でもいいが、2D ワークスペース上で見やすくなるように今回は2グリッド分を壁の厚みとした。\n点を打つ場所が少しズレたとしても、気にせず一旦少しいびつな形の壁を作り切ってしまおう。あとで「点を編集する」または「点を消す」ツールで修正するのが効率的だ。\n「CollisionPolygon2D」ノードから⚠️が消えた。\nそれではプロジェクトを実行してみよう。\n期待通り、上と左右の壁にボールが跳ね返った。そして、ボールが画面下部に到達するとそのまま画面外に落ちていった。大成功だ。\n  \n (adsbygoogle = window.adsbygoogle || []).push({});  おわりに Part 3 はここまでで終了だ。今回は少し短いチュートリアルだったが、次回はついにブロックのオブジェクトを作って、それを画面上に配置し、ボールが当たったらブロックが消える仕組みを作っていく。\n",
   "wordCount" : "44",
@@ -348,7 +348,7 @@ data-ad-slot="9419515863"></ins></p>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/">ゲーム開発</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/">チュートリアル</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%B4%A9%E3%81%97/">ブロック崩し</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E5%88%9D%E7%B4%9A/">初級</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_2/">
@@ -366,7 +366,7 @@ data-ad-slot="9419515863"></ins></p>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！ on twitter"
-        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e5%b4%a9%e3%81%97%20Part%203%ef%bc%9a%e5%a3%81%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%83%9c%e3%83%bc%e3%83%ab%e3%82%92%e8%b7%b3%e3%81%ad%e8%bf%94%e3%82%89%e3%81%9b%e3%82%88%e3%81%86%ef%bc%81&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0004_breakout%2fbreakout_3%2f&amp;hashtags=Godot%2cGodotEngine%2c%e3%82%b2%e3%83%bc%e3%83%a0%e9%96%8b%e7%99%ba%2c%e3%83%81%e3%83%a5%e3%83%bc%e3%83%88%e3%83%aa%e3%82%a2%e3%83%ab%2c%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e5%b4%a9%e3%81%97%2c%e5%88%9d%e7%b4%9a">
+        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e5%b4%a9%e3%81%97%20Part%203%ef%bc%9a%e5%a3%81%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%83%9c%e3%83%bc%e3%83%ab%e3%82%92%e8%b7%b3%e3%81%ad%e8%bf%94%e3%82%89%e3%81%9b%e3%82%88%e3%81%86%ef%bc%81&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0004_breakout%2fbreakout_3%2f&amp;hashtags=Godot%2cGodotEngine%2c%e3%82%b2%e3%83%bc%e3%83%a0%e9%96%8b%e7%99%ba%2c%e3%83%81%e3%83%a5%e3%83%bc%e3%83%88%e3%83%aa%e3%82%a2%e3%83%ab%2c%e3%83%96%e3%83%ad%e3%83%83%e3%82%af%e5%b4%a9%e3%81%97%2c2D">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
