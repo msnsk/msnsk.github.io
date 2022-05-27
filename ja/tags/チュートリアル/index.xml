@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 21 May 2022 17:10:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 May 2022 12:20:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>シリーズ：Godot で作るブロック崩し</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/</link>
@@ -313,6 +313,16 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</guid>
       <description>第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップやギミックの類だ。
  動く床 落ちる床 高く飛べる床 火が出る装置 飛んでくる鉄球  今回は Part 1 でインポート済みのアセットからたくさんのスプライトシートを利用する。例によって、見た目にブラーがかかっている（ピクセルアート特有のエッジが効いた画像ではない）場合は、ファイルシステム上で利用するアセットファイルを選択し、インポートドックから「プリセット」＞「2D Pixel」を選択し、「再インポート」をクリックして修正しよう。</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るホーミングミサイル</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</link>
+      <pubDate>Fri, 27 May 2022 12:20:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</guid>
+      <description>今回のチュートリアルでは、2Dトップダウンシューティングにおける「ホーミングミサイル」を作っていく。ホーミングミサイルというのは、ターゲットを追跡するミサイルのことだ。
+ Environment</description>
     </item>
     
     <item>

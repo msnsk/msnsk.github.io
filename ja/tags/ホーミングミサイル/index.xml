@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ホーミングミサイル on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/%E3%83%9B%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%83%9F%E3%82%B5%E3%82%A4%E3%83%AB/</link>
+    <description>Recent content in ホーミングミサイル on Peanuts Code</description>
+    <image>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 27 May 2022 12:20:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%9B%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%83%9F%E3%82%B5%E3%82%A4%E3%83%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るホーミングミサイル</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</link>
+      <pubDate>Fri, 27 May 2022 12:20:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</guid>
+      <description>今回のチュートリアルでは、2Dトップダウンシューティングにおける「ホーミングミサイル」を作っていく。ホーミングミサイルというのは、ターゲットを追跡するミサイルのことだ。
+ Environment</description>
+    </item>
+    
+  </channel>
+</rss>
