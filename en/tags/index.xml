@@ -10,13 +10,76 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 23 May 2022 01:30:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 May 2022 18:41:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2D</title>
       <link>https://www.peanuts-code.com/en/tags/2d/</link>
-      <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
+      <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/2d/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GameDev</title>
+      <link>https://www.peanuts-code.com/en/tags/gamedev/</link>
+      <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/gamedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Godot</title>
+      <link>https://www.peanuts-code.com/en/tags/godot/</link>
+      <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/godot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GodotEngine</title>
+      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
+      <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HomingMissiles</title>
+      <link>https://www.peanuts-code.com/en/tags/homingmissiles/</link>
+      <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/homingmissiles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shooter</title>
+      <link>https://www.peanuts-code.com/en/tags/shooter/</link>
+      <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/shooter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Top-down</title>
+      <link>https://www.peanuts-code.com/en/tags/top-down/</link>
+      <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/top-down/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tutorials</title>
+      <link>https://www.peanuts-code.com/en/tags/tutorials/</link>
+      <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/tutorials/</guid>
       <description></description>
     </item>
     
@@ -26,60 +89,6 @@
       <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/bullethell/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GameDev</title>
-      <link>https://www.peanuts-code.com/en/tags/gamedev/</link>
-      <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/gamedev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Godot</title>
-      <link>https://www.peanuts-code.com/en/tags/godot/</link>
-      <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/godot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GodotEngine</title>
-      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
-      <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>shooter</title>
-      <link>https://www.peanuts-code.com/en/tags/shooter/</link>
-      <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/shooter/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Top-down</title>
-      <link>https://www.peanuts-code.com/en/tags/top-down/</link>
-      <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/top-down/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tutorials</title>
-      <link>https://www.peanuts-code.com/en/tags/tutorials/</link>
-      <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/tutorials/</guid>
       <description></description>
     </item>
     
