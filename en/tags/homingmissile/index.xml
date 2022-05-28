@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>HomingMissiles on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/en/tags/homingmissiles/</link>
-    <description>Recent content in HomingMissiles on Peanuts Code</description>
+    <title>HomingMissile on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/en/tags/homingmissile/</link>
+    <description>Recent content in HomingMissile on Peanuts Code</description>
     <image>
       <url>https://www.peanuts-code.com/105</url>
       <link>https://www.peanuts-code.com/105</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 May 2022 18:41:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/homingmissiles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 May 2022 18:41:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/homingmissile/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Homing missiles made by Godot</title>
+      <title>Homing missile made by Godot</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0008_homing_missiles/</link>
       <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
       
