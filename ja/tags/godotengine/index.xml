@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 27 May 2022 17:10:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Jun 2022 00:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>シリーズ：Godot で作るブロック崩し</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/</link>
@@ -171,7 +171,7 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</guid>
       <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。今回は、初回ということで、ゲームのプレイ画面にプレイヤーキャラクターを用意して操作するところまでやってみよう。
- Memo:</description>
+Memo: ゲームを作り始めるのに以下の記事もお役立てください。</description>
     </item>
     
     <item>
@@ -182,7 +182,7 @@
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</guid>
       <description>今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。
 なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。
- 公式オンラインドキュメント：</description>
+公式オンラインドキュメント： Using TileMaps Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。</description>
     </item>
     
     <item>
@@ -201,7 +201,7 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/</guid>
       <description>第4回目の今回は、敵キャラクターの雛形となるシーンを作成し、それを継承する形で個別の敵キャラクターを一つ作っていく。そのあと、その敵キャラクターをレベルシーンに配置して、プレイヤーキャラクターに踏まれたら消えるところまで実装してみよう。
- Memo：</description>
+Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。</description>
     </item>
     
     <item>
@@ -211,7 +211,7 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_5/</guid>
       <description>第5回目の今回は、さらに敵キャラクターの種類を増やしていく。それぞれの敵キャラクターの動きに違いを持たせ、それらをタイルマップ上に複数配置してゲームの難易度を高めていこう。具体的に今回は以下の敵キャラクターを作成していく。
- バニー（うさぎ） カメレオン プラント（植物）   Memo：</description>
+バニー（うさぎ） カメレオン プラント（植物） Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。</description>
     </item>
     
     <item>
@@ -221,7 +221,7 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_6/</guid>
       <description>第6回目の今回は、アイテムを作る。アイテムというのは、ちょうどスーパーマリオシリーズのコインのような、当たるとポイントを獲得できてちょっと嬉しい存在だ。さらに、下から小突くとアイテムが出てくる箱、その名もアイテムボックスを作る。それぞれスクリプトで動作を制御し、最後はレベルシーンに配置するところまでやっていこう。
- Memo：</description>
+Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。</description>
     </item>
     
     <item>
@@ -231,7 +231,7 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_7/</guid>
       <description>第7回目の今回は、レベルのマップ上にスタートポイント、中間のチェックポイント、そしてエンドポイントを配置し、エンドポイントに到達した時に次のレベルに遷移する仕組みを実装していく。併せて、現在レベルシーンは「Level1」だけなので、次の「Level2」シーンも作成していく。
- Memo：</description>
+Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。</description>
     </item>
     
     <item>
@@ -263,7 +263,7 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_10/</guid>
       <description>第10回目の今回は、ゲーム開始時に表示されるスタート画面を作る。タイトル画面、スタートメニューとも言う。
 それだけだと、前回と比べて簡単すぎるので、ゲーム開始時にプレイヤーキャラクターを選択できる仕組みも実装する。画面遷移のイメージは以下の通りだ。
- まずゲームを始めるとスタート画面が表示される。 スタートボタンを押すとプレイヤーキャラクター選択画面に遷移する。 プレイヤーキャラクターを選択するとゲームプレイ開始。  ということで、今回の作業は以下の通りだ。</description>
+まずゲームを始めるとスタート画面が表示される。 スタートボタンを押すとプレイヤーキャラクター選択画面に遷移する。 プレイヤーキャラクターを選択するとゲームプレイ開始。 ということで、今回の作業は以下の通りだ。</description>
     </item>
     
     <item>
@@ -283,7 +283,7 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_12/</guid>
       <description>第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので、気楽にやっていこう。
- Memo：</description>
+Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。</description>
     </item>
     
     <item>
@@ -302,7 +302,7 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_14/</guid>
       <description>第14回目の今回は、プレイヤーキャラクターのアクションをアップデートしていく。具体的には以下にリストアップしたジャンプとダッシュの動きや演出を追加していく。
- 落下時のアニメーション 壁ジャンプ ダブルジャンプ（2段ジャンプ） 走っている時の砂埃 ダッシュ時のゴーストエフェクト（残像効果）  おまけのような内容だが、作って実際にプレイすると非常に楽しいところなので、是非やってみてほしい。</description>
+落下時のアニメーション 壁ジャンプ ダブルジャンプ（2段ジャンプ） 走っている時の砂埃 ダッシュ時のゴーストエフェクト（残像効果） おまけのような内容だが、作って実際にプレイすると非常に楽しいところなので、是非やってみてほしい。</description>
     </item>
     
     <item>
@@ -312,7 +312,16 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</guid>
       <description>第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップやギミックの類だ。
- 動く床 落ちる床 高く飛べる床 火が出る装置 飛んでくる鉄球  今回は Part 1 でインポート済みのアセットからたくさんのスプライトシートを利用する。例によって、見た目にブラーがかかっている（ピクセルアート特有のエッジが効いた画像ではない）場合は、ファイルシステム上で利用するアセットファイルを選択し、インポートドックから「プリセット」＞「2D Pixel」を選択し、「再インポート」をクリックして修正しよう。</description>
+動く床 落ちる床 高く飛べる床 火が出る装置 飛んでくる鉄球 今回は Part 1 でインポート済みのアセットからたくさんのスプライトシートを利用する。例によって、見た目にブラーがかかっている（ピクセルアート特有のエッジが効いた画像ではない）場合は、ファイルシステム上で利用するアセットファイルを選択し、インポートドックから「プリセット」＞「2D Pixel」を選択し、「再インポート」をクリックして修正しよう。</description>
+    </item>
+    
+    <item>
+      <title>Godot で作る 2D グリッドベース移動</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</link>
+      <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</guid>
+      <description>このチュートリアルでは、2Dゲームにおける「グリッドベース移動」をどのように実装するのかを説明する。グリッドベース移動というのは、等間隔にグリッド（格子状の線）で区分されたゲームの画面上をキャラクターなどのオブジェクトが 1 グリッド（ 1 マス）ずつ移動する動きのことだ。</description>
     </item>
     
     <item>
@@ -322,7 +331,7 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</guid>
       <description>このチュートリアルでは、2Dトップダウンシューティングにおける「ホーミングミサイル」を作っていく。ホーミングミサイルというのは、ターゲットを追跡するミサイルのことだ。
- Environment</description>
+Environment このチュートリアルは以下の環境で作成しました。</description>
     </item>
     
     <item>
@@ -333,7 +342,7 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/</guid>
       <description>このチュートリアルでは、2Dトップダウンシューティングゲームの「弾幕」を作っていく。弾幕というのは、敵キャラクターから放たれる大量の弾（またはそれに類似する遠距離攻撃）のことで、弾が幕のように隙間なく飛んでくるので「弾幕」という。プレイヤーはその隙間を縫うようにうまくかわしながら、敵キャラクターを射撃して倒していくゲームを弾幕シューティングゲームという。単に弾幕をかわすことに特化したゲームもある。イメージに合う宇宙船や戦闘機をモチーフにしたゲームが多いのも特徴だ（今回は魔法使いとモンスターの地上戦だが）。
 このチュートリアルでは、弾幕の作成のみにフォーカスする。また、弾幕も様々な形状があるが、今回取り扱うのは回転式の弾幕だ。
- Environment</description>
+Environment このチュートリアルは以下の環境で作成しました。</description>
     </item>
     
     <item>
@@ -354,17 +363,7 @@ HUD というのは、ヘッズアップディスプレイ（Heads Up Display）
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/</guid>
       <description>このチュートリアルでは、2Dトップダウンシューティングゲーム（見下ろし型シューティングゲーム）で一般的によく登場する銃を4種類作っていく。具体的には以下の通りだ。
- ハンドガン ショットガン マシンガン レーザーガン   Environment</description>
-    </item>
-    
-    <item>
-      <title>Godot エディタの便利な検索機能</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0009_various_searches/</link>
-      <pubDate>Mon, 25 Apr 2022 17:08:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0009_various_searches/</guid>
-      <description>Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこに行ったかわからなくなったりすることがあるかもしれない。
-今回は Godot エディタに備わっているキーボードショートカットでの便利な検索機能を紹介する。これらを知っているだけで「見つからない何かを探す」という、おそらく最も楽しくない時間を激減させることができるだろう。なんなら、ファイルシステムやスクリプトエディタで直接ファイルにカーソルを合わせてクリックして選択していた手順を、毎回検索する手順に切り替えてしまっても良いだろう。</description>
+ハンドガン ショットガン マシンガン レーザーガン Environment このチュートリアルは以下の環境で作成しました。</description>
     </item>
     
     <item>

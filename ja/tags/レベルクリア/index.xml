@@ -18,7 +18,7 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_7/</guid>
       <description>第7回目の今回は、レベルのマップ上にスタートポイント、中間のチェックポイント、そしてエンドポイントを配置し、エンドポイントに到達した時に次のレベルに遷移する仕組みを実装していく。併せて、現在レベルシーンは「Level1」だけなので、次の「Level2」シーンも作成していく。
- Memo：</description>
+Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。</description>
     </item>
     
   </channel>

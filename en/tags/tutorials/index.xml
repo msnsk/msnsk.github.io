@@ -38,5 +38,14 @@
       <description>In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters.</description>
     </item>
     
+    <item>
+      <title>Powerful Search Features on Godot Editor</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0009_various_searches/</link>
+      <pubDate>Wed, 27 Apr 2022 02:44:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0009_various_searches/</guid>
+      <description>When we develop a game, especially a big one, sometimes it may often happen that we can never find the scene which we want to edit or we cannot remember where the script file is, which we are going to edit.</description>
+    </item>
+    
   </channel>
 </rss>

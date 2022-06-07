@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Powerful Search Features on Godot Editor | Peanuts Code</title>
-<meta name="keywords" content="Godot, GodotEngine, GameDev, IndieDev, Blog, Post, Tips, Search" />
+<meta name="keywords" content="Godot, GodotEngine, GameDev, IndieDev, Tutorials, Tips, Search" />
 <meta name="description" content="When we develop a game, especially a big one, sometimes it may often happen that we can never find the scene which we want to edit or we cannot remember where the script file is, which we are going to edit.">
 <meta name="author" content="Masanao Sako">
 <link rel="canonical" href="https://www.peanuts-code.com/en/tutorials/gd0009_various_searches/" />
@@ -22,7 +22,7 @@
 <link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.99.1" />
+<meta name="generator" content="Hugo 0.100.1" />
 <link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0009_various_searches/" />
 <link rel="alternate" hreflang="en" href="https://www.peanuts-code.com/en/tutorials/gd0009_various_searches/" />
 
@@ -40,12 +40,12 @@ if (!doNotTrack) {
 <meta property="og:description" content="When we develop a game, especially a big one, sometimes it may often happen that we can never find the scene which we want to edit or we cannot remember where the script file is, which we are going to edit." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.peanuts-code.com/en/tutorials/gd0009_various_searches/" />
-<meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0009/img1.gif" /><meta property="article:section" content="tutorials" />
+<meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0009_various_searches/img1.gif" /><meta property="article:section" content="tutorials" />
 <meta property="article:published_time" content="2022-04-27T02:44:00&#43;09:00" />
 <meta property="article:modified_time" content="2022-04-27T02:44:00&#43;09:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0009/img1.gif" />
+<meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0009_various_searches/img1.gif" />
 <meta name="twitter:title" content="Powerful Search Features on Godot Editor"/>
 <meta name="twitter:description" content="When we develop a game, especially a big one, sometimes it may often happen that we can never find the scene which we want to edit or we cannot remember where the script file is, which we are going to edit."/>
 
@@ -78,12 +78,12 @@ if (!doNotTrack) {
   "name": "Powerful Search Features on Godot Editor",
   "description": "When we develop a game, especially a big one, sometimes it may often happen that we can never find the scene which we want to edit or we cannot remember where the script file is, which we are going to edit.",
   "keywords": [
-    "Godot", "GodotEngine", "GameDev", "IndieDev", "Blog", "Post", "Tips", "Search"
+    "Godot", "GodotEngine", "GameDev", "IndieDev", "Tutorials", "Tips", "Search"
   ],
-  "articleBody": "When we develop a game, especially a big one, sometimes it may often happen that we can never find the scene which we want to edit or we cannot remember where the script file is, which we are going to edit.\nIn this article, I am going to introduce some so powerful and useful search features with keyboard shortcuts. Once you know those, you can reduce the huge amount of time looking for something which may be the most uninteresting in the game development. In addition, you can use the search features in a much faster way instead of looking for a script file and clicking it in the file system dock, for example.\nBy the way, we can see all default shortcuts in the official online documents of Godot. Be careful about that it says Alt as Option on macOS.\n GODOT DOCS \nDefault editor shortcuts \n Anyway, why do not you try to use the searches because it is sure to improve work efficiency.\nI will introduce ones in order of the widest range of searches first.\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Quick Open To use Quick Open, perform the following keyboard shortcut on Godot editor. Be careful, it does not work on script editor so you need to switch to 2D or 3D Workspace if you use it.\nWindows: Shift + Alt + O \nmacOS: Shift + Option + O \nFor example, we rarely memorize the names of all the imported files so it must be faster to use Quick Open than to look for a file visually to find one from them.\nThe range of Quick Open search is all files. This means it includes sound files, texture files, font files, scene files, and script files. We can search them with the keyword of the　files’ extensions or the part of the files’ names.\nWe can also use this search feature to access a specific file quickly instead of directly finding and clicking it in the file system dock.\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Quick Open Scene To use Quick Open Scene, perform the following keyboard shortcut on Godot editor.\nWindows: Ctrl + Shift + O \nmacOS: Cmd + Shift + O \nQuick Open Scene is very similar to Quick Open which I introduced firstly. The difference is the range of search of Quick Open Scene is narrower than Quick Open. It means the range is limited to scene files.\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Quick Open Script To use Quick Open Script, perform the following keyboard shortcut on Godot editor.\nWindows: Ctrl + Alt + O \nmacOS: Cmd + Option + O \nThe UI of Quick Open Script is also similar to Quick Open. The range of search of Quick Open Script is limited to script files.\nIt is really hard to find a script file from the sidebar of the script editor section in Godot editor after we made a lot of files. In addition, the situation tends to get much worse if we open many official documents there. It is a pain to find one visually even if the files are sorted in the alphabet. Therefore it would be better to use Quick Open Script.\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Find in Files To use Find in Files, perform the following keyboard shortcut on the Godot editor while you open the script editor.\nWindows: Ctrl + Shift + F \nmacOS: Cmd + Shift + F \nThis is a feature of the script editor. You can find a keyword in multiple script files at once. The search results will be shown in the “Search Results” panel which is placed at the bottom of the Godot editor. You can, then jump to the exact place of the word in the script which you choose if you click one from the list of the result of hits in the panel.\nYou can also search with filtering by a folder name. To do so, you just type the folder path in the box below the box of the keyword.\nIn addition, we can replace all the hit items with another word at once.\nFirstly, input a keyword and then click the replace button.\nAfter that, just do the following steps in the Search Result panel.\n Tick some of the search results which you want to replace. Input the word with which you want to replace. Click Replace all button. Just make sure that this operation has no undo.   \n (adsbygoogle = window.adsbygoogle || []).push({});   Find To use Find feature, perform the following keyboard shortcut on the Godot editor while you open the script editor.\nWindows: Ctrl + F \nmacOS: Cmd + F \nThis is the narrowest search feature. We can search a keyword in a script. It might be a more common way of using this to move to the specific variable or function in a script, instead of looking for a word that is hard to be found.\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Find and Replace To find a word and replace with another word, perform the following keyboard shortcut on the Godot editor while you open the script editor.\nWindows: Ctrl + Alt + F \nmacOS: Cmd + Option + F \nWe can find a word and replace it with another word just by changing the key combination of the shortcut. It is useful for replacing a word such as a variable name or a function name that is only used in a specific script.\n \n (adsbygoogle = window.adsbygoogle || []).push({});   Conclusion In this article, we introduced the Godot editor’s convenient search function. All of the shortcut operations require some getting used to at first, but once your hands learn the key combinations, you will be able to work at high speed. We encourage you to use them.\nUPDATE\n2022/05/29 Transfered this article from “Posts” to “Tutorials”\n",
-  "wordCount" : "968",
+  "articleBody": "When we develop a game, especially a big one, sometimes it may often happen that we can never find the scene which we want to edit or we cannot remember where the script file is, which we are going to edit.\nIn this article, I am going to introduce some so powerful and useful search features with keyboard shortcuts. Once you know those, you can reduce the huge amount of time looking for something which may be the most uninteresting in the game development. In addition, you can use the search features in a much faster way instead of looking for a script file and clicking it in the file system dock, for example.\nBy the way, we can see all default shortcuts in the official online documents of Godot. Be careful about that it says Alt as Option on macOS.\nGODOT DOCS Default editor shortcuts Anyway, why do not you try to use the searches because it is sure to improve work efficiency.\nI will introduce ones in order of the widest range of searches first.\nQuick Open To use Quick Open, perform the following keyboard shortcut on Godot editor. Be careful, it does not work on script editor so you need to switch to 2D or 3D Workspace if you use it.\nWindows: Shift + Alt + O macOS: Shift + Option + O For example, we rarely memorize the names of all the imported files so it must be faster to use Quick Open than to look for a file visually to find one from them.\nThe range of Quick Open search is all files. This means it includes sound files, texture files, font files, scene files, and script files. We can search them with the keyword of the　files’ extensions or the part of the files’ names.\nWe can also use this search feature to access a specific file quickly instead of directly finding and clicking it in the file system dock.\nQuick Open Scene To use Quick Open Scene, perform the following keyboard shortcut on Godot editor.\nWindows: Ctrl + Shift + O macOS: Cmd + Shift + O Quick Open Scene is very similar to Quick Open which I introduced firstly. The difference is the range of search of Quick Open Scene is narrower than Quick Open. It means the range is limited to scene files.\nQuick Open Script To use Quick Open Script, perform the following keyboard shortcut on Godot editor.\nWindows: Ctrl + Alt + O macOS: Cmd + Option + O The UI of Quick Open Script is also similar to Quick Open. The range of search of Quick Open Script is limited to script files.\nIt is really hard to find a script file from the sidebar of the script editor section in Godot editor after we made a lot of files. In addition, the situation tends to get much worse if we open many official documents there. It is a pain to find one visually even if the files are sorted in the alphabet. Therefore it would be better to use Quick Open Script.\nFind in Files To use Find in Files, perform the following keyboard shortcut on the Godot editor while you open the script editor.\nWindows: Ctrl + Shift + F macOS: Cmd + Shift + F This is a feature of the script editor. You can find a keyword in multiple script files at once. The search results will be shown in the “Search Results” panel which is placed at the bottom of the Godot editor. You can, then jump to the exact place of the word in the script which you choose if you click one from the list of the result of hits in the panel.\nYou can also search with filtering by a folder name. To do so, you just type the folder path in the box below the box of the keyword.\nIn addition, we can replace all the hit items with another word at once.\nFirstly, input a keyword and then click the replace button.\nAfter that, just do the following steps in the Search Result panel.\nTick some of the search results which you want to replace. Input the word with which you want to replace. Click Replace all button. Just make sure that this operation has no undo. Find To use Find feature, perform the following keyboard shortcut on the Godot editor while you open the script editor.\nWindows: Ctrl + F macOS: Cmd + F This is the narrowest search feature. We can search a keyword in a script. It might be a more common way of using this to move to the specific variable or function in a script, instead of looking for a word that is hard to be found.\nFind and Replace To find a word and replace with another word, perform the following keyboard shortcut on the Godot editor while you open the script editor.\nWindows: Ctrl + Alt + F macOS: Cmd + Option + F We can find a word and replace it with another word just by changing the key combination of the shortcut. It is useful for replacing a word such as a variable name or a function name that is only used in a specific script.\nConclusion In this article, we introduced the Godot editor’s convenient search function. All of the shortcut operations require some getting used to at first, but once your hands learn the key combinations, you will be able to work at high speed. We encourage you to use them.\nUPDATE\n2022/05/29 Transfered this article from “Posts” to “Tutorials”\n",
+  "wordCount" : "933",
   "inLanguage": "en",
-  "image":"https://www.peanuts-code.com/images/tutorials/gd0009/img1.gif","datePublished": "2022-04-27T02:44:00+09:00",
+  "image":"https://www.peanuts-code.com/images/tutorials/gd0009_various_searches/img1.gif","datePublished": "2022-04-27T02:44:00+09:00",
   "dateModified": "2022-04-27T02:44:00+09:00",
   "author":{
     "@type": "Person",
@@ -234,7 +234,7 @@ if (!doNotTrack) {
 </ul>
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0009/img1.gif" alt="Useful Search Features on Godot Editor">
+<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0009_various_searches/img1.gif" alt="Useful Search Features on Godot Editor">
         
 </figure><div class="toc">
     <details  open>
@@ -293,7 +293,7 @@ data-ad-slot="9419515863"></ins></p>
 </strong></em><br>
 <em><strong>macOS: <span style="color:salmon">Shift &#43; Option &#43; O</span>
 </strong></em></p>
-<p><img loading="lazy" src="/images/tutorials/gd0009/img1.gif" alt="QuickOpen"  />
+<p><img loading="lazy" src="/images/tutorials/gd0009_various_searches/img1.gif" alt="QuickOpen"  />
 </p>
 <p>For example, we rarely memorize the names of all the imported files so it must be faster to use Quick Open than to look for a file visually to find one from them.</p>
 <p>The range of Quick Open search is all files. This means it includes sound files, texture files, font files, scene files, and script files. We can search them with the keyword of the　files&rsquo; extensions or the part of the files&rsquo; names.</p>
@@ -317,7 +317,7 @@ data-ad-slot="9419515863"></ins></p>
 </strong></em><br>
 <em><strong>macOS: <span style="color:salmon">Cmd &#43; Shift &#43; O</span>
 </strong></em></p>
-<p><img loading="lazy" src="/images/tutorials/gd0009/img2.gif" alt="QuickOpenScene"  />
+<p><img loading="lazy" src="/images/tutorials/gd0009_various_searches/img2.gif" alt="QuickOpenScene"  />
 </p>
 <p>Quick Open Scene is very similar to Quick Open which I introduced firstly. The difference is the range of search of Quick Open Scene is narrower than Quick Open. It means the range is limited to scene files.</p>
 <br>
@@ -339,7 +339,7 @@ data-ad-slot="9419515863"></ins></p>
 </strong></em><br>
 <em><strong>macOS: <span style="color:salmon">Cmd &#43; Option &#43; O</span>
 </strong></em></p>
-<p><img loading="lazy" src="/images/tutorials/gd0009/img3.gif" alt="QuickOpenScript"  />
+<p><img loading="lazy" src="/images/tutorials/gd0009_various_searches/img3.gif" alt="QuickOpenScript"  />
 </p>
 <p>The UI of Quick Open Script is also similar to Quick Open. The range of search of Quick Open Script is limited to script files.</p>
 <p>It is really hard to find a script file from the sidebar of the script editor section in Godot editor after we made a lot of files. In addition, the situation tends to get much worse if we open many official documents there. It is a pain to find one visually even if the files are sorted in the alphabet. Therefore it would be better to use Quick Open Script.</p>
@@ -362,17 +362,17 @@ data-ad-slot="9419515863"></ins></p>
 </strong></em><br>
 <em><strong>macOS: <span style="color:salmon">Cmd &#43; Shift &#43; F</span>
 </strong></em></p>
-<p><img loading="lazy" src="/images/tutorials/gd0009/img4.gif" alt="Find in Files"  />
+<p><img loading="lazy" src="/images/tutorials/gd0009_various_searches/img4.gif" alt="Find in Files"  />
 </p>
 <p>This is a feature of the script editor. You can find a keyword in multiple script files at once. The search results will be shown in the &ldquo;Search Results&rdquo; panel which is placed at the bottom of the Godot editor. You can, then jump to the exact place of the word in the script which you choose if you click one from the list of the result of hits in the panel.<br>
 <br></p>
 <p>You can also search with filtering by a folder name. To do so, you just type the folder path in the box below the box of the keyword.</p>
-<p><img loading="lazy" src="/images/tutorials/gd0009/img5.png" alt="Search with filtering by a folder path"  />
+<p><img loading="lazy" src="/images/tutorials/gd0009_various_searches/img5.png" alt="Search with filtering by a folder path"  />
 </p>
 <br>
 <p>In addition, we can replace all the hit items with another word at once.</p>
 <p>Firstly, input a keyword and then click the replace button.<br>
-<img loading="lazy" src="/images/tutorials/gd0009/img6.png" alt="Replace button"  />
+<img loading="lazy" src="/images/tutorials/gd0009_various_searches/img6.png" alt="Replace button"  />
 </p>
 <p>After that, just do the following steps in the Search Result panel.</p>
 <ol>
@@ -380,7 +380,7 @@ data-ad-slot="9419515863"></ins></p>
 <li>Input the word with which you want to replace.</li>
 <li>Click Replace all button. Just make sure that this operation has no undo.</li>
 </ol>
-<p><img loading="lazy" src="/images/tutorials/gd0009/img7.png" alt="Replace all button"  />
+<p><img loading="lazy" src="/images/tutorials/gd0009_various_searches/img7.png" alt="Replace all button"  />
 </p>
 <br>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
@@ -401,7 +401,7 @@ data-ad-slot="9419515863"></ins></p>
 </strong></em><br>
 <em><strong>macOS: <span style="color:salmon">Cmd &#43; F</span>
 </strong></em></p>
-<p><img loading="lazy" src="/images/tutorials/gd0009/img8.gif" alt="Find"  />
+<p><img loading="lazy" src="/images/tutorials/gd0009_various_searches/img8.gif" alt="Find"  />
 </p>
 <p>This is the narrowest search feature. We can search a keyword in a script. It might be a more common way of using this to move to the specific variable or function in a script, instead of looking for a word that is hard to be found.<br>
 <br></p>
@@ -423,7 +423,7 @@ data-ad-slot="9419515863"></ins></p>
 </strong></em><br>
 <em><strong>macOS: <span style="color:salmon">Cmd &#43; Option &#43; F</span>
 </strong></em></p>
-<p><img loading="lazy" src="/images/tutorials/gd0009/img9.gif" alt="Find and replace"  />
+<p><img loading="lazy" src="/images/tutorials/gd0009_various_searches/img9.gif" alt="Find and replace"  />
 </p>
 <p>We can find a word and replace it with another word just by changing the key combination of the shortcut. It is useful for replacing a word such as a variable name or a function name that is only used in a specific script.</p>
 <br>
@@ -453,8 +453,7 @@ data-ad-slot="9419515863"></ins></p>
       <li><a href="https://www.peanuts-code.com/en/tags/godotengine/">GodotEngine</a></li>
       <li><a href="https://www.peanuts-code.com/en/tags/gamedev/">GameDev</a></li>
       <li><a href="https://www.peanuts-code.com/en/tags/indiedev/">IndieDev</a></li>
-      <li><a href="https://www.peanuts-code.com/en/tags/blog/">Blog</a></li>
-      <li><a href="https://www.peanuts-code.com/en/tags/post/">Post</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/tutorials/">Tutorials</a></li>
       <li><a href="https://www.peanuts-code.com/en/tags/tips/">Tips</a></li>
       <li><a href="https://www.peanuts-code.com/en/tags/search/">Search</a></li>
     </ul>
@@ -469,7 +468,7 @@ data-ad-slot="9419515863"></ins></p>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Powerful Search Features on Godot Editor on twitter"
-        href="https://twitter.com/intent/tweet/?text=Powerful%20Search%20Features%20on%20Godot%20Editor&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0009_various_searches%2f&amp;hashtags=Godot%2cGodotEngine%2cGameDev%2cIndieDev%2cBlog%2cPost%2cTips%2cSearch">
+        href="https://twitter.com/intent/tweet/?text=Powerful%20Search%20Features%20on%20Godot%20Editor&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0009_various_searches%2f&amp;hashtags=Godot%2cGodotEngine%2cGameDev%2cIndieDev%2cTutorials%2cTips%2cSearch">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />

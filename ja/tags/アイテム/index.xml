@@ -18,7 +18,7 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_6/</guid>
       <description>第6回目の今回は、アイテムを作る。アイテムというのは、ちょうどスーパーマリオシリーズのコインのような、当たるとポイントを獲得できてちょっと嬉しい存在だ。さらに、下から小突くとアイテムが出てくる箱、その名もアイテムボックスを作る。それぞれスクリプトで動作を制御し、最後はレベルシーンに配置するところまでやっていこう。
- Memo：</description>
+Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。</description>
     </item>
     
   </channel>
