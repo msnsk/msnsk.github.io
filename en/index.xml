@@ -66,7 +66,16 @@
     </item>
     
     <item>
-      <title>Download Godot</title>
+      <title>Project Manager in Godot Engine</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/</link>
+      <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/</guid>
+      <description>When Godot is launched, the first thing that appears is the Project Manager.</description>
+    </item>
+    
+    <item>
+      <title>Downloading Godot</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0001_download/</link>
       <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
       

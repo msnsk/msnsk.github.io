@@ -451,6 +451,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</loc>
     <lastmod>2021-10-30T12:30:09+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3/</loc>
     <lastmod>2021-10-30T12:30:09+09:00</lastmod>
