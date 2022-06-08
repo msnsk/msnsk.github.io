@@ -182,7 +182,7 @@
     <loc>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/</loc>
     <lastmod>2022-06-08T00:05:00+09:00</lastmod>
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%99%E3%83%BC%E3%82%B9/</loc>
+    <loc>https://www.peanuts-code.com/ja/tags/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%99%E3%83%BC%E3%82%B9%E7%A7%BB%E5%8B%95/</loc>
     <lastmod>2022-06-08T00:05:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/</loc>
@@ -457,6 +457,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</loc>
     <lastmod>2021-10-25T00:15:11+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tutorials/gd0001_download/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tutorials/gd0001_download/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89/</loc>
     <lastmod>2021-10-25T00:15:11+09:00</lastmod>
