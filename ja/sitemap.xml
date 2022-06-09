@@ -139,6 +139,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</loc>
     <lastmod>2022-06-08T00:05:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/godotengine/</loc>
     <lastmod>2022-06-08T00:05:00+09:00</lastmod>
@@ -287,7 +297,7 @@
     <lastmod>2022-05-04T01:30:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0009_various_searches/</loc>
-    <lastmod>2022-04-25T17:08:00+09:00</lastmod>
+    <lastmod>2022-05-29T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -300,7 +310,7 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E6%A4%9C%E7%B4%A2%E6%A9%9F%E8%83%BD/</loc>
-    <lastmod>2022-04-25T17:08:00+09:00</lastmod>
+    <lastmod>2022-05-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%A0/</loc>
     <lastmod>2022-04-24T00:00:00+09:00</lastmod>
