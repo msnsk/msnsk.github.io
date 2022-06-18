@@ -22,7 +22,7 @@
 <link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.100.2" />
+<meta name="generator" content="Hugo 0.101.0" />
 <link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_12/" />
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
@@ -476,7 +476,9 @@ data-ad-slot="9419515863"></ins></p>
 <em>このチュートリアルのすべての動画の音は、デフォルトで <span style="color:orange">ミュート</span>
 されています。音を確認するにはミュートを解除してください。</em></p>
 </blockquote>
+
 <video controls autoplay loop muted playsinline aria-label='スタート画面のキー押下時のサウンドエフェクト' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_9.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -506,7 +508,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>			yield(sound, <span style="color:#e6db74">&#34;finished&#34;</span>)
 </span></span><span style="display:flex;"><span>			get_tree()<span style="color:#f92672">.</span>change_scene(<span style="color:#e6db74">&#34;res://scene/GameStartView.tscn&#34;</span>)
 </span></span></code></pre></div><p>ではシーンを実行して確認しよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='ゲームオーバー画面でキー押下時のサウンドエフェクト' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='ゲームオーバー画面でキー押下時のサウンドエフェクト' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_10.1.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -544,7 +548,9 @@ data-ad-slot="9419515863"></ins></p>
 <p>一方、ポーズ画面表示中に「Quit」アクション実行時（つまり Q キーを押した場合）は、ゲームを終了する前にサウンドエフェクトが鳴りきるように<code>yield</code>を使っている。</p>
 <p>ちなみに「# 修正」のコメントがある<code>elif</code>ブロックの条件式を修正した。元々、ゲームプレイ中、ポーズ画面でなくても Q キーでゲーム終了できてしまっていたが、この操作は重大であるため、いつでもできる仕様は避けた方が良い。このことから<code>and visible == true</code>を条件式に追加し、ポーズ画面でないと Q キーを受け付けない仕様にした。</p>
 <p>ではプロジェクトを実行して確認しよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='プレイ画面中のポーズ/ポーズ解除時のサウンドエフェクト' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='プレイ画面中のポーズ/ポーズ解除時のサウンドエフェクト' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_12.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -570,7 +576,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>			apply_impulse(<span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>ZERO, velocity)
 </span></span><span style="display:flex;"><span>			launch_sound<span style="color:#f92672">.</span>play() <span style="color:#75715e"># 追加</span>
 </span></span></code></pre></div><p>プロジェクトを実行して確認しよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='ボールを発射する時のサウンドエフェクト' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='ボールを発射する時のサウンドエフェクト' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_14.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -600,7 +608,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span></code></pre></div><p><code>_on_Ball_body_entered</code>メソッド内の<strong>一つ目の</strong><code>if</code>構文の冒頭にコードを 2 行追加した。これで、ボールがブロックに当たったらサウンドエフェクトが再生されるようになる。</p>
 <p>ところで、今回<code>yield</code>のコードでサウンド再生の終了を待つ処理を入れていない。これはサウンド再生のメソッド<code>play</code>を実行した直後に「AnimationPlayer」ノードのアニメーション「collided」の再生が始まるが、このアニメーションが終了するまでの時間が、サウンドエフェクトが鳴り終わるまでの時間より確実に長いからだ。しかも、音の再生が終わってからブロックが消える時のアニメーションが再生されると、若干の違和感が生じるが、これを回避する意味もある。</p>
 <p>では、プロジェクトを実行して確認しておく。</p>
-<p><video controls autoplay loop muted playsinline aria-label='ブロックにボールが衝突した時のサウンドエフェクト' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='ブロックにボールが衝突した時のサウンドエフェクト' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_16.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -640,7 +650,9 @@ data-ad-slot="9419515863"></ins></p>
 <p>この機にバラけていた<code>if</code>構文を一つにまとめて、二つ目の<code>if</code>ブロックを<code>elif</code>に変更した。そして、その<code>elif</code>ブロックにコードを追加した。</p>
 <p><code>elif</code>ブロックの冒頭に、さっきのブロックに衝突した時のサウンドの処理と全く同じコードを2行追加した。</p>
 <p>では、プロジェクトを実行して確認してみよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='パドルにボールが衝突した時のサウンドエフェクト' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='パドルにボールが衝突した時のサウンドエフェクト' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_18.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -684,7 +696,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span></code></pre></div><p>ここでもまた<code>_on_Ball_body_entered</code>メソッドを更新した。<code>if / elif</code>構文にもう一つ<code>elif</code>を追加した。</p>
 <p>この<code>elif</code>は、衝突したオブジェクトが「Wall」ノードだったら、という条件式になっている。条件の通り、ボールが「Wall」ノードに衝突した場合に、サウンドエフェクトを再生するコードになっている。</p>
 <p>ではプロジェクトを実行して確認しよう。<br>
+
 <video controls autoplay loop muted playsinline aria-label='パドルにボールが衝突した時のサウンドエフェクト' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_20.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -713,7 +727,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#（後略）</span>
 </span></span></code></pre></div><p>例によって、「ShootSound」ノードへの参照を変数<code>sound</code>で定義した。そして、<code>_ready</code>メソッドに<code>play</code>メソッドを記述し、インスタンスが生成されたらサウンドエフェクトが再生されるようにした。</p>
 <p>シーンを実行して確認しよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='シーンを実行してレーザーを発射した時のサウンドエフェクトを確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='シーンを実行してレーザーを発射した時のサウンドエフェクトを確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_22.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -762,7 +778,9 @@ data-ad-slot="9419515863"></ins></p>
 </p>
 <br>
 <p>ではプロジェクトを実行して確認しよう。確認できたら、さっきの一時的な変更は戻しておこう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='プロジェクトを実行してレーザーを発射した時のサウンドエフェクトを確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='プロジェクトを実行してレーザーを発射した時のサウンドエフェクトを確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_24.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -816,7 +834,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span></code></pre></div><p>新しく変数<code>life_down_time</code>を定義した。これは「LifeDownSound」ノード参照をしている。</p>
 <p>ライフが減る時の処理を行う<code>_on_Ball_tree_exited</code>メソッドを編集した。このメソッドはボールが画面から消えた時に<code>tree_exited</code>シグナルによって呼ばれる。ボールが全て画面から無くなった時にゲームプレイ中で、且つライフが<code>0</code>ではなかったら、<code>play</code>メソッドにてサウンドを再生するようにした。</p>
 <p>ではプロジェクトを実行して確認しよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='プロジェクトを実行してライフが減った時のサウンドエフェクトを確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='プロジェクトを実行してライフが減った時のサウンドエフェクトを確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_27v2.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -903,7 +923,9 @@ data-ad-slot="9419515863"></ins></p>
 <p>プロジェクトを実行する前に、「Game」ノードの「Drop Rate」プロパティを<code>1</code>に変更して、パワーアップアイテムのドロップ率を 100 % にしておこう。</p>
 <p><img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_12/img_23.png" alt="GameノードのDrop Rateを編集"  />
 </p>
-<p><video controls autoplay loop muted playsinline aria-label='プロジェクトを実行してすべてのパワーアップのサウンドエフェクトを確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='プロジェクトを実行してすべてのパワーアップのサウンドエフェクトを確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_30.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -938,7 +960,9 @@ data-ad-slot="9419515863"></ins></p>
 <p><img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_12/img_35.png" alt="PlayBGMのPauseModeを編集"  />
 </p>
 <p>これでシーンを実行してみると「NextScreen」表示中でも BGM が流れている状態になるので、無音の違和感は解消される。</p>
-<p><video controls autoplay loop muted playsinline aria-label='プロジェクトを実行してスタート画面からプレイ画面の切り替え時のサウンド確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='プロジェクトを実行してスタート画面からプレイ画面の切り替え時のサウンド確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_36.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -956,7 +980,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span></code></pre></div><p>「PlayBGM」ノードの<code>stream_paused</code>プロパティが<code>true</code>の場合はサウンドが一時停止し、<code>false</code>で再開される。</p>
 <p>ゲームプレイを開始した時点では「PauseScreen」ノードの<code>visibility</code>は<code>false</code>で、「PlayBGM」ノードの<code>stream_paused</code>プロパティも<code>false</code>だ。「PauseScreen」ノードの<code>visibility</code>プロパティが変更された時に<code>visibility_changed</code>シグナルが発信され、<code>_on_PauseScreen_visibility_changed</code>メソッドが実行され、「PlayBGM」ノードの<code>stream_paused</code>プロパティもまた変更される（現在<code>false</code>なら<code>true</code>に、<code>true</code>なら<code>false</code>になる）。</p>
 <p>では、シーンを実行して挙動を確認しておこう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='ポーズ画面でサウンドが停止するか確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='ポーズ画面でサウンドが停止するか確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_37.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -977,7 +1003,9 @@ data-ad-slot="9419515863"></ins></p>
 <p><img loading="lazy" src="/images/tutorials/gd0004_breakout/breakout_12/img_38.png" alt="PlayBGMのPauseModeを編集"  />
 </p>
 <p>なお、ここではスクリプトを編集する必要はない。ではシーンを実行して確認しよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='ポーズ画面でサウンドが停止するか確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='ポーズ画面でサウンドが停止するか確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_39.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -986,7 +1014,9 @@ data-ad-slot="9419515863"></ins></p>
 <br></p>
 <h2 id="全体を通してにサウンドを確認する">全体を通してにサウンドを確認する<a hidden class="anchor" aria-hidden="true" href="#全体を通してにサウンドを確認する">#</a></h2>
 <p>では最後に、プロジェクトを実行して、プロジェクト全体のサウンドのバランスなどを確認しておこう。パワーアップアイテムのドロップ率は<code>2.0</code>に戻しておく。</p>
-<p><video controls autoplay loop muted playsinline aria-label='ポーズ画面でサウンドが停止するか確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='ポーズ画面でサウンドが停止するか確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0004_breakout/breakout_12/img_40.mp4" type="video/mp4">
     
     Your browser does not support the video tag.

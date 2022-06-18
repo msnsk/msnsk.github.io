@@ -10,7 +10,70 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 08 Jun 2022 00:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Jun 2022 22:43:45 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot</title>
+      <link>https://www.peanuts-code.com/ja/tags/godot/</link>
+      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/godot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GodotEngine</title>
+      <link>https://www.peanuts-code.com/ja/tags/godotengine/</link>
+      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ゲーム開発</title>
+      <link>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/</link>
+      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>チュートリアル</title>
+      <link>https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/</link>
+      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>なぞって消すゲーム</title>
+      <link>https://www.peanuts-code.com/ja/tags/%E3%81%AA%E3%81%9E%E3%81%A3%E3%81%A6%E6%B6%88%E3%81%99%E3%82%B2%E3%83%BC%E3%83%A0/</link>
+      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/%E3%81%AA%E3%81%9E%E3%81%A3%E3%81%A6%E6%B6%88%E3%81%99%E3%82%B2%E3%83%BC%E3%83%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>パズルゲーム</title>
+      <link>https://www.peanuts-code.com/ja/tags/%E3%83%91%E3%82%BA%E3%83%AB%E3%82%B2%E3%83%BC%E3%83%A0/</link>
+      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/%E3%83%91%E3%82%BA%E3%83%AB%E3%82%B2%E3%83%BC%E3%83%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>同じ色をつなげて消すゲーム</title>
+      <link>https://www.peanuts-code.com/ja/tags/%E5%90%8C%E3%81%98%E8%89%B2%E3%82%92%E3%81%A4%E3%81%AA%E3%81%92%E3%81%A6%E6%B6%88%E3%81%99%E3%82%B2%E3%83%BC%E3%83%A0/</link>
+      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/%E5%90%8C%E3%81%98%E8%89%B2%E3%82%92%E3%81%A4%E3%81%AA%E3%81%92%E3%81%A6%E6%B6%88%E3%81%99%E3%82%B2%E3%83%BC%E3%83%A0/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>2D</title>
       <link>https://www.peanuts-code.com/ja/tags/2d/</link>
@@ -21,47 +84,11 @@
     </item>
     
     <item>
-      <title>Godot</title>
-      <link>https://www.peanuts-code.com/ja/tags/godot/</link>
-      <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/godot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GodotEngine</title>
-      <link>https://www.peanuts-code.com/ja/tags/godotengine/</link>
-      <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/godotengine/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ゲーム開発</title>
-      <link>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/</link>
-      <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>グリッドベース移動</title>
       <link>https://www.peanuts-code.com/ja/tags/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%99%E3%83%BC%E3%82%B9%E7%A7%BB%E5%8B%95/</link>
       <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%99%E3%83%BC%E3%82%B9%E7%A7%BB%E5%8B%95/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>チュートリアル</title>
-      <link>https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/</link>
-      <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/</guid>
       <description></description>
     </item>
     

@@ -22,7 +22,7 @@
 <link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.100.2" />
+<meta name="generator" content="Hugo 0.101.0" />
 <link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_13/" />
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
@@ -563,7 +563,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> sprite<span style="color:#f92672">.</span>frame <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>  <span style="color:#f92672">or</span> sprite<span style="color:#f92672">.</span>frame <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span>:
 </span></span><span style="display:flex;"><span>			step_sfx<span style="color:#f92672">.</span>play()
 </span></span></code></pre></div><p>これで足音の SFX が追加できたはずだ。「Level1」シーンで確認してみよう。</p>
+
 <video controls autoplay loop muted playsinline aria-label='FootStepサウンド確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img24.4.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -611,7 +613,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>		position<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>
 </span></span></code></pre></div><br>
 <p>「Level1」シーンで確認してみよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='Jumpサウンド確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='Jumpサウンド確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img24.5.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -630,7 +634,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>		damage_sfx<span style="color:#f92672">.</span>play() <span style="color:#75715e"># 追加</span>
 </span></span></code></pre></div><br>
 <p>「Level1」シーンで確認してみよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='Damageサウンド確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='Damageサウンド確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img24.6.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -656,7 +662,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Scene tree paused: &#34;</span>, get_tree()<span style="color:#f92672">.</span>paused)
 </span></span></code></pre></div><p>ヘルスが 0 以下になった時に「die」アニメーションと同時に SFX も再生される。そして、再生が終了するまで待機してからゲームオーバー画面に遷移する。</p>
 <p>では実際にプロジェクトを実行して挙動を確認しておこう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='Dieサウンド確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='Dieサウンド確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img24.7.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -706,7 +714,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>		print(self<span style="color:#f92672">.</span>name, <span style="color:#e6db74">&#34; died&#34;</span>)
 </span></span></code></pre></div><p>これで、プレイヤーキャラクターが敵キャラクターを踏んづけた時に、SFX が再生され、再生が終了してから<code>queue_free</code>メソッドにて敵キャラクターオブジェクトが解放される。</p>
 <p>では「Level1」シーンを実行して動作確認をしておこう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='HitEnemyサウンド確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='HitEnemyサウンド確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img24.8.2.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -777,7 +787,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>	audio_player<span style="color:#f92672">.</span>play()
 </span></span></code></pre></div><p>これで箱が壊れた瞬間にこのシーンが読み込まれ、同時に SFX が再生されるはずだ。</p>
 <p>ではアイテムを取った時の音とアイテムボックスが壊れた時の音がそれぞれ正しく再生されるか、「Level1」シーンでまとめて確認してみよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='Dieサウンド確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='Dieサウンド確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img24.8.5.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -820,7 +832,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>		audio_player<span style="color:#f92672">.</span>play() <span style="color:#75715e"># 追加</span>
 </span></span></code></pre></div><p>これで、スタートポイントの台にプレイヤーキャラクターが乗ったら SFX が再生されるようになったはずだ。</p>
 <p>「Level1」シーンを再生して確認してみよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='Level1シーンを再生してStartPointシーンのサウンド確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='Level1シーンを再生してStartPointシーンのサウンド確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img26.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -866,7 +880,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;flag_idle&#34;</span>)
 </span></span><span style="display:flex;"><span>		is_checked <span style="color:#f92672">=</span> true
 </span></span></code></pre></div><p>これで、プレイヤーキャラクターがチェックポイントのフラグに当たると SFX が再生されるはずだ。これも「Level1」シーンで確認してみよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='Level1シーンを再生してStartPointシーンのサウンド確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='Level1シーンを再生してStartPointシーンのサウンド確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img28.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -918,7 +934,9 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>		get_parent()<span style="color:#f92672">.</span>queue_free()
 </span></span></code></pre></div><p>これでプレイヤーキャラクターがエンドポイントの優勝カップに入ったら、ワープのアニメーションとともにワープっぽい SFX が再生され、アニメーションとサウンドが終了次第、現在のレベルシーンが解放され、次のレベルシーンに画面遷移する。</p>
 <p>「Level1」シーンで SFX の再生と再生後の「Level1」シーンの解放まで確認しよう。最後までプレイするのが面倒なので、「EndPoint2」インスタンスノードを「Level1」ルートノードに追加してスタートポイント付近に設置してテストするのが手っ取り早い。テストが終わったら追加したインスタンスノードを削除すればOKだ。</p>
-<p><video controls autoplay loop muted playsinline aria-label='Level1シーンを再生してStartPointシーンのサウンド確認' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='Level1シーンを再生してStartPointシーンのサウンド確認' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img30.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -989,7 +1007,9 @@ data-ad-slot="9419515863"></ins></p>
 <li>BGM がループ再生されるか</li>
 <li>スペースキーを押して SFX が再生されるか</li>
 </ul>
-<p><video controls autoplay loop muted playsinline aria-label='GameStartシーンを再生' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='GameStartシーンを再生' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img15.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -1091,7 +1111,9 @@ data-ad-slot="9419515863"></ins></p>
 <li>左右矢印キーを押してキャラクター選択の SFX が再生されるか</li>
 <li>スペースキーを押してキャラクター確定の SFX が再生されるか</li>
 </ul>
+
 <video controls autoplay loop muted playsinline aria-label='CharacterSelectシーンを再生' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img18.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -1225,7 +1247,9 @@ data-ad-slot="9419515863"></ins></p>
 <li>確認ダイアログで「Cancel」を押した時に「PressCancel.wav」が再生される</li>
 </ul>
 <p>上記内容に加えて、BGM の音源が正しく再生されるか、正しくループするかも併せて、実際にシーンを実行してみよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='GameOverシーンを再生' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='GameOverシーンを再生' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img20.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -1261,7 +1285,9 @@ data-ad-slot="9419515863"></ins></p>
 </ol>
 <br>
 <p>では BGM の自動再生とループを確認しておこう。なお、このリソースのみループ開始位置を調整しているので、開始位置に戻った時に違和感がないかはよく聴いて確認する必要がある。以下の動画では 0:31 のタイミングでループ開始位置に戻っている。</p>
-<p><video controls autoplay loop muted playsinline aria-label='Level1シーンを再生' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='Level1シーンを再生' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img22.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -1297,7 +1323,9 @@ data-ad-slot="9419515863"></ins></p>
 </ol>
 <br>
 <p>では BGM の自動再生とループを確認しておこう。以下の動画では 0:49 のタイミングでループ開始位置に戻っている。</p>
-<p><video controls autoplay loop muted playsinline aria-label='Level1シーンを再生' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='Level1シーンを再生' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img24.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
@@ -1305,7 +1333,9 @@ data-ad-slot="9419515863"></ins></p>
 <br>
 <br></p>
 <p>これでサウンドの追加が必要なシーンの編集作業は完了した。最後にプロジェクト全体を通して音の確認をして今回の作業を終えよう。</p>
-<p><video controls autoplay loop muted playsinline aria-label='GameOverシーンを再生' style="width: 100%; height: auto;">
+<p>
+<video controls autoplay loop muted playsinline aria-label='GameOverシーンを再生' style="width: 100%; height: auto;">
+
     <source src="/images/tutorials/gd0005_platformer/platformer_13/img31.mp4" type="video/mp4">
     
     Your browser does not support the video tag.
