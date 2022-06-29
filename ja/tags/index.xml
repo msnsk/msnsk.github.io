@@ -10,11 +10,11 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 14 Jun 2022 22:43:45 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 Jun 2022 03:18:03 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot</title>
       <link>https://www.peanuts-code.com/ja/tags/godot/</link>
-      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
+      <pubDate>Sun, 26 Jun 2022 03:18:03 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/godot/</guid>
       <description></description>
@@ -23,7 +23,7 @@
     <item>
       <title>GodotEngine</title>
       <link>https://www.peanuts-code.com/ja/tags/godotengine/</link>
-      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
+      <pubDate>Sun, 26 Jun 2022 03:18:03 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/godotengine/</guid>
       <description></description>
@@ -32,7 +32,7 @@
     <item>
       <title>ゲーム開発</title>
       <link>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/</link>
-      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
+      <pubDate>Sun, 26 Jun 2022 03:18:03 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E9%96%8B%E7%99%BA/</guid>
       <description></description>
@@ -41,9 +41,36 @@
     <item>
       <title>チュートリアル</title>
       <link>https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/</link>
-      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
+      <pubDate>Sun, 26 Jun 2022 03:18:03 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>パズルゲーム</title>
+      <link>https://www.peanuts-code.com/ja/tags/%E3%83%91%E3%82%BA%E3%83%AB%E3%82%B2%E3%83%BC%E3%83%A0/</link>
+      <pubDate>Sun, 26 Jun 2022 03:18:03 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/%E3%83%91%E3%82%BA%E3%83%AB%E3%82%B2%E3%83%BC%E3%83%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>マッチ3</title>
+      <link>https://www.peanuts-code.com/ja/tags/%E3%83%9E%E3%83%83%E3%83%813/</link>
+      <pubDate>Sun, 26 Jun 2022 03:18:03 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/%E3%83%9E%E3%83%83%E3%83%813/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>モバイルゲーム</title>
+      <link>https://www.peanuts-code.com/ja/tags/%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E3%82%B2%E3%83%BC%E3%83%A0/</link>
+      <pubDate>Sun, 26 Jun 2022 03:18:03 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E3%82%B2%E3%83%BC%E3%83%A0/</guid>
       <description></description>
     </item>
     
@@ -53,15 +80,6 @@
       <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/%E3%81%AA%E3%81%9E%E3%81%A3%E3%81%A6%E6%B6%88%E3%81%99%E3%82%B2%E3%83%BC%E3%83%A0/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>パズルゲーム</title>
-      <link>https://www.peanuts-code.com/ja/tags/%E3%83%91%E3%82%BA%E3%83%AB%E3%82%B2%E3%83%BC%E3%83%A0/</link>
-      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/%E3%83%91%E3%82%BA%E3%83%AB%E3%82%B2%E3%83%BC%E3%83%A0/</guid>
       <description></description>
     </item>
     
