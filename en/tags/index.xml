@@ -10,7 +10,79 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 20 Jun 2022 03:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Jul 2022 06:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GameDev</title>
+      <link>https://www.peanuts-code.com/en/tags/gamedev/</link>
+      <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/gamedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Godot</title>
+      <link>https://www.peanuts-code.com/en/tags/godot/</link>
+      <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/godot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GodotEngine</title>
+      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
+      <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IndieDev</title>
+      <link>https://www.peanuts-code.com/en/tags/indiedev/</link>
+      <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/indiedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>match3</title>
+      <link>https://www.peanuts-code.com/en/tags/match3/</link>
+      <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/match3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mobilegame</title>
+      <link>https://www.peanuts-code.com/en/tags/mobilegame/</link>
+      <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/mobilegame/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>puzzlegame</title>
+      <link>https://www.peanuts-code.com/en/tags/puzzlegame/</link>
+      <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/puzzlegame/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tutorial</title>
+      <link>https://www.peanuts-code.com/en/tags/tutorial/</link>
+      <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/tutorial/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>2D</title>
       <link>https://www.peanuts-code.com/en/tags/2d/</link>
@@ -26,33 +98,6 @@
       <pubDate>Mon, 20 Jun 2022 03:00:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/connectingmatchingcolors/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GameDev</title>
-      <link>https://www.peanuts-code.com/en/tags/gamedev/</link>
-      <pubDate>Mon, 20 Jun 2022 03:00:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/gamedev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Godot</title>
-      <link>https://www.peanuts-code.com/en/tags/godot/</link>
-      <pubDate>Mon, 20 Jun 2022 03:00:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/godot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GodotEngine</title>
-      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
-      <pubDate>Mon, 20 Jun 2022 03:00:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
       <description></description>
     </item>
     
@@ -134,15 +179,6 @@
       <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>IndieDev</title>
-      <link>https://www.peanuts-code.com/en/tags/indiedev/</link>
-      <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/indiedev/</guid>
       <description></description>
     </item>
     

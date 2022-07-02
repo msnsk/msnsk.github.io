@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Match 3 puzzle game in Godot | Peanuts Code</title>
+<meta name="keywords" content="Godot, GodotEngine, gamedev, indiedev, tutorial, puzzlegame, mobilegame, match3" />
+<meta name="description" content="In this tutorial, we will create a match 3 puzzle game.">
+<meta name="author" content="Masanao Sako">
+<link rel="canonical" href="https://www.peanuts-code.com/en/tutorials/gd0012_match3/" />
+<meta name="google-site-verification" content="XYZabc" />
+<meta name="yandex-verification" content="XYZabc" />
+<meta name="msvalidate.01" content="XYZabc" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="/images/logomark.png" as="image">
+<link rel="icon" href="https://www.peanuts-code.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.peanuts-code.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.peanuts-code.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.peanuts-code.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.101.0" />
+<link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0012_match3/" />
+<link rel="alternate" hreflang="en" href="https://www.peanuts-code.com/en/tutorials/gd0012_match3/" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-DK0NK2RTTW', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="Match 3 puzzle game in Godot" />
+<meta property="og:description" content="In this tutorial, we will create a match 3 puzzle game." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.peanuts-code.com/en/tutorials/gd0012_match3/" />
+<meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0012_match3/img20.gif" /><meta property="article:section" content="tutorials" />
+<meta property="article:published_time" content="2022-07-02T06:05:00&#43;09:00" />
+<meta property="article:modified_time" content="2022-07-02T06:05:00&#43;09:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0012_match3/img20.gif" />
+<meta name="twitter:title" content="Match 3 puzzle game in Godot"/>
+<meta name="twitter:description" content="In this tutorial, we will create a match 3 puzzle game."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Tutorials",
+      "item": "https://www.peanuts-code.com/en/tutorials/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Match 3 puzzle game in Godot",
+      "item": "https://www.peanuts-code.com/en/tutorials/gd0012_match3/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Match 3 puzzle game in Godot",
+  "name": "Match 3 puzzle game in Godot",
+  "description": "In this tutorial, we will create a match 3 puzzle game.",
+  "keywords": [
+    "Godot", "GodotEngine", "gamedev", "indiedev", "tutorial", "puzzlegame", "mobilegame", "match3"
+  ],
+  "articleBody": "In this tutorial, we will create a match 3 puzzle game. Match 3 is a puzzle game in which players move multiple colorful pieces evenly arranged along a grid on the board to eliminate three or more pieces of the same color in a row. This genre is particularly popular among mobile game players because it is easy to operate and enjoyable.\nCandy Crush, Toon Blast, and Royal Match are just a few examples of popular games. Puzzle \u0026 Dragons and LINE Tsum Tsum are also based on Match 3, although the controls are slightly different. In this tutorial, we will create a puzzle like Candy Crush, in which the pieces are moved only one square at a time to match colors. If you want to make a game like “LINE tsum tsum”, check another tutorial, “Connecting matching colors puzzle game in Godot ”.\nThe final project file for this tutorial is located at GitHub repository . If you download the .zip file and import the “project.godot” file in the “End” folder with the Godot Engine, you can check the project directly.\nEnvironment This tutorial was created in the following environment\n・Godot version: 3.4.4\n・Computer OS version: macOS 11.6.5\nMemo: Please also use the following article to help you start creating your game.\nDownloading Godot Project Manager of Godot Creating a new project Start Godot Engine and create a new project. You can name your project as you like. If you can’t think of one, let’s call it “Match3 Start”.\nUpdating project settings When the editor appears, let’s go ahead and update project settings for the entire project.\nFirst, set the display size for the game. In this case, we will assume a smartphone screen in portrait orientation and set the aspect ratio to 16 : 9.\nOpen the “Project” menu \u003e “Project Settings”. In the “General” tab, search for “window” and select “Display” \u003e “Window” in the sidebar. In the “Size” section, change the values of the following items Width: 630 Height: 1120 Test Width: 315 Test Height: 560\nIn the “Stretch” section, change the values of the following items Mode: 2d Aspect: keep\nWith the “Project Settings” window open as it is, configures the settings to substitute the mouse for the phone’s touch operation in the debug panel.\nSearch for “mouse” in the “General” tab and select “Input Devices” \u003e “Pointing” in the sidebar. Check “On” for “Emulate Touch From Mouse”.\nIn addition, with the “Project Settings” window open, add an action to the input map corresponding to a smartphone touch operation.\nSwitch to the “Input Map” tab and add “touch” to the action. Add a left mouse click to the “touch” action.\nDownloading and importing assets Next, let’s download assets from KENNEY’s site and use them. This time, we will use an asset pack called “Physics Assets ”. I’m going to use the cute alien face images in this asset pack as textures for the pieces on the game board. I can’t help but be thankful for this wonderful free resource.\nAfter downloading, delete the images in the “/physicspack/PNG/Aliens” folder, leaving only the one with the file name “~_round.png” and drag the “Aliens” folder into the file system dock of the editor to import it into your project.\nCreating a Grid scene First, let’s create a “Grid” scene as the board on which the pieces are placed in a match 3 puzzle game.\nSelect “Scene” menu \u003e “New Scene”. Select “2D Scene” in “Generate Root Node”. When the root node of the “Node2D” class is generated, rename it to “Grid”. Save the scene. Create a folder and save the scene with the file path “res://Grid/Grid.tscn”.\nAdding a node to the Grid scene Let’s add another child node of class “Node2D” to the “Grid” root node and rename it to “PiecesContainer”. This node is used to organize the pieces placed on the board. During the game, when instances of the pieces are created by the script, they will all be added as children of this “PiecesContainer” node.\nThe scene tree dock should now look like the following.\nNote that there is no need to edit the properties of the “Grid” scene node.\nTranslated with www.DeepL.com/Translator (free version)\nCreating a Piece scene Next, create a “Piece” scene for the pieces to be placed on the board. However, this “Piece” scene is only a blueprint, and the actual pieces of each color to be used in the game will be prepared later by inheriting this “Piece” scene.\nSelect “Scene” menu \u003e “New Scene”. Select “2D Scene” in the “Create Root Node” section. When the root node of “Node2D” class is generated, rename it to “Piece”. Save the scene. Create a folder and save the scene with the file path “res://Pieces/Piece.tscn”.\nAdding a child node to the Piece node Let’s add a child node of class “Sprite” to the “Piece” root node. The scene tree dock should now look like the following.\nEditing the properties of the Sprite node Let’s edit a few properties of the “Sprite” node. As mentioned above, the “Piece” is only a blueprint, so we will leave the “Texture” property of the “Sprite” node as it is without applying any resources to it in this scene. In the inherited scene, apply an image that matches the color of each piece.\nChange the value of the “Offset” property to “(x: 35, y: -35)”. In the scene of each piece of color that inherits this scene, we will apply the KENNEY image imported earlier to the “Texture” property. Since the size of the image is 70 px in height and width, we shifted the center of the image to the upper right and set the lower left corner of the image to (x: 0, y: 0).\nThe grid of the board on which the pieces are placed is set to count from left to right on the x-axis and from bottom to top on the y-axis, and the size of one grid on the board is set to 70 px to match the size of the texture. If the lower left corner of the piece’s texture image is aligned with (x: 0, y: 0), then when the “Piece” root node is positioned (x: 0, y: 0) to the grid, the “Sprite” image will be placed exactly along the grid.\nAttaching and editing a script to the Piece node Let’s attach a new script to the “Piece” root node. Create a script file with the file path “res://Pieces/Piece.tscn”.\nEdit the script as follows.\nextends Node2D # Property to set the color of the piece as string data export (String) var color # Property to indicate matched (3 or more of the same color in a row) var matched = false # Reference to a Sprite node onready var sprite = $Sprite # Method to move a piece # Move the Piece instance to the position passed in the target argument func move(target): position = target # Method called when a match is found (3 or more of the same color in a row) # Set the matched property to true and make the color translucent func make_matched(): matched = true sprite.modulate = Color(1,1,1,.5) This completes the editing of the “Piece.gd” script.\nCreating a scene for each color that inherits from the Piece scene Now that the “Piece” scene, which will serve as a template, is complete, let’s create a scene that inherits the “Piece” scene in the number of colors of the piece. There are five Piece colors: beige, blue, green, pink, and yellow. First, let’s proceed with the steps using the “beige” drop as an example.\nSelect “Scene” menu \u003e “New Inherited Scene”. Select “Piece.tscn” as the source scene. After the inherited scene is generated, rename the root node to “PieceBeige”.\n*The name of this root node should match the color of each drop. Save the scene once. Save the file path as “res://Pieces/PieceBeige.tscn”. With the root node “PieceBeige” selected in the scene tree dock, set the value of the “Color” property of “Script Variables” to “beige” in the inspector.\nSelect the “Sprite” node in the scene tree dock and apply the previously imported resource “res://Aliens/alienBeige_round.png” to the “Texture” property (you can drag it from the file system dock).\nOn the 2D workspace it should now look like the following screenshot.\nThe “PieceBeige” scene is now complete. Follow the same procedure to create scenes for the remaining four colored pieces. Please refer to the following for details on the different parts of each scene. Blue Piece Root node name: PieceBlue Color property: blue Sprite \u003e Texture property: res://Aliens/alienBlue_round.png File path when saving the scene: res://Pieces/PieceBlue.tscn Green Piece Root node name: PieceGreen Color property: green Sprite \u003e Texture property: res://Aliens/alienGreen_round.png File path when saving the scene: res://Pieces/PieceGreen.tscn Pink Piece Root node name: PiecePink Color property: green Sprite \u003e Texture property: res://Aliens/alienPink_round.png File path when saving the scene: res://Pieces/PiecePink.tscn Yellow Piece Root node name: PieceYellow Color property: yellow Sprite \u003e Texture property: res://Aliens/alienYellow_round.png File path when saving the scene: res://Pieces/PieceYellow.tscn When the inherited scenes of all 5 colored pieces have been created, the work is complete.\nControlling the Grid scene with scripts Now that we have created a scene for each color piece, we can now program and control the game. The amount of code is a bit large this time, so let’s do our best.\nAfter switching to the “Grid.tscn” scene, attach a new script to the “Grid” root node. The file path should be “res://Grid/Grid.gd”.\nIn the comments in the script, “finger touched” or “finger released” should be replaced with “left mouse button pressed” or “left mouse button released” on the Godot debug panel.\nAlso, please note that “match” is defined as three or more of the same color.\nNow, once the script editor is open, let’s define the necessary properties.\n### Grid.gd ### extends Node2D # An array with scene files for each color piece as elements const pieces_scn = [ preload(\"res://Pieces/PieceBeige.tscn\"), preload(\"res://Pieces/PieceBlue.tscn\"), preload(\"res://Pieces/PieceGreen.tscn\"), preload(\"res://Pieces/PiecePink.tscn\"), preload(\"res://Pieces/PieceYellow.tscn\") ] # Number of grids in x-axis direction var width: = 7 # Number of grids in y-axis direction var height: = 10 # Grid start position (pixels) in x-axis direction var x_start: = 70 # Grid start position (pixels) in y-axis direction var y_start: = 910 # Size of one grid (should be the same as Texture of Sprite in Piece) var grid_size: = 70 # A two-dimensional array (initially empty) that manages all the pieces of the board as elements and their grid coordinates var all_pieces = []. # Position where finger touches the screen var touched_pos = Vector2() # The position where the finger leaves the screen var released_pos = Vector2() # State where finger is touching the screen, touched: true / away: false var is_touching = false # State of automatic processing of matching, processing: true / stopped: false var is_waiting = false # Referencing the PiecesContainer node onready var pieces_container = $PiecesContainer Then let’s add the following method. Note that the two-dimensional array that appears in the following code is an array that stores arrays as elements.\nIn the case of the two-dimensional array used in this script, the first level of the array contains as many empty arrays as the number of grids in the x-axis direction of the board, and the second level of the array contains as many elements as the number of vertical grids in each array. By storing piece objects as elements, it is possible to manage where each piece is located on the board (how many grids along the x-axis and how many grids along the y-axis).\n### Grid.gd ### # Function called when the scene is loaded func _ready(): # Method to randomize the output result of a function that generates a random number each time randomize() # Make all_pieces a 2d array that makes up the grid of the board all_pieces = make_2d_array() # define after this # Spawn the pieces and place them on each grid spawn_pieces() # define after this # Method to create a 2d array that makes up the grid of the board func make_2d_array(): # Prepare an array named array for output var array = []. # Fill the prepared array with the number of empty arrays for the number of grids along the x-axis for i in width: array.append([]) # Add a value of null for the number of grids in the y-axis to each array for j in height: array[i].append(null) # return the two-dimensional array return array # Method to spawn pieces and place them on each grid func spawn_pieces(): # Loop for the number of grids along the x-axis for i in width: # Loop over the number of grids in the y-axis for j in height: # If no piece exists in the corresponding grid on the 2D array of all pieces # (All null at the start of the game) if all_pieces[i][j] == null: # Randomly select one from the scenes of each color and instantiate it var index = floor(rand_range(0, pieces_scn.size())) var piece = pieces_scn[index].instance() # If it matches, delete the piece instance and start over while match_at(i, j, piece.color): # define after this piece.queue_free() index = floor(rand_range(0, pieces_scn.size())) piece = pieces_scn[index].instance() # Make a piece instance a child of a PiecesContainer node pieces_container.add_child(piece) # Place the piece instance at the position converted from grid to pixels piece.position = grid_to_pixel(i, j) # define after this # Update the 2D array of all pieces all_pieces[i][j] = piece Let’s define the match_at and grid_to_pixel methods in the above code.\n### Grid.gd ### # Method to check if 3 or more pieces of the same color are lined up at the specified grid position. # column is the grid position on the x-axis, row is the grid position on the y-axis, and color is the color of the piece func match_at(column, row, color): # If the x-axis value of the specified grid coordinate is 3 or greater if column \u003e= 2: # If there is a piece to the left of the specified grid coordinate and one more to the left if all_pieces[column-1][row] ! = null \\ and all_pieces[column-2][row] ! = null: # If the color of those pieces is the same as the color of the given piece if all_pieces[column-1][row].color == color \\ and all_pieces[column-2][row].color == color: # Return true return true # If the y-axis value of the specified grid coordinate is 3 or greater if row \u003e= 2: # If there are pieces below the specified grid coordinates and one more below if all_pieces[column][row-1] ! = null \\frz and all_pieces[column][row-2] ! = null: # If the color of those pieces is the same as the color of the given piece if all_pieces[column][row-1].color == color \\ and all_pieces[column][row-2].color == color: # return true return true # Method to convert grid position to pixel position func grid_to_pixel(column, row): # Define a Vector2 variable pixel_pos for pixel position output var pixel_pos = Vector2() # Pixel x-coordinate = grid start position along x-axis + grid size * grid x-coordinate pixel_pos.x = x_start + grid_size * column # Pixel y-coordinate = grid start position along y-axis - grid size * grid y-coordinate pixel_pos.y = y_start - grid_size * row # Return pixel position return pixel_pos Now the pieces of each color should be randomly arranged on the board at the start of the game. Let’s run the project once to check it out. If you are running the project for the first time, select “Grid.tscn” as the main scene when the dialog for selecting the main scene appears.\nSince we have just defined the grid_to_pixel method, we should also define the pixel_to_grid method to be used later. As the name suggests, this method is the opposite of grid_to_pixel defined earlier, and converts pixel positions to grid positions.\n### Grid.gd ### # Method to convert pixel position to grid position func pixel_to_grid(pixel_x, pixel_y) -\u003e Vector2: var grid_pos = Vector2() grid_pos.x = floor((pixel_x - x_start) / grid_size) grid_pos.y = floor((pixel_y - y_start) / -grid_size) return grid_pos In addition, we define one more method is_in_grid to be used later. This method determines whether the position passed as an argument is within the board grid and returns true or false.\n### Grid.gd ### # Method that returns whether the given position is in the grid or not. func is_in_grid(grid_position: Vector2): if grid_position.x \u003e= 0 and grid_position.x \u003c width \\ and grid_position.y \u003e= 0 and grid_position.y \u003c height # Return true if within the board grid return true else: # Return false if outside of the grid return false Here, we will write a program to handle the player’s input for the game.\n### Grid.gd ### # Function called every frame in the main loop of the game func _process(_delta): # If not in the process of matching if not is_waiting: # Process the player's input touch_input() # define after this # Method to process player input func touch_input(): # If a finger touches the screen if Input.is_action_just_pressed(\"touch\"): # Convert finger position from pixels to grid var start_pos = get_global_mouse_position() var start_grid = pixel_to_grid(start_pos.x, start_pos.y) # If the finger position is within the board grid if is_in_grid(start_grid): # Save the position where you touched your finger to the screen touched_pos = start_grid # Make the state with the finger touching the screen is_touching = true # If finger leaves the screen if Input.is_action_just_released(\"touch\"): # Convert finger position from pixels to grid var end_pos = get_global_mouse_position() var end_grid = pixel_to_grid(end_pos.x, end_pos.y) # If finger position is within the board grid... # and the state is with the finger touching the screen if Is_in_grid(end_grid) and is_touching: # Save as released position information released_pos = end_grid # Call a method that handles the movement of the piece at the touched and released positions touch_and_release() # define after this # State is finger off the screen is_touching = false In the above code, the touch_and_release method is called to acquire the position of the finger touching the screen and the position of the finger leaving the screen within the grid of the board, and to use this information to process the movement of the pieces.\nLet’s define this method and a helper method called swap_pieces that is called further in the method. A helper method is simply a method that is called within a method and serves to keep the parent method simple.\n### Grid.gd ### # Method that handles the movement of the piece using the position of the touched finger and the position of the released finger func touch_and_release(): # Calculate the difference between the position where the finger touched and the position where the finger released var difference = released_pos - touched_pos # If the absolute value of the difference along the x-axis is greater than the absolute value of the difference along the y-axis if abs(difference.x) \u003e abs(difference.y): # If difference along x-axis is greater than 0 if difference.x \u003e 0: # Call helper method to swap the piece at the touched position with the adjacent piece to the right swap_pieces(touched_pos, Vector2.RIGHT) # define after this # If the difference along the x-axis is less than 0 elif difference.x \u003c 0: # Call helper method to swap the piece at the touched position with the adjacent piece to the left swap_pieces(touched_pos, Vector2.LEFT) # defined after this # If the absolute difference along the x-axis is less than the absolute difference along the y-axis elif abs(difference.x) \u003c abs(difference.y): # If the difference along y-axis is greater than 0 if difference.y \u003e 0: # Call helper method to swap the piece at the touched position with the piece adjacent below swap_pieces(touched_pos, Vector2.DOWN) # define after this # If the difference along the y-axis is less than 0 elif difference.y \u003c 0: # Call helper method to swap the piece at the touched position with the one adjacent above it swap_pieces(touched_pos, Vector2.UP) # defined after this # Helper method to swap pieces func swap_pieces(pos, dir): # Get the piece at the touched position from the 2D array of all pieces var touched_piece = all_pieces[pos.x][pos.y]. # Get the piece adjacent to the piece in the direction of finger release from the 2D array of all pieces var target_piece = all_pieces[pos.x + dir.x][pos.y + dir.y] # If both pieces exist in the 2D array of all pieces if touched_piece ! = null and target_piece ! = null: # Overwrite the piece at the touched position in the 2D array of all pieces with the piece adjacent to the one you removed your finger from all_pieces[pos.x][pos.y] = target_piece # Overwrite the piece adjacent to the finger release position with the piece at the finger release position from the two-dimensional array of all pieces all_pieces[pos.x + dir.x][pos.y + dir.y] = touched_piece # Move the piece instance at the touched position on the board by 1 grid toward the one you removed your finger from touched_piece.move(grid_to_pixel(pos.x + dir.x, pos.y + dir.y)) # move the piece instance adjacent to the one you release your finger on the board to the position touched by your finger target_piece.move(grid_to_pixel(pos.x, pos.y)) # Set auto-processing state to \"processing in progress\" since processing of the matched piece starts here is_waiting = true With the above code, we have implemented a process whereby a piece dragged by the player is replaced by an adjacent piece.\nLet’s run the project to see if the input operation works correctly.\nFrom here, the process that should be executed automatically after the pieces are replaced is implemented. The general flow is as follows:\nChange the automatic processing state during processing. Check if there is at least one matched piece, and if so, loop through the following process. Check all pieces and flag matched pieces. Delete the flagged piece. Fill the empty space by moving a piece from the same column. After the pieces are packed down, a new piece is created in the empty space at the end. When there are no more matched pieces, the automatic processing state is stopped. Let’s code the general flow of the above.\nFirst, let’s add a line is_waiting = true at the end of the swap_pieces method that swaps the pieces defined earlier. This changes the automatic processing state to “processing”.\n### Grid.gd ### func swap_pieces(pos, dir): var touched_piece = all_pieces[pos.x][pos.y] var target_piece = all_pieces[pos.x + dir.x][pos.y + dir.y] if touched_piece ! = null and target_piece ! = null: all_pieces[pos.x][pos.y] = target_piece all_pieces[pos.x + dir.x][pos.y + dir.y] = touched_piece touched_piece.move(grid_to_pixel(pos.x + dir.x, pos.y + dir.y)) target_piece.move(grid_to_pixel(pos.x, pos.y)) # Add the following # Set the auto-processing state to \"processing\" since this is where the automatic processing of the matched piece starts is_waiting = true Let’s write the if syntax “if the state is in the process of executing automatic processing” in the touch_input method, and then add the processing we want to execute automatically in the block. The position for adding is just after the finger operation is finished. After the process is complete, let’s add a line is_waiting = false to set the automatic processing state to “stopped”.\n### Grid.gd ### func touch_input(): if Input.is_action_just_pressed(\"touch\"): # Omit if Input.is_action_just_released(\"touch\"): # Omit # Add from here # If Input.is_action_just_pressed(\"touch\"): # omit if is_waiting: # Check if there is at least one pair of matched pieces \u003e loop as long as there are while check_matches(): # define after this pass # If no matched pieces are found and processing is complete, set autoprocessing state to waiting is_waiting = false A while loop is used to repeat the necessary process if there is at least one pair of matching pieces.\nFirst, define check_matches(), which is also the loop condition of the while loop, as follows.\n### Grid.gd ### # Method to check if there is at least one matched piece and return the result func check_matches() -\u003e bool: # Loop over the x-axis grid of the board for i in width: # Loop over the y-axis grid of the board for j in height: # if piece exists at that grid coordinate if all_pieces[i][j] ! = null: # return true if the piece matches at that grid coordinate, and method also terminates if match_at(i, j, all_pieces[i][j].color): return true # Check all pieces and return false if none of them match return false Then, let’s define the find_matches method to perform the “first process in the while loop”, which is to check all the pieces and flag the matched ones, as follows. By “flagging” here, I mean changing the value of the matched property of a piece instance to true.\n### Grid.gd ### # Find matching pieces and flag method func find_matches(): # Loop over the number of x-axis grids on the board for i in width: # Loop over the number of y-axis grids on the board for j in height: # If a piece exists at the coordinates of that grid if all_pieces[i][j] ! = null: # Define the current color as the color of that piece var current_color = all_pieces[i][j].color # If its x-axis coordinates are less than the number of x-axis grids - 2 if i \u003c width - 2: # If there are pieces to the right of that piece and further to its right if all_pieces[i+1][j] ! = null } and all_pieces[i+2][j] ! = null: # If the color of those pieces is the same as the current color if all_pieces[i+1][j].color == current_color \\ and all_pieces[i+2][j].color == current_color: # If the piece is not flagged if not all_pieces[i][j].matched: # Set the matched property of the piece to true to flag it # Make the piece's texture color translucent at the same time all_pieces[i][j].make_matched() # If the piece's right neighbor is not flagged if not all_pieces[i+1][j].matched: all_pieces[i+1][j].make_matched() # If the piece's two neighbors to the right are not flagged if not all_pieces[i+2][j].matched: all_pieces[i+2][j].make_matched() # If the piece's y-coordinate is less than the number of grids along the y-axis - 2 if j \u003c height - 2: # If there are pieces above and further to its above that piece if all_pieces[i][j+1] ! = null \\f} and all_pieces[i][j+2] ! = null: # If the color of those pieces is the same as the current color if all_pieces[i][j+1].color == current_color \\ and all_pieces[i][j+2].color == current_color: # If the piece is not flagged if not all_pieces[i][j].matched: # Set the matched property of the piece to true to flag it # Make the piece's texture color translucent at the same time all_pieces[i][j].make_matched() # If the piece above it is not flagged if not all_pieces[i][j+1].matched: all_pieces[i][j+1].make_matched() # If the piece two above it is not flagged if not all_pieces[i][j+2].matched: all_pieces[i][j+2].make_matched() We need to call this find_matches method in the while loop in the touch_input method, so let’s update it as follows.\n### Grid.gd ### func touch_input(): if Input.is_action_just_pressed(\"touch\"): # Omit if Input.is_action_just_released(\"touch\"): # Omit if is_waiting: # Check if there is at least one pair of matched pieces \u003e loop as long as there are while check_matches(): # Find matched pieces and flag them find_matches() # Wait 0.3 seconds to make the process visually clear yield(get_tree().create_timer(0.3), \"timeout\") is_waiting = false Now the matched property of each matched piece instance should be true and the color of the piece should be translucent.\nLet’s run the project and check it out.\nNext, I would like you to define a delete_matches method that executes the second process “delete flagged pieces” in the while loop as follows.\n### Grid.gd ### # Method to delete matched pieces func delete_matches(): # Loop over the number of x-axis grids on the board for i in width: # Loop over the number of y-axis grids of the board for j in height: # If a piece exists at that grid coordinate if all_pieces[i][j] ! = null: # If a piece at that grid coordinate is flagged if all_pieces[i][j].matched: # Delete the piece at that grid coordinate all_pieces[i][j].queue_free() # Empty the element with that grid coordinate from the 2D array of all_pieces[i][j].queue_free() all_pieces[i][j] = null Let’s add this delete_matches method to the while loop of the touch_input method.\n### Grid.gd ### func touch_input(): if Input.is_action_just_pressed(\"touch\"): # Omit if Input.is_action_just_released(\"touch\"): # Omit if is_waiting: # Check if there is at least one pair of matched pieces \u003e loop as long as there are while check_matches(): # Find matched pieces and flag them find_matches() # Wait 0.3 seconds to make the process visually clear yield(get_tree().create_timer(0.3), \"timeout\") # Delete flagged pieces delete_matches() # Wait 0.3 seconds yield(get_tree().create_timer(0.3), \"timeout\") # If no matched pieces are found and processing is complete, invalidate the in-process state is_waiting = false Now the matched pieces should become translucent and then be deleted.\nLet’s run the project and check it out.\nNext, I would like you to update the collapse_columns method that executes the third process in the while loop, “Move and pack pieces from the grid above the same column into the space vacated by the deletion”, as follows.\n### Grid.gd ### # Method to collapse a column by moving the piece above it in a space where no piece exists func collapse_columns(): # Loop over the number of x-axis grids in the board for i in width: # Loop over the number of y-axis grids in the board for j in height: # If no piece exists at that grid coordinate (null) if all_pieces[i][j] == null: # Loop from one row above the y-coordinate of that grid to the top row for k in range(j + 1, height): # If a piece exists on the grid one above if all_pieces[i][k] ! = null: # Move the piece on the grid above to an empty grid below all_pieces[i][k].move(grid_to_pixel(i, j)) # Put one piece above into the current grid coordinates of the 2D array of all_pieces all_pieces[i][j] = all_pieces[i][k]. # Empty the grid coordinate one above in the 2D array of all_pieces all_pieces[i][k] = null # Exit the loop break Let’s call this collapse_columns method inside the while loop of the touch_input method.\n### Grid.gd ### func touch_input(): if Input.is_action_just_pressed(\"touch\"): # Omit if Input.is_action_just_released(\"touch\"): # Omit if is_waiting: # Check if there is at least one pair of matched pieces \u003e loop as long as there are while check_matches(): # Find matched pieces and flag them find_matches() # Wait 0.3 seconds to make the process visually clear yield(get_tree().create_timer(0.3), \"timeout\") # Delete flagged pieces delete_matches() # Wait 0.3 seconds yield(get_tree().create_timer(0.3), \"timeout\") # Move and collapse pieces on the same column into empty space collapse_columns() # Wait 0.3 seconds yield(get_tree().create_timer(0.3), \"timeout\") # If no matched pieces are found and processing is complete, invalidate the in-process state is_waiting = false Now we have an algorithm that fills the empty space with the piece above it after the piece has been deleted. The while loop should also continuously delete the matching piece after it has been stuffed into the empty space.\nLet’s run the project and check it out.\nFinally, if the spawn_pieces method is called after the pieces are packed down, new pieces will be placed in the empty space and the board will be filled. This method is already defined and called in the _ready method to place the pieces on the board at the beginning of the game.\nNow let’s update the touch_input method as follows.\n### Grid.gd ### func touch_input(): if Input.is_action_just_pressed(\"touch\"): # Omit if Input.is_action_just_released(\"touch\"): # Omit if is_waiting: # Check if there is at least one pair of matched pieces \u003e loop as long as there are while check_matches(): # Find matched pieces and flag them find_matches() # Wait 0.3 seconds to make the process visually clear yield(get_tree().create_timer(0.3), \"timeout\") # Delete flagged pieces delete_matches() # Wait 0.3 seconds yield(get_tree().create_timer(0.3), \"timeout\") # Move and collapse pieces on the same column into empty space collapse_columns() # Wait 0.3 seconds yield(get_tree().create_timer(0.3), \"timeout\") # Spawn and place a new piece in an empty space spawn_pieces() # Wait 0.3 seconds yield(get_tree().create_timer(0.3), \"timeout\") # If no matched pieces are found and processing is complete, invalidate the in-process state is_waiting = false This completes the coding of the automatic processing part. This is the end of this tutorial. Finally, let’s run the project to see how it works.\nSample Game We have prepared a sample game that is a brushed-up version of the project created in this tutorial. Note that the GIF images below are played at 3x speed, so they are actually a bit calmer.\nThe project file is located in the GitHub repository . Please download the .zip file from there and import the “project.godot” file in the “Sample” folder and import it into Godot Engine.\nConclusion This time, we created a match 3 puzzle game. This is a perfect game genre for mobile games with simple controls that can be enjoyed over and over again.\nLet me summarize the key points when creating a simple match 3 puzzle game like this one.\nThere are only two minimum scenes required: the board and the pieces. Create a blueprint piece scene and then inherit it to create a piece scene for each color. Use a two-dimensional array to manage the pieces to be placed on the board grid. When replacing a piece, it is necessary to both replace the position of the piece on the screen and replace the elements of the two-dimensional array. The following are the key points of the script. The process of the player moving the pieces Get the position where the finger touches the screen and the position where the finger leaves the screen. Determine if the two positions are within the grid (valid operation). Determine the direction in which the pieces are swapped based on the difference between the two positions. Automatic processing (loop) when a match is made. Checks if there is at least one pair of matching pieces (loop condition). Flag the matched pieces. Delete flagged pieces (loop condition). Fill the space vacated by the removed piece with the piece above it. Create a new piece in the space vacated by the filling. Links KENNEY YouTube: Part 0: Why Godot? - Make a Match 3 game like Candy Crush Using Godot. Candy Crush Royal Match Toon Blast ",
+  "wordCount" : "5658",
+  "inLanguage": "en",
+  "image":"https://www.peanuts-code.com/images/tutorials/gd0012_match3/img20.gif","datePublished": "2022-07-02T06:05:00+09:00",
+  "dateModified": "2022-07-02T06:05:00+09:00",
+  "author":{
+    "@type": "Person",
+    "name": "Masanao Sako"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.peanuts-code.com/en/tutorials/gd0012_match3/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Peanuts Code",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.peanuts-code.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://www.peanuts-code.com/en/" accesskey="h" title="Peanuts Code (Alt + H)">
+                <img src="/images/logomark.png" alt="logo" aria-label="logo"
+                    height="35">Peanuts Code</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://www.peanuts-code.com/ja/" title="日本語"
+                            aria-label="日本語">Ja</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://www.peanuts-code.com/en/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/tutorials/" title="Tutorials">
+                    <span>Tutorials</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/en/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/en/tutorials/">Tutorials</a></div>
+    <h1 class="post-title">
+      Match 3 puzzle game in Godot
+    </h1>
+    <div class="post-meta">2022-07-02&nbsp;·&nbsp;27 min&nbsp;·&nbsp;Masanao Sako&nbsp;|&nbsp;
+<ul class="i18n_list">Translations:
+    <li>
+        <a href="https://www.peanuts-code.com/ja/tutorials/gd0012_match3/">Ja</a>
+    </li>
+</ul>
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0012_match3/img20.gif" alt="Match 3 in Godot">
+        
+</figure><div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#creating-a-new-project" aria-label="Creating a new project">Creating a new project</a><ul>
+                        
+                <li>
+                    <a href="#updating-project-settings" aria-label="Updating project settings">Updating project settings</a></li>
+                <li>
+                    <a href="#downloading-and-importing-assets" aria-label="Downloading and importing assets">Downloading and importing assets</a></li></ul>
+                </li>
+                <li>
+                    <a href="#creating-a-grid-scene" aria-label="Creating a Grid scene">Creating a Grid scene</a><ul>
+                        
+                <li>
+                    <a href="#adding-a-node-to-the-grid-scene" aria-label="Adding a node to the Grid scene">Adding a node to the Grid scene</a></li></ul>
+                </li>
+                <li>
+                    <a href="#creating-a-piece-scene" aria-label="Creating a Piece scene">Creating a Piece scene</a><ul>
+                        
+                <li>
+                    <a href="#adding-a-child-node-to-the-piece-node" aria-label="Adding a child node to the Piece node">Adding a child node to the Piece node</a></li>
+                <li>
+                    <a href="#editing-the-properties-of-the-sprite-node" aria-label="Editing the properties of the Sprite node">Editing the properties of the Sprite node</a></li>
+                <li>
+                    <a href="#attaching-and-editing-a-script-to-the-piece-node" aria-label="Attaching and editing a script to the Piece node">Attaching and editing a script to the Piece node</a></li></ul>
+                </li>
+                <li>
+                    <a href="#creating-a-scene-for-each-color-that-inherits-from-the-piece-scene" aria-label="Creating a scene for each color that inherits from the Piece scene">Creating a scene for each color that inherits from the Piece scene</a></li>
+                <li>
+                    <a href="#controlling-the-grid-scene-with-scripts" aria-label="Controlling the Grid scene with scripts">Controlling the Grid scene with scripts</a></li>
+                <li>
+                    <a href="#sample-game" aria-label="Sample Game">Sample Game</a></li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+                <li>
+                    <a href="#links" aria-label="Links">Links</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>In this tutorial, we will create a match 3 puzzle game. Match 3 is a puzzle game in which players move multiple colorful pieces evenly arranged along a grid on the board to eliminate three or more pieces of the same color in a row. This genre is particularly popular among mobile game players because it is easy to operate and enjoyable.</p>
+<p>Candy Crush, Toon Blast, and Royal Match are just a few examples of popular games. Puzzle &amp; Dragons and LINE Tsum Tsum are also based on Match 3, although the controls are slightly different. In this tutorial, we will create a puzzle like Candy Crush, in which the pieces are moved only one square at a time to match colors. If you want to make a game like &ldquo;LINE tsum tsum&rdquo;, check another tutorial, &ldquo;<a href="https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/">Connecting matching colors puzzle game in Godot</a>
+&rdquo;.</p>
+<p>The final project file for this tutorial is located at <strong><a href="https://github.com/msnsk/Match3.git" target="_blank">GitHub repository</a>
+</strong>. If you download the .zip file and import the &ldquo;project.godot&rdquo; file in the &ldquo;End&rdquo; folder with the Godot Engine, you can check the project directly.</p>
+<br>
+<blockquote>
+<p><em><strong><span style="color:salmon">Environment</span>
+</strong><br>
+This tutorial was created in the following environment</em><br>
+・<em>Godot version: <strong>3.4.4</strong></em><br>
+・<em>Computer OS version: <strong>macOS 11.6.5</strong></em></p>
+</blockquote>
+<blockquote>
+<p><em><strong><span style="color:salmon">Memo:</span>
+</strong><br>
+Please also use the following article to help you start creating your game.<br>
+<a href="https://www.peanuts-code.com/en/tutorials/gd0001_download/">Downloading Godot</a>
+<br>
+<a href="https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/">Project Manager of Godot</a>
+</em><br>
+<br></p>
+</blockquote>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="creating-a-new-project">Creating a new project<a hidden class="anchor" aria-hidden="true" href="#creating-a-new-project">#</a></h1>
+<p>Start Godot Engine and create a new project. You can name your project as you like. If you can&rsquo;t think of one, let&rsquo;s call it &ldquo;Match3 Start&rdquo;.</p>
+<br>
+<h2 id="updating-project-settings">Updating project settings<a hidden class="anchor" aria-hidden="true" href="#updating-project-settings">#</a></h2>
+<p>When the editor appears, let&rsquo;s go ahead and update project settings for the entire project.</p>
+<p>First, set the display size for the game. In this case, we will assume a smartphone screen in portrait orientation and set the aspect ratio to <strong>16 : 9</strong>.</p>
+<ol>
+<li>Open the &ldquo;Project&rdquo; menu &gt; &ldquo;Project Settings&rdquo;.</li>
+<li>In the &ldquo;General&rdquo; tab, search for &ldquo;window&rdquo; and select &ldquo;Display&rdquo; &gt; &ldquo;Window&rdquo; in the sidebar.</li>
+<li>In the &ldquo;Size&rdquo; section, change the values of the following items
+<ul>
+<li>Width: 630</li>
+<li>Height: 1120</li>
+<li>Test Width: 315</li>
+<li>Test Height: 560<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img1.png" alt="project settings - Display - Window - Size"  />
+</li>
+</ul>
+</li>
+<li>In the &ldquo;Stretch&rdquo; section, change the values of the following items
+<ul>
+<li>Mode: 2d</li>
+<li>Aspect: keep<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img2.png" alt="project settings - Display - Window - Stretch"  />
+</li>
+</ul>
+</li>
+</ol>
+<br>
+<p>With the &ldquo;Project Settings&rdquo; window open as it is, configures the settings to substitute the mouse for the phone&rsquo;s touch operation in the debug panel.</p>
+<ol>
+<li>Search for &ldquo;mouse&rdquo; in the &ldquo;General&rdquo; tab and select &ldquo;Input Devices&rdquo; &gt; &ldquo;Pointing&rdquo; in the sidebar.</li>
+<li>Check &ldquo;On&rdquo; for &ldquo;Emulate Touch From Mouse&rdquo;.<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img3.png" alt="Input Devices - Pointing - Emulate Touch From Mouse"  />
+</li>
+</ol>
+<br>
+<p>In addition, with the &ldquo;Project Settings&rdquo; window open, add an action to the input map corresponding to a smartphone touch operation.</p>
+<ol>
+<li>Switch to the &ldquo;Input Map&rdquo; tab and add &ldquo;touch&rdquo; to the action.</li>
+<li>Add a left mouse click to the &ldquo;touch&rdquo; action.<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img4.png" alt="Inputmap - action - tap"  />
+</li>
+</ol>
+<br>
+<h2 id="downloading-and-importing-assets">Downloading and importing assets<a hidden class="anchor" aria-hidden="true" href="#downloading-and-importing-assets">#</a></h2>
+<p>Next, let&rsquo;s download assets from KENNEY&rsquo;s site and use them. This time, we will use an asset pack called &ldquo;<a href="https://www.kenney.nl/assets/physics-assets" target="_blank">Physics Assets</a>
+&rdquo;. I&rsquo;m going to use the cute alien face images in this asset pack as textures for the pieces on the game board. I can&rsquo;t help but be thankful for this wonderful free resource.</p>
+<p>After downloading, delete the images in the &ldquo;/physicspack/PNG/Aliens&rdquo; folder, leaving only the one with the file name &ldquo;~_round.png&rdquo; and drag the &ldquo;Aliens&rdquo; folder into the file system dock of the editor to import it into your project.</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="creating-a-grid-scene">Creating a Grid scene<a hidden class="anchor" aria-hidden="true" href="#creating-a-grid-scene">#</a></h1>
+<p>First, let&rsquo;s create a &ldquo;Grid&rdquo; scene as the board on which the pieces are placed in a match 3 puzzle game.</p>
+<ol>
+<li>Select &ldquo;Scene&rdquo; menu &gt; &ldquo;New Scene&rdquo;.</li>
+<li>Select &ldquo;2D Scene&rdquo; in &ldquo;Generate Root Node&rdquo;.</li>
+<li>When the root node of the &ldquo;Node2D&rdquo; class is generated, rename it to &ldquo;Grid&rdquo;.</li>
+<li>Save the scene. Create a folder and save the scene with the file path &ldquo;res://Grid/Grid.tscn&rdquo;.<br>
+<br></li>
+</ol>
+<h2 id="adding-a-node-to-the-grid-scene">Adding a node to the Grid scene<a hidden class="anchor" aria-hidden="true" href="#adding-a-node-to-the-grid-scene">#</a></h2>
+<p>Let&rsquo;s add another child node of class &ldquo;Node2D&rdquo; to the &ldquo;Grid&rdquo; root node and rename it to &ldquo;PiecesContainer&rdquo;. This node is used to organize the pieces placed on the board. During the game, when instances of the pieces are created by the script, they will all be added as children of this &ldquo;PiecesContainer&rdquo; node.</p>
+<p>The scene tree dock should now look like the following.<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img8.png" alt="scene tree dock"  />
+</p>
+<p>Note that there is no need to edit the properties of the &ldquo;Grid&rdquo; scene node.</p>
+<p>Translated with <a href="https://www.DeepL.com/Translator" target="_blank">www.DeepL.com/Translator</a>
+ (free version)</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="creating-a-piece-scene">Creating a Piece scene<a hidden class="anchor" aria-hidden="true" href="#creating-a-piece-scene">#</a></h1>
+<p>Next, create a &ldquo;Piece&rdquo; scene for the pieces to be placed on the board. However, this &ldquo;Piece&rdquo; scene is only a blueprint, and the actual pieces of each color to be used in the game will be prepared later by inheriting this &ldquo;Piece&rdquo; scene.</p>
+<ol>
+<li>Select &ldquo;Scene&rdquo; menu &gt; &ldquo;New Scene&rdquo;.</li>
+<li>Select &ldquo;2D Scene&rdquo; in the &ldquo;Create Root Node&rdquo; section.</li>
+<li>When the root node of &ldquo;Node2D&rdquo; class is generated, rename it to &ldquo;Piece&rdquo;.</li>
+<li>Save the scene. Create a folder and save the scene with the file path &ldquo;res://Pieces/Piece.tscn&rdquo;.<br>
+<br></li>
+</ol>
+<h2 id="adding-a-child-node-to-the-piece-node">Adding a child node to the Piece node<a hidden class="anchor" aria-hidden="true" href="#adding-a-child-node-to-the-piece-node">#</a></h2>
+<p>Let&rsquo;s add a child node of class &ldquo;Sprite&rdquo; to the &ldquo;Piece&rdquo; root node. The scene tree dock should now look like the following.<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img9.png" alt="Piece scene tree"  />
+</p>
+<br>
+<h2 id="editing-the-properties-of-the-sprite-node">Editing the properties of the Sprite node<a hidden class="anchor" aria-hidden="true" href="#editing-the-properties-of-the-sprite-node">#</a></h2>
+<p>Let&rsquo;s edit a few properties of the &ldquo;Sprite&rdquo; node. As mentioned above, the &ldquo;Piece&rdquo; is only a blueprint, so we will leave the &ldquo;Texture&rdquo; property of the &ldquo;Sprite&rdquo; node as it is without applying any resources to it in this scene. In the inherited scene, apply an image that matches the color of each piece.</p>
+<p>Change the value of the &ldquo;Offset&rdquo; property to &ldquo;(x: 35, y: -35)&rdquo;. In the scene of each piece of color that inherits this scene, we will apply the KENNEY image imported earlier to the &ldquo;Texture&rdquo; property. Since the size of the image is 70 px in height and width, we shifted the center of the image to the upper right and set the lower left corner of the image to (x: 0, y: 0).<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img10.png" alt="Piece scene - Sprite - offset"  />
+</p>
+<p>The grid of the board on which the pieces are placed is set to count from left to right on the x-axis and from bottom to top on the y-axis, and the size of one grid on the board is set to 70 px to match the size of the texture. If the lower left corner of the piece&rsquo;s texture image is aligned with (x: 0, y: 0), then when the &ldquo;Piece&rdquo; root node is positioned (x: 0, y: 0) to the grid, the &ldquo;Sprite&rdquo; image will be placed exactly along the grid.<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/diagram0.png" alt="Diagram - Sprite offset ajusted to grid"  />
+</p>
+<br>
+<h2 id="attaching-and-editing-a-script-to-the-piece-node">Attaching and editing a script to the Piece node<a hidden class="anchor" aria-hidden="true" href="#attaching-and-editing-a-script-to-the-piece-node">#</a></h2>
+<p>Let&rsquo;s attach a new script to the &ldquo;Piece&rdquo; root node. Create a script file with the file path &ldquo;res://Pieces/Piece.tscn&rdquo;.</p>
+<p>Edit the script as follows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Property to set the color of the piece as string data</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> (<span style="color:#a6e22e">String</span>) <span style="color:#66d9ef">var</span> color
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Property to indicate matched (3 or more of the same color in a row)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> matched <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reference to a Sprite node</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> sprite <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">Sprite</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to move a piece</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Move the Piece instance to the position passed in the target argument</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> move(target):
+</span></span><span style="display:flex;"><span>	position <span style="color:#f92672">=</span> target
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method called when a match is found (3 or more of the same color in a row)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set the matched property to true and make the color translucent</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> make_matched():
+</span></span><span style="display:flex;"><span>	matched <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>modulate <span style="color:#f92672">=</span> <span style="color:#a6e22e">Color</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#f92672">.</span><span style="color:#ae81ff">5</span>)
+</span></span></code></pre></div><br>
+<p>This completes the editing of the &ldquo;Piece.gd&rdquo; script.</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="creating-a-scene-for-each-color-that-inherits-from-the-piece-scene">Creating a scene for each color that inherits from the Piece scene<a hidden class="anchor" aria-hidden="true" href="#creating-a-scene-for-each-color-that-inherits-from-the-piece-scene">#</a></h1>
+<p>Now that the &ldquo;Piece&rdquo; scene, which will serve as a template, is complete, let&rsquo;s create a scene that inherits the &ldquo;Piece&rdquo; scene in the number of colors of the piece. There are five Piece colors: beige, blue, green, pink, and yellow. First, let&rsquo;s proceed with the steps using the &ldquo;beige&rdquo; drop as an example.</p>
+<ol>
+<li>Select &ldquo;Scene&rdquo; menu &gt; &ldquo;New Inherited Scene&rdquo;.</li>
+<li>Select &ldquo;Piece.tscn&rdquo; as the source scene.</li>
+<li>After the inherited scene is generated, rename the root node to &ldquo;PieceBeige&rdquo;.<br>
+*The name of this root node should match the color of each drop.</li>
+<li>Save the scene once. Save the file path as &ldquo;res://Pieces/PieceBeige.tscn&rdquo;.</li>
+<li>With the root node &ldquo;PieceBeige&rdquo; selected in the scene tree dock, set the value of the &ldquo;Color&rdquo; property of &ldquo;Script Variables&rdquo; to &ldquo;beige&rdquo; in the inspector.<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img11.png" alt="PieceBeige - Color property"  />
+</li>
+<li>Select the &ldquo;Sprite&rdquo; node in the scene tree dock and apply the previously imported resource &ldquo;res://Aliens/alienBeige_round.png&rdquo; to the &ldquo;Texture&rdquo; property (you can drag it from the file system dock).<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img12.png" alt="Sprite - Texture Region"  />
+</li>
+<li>On the 2D workspace it should now look like the following screenshot.<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img13.png" alt="Sprite - Texture Region"  />
+</li>
+<li>The &ldquo;PieceBeige&rdquo; scene is now complete. Follow the same procedure to create scenes for the remaining four colored pieces. Please refer to the following for details on the different parts of each scene.</li>
+</ol>
+<ul>
+<li>Blue Piece
+<ul>
+<li>Root node name: PieceBlue</li>
+<li>Color property: blue</li>
+<li>Sprite &gt; Texture property: res://Aliens/alienBlue_round.png</li>
+<li>File path when saving the scene: res://Pieces/PieceBlue.tscn</li>
+</ul>
+</li>
+<li>Green Piece
+<ul>
+<li>Root node name: PieceGreen</li>
+<li>Color property: green</li>
+<li>Sprite &gt; Texture property: res://Aliens/alienGreen_round.png</li>
+<li>File path when saving the scene: res://Pieces/PieceGreen.tscn</li>
+</ul>
+</li>
+<li>Pink Piece
+<ul>
+<li>Root node name: PiecePink</li>
+<li>Color property: green</li>
+<li>Sprite &gt; Texture property: res://Aliens/alienPink_round.png</li>
+<li>File path when saving the scene: res://Pieces/PiecePink.tscn</li>
+</ul>
+</li>
+<li>Yellow Piece
+<ul>
+<li>Root node name: PieceYellow</li>
+<li>Color property: yellow</li>
+<li>Sprite &gt; Texture property: res://Aliens/alienYellow_round.png</li>
+<li>File path when saving the scene: res://Pieces/PieceYellow.tscn</li>
+</ul>
+</li>
+</ul>
+<p>When the inherited scenes of all 5 colored pieces have been created, the work is complete.</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="controlling-the-grid-scene-with-scripts">Controlling the Grid scene with scripts<a hidden class="anchor" aria-hidden="true" href="#controlling-the-grid-scene-with-scripts">#</a></h1>
+<p>Now that we have created a scene for each color piece, we can now program and control the game. The amount of code is a bit large this time, so let&rsquo;s do our best.</p>
+<p>After switching to the &ldquo;Grid.tscn&rdquo; scene, attach a new script to the &ldquo;Grid&rdquo; root node. The file path should be &ldquo;res://Grid/Grid.gd&rdquo;.</p>
+<p>In the comments in the script, &ldquo;finger touched&rdquo; or &ldquo;finger released&rdquo; should be replaced with &ldquo;left mouse button pressed&rdquo; or &ldquo;left mouse button released&rdquo; on the Godot debug panel.</p>
+<p>Also, please note that &ldquo;match&rdquo; is defined as three or more of the same color.</p>
+<p>Now, once the script editor is open, let&rsquo;s define the necessary properties.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># An array with scene files for each color piece as elements</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> pieces_scn <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://Pieces/PieceBeige.tscn&#34;</span>),
+</span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://Pieces/PieceBlue.tscn&#34;</span>),
+</span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://Pieces/PieceGreen.tscn&#34;</span>),
+</span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://Pieces/PiecePink.tscn&#34;</span>),
+</span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://Pieces/PieceYellow.tscn&#34;</span>)
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Number of grids in x-axis direction</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> width: <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Number of grids in y-axis direction</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> height: <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Grid start position (pixels) in x-axis direction</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> x_start: <span style="color:#f92672">=</span> <span style="color:#ae81ff">70</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Grid start position (pixels) in y-axis direction</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> y_start: <span style="color:#f92672">=</span> <span style="color:#ae81ff">910</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Size of one grid (should be the same as Texture of Sprite in Piece)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> grid_size: <span style="color:#f92672">=</span> <span style="color:#ae81ff">70</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># A two-dimensional array (initially empty) that manages all the pieces of the board as elements and their grid coordinates</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> all_pieces <span style="color:#f92672">=</span> []<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Position where finger touches the screen</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> touched_pos <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The position where the finger leaves the screen</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> released_pos <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># State where finger is touching the screen, touched: true / away: false</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> is_touching <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># State of automatic processing of matching, processing: true / stopped: false</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> is_waiting <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Referencing the PiecesContainer node</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> pieces_container <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>PiecesContainer
+</span></span></code></pre></div><br>
+<p>Then let&rsquo;s add the following method. Note that the <strong>two-dimensional array</strong> that appears in the following code is an array that stores arrays as elements.</p>
+<p>In the case of the two-dimensional array used in this script, the first level of the array contains as many empty arrays as the number of grids in the x-axis direction of the board, and the second level of the array contains as many elements as the number of vertical grids in each array. By storing piece objects as elements, it is possible to manage where each piece is located on the board (how many grids along the x-axis and how many grids along the y-axis).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Function called when the scene is loaded</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Method to randomize the output result of a function that generates a random number each time</span>
+</span></span><span style="display:flex;"><span>	randomize()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Make all_pieces a 2d array that makes up the grid of the board</span>
+</span></span><span style="display:flex;"><span>	all_pieces <span style="color:#f92672">=</span> make_2d_array() <span style="color:#75715e"># define after this</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Spawn the pieces and place them on each grid</span>
+</span></span><span style="display:flex;"><span>	spawn_pieces() <span style="color:#75715e"># define after this</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to create a 2d array that makes up the grid of the board</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> make_2d_array():
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Prepare an array named array for output</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> array <span style="color:#f92672">=</span> []<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Fill the prepared array with the number of empty arrays for the number of grids along the x-axis</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> width:
+</span></span><span style="display:flex;"><span>		array<span style="color:#f92672">.</span>append([])
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Add a value of null for the number of grids in the y-axis to each array</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> height:
+</span></span><span style="display:flex;"><span>			array[i]<span style="color:#f92672">.</span>append(null)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># return the two-dimensional array</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> array
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to spawn pieces and place them on each grid</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> spawn_pieces():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Loop for the number of grids along the x-axis</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> width:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Loop over the number of grids in the y-axis</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> height:
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># If no piece exists in the corresponding grid on the 2D array of all pieces</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># (All null at the start of the game)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> all_pieces[i][j] <span style="color:#f92672">==</span> null:
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Randomly select one from the scenes of each color and instantiate it</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">var</span> index <span style="color:#f92672">=</span> floor(rand_range(<span style="color:#ae81ff">0</span>, pieces_scn<span style="color:#f92672">.</span>size()))
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">var</span> piece <span style="color:#f92672">=</span> pieces_scn[index]<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># If it matches, delete the piece instance and start over</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">while</span> match_at(i, j, piece<span style="color:#f92672">.</span>color): <span style="color:#75715e"># define after this</span>
+</span></span><span style="display:flex;"><span>					piece<span style="color:#f92672">.</span>queue_free()
+</span></span><span style="display:flex;"><span>					index <span style="color:#f92672">=</span> floor(rand_range(<span style="color:#ae81ff">0</span>, pieces_scn<span style="color:#f92672">.</span>size()))
+</span></span><span style="display:flex;"><span>					piece <span style="color:#f92672">=</span> pieces_scn[index]<span style="color:#f92672">.</span>instance()
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Make a piece instance a child of a PiecesContainer node</span>
+</span></span><span style="display:flex;"><span>				pieces_container<span style="color:#f92672">.</span>add_child(piece)
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Place the piece instance at the position converted from grid to pixels</span>
+</span></span><span style="display:flex;"><span>				piece<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> grid_to_pixel(i, j) <span style="color:#75715e"># define after this</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Update the 2D array of all pieces</span>
+</span></span><span style="display:flex;"><span>				all_pieces[i][j] <span style="color:#f92672">=</span> piece
+</span></span></code></pre></div><br>
+<p>Let&rsquo;s define the <code>match_at</code> and <code>grid_to_pixel</code> methods in the above code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to check if 3 or more pieces of the same color are lined up at the specified grid position.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># column is the grid position on the x-axis, row is the grid position on the y-axis, and color is the color of the piece</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> match_at(column, row, color):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If the x-axis value of the specified grid coordinate is 3 or greater</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> column <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If there is a piece to the left of the specified grid coordinate and one more to the left</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> all_pieces[column<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][row] <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null \
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">and</span> all_pieces[column<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>][row] <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># If the color of those pieces is the same as the color of the given piece</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> all_pieces[column<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][row]<span style="color:#f92672">.</span>color <span style="color:#f92672">==</span> color \
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">and</span> all_pieces[column<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>][row]<span style="color:#f92672">.</span>color <span style="color:#f92672">==</span> color:
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Return true</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">return</span> true
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If the y-axis value of the specified grid coordinate is 3 or greater</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> row <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If there are pieces below the specified grid coordinates and one more below</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> all_pieces[column][row<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null \frz
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">and</span> all_pieces[column][row<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># If the color of those pieces is the same as the color of the given piece</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> all_pieces[column][row<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>color <span style="color:#f92672">==</span> color \
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">and</span> all_pieces[column][row<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>color <span style="color:#f92672">==</span> color:
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># return true</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">return</span> true
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to convert grid position to pixel position</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> grid_to_pixel(column, row):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Define a Vector2 variable pixel_pos for pixel position output</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> pixel_pos <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Pixel x-coordinate = grid start position along x-axis + grid size * grid x-coordinate</span>
+</span></span><span style="display:flex;"><span>	pixel_pos<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> x_start <span style="color:#f92672">+</span> grid_size <span style="color:#f92672">*</span> column
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Pixel y-coordinate = grid start position along y-axis - grid size * grid y-coordinate</span>
+</span></span><span style="display:flex;"><span>	pixel_pos<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> y_start <span style="color:#f92672">-</span> grid_size <span style="color:#f92672">*</span> row
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Return pixel position</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> pixel_pos
+</span></span></code></pre></div><p>Now the pieces of each color should be randomly arranged on the board at the start of the game. Let&rsquo;s run the project once to check it out. If you are running the project for the first time, select &ldquo;Grid.tscn&rdquo; as the main scene when the dialog for selecting the main scene appears.<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img14.png" alt="run project - distribute pieces on the grid board"  />
+</p>
+<br>
+<p>Since we have just defined the <code>grid_to_pixel</code> method, we should also define the <code>pixel_to_grid</code> method to be used later. As the name suggests, this method is the opposite of <code>grid_to_pixel</code> defined earlier, and converts pixel positions to grid positions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to convert pixel position to grid position</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> pixel_to_grid(pixel_x, pixel_y) <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">Vector2</span>:
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> grid_pos <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>()
+</span></span><span style="display:flex;"><span>	grid_pos<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> floor((pixel_x <span style="color:#f92672">-</span> x_start) <span style="color:#f92672">/</span> grid_size)
+</span></span><span style="display:flex;"><span>	grid_pos<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> floor((pixel_y <span style="color:#f92672">-</span> y_start) <span style="color:#f92672">/</span> <span style="color:#f92672">-</span>grid_size)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> grid_pos
+</span></span></code></pre></div><br>
+<p>In addition, we define one more method <code>is_in_grid</code> to be used later. This method determines whether the position passed as an argument is within the board grid and returns true or false.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method that returns whether the given position is in the grid or not.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> is_in_grid(grid_position: <span style="color:#a6e22e">Vector2</span>):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> grid_position<span style="color:#f92672">.</span>x <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> grid_position<span style="color:#f92672">.</span>x <span style="color:#f92672">&lt;</span> width \
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">and</span> grid_position<span style="color:#f92672">.</span>y <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> grid_position<span style="color:#f92672">.</span>y <span style="color:#f92672">&lt;</span> height
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Return true if within the board grid</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> true
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Return false if outside of the grid</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> false
+</span></span></code></pre></div><br>
+<p>Here, we will write a program to handle the player&rsquo;s input for the game.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Function called every frame in the main loop of the game</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _process(_delta):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If not in the process of matching</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> is_waiting:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Process the player&#39;s input</span>
+</span></span><span style="display:flex;"><span>		touch_input() <span style="color:#75715e"># define after this</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to process player input</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> touch_input():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If a finger touches the screen</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;touch&#34;</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Convert finger position from pixels to grid</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> start_pos <span style="color:#f92672">=</span> get_global_mouse_position()
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> start_grid <span style="color:#f92672">=</span> pixel_to_grid(start_pos<span style="color:#f92672">.</span>x, start_pos<span style="color:#f92672">.</span>y)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If the finger position is within the board grid</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> is_in_grid(start_grid):
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Save the position where you touched your finger to the screen</span>
+</span></span><span style="display:flex;"><span>			touched_pos <span style="color:#f92672">=</span> start_grid
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Make the state with the finger touching the screen</span>
+</span></span><span style="display:flex;"><span>			is_touching <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># If finger leaves the screen</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_released(<span style="color:#e6db74">&#34;touch&#34;</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Convert finger position from pixels to grid</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> end_pos <span style="color:#f92672">=</span> get_global_mouse_position()
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> end_grid <span style="color:#f92672">=</span> pixel_to_grid(end_pos<span style="color:#f92672">.</span>x, end_pos<span style="color:#f92672">.</span>y)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If finger position is within the board grid...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># and the state is with the finger touching the screen</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> Is_in_grid(end_grid) <span style="color:#f92672">and</span> is_touching:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Save as released position information</span>
+</span></span><span style="display:flex;"><span>			released_pos <span style="color:#f92672">=</span> end_grid
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Call a method that handles the movement of the piece at the touched and released positions</span>
+</span></span><span style="display:flex;"><span>			touch_and_release() <span style="color:#75715e"># define after this</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># State is finger off the screen</span>
+</span></span><span style="display:flex;"><span>		is_touching <span style="color:#f92672">=</span> false
+</span></span></code></pre></div><br>
+<p>In the above code, the <code>touch_and_release</code> method is called to acquire the position of the finger touching the screen and the position of the finger leaving the screen within the grid of the board, and to use this information to process the movement of the pieces.</p>
+<p>Let&rsquo;s define this method and a helper method called <code>swap_pieces</code> that is called further in the method. A helper method is simply a method that is called within a method and serves to keep the parent method simple.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method that handles the movement of the piece using the position of the touched finger and the position of the released finger</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> touch_and_release():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Calculate the difference between the position where the finger touched and the position where the finger released</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> difference <span style="color:#f92672">=</span> released_pos <span style="color:#f92672">-</span> touched_pos
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If the absolute value of the difference along the x-axis is greater than the absolute value of the difference along the y-axis</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> abs(difference<span style="color:#f92672">.</span>x) <span style="color:#f92672">&gt;</span> abs(difference<span style="color:#f92672">.</span>y):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If difference along x-axis is greater than 0</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> difference<span style="color:#f92672">.</span>x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Call helper method to swap the piece at the touched position with the adjacent piece to the right</span>
+</span></span><span style="display:flex;"><span>			swap_pieces(touched_pos, <span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>RIGHT) <span style="color:#75715e"># define after this</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If the difference along the x-axis is less than 0</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> difference<span style="color:#f92672">.</span>x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Call helper method to swap the piece at the touched position with the adjacent piece to the left</span>
+</span></span><span style="display:flex;"><span>			swap_pieces(touched_pos, <span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>LEFT) <span style="color:#75715e"># defined after this</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If the absolute difference along the x-axis is less than the absolute difference along the y-axis</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> abs(difference<span style="color:#f92672">.</span>x) <span style="color:#f92672">&lt;</span> abs(difference<span style="color:#f92672">.</span>y):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If the difference along y-axis is greater than 0</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> difference<span style="color:#f92672">.</span>y <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Call helper method to swap the piece at the touched position with the piece adjacent below</span>
+</span></span><span style="display:flex;"><span>			swap_pieces(touched_pos, <span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>DOWN) <span style="color:#75715e"># define after this</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If the difference along the y-axis is less than 0</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> difference<span style="color:#f92672">.</span>y <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Call helper method to swap the piece at the touched position with the one adjacent above it</span>
+</span></span><span style="display:flex;"><span>			swap_pieces(touched_pos, <span style="color:#a6e22e">Vector2</span><span style="color:#f92672">.</span>UP) <span style="color:#75715e"># defined after this</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Helper method to swap pieces</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> swap_pieces(pos, dir):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Get the piece at the touched position from the 2D array of all pieces</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> touched_piece <span style="color:#f92672">=</span> all_pieces[pos<span style="color:#f92672">.</span>x][pos<span style="color:#f92672">.</span>y]<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Get the piece adjacent to the piece in the direction of finger release from the 2D array of all pieces</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> target_piece <span style="color:#f92672">=</span> all_pieces[pos<span style="color:#f92672">.</span>x <span style="color:#f92672">+</span> dir<span style="color:#f92672">.</span>x][pos<span style="color:#f92672">.</span>y <span style="color:#f92672">+</span> dir<span style="color:#f92672">.</span>y]
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If both pieces exist in the 2D array of all pieces</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> touched_piece <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null <span style="color:#f92672">and</span> target_piece <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Overwrite the piece at the touched position in the 2D array of all pieces with the piece adjacent to the one you removed your finger from</span>
+</span></span><span style="display:flex;"><span>		all_pieces[pos<span style="color:#f92672">.</span>x][pos<span style="color:#f92672">.</span>y] <span style="color:#f92672">=</span> target_piece
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Overwrite the piece adjacent to the finger release position with the piece at the finger release position from the two-dimensional array of all pieces</span>
+</span></span><span style="display:flex;"><span>		all_pieces[pos<span style="color:#f92672">.</span>x <span style="color:#f92672">+</span> dir<span style="color:#f92672">.</span>x][pos<span style="color:#f92672">.</span>y <span style="color:#f92672">+</span> dir<span style="color:#f92672">.</span>y] <span style="color:#f92672">=</span> touched_piece
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Move the piece instance at the touched position on the board by 1 grid toward the one you removed your finger from</span>
+</span></span><span style="display:flex;"><span>		touched_piece<span style="color:#f92672">.</span>move(grid_to_pixel(pos<span style="color:#f92672">.</span>x <span style="color:#f92672">+</span> dir<span style="color:#f92672">.</span>x, pos<span style="color:#f92672">.</span>y <span style="color:#f92672">+</span> dir<span style="color:#f92672">.</span>y))
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># move the piece instance adjacent to the one you release your finger on the board to the position touched by your finger</span>
+</span></span><span style="display:flex;"><span>		target_piece<span style="color:#f92672">.</span>move(grid_to_pixel(pos<span style="color:#f92672">.</span>x, pos<span style="color:#f92672">.</span>y))
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Set auto-processing state to &#34;processing in progress&#34; since processing of the matched piece starts here</span>
+</span></span><span style="display:flex;"><span>		is_waiting <span style="color:#f92672">=</span> true
+</span></span></code></pre></div><br>
+<p>With the above code, we have implemented a process whereby a piece dragged by the player is replaced by an adjacent piece.</p>
+<p>Let&rsquo;s run the project to see if the input operation works correctly.<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img15.gif" alt="run project - swap pieces"  />
+</p>
+<br>
+<p>From here, the process that should be executed automatically after the pieces are replaced is implemented. The general flow is as follows:</p>
+<ol>
+<li>Change the automatic processing state during processing.</li>
+<li>Check if there is at least one matched piece, and if so, loop through the following process.
+<ol>
+<li>Check all pieces and flag matched pieces.</li>
+<li>Delete the flagged piece.</li>
+<li>Fill the empty space by moving a piece from the same column.</li>
+<li>After the pieces are packed down, a new piece is created in the empty space at the end.</li>
+</ol>
+</li>
+<li>When there are no more matched pieces, the automatic processing state is stopped.</li>
+</ol>
+<br>
+<p>Let&rsquo;s code the general flow of the above.</p>
+<p>First, let&rsquo;s add a line <code>is_waiting = true</code> at the end of the <code>swap_pieces</code> method that swaps the pieces defined earlier. This changes the automatic processing state to &ldquo;processing&rdquo;.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> swap_pieces(pos, dir):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> touched_piece <span style="color:#f92672">=</span> all_pieces[pos<span style="color:#f92672">.</span>x][pos<span style="color:#f92672">.</span>y]
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> target_piece <span style="color:#f92672">=</span> all_pieces[pos<span style="color:#f92672">.</span>x <span style="color:#f92672">+</span> dir<span style="color:#f92672">.</span>x][pos<span style="color:#f92672">.</span>y <span style="color:#f92672">+</span> dir<span style="color:#f92672">.</span>y]
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> touched_piece <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null <span style="color:#f92672">and</span> target_piece <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null:
+</span></span><span style="display:flex;"><span>		all_pieces[pos<span style="color:#f92672">.</span>x][pos<span style="color:#f92672">.</span>y] <span style="color:#f92672">=</span> target_piece
+</span></span><span style="display:flex;"><span>		all_pieces[pos<span style="color:#f92672">.</span>x <span style="color:#f92672">+</span> dir<span style="color:#f92672">.</span>x][pos<span style="color:#f92672">.</span>y <span style="color:#f92672">+</span> dir<span style="color:#f92672">.</span>y] <span style="color:#f92672">=</span> touched_piece
+</span></span><span style="display:flex;"><span>		touched_piece<span style="color:#f92672">.</span>move(grid_to_pixel(pos<span style="color:#f92672">.</span>x <span style="color:#f92672">+</span> dir<span style="color:#f92672">.</span>x, pos<span style="color:#f92672">.</span>y <span style="color:#f92672">+</span> dir<span style="color:#f92672">.</span>y))
+</span></span><span style="display:flex;"><span>		target_piece<span style="color:#f92672">.</span>move(grid_to_pixel(pos<span style="color:#f92672">.</span>x, pos<span style="color:#f92672">.</span>y))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Add the following</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Set the auto-processing state to &#34;processing&#34; since this is where the automatic processing of the matched piece starts</span>
+</span></span><span style="display:flex;"><span>		is_waiting <span style="color:#f92672">=</span> true
+</span></span></code></pre></div><br>
+<p>Let&rsquo;s write the <code>if</code> syntax &ldquo;if the state is in the process of executing automatic processing&rdquo; in the <code>touch_input</code> method, and then add the processing we want to execute automatically in the block. The position for adding is just after the finger operation is finished. After the process is complete, let&rsquo;s add a line <code>is_waiting = false</code> to set the automatic processing state to &ldquo;stopped&rdquo;.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> touch_input():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;touch&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Omit</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_released(<span style="color:#e6db74">&#34;touch&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Omit</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Add from here</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If Input.is_action_just_pressed(&#34;touch&#34;): # omit</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> is_waiting:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Check if there is at least one pair of matched pieces &gt; loop as long as there are</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">while</span> check_matches(): <span style="color:#75715e"># define after this</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># If no matched pieces are found and processing is complete, set autoprocessing state to waiting</span>
+</span></span><span style="display:flex;"><span>			is_waiting <span style="color:#f92672">=</span> false
+</span></span></code></pre></div><br>
+<p>A <code>while</code> loop is used to repeat the necessary process if there is at least one pair of matching pieces.</p>
+<br>
+<p>First, define <code>check_matches()</code>, which is also the loop condition of the <code>while</code> loop, as follows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to check if there is at least one matched piece and return the result</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> check_matches() <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">bool</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Loop over the x-axis grid of the board</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> width:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Loop over the y-axis grid of the board</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> height:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># if piece exists at that grid coordinate</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> all_pieces[i][j] <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null:
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># return true if the piece matches at that grid coordinate, and method also terminates</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> match_at(i, j, all_pieces[i][j]<span style="color:#f92672">.</span>color):
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">return</span> true
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Check all pieces and return false if none of them match</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> false
+</span></span></code></pre></div><br>
+<p>Then, let&rsquo;s define the <code>find_matches</code> method to perform the &ldquo;first process in the <code>while</code> loop&rdquo;, which is to check all the pieces and flag the matched ones, as follows. By &ldquo;flagging&rdquo; here, I mean changing the value of the <code>matched</code> property of a piece instance to <code>true</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Find matching pieces and flag method</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> find_matches():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Loop over the number of x-axis grids on the board</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> width:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Loop over the number of y-axis grids on the board</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> height:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># If a piece exists at the coordinates of that grid</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> all_pieces[i][j] <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null:
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Define the current color as the color of that piece</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">var</span> current_color <span style="color:#f92672">=</span> all_pieces[i][j]<span style="color:#f92672">.</span>color
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># If its x-axis coordinates are less than the number of x-axis grids - 2</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> i <span style="color:#f92672">&lt;</span> width <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># If there are pieces to the right of that piece and further to its right</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> all_pieces[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][j] <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null }
+</span></span><span style="display:flex;"><span>					<span style="color:#f92672">and</span> all_pieces[i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>][j] <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null:
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e"># If the color of those pieces is the same as the current color</span>
+</span></span><span style="display:flex;"><span>						<span style="color:#66d9ef">if</span> all_pieces[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][j]<span style="color:#f92672">.</span>color <span style="color:#f92672">==</span> current_color \
+</span></span><span style="display:flex;"><span>						<span style="color:#f92672">and</span> all_pieces[i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>][j]<span style="color:#f92672">.</span>color <span style="color:#f92672">==</span> current_color:
+</span></span><span style="display:flex;"><span>                            <span style="color:#75715e"># If the piece is not flagged</span>
+</span></span><span style="display:flex;"><span>							<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> all_pieces[i][j]<span style="color:#f92672">.</span>matched:
+</span></span><span style="display:flex;"><span>                                <span style="color:#75715e"># Set the matched property of the piece to true to flag it</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#75715e"># Make the piece&#39;s texture color translucent at the same time</span>
+</span></span><span style="display:flex;"><span>								all_pieces[i][j]<span style="color:#f92672">.</span>make_matched()
+</span></span><span style="display:flex;"><span>                            <span style="color:#75715e"># If the piece&#39;s right neighbor is not flagged</span>
+</span></span><span style="display:flex;"><span>							<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> all_pieces[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][j]<span style="color:#f92672">.</span>matched:
+</span></span><span style="display:flex;"><span>								all_pieces[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][j]<span style="color:#f92672">.</span>make_matched()
+</span></span><span style="display:flex;"><span>                            <span style="color:#75715e"># If the piece&#39;s two neighbors to the right are not flagged</span>
+</span></span><span style="display:flex;"><span>							<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> all_pieces[i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>][j]<span style="color:#f92672">.</span>matched:
+</span></span><span style="display:flex;"><span>								all_pieces[i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>][j]<span style="color:#f92672">.</span>make_matched()
+</span></span><span style="display:flex;"><span>				<span style="color:#75715e"># If the piece&#39;s y-coordinate is less than the number of grids along the y-axis - 2</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> j <span style="color:#f92672">&lt;</span> height <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># If there are pieces above and further to its above that piece</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> all_pieces[i][j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null \f}
+</span></span><span style="display:flex;"><span>					<span style="color:#f92672">and</span> all_pieces[i][j<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null:
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e"># If the color of those pieces is the same as the current color</span>
+</span></span><span style="display:flex;"><span>						<span style="color:#66d9ef">if</span> all_pieces[i][j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>color <span style="color:#f92672">==</span> current_color \
+</span></span><span style="display:flex;"><span>						<span style="color:#f92672">and</span> all_pieces[i][j<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>color <span style="color:#f92672">==</span> current_color:
+</span></span><span style="display:flex;"><span>                            <span style="color:#75715e"># If the piece is not flagged</span>
+</span></span><span style="display:flex;"><span>							<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> all_pieces[i][j]<span style="color:#f92672">.</span>matched:
+</span></span><span style="display:flex;"><span>                                <span style="color:#75715e"># Set the matched property of the piece to true to flag it</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#75715e"># Make the piece&#39;s texture color translucent at the same time</span>
+</span></span><span style="display:flex;"><span>								all_pieces[i][j]<span style="color:#f92672">.</span>make_matched()
+</span></span><span style="display:flex;"><span>                            <span style="color:#75715e"># If the piece above it is not flagged</span>
+</span></span><span style="display:flex;"><span>							<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> all_pieces[i][j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>matched:
+</span></span><span style="display:flex;"><span>								all_pieces[i][j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>make_matched()
+</span></span><span style="display:flex;"><span>                            <span style="color:#75715e"># If the piece two above it is not flagged</span>
+</span></span><span style="display:flex;"><span>							<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> all_pieces[i][j<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>matched:
+</span></span><span style="display:flex;"><span>								all_pieces[i][j<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>make_matched()
+</span></span></code></pre></div><br>
+<p>We need to call this <code>find_matches</code> method in the <code>while</code> loop in the <code>touch_input</code> method, so let&rsquo;s update it as follows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> touch_input():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;touch&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Omit</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_released(<span style="color:#e6db74">&#34;touch&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Omit</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> is_waiting:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Check if there is at least one pair of matched pieces &gt; loop as long as there are</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">while</span> check_matches():
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Find matched pieces and flag them</span>
+</span></span><span style="display:flex;"><span>				find_matches()
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Wait 0.3 seconds to make the process visually clear</span>
+</span></span><span style="display:flex;"><span>				yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>			is_waiting <span style="color:#f92672">=</span> false
+</span></span></code></pre></div><br>
+<p>Now the <code>matched</code> property of each matched piece instance should be <code>true</code> and the color of the piece should be translucent.</p>
+<p>Let&rsquo;s run the project and check it out.<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img16.gif" alt="run project - flag on matched pieces"  />
+</p>
+<br>
+<p>Next, I would like you to define a <code>delete_matches</code> method that executes the second process &ldquo;delete flagged pieces&rdquo; in the <code>while</code> loop as follows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to delete matched pieces</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> delete_matches():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Loop over the number of x-axis grids on the board</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> width:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Loop over the number of y-axis grids of the board</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> height:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># If a piece exists at that grid coordinate</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> all_pieces[i][j] <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null:
+</span></span><span style="display:flex;"><span>                 <span style="color:#75715e"># If a piece at that grid coordinate is flagged</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> all_pieces[i][j]<span style="color:#f92672">.</span>matched:
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># Delete the piece at that grid coordinate</span>
+</span></span><span style="display:flex;"><span>					all_pieces[i][j]<span style="color:#f92672">.</span>queue_free()
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># Empty the element with that grid coordinate from the 2D array of all_pieces[i][j].queue_free()</span>
+</span></span><span style="display:flex;"><span>					all_pieces[i][j] <span style="color:#f92672">=</span> null
+</span></span></code></pre></div><br>
+<p>Let&rsquo;s add this <code>delete_matches</code> method to the <code>while</code> loop of the <code>touch_input</code> method.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> touch_input():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;touch&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Omit</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_released(<span style="color:#e6db74">&#34;touch&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Omit</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> is_waiting:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Check if there is at least one pair of matched pieces &gt; loop as long as there are</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">while</span> check_matches():
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Find matched pieces and flag them</span>
+</span></span><span style="display:flex;"><span>				find_matches()
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Wait 0.3 seconds to make the process visually clear</span>
+</span></span><span style="display:flex;"><span>				yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Delete flagged pieces</span>
+</span></span><span style="display:flex;"><span>				delete_matches()
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Wait 0.3 seconds</span>
+</span></span><span style="display:flex;"><span>				yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># If no matched pieces are found and processing is complete, invalidate the in-process state</span>
+</span></span><span style="display:flex;"><span>			is_waiting <span style="color:#f92672">=</span> false
+</span></span></code></pre></div><br>
+<p>Now the matched pieces should become translucent and then be deleted.</p>
+<p>Let&rsquo;s run the project and check it out.<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img17.gif" alt="run project - delete matched pieces"  />
+</p>
+<br>
+<p>Next, I would like you to update the <code>collapse_columns</code> method that executes the third process in the <code>while</code> loop, &ldquo;Move and pack pieces from the grid above the same column into the space vacated by the deletion&rdquo;, as follows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to collapse a column by moving the piece above it in a space where no piece exists</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> collapse_columns():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Loop over the number of x-axis grids in the board</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> width:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Loop over the number of y-axis grids in the board</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> height:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># If no piece exists at that grid coordinate (null)</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> all_pieces[i][j] <span style="color:#f92672">==</span> null:
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Loop from one row above the y-coordinate of that grid to the top row</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> range(j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, height):
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e"># If a piece exists on the grid one above</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> all_pieces[i][k] <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> null:
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e"># Move the piece on the grid above to an empty grid below</span>
+</span></span><span style="display:flex;"><span>						all_pieces[i][k]<span style="color:#f92672">.</span>move(grid_to_pixel(i, j))
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e"># Put one piece above into the current grid coordinates of the 2D array of all_pieces</span>
+</span></span><span style="display:flex;"><span>						all_pieces[i][j] <span style="color:#f92672">=</span> all_pieces[i][k]<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e"># Empty the grid coordinate one above in the 2D array of all_pieces</span>
+</span></span><span style="display:flex;"><span>						all_pieces[i][k] <span style="color:#f92672">=</span> null
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e"># Exit the loop</span>
+</span></span><span style="display:flex;"><span>						<span style="color:#66d9ef">break</span>
+</span></span></code></pre></div><br>
+<p>Let&rsquo;s call this <code>collapse_columns</code> method inside the <code>while</code> loop of the <code>touch_input</code> method.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> touch_input():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;touch&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Omit</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_released(<span style="color:#e6db74">&#34;touch&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Omit</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> is_waiting:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Check if there is at least one pair of matched pieces &gt; loop as long as there are</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">while</span> check_matches():
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Find matched pieces and flag them</span>
+</span></span><span style="display:flex;"><span>				find_matches()
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Wait 0.3 seconds to make the process visually clear</span>
+</span></span><span style="display:flex;"><span>				yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Delete flagged pieces</span>
+</span></span><span style="display:flex;"><span>				delete_matches()
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Wait 0.3 seconds</span>
+</span></span><span style="display:flex;"><span>				yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Move and collapse pieces on the same column into empty space</span>
+</span></span><span style="display:flex;"><span>				collapse_columns()
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Wait 0.3 seconds</span>
+</span></span><span style="display:flex;"><span>				yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># If no matched pieces are found and processing is complete, invalidate the in-process state</span>
+</span></span><span style="display:flex;"><span>			is_waiting <span style="color:#f92672">=</span> false
+</span></span></code></pre></div><br>
+<p>Now we have an algorithm that fills the empty space with the piece above it after the piece has been deleted. The <code>while</code> loop should also continuously delete the matching piece <strong>after</strong> it has been stuffed into the empty space.</p>
+<p>Let&rsquo;s run the project and check it out.<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img18.gif" alt="run project - collapse columns"  />
+</p>
+<br>
+<p>Finally, if the <code>spawn_pieces</code> method is called after the pieces are packed down, new pieces will be placed in the empty space and the board will be filled. This method is already defined and called in the <code>_ready</code> method to place the pieces on the board at the beginning of the game.</p>
+<p>Now let&rsquo;s update the <code>touch_input</code> method as follows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Grid.gd ###</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> touch_input():
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;touch&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Omit</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_released(<span style="color:#e6db74">&#34;touch&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Omit</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> is_waiting:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Check if there is at least one pair of matched pieces &gt; loop as long as there are</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">while</span> check_matches():
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Find matched pieces and flag them</span>
+</span></span><span style="display:flex;"><span>				find_matches()
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Wait 0.3 seconds to make the process visually clear</span>
+</span></span><span style="display:flex;"><span>				yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Delete flagged pieces</span>
+</span></span><span style="display:flex;"><span>				delete_matches()
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Wait 0.3 seconds</span>
+</span></span><span style="display:flex;"><span>				yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Move and collapse pieces on the same column into empty space</span>
+</span></span><span style="display:flex;"><span>				collapse_columns()
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Wait 0.3 seconds</span>
+</span></span><span style="display:flex;"><span>				yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Spawn and place a new piece in an empty space</span>
+</span></span><span style="display:flex;"><span>				spawn_pieces()
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Wait 0.3 seconds</span>
+</span></span><span style="display:flex;"><span>				yield(get_tree()<span style="color:#f92672">.</span>create_timer(<span style="color:#ae81ff">0.3</span>), <span style="color:#e6db74">&#34;timeout&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># If no matched pieces are found and processing is complete, invalidate the in-process state</span>
+</span></span><span style="display:flex;"><span>			is_waiting <span style="color:#f92672">=</span> false
+</span></span></code></pre></div><br>
+<p>This completes the coding of the automatic processing part. This is the end of this tutorial. Finally, let&rsquo;s run the project to see how it works.<br>
+<img loading="lazy" src="/images/tutorials/gd0012_match3/img19.gif" alt="run project - whole check"  />
+</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="sample-game">Sample Game<a hidden class="anchor" aria-hidden="true" href="#sample-game">#</a></h1>
+<p>We have prepared a sample game that is a brushed-up version of the project created in this tutorial. Note that the GIF images below are played at 3x speed, so they are actually a bit calmer.</p>
+<p><img loading="lazy" src="/images/tutorials/gd0012_match3/img20.gif" alt="sample game"  />
+</p>
+<br>
+<p>The project file is located in the <a href="https://github.com/msnsk/Match3.git" target="_blank">GitHub repository</a>
+. Please download the .zip file from there and import the &ldquo;project.godot&rdquo; file in the &ldquo;Sample&rdquo; folder and import it into Godot Engine.</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h1 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h1>
+<p>This time, we created a match 3 puzzle game. This is a perfect game genre for mobile games with simple controls that can be enjoyed over and over again.</p>
+<p>Let me summarize the key points when creating a simple match 3 puzzle game like this one.</p>
+<ul>
+<li>There are only two minimum scenes required: the board and the pieces.</li>
+<li>Create a blueprint piece scene and then inherit it to create a piece scene for each color.</li>
+<li>Use a two-dimensional array to manage the pieces to be placed on the board grid.</li>
+<li>When replacing a piece, it is necessary to both replace the position of the piece on the screen and replace the elements of the two-dimensional array.</li>
+<li>The following are the key points of the script.
+<ul>
+<li>The process of the player moving the pieces
+<ol>
+<li>Get the position where the finger touches the screen and the position where the finger leaves the screen.</li>
+<li>Determine if the two positions are within the grid (valid operation).</li>
+<li>Determine the direction in which the pieces are swapped based on the difference between the two positions.</li>
+</ol>
+</li>
+<li>Automatic processing (loop) when a match is made.
+<ol>
+<li>Checks if there is at least one pair of matching pieces (loop condition).</li>
+<li>Flag the matched pieces.</li>
+<li>Delete flagged pieces (loop condition).</li>
+<li>Fill the space vacated by the removed piece with the piece above it.</li>
+<li>Create a new piece in the space vacated by the filling.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h1 id="links">Links<a hidden class="anchor" aria-hidden="true" href="#links">#</a></h1>
+<ul>
+<li><a href="https://www.kenney.nl/assets" target="_blank">KENNEY</a>
+</li>
+<li><a href="https://youtu.be/YhykrMFHOV4" target="_blank">YouTube: Part 0: Why Godot? - Make a Match 3 game like Candy Crush Using Godot.</a>
+</li>
+<li><a href="https://apps.apple.com/en/app/%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%87%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5/id553834731" target="_blank">Candy Crush</a>
+</li>
+<li><a href="https://apps.apple.com/en/app/%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%83%9E%E3%83%83%E3%83%81-royal-match/id1482155847" target="_blank">Royal Match</a>
+</li>
+<li><a href="https://apps.apple.com/en/app/%E3%83%88%E3%82%A5%E3%83%BC%E3%83%B3%E3%83%96%E3%83%A9%E3%82%B9%E3%83%88/id1176027022" target="_blank">Toon Blast</a>
+</li>
+</ul>
+<br>
+<!-- **UPDATE** -->
+<!-- 2022/05/25 新規作成 -->
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/en/tags/godot/">Godot</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/indiedev/">IndieDev</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/tutorial/">tutorial</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/puzzlegame/">puzzlegame</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/mobilegame/">mobilegame</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/match3/">match3</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Connecting matching colors puzzle game in Godot</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Match 3 puzzle game in Godot on twitter"
+        href="https://twitter.com/intent/tweet/?text=Match%203%20puzzle%20game%20in%20Godot&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0012_match3%2f&amp;hashtags=Godot%2cGodotEngine%2cgamedev%2cindiedev%2ctutorial%2cpuzzlegame%2cmobilegame%2cmatch3">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Match 3 puzzle game in Godot on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0012_match3%2f&amp;title=Match%203%20puzzle%20game%20in%20Godot&amp;summary=Match%203%20puzzle%20game%20in%20Godot&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0012_match3%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Match 3 puzzle game in Godot on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0012_match3%2f&title=Match%203%20puzzle%20game%20in%20Godot">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Match 3 puzzle game in Godot on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0012_match3%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Match 3 puzzle game in Godot on whatsapp"
+        href="https://api.whatsapp.com/send?text=Match%203%20puzzle%20game%20in%20Godot%20-%20https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0012_match3%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Match 3 puzzle game in Godot on telegram"
+        href="https://telegram.me/share/url?text=Match%203%20puzzle%20game%20in%20Godot&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0012_match3%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://www.peanuts-code.com/en/">Peanuts Code</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
