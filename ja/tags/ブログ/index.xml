@@ -10,7 +10,17 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 08 May 2022 20:56:38 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%96%E3%83%AD%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Jul 2022 02:30:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%96%E3%83%AD%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ゲームの個人開発で挫折しないための方法</title>
+      <link>https://www.peanuts-code.com/ja/posts/post0003_how_to_avoid_frustration/</link>
+      <pubDate>Sun, 03 Jul 2022 02:30:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/posts/post0003_how_to_avoid_frustration/</guid>
+      <description>せっかく始めたゲームの個人開発、できれば長く楽しく続けたいものだ。しかし、一般的にゲーム開発は挫折しがちである。まずはその理由について考えてみよう。
+挫折する理由 まず、ゲーム開発は大変だ。総合芸術などと呼ばれることもある。つまり、ゲームというのは、音楽も映像もキャラクターもシナリオもシステムもレベルデザインも、全部合わせて１つの作品として表現するものなのだ。簡単なわけがない。大変なので、まずそれだけで挫折しがちというわけだ。</description>
+    </item>
+    
     <item>
       <title>ゲーム開発は簡単なものから始めよう</title>
       <link>https://www.peanuts-code.com/ja/posts/post0002_development_starts_small/</link>

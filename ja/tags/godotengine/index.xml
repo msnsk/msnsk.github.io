@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 26 Jun 2022 03:18:03 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Jul 2022 02:30:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>シリーズ：Godot で作るブロック崩し</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/</link>
@@ -313,6 +313,16 @@ Memo： 過去のシリーズをまだご覧になっていない方は、そち
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</guid>
       <description>第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップやギミックの類だ。
 動く床 落ちる床 高く飛べる床 火が出る装置 飛んでくる鉄球 今回は Part 1 でインポート済みのアセットからたくさんのスプライトシートを利用する。例によって、見た目にブラーがかかっている（ピクセルアート特有のエッジが効いた画像ではない）場合は、ファイルシステム上で利用するアセットファイルを選択し、インポートドックから「プリセット」＞「2D Pixel」を選択し、「再インポート」をクリックして修正しよう。</description>
+    </item>
+    
+    <item>
+      <title>ゲームの個人開発で挫折しないための方法</title>
+      <link>https://www.peanuts-code.com/ja/posts/post0003_how_to_avoid_frustration/</link>
+      <pubDate>Sun, 03 Jul 2022 02:30:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/posts/post0003_how_to_avoid_frustration/</guid>
+      <description>せっかく始めたゲームの個人開発、できれば長く楽しく続けたいものだ。しかし、一般的にゲーム開発は挫折しがちである。まずはその理由について考えてみよう。
+挫折する理由 まず、ゲーム開発は大変だ。総合芸術などと呼ばれることもある。つまり、ゲームというのは、音楽も映像もキャラクターもシナリオもシステムもレベルデザインも、全部合わせて１つの作品として表現するものなのだ。簡単なわけがない。大変なので、まずそれだけで挫折しがちというわけだ。</description>
     </item>
     
     <item>
