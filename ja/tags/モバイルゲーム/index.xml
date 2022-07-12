@@ -10,16 +10,26 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 26 Jun 2022 03:18:03 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E3%82%B2%E3%83%BC%E3%83%A0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Jul 2022 00:51:37 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E3%82%B2%E3%83%BC%E3%83%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作る進化形マッチ 3 パズルゲーム</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0013_advanced_match3/</link>
+      <pubDate>Sun, 10 Jul 2022 00:51:37 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0013_advanced_match3/</guid>
+      <description>今回のチュートリアルでは、進化形マッチ3パズルゲームと銘打って、盤面上で１つのピースを一定時間（数秒間）自由に動かして同じ色のピースを３つ以上並べて消すタイプのパズルゲームをを作っていく。
+これはモバイルゲームで人気を博した「パズル&amp;amp;ドラゴンズ（Puzzle &amp;amp; Dragons）/ 通称パズドラ」のようなパズルをイメージしていただくとわかりやすいだろう。</description>
+    </item>
+    
     <item>
       <title>Godot で作るマッチ 3 パズルゲーム</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0012_match3/</link>
       <pubDate>Sun, 26 Jun 2022 03:18:03 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0012_match3/</guid>
-      <description>今回のチュートリアルではマッチ3パズルゲームを作っていく。マッチ3（スリー）とは、盤面のグリッドに沿って均一に並べられた複数のカラフルなピースを動かして、同じ色のピースを３つ以上並べて消すパズルゲームの総称だ。簡単な操作で気軽に楽しめるため、モバイルゲームで特に人気のあるジャンルだ。
-人気どころをいくつか例に挙げると、キャンディークラッシュ、トゥーンブラスト、ロイヤルマッチなどがそれにあたる。他にも、少し操作感は異なるが、パズル&amp;amp;ドラゴンズやLINEツムツムもベースはマッチ3だ。今回はキャンディークラッシュのような、一回の操作でピースを1マスだけ動かして色を揃えるタイプのパズルを作っていく。
-なお、このチュートリアルで最後にできあがるプロジェクトのファイルは GitHubリポジトリ に置いている。.</description>
+      <description>今回のチュートリアルではマッチ3パズルゲームを作っていく。マッチ3（スリー）パズルゲームとは、盤面のグリッドに沿って均一に並べられた複数のカラフルなピースのうちの１つを、1マス動かして同じ色のピースを３つ以上並べて消すタイプのパズルゲームの総称だ。うまく動かすと、一回の操作で連続的に複数のピースを消すことができ、なんとも気持ちの良いプレイ感覚を味わうことができる。簡単な操作で気軽に楽しめるため、モバイルゲームで特に人気のあるジャンルだ。
+人気どころをいくつか例に挙げると、キャンディークラッシュ、トゥーンブラスト、ロイヤルマッチなどがそれにあたる。少し操作感は異なるが、他にも「パズル&amp;amp;ドラゴンズ」や「LINEツムツム」もベースはマッチ3だ。今回はキャンディークラッシュのような、一回の操作でピースを1マスだけ動かして色を揃えるタイプのパズルを作っていく。
+Other Tutorials 「パズル＆ドラゴンズ」のようなゲームを作ってみたい場合：</description>
     </item>
     
     <item>
@@ -29,7 +39,7 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0011_connect_colors/</guid>
       <description>このチュートリアルでは、スマホゲームで大人気の ディズニーツムツムのような同じ色のドロップをなぞってつなげて消すタイプのゲームの作り方を説明する。ちなみにディズニーツムツムを知らない方は以下のリンク先を一度ご覧いただきたい。
-LINE：ディズニー ツムツム なお、このチュートリアルで最後にできあがるプロジェクトのファイルは GitHubリポジトリ に置いている。.</description>
+LINE：ディズニー ツムツム Other Tutorials 「パズル＆ドラゴンズ」のようなゲームを作ってみたい場合：</description>
     </item>
     
   </channel>
