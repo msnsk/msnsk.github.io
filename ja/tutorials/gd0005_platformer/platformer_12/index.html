@@ -7,8 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Godot で作るプラットフォーマー Part 12：光と影を演出しよう！ | Peanuts Code</title>
 <meta name="keywords" content="GodotEngine, GameDev, 2D, アクションゲーム, 横スクロール, プラットフォーマー, ライト, シャドウ, オクルージョン" />
-<meta name="description" content="第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので、気楽にやっていこう。
-Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。">
+<meta name="description" content="第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので">
 <meta name="author" content="Gobo">
 <link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_12/" />
 <meta name="google-site-verification" content="XYZabc" />
@@ -37,8 +36,7 @@ if (!doNotTrack) {
 }
 </script>
 <meta property="og:title" content="Godot で作るプラットフォーマー Part 12：光と影を演出しよう！" />
-<meta property="og:description" content="第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので、気楽にやっていこう。
-Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。" />
+<meta property="og:description" content="第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_12/" />
 <meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_12/img7.gif" /><meta property="article:section" content="tutorials" />
@@ -48,8 +46,7 @@ Memo： 過去のシリーズをまだご覧になっていない方は、そち
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_12/img7.gif" />
 <meta name="twitter:title" content="Godot で作るプラットフォーマー Part 12：光と影を演出しよう！"/>
-<meta name="twitter:description" content="第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので、気楽にやっていこう。
-Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。"/>
+<meta name="twitter:description" content="第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので"/>
 
 
 <script type="application/ld+json">
@@ -84,12 +81,12 @@ Memo： 過去のシリーズをまだご覧になっていない方は、そち
   "@type": "BlogPosting",
   "headline": "Godot で作るプラットフォーマー Part 12：光と影を演出しよう！",
   "name": "Godot で作るプラットフォーマー Part 12：光と影を演出しよう！",
-  "description": "第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので、気楽にやっていこう。\nMemo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。",
+  "description": "第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので",
   "keywords": [
     "GodotEngine", "GameDev", "2D", "アクションゲーム", "横スクロール", "プラットフォーマー", "ライト", "シャドウ", "オクルージョン"
   ],
   "articleBody": "第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので、気楽にやっていこう。\nMemo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るプラットフォーマー 公式オンラインドキュメントの「2Dライトとシャドウ」という項目の説明も、今回の内容と関連性が高くて参考になるのでご一読いただくことをお勧めする。\n公式オンラインドキュメント： 2Dライトとシャドウ Level2 シーンのタイルマップを確認する チュートリアル Part 7 で作成した「Level2」シーンがちょうどダンジョンっぽいタイルマップなので、このシーンを編集する形で、光と影の演出を加えることにしよう。もし、「Level2」シーンが未作成の場合は、以下のリンクからチュートリアル Part 7 を参考に、簡単なダンジョンのタイルマップを含むシーンを作成してほしい。\n関連チュートリアル： Godot で作るプラットフォーマー Part 7：次のレベルに遷移させよう！ #Level2 シーンを作る また、ダンジョンのタイルマップに使用しているグレーのブロックのタイルセットにオクルージョンの設定をしていない場合は、このタイミングで設定しておこう。手順は以下のリンクからチュートリアル Part 2 の「#タイルセットを作る」の項目をご参考いただきたい。\n関連チュートリアル： Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！ #タイルセットを作る シーンを全体的に暗くする 世界は光がなければ真っ暗闇だ。光を追加する前に「Level2」シーン全体を十分に暗くしておく。\nノードごとの色の変更は、「Modulate」プロパティを編集すれば良い、というのは過去の作業で思いつきそうだが、さすがに一つ一つのノードの色を変えるのは手間がかかりすぎてやっていられないだろう。そこで便利なクラスがある。「CanvasModulate」だ。このクラスのノードをシーンに追加すれば、シーン全体の色調を変更することができるのだ。\n公式オンラインドキュメント： CanvasModulate それでは「Level2.tscn」を開いたら、以下の手順でシーン全体を暗くしよう。\nシーンドックで「Level2」ルートノードに「CanvasModulate」を追加する。\nインスペクターで「CanvasModulate」ノードの「Color」プロパティの値を # 0f4855 に変更する。ただし、チュートリアルのサンプルとして深めの緑色に設定したが、お好みで他の暗めの色にしていただいても問題ない。\nこれで「Level2」シーン全体が、明かりが欲しくなる程度には十分暗くなっただろう。次に光を追加していく。\nシーンに光を追加する プレイヤーキャラクターを光源として、その周りだけ少し明かりが届いている状態になるように調整していく。\nちなみに、プレイヤーキャラクターを光源にするのはプレイヤーキャラクターの視界を表現した演出であって、キャラクターが光を発しているというわけではない。実際に懐中電灯などの光源をキャラクターに持たせる方法なら違和感はないのだが、今回は本題から逸れるのを避けるため不採用とする。\n光のテクスチャ画像を取り込む ではここで、光のテクスチャ画像を用意する。\n以下のリンクから「Light.zip」を別途ダウンロードしてほしい。\nDownload Asset: Dropboxの共有フォルダ ＞ Light.zip ダウンロードできたら、zip ファイルを展開して中の「Light.png」ファイルをファイルシステムドック上で「res://Assets/Other/」にドラッグ\u0026ドロップして追加しよう。\nなお、2022/03/26 以降に Part 1 でアセットをダウンロードされた方は、Godot のファイルシステムの「res://Assets/Other/」のフォルダに「Light.png」ファイルが最初から入っているはずだ。\nLight2D ノードを追加してプロパティを編集する では引き続き「Level2」シーンを編集していく。\n「Player」ノードに「Light2D」ノードを追加する。これはプレイヤーキャラクターと一緒に光源も移動させるためだ。\n「Light2D」ノードの「Texture」プロパティに、光のテクスチャである「res://Assets/Other/light.png」を適用する。 テクスチャ画像がやや大きめなため「Texture Scale」プロパティを 0.25 にする。 若干だが光が強すぎる印象のため「Energy」プロパティを 0.9 にする。 「Shadow」＞「Enabled」をオンにして、オクルージョンを設定している範囲に対して影を落とす機能を有効にする。\n以上で「Light2D」ノードのプロパティ編集は完了だ。ただし、今回触らなかったプロパティなど気になる場合は、公式オンラインドキュメントを参照いただきたい。\n公式オンラインドキュメント： 2Dライトとシャドウ Light2D シーンを実行する 一通りの作業を終えたので、最後に一度シーンを実行してみよう。ちなみに以下のGIF画像は 2 倍速だ。\nなんともGIF画像のライトが荒いが、実際のデバッグパネル上には滑らかに光が描画されている。これにて今回の光と影の実装は完了だ。\nおわりに 以上で Part 12 は完了だ。\n今回は光と影の演出を実装した。「CanvasModulate」ノードを追加してシーン全体の色味を変更する方法や、「Light2D」ノードを追加して光源の基本的な調整方法を学習した。これらを応用すれば、例えばダンジョン内の松明を「Light2D」と「Particle2D」を合わせて表現したり、夜の街並みの街路灯を量産することができるだろう。視覚的な表現なので、ゲームデザインに直接は関わらないものの、使い所はかなり多いはずなので、ぜひ覚えておきたい内容だ。\nさて、次回のチュートリアルでは、SFX（サウンドエフェクト）や BGM などの音をゲームに追加していく。\nそれでは次回もお楽しみに。\n",
-  "wordCount" : "97",
+  "wordCount" : "2466",
   "inLanguage": "ja",
   "image":"https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_12/img7.gif","datePublished": "2022-03-26T00:25:27+09:00",
   "dateModified": "2022-03-26T00:25:27+09:00",
@@ -234,9 +231,20 @@ Memo： 過去のシリーズをまだご覧になっていない方は、そち
     <h1 class="post-title">
       Godot で作るプラットフォーマー Part 12：光と影を演出しよう！
     </h1>
-    <div class="post-meta">2022-03-26&nbsp;·&nbsp;1 分&nbsp;·&nbsp;Gobo
+    <div class="post-meta">2022-03-26&nbsp;·&nbsp;5 分&nbsp;·&nbsp;Gobo
 </div>
     
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%A0/">アクションゲーム</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E6%A8%AA%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB/">横スクロール</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%BC/">プラットフォーマー</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%A9%E3%82%A4%E3%83%88/">ライト</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B7%E3%83%A3%E3%83%89%E3%82%A6/">シャドウ</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%AA%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3/">オクルージョン</a></li>
+    </ul>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 12：光と影を演出しよう！ on twitter"
@@ -283,17 +291,8 @@ Memo： 過去のシリーズをまだご覧になっていない方は、そち
     </a>
 </div>
 
-    <ul class="post-tags">
-      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%A0/">アクションゲーム</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E6%A8%AA%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB/">横スクロール</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%BC/">プラットフォーマー</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%A9%E3%82%A4%E3%83%88/">ライト</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B7%E3%83%A3%E3%83%89%E3%82%A6/">シャドウ</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%AA%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3/">オクルージョン</a></li>
-    </ul>
+    
+    
     
   </header> 
 <figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_12/img7.gif" alt="プラットフォーマー Part 12 サムネイル">

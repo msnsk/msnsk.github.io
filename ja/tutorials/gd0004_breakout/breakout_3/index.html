@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！ | Peanuts Code</title>
 <meta name="keywords" content="GodotEngine, GameDev, ブロック崩し, 2D" />
-<meta name="description" content="Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。">
+<meta name="description" content="Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリー">
 <meta name="author" content="Gobo">
 <link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_3/" />
 <meta name="google-site-verification" content="XYZabc" />
@@ -36,7 +36,7 @@ if (!doNotTrack) {
 }
 </script>
 <meta property="og:title" content="Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！" />
-<meta property="og:description" content="Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。" />
+<meta property="og:description" content="Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリー" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_3/" />
 <meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_3/movie_2.gif" /><meta property="article:section" content="tutorials" />
@@ -46,7 +46,7 @@ if (!doNotTrack) {
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_3/movie_2.gif" />
 <meta name="twitter:title" content="Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！"/>
-<meta name="twitter:description" content="Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。"/>
+<meta name="twitter:description" content="Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリー"/>
 
 
 <script type="application/ld+json">
@@ -81,12 +81,12 @@ if (!doNotTrack) {
   "@type": "BlogPosting",
   "headline": "Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！",
   "name": "Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！",
-  "description": "Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。",
+  "description": "Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリー",
   "keywords": [
     "GodotEngine", "GameDev", "ブロック崩し", "2D"
   ],
   "articleBody": "Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。\nそれでは前回に引き続きブロック崩しを開発していこう。\nMemo: 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るブロック崩し 壁を作る 壁をゲーム画面のギリギリ外側に作っていく。シーンドックで「Game」ノードを選択して、壁となる子ノードを追加していこう。\n今回は「StaticBody2D」を選択して「作成」をクリックする。\n「Game」ノードに追加された「StaticBody2D」ノードの名前を「Wall」に変更しておく。右側に⚠️が表示されているのでクリックしてみよう。\n以下の警告メッセージが表示される。\nメッセージの通り、次は「Wall」ノードの子ノードとして「CollisionPolygon2D」を追加する。\nシーンドックを見ると「Wall」ノードの⚠️は消えたが、今度は「CollisionPolygon2D」の右側に⚠️が表示されている。クリックしてみよう。\n「CollisionPolygon2D」が空だから衝突の判定ができないという内容のメッセージだ。ということでこれから「CollisionPolygon2D」に衝突を判定するための形を作っていく。\n「CollisionPolygon2D」ノードでコリジョンの形を作るには、ツールバーの右端にある3つのアイコンの機能を使う。ツールの機能は左から順番に以下の通りだ。これらのアイコンは「CollisionPolygon2D」ノードを選択している場合のみツールバーに表示される。\n点を作成する 点を編集する 点を消す といっても、うまく行けば一番左のアイコン（点を作成する）だけで済む。\nこの後の作業をやりやすくするために、スマートスナップは無効にして、グリッドスナップを有効にしよう。\n慎重に作業する必要があるが、とにかく「点を作成する」ツールを使って壁の角になる部分に点を打つようにして形を作っていく。(0, 0)など分かり易いポイントから始めて、ゲーム画面の端が壁の内側と重なるようにする。壁の幅は1グリッド分（8 pixel）でもいいが、2D ワークスペース上で見やすくなるように今回は2グリッド分を壁の厚みとした。\n点を打つ場所が少しズレたとしても、気にせず一旦少しいびつな形の壁を作り切ってしまおう。あとで「点を編集する」または「点を消す」ツールで修正するのが効率的だ。\n「CollisionPolygon2D」ノードから⚠️が消えた。\nそれではプロジェクトを実行してみよう。\n期待通り、上と左右の壁にボールが跳ね返った。そして、ボールが画面下部に到達するとそのまま画面外に落ちていった。大成功だ。\nおわりに Part 3 はここまでで終了だ。今回は少し短いチュートリアルだったが、次回はついにブロックのオブジェクトを作って、それを画面上に配置し、ボールが当たったらブロックが消える仕組みを作っていく。\n",
-  "wordCount" : "34",
+  "wordCount" : "1251",
   "inLanguage": "ja",
   "image":"https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_3/movie_2.gif","datePublished": "2021-11-09T16:21:24+09:00",
   "dateModified": "2021-11-09T16:21:24+09:00",
@@ -231,9 +231,15 @@ if (!doNotTrack) {
     <h1 class="post-title">
       Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！
     </h1>
-    <div class="post-meta">2021-11-09&nbsp;·&nbsp;1 分&nbsp;·&nbsp;Gobo
+    <div class="post-meta">2021-11-09&nbsp;·&nbsp;3 分&nbsp;·&nbsp;Gobo
 </div>
     
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%B4%A9%E3%81%97/">ブロック崩し</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
+    </ul>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！ on twitter"
@@ -280,12 +286,8 @@ if (!doNotTrack) {
     </a>
 </div>
 
-    <ul class="post-tags">
-      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF%E5%B4%A9%E3%81%97/">ブロック崩し</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
-    </ul>
+    
+    
     
   </header> 
 <figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_3/movie_2.gif" alt="ブロック崩し Part 3 サムネイル">

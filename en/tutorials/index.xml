@@ -10,14 +10,23 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 02 Jul 2022 06:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Jul 2022 00:51:37 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advanced match 3 puzzle game in Godot</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0013_advanced_match3/</link>
+      <pubDate>Sun, 10 Jul 2022 00:51:37 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0013_advanced_match3/</guid>
+      <description>In this tutorial, we will create an advanced match-3 puzzle game, a type of puzzle game in which one piece is moved freely on the board for a certain period of time to erase three or more pieces of the same color in a row. これはモバイルゲームで人気を博した「パズル&amp;amp;ドラゴンズ（Puzzle &amp;amp; Dragons）/ 通称パズドラ」</description>
+    </item>
+    
     <item>
       <title>Match 3 puzzle game in Godot</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0012_match3/</link>
       <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0012_match3/</guid>
-      <description>In this tutorial, we will create a match 3 puzzle game.</description>
+      <description>In this tutorial, we will create a match 3 puzzle game. Match 3 is a puzzle game in which players move multiple colorful pieces evenly arranged along a grid on the board to eliminate three or more pieces of the same color in a row. This genre is particularly popular among mobile game players because it is easy to operate and enjoyable. Candy Crush, Toon Blast, and Royal Match are just a few examples of popular games. Puzzle &amp;amp; Dragons and LINE Tsum Tsum are also based on Match 3, although the controls are slightly different. In this tutorial, we</description>
     </item>
     
     <item>
@@ -26,7 +35,7 @@
       <pubDate>Mon, 20 Jun 2022 03:00:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/</guid>
-      <description>In this tutorial, we will explain how to create a type of game in which you trace and erase drops of the same color, like the very popular Disney Tsum Tsum smartphone game.</description>
+      <description>In this tutorial, we will explain how to create a type of game in which you trace and erase drops of the same color, like the very popular Disney Tsum Tsum smartphone game. LINE: Disney Tsum Tsum Note that the final project file in this tutorial is located in the GitHub repository . You can directly check the project by downloading the .zip file and importing the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;End&amp;rdquo; folder with the Godot Engine. Environment This tutorial was created in the following environment ・Godot version: 3.4.4 ・Compu</description>
     </item>
     
     <item>
@@ -35,7 +44,9 @@
       <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/</guid>
-      <description>This tutorial explains how to implement &amp;ldquo;grid-based movement&amp;rdquo; in 2D games.</description>
+      <description>This tutorial explains how to implement &amp;ldquo;grid-based movement&amp;rdquo; in 2D games. Grid-based movement refers to the movement of objects such as characters on the game screen one grid at a time.
+Many puzzle games such as the popular smartphone game &amp;ldquo;Puzzle &amp;amp; Dragons&amp;rdquo; and the original falling game &amp;ldquo;Tetris,&amp;rdquo; as well as tactical simulation games such as the &amp;ldquo;Fire Emblem&amp;rdquo; series and &amp;ldquo;Tactics Ogre&amp;rdquo; probably employ this type of movement.
+On the other hand, RPGs such as the &amp;ldquo;Final Fantasy&amp;rdquo; series and the &amp;ldquo;Dragon Quest&amp;rdquo; series also use this grid-based movement when looking closely at character movement in the era of 2D graphics, when these games appeared as software for the NES and Super Nintendo.</description>
     </item>
     
     <item>
@@ -44,7 +55,7 @@
       <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0008_homing_missiles/</guid>
-      <description>In this tutorial, we will create a homing missile in a 2D top-down shooter.</description>
+      <description>In this tutorial, we will create a homing missile in a 2D top-down shooter. A homing missile is a missile that tracks its target. Environment This tutorial was created in the following environment ・Godot version: 3.4.2 ・Computer OS version: macOS 11.6.5 To focus on the creation of the homing missile, the rest of the project has been pre-created in advance. The project file for this tutorial is located at GitHub repository . After downloading the .zip file, import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;Start&amp;rdquo; folder into the</description>
     </item>
     
     <item>
@@ -53,7 +64,8 @@
       <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0007_bullethell/</guid>
-      <description>In this time, we will create a bullet hell aka barrage for a barrage shooting game.</description>
+      <description>In this time, we will create a bullet hell aka barrage for a barrage shooting game. The bullet hell is a large number of bullets (or similar long-range attacks) like a curtain. A &amp;ldquo;bullet hell shooter&amp;rdquo; is a game in which the player shoots at and defeats enemy characters while dodging and weaving through the gaps between the bullets. Some games specialize in simply dodging the bullets. Many games are based on the motif of spaceships and fighter planes that fit the image (in this tutorial, a ground battle between a wizard and a monster though).
+In this tutorial, we will focus only on creating a bullet hell.</description>
     </item>
     
     <item>
@@ -62,7 +74,7 @@
       <pubDate>Sat, 07 May 2022 22:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0006_guns_of_topdown_shooter/</guid>
-      <description>In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters.</description>
+      <description>In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters. Specifically, they are as follows. Handgun Shotgun Machine gun Laser Gun Environment This tutorial was created in the following environment ・Godot version: 3.4.2 ・Computer OS version: macOS 11.6.5 Since this tutorial will focus on gun creation, the following has been prepared in advance. Game world A scene called &amp;ldquo;World.tscn&amp;rdquo; was prepared, and the appearance was simply created by adding a &amp;ldquo;TileMap&amp;rdquo; node. In addition to the &amp;ldquo;TileMap&amp;rdquo; node,</description>
     </item>
     
     <item>
@@ -71,7 +83,8 @@
       <pubDate>Wed, 27 Apr 2022 02:44:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0009_various_searches/</guid>
-      <description>When we develop a game, especially a big one, sometimes it may often happen that we can never find the scene which we want to edit or we cannot remember where the script file is, which we are going to edit.</description>
+      <description>When we develop a game, especially a big one, sometimes it may often happen that we can never find the scene which we want to edit or we cannot remember where the script file is, which we are going to edit.
+In this article, I am going to introduce some so powerful and useful search features with keyboard shortcuts. Once you know those, you can reduce the huge amount of time looking for something which may be the most uninteresting in the game development. In addition, you can use the search features in a much faster way instead of looking for a script file and clicking it in the file system dock, for example.</description>
     </item>
     
     <item>
@@ -80,7 +93,9 @@
       <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/</guid>
-      <description>In this article, we will introduce what you can do with the Project Manager.</description>
+      <description>In this article, we will introduce what you can do with the Project Manager.
+When Godot is launched, the first thing that appears is the Project Manager. The Project Manager is a tool for managing projects handled by Godot, including the following operations.
+Creating new projects Loading project files downloaded from the Web Renaming a project Removing projects that were previously managed by the Project Manager. When using Godot for the first time, a dialog box will appear as shown in the following screen shot, prompting you to open the Asset Library. The asset library can be easily accessed at any time, so choose Cancel for now.</description>
     </item>
     
     <item>
@@ -89,7 +104,9 @@
       <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0001_download/</guid>
-      <description>What&amp;rsquo;s Godot? Godot Engine, or simply Godot, is a very popular open-source game engine that is now gaining popularity, especially in the indie game industry.</description>
+      <description>What&amp;rsquo;s Godot? Godot Engine, or simply Godot, is a very popular open-source game engine that is now gaining popularity, especially in the indie game industry.
+A game engine is a reliable tool that handles all the complicated tasks for game developers by providing them with a system that is commonly needed in game development from the beginning so that they can concentrate on game development.
+For example, &amp;ldquo;displaying characters on the screen,&amp;rdquo; &amp;ldquo;sound effects sound when buttons are pressed and the screen changes,&amp;rdquo; &amp;ldquo;shining light on 3D objects and drawing shadows,&amp;rdquo; and &amp;ldquo;causing damage when a beam of light hits an enemy,&amp;rdquo; etc.</description>
     </item>
     
   </channel>

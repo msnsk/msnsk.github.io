@@ -7,9 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！ | Peanuts Code</title>
 <meta name="keywords" content="GodotEngine, GameDev, 2D, アクションゲーム, 横スクロール, プラットフォーマー, プレイヤーキャラクター" />
-<meta name="description" content="今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。
-なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。
-公式オンラインドキュメント： Using TileMaps Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。">
+<meta name="description" content="今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。 なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良い">
 <meta name="author" content="Gobo">
 <link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/" />
 <meta name="google-site-verification" content="XYZabc" />
@@ -38,9 +36,7 @@ if (!doNotTrack) {
 }
 </script>
 <meta property="og:title" content="Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！" />
-<meta property="og:description" content="今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。
-なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。
-公式オンラインドキュメント： Using TileMaps Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。" />
+<meta property="og:description" content="今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。 なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良い" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/" />
 <meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_2/img21.gif" /><meta property="article:section" content="tutorials" />
@@ -50,9 +46,7 @@ if (!doNotTrack) {
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_2/img21.gif" />
 <meta name="twitter:title" content="Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！"/>
-<meta name="twitter:description" content="今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。
-なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。
-公式オンラインドキュメント： Using TileMaps Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。"/>
+<meta name="twitter:description" content="今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。 なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良い"/>
 
 
 <script type="application/ld+json">
@@ -87,12 +81,12 @@ if (!doNotTrack) {
   "@type": "BlogPosting",
   "headline": "Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！",
   "name": "Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！",
-  "description": "今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。\nなお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。\n公式オンラインドキュメント： Using TileMaps Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。",
+  "description": "今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。 なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良い",
   "keywords": [
     "GodotEngine", "GameDev", "2D", "アクションゲーム", "横スクロール", "プラットフォーマー", "プレイヤーキャラクター"
   ],
   "articleBody": "今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。\nなお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。\n公式オンラインドキュメント： Using TileMaps Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。\nGodot で作るプラットフォーマー Level1 シーンに TileMap ノードを追加する まずはプラットフォーマーの舞台となるタイルマップを用意しよう。タイルマップとは、タイル状の画像を画面上に配置して作られるキャラクターが動き回る舞台のことだ。2D のドット絵を採用するレトロゲームで多く採用される。\nシーンドックにて「Level1」ノードを選択し、子ノードとして「TileMap」ノードを追加しよう。前回の Part 1 で用意した仮の足場「TempGround」ノードは不要になるので、今の時点で削除しておこう。\nシーンドックで「TileMap」ノードを選択した状態で、インスペクターから「Tile Set」プロパティに「新規 TileSet」を設定する。\n「Tile Set」プロパティの「TileSet」をクリックする。これでタイルセットの作成を開始できる。\nGodot エディタ下部を見るとタイルセットパネルが開いている。ここでタイルセット作成の作業を行っていく。\nタイルセットにテクスチャ画像ファイルを追加する タイルセットを作るには、タイルセット用のテクスチャ画像をタイルセットに追加する必要がある。Part 1 のチュートリアルでインポートしたアセットから追加しよう。\nファイルシステムから「res://Assets/Terrain/Terrain (16x16).png」を見つけたら、タイルセットパネルの左側にドラッグ\u0026ドロップしよう。もしくはタイルセットパネル左下の[+]ボタンをクリックして同ファイルを選択して追加しよう。\n作業しやすくなるように、タイルセットパネル右下の「下パネルを展開」アイコンをクリックして、タイルセットパネルを広げよう。\nさっき追加したテクスチャを選択すると、このような画面になる。この状態から具体的にタイルセットを作っていく。\nタイルセットを作る 新しいタイルを用意する時は、以下の3種類のタイルのいずれかを選択する。\nシングルタイル：1つのタイル オートタイル：同じ種類のタイルを一定のルールでグループ化したもの。タイルマップにタイルを配置する時に、1マスずつ手動でタイルを選択する必要がなく、自動的に配置してくれる。これを用意するには、定められたテンプレートに沿ったテクスチャ画像が必要になる。 アトラス：複数のタイルをまとめて一つのグループとして設定する。似ているタイルをグループ化できるので、シングルタイルよりも効率的に作業することができる。 このチュートリアルではアトラスのタイルを作っていく。まずはタイルセットパネルで「新しいアトラス」をクリックする。\nまずは「領域」の編集モードになっているので、そのまま石のブロックの画像を1つのアトラスの領域として、ドラッグして選択しよう。デフォルトで「スナップとグリッドの表示を有効にする」アイコンが有効になっているので、簡単に選択できるだろう。\nこのように選択できればOKだ。\nさてここで次のコリジョンやオクルージョンの設定の事前準備をしておく。\nインスペクターから「TilesetEditorContext」セクションの「Step」プロパティを(8, 8)に変更しよう。この石のブロックのタイルが8x8のデザインになっているからだ。これで、コリジョンやオクルージョンの領域を選択するときに、縦横 8 px ごとにスナップしてくれるはずだ。\n併せて、「Selected Tile」セクションの「Name」を「stones」にしておこう。\nではタイルセットパネル上部で「コリジョン」編集モードを選択し、コリジョンを設定しよう。基本的に石のブロックの範囲はコリジョンを追加する。真っ黒の部分はコリジョン不要だ。\n「オクルージョン」編集モードにして、コリジョンと同様にオクルージョンの範囲も設定しておこう。ちなみにゲーム画面でライトを使用する際に、オクルージョンが設定された範囲に光が当たると影ができる。後々、ゲームを発展させる際に利用する予定だ。\n「アイコン」編集モードに切り替えたら、このアトラスを代表する1マスのタイルを選択しよう。タイルマップに配置するタイルを選択する際にこのアイコンが目印になる。ここでは左上の1マスを採用した。\n同様にして「earth」のアトラスを新規で作成しよう。上段中央の緑の草と土のタイルセットだ。ただしオクルージョンの設定は不要だ。\n同様にして「blocks」のアトラスも新規で作成しよう。右上の茶色いブロックのタイルセットだ。こちらはオクルージョンも設定しておこう。\nこれで3つのアトラスが作成できた。ちなみに、タイルセットパネル右上の拡大縮小のアイコンの右側にある (i) のアイコンをクリックすると、設定したタイルの名前が表示される。\nでは作成したアトラスを使って、タイルマップにタイルを配置していこう。\nTileSet を TileMap ノードに配置する それではいよいよタイルマップにタイルを配置してゲームの世界を作っていく。\nまずはシーンドックで「TileMap」ノードを選択しよう。インスペクターで「Cell」セクションの「Size」プロパティが(16, 16)になっていることを確認しておこう。この値はタイル1マス分の大きさと同じでなければならないためだ。\n2Dワークスペースが自動的にタイルマップの編集モードになっているのがわかるだろう。ここで編集ツールをざっと見ておこう。\n左側のアイコンから順番に説明していく。\nペンのアイコンがペイントだ。クリックで 1 マス分タイルを描く。ドラッグ操作で連続的に描く。その他の操作はスクリーンショットの説明の通りだ。 バケツのアイコンは塗りつぶしだ。広範囲のタイルを一気に描きたい時に使用する。 スポイトのアイコンはすでに描いたタイルをピックして、それを選択中のタイルにすることができる。右側でタイルを選ぶのが面倒な時はこちらの方が早いかもしれない。 重なった四角のアイコンは選択だ。選択した範囲のタイルをコピーしたり、切り取ったり、消去したりすることができる。 TileMap アイコンからは、切り取り、コピー、消去が可能だ。だがしかし、これはショートカットキー操作の方が早そうではある。 また、失敗した時は右クリックで不要なタイルを消去できる。これもドラッグ操作で連続的に広範囲の消去が可能だ。\n続いて、以下のアイコンも左側から順番に簡単に説明しておこう。\nタイルを左に90°回転 タイルを右に90°回転 タイルを左右反転 タイルを上下反転 トランスフォームをクリア *今は気にしなくて良いだろう。 2Dワークスペース右側で描画するタイルを選択できる。今回はアトラスで3つ作成したので、上側でアトラスを選択し、下側でそのアトラスに属するタイルを選択できるようになっている。タイルが多くて探すのが大変な時は上部で検索もできる。検索欄下のスライダーはタイルの表示サイズだ。お好みで調整してほしい。\n実際にタイルを配置してみよう。下のGIFはあくまでサンプルなので、多少アレンジしてもらって構わない。ここではゲーム序盤らしく、「earth」アトラスのタイルで真っ直ぐな地面を作成した。\nプレイヤーキャラクターをタイルマップ上で動かす 以前、チュートリアル Part 1 で仮の足場を作成する際に、「コリジョン形状の表示」にチェックを入れたが、これはお好みでチェックを外してもらって構わない。\nでは、プロジェクトを実行してみよう。\nタイルに設定したコリジョンがきちんと機能し、プレイヤーキャラクターをタイル上で動かすことができた。\nおわりに 以上で Part 2 は完了だ。タイルマップを追加して、キャラクターが動き回る舞台を用意することができた。前回に比べて、ゲームらしさが格段に向上したのではないだろうか。\n次回はカメラを追加して、さらに広いタイルマップ上を移動できるようにしていくのでお楽しみに。\n",
-  "wordCount" : "99",
+  "wordCount" : "3334",
   "inLanguage": "ja",
   "image":"https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_2/img21.gif","datePublished": "2022-02-04T13:30:38+09:00",
   "dateModified": "2022-02-05T00:00:00Z",
@@ -237,9 +231,18 @@ if (!doNotTrack) {
     <h1 class="post-title">
       Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！
     </h1>
-    <div class="post-meta">2022-02-04&nbsp;·&nbsp;1 分&nbsp;·&nbsp;Gobo
+    <div class="post-meta">2022-02-04&nbsp;·&nbsp;7 分&nbsp;·&nbsp;Gobo
 </div>
     
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%A0/">アクションゲーム</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E6%A8%AA%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB/">横スクロール</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%BC/">プラットフォーマー</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%BC/">プレイヤーキャラクター</a></li>
+    </ul>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！ on twitter"
@@ -286,15 +289,8 @@ if (!doNotTrack) {
     </a>
 </div>
 
-    <ul class="post-tags">
-      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%A0/">アクションゲーム</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E6%A8%AA%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB/">横スクロール</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%BC/">プラットフォーマー</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%BC/">プレイヤーキャラクター</a></li>
-    </ul>
+    
+    
     
   </header> 
 <figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0005_platformer/platformer_2/img21.gif" alt="プラットフォーマー Part 2 サムネイル">

@@ -7,8 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Godot エディタの便利な検索機能 | Peanuts Code</title>
 <meta name="keywords" content="GodotEngine, GameDev, 検索機能" />
-<meta name="description" content="Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこに行ったかわからなくなったりすることがあるかもしれない。
-今回は Godot エディタに備わっているキーボードショートカットでの便利な検索機能を紹介する。これらを知っているだけで「見つからない何かを探す」という、おそらく最も楽しくない時間を激減させることができるだろう。なんなら、ファイルシステムやスクリプトエディタで直接ファイルにカーソルを合わせてクリックして選択していた手順を、毎回検索する手順に切り替えてしまっても良いだろう。">
+<meta name="description" content="Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこ">
 <meta name="author" content="Gobo">
 <link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0009_various_searches/" />
 <meta name="google-site-verification" content="XYZabc" />
@@ -38,8 +37,7 @@ if (!doNotTrack) {
 }
 </script>
 <meta property="og:title" content="Godot エディタの便利な検索機能" />
-<meta property="og:description" content="Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこに行ったかわからなくなったりすることがあるかもしれない。
-今回は Godot エディタに備わっているキーボードショートカットでの便利な検索機能を紹介する。これらを知っているだけで「見つからない何かを探す」という、おそらく最も楽しくない時間を激減させることができるだろう。なんなら、ファイルシステムやスクリプトエディタで直接ファイルにカーソルを合わせてクリックして選択していた手順を、毎回検索する手順に切り替えてしまっても良いだろう。" />
+<meta property="og:description" content="Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこ" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.peanuts-code.com/ja/tutorials/gd0009_various_searches/" />
 <meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0009_various_searches/img1.gif" /><meta property="article:section" content="tutorials" />
@@ -49,8 +47,7 @@ if (!doNotTrack) {
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0009_various_searches/img1.gif" />
 <meta name="twitter:title" content="Godot エディタの便利な検索機能"/>
-<meta name="twitter:description" content="Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこに行ったかわからなくなったりすることがあるかもしれない。
-今回は Godot エディタに備わっているキーボードショートカットでの便利な検索機能を紹介する。これらを知っているだけで「見つからない何かを探す」という、おそらく最も楽しくない時間を激減させることができるだろう。なんなら、ファイルシステムやスクリプトエディタで直接ファイルにカーソルを合わせてクリックして選択していた手順を、毎回検索する手順に切り替えてしまっても良いだろう。"/>
+<meta name="twitter:description" content="Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこ"/>
 
 
 <script type="application/ld+json">
@@ -79,12 +76,12 @@ if (!doNotTrack) {
   "@type": "BlogPosting",
   "headline": "Godot エディタの便利な検索機能",
   "name": "Godot エディタの便利な検索機能",
-  "description": "Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこに行ったかわからなくなったりすることがあるかもしれない。\n今回は Godot エディタに備わっているキーボードショートカットでの便利な検索機能を紹介する。これらを知っているだけで「見つからない何かを探す」という、おそらく最も楽しくない時間を激減させることができるだろう。なんなら、ファイルシステムやスクリプトエディタで直接ファイルにカーソルを合わせてクリックして選択していた手順を、毎回検索する手順に切り替えてしまっても良いだろう。",
+  "description": "Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこ",
   "keywords": [
     "GodotEngine", "GameDev", "検索機能"
   ],
   "articleBody": "Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこに行ったかわからなくなったりすることがあるかもしれない。\n今回は Godot エディタに備わっているキーボードショートカットでの便利な検索機能を紹介する。これらを知っているだけで「見つからない何かを探す」という、おそらく最も楽しくない時間を激減させることができるだろう。なんなら、ファイルシステムやスクリプトエディタで直接ファイルにカーソルを合わせてクリックして選択していた手順を、毎回検索する手順に切り替えてしまっても良いだろう。\nちなみにショートカット集は公式オンラインドキュメントにまとまっているのでショートカットに興味がある方はそちらもご参照いただきたい。ちなみに、macOS の Option キーを Alt と記載しているのを確認したので注意してほしい。\n公式オンラインドキュメント デフォルトのエディタ用ショートカット とにかく作業効率アップ間違いなしなので、この記事を見たあとからさっそく使ってみてほしい。では具体的に検索範囲が広い機能から順番に紹介していく。\nクイックオープン 「クイックオープン」を使用するには、Godot エディタ上で以下のキーボードショートカット操作を行う。ただし、スクリプトエディタ上では使用できないので 2D または 3D ワークスペースに切り替える必要がある。\nWindows: Shift + Alt + O macOS: Shift + Option + O 大量のアセットのファイルをインポートしている状況では綺麗にフォルダ分けしていたとしても、一つひとつファイル名まで覚えていられない。そこで便利なのが「クイックオープン」での検索だ。\nこの「クイックオープン」は全てのファイルが検索対象だ。だからインポートしたサウンドファイルもテクスチャファイルもフォントファイルもシーンファイルもスクリプトファイルも拡張子で検索したり、ファイル名の一部や保存されているフォルダで検索すれば、簡単に見つけることができるだろう。また、そもそもファイルシステムドックからディレクトリをたどっていくのが面倒な場合も検索すれば一発でファイルを開くことができる。\nシーンのクイックオープン 「シーンのクイックオープン」を使用するには、Godot エディタ上で以下のキーボードショートカット操作を行う。\nWindows: Ctrl + Shift + O macOS: Cmd + Shift + O 先に紹介した「クイックオープン」と似たようなこの「シーンのクイックオープン」は、検索対象がシーンファイルのみになる。特定のシーンを開きたい時に便利だ。操作画面もほとんど「クイックオープン」と同じだ。\nスクリプトのクイックオープン 「スクリプトのクイックオープン」を使用するには、Godot エディタ上で以下のキーボードショートカット操作を行う。\nWindows: Ctrl + Alt + O macOS: Cmd + Option + O こちらの「スクリプトのクイックオープン」も先に紹介した「クイックオープン」と似た機能だが、検索対象がスクリプトファイルに限定される。特定のスクリプトを開きたい時に便利だ。操作画面もほとんど「クイックオープン」と同じだ。\nスクリプトファイルが増えてくるとスクリプトエディタの左サイドバーからは見つけにくい。おまけに、公式ドキュメントをスクリプトエディタで開いたままにしていると余計にアイテム数が増えていく。アルファベット順で表示されるとはいえ、目視ではかなり辛い。この「スクリプトのクイックオープン」をぜひ使いこなしていきたいところだ。\n複数ファイル内を検索 「複数ファイル内を検索」するには、Godot エディタ上で「スクリプトエディタ」を開き、以下のキーボードショートカット操作を行う。\nWindows: Ctrl + Shift + F macOS: Cmd + Shift + F こちらはスクリプトエディタ上での検索機能だ。複数のスクリプトフォイルからキーワードを含むファイルを検索できる。エディタ下部の検索結果パネル上にキーワードにヒットした項目が表示され、それをクリックすれば、スクリプトエディタが該当の箇所を含むスクリプトを表示してくれる。\n特定のフォルダに保存されているファイルに限定して検索したい場合は、フォルダのパスを指定してあげれば、さらに絞り込むことができる。\nまた、すでに複数のスクリプトの中にたくさん記述してしまっている変数（プロパティ）や関数（メソッド）の名前を変えたい時には全部まとめて置換することができる。まずは検索キーワードを入れて、置換ボタンをクリックする。\nその後、検索結果パネル上で以下の手順を進める。\n置換する対象にチェックを入れる。 置換後の文字列を入力する。 全て置換ボタンをクリックする。 ファイル内を検索 「ファイル内を検索」するには、Godot エディタの「スクリプトエディタ」で特定のスクリプトファイルを開き、以下のキーボードショートカット操作を行う。\nWindows: Ctrl + F macOS: Cmd + F こちらはスクリプト単体を対象とした検索だ。こちらはシンプルに特定の変数や関数の名前、コメントの内容などを探すときに便利だ。コードが長くなってくると、スクロールしながら目視で該当の箇所を見つけるのが大変になってくる。場所は大体わかっていたとしても検索してしまった方が早いこともあるので、うまく利用したい。\nファイル内を検索して置換 「ファイル内を検索して置換」を行うには、Godot エディタの「スクリプトエディタ」で特定のスクリプトファイルを開き、以下のキーボードショートカット操作を行う。\nWindows: Ctrl + Alt + F macOS: Cmd + Option + F 先の「ファイル内を検索」のショートカットのキーコンビネーションを少し変えれば、スクリプトの中で文字の置換をすることができる。そのスクリプトでしか使用しないプロパティの名前を変えるときなど便利だ。\nおわりに 今回は Godot エディタの便利な検索機能について紹介した。ショートカットの操作はどれも最初は慣れが必要だが、一度手がキーコンビネーションを覚えてしまえば、高速で作業できるようになるだろう。ぜひ積極的に使っていこう。\nUPDATE\n2022/05/29 「ブログ」から「チュートリアル」に移行\n",
-  "wordCount" : "125",
+  "wordCount" : "2471",
   "inLanguage": "ja",
   "image":"https://www.peanuts-code.com/images/tutorials/gd0009_various_searches/img1.gif","datePublished": "2022-04-25T17:08:00+09:00",
   "dateModified": "2022-05-29T00:00:00Z",
@@ -229,7 +226,7 @@ if (!doNotTrack) {
     <h1 class="post-title">
       Godot エディタの便利な検索機能
     </h1>
-    <div class="post-meta">2022-04-25&nbsp;·&nbsp;1 分&nbsp;·&nbsp;Gobo&nbsp;|&nbsp;
+    <div class="post-meta">2022-04-25&nbsp;·&nbsp;5 分&nbsp;·&nbsp;Gobo&nbsp;|&nbsp;
 <ul class="i18n_list">言語:
     <li>
         <a href="https://www.peanuts-code.com/en/tutorials/gd0009_various_searches/">En</a>
@@ -237,6 +234,11 @@ if (!doNotTrack) {
 </ul>
 </div>
     
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/%E6%A4%9C%E7%B4%A2%E6%A9%9F%E8%83%BD/">検索機能</a></li>
+    </ul>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Godot エディタの便利な検索機能 on twitter"
@@ -283,11 +285,8 @@ if (!doNotTrack) {
     </a>
 </div>
 
-    <ul class="post-tags">
-      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E6%A4%9C%E7%B4%A2%E6%A9%9F%E8%83%BD/">検索機能</a></li>
-    </ul>
+    
+    
     
   </header> 
 <figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0009_various_searches/img1.gif" alt="Godot エディタの便利な検索機能">

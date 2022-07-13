@@ -17,7 +17,7 @@
       <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0008_homing_missiles/</guid>
-      <description>In this tutorial, we will create a homing missile in a 2D top-down shooter.</description>
+      <description>In this tutorial, we will create a homing missile in a 2D top-down shooter. A homing missile is a missile that tracks its target. Environment This tutorial was created in the following environment ・Godot version: 3.4.2 ・Computer OS version: macOS 11.6.5 To focus on the creation of the homing missile, the rest of the project has been pre-created in advance. The project file for this tutorial is located at GitHub repository . After downloading the .zip file, import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;Start&amp;rdquo; folder into the</description>
     </item>
     
   </channel>

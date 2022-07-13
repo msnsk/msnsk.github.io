@@ -7,7 +7,9 @@
 <meta name="robots" content="index, follow">
 <title>2D grid-based movement in Godot | Peanuts Code</title>
 <meta name="keywords" content="GodotEngine, GameDev, 2D, GridBasedMovement" />
-<meta name="description" content="This tutorial explains how to implement &ldquo;grid-based movement&rdquo; in 2D games.">
+<meta name="description" content="This tutorial explains how to implement &ldquo;grid-based movement&rdquo; in 2D games. Grid-based movement refers to the movement of objects such as characters on the game screen one grid at a time.
+Many puzzle games such as the popular smartphone game &ldquo;Puzzle &amp; Dragons&rdquo; and the original falling game &ldquo;Tetris,&rdquo; as well as tactical simulation games such as the &ldquo;Fire Emblem&rdquo; series and &ldquo;Tactics Ogre&rdquo; probably employ this type of movement.
+On the other hand, RPGs such as the &ldquo;Final Fantasy&rdquo; series and the &ldquo;Dragon Quest&rdquo; series also use this grid-based movement when looking closely at character movement in the era of 2D graphics, when these games appeared as software for the NES and Super Nintendo.">
 <meta name="author" content="Gobo">
 <link rel="canonical" href="https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/" />
 <meta name="google-site-verification" content="XYZabc" />
@@ -37,7 +39,9 @@ if (!doNotTrack) {
 }
 </script>
 <meta property="og:title" content="2D grid-based movement in Godot" />
-<meta property="og:description" content="This tutorial explains how to implement &ldquo;grid-based movement&rdquo; in 2D games." />
+<meta property="og:description" content="This tutorial explains how to implement &ldquo;grid-based movement&rdquo; in 2D games. Grid-based movement refers to the movement of objects such as characters on the game screen one grid at a time.
+Many puzzle games such as the popular smartphone game &ldquo;Puzzle &amp; Dragons&rdquo; and the original falling game &ldquo;Tetris,&rdquo; as well as tactical simulation games such as the &ldquo;Fire Emblem&rdquo; series and &ldquo;Tactics Ogre&rdquo; probably employ this type of movement.
+On the other hand, RPGs such as the &ldquo;Final Fantasy&rdquo; series and the &ldquo;Dragon Quest&rdquo; series also use this grid-based movement when looking closely at character movement in the era of 2D graphics, when these games appeared as software for the NES and Super Nintendo." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/" />
 <meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0010_2d_grid_based_movement/img0.gif" /><meta property="article:section" content="tutorials" />
@@ -47,7 +51,9 @@ if (!doNotTrack) {
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0010_2d_grid_based_movement/img0.gif" />
 <meta name="twitter:title" content="2D grid-based movement in Godot"/>
-<meta name="twitter:description" content="This tutorial explains how to implement &ldquo;grid-based movement&rdquo; in 2D games."/>
+<meta name="twitter:description" content="This tutorial explains how to implement &ldquo;grid-based movement&rdquo; in 2D games. Grid-based movement refers to the movement of objects such as characters on the game screen one grid at a time.
+Many puzzle games such as the popular smartphone game &ldquo;Puzzle &amp; Dragons&rdquo; and the original falling game &ldquo;Tetris,&rdquo; as well as tactical simulation games such as the &ldquo;Fire Emblem&rdquo; series and &ldquo;Tactics Ogre&rdquo; probably employ this type of movement.
+On the other hand, RPGs such as the &ldquo;Final Fantasy&rdquo; series and the &ldquo;Dragon Quest&rdquo; series also use this grid-based movement when looking closely at character movement in the era of 2D graphics, when these games appeared as software for the NES and Super Nintendo."/>
 
 
 <script type="application/ld+json">
@@ -76,7 +82,7 @@ if (!doNotTrack) {
   "@type": "BlogPosting",
   "headline": "2D grid-based movement in Godot",
   "name": "2D grid-based movement in Godot",
-  "description": "This tutorial explains how to implement \u0026ldquo;grid-based movement\u0026rdquo; in 2D games.",
+  "description": "This tutorial explains how to implement \u0026ldquo;grid-based movement\u0026rdquo; in 2D games. Grid-based movement refers to the movement of objects such as characters on the game screen one grid at a time.\nMany puzzle games such as the popular smartphone game \u0026ldquo;Puzzle \u0026amp; Dragons\u0026rdquo; and the original falling game \u0026ldquo;Tetris,\u0026rdquo; as well as tactical simulation games such as the \u0026ldquo;Fire Emblem\u0026rdquo; series and \u0026ldquo;Tactics Ogre\u0026rdquo; probably employ this type of movement.\nOn the other hand, RPGs such as the \u0026ldquo;Final Fantasy\u0026rdquo; series and the \u0026ldquo;Dragon Quest\u0026rdquo; series also use this grid-based movement when looking closely at character movement in the era of 2D graphics, when these games appeared as software for the NES and Super Nintendo.",
   "keywords": [
     "GodotEngine", "GameDev", "2D", "GridBasedMovement"
   ],
@@ -196,8 +202,8 @@ if (!doNotTrack) {
                 </a>
             </li>
             <li>
-                <a href="https://www.peanuts-code.com/en/posts/" title="Posts">
-                    <span>Posts</span>
+                <a href="https://www.peanuts-code.com/en/posts/" title="Blog">
+                    <span>Blog</span>
                 </a>
             </li>
             <li>
@@ -234,6 +240,12 @@ if (!doNotTrack) {
 </ul>
 </div>
     
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/en/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/2d/">2D</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/gridbasedmovement/">GridBasedMovement</a></li>
+    </ul>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share 2D grid-based movement in Godot on twitter"
@@ -280,12 +292,8 @@ if (!doNotTrack) {
     </a>
 </div>
 
-    <ul class="post-tags">
-      <li><a href="https://www.peanuts-code.com/en/tags/godotengine/">GodotEngine</a></li>
-      <li><a href="https://www.peanuts-code.com/en/tags/gamedev/">GameDev</a></li>
-      <li><a href="https://www.peanuts-code.com/en/tags/2d/">2D</a></li>
-      <li><a href="https://www.peanuts-code.com/en/tags/gridbasedmovement/">GridBasedMovement</a></li>
-    </ul>
+    
+    
     
   </header> 
 <figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0010_2d_grid_based_movement/img0.gif" alt="Powerful search features in Godot">

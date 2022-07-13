@@ -17,7 +17,9 @@
       <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0001_download/</guid>
-      <description>What&amp;rsquo;s Godot? Godot Engine, or simply Godot, is a very popular open-source game engine that is now gaining popularity, especially in the indie game industry.</description>
+      <description>What&amp;rsquo;s Godot? Godot Engine, or simply Godot, is a very popular open-source game engine that is now gaining popularity, especially in the indie game industry.
+A game engine is a reliable tool that handles all the complicated tasks for game developers by providing them with a system that is commonly needed in game development from the beginning so that they can concentrate on game development.
+For example, &amp;ldquo;displaying characters on the screen,&amp;rdquo; &amp;ldquo;sound effects sound when buttons are pressed and the screen changes,&amp;rdquo; &amp;ldquo;shining light on 3D objects and drawing shadows,&amp;rdquo; and &amp;ldquo;causing damage when a beam of light hits an enemy,&amp;rdquo; etc.</description>
     </item>
     
   </channel>

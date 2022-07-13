@@ -7,7 +7,8 @@
 <meta name="robots" content="index, follow">
 <title>Bullet hell in Godot Engine | Peanuts Code</title>
 <meta name="keywords" content="GodotEngine, GameDev, 2D, Top-down, Shooter, BulletHell" />
-<meta name="description" content="In this time, we will create a bullet hell aka barrage for a barrage shooting game.">
+<meta name="description" content="In this time, we will create a bullet hell aka barrage for a barrage shooting game. The bullet hell is a large number of bullets (or similar long-range attacks) like a curtain. A &ldquo;bullet hell shooter&rdquo; is a game in which the player shoots at and defeats enemy characters while dodging and weaving through the gaps between the bullets. Some games specialize in simply dodging the bullets. Many games are based on the motif of spaceships and fighter planes that fit the image (in this tutorial, a ground battle between a wizard and a monster though).
+In this tutorial, we will focus only on creating a bullet hell.">
 <meta name="author" content="Gobo">
 <link rel="canonical" href="https://www.peanuts-code.com/en/tutorials/gd0007_bullethell/" />
 <meta name="google-site-verification" content="XYZabc" />
@@ -37,7 +38,8 @@ if (!doNotTrack) {
 }
 </script>
 <meta property="og:title" content="Bullet hell in Godot Engine" />
-<meta property="og:description" content="In this time, we will create a bullet hell aka barrage for a barrage shooting game." />
+<meta property="og:description" content="In this time, we will create a bullet hell aka barrage for a barrage shooting game. The bullet hell is a large number of bullets (or similar long-range attacks) like a curtain. A &ldquo;bullet hell shooter&rdquo; is a game in which the player shoots at and defeats enemy characters while dodging and weaving through the gaps between the bullets. Some games specialize in simply dodging the bullets. Many games are based on the motif of spaceships and fighter planes that fit the image (in this tutorial, a ground battle between a wizard and a monster though).
+In this tutorial, we will focus only on creating a bullet hell." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.peanuts-code.com/en/tutorials/gd0007_bullethell/" />
 <meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0007_BulletHell/img20.gif" /><meta property="article:section" content="tutorials" />
@@ -47,7 +49,8 @@ if (!doNotTrack) {
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0007_BulletHell/img20.gif" />
 <meta name="twitter:title" content="Bullet hell in Godot Engine"/>
-<meta name="twitter:description" content="In this time, we will create a bullet hell aka barrage for a barrage shooting game."/>
+<meta name="twitter:description" content="In this time, we will create a bullet hell aka barrage for a barrage shooting game. The bullet hell is a large number of bullets (or similar long-range attacks) like a curtain. A &ldquo;bullet hell shooter&rdquo; is a game in which the player shoots at and defeats enemy characters while dodging and weaving through the gaps between the bullets. Some games specialize in simply dodging the bullets. Many games are based on the motif of spaceships and fighter planes that fit the image (in this tutorial, a ground battle between a wizard and a monster though).
+In this tutorial, we will focus only on creating a bullet hell."/>
 
 
 <script type="application/ld+json">
@@ -76,7 +79,7 @@ if (!doNotTrack) {
   "@type": "BlogPosting",
   "headline": "Bullet hell in Godot Engine",
   "name": "Bullet hell in Godot Engine",
-  "description": "In this time, we will create a bullet hell aka barrage for a barrage shooting game.",
+  "description": "In this time, we will create a bullet hell aka barrage for a barrage shooting game. The bullet hell is a large number of bullets (or similar long-range attacks) like a curtain. A \u0026ldquo;bullet hell shooter\u0026rdquo; is a game in which the player shoots at and defeats enemy characters while dodging and weaving through the gaps between the bullets. Some games specialize in simply dodging the bullets. Many games are based on the motif of spaceships and fighter planes that fit the image (in this tutorial, a ground battle between a wizard and a monster though).\nIn this tutorial, we will focus only on creating a bullet hell.",
   "keywords": [
     "GodotEngine", "GameDev", "2D", "Top-down", "Shooter", "BulletHell"
   ],
@@ -196,8 +199,8 @@ if (!doNotTrack) {
                 </a>
             </li>
             <li>
-                <a href="https://www.peanuts-code.com/en/posts/" title="Posts">
-                    <span>Posts</span>
+                <a href="https://www.peanuts-code.com/en/posts/" title="Blog">
+                    <span>Blog</span>
                 </a>
             </li>
             <li>
@@ -234,6 +237,14 @@ if (!doNotTrack) {
 </ul>
 </div>
     
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/en/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/2d/">2D</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/top-down/">Top-down</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/shooter/">Shooter</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/bullethell/">BulletHell</a></li>
+    </ul>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Bullet hell in Godot Engine on twitter"
@@ -280,14 +291,8 @@ if (!doNotTrack) {
     </a>
 </div>
 
-    <ul class="post-tags">
-      <li><a href="https://www.peanuts-code.com/en/tags/godotengine/">GodotEngine</a></li>
-      <li><a href="https://www.peanuts-code.com/en/tags/gamedev/">GameDev</a></li>
-      <li><a href="https://www.peanuts-code.com/en/tags/2d/">2D</a></li>
-      <li><a href="https://www.peanuts-code.com/en/tags/top-down/">Top-down</a></li>
-      <li><a href="https://www.peanuts-code.com/en/tags/shooter/">Shooter</a></li>
-      <li><a href="https://www.peanuts-code.com/en/tags/bullethell/">BulletHell</a></li>
-    </ul>
+    
+    
     
   </header> 
 <figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0007_BulletHell/img20.gif" alt="Bullet hell made by Godot">

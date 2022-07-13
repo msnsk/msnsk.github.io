@@ -17,7 +17,7 @@
       <pubDate>Sat, 06 Nov 2021 17:44:27 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_1/</guid>
-      <description>Part 1 の今回は、ゲームのプレイ画面にパドルを配置して動かすところまでやっていく。</description>
+      <description>Part 1 の今回は、ゲームのプレイ画面にパドルを配置して動かすところまでやっていく。 ところで、ゲーム開発初心者が初めて挑戦するゲームにうってつけなのがブロック崩しだ。ブロック崩しはシンプルながらその開発を通</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Sat, 06 Nov 2021 23:11:01 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_2/</guid>
-      <description>Part 2 の今回は、ボールのオブジェクトを作って、パドルからボールを発射するところまで進めていく。</description>
+      <description>Part 2 の今回は、ボールのオブジェクトを作って、パドルからボールを発射するところまで進めていく。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Tue, 09 Nov 2021 16:21:24 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_3/</guid>
-      <description>Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。</description>
+      <description>Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリー</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Wed, 10 Nov 2021 17:05:50 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_4/</guid>
-      <description>Part 4 の今回は、ブロックのオブジェクトを作って、それを画面上に複数配置し、ボールがそのブロックに衝突したらブロックが消えるようにしていく。</description>
+      <description>Part 4 の今回は、ブロックのオブジェクトを作って、それを画面上に複数配置し、ボールがそのブロックに衝突したらブロックが消えるようにしていく。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリ</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Wed, 17 Nov 2021 12:23:06 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_5/</guid>
-      <description>Part 5 の今回は、パドルが壁を通過してしまう問題の修正、衝突するたびにボールのスピードが上がる仕様に変更、プレイヤーの操作でボールが発射される仕様に変更、パドル上のボールが当たった位置によってボールの反射角度が変わる仕様に変更、ついて更新していく。</description>
+      <description>Part 5 の今回は、パドルが壁を通過してしまう問題の修正、衝突するたびにボールのスピードが上がる仕様に変更、プレイヤーの操作でボールが発射される仕様に変更、パドル上のボールが当たった位置によってボールの反射</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       <pubDate>Sun, 21 Nov 2021 13:39:21 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_6/</guid>
-      <description>Part 6 の今回は、ゲームスタート画面とゲームオーバーの画面を作り、それらとプレイ画面との間で適宜、画面が遷移するようにしていく。</description>
+      <description>Part 6 の今回は、ゲームスタート画面とゲームオーバーの画面を作り、それらとプレイ画面との間で適宜、画面が遷移するようにしていく。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリーズをまだご</description>
     </item>
     
     <item>
@@ -71,7 +71,7 @@
       <pubDate>Tue, 23 Nov 2021 23:45:05 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_7/</guid>
-      <description>Part 7 の今回は、HUD（ヘッドアップディスプレイ）を作っていく。HUD というのは、例えば、プレイヤーのライフゲージやスコア、残り時間、レベル（ステージ）の番号などのように、ゲームプレイ画面に常に表示されているもののことだ。</description>
+      <description>Part 7 の今回は、HUD（ヘッドアップディスプレイ）を作っていく。HUD というのは、例えば、プレイヤーのライフゲージやスコア、残り時間、レベル（ステージ）の番号などのように、ゲームプレイ画面に常に表示され</description>
     </item>
     
     <item>
@@ -80,7 +80,7 @@
       <pubDate>Mon, 29 Nov 2021 17:02:30 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_8/</guid>
-      <description>Part 8 の今回は、ゲームをプレイ中にポーズ（一時停止）する機能とポーズ画面を作っていく。といっても作業はこれまでのおさらい的内容が多くなっているので、気楽にやってみてほしい。</description>
+      <description>Part 8 の今回は、ゲームをプレイ中にポーズ（一時停止）する機能とポーズ画面を作っていく。といっても作業はこれまでのおさらい的内容が多くなっているので、気楽にやってみてほしい。 それでは前回に引き続きブロック</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@
       <pubDate>Thu, 02 Dec 2021 22:49:34 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_9/</guid>
-      <description>Part 9 の今回は、ブロック崩しの一部の要素にアニメーションを追加する。全てのオブジェクトをアニメーションさせると作業量が膨大になるので、今回はパドルとブロックに対象を絞ってに簡単なアニメーションを追加していく。</description>
+      <description>Part 9 の今回は、ブロック崩しの一部の要素にアニメーションを追加する。全てのオブジェクトをアニメーションさせると作業量が膨大になるので、今回はパドルとブロックに対象を絞ってに簡単なアニメーションを追加して</description>
     </item>
     
     <item>
@@ -98,7 +98,7 @@
       <pubDate>Thu, 02 Dec 2021 22:49:34 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_10/</guid>
-      <description>Part 10 の今回は、ブロック崩しにパワーアップアイテムを追加していく。ブロックを崩すとアイテムが落ちてきて、パドルとアイテムが衝突するとパワーアップが適用される、という仕組みの部分を実装していこう。</description>
+      <description>Part 10 の今回は、ブロック崩しにパワーアップアイテムを追加していく。ブロックを崩すとアイテムが落ちてきて、パドルとアイテムが衝突するとパワーアップが適用される、という仕組みの部分を実装していこう。 なお、パ</description>
     </item>
     
     <item>
@@ -107,7 +107,7 @@
       <pubDate>Sat, 11 Dec 2021 13:36:54 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_11/</guid>
-      <description>Part 11 の今回は、ブロック崩しにパワーアップ機能を実装していく。前回の Part 11 でブロックを消すとパワーアップアイテムが落ちてきて、パドルとアイテムが衝突するとパワーアップが適用される、という仕組みの部分を作ったので、今回は個々のパワーアップ機能自体を実装する。</description>
+      <description>Part 11 の今回は、ブロック崩しにパワーアップ機能を実装していく。前回の Part 11 でブロックを消すとパワーアップアイテムが落ちてきて、パドルとアイテムが衝突するとパワーアップが適用される、という仕組みの部分を作っ</description>
     </item>
     
     <item>
@@ -116,7 +116,7 @@
       <pubDate>Sun, 19 Dec 2021 00:21:13 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_12/</guid>
-      <description>Part 12 の今回は、ブロック崩しにBGMとサウンドエフェクト（効果音）を追加していく。今回のチュートリアルにはいつもの GIF ではなく mp4 の動画を載せている。この記事の閲覧環境は様々だと思われるため、デフォルトでは音をミュートしている。動画のコントローラでミュート解除していただきつつ、確認いただければと思う。</description>
+      <description>Part 12 の今回は、ブロック崩しにBGMとサウンドエフェクト（効果音）を追加していく。今回のチュートリアルにはいつもの GIF ではなく mp4 の動画を載せている。この記事の閲覧環境は様々だと思われるため、デフォルトでは</description>
     </item>
     
     <item>
@@ -125,7 +125,7 @@
       <pubDate>Thu, 23 Dec 2021 16:55:59 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_13/</guid>
-      <description>Part 13 の今回は、ブロック崩しの HUD にハイスコア、ハイレベル（過去最高クリアレベルのことをこう呼ぶことにする）の要素を追加し、ゲームオーバーになった時点でそのデータが自動的に保存されるようにして、一度ゲームを終了しても記録が消えない仕組みを作っていく。</description>
+      <description>Part 13 の今回は、ブロック崩しの HUD にハイスコア、ハイレベル（過去最高クリアレベルのことをこう呼ぶことにする）の要素を追加し、ゲームオーバーになった時点でそのデータが自動的に保存されるようにして、一度ゲーム</description>
     </item>
     
     <item>
@@ -134,7 +134,7 @@
       <pubDate>Fri, 31 Dec 2021 02:09:21 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_14/</guid>
-      <description>Part 14 の今回は、ブロック崩しのブロックの種類を増やして、複数のレベル（ステージ）をデザインしていく。併せてゲームクリア画面も作成する。</description>
+      <description>Part 14 の今回は、ブロック崩しのブロックの種類を増やして、複数のレベル（ステージ）をデザインしていく。併せてゲームクリア画面も作成する。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただ</description>
     </item>
     
     <item>
@@ -143,7 +143,7 @@
       <pubDate>Mon, 10 Jan 2022 00:18:03 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_15/</guid>
-      <description>Part 15 の今回は、これまで開発してきたブロック崩しのプロジェクトをエクスポートして、開発者以外にもプレイしてもらえるようにする。エクスポートの作業は基本的に、ゲームが完成した段階でそのゲームを配布するために行う。</description>
+      <description>Part 15 の今回は、これまで開発してきたブロック崩しのプロジェクトをエクスポートして、開発者以外にもプレイしてもらえるようにする。エクスポートの作業は基本的に、ゲームが完成した段階でそのゲームを配布するため</description>
     </item>
     
   </channel>

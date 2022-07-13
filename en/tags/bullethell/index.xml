@@ -17,7 +17,8 @@
       <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0007_bullethell/</guid>
-      <description>In this time, we will create a bullet hell aka barrage for a barrage shooting game.</description>
+      <description>In this time, we will create a bullet hell aka barrage for a barrage shooting game. The bullet hell is a large number of bullets (or similar long-range attacks) like a curtain. A &amp;ldquo;bullet hell shooter&amp;rdquo; is a game in which the player shoots at and defeats enemy characters while dodging and weaving through the gaps between the bullets. Some games specialize in simply dodging the bullets. Many games are based on the motif of spaceships and fighter planes that fit the image (in this tutorial, a ground battle between a wizard and a monster though).
+In this tutorial, we will focus only on creating a bullet hell.</description>
     </item>
     
   </channel>
