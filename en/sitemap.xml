@@ -15,39 +15,20 @@
                 href="https://www.peanuts-code.com/en/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/blog/</loc>
-    <lastmod>2022-07-04T08:45:00+09:00</lastmod>
-  </url><url>
     <loc>https://www.peanuts-code.com/en/tags/frustration/</loc>
     <lastmod>2022-07-04T08:45:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/gamedev/</loc>
     <lastmod>2022-07-04T08:45:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/godot/</loc>
-    <lastmod>2022-07-04T08:45:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/godot/"
+                href="https://www.peanuts-code.com/ja/tags/gamedev/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/godot/"
-                />
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/godotengine/</loc>
-    <lastmod>2022-07-04T08:45:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/godotengine/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/godotengine/"
+                href="https://www.peanuts-code.com/en/tags/gamedev/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/posts/post0003_how_to_avoid_frustration/</loc>
@@ -64,9 +45,6 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/indiedev/</loc>
-    <lastmod>2022-07-04T08:45:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/post/</loc>
     <lastmod>2022-07-04T08:45:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/en/posts/</loc>
@@ -95,6 +73,19 @@
                 href="https://www.peanuts-code.com/en/tags/"
                 />
   </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/godotengine/</loc>
+    <lastmod>2022-07-02T06:05:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/godotengine/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/godotengine/"
+                />
+  </url><url>
     <loc>https://www.peanuts-code.com/en/tutorials/gd0012_match3/</loc>
     <lastmod>2022-07-02T06:05:00+09:00</lastmod>
     <xhtml:link
@@ -117,9 +108,6 @@
     <loc>https://www.peanuts-code.com/en/tags/puzzlegame/</loc>
     <lastmod>2022-07-02T06:05:00+09:00</lastmod>
   </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/tutorial/</loc>
-    <lastmod>2022-07-02T06:05:00+09:00</lastmod>
-  </url><url>
     <loc>https://www.peanuts-code.com/en/tutorials/</loc>
     <lastmod>2022-07-02T06:05:00+09:00</lastmod>
     <xhtml:link
@@ -131,19 +119,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.peanuts-code.com/en/tutorials/"
-                />
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/2d/</loc>
-    <lastmod>2022-06-20T03:00:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/2d/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/2d/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/</loc>
@@ -159,14 +134,18 @@
                 href="https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/connectingmatchingcolors/</loc>
-    <lastmod>2022-06-20T03:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/puzzle/</loc>
-    <lastmod>2022-06-20T03:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/tutorials/</loc>
-    <lastmod>2022-06-20T03:00:00+09:00</lastmod>
+    <loc>https://www.peanuts-code.com/en/tags/2d/</loc>
+    <lastmod>2022-06-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/2d/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/2d/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/</loc>
     <lastmod>2022-06-09T00:00:00+00:00</lastmod>
@@ -222,7 +201,7 @@
     <loc>https://www.peanuts-code.com/en/tags/bullethell/</loc>
     <lastmod>2022-05-23T01:30:00+09:00</lastmod>
   </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/biginner/</loc>
+    <loc>https://www.peanuts-code.com/en/tags/beginner/</loc>
     <lastmod>2022-05-11T02:05:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/en/posts/post0002_development_starts_small/</loc>
@@ -237,6 +216,9 @@
                 hreflang="en"
                 href="https://www.peanuts-code.com/en/posts/post0002_development_starts_small/"
                 />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/howtostart/</loc>
+    <lastmod>2022-05-11T02:05:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/noexperience/</loc>
     <lastmod>2022-05-11T02:05:00+09:00</lastmod>
@@ -271,9 +253,6 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/search/</loc>
-    <lastmod>2022-04-27T02:44:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/tips/</loc>
     <lastmod>2022-04-27T02:44:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/age/</loc>
@@ -323,9 +302,6 @@
                 hreflang="en"
                 href="https://www.peanuts-code.com/en/tutorials/gd0001_download/"
                 />
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/startup/</loc>
-    <lastmod>2022-06-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/en/about/</loc>
     <lastmod>2021-07-07T00:00:00+00:00</lastmod>

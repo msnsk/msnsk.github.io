@@ -12,15 +12,6 @@
     <language>en</language>
     <lastBuildDate>Mon, 04 Jul 2022 08:45:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Blog</title>
-      <link>https://www.peanuts-code.com/en/tags/blog/</link>
-      <pubDate>Mon, 04 Jul 2022 08:45:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Frustration</title>
       <link>https://www.peanuts-code.com/en/tags/frustration/</link>
       <pubDate>Mon, 04 Jul 2022 08:45:00 +0900</pubDate>
@@ -39,24 +30,6 @@
     </item>
     
     <item>
-      <title>Godot</title>
-      <link>https://www.peanuts-code.com/en/tags/godot/</link>
-      <pubDate>Mon, 04 Jul 2022 08:45:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/godot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GodotEngine</title>
-      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
-      <pubDate>Mon, 04 Jul 2022 08:45:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>IndieDev</title>
       <link>https://www.peanuts-code.com/en/tags/indiedev/</link>
       <pubDate>Mon, 04 Jul 2022 08:45:00 +0900</pubDate>
@@ -66,16 +39,16 @@
     </item>
     
     <item>
-      <title>Post</title>
-      <link>https://www.peanuts-code.com/en/tags/post/</link>
-      <pubDate>Mon, 04 Jul 2022 08:45:00 +0900</pubDate>
+      <title>GodotEngine</title>
+      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
+      <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
       
-      <guid>https://www.peanuts-code.com/en/tags/post/</guid>
+      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>match3</title>
+      <title>Match3</title>
       <link>https://www.peanuts-code.com/en/tags/match3/</link>
       <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
       
@@ -84,7 +57,7 @@
     </item>
     
     <item>
-      <title>mobilegame</title>
+      <title>MobileGame</title>
       <link>https://www.peanuts-code.com/en/tags/mobilegame/</link>
       <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
       
@@ -93,7 +66,7 @@
     </item>
     
     <item>
-      <title>puzzlegame</title>
+      <title>PuzzleGame</title>
       <link>https://www.peanuts-code.com/en/tags/puzzlegame/</link>
       <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
       
@@ -102,47 +75,11 @@
     </item>
     
     <item>
-      <title>tutorial</title>
-      <link>https://www.peanuts-code.com/en/tags/tutorial/</link>
-      <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/tutorial/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>2D</title>
       <link>https://www.peanuts-code.com/en/tags/2d/</link>
-      <pubDate>Mon, 20 Jun 2022 03:00:00 +0900</pubDate>
+      <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/2d/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ConnectingMatchingColors</title>
-      <link>https://www.peanuts-code.com/en/tags/connectingmatchingcolors/</link>
-      <pubDate>Mon, 20 Jun 2022 03:00:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/connectingmatchingcolors/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Puzzle</title>
-      <link>https://www.peanuts-code.com/en/tags/puzzle/</link>
-      <pubDate>Mon, 20 Jun 2022 03:00:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/puzzle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tutorials</title>
-      <link>https://www.peanuts-code.com/en/tags/tutorials/</link>
-      <pubDate>Mon, 20 Jun 2022 03:00:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/tutorials/</guid>
       <description></description>
     </item>
     
@@ -165,7 +102,7 @@
     </item>
     
     <item>
-      <title>shooter</title>
+      <title>Shooter</title>
       <link>https://www.peanuts-code.com/en/tags/shooter/</link>
       <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
       
@@ -192,11 +129,20 @@
     </item>
     
     <item>
-      <title>biginner</title>
-      <link>https://www.peanuts-code.com/en/tags/biginner/</link>
+      <title>Beginner</title>
+      <link>https://www.peanuts-code.com/en/tags/beginner/</link>
       <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
       
-      <guid>https://www.peanuts-code.com/en/tags/biginner/</guid>
+      <guid>https://www.peanuts-code.com/en/tags/beginner/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HowToStart</title>
+      <link>https://www.peanuts-code.com/en/tags/howtostart/</link>
+      <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/howtostart/</guid>
       <description></description>
     </item>
     
@@ -228,16 +174,7 @@
     </item>
     
     <item>
-      <title>Tips</title>
-      <link>https://www.peanuts-code.com/en/tags/tips/</link>
-      <pubDate>Wed, 27 Apr 2022 02:44:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/tips/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>age</title>
+      <title>Age</title>
       <link>https://www.peanuts-code.com/en/tags/age/</link>
       <pubDate>Sun, 16 Jan 2022 16:56:41 +0900</pubDate>
       
@@ -260,15 +197,6 @@
       <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/download/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Startup</title>
-      <link>https://www.peanuts-code.com/en/tags/startup/</link>
-      <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/startup/</guid>
       <description></description>
     </item>
     

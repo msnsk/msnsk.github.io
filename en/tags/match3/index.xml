@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>match3 on Peanuts Code</title>
+    <title>Match3 on Peanuts Code</title>
     <link>https://www.peanuts-code.com/en/tags/match3/</link>
-    <description>Recent content in match3 on Peanuts Code</description>
+    <description>Recent content in Match3 on Peanuts Code</description>
     <image>
       <url>https://www.peanuts-code.com/105</url>
       <link>https://www.peanuts-code.com/105</link>
@@ -18,6 +18,15 @@
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0012_match3/</guid>
       <description>In this tutorial, we will create a match 3 puzzle game.</description>
+    </item>
+    
+    <item>
+      <title>Connecting matching colors puzzle game in Godot</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/</link>
+      <pubDate>Mon, 20 Jun 2022 03:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/</guid>
+      <description>In this tutorial, we will explain how to create a type of game in which you trace and erase drops of the same color, like the very popular Disney Tsum Tsum smartphone game.</description>
     </item>
     
   </channel>

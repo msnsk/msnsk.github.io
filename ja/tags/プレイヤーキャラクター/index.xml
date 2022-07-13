@@ -12,13 +12,14 @@
     <language>ja</language>
     <lastBuildDate>Thu, 14 Apr 2022 02:07:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Godot で作るプラットフォーマー Part 1：プレイヤーキャラクターを作ろう！</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</link>
-      <pubDate>Sat, 29 Jan 2022 23:38:27 +0900</pubDate>
+      <title>Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</link>
+      <pubDate>Fri, 04 Feb 2022 13:30:38 +0900</pubDate>
       
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</guid>
-      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。今回は、初回ということで、ゲームのプレイ画面にプレイヤーキャラクターを用意して操作するところまでやってみよう。
-Memo: ゲームを作り始めるのに以下の記事もお役立てください。</description>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</guid>
+      <description>今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。
+なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。
+公式オンラインドキュメント： Using TileMaps Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。</description>
     </item>
     
     <item>

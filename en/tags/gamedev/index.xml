@@ -101,5 +101,23 @@
       <description>Many people want to start game development but tend to give up because of their age.</description>
     </item>
     
+    <item>
+      <title>Project Manager of Godot</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/</link>
+      <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/</guid>
+      <description>In this article, we will introduce what you can do with the Project Manager.</description>
+    </item>
+    
+    <item>
+      <title>Downloading Godot</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0001_download/</link>
+      <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0001_download/</guid>
+      <description>What&amp;rsquo;s Godot? Godot Engine, or simply Godot, is a very popular open-source game engine that is now gaining popularity, especially in the indie game industry.</description>
+    </item>
+    
   </channel>
 </rss>
