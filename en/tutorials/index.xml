@@ -10,16 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 10 Jul 2022 00:51:37 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tutorials/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Advanced match 3 puzzle game in Godot</title>
-      <link>https://www.peanuts-code.com/en/tutorials/gd0013_advanced_match3/</link>
-      <pubDate>Sun, 10 Jul 2022 00:51:37 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tutorials/gd0013_advanced_match3/</guid>
-      <description>In this tutorial, we will create an advanced match-3 puzzle game, a type of puzzle game in which one piece is moved freely on the board for a certain period of time to erase three or more pieces of the same color in a row. これはモバイルゲームで人気を博した「パズル&amp;amp;ドラゴンズ（Puzzle &amp;amp; Dragons）/ 通称パズドラ」</description>
-    </item>
-    
+    <lastBuildDate>Sat, 02 Jul 2022 06:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tutorials/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Match 3 puzzle game in Godot</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0012_match3/</link>
