@@ -17,7 +17,7 @@
       <pubDate>Sat, 07 May 2022 22:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0006_guns_of_topdown_shooter/</guid>
-      <description>In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters. Specifically, they are as follows. Handgun Shotgun Machine gun Laser Gun Environment This tutorial was created in the following environment ・Godot version: 3.4.2 ・Computer OS version: macOS 11.6.5 Since this tutorial will focus on gun creation, the following has been prepared in advance. Game world A scene called &amp;ldquo;World.tscn&amp;rdquo; was prepared, and the appearance was simply created by adding a &amp;ldquo;TileMap&amp;rdquo; node. In addition to the &amp;ldquo;TileMap&amp;rdquo; node,</description>
+      <description>In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters. Specifically, they are as follows. Handgun Shotgun Machine gun Laser Gun Environment This tutorial was created in the following environment ・Godot version: 3.4.2 ・Computer OS version: macOS 11.6.5 Since this tutorial will focus on gun creation, the following has been prepared in advance. 1. Game world A scene called &amp;ldquo;World.tscn&amp;rdquo; was prepared, and the appearance was simply created by adding a &amp;ldquo;TileMap&amp;rdquo; node. In addition to the &amp;ldquo;TileMap&amp;rdquo;</description>
     </item>
     
   </channel>

@@ -10,7 +10,18 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 04 Jul 2022 08:45:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Jul 2022 18:40:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advanced match 3 puzzle game in Godot</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0013_advanced_match3/</link>
+      <pubDate>Fri, 15 Jul 2022 18:40:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0013_advanced_match3/</guid>
+      <description>In this tutorial, we will create an advanced match-3 puzzle game, a type of puzzle game in which one piece is moved freely on the board for a certain period of time to erase three or more pieces of the same color in a row.
+This is easy to understand if you imagine a puzzle game like &amp;ldquo;Puzzle &amp;amp; Dragons&amp;rdquo; (a.k.a. &amp;ldquo;Puzzle Dora&amp;rdquo;), which has gained popularity as a mobile game.
+However, the tutorial would be too large if it included all game elements such as decks, gacha, and battles with enemy characters, so we will focus on the puzzle part of the tutorial this time.</description>
+    </item>
+    
     <item>
       <title>How to avoid frustration of game development</title>
       <link>https://www.peanuts-code.com/en/posts/post0003_how_to_avoid_frustration/</link>
@@ -85,7 +96,7 @@ As you can probably guess, this article is now going to make the claim that you 
       <pubDate>Sat, 07 May 2022 22:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0006_guns_of_topdown_shooter/</guid>
-      <description>In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters. Specifically, they are as follows. Handgun Shotgun Machine gun Laser Gun Environment This tutorial was created in the following environment ・Godot version: 3.4.2 ・Computer OS version: macOS 11.6.5 Since this tutorial will focus on gun creation, the following has been prepared in advance. Game world A scene called &amp;ldquo;World.tscn&amp;rdquo; was prepared, and the appearance was simply created by adding a &amp;ldquo;TileMap&amp;rdquo; node. In addition to the &amp;ldquo;TileMap&amp;rdquo; node,</description>
+      <description>In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters. Specifically, they are as follows. Handgun Shotgun Machine gun Laser Gun Environment This tutorial was created in the following environment ・Godot version: 3.4.2 ・Computer OS version: macOS 11.6.5 Since this tutorial will focus on gun creation, the following has been prepared in advance. 1. Game world A scene called &amp;ldquo;World.tscn&amp;rdquo; was prepared, and the appearance was simply created by adding a &amp;ldquo;TileMap&amp;rdquo; node. In addition to the &amp;ldquo;TileMap&amp;rdquo;</description>
     </item>
     
     <item>
@@ -140,6 +151,7 @@ For example, &amp;ldquo;displaying characters on the screen,&amp;rdquo; &amp;ldq
       <description>headless = true
 +++</description>
     </item>
+    
     
   </channel>
 </rss>

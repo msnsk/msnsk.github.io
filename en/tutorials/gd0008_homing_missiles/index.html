@@ -206,13 +206,13 @@ if (!doNotTrack) {
                 </a>
             </li>
             <li>
-                <a href="https://www.peanuts-code.com/en/tags/" title="Tags">
-                    <span>Tags</span>
+                <a href="https://www.peanuts-code.com/en/about/" title="About">
+                    <span>About</span>
                 </a>
             </li>
             <li>
-                <a href="https://www.peanuts-code.com/en/about/" title="About">
-                    <span>About</span>
+                <a href="https://www.peanuts-code.com/en/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
                 </a>
             </li>
         </ul>
@@ -295,7 +295,7 @@ if (!doNotTrack) {
 <figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0008_homing_missiles/img25.gif" alt="Homing missiles made by Godot">
         
 </figure><div class="toc">
-    <details  open>
+    <details >
         <summary accesskey="c" title="(Alt + C)">
             <span class="details">Table of Contents</span>
         </summary>
@@ -357,7 +357,7 @@ This tutorial was created in the following environment</em><br>
 </strong> website. I used an asset pack called <strong><a href="https://www.kenney.nl/assets/tower-defense-top-down" target="_blank">Tower Defense (top-down)</a>
 </strong>. I just want to thank them for making such a great asset pack available to the public.</p>
 <br>
-<h1 id="preliminary-preparation">Preliminary Preparation<a hidden class="anchor" aria-hidden="true" href="#preliminary-preparation">#</a></h1>
+<h2 id="preliminary-preparation">Preliminary Preparation<a hidden class="anchor" aria-hidden="true" href="#preliminary-preparation">#</a></h2>
 <p>The following game specifications, except for the homing missile part, which is listed as (planned), have already been prepared as a preliminary.</p>
 <ul>
 <li>Player Character (Fighter):
@@ -404,8 +404,8 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="making-a-homing-missile">Making a homing missile<a hidden class="anchor" aria-hidden="true" href="#making-a-homing-missile">#</a></h1>
-<h2 id="creating-a-scene">Creating a scene<a hidden class="anchor" aria-hidden="true" href="#creating-a-scene">#</a></h2>
+<h2 id="making-a-homing-missile">Making a homing missile<a hidden class="anchor" aria-hidden="true" href="#making-a-homing-missile">#</a></h2>
+<h3 id="creating-a-scene">Creating a scene<a hidden class="anchor" aria-hidden="true" href="#creating-a-scene">#</a></h3>
 <p>First, follow the steps below to create a scene for a homing missile.</p>
 <ol>
 <li>select &ldquo;Scene&rdquo; menu &gt; &ldquo;New Scene&rdquo;.</li>
@@ -425,10 +425,10 @@ data-ad-slot="9419515863"></ins></p>
 <img loading="lazy" src="/images/tutorials/gd0008_homing_missiles/img2.png" alt="Missile Scene Tree"  />
 </p>
 <br>
-<h2 id="editing-node-properties">Editing node properties<a hidden class="anchor" aria-hidden="true" href="#editing-node-properties">#</a></h2>
+<h3 id="editing-node-properties">Editing node properties<a hidden class="anchor" aria-hidden="true" href="#editing-node-properties">#</a></h3>
 <p>Let&rsquo;s edit the properties of each node in the scene tree in the inspector.</p>
 <br>
-<h3 id="missile-area2d-root-node">Missile (Area2D) Root node<a hidden class="anchor" aria-hidden="true" href="#missile-area2d-root-node">#</a></h3>
+<h4 id="missile-area2d-root-node">Missile (Area2D) Root node<a hidden class="anchor" aria-hidden="true" href="#missile-area2d-root-node">#</a></h4>
 <p>Edit the &ldquo;Collision&rdquo; &gt; &ldquo;Layer&rdquo; property and &ldquo;Collision&rdquo; &gt; &ldquo;Mask&rdquo; property of the &ldquo;CollisionObject2D&rdquo; class.</p>
 <p>The &ldquo;Layer&rdquo; property allows you to set which collision layer the object (in this case, the &ldquo;Missile&rdquo; node) will be assigned to.</p>
 <p>The &ldquo;Mask&rdquo; property allows you to set which collision layer the object will enable collisions with objects in that layer. In other words, objects in layers not selected by the &ldquo;Mask&rdquo; property will pass through each other without colliding, even if their positions overlap.</p>
@@ -496,27 +496,27 @@ data-ad-slot="9419515863"></ins></p>
 </li>
 </ol>
 <br>
-<h3 id="sprite-node">Sprite Node<a hidden class="anchor" aria-hidden="true" href="#sprite-node">#</a></h3>
+<h4 id="sprite-node">Sprite Node<a hidden class="anchor" aria-hidden="true" href="#sprite-node">#</a></h4>
 <p>The method of setting a texture for a sprite by specifying the range of textures you want to use from a single sprite sheet that contains many textures is used.</p>
 <ol>
 <li>In the inspector, apply the resource file &ldquo;res://towerDefense_tilesheet.png&rdquo; to the &ldquo;Texture&rdquo; property.<br>
 <img loading="lazy" src="/images/tutorials/gd0008_homing_missiles/img8.png" alt="Texture property of Sprite"  />
 </li>
 <li>Turn on &ldquo;Region&rdquo; &gt; &ldquo;Enabled&rdquo;.<br>
-<img loading="lazy" src="/images/tutorials/gd0008_homing_missiles/img9.png" alt="Region&amp;gt;Enabled property of Sprite"  />
+<img loading="lazy" src="/images/tutorials/gd_common/node/Sprite/property/Region%3eEnabled=On.png" alt="Region&amp;gt;Enabled property of Sprite"  />
 </li>
 <li>open the &ldquo;Texture Region&rdquo; panel at the bottom of the editor and specify the region of the texture you want to use in the sprite sheet.<br>
-<img loading="lazy" src="/images/tutorials/gd0008_homing_missiles/img10.png" alt="Region pannel"  />
+<img loading="lazy" src="/images/tutorials/gd_common/panel/TextureRegion/tab_name.png" alt="Region pannel"  />
 
 <ol>
 <li>First, expand the panel to the top of the editor so that it is easy to see, and then enlarge the sprite sheet to a size that is easy to see.<br>
-<img loading="lazy" src="/images/tutorials/gd0008_homing_missiles/img11.png" alt="Region pannel"  />
+<img loading="lazy" src="/images/tutorials/gd_common/panel/TextureRegion/expand_icon.png" alt="Region pannel"  />
 </li>
 <li>select &ldquo;Grid Snap&rdquo; in &ldquo;Snap Mode&rdquo; at the top of the &ldquo;Texture Region&rdquo; panel.<br>
-<img loading="lazy" src="/images/tutorials/gd0008_homing_missiles/img12.png" alt="Region pannel &amp;gt; choose grid snap"  />
+<img loading="lazy" src="/images/tutorials/gd_common/panel/TextureRegion/snap_mode=grid_snap.png" alt="Region pannel &amp;gt; choose grid snap"  />
 </li>
 <li>set the &ldquo;step&rdquo; at the top of the panel to 64px 64px as well. This will make the grid the same size as the sprites on the sprite sheet.<br>
-<img loading="lazy" src="/images/tutorials/gd0008_homing_missiles/img13.png" alt="Region pannel &amp;gt; input grid step"  />
+<img loading="lazy" src="/images/tutorials/gd_common/panel/TextureRegion/step=64x64.png" alt="Region pannel &amp;gt; input grid step"  />
 </li>
 <li>select the texture of the larger missile on the sprite sheet.<br>
 <img loading="lazy" src="/images/tutorials/gd0008_homing_missiles/img14.png" alt="Region pannel Select region"  />
@@ -531,7 +531,7 @@ This will rotate the texture by 90°. Since the object&rsquo;s normal orientatio
 </li>
 </ol>
 <br>
-<h3 id="collisionshape2d-node">CollisionShape2D node<a hidden class="anchor" aria-hidden="true" href="#collisionshape2d-node">#</a></h3>
+<h4 id="collisionshape2d-node">CollisionShape2D node<a hidden class="anchor" aria-hidden="true" href="#collisionshape2d-node">#</a></h4>
 <p>This node sets the collision shape of the homing missile. It is required to determine the collision between the missile and the player character, and the system will alert you if a child node that sets the collision shape has not been added to the &ldquo;Area2D&rdquo; class node.</p>
 <ol>
 <li>In the inspector, apply the &ldquo;New CapsuleShape2D&rdquo; resource to the &ldquo;Shape&rdquo; property.<br>
@@ -550,7 +550,7 @@ This will rotate the texture by 90°. Since the object&rsquo;s normal orientatio
 </li>
 </ol>
 <br>
-<h3 id="timer-node">Timer node<a hidden class="anchor" aria-hidden="true" href="#timer-node">#</a></h3>
+<h4 id="timer-node">Timer node<a hidden class="anchor" aria-hidden="true" href="#timer-node">#</a></h4>
 <p>This node is a timer for homing missiles to self-destruct after a certain amount of time. If missiles continue to exist in the game indefinitely, the number of missiles will grow and the computer will run out of memory to handle them. To avoid this, the system is designed to release instances when the time expires. For missiles that fly in a straight line, it is possible to use the signal of the &ldquo;VisibilityNotifier2D&rdquo; node to release instances when they go off the screen, but for homing missiles that track the player character, a timer is more appropriate.</p>
 <ol>
 <li>In the inspector, set the &ldquo;Wait Time&rdquo; property to 3. This is the effective time of the missile. You can tweak it to your liking, but be aware that if it is too long, there will be too many missiles at the same time, which will consume too much memory.</li>
@@ -562,7 +562,7 @@ This will rotate the texture by 90°. Since the object&rsquo;s normal orientatio
 <br>
 <p>This completes the property editing for each node.</p>
 <br>
-<h2 id="controlling-it-with-a-script">Controlling it with a script<a hidden class="anchor" aria-hidden="true" href="#controlling-it-with-a-script">#</a></h2>
+<h3 id="controlling-it-with-a-script">Controlling it with a script<a hidden class="anchor" aria-hidden="true" href="#controlling-it-with-a-script">#</a></h3>
 <p>Next, we will create a script to control the missile. We want you to attach a new script to the root node &ldquo;Missile&rdquo;. The file path should be created as &ldquo;res://Enemy/Missile.gd&rdquo;.</p>
 <p>First, edit the &ldquo;Missile.gd&rdquo; script as follows.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Missile.gd ###</span>
@@ -686,10 +686,10 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="making-the-enemy-character-launch-a-homing-missile">Making the enemy character launch a homing missile<a hidden class="anchor" aria-hidden="true" href="#making-the-enemy-character-launch-a-homing-missile">#</a></h1>
+<h2 id="making-the-enemy-character-launch-a-homing-missile">Making the enemy character launch a homing missile<a hidden class="anchor" aria-hidden="true" href="#making-the-enemy-character-launch-a-homing-missile">#</a></h2>
 <p>The next step is for the &ldquo;Enemy.tscn&rdquo; scene to create an instance of the &ldquo;Missile.tscn&rdquo; scene that we just created, so that the enemy character&rsquo;s tank fires homing missiles.</p>
 <br>
-<h2 id="editing-and-controlling-the-script">Editing and controlling the script<a hidden class="anchor" aria-hidden="true" href="#editing-and-controlling-the-script">#</a></h2>
+<h3 id="editing-and-controlling-the-script">Editing and controlling the script<a hidden class="anchor" aria-hidden="true" href="#editing-and-controlling-the-script">#</a></h3>
 <p>Let&rsquo;s open and edit the &ldquo;Enemy.gd&rdquo; script attached to the root node &ldquo;Enemy&rdquo; in the &ldquo;Enemy.tscn&rdquo; scene.</p>
 <p>First, let&rsquo;s preload the missile scene file. At the beginning of the script, define constants for references. You will see the comment &ldquo;# Add&rdquo;.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Enemy.gd ###</span>
@@ -737,7 +737,7 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="extra-adding-visual-effects">Extra: Adding visual effects<a hidden class="anchor" aria-hidden="true" href="#extra-adding-visual-effects">#</a></h1>
+<h2 id="extra-adding-visual-effects">Extra: Adding visual effects<a hidden class="anchor" aria-hidden="true" href="#extra-adding-visual-effects">#</a></h2>
 <p>For visual effect, we have prepared explosion particles when the missile hits and smoke particles coming out from behind the missile in the preliminary stage. Let&rsquo;s use these by adding code to the &ldquo;Missile.gd&rdquo; script to give the missile a more visually appealing performance.</p>
 <p>After opening the &ldquo;Missile.gd&rdquo; script, add the line &ldquo;# Add&rdquo; to the code.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Missile.gd ###</span>
@@ -846,7 +846,7 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h1>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
 <p>In this tutorial, we created a homing missile in top-down shooting. Let&rsquo;s summarize the key points in creating it.</p>
 <ul>
 <li>The missile scene should be programmed to fly by itself as soon as an instance is added.</li>
@@ -864,7 +864,7 @@ data-ad-slot="9419515863"></ins></p>
 </ul>
 <br>
 <hr>
-<h1 id="links">Links<a hidden class="anchor" aria-hidden="true" href="#links">#</a></h1>
+<h2 id="links">Links<a hidden class="anchor" aria-hidden="true" href="#links">#</a></h2>
 <p>The YouTube videos and articles on KidsCanCode were very helpful in preparing this tutorial. I would like to take this opportunity to thank them. For a better understanding, we recommend that you also view those contents.</p>
 <ul>
 <li><a href="https://docs.godotengine.org/en/stable/tutorials/math/matrices_and_transforms.html" target="_blank">Godot Docs: Matrices and transforms</a>
