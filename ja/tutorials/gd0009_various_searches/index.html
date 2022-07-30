@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Godot エディタの便利な検索機能 | Peanuts Code</title>
-<meta name="keywords" content="GodotEngine, GameDev, 検索機能" />
+<meta name="keywords" content="GodotEngine, GameDev, Godot3, 検索機能" />
 <meta name="description" content="Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこ">
 <meta name="author" content="Gobo">
 <link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0009_various_searches/" />
@@ -78,7 +78,7 @@ if (!doNotTrack) {
   "name": "Godot エディタの便利な検索機能",
   "description": "Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこ",
   "keywords": [
-    "GodotEngine", "GameDev", "検索機能"
+    "GodotEngine", "GameDev", "Godot3", "検索機能"
   ],
   "articleBody": "Godot でゲームのプロジェクトを作っていると、そのうちゲームの規模がある程度大きくなった時に、ファイルシステムドックですぐに編集したいシーンが見つからなかったり、さっき修正しようと思っていたスクリプトがどこに行ったかわからなくなったりすることがあるかもしれない。\n今回は Godot エディタに備わっているキーボードショートカットでの便利な検索機能を紹介する。これらを知っているだけで「見つからない何かを探す」という、おそらく最も楽しくない時間を激減させることができるだろう。なんなら、ファイルシステムやスクリプトエディタで直接ファイルにカーソルを合わせてクリックして選択していた手順を、毎回検索する手順に切り替えてしまっても良いだろう。\nちなみにショートカット集は公式オンラインドキュメントにまとまっているのでショートカットに興味がある方はそちらもご参照いただきたい。ちなみに、macOS の Option キーを Alt と記載しているのを確認したので注意してほしい。\n公式オンラインドキュメント デフォルトのエディタ用ショートカット とにかく作業効率アップ間違いなしなので、この記事を見たあとからさっそく使ってみてほしい。では具体的に検索範囲が広い機能から順番に紹介していく。\nクイックオープン 「クイックオープン」を使用するには、Godot エディタ上で以下のキーボードショートカット操作を行う。ただし、スクリプトエディタ上では使用できないので 2D または 3D ワークスペースに切り替える必要がある。\nWindows: Shift + Alt + O macOS: Shift + Option + O 大量のアセットのファイルをインポートしている状況では綺麗にフォルダ分けしていたとしても、一つひとつファイル名まで覚えていられない。そこで便利なのが「クイックオープン」での検索だ。\nこの「クイックオープン」は全てのファイルが検索対象だ。だからインポートしたサウンドファイルもテクスチャファイルもフォントファイルもシーンファイルもスクリプトファイルも拡張子で検索したり、ファイル名の一部や保存されているフォルダで検索すれば、簡単に見つけることができるだろう。また、そもそもファイルシステムドックからディレクトリをたどっていくのが面倒な場合も検索すれば一発でファイルを開くことができる。\nシーンのクイックオープン 「シーンのクイックオープン」を使用するには、Godot エディタ上で以下のキーボードショートカット操作を行う。\nWindows: Ctrl + Shift + O macOS: Cmd + Shift + O 先に紹介した「クイックオープン」と似たようなこの「シーンのクイックオープン」は、検索対象がシーンファイルのみになる。特定のシーンを開きたい時に便利だ。操作画面もほとんど「クイックオープン」と同じだ。\nスクリプトのクイックオープン 「スクリプトのクイックオープン」を使用するには、Godot エディタ上で以下のキーボードショートカット操作を行う。\nWindows: Ctrl + Alt + O macOS: Cmd + Option + O こちらの「スクリプトのクイックオープン」も先に紹介した「クイックオープン」と似た機能だが、検索対象がスクリプトファイルに限定される。特定のスクリプトを開きたい時に便利だ。操作画面もほとんど「クイックオープン」と同じだ。\nスクリプトファイルが増えてくるとスクリプトエディタの左サイドバーからは見つけにくい。おまけに、公式ドキュメントをスクリプトエディタで開いたままにしていると余計にアイテム数が増えていく。アルファベット順で表示されるとはいえ、目視ではかなり辛い。この「スクリプトのクイックオープン」をぜひ使いこなしていきたいところだ。\n複数ファイル内を検索 「複数ファイル内を検索」するには、Godot エディタ上で「スクリプトエディタ」を開き、以下のキーボードショートカット操作を行う。\nWindows: Ctrl + Shift + F macOS: Cmd + Shift + F こちらはスクリプトエディタ上での検索機能だ。複数のスクリプトフォイルからキーワードを含むファイルを検索できる。エディタ下部の検索結果パネル上にキーワードにヒットした項目が表示され、それをクリックすれば、スクリプトエディタが該当の箇所を含むスクリプトを表示してくれる。\n特定のフォルダに保存されているファイルに限定して検索したい場合は、フォルダのパスを指定してあげれば、さらに絞り込むことができる。\nまた、すでに複数のスクリプトの中にたくさん記述してしまっている変数（プロパティ）や関数（メソッド）の名前を変えたい時には全部まとめて置換することができる。まずは検索キーワードを入れて、置換ボタンをクリックする。\nその後、検索結果パネル上で以下の手順を進める。\n置換する対象にチェックを入れる。 置換後の文字列を入力する。 全て置換ボタンをクリックする。 ファイル内を検索 「ファイル内を検索」するには、Godot エディタの「スクリプトエディタ」で特定のスクリプトファイルを開き、以下のキーボードショートカット操作を行う。\nWindows: Ctrl + F macOS: Cmd + F こちらはスクリプト単体を対象とした検索だ。こちらはシンプルに特定の変数や関数の名前、コメントの内容などを探すときに便利だ。コードが長くなってくると、スクロールしながら目視で該当の箇所を見つけるのが大変になってくる。場所は大体わかっていたとしても検索してしまった方が早いこともあるので、うまく利用したい。\nファイル内を検索して置換 「ファイル内を検索して置換」を行うには、Godot エディタの「スクリプトエディタ」で特定のスクリプトファイルを開き、以下のキーボードショートカット操作を行う。\nWindows: Ctrl + Alt + F macOS: Cmd + Option + F 先の「ファイル内を検索」のショートカットのキーコンビネーションを少し変えれば、スクリプトの中で文字の置換をすることができる。そのスクリプトでしか使用しないプロパティの名前を変えるときなど便利だ。\nおわりに 今回は Godot エディタの便利な検索機能について紹介した。ショートカットの操作はどれも最初は慣れが必要だが、一度手がキーコンビネーションを覚えてしまえば、高速で作業できるようになるだろう。ぜひ積極的に使っていこう。\nUPDATE\n2022/05/29 「ブログ」から「チュートリアル」に移行\n",
   "wordCount" : "2471",
@@ -237,12 +237,13 @@ if (!doNotTrack) {
     <ul class="post-tags">
       <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/godot3/">Godot3</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E6%A4%9C%E7%B4%A2%E6%A9%9F%E8%83%BD/">検索機能</a></li>
     </ul>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Godot エディタの便利な検索機能 on twitter"
-        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%82%a8%e3%83%87%e3%82%a3%e3%82%bf%e3%81%ae%e4%be%bf%e5%88%a9%e3%81%aa%e6%a4%9c%e7%b4%a2%e6%a9%9f%e8%83%bd&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0009_various_searches%2f&amp;hashtags=GodotEngine%2cGameDev%2c%e6%a4%9c%e7%b4%a2%e6%a9%9f%e8%83%bd">
+        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%82%a8%e3%83%87%e3%82%a3%e3%82%bf%e3%81%ae%e4%be%bf%e5%88%a9%e3%81%aa%e6%a4%9c%e7%b4%a2%e6%a9%9f%e8%83%bd&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0009_various_searches%2f&amp;hashtags=GodotEngine%2cGameDev%2cGodot3%2c%e6%a4%9c%e7%b4%a2%e6%a9%9f%e8%83%bd">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
@@ -292,7 +293,7 @@ if (!doNotTrack) {
 <figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0009_various_searches/img1.gif" alt="Godot エディタの便利な検索機能">
         
 </figure><div class="toc">
-    <details >
+    <details  open>
         <summary accesskey="c" title="(Alt + C)">
             <span class="details">目次</span>
         </summary>
@@ -341,7 +342,7 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="クイックオープン">クイックオープン<a hidden class="anchor" aria-hidden="true" href="#クイックオープン">#</a></h1>
+<h2 id="クイックオープン">クイックオープン<a hidden class="anchor" aria-hidden="true" href="#クイックオープン">#</a></h2>
 <p>「クイックオープン」を使用するには、Godot エディタ上で以下のキーボードショートカット操作を行う。ただし、スクリプトエディタ上では使用できないので 2D または 3D ワークスペースに切り替える必要がある。</p>
 <p><em><strong>Windows: <span style="color:salmon">Shift &#43; Alt &#43; O</span>
 </strong></em><br>
@@ -364,7 +365,7 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="シーンのクイックオープン">シーンのクイックオープン<a hidden class="anchor" aria-hidden="true" href="#シーンのクイックオープン">#</a></h1>
+<h2 id="シーンのクイックオープン">シーンのクイックオープン<a hidden class="anchor" aria-hidden="true" href="#シーンのクイックオープン">#</a></h2>
 <p>「シーンのクイックオープン」を使用するには、Godot エディタ上で以下のキーボードショートカット操作を行う。</p>
 <p><em><strong>Windows: <span style="color:salmon">Ctrl &#43; Shift &#43; O</span>
 </strong></em><br>
@@ -386,7 +387,7 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="スクリプトのクイックオープン">スクリプトのクイックオープン<a hidden class="anchor" aria-hidden="true" href="#スクリプトのクイックオープン">#</a></h1>
+<h2 id="スクリプトのクイックオープン">スクリプトのクイックオープン<a hidden class="anchor" aria-hidden="true" href="#スクリプトのクイックオープン">#</a></h2>
 <p>「スクリプトのクイックオープン」を使用するには、Godot エディタ上で以下のキーボードショートカット操作を行う。</p>
 <p><em><strong>Windows: <span style="color:salmon">Ctrl &#43; Alt &#43; O</span>
 </strong></em><br>
@@ -409,7 +410,7 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="複数ファイル内を検索">複数ファイル内を検索<a hidden class="anchor" aria-hidden="true" href="#複数ファイル内を検索">#</a></h1>
+<h2 id="複数ファイル内を検索">複数ファイル内を検索<a hidden class="anchor" aria-hidden="true" href="#複数ファイル内を検索">#</a></h2>
 <p>「複数ファイル内を検索」するには、Godot エディタ上で「スクリプトエディタ」を開き、以下のキーボードショートカット操作を行う。</p>
 <p><em><strong>Windows: <span style="color:salmon">Ctrl &#43; Shift &#43; F</span>
 </strong></em><br>
@@ -447,7 +448,7 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="ファイル内を検索">ファイル内を検索<a hidden class="anchor" aria-hidden="true" href="#ファイル内を検索">#</a></h1>
+<h2 id="ファイル内を検索">ファイル内を検索<a hidden class="anchor" aria-hidden="true" href="#ファイル内を検索">#</a></h2>
 <p>「ファイル内を検索」するには、Godot エディタの「スクリプトエディタ」で特定のスクリプトファイルを開き、以下のキーボードショートカット操作を行う。</p>
 <p><em><strong>Windows: <span style="color:salmon">Ctrl &#43; F</span>
 </strong></em><br>
@@ -469,7 +470,7 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="ファイル内を検索して置換">ファイル内を検索して置換<a hidden class="anchor" aria-hidden="true" href="#ファイル内を検索して置換">#</a></h1>
+<h2 id="ファイル内を検索して置換">ファイル内を検索して置換<a hidden class="anchor" aria-hidden="true" href="#ファイル内を検索して置換">#</a></h2>
 <p>「ファイル内を検索して置換」を行うには、Godot エディタの「スクリプトエディタ」で特定のスクリプトファイルを開き、以下のキーボードショートカット操作を行う。</p>
 <p><em><strong>Windows: <span style="color:salmon">Ctrl &#43; Alt &#43; F</span>
 </strong></em><br>
@@ -491,7 +492,7 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="おわりに">おわりに<a hidden class="anchor" aria-hidden="true" href="#おわりに">#</a></h1>
+<h2 id="おわりに">おわりに<a hidden class="anchor" aria-hidden="true" href="#おわりに">#</a></h2>
 <p>今回は Godot エディタの便利な検索機能について紹介した。ショートカットの操作はどれも最初は慣れが必要だが、一度手がキーコンビネーションを覚えてしまえば、高速で作業できるようになるだろう。ぜひ積極的に使っていこう。</p>
 <hr>
 <p><strong>UPDATE</strong><br>
@@ -534,7 +535,7 @@ data-ad-slot="9419515863"></ins></p>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Godot エディタの便利な検索機能 on twitter"
-        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%82%a8%e3%83%87%e3%82%a3%e3%82%bf%e3%81%ae%e4%be%bf%e5%88%a9%e3%81%aa%e6%a4%9c%e7%b4%a2%e6%a9%9f%e8%83%bd&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0009_various_searches%2f&amp;hashtags=GodotEngine%2cGameDev%2c%e6%a4%9c%e7%b4%a2%e6%a9%9f%e8%83%bd">
+        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%82%a8%e3%83%87%e3%82%a3%e3%82%bf%e3%81%ae%e4%be%bf%e5%88%a9%e3%81%aa%e6%a4%9c%e7%b4%a2%e6%a9%9f%e8%83%bd&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0009_various_searches%2f&amp;hashtags=GodotEngine%2cGameDev%2cGodot3%2c%e6%a4%9c%e7%b4%a2%e6%a9%9f%e8%83%bd">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
@@ -580,6 +581,7 @@ data-ad-slot="9419515863"></ins></p>
     <ul class="post-tags">
       <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/godot3/">Godot3</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E6%A4%9C%E7%B4%A2%E6%A9%9F%E8%83%BD/">検索機能</a></li>
     </ul>
 <nav class="paginav">

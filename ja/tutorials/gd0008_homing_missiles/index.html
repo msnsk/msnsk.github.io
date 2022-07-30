@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Godot で作るホーミングミサイル | Peanuts Code</title>
-<meta name="keywords" content="GodotEngine, GameDev, 2D, トップダウン, シューティング, ホーミングミサイル" />
+<meta name="keywords" content="GodotEngine, GameDev, Godot3, 2D, トップダウン, シューティング, ホーミングミサイル" />
 <meta name="description" content="このチュートリアルでは、2Dトップダウンシューティングにおける「ホーミングミサイル」を作っていく。ホーミングミサイルというのは、ターゲットを追跡するミサイルのことだ。 Environment このチュートリアルは以下の環境で">
 <meta name="author" content="Gobo">
 <link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/" />
@@ -78,10 +78,10 @@ if (!doNotTrack) {
   "name": "Godot で作るホーミングミサイル",
   "description": "このチュートリアルでは、2Dトップダウンシューティングにおける「ホーミングミサイル」を作っていく。ホーミングミサイルというのは、ターゲットを追跡するミサイルのことだ。 Environment このチュートリアルは以下の環境で",
   "keywords": [
-    "GodotEngine", "GameDev", "2D", "トップダウン", "シューティング", "ホーミングミサイル"
+    "GodotEngine", "GameDev", "Godot3", "2D", "トップダウン", "シューティング", "ホーミングミサイル"
   ],
-  "articleBody": "このチュートリアルでは、2Dトップダウンシューティングにおける「ホーミングミサイル」を作っていく。ホーミングミサイルというのは、ターゲットを追跡するミサイルのことだ。\nEnvironment このチュートリアルは以下の環境で作成しました。\n・Godot のバージョン: 3.4.2\n・コンピュータのOS: macOS 11.6.5\nこのチュートリアルでは、ホーミングミサイルの作成にフォーカスするため、それ以外の部分は事前に下準備として作成済みだ。\nこのチュートリアルのプロジェクトファイルは GitHubリポジトリ に置いている。.zipファイルをダウンロードしていただき、「Start」フォルダの中の「project.godot」ファイルを Godot Engine にインポートしていただければ、下準備だけ完了したプロジェクトを開始できる。また、取り急ぎ完成形を確認されたい場合は「End」フォルダの方の「project.godot」ファイルをインポートしていただければOKだ。\nなお、今回プロジェクトにインポートしてあるアセットは全て KENNEY（ケニー） のサイトからダウンロードさせていただいた。今回利用したのは Tower Defense (top-down) というアセットパックだ。このような素晴らしいアセットパックを公開いただいていることに、ただただ感謝である。\n下準備 以下のゲームの仕様のうち、（予定）と記載しているホーミングミサイルの部分以外は、すでに下準備として作成済みだ。\nプレイヤーキャラクター（飛行機）: 以下のキーで操作可能。 move_up: W キー・・・プレイヤーキャラクターが上に移動する move_down: S キー・・・プレイヤーキャラクターが下に移動する move_right: D キー・・・プレイヤーキャラクターが右に移動する move_left: A キー・・・プレイヤーキャラクターが左に移動する magic: スペースキー、またはマウス左ボタン・・・マシンガンを撃つ マシンガンの弾は敵キャラクターの戦車とそれが発射するホーミングミサイルに当たると消える。 マシンガンの弾は画面外に出たら消える。 敵キャラクター（戦車）: ゲーム画面上に最大5機現れる。残りが 0 機になると新たに 5 機生成される。 常にプレイヤーキャラクターの方に向かって移動してくる。 プレイヤーが一定距離まで近づくと、ホーミングミサイル を発射する（予定）。 ホーミングミサイルは、プレイヤーキャラクターかマシンガンの弾が当たると消える（予定）。 HUD: 左上に表示されている Life と Score のみのシンプルな HUD（ヘッズアップディスプレイ）。 Life: プレイヤーキャラクターの残機数（最大 5）。プレイヤーの飛行機に戦車のホーミングミサイルが命中すると 1 減り、0になるとゲームオーバー（デバッグパネルが閉じる）。 Score: 戦車にマシンガンの弾が命中すると敵キャラクターのライフ（最大 3）が 1 減り、0 になって戦車を破壊すると 1 ポイント加算される。\nそれでは、Godot Engine で「Start」フォルダの方のプロジェクトを開いて、ホーミングミサイルを実装していこう。\nホーミングミサイルを作る シーンを作る まずは以下の手順でホーミングミサイルのシーンを作成する。\n「シーン」メニュー＞「新規シーン」を選択する。 「ルートノードを生成」にて「その他のノード」を選択する。 「Area2D」クラスのノードをルートノードとして選択。 ルートノード「Area2D」の名前を「Missile」に変更する。 一旦ここでシーンを保存しておく。ファイルパスを「res://Enemy/Missile.tscn」とする。 次にルートノード「Missile」に子ノードを追加していく。\nルートノード「Missile」に「Sprite」クラスのノードを追加する。これはミサイルの見た目だ。 ルートノード「Missile」に「CollisionShape2D」クラスのノードを追加する。これはミサイルがプレイヤーの飛行機やそれが放ったマシンガンの弾との衝突を検知するために利用する。 ルートノード「Missile」に「Timer」クラスのノードを追加する。これはミサイルのインスタンスを一定時間経過後に解放するためだ。 シーンツリーは以下のようになったはずだ。\nノードのプロパティを編集する インスペクターで、シーンツリーの各ノードのプロパティを編集していこう。\nMissile (Area2D) ルートノード 「CollisionObject2D」クラスの「Collision」＞「Layer」プロパティと「Collision」＞「Mask」プロパティを編集する。\n「Layer」プロパティは、そのオブジェクト（ここでは「Missile」ノード）をどのコリジョンレイヤーに割り当てるかを設定できる。\n「Mask」プロパティは、そのオブジェクトがどのコリジョンレイヤーのオブジェクトとの衝突を有効にするかを設定できる。つまり、「Mask」プロパティで選択しなかったレイヤーのオブジェクトとは位置が重なっても衝突せずに互いに通り抜ける。例えば、ホーミングミサイルは敵キャラクターの戦車との衝突は無視されて通過するが、プレイヤーキャラクターやマシンガンの弾との衝突は検出される必要がある。プレイヤーキャラクターの飛行機は戦車の上を飛んでいるため、戦車との衝突は無視され、ホーミングミサイルとの衝突は検出される必要がある。\nどのコリジョンレイヤーにどのオブジェクトを割り当てるのかわかりやすくするため、以下の手順で、すでに使用するコリジョンレイヤーに名前をつけておいた。\n「プロジェクト」メニュー＞「プロジェクト設定」を開く。 サイドバー「Layer Names」＞「2d Physics」を選択する。 Layer 1 ~ 4 まで、以下の通りに名前を設定する。 Layer 1: Player Layer 2: Enemies Layer 3: PlayerBullets Layer 4: EnemyMissiles\n上記のコリジョンレイヤーの名前に合わせて、プレイヤーキャラクター、マシンガンの弾、敵キャラクターの「Layer」プロパティと「Mask」プロパティは以下の通りに設定済みである。\nプレイヤーキャラクター: Player.tscn シーン \u003e Player（KinematicBody2D）ルートノード Layer プロパティ: Layer 1 Mask プロパティ: Layer 4（ミサイルとの衝突を検知）\n敵キャラクター: Enemy.tscn シーン \u003e Enemy（KinematicBody2D）ルートノード Layer プロパティ: Layer 2 Mask プロパティ: Layer 2, 3（他の戦車とマシンガンの弾との衝突を検知）\nマシンガンの弾: Bullet.tscn シーン \u003e Bullet（Area2D）ルートノード Layer プロパティ: Layer 3 Mask プロパティ: Layer 2, 4（戦車とホーミングミサイルとの衝突を検知）\nそして、今編集中のホーミングミサイルも同様に以下のように設定してほしい。\nホーミングミサイル: Missile.tscn \u003e Missile（Area2D）ルートノード Layer プロパティ: Layer 4 Mask プロパティ: Layer 1, 3（飛行機とマシンガンの弾との衝突を検知）\nルートノード「Missile」のプロパティの編集ができたら、ついでにこのノードを「Missiles」というグループを作って追加しておこう。これはマシンガンの弾がミサイルにヒットした時に、ミサイルかどうかを判別するのに用いている。\nシーンツリードックで「Missile」を選択する ノードドック＞グループタブを開いて「Missiles」のグループを追加する。\nSprite ノード たくさんのテクスチャをまとめた1枚のスプライトシートから使いたいテクスチャの範囲を指定してスプライトのテクスチャを設定する方法を採用する。\nインスペクターにて、「Texture」プロパティにリソースファイル「res://towerDefense_tilesheet.png」を適用する。\n「Region」＞「Enabled」をオンにする。\nエディタ下部の「テクスチャ領域」パネルを開き、スプライトシートの中の利用したいテクスチャの領域を指定する。\n作業しやすいように、展開アイコンをクリックしてパネルを広げる。\n「テクスチャ領域」パネル上部の「snapモード」で「グリッドスナップ」を選択する。\n同じくパネル上部の「ステップ」を 64px 64px にする。これでグリッドのサイズがスプライトシートのスプライトと同じサイズになる。\nスプライトシート上で大きい方のミサイルのテクスチャを選択する。\nインスペクターに戻り、「Transform」＞「Rotation」プロパティを 90 にする。\nこれで 90° テクスチャが回転した状態になる。通常オブジェクトの向きは正のx軸方向が 0° であり、ミサイルの進行方向もこれを基準にするため、それに合わせてスプライトの向きも調整した。\nCollisionShape2D ノード このノードでホーミングミサイルのコリジョン形状を設定する。ミサイルとプレイヤーキャラクターとの衝突判定のために必須であり、システム上「Area2D」クラスのノードにコリジョン形状を設定する子ノードが追加されていないとアラートが表示されるようになっている。\nインスペクターにて、「Shape」プロパティに「新規 CapsuleShape2D」リソースを適用する。\n2Dワークスペースにて、コリジョン形状を「Sprite」ノードのテクスチャのサイズに合わせる。\nインスペクターで直接入力する場合は、「CapsuleShape2D」リソースのプロパティを以下のようにする。 「Radius」プロパティを 8 にする。 「Height」プロパティを 24 にする。\nTimer ノード このノードは、ホーミングミサイルが一定時間経過後に自爆するためのタイマーだ。いつまでもゲームの中にミサイルが存在し続けると、ミサイルの数が膨れ上がって、コンピュータのメモリが不足して処理しきれなくなる。それを回避するため、時間切れによりインスタンスを解放する仕様にする。直線的に飛んでいくミサイルなら画面外に出た時に「VisibilityNotifier2D」ノードのシグナルを使ってインスタンスを解放することも可能だが、プレイヤーキャラクターを追尾するホーミングミサイルではタイマーの方が適切だ。\nインスペクターにて、「Wait Time」プロパティを 3 にする。これはミサイルの有効時間だ。お好みで微調整いただいて良いのだが、長すぎるとミサイルが同時に複数存在しすぎてメモリ消費が多くなるので注意してほしい。 「One Shot」プロパティをオンにする。 「Auto Start」プロパティをオンにする。\n以上で、インスペクターでの各ノードのプロパティ編集は完了だ。\nスクリプトで制御する 次はスクリプトを作成して、ミサイルを制御していく。ルートノード「Missile」に新しいスクリプトをアタッチしてほしい。ファイルパスは「res://Enemy/Missile.gd」として作成する。\nまずは以下のように「Missile.gd」スクリプトを編集しよう。\n### Missile.gd ### extends Node2D # ミサイルのスピード export var speed = 400 # ミサイルのベロシティ（方向の要素を持った速度） var velocity = Vector2() # 物理プロセス（60FPS: 60回/秒呼ばれる組み込みメソッド） func _physics_process(delta): # ベロシティ（方向性をもつ速度） = 現在の向き x スピード velocity = transform.x * speed # 位置を更新： 現在の位置 + ベロシティ x delta（1フレームの秒数） position += velocity * delta # 向きを更新：現在のベロシティに合わせる rotation = velocity.angle() さて、これでひとまずミサイルが真っ直ぐ飛んでいくようにはなったはずだ。シーンを実行して確認してみよう。\nGIF画像の上端部分をミサイルが左から右に飛んでいくのがわかるだろうか。\n続いて、プレイヤーキャラクターを追尾する動きをスクリプトに追加していく。まずは必要なプロパティをいくつか定義しておこう。以下のコードの「# 追加」とコメントしている箇所を追加してほしい。\n### Missile.gd ### extends Node2D export var speed = 400 # 追加：プレイヤーのいる方向へ舵を切る力 # 値が大きいほど素早く方向を修正できる export var steering_force = 20.0 var velocity = Vector2() # 追加：加速度 var acceleration = Vector2() # ターゲットである Player オブジェクトの参照（検出され次第） var target = null 次にミサイルがプレイヤーキャラクターの方へ舵を切る（軌道修正する）メソッドを定義する。\n### Missile.gd ### # ミサイルがプレイヤーキャラクターの方へ舵を切るメソッド func steer(): # 舵を切るベロシティとして定義 var steering = Vector2() # 理想のベロシティ（現在の位置から見たプレイヤーキャラクターへの方向 x スピード）を定義 var ideal_velocity = (target.position - position).normalized() * speed # 舵を切る速度 = （理想のベロシティ - 現在のベロシティ）で得た方向ベクトル x 舵を切る力 steering = (ideal_velocity - velocity).normalized() * steering_force # 舵を切るベロシティを出力 return steering コード上のコメントだけではイメージしにくいと思われるため、図で補足しておく。\nホーミングミサイルはプレイヤーキャラクターの飛行機を検知したら、それをtargetとして追尾する。このとき、ミサイルがtargetの方向へ直線で移動できたと仮定した場合の理想のベロシティが変数ideal_velocityだ。しかし実際には、ミサイルはプロパティvelocityの持つ方向で飛んでいるため、ideal_velocityの方へ舵を切って軌道修正したい。そこでベクトルの計算になる。ideal_velocityからvelocityを引いたベクトルをメソッドnormalizedで方向ベクトル（長さが 1 のベクトル）にして、それに舵を切る力であるプロパティsteering_forceの値を乗算すれば、舵を切るベロシティである変数steeringの値が定まる。\nではこのメソッドsteerで出力される変数steeringの値を利用して、ミサイルが軌道修正しながら飛行するように修正しよう。「# 追加」とコメントした箇所をメソッド_physics_processに追加してほしい。\n### Missile.gd ### func _physics_process(delta): velocity = transform.x * speed # 追加：加速度に舵を切るベロシティを加算していく acceleration += steer() # 追加：ベロシティに 加速度 x delta の値を加算していく velocity += acceleration * delta # 追加：ベロシティのベクトルの長さがスピードを超えないように制限する velocity = velocity.clamped(speed) position += velocity * delta rotation = velocity.angle() これでホーミングミサイルがプレイヤーキャラクターを追尾する動きが実装できたはずだ。\n続けて、プレイヤーキャラクターやマシンガンの弾に衝突した時のプログラムを追加しよう。これにはルートノード「Missile」の Area2D クラスのシグナルを利用する。\nではシーンツリードックで「Missile」を選択したら、ノードドック＞シグナルタブでシグナル「body_entered(body: Node)」をこの「Missile.gd」スクリプトに接続しよう。\n接続後、自動的に生成されたメソッド_on_Missile_body_enteredは以下のように編集する。\n### Missile.gd ### # ミサイルに物理ボディが衝突したら発信するシグナルで呼ばれるメソッド func _on_Missile_body_entered(body): # 物理ボディがプレイヤーキャラクターだったら if body.name == \"Player\": print(\"Missile hit \", body.name) # Player シーンの AnimationPlayer のアニメーション hit を再生する body.anim_player.play(\"hit\") # Player ノードのシグナル player_hit を発信する body.emit_signal(\"player_hit\") # Player の Life が 1 より大きかったら -1 する if body.life \u003e 1: body.life -= 1 # 1 以下の場合 else: # アニメーション hit の再生終了を待つ yield(body.anim_player, \"animation_finished\") # Player オブジェクトを解放する body.queue_free() print(\"Game Over!\") # デバッグパネルを閉じて終了 get_tree().quit() # ミサイル自身も解放する queue_free() これでミサイルがプレイヤーキャラクターの飛行機に当たったらアニメーション（赤く点滅）して Life が一つ減り、5 機なくなったらゲームオーバーになる仕組みが実装できた。\n続いて「Timer」ノードのタイマーを利用して時間切れになったらミサイルを解放する仕組みを作る。これも「Timer」ノードのシグナルを利用する。ではシーンツリードックで「Timer」を選択したら、シグナル「timeout()」をスクリプトに接続しよう。\n接続して生成されたメソッド_on_Timer_timeoutはシンプルにメソッドqueue_freeを実行するだけでOKだ。\n### Missile.gd ### func _on_Timer_timeout(): queue_free() ひとまずここまででミサイルの基本は完成だ。\n敵キャラクターにホーミングミサイルを発射させる 次は「Enemy.tscn」シーンの方で、作成したばかりの「Missile.tscn」シーンのインスタンスを生成して、敵キャラクターの戦車がホーミングミサイルを発射するようにしていく。\nスクリプトを編集して制御する それでは「Enemy.tscn」シーンのルートノード「Enemy」にアタッチしている「Enemy.gd」スクリプトを開いて編集していこう。\nまず先にミサイルのシーンファイルをプリロードしておこう。スクリプトの冒頭で参照用の定数を定義しておく。「# 追加」のコメントが目印だ。\n### Enemy.gd ### extends KinematicBody2D signal enemy_killed # 追加：プリロードした Missile.tscn シーンファイルの参照 const missile_scn = preload(\"res://Enemy/Missile.tscn\") 次に、メソッド_on_Timer_timeoutのブロックにはpassしか記述されていない状態なので、これを以下のように更新してほしい。ちなみに、このメソッドは「LaunchTimer」ノード（Timer クラス）のシグナル「timeout()」を接続して生成されたものだ。つまり、タイマーがタイムアウトするたびにこのメソッドが呼ばれる。\n### Enemy.gd ### # LaunchTimer ノードがタイムアウトしたら発信されるシグナルで呼ばれるメソッド func _on_LaunchTimer_timeout(): # 親ノード（World）に Player という名前のノードがある場合 if get_parent().has_node(\"Player\"): # ミサイル発射のメソッドを呼ぶ launch_missile() 最後のメソッドlaunch_missileはこれから定義するところだ。\nそれではメソッドlaunch_missileを定義した以下のコードを、上記_on_LaunchTimer_timeoutの後に挿入してほしい。\n### Enemy.gd ### # ミサイルを発射するメソッド func launch_missile(): # Missile.tscn シーンをインスタンス化 var missile = missile_scn.instance() # Missile の target プロパティに Player オブジェクトを代入 missile.target = get_parent().get_node(\"Player\") # 親ノード（World）にミサイルのインスタンスを追加 get_parent().add_child(missile) # ミサイルの位置を戦車の大砲の先端に合わせる missile.position = muzzle.global_position # ミサイルの向きを戦車の大砲の先端の向きに合わせる missile.rotation = muzzle.global_rotation これでミサイルが発射されるはずだ。ここまでの作業がうまくいったか、プロジェクトを実行して確認してみよう。\nおまけ：演出を追加する 演出用に、下準備の段階でミサイルが当たった時の爆発のパーティクルと、ミサイルの後ろから出る煙のパーティクルを用意している。これらを「Missile.gd」スクリプトにコードを追加して利用し、見た目上の演出を咥えよう。\n「Missile.gd」スクリプトを開いたら、「# 追加」の行をコードに追加してほしい。\n### Missile.gd ### # 追加：Smoke.tscn（煙のパーティクルだけのシーン）のプリロード参照 const smoke_scn = preload(\"res://Effect/Smoke.tscn\") # 追加：Explosion.tscn（爆発のパーティクルだけのシーン）のプリロード参照 const explosion_scn = preload(\"res://Effect/Explosion.tscn\") export var speed = 400 export var steering_force = 20.0 var velocity = Vector2() var acceleration = Vector2() var target = null # 追加：煙が出る間隔を空けるためのカウント var smoke_count = 0 次は_physics_processメソッド内で煙を出すメソッドを呼ぶ。\n### Missile.gd ### func _physics_process(delta): velocity = transform.x * speed acceleration += steer() velocity += acceleration * delta velocity = velocity.clamped(speed) position += velocity * delta rotation = velocity.angle() # smoke_count に delta の値を加算する smoke_count += delta # smoke_count が 0.05 より大きければ if smoke_count \u003e 0.05: # smoke_count を 0 に戻して smoke_count = 0 # 煙を出すメソッドを呼ぶ spawn_smoke() そして、最後の煙を出すメソッドspawn_smokeは以下のように定義しよう。このコードはsteerメソッドの下あたりに挿入しておけば良いだろう。\n### Missile.gd ### # 煙を出すメソッド func spawn_smoke(): # 煙のパーティクルのシーンをインスタンス化 var smoke = smoke_scn.instance() # 親ノード（World）にインスタンスノードを追加 get_parent().add_child(smoke) # 煙を現在のミサイルの位置に置く smoke.position = global_position # 煙の向きを現在のミサイルの向きに合わせる（あまり意味はないが） smoke.rotation = global_rotation 続いて、今度は爆発のパーティクルを発生させるメソッドを定義する。これは上記メソッドspawn_smokeの下に追加すればOKだ。\n### Missile.gd ### # 爆発させるメソッド func explode(): # 爆発のパーティクルのシーンをインスタンス化 var explosion = explosion_scn.instance() # 親ノード（World）にインスタンスノードを追加 get_parent().add_child(explosion) # 爆発パーティクルを現在のミサイルの位置に置く explosion.position = global_position # 爆発パーティクルの向きを現在のミサイルの向きに合わせる（あまり意味はないが） explosion.rotation = global_rotation 以下の「# 追加」コメントがある3箇所でメソッドexplodeを呼び出すようにコードを更新しよう。\n### Missile.gd ### func _on_Missile_body_entered(body): if body.name == \"Player\": print(\"Missile hit \", body.name) body.anim_player.play(\"hit\") body.emit_signal(\"player_hit\") if body.life \u003e 1: body.life -= 1 else: explode() # 追加 yield(body.anim_player, \"animation_finished\") body.queue_free() print(\"Game Over!\") get_tree().quit() explode() # 追加 queue_free() func _on_Timer_timeout(): explode() # 追加 queue_free() 更新は以上だ。最後にもう一度プロジェクトを実行して、追加した演出を確認してみよう。\nところで、煙と爆発いずれのパーティクルも「Particles2D」クラスのノードを使用している。macOS ではこのノードを使うとパフォーマンスが低下する問題があるようだ。私は macOS 利用者だが、確かに動作遅延が生じた。上のGIF画像でもわかるレベルだ。\nもし macOS を利用されている場合は、シーンツリードックでルートノード（Particles2D クラス）を選択した状態で、ツールバーの「Paricles」から「Convert to CPUParticles2D」を利用して「CPUParticles2D」クラスに変換できるようだ。\nおわりに 今回のチュートリアルでは、トップダウンシューティングにおけるホーミングミサイルを作った。作成する際のポイントをまとめておこう。\nミサイルシーンはインスタンスが追加されたらすぐに自分で飛んでいくようにプログラムしておく。 ミサイルの追尾の動きを再現するには、物理プロセスで毎フレーム以下を順次実行する。 ターゲット（このチュートリアルの「Player」）に対する方向ベクトルにスピードを乗算して理想のベロシティを求める 理想のベロシティと実際のベロシティの差のベクトルをノーマライズして舵を切るべき方向を求める 舵を切るべき方向に予めプロパティで定義済みの舵を切る力を乗算して舵を切る速度を求める。 現在の加速度に舵を切る速度を加算する。 現在のベロシティに更新した加速度を加算する。 ミサイルのシーンのインスタンスを作成する時は、回転したり移動したりするオブジェクト（このチュートリアルの「Enemy」）の子ではなく、例えば、そのオブジェクトの親ノード（このチュートリアルの「World」）などで動かないオブジェクトの子にすると正しく飛んでいく。 メモリ消費を抑制するため、Timerのシグナルを利用し、タイムアウトでミサイルのインスタンスが解放されるようにする。 リンク このチュートリアルの作成にあたって、KidsCanCodeのYouTube動画や記事が非常に参考になった。この場を借りて感謝申し上げたい。より理解していただくのに、それらのコンテンツも併せてご覧いただくことをお勧めする。\nGodot Docs: RayCast2D YouTube: Make your first 2D grid-based game from scratch in Godot YouTube: Grid-based movement Godot 3 demo overview KidsCanCode: Grid-based movement UPDATE\n2022/05/28 「リンク」のリンク修正、「リンク」にコメント追加。\n",
-  "wordCount" : "9057",
+  "articleBody": "このチュートリアルでは、2Dトップダウンシューティングにおける「ホーミングミサイル」を作っていく。ホーミングミサイルというのは、ターゲットを追跡するミサイルのことだ。\nEnvironment このチュートリアルは以下の環境で作成しました。\n・Godot のバージョン: 3.4.2\n・コンピュータのOS: macOS 11.6.5\nこのチュートリアルでは、ホーミングミサイルの作成にフォーカスするため、それ以外の部分は事前に下準備として作成済みだ。\nこのチュートリアルのプロジェクトファイルは GitHubリポジトリ に置いている。.zipファイルをダウンロードしていただき、「Start」フォルダの中の「project.godot」ファイルを Godot Engine にインポートしていただければ、下準備だけ完了したプロジェクトを開始できる。また、取り急ぎ完成形を確認されたい場合は「End」フォルダの方の「project.godot」ファイルをインポートしていただければOKだ。\nなお、今回プロジェクトにインポートしてあるアセットは全て KENNEY（ケニー） のサイトからダウンロードさせていただいた。今回利用したのは Tower Defense (top-down) というアセットパックだ。このような素晴らしいアセットパックを公開いただいていることに、ただただ感謝である。\n下準備 以下のゲームの仕様のうち、（予定）と記載しているホーミングミサイルの部分以外は、すでに下準備として作成済みだ。\nプレイヤーキャラクター（飛行機）: 以下のキーで操作可能。 move_up: W キー・・・プレイヤーキャラクターが上に移動する move_down: S キー・・・プレイヤーキャラクターが下に移動する move_right: D キー・・・プレイヤーキャラクターが右に移動する move_left: A キー・・・プレイヤーキャラクターが左に移動する magic: スペースキー、またはマウス左ボタン・・・マシンガンを撃つ マシンガンの弾は敵キャラクターの戦車とそれが発射するホーミングミサイルに当たると消える。 マシンガンの弾は画面外に出たら消える。 敵キャラクター（戦車）: ゲーム画面上に最大5機現れる。残りが 0 機になると新たに 5 機生成される。 常にプレイヤーキャラクターの方に向かって移動してくる。 プレイヤーが一定距離まで近づくと、ホーミングミサイル を発射する（予定）。 ホーミングミサイルは、プレイヤーキャラクターかマシンガンの弾が当たると消える（予定）。 HUD: 左上に表示されている Life と Score のみのシンプルな HUD（ヘッズアップディスプレイ）。 Life: プレイヤーキャラクターの残機数（最大 5）。プレイヤーの飛行機に戦車のホーミングミサイルが命中すると 1 減り、0になるとゲームオーバー（デバッグパネルが閉じる）。 Score: 戦車にマシンガンの弾が命中すると敵キャラクターのライフ（最大 3）が 1 減り、0 になって戦車を破壊すると 1 ポイント加算される。\nそれでは、Godot Engine で「Start」フォルダの方のプロジェクトを開いて、ホーミングミサイルを実装していこう。\nホーミングミサイルを作る シーンを作る まずは以下の手順でホーミングミサイルのシーンを作成する。\n「シーン」メニュー＞「新規シーン」を選択する。 「ルートノードを生成」にて「その他のノード」を選択する。 「Area2D」クラスのノードをルートノードとして選択。 ルートノード「Area2D」の名前を「Missile」に変更する。 一旦ここでシーンを保存しておく。ファイルパスを「res://Enemy/Missile.tscn」とする。 次にルートノード「Missile」に子ノードを追加していく。\nルートノード「Missile」に「Sprite」クラスのノードを追加する。これはミサイルの見た目だ。 ルートノード「Missile」に「CollisionShape2D」クラスのノードを追加する。これはミサイルがプレイヤーの飛行機やそれが放ったマシンガンの弾との衝突を検知するために利用する。 ルートノード「Missile」に「Timer」クラスのノードを追加する。これはミサイルのインスタンスを一定時間経過後に解放するためだ。 シーンツリーは以下のようになったはずだ。\nノードのプロパティを編集する インスペクターで、シーンツリーの各ノードのプロパティを編集していこう。\nMissile (Area2D) ルートノード 「CollisionObject2D」クラスの「Collision」＞「Layer」プロパティと「Collision」＞「Mask」プロパティを編集する。\n「Layer」プロパティは、そのオブジェクト（ここでは「Missile」ノード）をどのコリジョンレイヤーに割り当てるかを設定できる。\n「Mask」プロパティは、そのオブジェクトがどのコリジョンレイヤーのオブジェクトとの衝突を有効にするかを設定できる。つまり、「Mask」プロパティで選択しなかったレイヤーのオブジェクトとは位置が重なっても衝突せずに互いに通り抜ける。例えば、ホーミングミサイルは敵キャラクターの戦車との衝突は無視されて通過するが、プレイヤーキャラクターやマシンガンの弾との衝突は検出される必要がある。プレイヤーキャラクターの飛行機は戦車の上を飛んでいるため、戦車との衝突は無視され、ホーミングミサイルとの衝突は検出される必要がある。\nどのコリジョンレイヤーにどのオブジェクトを割り当てるのかわかりやすくするため、以下の手順で、すでに使用するコリジョンレイヤーに名前をつけておいた。\n「プロジェクト」メニュー＞「プロジェクト設定」を開く。 サイドバー「Layer Names」＞「2d Physics」を選択する。 Layer 1 ~ 4 まで、以下の通りに名前を設定する。 Layer 1: Player Layer 2: Enemies Layer 3: PlayerBullets Layer 4: EnemyMissiles\n上記のコリジョンレイヤーの名前に合わせて、プレイヤーキャラクター、マシンガンの弾、敵キャラクターの「Layer」プロパティと「Mask」プロパティは以下の通りに設定済みである。\nプレイヤーキャラクター: Player.tscn シーン \u003e Player（KinematicBody2D）ルートノード Layer プロパティ: Layer 1 Mask プロパティ: Layer 4（ミサイルとの衝突を検知）\n敵キャラクター: Enemy.tscn シーン \u003e Enemy（KinematicBody2D）ルートノード Layer プロパティ: Layer 2 Mask プロパティ: Layer 2, 3（他の戦車とマシンガンの弾との衝突を検知）\nマシンガンの弾: Bullet.tscn シーン \u003e Bullet（Area2D）ルートノード Layer プロパティ: Layer 3 Mask プロパティ: Layer 2, 4（戦車とホーミングミサイルとの衝突を検知）\nそして、今編集中のホーミングミサイルも同様に以下のように設定してほしい。\nホーミングミサイル: Missile.tscn \u003e Missile（Area2D）ルートノード Layer プロパティ: Layer 4 Mask プロパティ: Layer 1, 3（飛行機とマシンガンの弾との衝突を検知）\nルートノード「Missile」のプロパティの編集ができたら、ついでにこのノードを「Missiles」というグループを作って追加しておこう。これはマシンガンの弾がミサイルにヒットした時に、ミサイルかどうかを判別するのに用いている。\nシーンツリードックで「Missile」を選択する ノードドック＞グループタブを開いて「Missiles」のグループを追加する。\nSprite ノード たくさんのテクスチャをまとめた1枚のスプライトシートから使いたいテクスチャの範囲を指定してスプライトのテクスチャを設定する方法を採用する。\nインスペクターにて、「Texture」プロパティにリソースファイル「res://towerDefense_tilesheet.png」を適用する。\n「Region」＞「Enabled」をオンにする。\nエディタ下部の「テクスチャ領域」パネルを開き、スプライトシートの中の利用したいテクスチャの領域を指定する。\n作業しやすいように、展開アイコンをクリックしてパネルを広げる。\n「テクスチャ領域」パネル上部の「snapモード」で「グリッドスナップ」を選択する。\n同じくパネル上部の「ステップ」を 64px 64px にする。これでグリッドのサイズがスプライトシートのスプライトと同じサイズになる。\nスプライトシート上で大きい方のミサイルのテクスチャを選択する。\nインスペクターに戻り、「Transform」＞「Rotation」プロパティを 90 にする。\nこれで 90° テクスチャが回転した状態になる。通常オブジェクトの向きは正のx軸方向が 0° であり、ミサイルの進行方向もこれを基準にするため、それに合わせてスプライトの向きも調整した。\nCollisionShape2D ノード このノードでホーミングミサイルのコリジョン形状を設定する。ミサイルとプレイヤーキャラクターとの衝突判定のために必須であり、システム上「Area2D」クラスのノードにコリジョン形状を設定する子ノードが追加されていないとアラートが表示されるようになっている。\nインスペクターにて、「Shape」プロパティに「新規 CapsuleShape2D」リソースを適用する。\n2Dワークスペースにて、コリジョン形状を「Sprite」ノードのテクスチャのサイズに合わせる。\nインスペクターで直接入力する場合は、「CapsuleShape2D」リソースのプロパティを以下のようにする。 「Radius」プロパティを 8 にする。 「Height」プロパティを 24 にする。\nTimer ノード このノードは、ホーミングミサイルが一定時間経過後に自爆するためのタイマーだ。いつまでもゲームの中にミサイルが存在し続けると、ミサイルの数が膨れ上がって、コンピュータのメモリが不足して処理しきれなくなる。それを回避するため、時間切れによりインスタンスを解放する仕様にする。直線的に飛んでいくミサイルなら画面外に出た時に「VisibilityNotifier2D」ノードのシグナルを使ってインスタンスを解放することも可能だが、プレイヤーキャラクターを追尾するホーミングミサイルではタイマーの方が適切だ。\nインスペクターにて、「Wait Time」プロパティを 3 にする。これはミサイルの有効時間だ。お好みで微調整いただいて良いのだが、長すぎるとミサイルが同時に複数存在しすぎてメモリ消費が多くなるので注意してほしい。 「One Shot」プロパティをオンにする。 「Auto Start」プロパティをオンにする。\n以上で、インスペクターでの各ノードのプロパティ編集は完了だ。\nスクリプトで制御する 次はスクリプトを作成して、ミサイルを制御していく。ルートノード「Missile」に新しいスクリプトをアタッチしてほしい。ファイルパスは「res://Enemy/Missile.gd」として作成する。\nまずは以下のように「Missile.gd」スクリプトを編集しよう。\n###Missile.gd### extends Node2D # ミサイルのスピード export var speed = 400 # ミサイルのベロシティ（方向の要素を持った速度） var velocity = Vector2() # 物理プロセス（60FPS: 60回/秒呼ばれる組み込みメソッド） func _physics_process(delta): # ベロシティ（方向性をもつ速度） = 現在の向き x スピード velocity = transform.x * speed # 位置を更新： 現在の位置 + ベロシティ x delta（1フレームの秒数） position += velocity * delta # 向きを更新：現在のベロシティに合わせる rotation = velocity.angle() さて、これでひとまずミサイルが真っ直ぐ飛んでいくようにはなったはずだ。シーンを実行して確認してみよう。\nGIF画像の上端部分をミサイルが左から右に飛んでいくのがわかるだろうか。\n続いて、プレイヤーキャラクターを追尾する動きをスクリプトに追加していく。まずは必要なプロパティをいくつか定義しておこう。以下のコードの「# 追加」とコメントしている箇所を追加してほしい。\n###Missile.gd### extends Node2D export var speed = 400 # 追加：プレイヤーのいる方向へ舵を切る力 # 値が大きいほど素早く方向を修正できる export var steering_force = 20.0 var velocity = Vector2() # 追加：加速度 var acceleration = Vector2() # ターゲットである Player オブジェクトの参照（検出され次第） var target = null 次にミサイルがプレイヤーキャラクターの方へ舵を切る（軌道修正する）メソッドを定義する。\n###Missile.gd### # ミサイルがプレイヤーキャラクターの方へ舵を切るメソッド func steer(): # 舵を切るベロシティとして定義 var steering = Vector2() # 理想のベロシティ（現在の位置から見たプレイヤーキャラクターへの方向 x スピード）を定義 var ideal_velocity = (target.position - position).normalized() * speed # 舵を切る速度 = （理想のベロシティ - 現在のベロシティ）で得た方向ベクトル x 舵を切る力 steering = (ideal_velocity - velocity).normalized() * steering_force # 舵を切るベロシティを出力 return steering コード上のコメントだけではイメージしにくいと思われるため、図で補足しておく。\nホーミングミサイルはプレイヤーキャラクターの飛行機を検知したら、それをtargetとして追尾する。このとき、ミサイルがtargetの方向へ直線で移動できたと仮定した場合の理想のベロシティが変数ideal_velocityだ。しかし実際には、ミサイルはプロパティvelocityの持つ方向で飛んでいるため、ideal_velocityの方へ舵を切って軌道修正したい。そこでベクトルの計算になる。ideal_velocityからvelocityを引いたベクトルをメソッドnormalizedで方向ベクトル（長さが 1 のベクトル）にして、それに舵を切る力であるプロパティsteering_forceの値を乗算すれば、舵を切るベロシティである変数steeringの値が定まる。\nではこのメソッドsteerで出力される変数steeringの値を利用して、ミサイルが軌道修正しながら飛行するように修正しよう。「# 追加」とコメントした箇所をメソッド_physics_processに追加してほしい。\n###Missile.gd### func _physics_process(delta): velocity = transform.x * speed # 追加：加速度に舵を切るベロシティを加算していく acceleration += steer() # 追加：ベロシティに 加速度 x delta の値を加算していく velocity += acceleration * delta # 追加：ベロシティのベクトルの長さがスピードを超えないように制限する velocity = velocity.clamped(speed) position += velocity * delta rotation = velocity.angle() これでホーミングミサイルがプレイヤーキャラクターを追尾する動きが実装できたはずだ。\n続けて、プレイヤーキャラクターやマシンガンの弾に衝突した時のプログラムを追加しよう。これにはルートノード「Missile」の Area2D クラスのシグナルを利用する。\nではシーンツリードックで「Missile」を選択したら、ノードドック＞シグナルタブでシグナル「body_entered(body: Node)」をこの「Missile.gd」スクリプトに接続しよう。\n接続後、自動的に生成されたメソッド_on_Missile_body_enteredは以下のように編集する。\n###Missile.gd### # ミサイルに物理ボディが衝突したら発信するシグナルで呼ばれるメソッド func _on_Missile_body_entered(body): # 物理ボディがプレイヤーキャラクターだったら if body.name == \"Player\": print(\"Missile hit \", body.name) # Player シーンの AnimationPlayer のアニメーション hit を再生する body.anim_player.play(\"hit\") # Player ノードのシグナル player_hit を発信する body.emit_signal(\"player_hit\") # Player の Life が 1 より大きかったら -1 する if body.life \u003e 1: body.life -= 1 # 1 以下の場合 else: # アニメーション hit の再生終了を待つ yield(body.anim_player, \"animation_finished\") # Player オブジェクトを解放する body.queue_free() print(\"Game Over!\") # デバッグパネルを閉じて終了 get_tree().quit() # ミサイル自身も解放する queue_free() これでミサイルがプレイヤーキャラクターの飛行機に当たったらアニメーション（赤く点滅）して Life が一つ減り、5 機なくなったらゲームオーバーになる仕組みが実装できた。\n続いて「Timer」ノードのタイマーを利用して時間切れになったらミサイルを解放する仕組みを作る。これも「Timer」ノードのシグナルを利用する。ではシーンツリードックで「Timer」を選択したら、シグナル「timeout()」をスクリプトに接続しよう。\n接続して生成されたメソッド_on_Timer_timeoutはシンプルにメソッドqueue_freeを実行するだけでOKだ。\n###Missile.gd### func _on_Timer_timeout(): queue_free() ひとまずここまででミサイルの基本は完成だ。\n敵キャラクターにホーミングミサイルを発射させる 次は「Enemy.tscn」シーンの方で、作成したばかりの「Missile.tscn」シーンのインスタンスを生成して、敵キャラクターの戦車がホーミングミサイルを発射するようにしていく。\nスクリプトを編集して制御する それでは「Enemy.tscn」シーンのルートノード「Enemy」にアタッチしている「Enemy.gd」スクリプトを開いて編集していこう。\nまず先にミサイルのシーンファイルをプリロードしておこう。スクリプトの冒頭で参照用の定数を定義しておく。「# 追加」のコメントが目印だ。\n###Enemy.gd### extends KinematicBody2D signal enemy_killed # 追加：プリロードした Missile.tscn シーンファイルの参照 const missile_scn = preload(\"res://Enemy/Missile.tscn\") 次に、メソッド_on_Timer_timeoutのブロックにはpassしか記述されていない状態なので、これを以下のように更新してほしい。ちなみに、このメソッドは「LaunchTimer」ノード（Timer クラス）のシグナル「timeout()」を接続して生成されたものだ。つまり、タイマーがタイムアウトするたびにこのメソッドが呼ばれる。\n###Enemy.gd### # LaunchTimer ノードがタイムアウトしたら発信されるシグナルで呼ばれるメソッド func _on_LaunchTimer_timeout(): # 親ノード（World）に Player という名前のノードがある場合 if get_parent().has_node(\"Player\"): # ミサイル発射のメソッドを呼ぶ launch_missile() 最後のメソッドlaunch_missileはこれから定義するところだ。\nそれではメソッドlaunch_missileを定義した以下のコードを、上記_on_LaunchTimer_timeoutの後に挿入してほしい。\n###Enemy.gd### # ミサイルを発射するメソッド func launch_missile(): # Missile.tscn シーンをインスタンス化 var missile = missile_scn.instance() # Missile の target プロパティに Player オブジェクトを代入 missile.target = get_parent().get_node(\"Player\") # 親ノード（World）にミサイルのインスタンスを追加 get_parent().add_child(missile) # ミサイルの位置を戦車の大砲の先端に合わせる missile.position = muzzle.global_position # ミサイルの向きを戦車の大砲の先端の向きに合わせる missile.rotation = muzzle.global_rotation これでミサイルが発射されるはずだ。ここまでの作業がうまくいったか、プロジェクトを実行して確認してみよう。\nおまけ：演出を追加する 演出用に、下準備の段階でミサイルが当たった時の爆発のパーティクルと、ミサイルの後ろから出る煙のパーティクルを用意している。これらを「Missile.gd」スクリプトにコードを追加して利用し、見た目上の演出を咥えよう。\n「Missile.gd」スクリプトを開いたら、「# 追加」の行をコードに追加してほしい。\n###Missile.gd### # 追加：Smoke.tscn（煙のパーティクルだけのシーン）のプリロード参照 const smoke_scn = preload(\"res://Effect/Smoke.tscn\") # 追加：Explosion.tscn（爆発のパーティクルだけのシーン）のプリロード参照 const explosion_scn = preload(\"res://Effect/Explosion.tscn\") export var speed = 400 export var steering_force = 20.0 var velocity = Vector2() var acceleration = Vector2() var target = null # 追加：煙が出る間隔を空けるためのカウント var smoke_count = 0 次は_physics_processメソッド内で煙を出すメソッドを呼ぶ。\n###Missile.gd### func _physics_process(delta): velocity = transform.x * speed acceleration += steer() velocity += acceleration * delta velocity = velocity.clamped(speed) position += velocity * delta rotation = velocity.angle() # smoke_count に delta の値を加算する smoke_count += delta # smoke_count が 0.05 より大きければ if smoke_count \u003e 0.05: # smoke_count を 0 に戻して smoke_count = 0 # 煙を出すメソッドを呼ぶ spawn_smoke() そして、最後の煙を出すメソッドspawn_smokeは以下のように定義しよう。このコードはsteerメソッドの下あたりに挿入しておけば良いだろう。\n###Missile.gd### # 煙を出すメソッド func spawn_smoke(): # 煙のパーティクルのシーンをインスタンス化 var smoke = smoke_scn.instance() # 親ノード（World）にインスタンスノードを追加 get_parent().add_child(smoke) # 煙を現在のミサイルの位置に置く smoke.position = global_position # 煙の向きを現在のミサイルの向きに合わせる（あまり意味はないが） smoke.rotation = global_rotation 続いて、今度は爆発のパーティクルを発生させるメソッドを定義する。これは上記メソッドspawn_smokeの下に追加すればOKだ。\n###Missile.gd### # 爆発させるメソッド func explode(): # 爆発のパーティクルのシーンをインスタンス化 var explosion = explosion_scn.instance() # 親ノード（World）にインスタンスノードを追加 get_parent().add_child(explosion) # 爆発パーティクルを現在のミサイルの位置に置く explosion.position = global_position # 爆発パーティクルの向きを現在のミサイルの向きに合わせる（あまり意味はないが） explosion.rotation = global_rotation 以下の「# 追加」コメントがある3箇所でメソッドexplodeを呼び出すようにコードを更新しよう。\n###Missile.gd### func _on_Missile_body_entered(body): if body.name == \"Player\": print(\"Missile hit \", body.name) body.anim_player.play(\"hit\") body.emit_signal(\"player_hit\") if body.life \u003e 1: body.life -= 1 else: explode() # 追加 yield(body.anim_player, \"animation_finished\") body.queue_free() print(\"Game Over!\") get_tree().quit() explode() # 追加 queue_free() func _on_Timer_timeout(): explode() # 追加 queue_free() 更新は以上だ。最後にもう一度プロジェクトを実行して、追加した演出を確認してみよう。\nところで、煙と爆発いずれのパーティクルも「Particles2D」クラスのノードを使用している。macOS ではこのノードを使うとパフォーマンスが低下する問題があるようだ。私は macOS 利用者だが、確かに動作遅延が生じた。上のGIF画像でもわかるレベルだ。\nもし macOS を利用されている場合は、シーンツリードックでルートノード（Particles2D クラス）を選択した状態で、ツールバーの「Paricles」から「Convert to CPUParticles2D」を利用して「CPUParticles2D」クラスに変換できるようだ。\nおわりに 今回のチュートリアルでは、トップダウンシューティングにおけるホーミングミサイルを作った。作成する際のポイントをまとめておこう。\nミサイルシーンはインスタンスが追加されたらすぐに自分で飛んでいくようにプログラムしておく。 ミサイルの追尾の動きを再現するには、物理プロセスで毎フレーム以下を順次実行する。 ターゲット（このチュートリアルの「Player」）に対する方向ベクトルにスピードを乗算して理想のベロシティを求める 理想のベロシティと実際のベロシティの差のベクトルをノーマライズして舵を切るべき方向を求める 舵を切るべき方向に予めプロパティで定義済みの舵を切る力を乗算して舵を切る速度を求める。 現在の加速度に舵を切る速度を加算する。 現在のベロシティに更新した加速度を加算する。 ミサイルのシーンのインスタンスを作成する時は、回転したり移動したりするオブジェクト（このチュートリアルの「Enemy」）の子ではなく、例えば、そのオブジェクトの親ノード（このチュートリアルの「World」）などで動かないオブジェクトの子にすると正しく飛んでいく。 メモリ消費を抑制するため、Timerのシグナルを利用し、タイムアウトでミサイルのインスタンスが解放されるようにする。 リンク このチュートリアルの作成にあたって、KidsCanCodeのYouTube動画や記事が非常に参考になった。この場を借りて感謝申し上げたい。より理解していただくのに、それらのコンテンツも併せてご覧いただくことをお勧めする。\nGodot Docs: RayCast2D YouTube: Make your first 2D grid-based game from scratch in Godot YouTube: Grid-based movement Godot 3 demo overview KidsCanCode: Grid-based movement UPDATE\n2022/05/28 「リンク」のリンク修正、「リンク」にコメント追加。\n",
+  "wordCount" : "9029",
   "inLanguage": "ja",
   "image":"https://www.peanuts-code.com/images/tutorials/gd0008_homing_missiles/img25.gif","datePublished": "2022-05-27T17:10:00+09:00",
   "dateModified": "2022-05-27T17:10:00+09:00",
@@ -237,6 +237,7 @@ if (!doNotTrack) {
     <ul class="post-tags">
       <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/godot3/">Godot3</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%88%E3%83%83%E3%83%97%E3%83%80%E3%82%A6%E3%83%B3/">トップダウン</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0/">シューティング</a></li>
@@ -245,7 +246,7 @@ if (!doNotTrack) {
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るホーミングミサイル on twitter"
-        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%9b%e3%83%bc%e3%83%9f%e3%83%b3%e3%82%b0%e3%83%9f%e3%82%b5%e3%82%a4%e3%83%ab&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0008_homing_missiles%2f&amp;hashtags=GodotEngine%2cGameDev%2c2D%2c%e3%83%88%e3%83%83%e3%83%97%e3%83%80%e3%82%a6%e3%83%b3%2c%e3%82%b7%e3%83%a5%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0%2c%e3%83%9b%e3%83%bc%e3%83%9f%e3%83%b3%e3%82%b0%e3%83%9f%e3%82%b5%e3%82%a4%e3%83%ab">
+        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%9b%e3%83%bc%e3%83%9f%e3%83%b3%e3%82%b0%e3%83%9f%e3%82%b5%e3%82%a4%e3%83%ab&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0008_homing_missiles%2f&amp;hashtags=GodotEngine%2cGameDev%2cGodot3%2c2D%2c%e3%83%88%e3%83%83%e3%83%97%e3%83%80%e3%82%a6%e3%83%b3%2c%e3%82%b7%e3%83%a5%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0%2c%e3%83%9b%e3%83%bc%e3%83%9f%e3%83%b3%e3%82%b0%e3%83%9f%e3%82%b5%e3%82%a4%e3%83%ab">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
@@ -295,7 +296,7 @@ if (!doNotTrack) {
 <figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0008_homing_missiles/img25.gif" alt="Godot で作るホーミングミサイル">
         
 </figure><div class="toc">
-    <details >
+    <details  open>
         <summary accesskey="c" title="(Alt + C)">
             <span class="details">目次</span>
         </summary>
@@ -357,7 +358,7 @@ if (!doNotTrack) {
 </strong> のサイトからダウンロードさせていただいた。今回利用したのは <strong><a href="https://www.kenney.nl/assets/tower-defense-top-down" target="_blank">Tower Defense (top-down)</a>
 </strong> というアセットパックだ。このような素晴らしいアセットパックを公開いただいていることに、ただただ感謝である。</p>
 <br>
-<h1 id="下準備">下準備<a hidden class="anchor" aria-hidden="true" href="#下準備">#</a></h1>
+<h2 id="下準備">下準備<a hidden class="anchor" aria-hidden="true" href="#下準備">#</a></h2>
 <p>以下のゲームの仕様のうち、（予定）と記載しているホーミングミサイルの部分以外は、すでに下準備として作成済みだ。</p>
 <ul>
 <li>プレイヤーキャラクター（飛行機）:
@@ -406,8 +407,8 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="ホーミングミサイルを作る">ホーミングミサイルを作る<a hidden class="anchor" aria-hidden="true" href="#ホーミングミサイルを作る">#</a></h1>
-<h2 id="シーンを作る">シーンを作る<a hidden class="anchor" aria-hidden="true" href="#シーンを作る">#</a></h2>
+<h2 id="ホーミングミサイルを作る">ホーミングミサイルを作る<a hidden class="anchor" aria-hidden="true" href="#ホーミングミサイルを作る">#</a></h2>
+<h3 id="シーンを作る">シーンを作る<a hidden class="anchor" aria-hidden="true" href="#シーンを作る">#</a></h3>
 <p>まずは以下の手順でホーミングミサイルのシーンを作成する。</p>
 <ol>
 <li>「シーン」メニュー＞「新規シーン」を選択する。</li>
@@ -427,10 +428,10 @@ data-ad-slot="9419515863"></ins></p>
 <img loading="lazy" src="/images/tutorials/gd0008_homing_missiles/img2.png" alt="Missile Scene Tree"  />
 </p>
 <br>
-<h2 id="ノードのプロパティを編集する">ノードのプロパティを編集する<a hidden class="anchor" aria-hidden="true" href="#ノードのプロパティを編集する">#</a></h2>
+<h3 id="ノードのプロパティを編集する">ノードのプロパティを編集する<a hidden class="anchor" aria-hidden="true" href="#ノードのプロパティを編集する">#</a></h3>
 <p>インスペクターで、シーンツリーの各ノードのプロパティを編集していこう。</p>
 <br>
-<h3 id="missile-area2d-ルートノード">Missile (Area2D) ルートノード<a hidden class="anchor" aria-hidden="true" href="#missile-area2d-ルートノード">#</a></h3>
+<h4 id="missile-area2d-ルートノード">Missile (Area2D) ルートノード<a hidden class="anchor" aria-hidden="true" href="#missile-area2d-ルートノード">#</a></h4>
 <p>「CollisionObject2D」クラスの「Collision」＞「Layer」プロパティと「Collision」＞「Mask」プロパティを編集する。</p>
 <p>「Layer」プロパティは、そのオブジェクト（ここでは「Missile」ノード）をどのコリジョンレイヤーに割り当てるかを設定できる。</p>
 <p>「Mask」プロパティは、そのオブジェクトがどのコリジョンレイヤーのオブジェクトとの衝突を有効にするかを設定できる。つまり、「Mask」プロパティで選択しなかったレイヤーのオブジェクトとは位置が重なっても衝突せずに互いに通り抜ける。例えば、ホーミングミサイルは敵キャラクターの戦車との衝突は無視されて通過するが、プレイヤーキャラクターやマシンガンの弾との衝突は検出される必要がある。プレイヤーキャラクターの飛行機は戦車の上を飛んでいるため、戦車との衝突は無視され、ホーミングミサイルとの衝突は検出される必要がある。</p>
@@ -497,7 +498,7 @@ data-ad-slot="9419515863"></ins></p>
 </li>
 </ol>
 <br>
-<h3 id="sprite-ノード">Sprite ノード<a hidden class="anchor" aria-hidden="true" href="#sprite-ノード">#</a></h3>
+<h4 id="sprite-ノード">Sprite ノード<a hidden class="anchor" aria-hidden="true" href="#sprite-ノード">#</a></h4>
 <p>たくさんのテクスチャをまとめた1枚のスプライトシートから使いたいテクスチャの範囲を指定してスプライトのテクスチャを設定する方法を採用する。</p>
 <ol>
 <li>インスペクターにて、「Texture」プロパティにリソースファイル「res://towerDefense_tilesheet.png」を適用する。<br>
@@ -532,7 +533,7 @@ data-ad-slot="9419515863"></ins></p>
 </li>
 </ol>
 <br>
-<h3 id="collisionshape2d-ノード">CollisionShape2D ノード<a hidden class="anchor" aria-hidden="true" href="#collisionshape2d-ノード">#</a></h3>
+<h4 id="collisionshape2d-ノード">CollisionShape2D ノード<a hidden class="anchor" aria-hidden="true" href="#collisionshape2d-ノード">#</a></h4>
 <p>このノードでホーミングミサイルのコリジョン形状を設定する。ミサイルとプレイヤーキャラクターとの衝突判定のために必須であり、システム上「Area2D」クラスのノードにコリジョン形状を設定する子ノードが追加されていないとアラートが表示されるようになっている。</p>
 <ol>
 <li>インスペクターにて、「Shape」プロパティに「新規 CapsuleShape2D」リソースを適用する。<br>
@@ -551,7 +552,7 @@ data-ad-slot="9419515863"></ins></p>
 </li>
 </ol>
 <br>
-<h3 id="timer-ノード">Timer ノード<a hidden class="anchor" aria-hidden="true" href="#timer-ノード">#</a></h3>
+<h4 id="timer-ノード">Timer ノード<a hidden class="anchor" aria-hidden="true" href="#timer-ノード">#</a></h4>
 <p>このノードは、ホーミングミサイルが一定時間経過後に自爆するためのタイマーだ。いつまでもゲームの中にミサイルが存在し続けると、ミサイルの数が膨れ上がって、コンピュータのメモリが不足して処理しきれなくなる。それを回避するため、時間切れによりインスタンスを解放する仕様にする。直線的に飛んでいくミサイルなら画面外に出た時に「VisibilityNotifier2D」ノードのシグナルを使ってインスタンスを解放することも可能だが、プレイヤーキャラクターを追尾するホーミングミサイルではタイマーの方が適切だ。</p>
 <ol>
 <li>インスペクターにて、「Wait Time」プロパティを 3 にする。これはミサイルの有効時間だ。お好みで微調整いただいて良いのだが、長すぎるとミサイルが同時に複数存在しすぎてメモリ消費が多くなるので注意してほしい。</li>
@@ -563,10 +564,10 @@ data-ad-slot="9419515863"></ins></p>
 <br>
 <p>以上で、インスペクターでの各ノードのプロパティ編集は完了だ。</p>
 <br>
-<h2 id="スクリプトで制御する">スクリプトで制御する<a hidden class="anchor" aria-hidden="true" href="#スクリプトで制御する">#</a></h2>
+<h3 id="スクリプトで制御する">スクリプトで制御する<a hidden class="anchor" aria-hidden="true" href="#スクリプトで制御する">#</a></h3>
 <p>次はスクリプトを作成して、ミサイルを制御していく。ルートノード「Missile」に新しいスクリプトをアタッチしてほしい。ファイルパスは「res://Enemy/Missile.gd」として作成する。</p>
 <p>まずは以下のように「Missile.gd」スクリプトを編集しよう。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Missile.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Missile.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node2D</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># ミサイルのスピード</span>
@@ -588,7 +589,7 @@ data-ad-slot="9419515863"></ins></p>
 </p>
 <p>GIF画像の上端部分をミサイルが左から右に飛んでいくのがわかるだろうか。</p>
 <p>続いて、プレイヤーキャラクターを追尾する動きをスクリプトに追加していく。まずは必要なプロパティをいくつか定義しておこう。以下のコードの「# 追加」とコメントしている箇所を追加してほしい。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Missile.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Missile.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node2D</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">var</span> speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">400</span>
@@ -602,7 +603,7 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># ターゲットである Player オブジェクトの参照（検出され次第）</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> target <span style="color:#f92672">=</span> null
 </span></span></code></pre></div><p>次にミサイルがプレイヤーキャラクターの方へ舵を切る（軌道修正する）メソッドを定義する。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Missile.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Missile.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># ミサイルがプレイヤーキャラクターの方へ舵を切るメソッド</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> steer():
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 舵を切るベロシティとして定義</span>
@@ -618,7 +619,7 @@ data-ad-slot="9419515863"></ins></p>
 </p>
 <p>ホーミングミサイルはプレイヤーキャラクターの飛行機を検知したら、それを<code>target</code>として追尾する。このとき、ミサイルが<code>target</code>の方向へ直線で移動できたと仮定した場合の理想のベロシティが変数<code>ideal_velocity</code>だ。しかし実際には、ミサイルはプロパティ<code>velocity</code>の持つ方向で飛んでいるため、<code>ideal_velocity</code>の方へ舵を切って軌道修正したい。そこでベクトルの計算になる。<code>ideal_velocity</code>から<code>velocity</code>を引いたベクトルをメソッド<code>normalized</code>で方向ベクトル（長さが 1 のベクトル）にして、それに舵を切る力であるプロパティ<code>steering_force</code>の値を乗算すれば、舵を切るベロシティである変数<code>steering</code>の値が定まる。</p>
 <p>ではこのメソッド<code>steer</code>で出力される変数<code>steering</code>の値を利用して、ミサイルが軌道修正しながら飛行するように修正しよう。「# 追加」とコメントした箇所をメソッド<code>_physics_process</code>に追加してほしい。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Missile.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Missile.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _physics_process(delta):
 </span></span><span style="display:flex;"><span>	velocity <span style="color:#f92672">=</span> transform<span style="color:#f92672">.</span>x <span style="color:#f92672">*</span> speed
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 追加：加速度に舵を切るベロシティを加算していく</span>
@@ -636,7 +637,7 @@ data-ad-slot="9419515863"></ins></p>
 <img loading="lazy" src="/images/tutorials/gd0008_homing_missiles/img22.png" alt="Connect signal body_entered"  />
 </p>
 <p>接続後、自動的に生成されたメソッド<code>_on_Missile_body_entered</code>は以下のように編集する。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Missile.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Missile.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># ミサイルに物理ボディが衝突したら発信するシグナルで呼ばれるメソッド</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Missile_body_entered(body):
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 物理ボディがプレイヤーキャラクターだったら</span>
@@ -666,7 +667,7 @@ data-ad-slot="9419515863"></ins></p>
 <img loading="lazy" src="/images/tutorials/gd0008_homing_missiles/img23.png" alt="Connect signal timeout"  />
 </p>
 <p>接続して生成されたメソッド<code>_on_Timer_timeout</code>はシンプルにメソッド<code>queue_free</code>を実行するだけでOKだ。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Missile.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Missile.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Timer_timeout():
 </span></span><span style="display:flex;"><span>	queue_free()
 </span></span></code></pre></div><br>
@@ -683,13 +684,13 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="敵キャラクターにホーミングミサイルを発射させる">敵キャラクターにホーミングミサイルを発射させる<a hidden class="anchor" aria-hidden="true" href="#敵キャラクターにホーミングミサイルを発射させる">#</a></h1>
+<h2 id="敵キャラクターにホーミングミサイルを発射させる">敵キャラクターにホーミングミサイルを発射させる<a hidden class="anchor" aria-hidden="true" href="#敵キャラクターにホーミングミサイルを発射させる">#</a></h2>
 <p>次は「Enemy.tscn」シーンの方で、作成したばかりの「Missile.tscn」シーンのインスタンスを生成して、敵キャラクターの戦車がホーミングミサイルを発射するようにしていく。</p>
 <br>
-<h2 id="スクリプトを編集して制御する">スクリプトを編集して制御する<a hidden class="anchor" aria-hidden="true" href="#スクリプトを編集して制御する">#</a></h2>
+<h3 id="スクリプトを編集して制御する">スクリプトを編集して制御する<a hidden class="anchor" aria-hidden="true" href="#スクリプトを編集して制御する">#</a></h3>
 <p>それでは「Enemy.tscn」シーンのルートノード「Enemy」にアタッチしている「Enemy.gd」スクリプトを開いて編集していこう。</p>
 <p>まず先にミサイルのシーンファイルをプリロードしておこう。スクリプトの冒頭で参照用の定数を定義しておく。「# 追加」のコメントが目印だ。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Enemy.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Enemy.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">signal</span> enemy_killed
@@ -697,7 +698,7 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 追加：プリロードした Missile.tscn シーンファイルの参照</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> missile_scn <span style="color:#f92672">=</span> preload(<span style="color:#e6db74">&#34;res://Enemy/Missile.tscn&#34;</span>)
 </span></span></code></pre></div><p>次に、メソッド<code>_on_Timer_timeout</code>のブロックには<code>pass</code>しか記述されていない状態なので、これを以下のように更新してほしい。ちなみに、このメソッドは「LaunchTimer」ノード（Timer クラス）のシグナル「timeout()」を接続して生成されたものだ。つまり、タイマーがタイムアウトするたびにこのメソッドが呼ばれる。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Enemy.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Enemy.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># LaunchTimer ノードがタイムアウトしたら発信されるシグナルで呼ばれるメソッド</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_LaunchTimer_timeout():
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 親ノード（World）に Player という名前のノードがある場合</span>
@@ -706,7 +707,7 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>		launch_missile()
 </span></span></code></pre></div><p>最後のメソッド<code>launch_missile</code>はこれから定義するところだ。</p>
 <p>それではメソッド<code>launch_missile</code>を定義した以下のコードを、上記<code>_on_LaunchTimer_timeout</code>の後に挿入してほしい。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Enemy.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Enemy.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># ミサイルを発射するメソッド</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> launch_missile():
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Missile.tscn シーンをインスタンス化</span>
@@ -735,10 +736,10 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="おまけ演出を追加する">おまけ：演出を追加する<a hidden class="anchor" aria-hidden="true" href="#おまけ演出を追加する">#</a></h1>
+<h2 id="おまけ演出を追加する">おまけ：演出を追加する<a hidden class="anchor" aria-hidden="true" href="#おまけ演出を追加する">#</a></h2>
 <p>演出用に、下準備の段階でミサイルが当たった時の爆発のパーティクルと、ミサイルの後ろから出る煙のパーティクルを用意している。これらを「Missile.gd」スクリプトにコードを追加して利用し、見た目上の演出を咥えよう。</p>
 <p>「Missile.gd」スクリプトを開いたら、「# 追加」の行をコードに追加してほしい。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Missile.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Missile.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 追加：Smoke.tscn（煙のパーティクルだけのシーン）のプリロード参照</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> smoke_scn <span style="color:#f92672">=</span> preload(<span style="color:#e6db74">&#34;res://Effect/Smoke.tscn&#34;</span>)
 </span></span><span style="display:flex;"><span> <span style="color:#75715e"># 追加：Explosion.tscn（爆発のパーティクルだけのシーン）のプリロード参照</span>
@@ -754,7 +755,7 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> smoke_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 </span></span></code></pre></div><br>
 <p>次は<code>_physics_process</code>メソッド内で煙を出すメソッドを呼ぶ。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Missile.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Missile.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _physics_process(delta):
 </span></span><span style="display:flex;"><span>	velocity <span style="color:#f92672">=</span> transform<span style="color:#f92672">.</span>x <span style="color:#f92672">*</span> speed
 </span></span><span style="display:flex;"><span>	acceleration <span style="color:#f92672">+=</span> steer()
@@ -773,7 +774,7 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>		spawn_smoke()
 </span></span></code></pre></div><br>
 <p>そして、最後の煙を出すメソッド<code>spawn_smoke</code>は以下のように定義しよう。このコードは<code>steer</code>メソッドの下あたりに挿入しておけば良いだろう。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Missile.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Missile.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 煙を出すメソッド</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> spawn_smoke():
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 煙のパーティクルのシーンをインスタンス化</span>
@@ -786,7 +787,7 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>	smoke<span style="color:#f92672">.</span>rotation <span style="color:#f92672">=</span> global_rotation
 </span></span></code></pre></div><br>
 <p>続いて、今度は爆発のパーティクルを発生させるメソッドを定義する。これは上記メソッド<code>spawn_smoke</code>の下に追加すればOKだ。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Missile.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Missile.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 爆発させるメソッド</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> explode():
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 爆発のパーティクルのシーンをインスタンス化</span>
@@ -799,7 +800,7 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>	explosion<span style="color:#f92672">.</span>rotation <span style="color:#f92672">=</span> global_rotation
 </span></span></code></pre></div><br>
 <p>以下の「# 追加」コメントがある3箇所でメソッド<code>explode</code>を呼び出すようにコードを更新しよう。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">### Missile.gd ###</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Missile.gd###</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_Missile_body_entered(body):
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Player&#34;</span>:
 </span></span><span style="display:flex;"><span>		print(<span style="color:#e6db74">&#34;Missile hit &#34;</span>, body<span style="color:#f92672">.</span>name)
@@ -843,7 +844,7 @@ data-ad-slot="9419515863"></ins></p>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <hr>
-<h1 id="おわりに">おわりに<a hidden class="anchor" aria-hidden="true" href="#おわりに">#</a></h1>
+<h2 id="おわりに">おわりに<a hidden class="anchor" aria-hidden="true" href="#おわりに">#</a></h2>
 <p>今回のチュートリアルでは、トップダウンシューティングにおけるホーミングミサイルを作った。作成する際のポイントをまとめておこう。</p>
 <ul>
 <li>ミサイルシーンはインスタンスが追加されたらすぐに自分で飛んでいくようにプログラムしておく。</li>
@@ -861,7 +862,7 @@ data-ad-slot="9419515863"></ins></p>
 </ul>
 <br>
 <hr>
-<h1 id="リンク">リンク<a hidden class="anchor" aria-hidden="true" href="#リンク">#</a></h1>
+<h2 id="リンク">リンク<a hidden class="anchor" aria-hidden="true" href="#リンク">#</a></h2>
 <p>このチュートリアルの作成にあたって、KidsCanCodeのYouTube動画や記事が非常に参考になった。この場を借りて感謝申し上げたい。より理解していただくのに、それらのコンテンツも併せてご覧いただくことをお勧めする。</p>
 <ul>
 <li><a href="https://docs.godotengine.org/ja/stable/classes/class_raycast2d.html" target="_blank">Godot Docs: RayCast2D</a>
@@ -914,7 +915,7 @@ data-ad-slot="9419515863"></ins></p>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Godot で作るホーミングミサイル on twitter"
-        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%9b%e3%83%bc%e3%83%9f%e3%83%b3%e3%82%b0%e3%83%9f%e3%82%b5%e3%82%a4%e3%83%ab&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0008_homing_missiles%2f&amp;hashtags=GodotEngine%2cGameDev%2c2D%2c%e3%83%88%e3%83%83%e3%83%97%e3%83%80%e3%82%a6%e3%83%b3%2c%e3%82%b7%e3%83%a5%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0%2c%e3%83%9b%e3%83%bc%e3%83%9f%e3%83%b3%e3%82%b0%e3%83%9f%e3%82%b5%e3%82%a4%e3%83%ab">
+        href="https://twitter.com/intent/tweet/?text=Godot%20%e3%81%a7%e4%bd%9c%e3%82%8b%e3%83%9b%e3%83%bc%e3%83%9f%e3%83%b3%e3%82%b0%e3%83%9f%e3%82%b5%e3%82%a4%e3%83%ab&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0008_homing_missiles%2f&amp;hashtags=GodotEngine%2cGameDev%2cGodot3%2c2D%2c%e3%83%88%e3%83%83%e3%83%97%e3%83%80%e3%82%a6%e3%83%b3%2c%e3%82%b7%e3%83%a5%e3%83%bc%e3%83%86%e3%82%a3%e3%83%b3%e3%82%b0%2c%e3%83%9b%e3%83%bc%e3%83%9f%e3%83%b3%e3%82%b0%e3%83%9f%e3%82%b5%e3%82%a4%e3%83%ab">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
@@ -960,6 +961,7 @@ data-ad-slot="9419515863"></ins></p>
     <ul class="post-tags">
       <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/ja/tags/godot3/">Godot3</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E3%83%88%E3%83%83%E3%83%97%E3%83%80%E3%82%A6%E3%83%B3/">トップダウン</a></li>
       <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0/">シューティング</a></li>

@@ -15,6 +15,19 @@
                 href="https://www.peanuts-code.com/en/"
                 />
   </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/2d/</loc>
+    <lastmod>2022-07-15T18:40:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/2d/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/2d/"
+                />
+  </url><url>
     <loc>https://www.peanuts-code.com/en/tutorials/gd0013_advanced_match3/</loc>
     <lastmod>2022-07-15T18:40:00+09:00</lastmod>
     <xhtml:link
@@ -43,6 +56,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/godot3/</loc>
     <lastmod>2022-07-15T18:40:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/godot3/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/godot3/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/godotengine/</loc>
     <lastmod>2022-07-15T18:40:00+09:00</lastmod>
@@ -151,19 +174,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/"
-                />
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/2d/</loc>
-    <lastmod>2022-06-09T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/2d/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/2d/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/</loc>
