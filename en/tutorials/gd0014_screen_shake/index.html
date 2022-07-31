@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2D Screen Shake in Godot | Peanuts Code</title>
+<meta name="keywords" content="GameDev, GodotEngine, Godot3, 2D, ScreenShake" />
+<meta name="description" content="In this article, I will explain how to implement an effect, &ldquo;screen shake&rdquo;, in 2D games. It is not an absolutely necessary element of a game, but if used well, it can make the player&rsquo;s game experience more interactive and directly affect the user experience. For example, there are many situations where it could be used, such as when a player fires a gun, takes damage from enemies, or falls from a high place. By the way, this kind of element that is not necessary but makes the game more interesting by adding it is called &ldquo;game juice&rdquo; in English.">
+<meta name="author" content="Gobo">
+<link rel="canonical" href="https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/" />
+<meta name="google-site-verification" content="XYZabc" />
+<meta name="yandex-verification" content="XYZabc" />
+<meta name="msvalidate.01" content="XYZabc" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="/images/logomark.png" as="image">
+<link rel="icon" href="https://www.peanuts-code.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.peanuts-code.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.peanuts-code.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.peanuts-code.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.101.0" />
+<link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0014_screen_shake/" />
+<link rel="alternate" hreflang="en" href="https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-DK0NK2RTTW', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="2D Screen Shake in Godot" />
+<meta property="og:description" content="In this article, I will explain how to implement an effect, &ldquo;screen shake&rdquo;, in 2D games. It is not an absolutely necessary element of a game, but if used well, it can make the player&rsquo;s game experience more interactive and directly affect the user experience. For example, there are many situations where it could be used, such as when a player fires a gun, takes damage from enemies, or falls from a high place. By the way, this kind of element that is not necessary but makes the game more interesting by adding it is called &ldquo;game juice&rdquo; in English." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/" />
+<meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0014_screen_shake/img0.gif" /><meta property="article:section" content="tutorials" />
+<meta property="article:published_time" content="2022-07-28T14:10:56&#43;09:00" />
+<meta property="article:modified_time" content="2022-07-28T14:10:56&#43;09:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0014_screen_shake/img0.gif" />
+<meta name="twitter:title" content="2D Screen Shake in Godot"/>
+<meta name="twitter:description" content="In this article, I will explain how to implement an effect, &ldquo;screen shake&rdquo;, in 2D games. It is not an absolutely necessary element of a game, but if used well, it can make the player&rsquo;s game experience more interactive and directly affect the user experience. For example, there are many situations where it could be used, such as when a player fires a gun, takes damage from enemies, or falls from a high place. By the way, this kind of element that is not necessary but makes the game more interesting by adding it is called &ldquo;game juice&rdquo; in English."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Tutorials",
+      "item": "https://www.peanuts-code.com/en/tutorials/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2D Screen Shake in Godot",
+      "item": "https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2D Screen Shake in Godot",
+  "name": "2D Screen Shake in Godot",
+  "description": "In this article, I will explain how to implement an effect, \u0026ldquo;screen shake\u0026rdquo;, in 2D games. It is not an absolutely necessary element of a game, but if used well, it can make the player\u0026rsquo;s game experience more interactive and directly affect the user experience. For example, there are many situations where it could be used, such as when a player fires a gun, takes damage from enemies, or falls from a high place. By the way, this kind of element that is not necessary but makes the game more interesting by adding it is called \u0026ldquo;game juice\u0026rdquo; in English.",
+  "keywords": [
+    "GameDev", "GodotEngine", "Godot3", "2D", "ScreenShake"
+  ],
+  "articleBody": "In this article, I will explain how to implement an effect, “screen shake”, in 2D games. It is not an absolutely necessary element of a game, but if used well, it can make the player’s game experience more interactive and directly affect the user experience. For example, there are many situations where it could be used, such as when a player fires a gun, takes damage from enemies, or falls from a high place.\nBy the way, this kind of element that is not necessary but makes the game more interesting by adding it is called “game juice” in English. I have one more vocabulary in English, and I am a little wiser now.\nThere are already many resources on the Web that explain how to implement screen shake, and of course there are methods other than those introduced here. This time, we refer to the following video and article in particular, so please check them as well for a deeper understanding.\nReference YouTube: GDC - Math for Game Programmers: Juicing Your Cameras With Math KidsCanCode: SCREEN SHAKE The project file that will be created at the end of this tutorial is located in the GitHub repository . You can also check the project directly by downloading the .zip file and importing the “project.godot” file in the “End” folder with the Godot Engine.\nEnvironment ・Godot version: 3.4.4\n・Computer OS version: macOS 11.6.5\nPreparation Creating a new project Start Godot Engine and create a new project. You can name your project as you like. If you can’t think of one, let’s call it “Screen Shake”.\nUpdating project settings Once the editor appears, we should update project settings for the entire project.\nFirst, set the display size of the game. In this case, we will use a ratio of 9:16, with 16 px as the base value.\nOpen the “Project” menu \u003e “Project Settings”.\nIn the “General” tab, search for “window” and select “Display” \u003e “Window” in the sidebar.\nIn the “Size” section, change the values of the following items\nWidth: 256 Height: 144 Test Width: 512 Test Height: 288\nIn the “Stretch” section, change the values of the following items\nMode: 2d Aspect: keep\nSwitch to the “Input Map” tab and add “shake” to the action.\nAssign the “space” key to the “shake” action.\nDownloading and importing assets Next, let’s download assets from KENNEY’s site and use them. This time, we will use an asset pack called “Tiny Dungeon ”. I will use the tileset included in this asset. I can’t help but be grateful for this wonderful free material.\nOnce downloaded, drag “/kenney_tinydungeon/Tilemap/tilemap_packed.png” to the file system dock and import it into your project.\nImmediately after importing the file, the image will look blurry, so correct this by following the steps below.\nMake the imported asset file selected in the file system dock Select “Preset” \u003e “2D Pixel” in the import dock.\nClick the “Reimport” button at the bottom.\nThe image should now have the edges characteristic of pixel art. The imported tileset will be used later when creating the tile map.\nTranslated with www.DeepL.com/Translator (free version)\nCreating Camera scene Creating a new scene First, let’s create a Camera scene.\nSelect “Scene” menu \u003e “New Scene”.\nSelect the “Camera2D” class node as root node and rename it to “Camera”.\nSave the scene at this point. Create a folder and save the scene with the file path “res://Camera/Camera.tscn”.\nThe scene tree has no child nodes, so the scene dock should have only the “Camera” node as follows.\nEditing the properties of the Camera node Continue to make the following edits in the inspector:\nSet the “Current” property to On.\nSet the “Limit” property to the display size.\nAttaching and editing a script to a Camera node. Attach a new script to the Camera node. Create a script file with the file path “res://Camera/Camera.tscn”.\nThis time, we will implement two types of shaking: “rough shake” and “smooth shake”. First, let’s start with “rough shake” whose code is relatively simple.\nThe script should contain the following code.\n###Camera.gd### extends Camera2D # Shaking intensity (from 0.0 to 1.0) var trauma = 0.0 # Exponent for power of shaking strength var trauma_power = 2 # Put the shaking strength trauma as a power exponent trauma_power var amount = 0.0 # Shaking intensity that decays in 1 second # Note that if it is less than 0.0, the shaking will last forever var decay = 0.8 # Maximum shaking width # Hold each value in x-axis direction and y-axis direction as one data in Vector2 type var max_offset = Vector2(36, 64) # display ratio is 16 : 9 # Maximum angle of rotation (in radians) var max_roll = 0.1 # Built-in function called first when node is loaded func _ready(): # Randomize seed values for functions that return random values # Required since the same seed value will result in the same number of values obtained randomize(). # Built-in process function called every frame func _process(delta): # If trauma is greater than 0 if trauma: # Decay the intensity of the shaking trauma = max(trauma - decay * delta, 0) # Call a method to set the shaking width and rotation angle for rough shake # Call this method every frame to express screen shake rough_shake() # Define after this # Method to set the shake width and rotation angle of rough shake func rough_shake(): # Amount is a cumulative value of the shaking intensity # pow() function raises the first argument to the power of the second argument as an exponent # The closer the intensity of the shaking to 0, the smaller the value becomes when powered # Example: 1.0 * 1.0 = 1.0, 0.5 * 0.5 = 0.25, 0.1 * 0.1 = 0.01 amount = pow(trauma, trauma_power) # rotation angle = max_roll * amount * trauma power * random value from -1 to 1 rotation = max_roll * amount * rand_range(-1, 1) # x-axis swing width = maximum swing width in x-axis direction * swing strength multiplied by power * random value between -1 and 1 offset.x = max_offset.x * amount * rand_range(-1, 1) # y-axis amplitude = max_offset.x * amount * rand_range(-1, 1) * random value between -1 and 1 offset.y = max_offset.y * amount * rand_range(-1, 1) # Methods to set trauma func set_shake(add_trauma = 0.5): # Add the value of the argument add_trauma to the current trauma value # Set trauma to 1.0 if it is greater than or equal to 1.0 trauma = min(trauma + add_trauma, 1.0) # Built-in functions to handle input func _unhandled_input(event): # If we press the action \"shake\" key on the input map if event.is_action_pressed(\"shake\"): # Call a method to set trauma set_shake() The “rough screen shake” script is now complete.\nCreating World scene World Create a new scene and add the necessary nodes. The Camera scene alone does not show the shaking because there is no image. To check the shaking, we will create a World scene and prepare an instance of the Camera scene and a node that will serve as the background.\nSelect “Scene” menu \u003e “New Scene”. Select “Node2D” as the root node and rename it to “World”. Save the scene with the file path “res://World/World.tscn”.\nThen add nodes so that the World scene becomes the following scene tree.\nWorld (Node2D) Camera (Camera2D、instance of Camera scene) TileMap Editing the TileMap node Let’s quickly create a tile map for the background.\nApply a new tileset resource to the “Tile Set” property of the “TileMap” node.\nOpen the Tile Set panel, drag the “res://Assets/tilemap_packed.png” resource file downloaded from KENNEY to the left side, and set tiles appropriately with a single tile or atlas.\nSelect “TileMap” in the scene dock to create a tile map. The area should slightly exceed the display size.\nTesting “rough shake” Finally, run the project to test the “rough shake”. If you are running the project for the first time, select “World.tscn” as the main scene of the project.\nPress the space key to shake the screen. Wait a little and press it, or press it continuously without a pause to check the behavior.\nYour browser does not support the video tag. There is no particular discomfort, and it looks reasonably good. However, compared to the smooth shake that will be implemented later, it should look a bit rough.\nAdding “smooth shake” code to the script for the Camera node From here, we will implement the “smooth shake”. Return to the Camera scene and add the code to the attached “Camera.gd” script.\nsmooth shake uses the following image called noise.\nThe noise image has a random distribution of white, gray, and black. The noise value varies from -1 to 1, with -1 for black, 1 for white, and 0 for intermediate gray. The idea is to specify the coordinates of a pixel on the noise, get the noise value of that pixel, and apply it to screen shake.\nGodot provides a class (resource) called OpenSimplexNoise. You can create a new class in your script and use the get_noise_2d method, which is built into the class of this resource, to obtain the noise value at the specified coordinates by passing x-coordinate and y-coordinate as arguments. This time, the x-coordinate passed as the argument is specified randomly, the y-coordinate is shifted by 1 pixel, the noise value is obtained, and it is multiplied by the calculation of the shaking width to reproduce smooth shake.\nBy the way, you may intuitively understand how the noise changes when you change some parameters that compose the noise by trying various things on the following demo page using Godot’s OpenSimplexNoise.\nReference OpenSimplexNoise Viewer The noise may seem a bit complicated, but let’s write a script for a start. In addition, we will make it possible to switch between “rough shake” and “smooth shake”.\n###Camera.gd### extends Camera2D # Define the type of screen shake with enum enum { ROUGH, # for rough shake SMOOTH # for smooth shake } ## Common properties var type = ROUGH # Type of screen shake (default is rough shake) var trauma = 0.0 var trauma_power = 2 var amount = 0.0 ## rough shake properties var decay = 0.8 var max_offset = Vector2(36, 64) var max_roll = 0.1 ## smooth shake property var noise_y = 0 # y-coordinate of noise onready var noise = OpenSimplexNoise.new() # Instance of noise func _ready(): randomize(). ## Use following 3 variables for smooth shake # Value that determines the noise's unique random appearance (assign a random integer) # If the seed value changes, the placement of the white to black dots in the noise will also change noise.seed = randi() # Number of layers to create noise (in this case 2) # The higher the value, the more layers of gray between black and white, the more detailed the noise noise.octaves = 2 # Period of the noise (let's say 4) # The smaller the value, the higher the noise frequency noise.period = 4 func _process(delta): if trauma: trauma = max(trauma - decay * delta, 0) # If the type is rough shake if type == ROUGH: # Call methods to set the shake width and rotation angle for rough shake rough_shake() # If the type is smooth shake elif type == SMOOTH: # Call methods to set the shake width and rotation angle for smooth shake smooth_shake() func rough_shake(): amount = pow(trauma, trauma_power) rotation = max_roll * amount * rand_range(-1, 1) offset.x = max_offset.x * amount * rand_range(-1, 1) offset.y = max_offset.y * amount * rand_range(-1, 1) # Methods to set the shaking width and rotation angle for smooth shake func smooth_shake(): # Amount is the trauma multiplied by a power amount = pow(trauma, trauma_power) # Increase the y-coordinate of the noise by 1 pixel noise_y += 1 # Get a random rotation angle using the noise value obtained from the noise seed value as x-coordinate rotation = max_roll * amount * noise.get_noise_2d(noise.seed, noise_y) # Get a random x-axis swing width using the noise value obtained by multiplying the noise seed value × 2 by the x-coordinate # 2 multiplied by the seed value is an appropriate number to get a noise value different from the rotation angle or y-axis swing width offset.x = max_offset.x * amount * noise.get_noise_2d(noise.seed * 2, noise_y) # Get random y-axis shaking width using noise seed value x 3 obtained as x-coordinate # 3 multiplied by the seed value is an appropriate number to get a noise value that is different from the rotation angle and the x-axis wobble width offset.y = max_offset.y * amount * noise.get_noise_2d(noise.seed * 3, noise_y) func set_shake(add_trauma = 0.5): trauma = min(trauma + add_trauma, 1.0) func _unhandled_input(event): if event.is_action_pressed(\"shake\"): set_shake() # Toggle screen shake type when right or left arrow key is pressed if event.is_action_pressed(\"ui_right\")\\ or event.is_action_pressed(\"ui_left\"): # if the current screen shake type is rough shake if type == ROUGH: # change to smooth shake type = SMOOTH # if current screen shake type is smooth shake else: # change to rough shake setting type = ROUGH Adding nodes to the World scene Add a “CanvasLayer” node and its child “Label” node to the World scene tree to make it easier to see which type of screen shake is being used on the screen. The name of the “Label” node is “TypeLabel”.\nWith the “TypeLabel” node selected, enter “ROUGH” as the initial value for the “Text” property in the inspector.\nIn the “Theme Overrides” \u003e “Color” \u003e “Font Color” property, set the font color to #000000 (black).\nSelect “Center” from the “Layout” on the 2D workspace toolbar and center the “TypeLabel” node.\nAttach the script to the “World” root node and save the file path as “res://World/World.gd”. In the script, write the following code for the operation to switch the type of screen shake.\n###World.gd### onready var type_label = $CanvasLayer/TypeLabel func _unhandled_input(event): if event.is_action_pressed(\"ui_right\")\\ or event.is_action_pressed(\"ui_left\"): if type_label.text == \"ROUGH\": type_label.text = \"SMOOTH\" else: type_label.text = \"ROUGH\" The left and right arrow keys can now be used to switch between ROUGH (rough shake) and SMOOTH (smooth shake).\nTest “smooth shake” and compare with “rough shake” Finally, let’s run the project again to check the behavior of the “smooth shake” and compare it with the “rough shake” while switching the shaking type.\nYour browser does not support the video tag. This completes the implementation of screen shake. I hope you could feel the difference. It may seem like a small difference, but if you are concerned about the presentation of the game, you will want to use the appropriate shaking for the scene.\nSample projects In addition, we have prepared a separate project that makes it easier to visually understand the state of screen shake. Please try it if you like.\nYour browser does not support the video tag. The sample project file is located in the GitHub repository . Please download the .zip file from there. You can check it by importing the “project.godot” file in the “Sample” folder with the Godot Engine.\nThe specifications of the sample project are as follows.\nGauge amount and trauma properties. Add a character that can be moved up, down, left, or right by keyboard operation. D key: right A key: left W key: Up S key: Down Adding multiple spikes on the ground that cause the screen to shake when a character steps on them. Adding a value to the trauma is increased by 0.1 with the up arrow key and decreased by 0.1 with the down arrow key (maximum 1.0, minimum 0.0). Display “ROUGH” and “SMOOTH” shaking types in the upper left corner. Use the left and right arrow keys to toggle between “ROUGH” and “SMOOTH” shaking. Space key also generates screen shake. Conclusion In this article, we introduced the implementation of screen shake in 2D. Although the game genre and scene may vary, there will be many opportunities to apply screen shake. If you understand how to change the parameters that constitute screen shake, you should be able to express screen shake in a way that best suits the purpose of use.\nReferences KENNEY - Assets Godot demo projects - OpenSimplexNoise KidsCanCode: SCREEN SHAKE YouTube: Math for Game Programmers: Juicing Your Cameras With Math YouTube: Godot Game Juice Tutorial 1: Camera Shake and Frame Freeze Coding Kaiju - Screen Shake in Godot: The Best Way ",
+  "wordCount" : "2752",
+  "inLanguage": "en",
+  "image":"https://www.peanuts-code.com/images/tutorials/gd0014_screen_shake/img0.gif","datePublished": "2022-07-28T14:10:56+09:00",
+  "dateModified": "2022-07-28T14:10:56+09:00",
+  "author":{
+    "@type": "Person",
+    "name": "Gobo"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Peanuts Code",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.peanuts-code.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://www.peanuts-code.com/en/" accesskey="h" title="Peanuts Code (Alt + H)">
+                <img src="/images/logomark.png" alt="logo" aria-label="logo"
+                    height="35">Peanuts Code</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://www.peanuts-code.com/ja/" title="日本語"
+                            aria-label="日本語">Ja</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://www.peanuts-code.com/en/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/tutorials/" title="Tutorials">
+                    <span>Tutorials</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/en/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/en/tutorials/">Tutorials</a></div>
+    <h1 class="post-title">
+      2D Screen Shake in Godot
+    </h1>
+    <div class="post-meta">2022-07-28&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Gobo&nbsp;|&nbsp;
+<ul class="i18n_list">Translations:
+    <li>
+        <a href="https://www.peanuts-code.com/ja/tutorials/gd0014_screen_shake/">Ja</a>
+    </li>
+</ul>
+</div>
+    
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/en/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/godot3/">Godot3</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/2d/">2D</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/screenshake/">ScreenShake</a></li>
+    </ul>
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2D Screen Shake in Godot on twitter"
+        href="https://twitter.com/intent/tweet/?text=2D%20Screen%20Shake%20in%20Godot&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f&amp;hashtags=GameDev%2cGodotEngine%2cGodot3%2c2D%2cScreenShake">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2D Screen Shake in Godot on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f&amp;title=2D%20Screen%20Shake%20in%20Godot&amp;summary=2D%20Screen%20Shake%20in%20Godot&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2D Screen Shake in Godot on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f&title=2D%20Screen%20Shake%20in%20Godot">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2D Screen Shake in Godot on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2D Screen Shake in Godot on whatsapp"
+        href="https://api.whatsapp.com/send?text=2D%20Screen%20Shake%20in%20Godot%20-%20https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2D Screen Shake in Godot on telegram"
+        href="https://telegram.me/share/url?text=2D%20Screen%20Shake%20in%20Godot&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+    
+    
+    
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0014_screen_shake/img0.gif" alt="2D Screen Shake in Godot">
+        
+</figure><div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#preparation" aria-label="Preparation">Preparation</a><ul>
+                        
+                <li>
+                    <a href="#creating-a-new-project" aria-label="Creating a new project">Creating a new project</a></li>
+                <li>
+                    <a href="#updating-project-settings" aria-label="Updating project settings">Updating project settings</a></li>
+                <li>
+                    <a href="#downloading-and-importing-assets" aria-label="Downloading and importing assets">Downloading and importing assets</a></li></ul>
+                </li>
+                <li>
+                    <a href="#creating-camera-scene" aria-label="Creating Camera scene">Creating Camera scene</a><ul>
+                        
+                <li>
+                    <a href="#creating-a-new-scene" aria-label="Creating a new scene">Creating a new scene</a></li>
+                <li>
+                    <a href="#editing-the-properties-of-the-camera-node" aria-label="Editing the properties of the Camera node">Editing the properties of the Camera node</a></li>
+                <li>
+                    <a href="#attaching-and-editing-a-script-to-a-camera-node" aria-label="Attaching and editing a script to a Camera node.">Attaching and editing a script to a Camera node.</a></li></ul>
+                </li>
+                <li>
+                    <a href="#creating-world-scene" aria-label="Creating World scene">Creating World scene</a><ul>
+                        
+                <li>
+                    <a href="#world-create-a-new-scene-and-add-the-necessary-nodes" aria-label="World Create a new scene and add the necessary nodes.">World Create a new scene and add the necessary nodes.</a></li>
+                <li>
+                    <a href="#editing-the-tilemap-node" aria-label="Editing the TileMap node">Editing the TileMap node</a></li>
+                <li>
+                    <a href="#testing-rough-shake" aria-label="Testing &amp;ldquo;rough shake&amp;rdquo;">Testing &ldquo;rough shake&rdquo;</a></li></ul>
+                </li>
+                <li>
+                    <a href="#adding-smooth-shake-code-to-the-script-for-the-camera-node" aria-label="Adding &amp;ldquo;smooth shake&amp;rdquo; code to the script for the Camera node">Adding &ldquo;smooth shake&rdquo; code to the script for the Camera node</a><ul>
+                        
+                <li>
+                    <a href="#adding-nodes-to-the-world-scene" aria-label="Adding nodes to the World scene">Adding nodes to the World scene</a></li>
+                <li>
+                    <a href="#test-smooth-shake-and-compare-with-rough-shake" aria-label="Test &amp;ldquo;smooth shake&amp;rdquo; and compare with &amp;ldquo;rough shake&amp;rdquo;">Test &ldquo;smooth shake&rdquo; and compare with &ldquo;rough shake&rdquo;</a></li></ul>
+                </li>
+                <li>
+                    <a href="#sample-projects" aria-label="Sample projects">Sample projects</a></li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+                <li>
+                    <a href="#references" aria-label="References">References</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>In this article, I will explain how to implement an effect, &ldquo;screen shake&rdquo;, in 2D games. It is not an absolutely necessary element of a game, but if used well, it can make the player&rsquo;s game experience more interactive and directly affect the user experience. For example, there are many situations where it could be used, such as when a player fires a gun, takes damage from enemies, or falls from a high place.</p>
+<p>By the way, this kind of element that is not necessary but makes the game more interesting by adding it is called &ldquo;game juice&rdquo; in English. I have one more vocabulary in English, and I am a little wiser now.</p>
+<p>There are already many resources on the Web that explain how to implement screen shake, and of course there are methods other than those introduced here. This time, we refer to the following video and article in particular, so please check them as well for a deeper understanding.</p>
+<blockquote>
+<p><strong><span style="color:salmon">Reference</span>
+</strong><br>
+<em><a href="https://youtu.be/tu-Qe66AvtY" target="_blank">YouTube: GDC - Math for Game Programmers: Juicing Your Cameras With Math</a>
+</em><br>
+<em><a href="https://kidscancode.org/godot_recipes/2d/screen_shake/" target="_blank">KidsCanCode: SCREEN SHAKE</a>
+</em></p>
+</blockquote>
+<br>
+<p>The project file that will be created at the end of this tutorial is located in the <a href="https://github.com/msnsk/ScreenShake2D.git" target="_blank">GitHub repository</a>
+. You can also check the project directly by downloading the .zip file and importing the &ldquo;project.godot&rdquo; file in the &ldquo;End&rdquo; folder with the Godot Engine.<br>
+<br></p>
+<blockquote>
+<p><strong><span style="color:salmon">Environment</span>
+</strong><br>
+・<em>Godot version: <strong>3.4.4</strong></em><br>
+・<em>Computer OS version: <strong>macOS 11.6.5</strong></em></p>
+</blockquote>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h2 id="preparation">Preparation<a hidden class="anchor" aria-hidden="true" href="#preparation">#</a></h2>
+<h3 id="creating-a-new-project">Creating a new project<a hidden class="anchor" aria-hidden="true" href="#creating-a-new-project">#</a></h3>
+<p>Start Godot Engine and create a new project. You can name your project as you like. If you can&rsquo;t think of one, let&rsquo;s call it &ldquo;Screen Shake&rdquo;.</p>
+<br>
+<h3 id="updating-project-settings">Updating project settings<a hidden class="anchor" aria-hidden="true" href="#updating-project-settings">#</a></h3>
+<p>Once the editor appears, we should update project settings for the entire project.</p>
+<p>First, set the display size of the game. In this case, we will use a ratio of 9:16, with 16 px as the base value.</p>
+<ol>
+<li>
+<p>Open the &ldquo;Project&rdquo; menu &gt; &ldquo;Project Settings&rdquo;.</p>
+</li>
+<li>
+<p>In the &ldquo;General&rdquo; tab, search for &ldquo;window&rdquo; and select &ldquo;Display&rdquo; &gt; &ldquo;Window&rdquo; in the sidebar.</p>
+</li>
+<li>
+<p>In the &ldquo;Size&rdquo; section, change the values of the following items</p>
+<ul>
+<li>Width: 256</li>
+<li>Height: 144</li>
+<li>Test Width: 512</li>
+<li>Test Height: 288<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img1.png" alt="project settings - Display - Window - Size"  />
+</li>
+</ul>
+</li>
+<li>
+<p>In the &ldquo;Stretch&rdquo; section, change the values of the following items</p>
+<ul>
+<li>Mode: 2d</li>
+<li>Aspect: keep<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img2.png" alt="project settings - Display - Window - Stretch"  />
+</li>
+</ul>
+</li>
+<li>
+<p>Switch to the &ldquo;Input Map&rdquo; tab and add &ldquo;shake&rdquo; to the action.</p>
+</li>
+<li>
+<p>Assign the &ldquo;space&rdquo; key to the &ldquo;shake&rdquo; action.<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img3.png" alt="Inputmap - action - shake"  />
+</p>
+</li>
+</ol>
+<br>
+<h3 id="downloading-and-importing-assets">Downloading and importing assets<a hidden class="anchor" aria-hidden="true" href="#downloading-and-importing-assets">#</a></h3>
+<p>Next, let&rsquo;s download assets from KENNEY&rsquo;s site and use them. This time, we will use an asset pack called &ldquo;<a href="https://www.kenney.nl/assets/tiny-dungeon" target="_blank">Tiny Dungeon</a>
+&rdquo;. I will use the tileset included in this asset. I can&rsquo;t help but be grateful for this wonderful free material.</p>
+<p>Once downloaded, drag &ldquo;/kenney_tinydungeon/Tilemap/tilemap_packed.png&rdquo; to the file system dock and import it into your project.</p>
+<p>Immediately after importing the file, the image will look blurry, so correct this by following the steps below.</p>
+<ol>
+<li>Make the imported asset file selected in the file system dock</li>
+<li>Select &ldquo;Preset&rdquo; &gt; &ldquo;2D Pixel&rdquo; in the import dock.<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img4.png" alt="select 2D Pixel"  />
+</li>
+<li>Click the &ldquo;Reimport&rdquo; button at the bottom.<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img5.png" alt="click reinport"  />
+</li>
+</ol>
+<p>The image should now have the edges characteristic of pixel art. The imported tileset will be used later when creating the tile map.</p>
+<p>Translated with <a href="https://www.DeepL.com/Translator" target="_blank">www.DeepL.com/Translator</a>
+ (free version)</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h2 id="creating-camera-scene">Creating Camera scene<a hidden class="anchor" aria-hidden="true" href="#creating-camera-scene">#</a></h2>
+<h3 id="creating-a-new-scene">Creating a new scene<a hidden class="anchor" aria-hidden="true" href="#creating-a-new-scene">#</a></h3>
+<p>First, let&rsquo;s create a <strong>Camera</strong> scene.</p>
+<ol>
+<li>
+<p>Select &ldquo;Scene&rdquo; menu &gt; &ldquo;New Scene&rdquo;.</p>
+</li>
+<li>
+<p>Select the &ldquo;Camera2D&rdquo; class node as root node and rename it to &ldquo;Camera&rdquo;.</p>
+</li>
+<li>
+<p>Save the scene at this point. Create a folder and save the scene with the file path &ldquo;res://Camera/Camera.tscn&rdquo;.</p>
+</li>
+<li>
+<p>The scene tree has no child nodes, so the scene dock should have only the &ldquo;Camera&rdquo; node as follows.<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img6.png" alt="Camera scene dock"  />
+</p>
+</li>
+</ol>
+<br>
+<h3 id="editing-the-properties-of-the-camera-node">Editing the properties of the Camera node<a hidden class="anchor" aria-hidden="true" href="#editing-the-properties-of-the-camera-node">#</a></h3>
+<p>Continue to make the following edits in the inspector:</p>
+<ol>
+<li>Set the &ldquo;Current&rdquo; property to <strong>On</strong>.<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img7.png" alt="Camera - current property"  />
+</li>
+<li>Set the &ldquo;Limit&rdquo; property to the display size.<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img8.png" alt="Camera - limit property"  />
+</li>
+</ol>
+<br>
+<h3 id="attaching-and-editing-a-script-to-a-camera-node">Attaching and editing a script to a Camera node.<a hidden class="anchor" aria-hidden="true" href="#attaching-and-editing-a-script-to-a-camera-node">#</a></h3>
+<p>Attach a new script to the <strong>Camera</strong> node. Create a script file with the file path &ldquo;res://Camera/Camera.tscn&rdquo;.</p>
+<p>This time, we will implement two types of shaking: &ldquo;rough shake&rdquo; and &ldquo;smooth shake&rdquo;. First, let&rsquo;s start with &ldquo;rough shake&rdquo; whose code is relatively simple.</p>
+<p>The script should contain the following code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Camera.gd###</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Camera2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Shaking intensity (from 0.0 to 1.0)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> trauma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Exponent for power of shaking strength</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> trauma_power <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Put the shaking strength trauma as a power exponent trauma_power</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> amount <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Shaking intensity that decays in 1 second</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Note that if it is less than 0.0, the shaking will last forever</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> decay <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Maximum shaking width</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hold each value in x-axis direction and y-axis direction as one data in Vector2 type</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> max_offset <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>(<span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">64</span>) <span style="color:#75715e"># display ratio is 16 : 9</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Maximum angle of rotation (in radians)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> max_roll <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Built-in function called first when node is loaded</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Randomize seed values for functions that return random values</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Required since the same seed value will result in the same number of values obtained</span>
+</span></span><span style="display:flex;"><span>	randomize()<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Built-in process function called every frame</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _process(delta):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If trauma is greater than 0</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> trauma:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Decay the intensity of the shaking</span>
+</span></span><span style="display:flex;"><span>		trauma <span style="color:#f92672">=</span> max(trauma <span style="color:#f92672">-</span> decay <span style="color:#f92672">*</span> delta, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Call a method to set the shaking width and rotation angle for rough shake</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Call this method every frame to express screen shake</span>
+</span></span><span style="display:flex;"><span>        rough_shake() <span style="color:#75715e"># Define after this</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method to set the shake width and rotation angle of rough shake</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> rough_shake():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Amount is a cumulative value of the shaking intensity</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># pow() function raises the first argument to the power of the second argument as an exponent</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The closer the intensity of the shaking to 0, the smaller the value becomes when powered</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Example: 1.0 * 1.0 = 1.0, 0.5 * 0.5 = 0.25, 0.1 * 0.1 = 0.01</span>
+</span></span><span style="display:flex;"><span>	amount <span style="color:#f92672">=</span> pow(trauma, trauma_power)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># rotation angle = max_roll * amount * trauma power * random value from -1 to 1</span>
+</span></span><span style="display:flex;"><span>	rotation <span style="color:#f92672">=</span> max_roll <span style="color:#f92672">*</span> amount <span style="color:#f92672">*</span> rand_range(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># x-axis swing width = maximum swing width in x-axis direction * swing strength multiplied by power * random value between -1 and 1</span>
+</span></span><span style="display:flex;"><span>	offset<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> max_offset<span style="color:#f92672">.</span>x <span style="color:#f92672">*</span> amount <span style="color:#f92672">*</span> rand_range(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># y-axis amplitude = max_offset.x * amount * rand_range(-1, 1) * random value between -1 and 1</span>
+</span></span><span style="display:flex;"><span>	offset<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> max_offset<span style="color:#f92672">.</span>y <span style="color:#f92672">*</span> amount <span style="color:#f92672">*</span> rand_range(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Methods to set trauma</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> set_shake(add_trauma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Add the value of the argument add_trauma to the current trauma value</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Set trauma to 1.0 if it is greater than or equal to 1.0</span>
+</span></span><span style="display:flex;"><span>	trauma <span style="color:#f92672">=</span> min(trauma <span style="color:#f92672">+</span> add_trauma, <span style="color:#ae81ff">1.0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Built-in functions to handle input</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _unhandled_input(event):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If we press the action &#34;shake&#34; key on the input map</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> event<span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;shake&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Call a method to set trauma</span>
+</span></span><span style="display:flex;"><span>        set_shake()
+</span></span></code></pre></div><br>
+<p>The &ldquo;rough screen shake&rdquo; script is now complete.</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h2 id="creating-world-scene">Creating World scene<a hidden class="anchor" aria-hidden="true" href="#creating-world-scene">#</a></h2>
+<h3 id="world-create-a-new-scene-and-add-the-necessary-nodes">World Create a new scene and add the necessary nodes.<a hidden class="anchor" aria-hidden="true" href="#world-create-a-new-scene-and-add-the-necessary-nodes">#</a></h3>
+<p>The <strong>Camera</strong> scene alone does not show the shaking because there is no image. To check the shaking, we will create a <strong>World</strong> scene and prepare an instance of the <strong>Camera</strong> scene and a node that will serve as the background.</p>
+<ol>
+<li>Select &ldquo;Scene&rdquo; menu &gt; &ldquo;New Scene&rdquo;.</li>
+<li>Select &ldquo;Node2D&rdquo; as the root node and rename it to &ldquo;World&rdquo;.</li>
+<li>Save the scene with the file path &ldquo;res://World/World.tscn&rdquo;.<br>
+<br></li>
+</ol>
+<p>Then add nodes so that the World scene becomes the following scene tree.</p>
+<ul>
+<li>World (Node2D)
+<ul>
+<li>Camera (Camera2D、instance of Camera scene)</li>
+<li>TileMap</li>
+</ul>
+</li>
+</ul>
+<p><img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img9.png" alt="World scene tree"  />
+</p>
+<br>
+<h3 id="editing-the-tilemap-node">Editing the TileMap node<a hidden class="anchor" aria-hidden="true" href="#editing-the-tilemap-node">#</a></h3>
+<p>Let&rsquo;s quickly create a tile map for the background.</p>
+<ol>
+<li>Apply a new tileset resource to the &ldquo;Tile Set&rdquo; property of the &ldquo;TileMap&rdquo; node.<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img10.png" alt="TileMap - tile_set"  />
+</li>
+<li>Open the Tile Set panel, drag the &ldquo;res://Assets/tilemap_packed.png&rdquo; resource file downloaded from KENNEY to the left side, and set tiles appropriately with a single tile or atlas.<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img11.png" alt="TileSet pannel"  />
+</li>
+<li>Select &ldquo;TileMap&rdquo; in the scene dock to create a tile map. The area should slightly exceed the display size.<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img12.png" alt="TileSet pannel"  />
+</li>
+</ol>
+<br>
+<h3 id="testing-rough-shake">Testing &ldquo;rough shake&rdquo;<a hidden class="anchor" aria-hidden="true" href="#testing-rough-shake">#</a></h3>
+<p>Finally, run the project to test the &ldquo;rough shake&rdquo;. If you are running the project for the first time, select &ldquo;World.tscn&rdquo; as the main scene of the project.</p>
+<p>Press the space key to shake the screen. Wait a little and press it, or press it continuously without a pause to check the behavior.</p>
+<p>
+<video controls autoplay loop muted playsinline aria-label='Run project - sharp shake' style='ZgotmplZ'>
+
+    <source src="/images/tutorials/gd0014_screen_shake/img13.mp4" type="video/mp4">
+    
+    Your browser does not support the video tag.
+</video>
+<br>
+<br></p>
+<p>There is no particular discomfort, and it looks reasonably good. However, compared to the smooth shake that will be implemented later, it should look a bit rough.</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h2 id="adding-smooth-shake-code-to-the-script-for-the-camera-node">Adding &ldquo;smooth shake&rdquo; code to the script for the Camera node<a hidden class="anchor" aria-hidden="true" href="#adding-smooth-shake-code-to-the-script-for-the-camera-node">#</a></h2>
+<p>From here, we will implement the &ldquo;smooth shake&rdquo;. Return to the <strong>Camera</strong> scene and add the code to the attached &ldquo;Camera.gd&rdquo; script.</p>
+<p>smooth shake uses the following image called noise.<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img14.png" alt="OpenSimplexNoise"  />
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img15.png" alt="OpenSimplexNoise"  />
+</p>
+<p>The noise image has a random distribution of white, gray, and black. The noise value varies from -1 to 1, with -1 for black, 1 for white, and 0 for intermediate gray. The idea is to specify the coordinates of a pixel on the noise, get the noise value of that pixel, and apply it to screen shake.</p>
+<p>Godot provides a class (resource) called <strong>OpenSimplexNoise</strong>. You can create a new class in your script and use the <code>get_noise_2d</code> method, which is built into the class of this resource, to obtain the noise value at the specified coordinates by passing x-coordinate and y-coordinate as arguments. This time, the x-coordinate passed as the argument is specified randomly, the y-coordinate is shifted by 1 pixel, the noise value is obtained, and it is multiplied by the calculation of the shaking width to reproduce smooth shake.</p>
+<p>By the way, you may intuitively understand how the noise changes when you change some parameters that compose the noise by trying various things on the following demo page using Godot&rsquo;s OpenSimplexNoise.</p>
+<blockquote>
+<p><strong><span style="color:salmon">Reference</span>
+</strong><br>
+<em><a href="https://vitalify.jp/blog/2019/06/randomize.html" target="_blank">OpenSimplexNoise Viewer</a>
+</em></p>
+</blockquote>
+<p>The noise may seem a bit complicated, but let&rsquo;s write a script for a start. In addition, we will make it possible to switch between &ldquo;rough shake&rdquo; and &ldquo;smooth shake&rdquo;.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Camera.gd###</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Camera2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the type of screen shake with enum</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> {
+</span></span><span style="display:flex;"><span>	ROUGH, <span style="color:#75715e"># for rough shake</span>
+</span></span><span style="display:flex;"><span>	SMOOTH <span style="color:#75715e"># for smooth shake</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Common properties</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> type <span style="color:#f92672">=</span> ROUGH <span style="color:#75715e"># Type of screen shake (default is rough shake)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> trauma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> trauma_power <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> amount <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## rough shake properties</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> decay <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> max_offset <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>(<span style="color:#ae81ff">36</span>, <span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> max_roll <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## smooth shake property</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> noise_y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># y-coordinate of noise</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> noise <span style="color:#f92672">=</span> OpenSimplexNoise<span style="color:#f92672">.</span>new() <span style="color:#75715e"># Instance of noise</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>	randomize()<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">## Use following 3 variables for smooth shake</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Value that determines the noise&#39;s unique random appearance (assign a random integer)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If the seed value changes, the placement of the white to black dots in the noise will also change</span>
+</span></span><span style="display:flex;"><span>	noise<span style="color:#f92672">.</span>seed <span style="color:#f92672">=</span> randi()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Number of layers to create noise (in this case 2)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The higher the value, the more layers of gray between black and white, the more detailed the noise</span>
+</span></span><span style="display:flex;"><span>	noise<span style="color:#f92672">.</span>octaves <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Period of the noise (let&#39;s say 4)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The smaller the value, the higher the noise frequency</span>
+</span></span><span style="display:flex;"><span>	noise<span style="color:#f92672">.</span>period <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _process(delta):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> trauma:
+</span></span><span style="display:flex;"><span>		trauma <span style="color:#f92672">=</span> max(trauma <span style="color:#f92672">-</span> decay <span style="color:#f92672">*</span> delta, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If the type is rough shake</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> type <span style="color:#f92672">==</span> ROUGH:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Call methods to set the shake width and rotation angle for rough shake</span>
+</span></span><span style="display:flex;"><span>			rough_shake()
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If the type is smooth shake</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> type <span style="color:#f92672">==</span> SMOOTH:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Call methods to set the shake width and rotation angle for smooth shake</span>
+</span></span><span style="display:flex;"><span>			smooth_shake()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> rough_shake():
+</span></span><span style="display:flex;"><span>	amount <span style="color:#f92672">=</span> pow(trauma, trauma_power)
+</span></span><span style="display:flex;"><span>	rotation <span style="color:#f92672">=</span> max_roll <span style="color:#f92672">*</span> amount <span style="color:#f92672">*</span> rand_range(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	offset<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> max_offset<span style="color:#f92672">.</span>x <span style="color:#f92672">*</span> amount <span style="color:#f92672">*</span> rand_range(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	offset<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> max_offset<span style="color:#f92672">.</span>y <span style="color:#f92672">*</span> amount <span style="color:#f92672">*</span> rand_range(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Methods to set the shaking width and rotation angle for smooth shake</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> smooth_shake():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Amount is the trauma multiplied by a power</span>
+</span></span><span style="display:flex;"><span>	amount <span style="color:#f92672">=</span> pow(trauma, trauma_power)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Increase the y-coordinate of the noise by 1 pixel</span>
+</span></span><span style="display:flex;"><span>	noise_y <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Get a random rotation angle using the noise value obtained from the noise seed value as x-coordinate</span>
+</span></span><span style="display:flex;"><span>	rotation <span style="color:#f92672">=</span> max_roll <span style="color:#f92672">*</span> amount <span style="color:#f92672">*</span> noise<span style="color:#f92672">.</span>get_noise_2d(noise<span style="color:#f92672">.</span>seed, noise_y)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Get a random x-axis swing width using the noise value obtained by multiplying the noise seed value × 2 by the x-coordinate</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 2 multiplied by the seed value is an appropriate number to get a noise value different from the rotation angle or y-axis swing width</span>
+</span></span><span style="display:flex;"><span>	offset<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> max_offset<span style="color:#f92672">.</span>x <span style="color:#f92672">*</span> amount <span style="color:#f92672">*</span> noise<span style="color:#f92672">.</span>get_noise_2d(noise<span style="color:#f92672">.</span>seed <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>, noise_y)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Get random y-axis shaking width using noise seed value x 3 obtained as x-coordinate</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 3 multiplied by the seed value is an appropriate number to get a noise value that is different from the rotation angle and the x-axis wobble width</span>
+</span></span><span style="display:flex;"><span>	offset<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> max_offset<span style="color:#f92672">.</span>y <span style="color:#f92672">*</span> amount <span style="color:#f92672">*</span> noise<span style="color:#f92672">.</span>get_noise_2d(noise<span style="color:#f92672">.</span>seed <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>, noise_y)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> set_shake(add_trauma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>):
+</span></span><span style="display:flex;"><span>	trauma <span style="color:#f92672">=</span> min(trauma <span style="color:#f92672">+</span> add_trauma, <span style="color:#ae81ff">1.0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _unhandled_input(event):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> event<span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;shake&#34;</span>):
+</span></span><span style="display:flex;"><span>		set_shake()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Toggle screen shake type when right or left arrow key is pressed</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> event<span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;ui_right&#34;</span>)\
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">or</span> event<span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;ui_left&#34;</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># if the current screen shake type is rough shake</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> type <span style="color:#f92672">==</span> ROUGH:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># change to smooth shake</span>
+</span></span><span style="display:flex;"><span>			type <span style="color:#f92672">=</span> SMOOTH
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># if current screen shake type is smooth shake</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># change to rough shake setting</span>
+</span></span><span style="display:flex;"><span>			type <span style="color:#f92672">=</span> ROUGH
+</span></span></code></pre></div><br>
+<h3 id="adding-nodes-to-the-world-scene">Adding nodes to the World scene<a hidden class="anchor" aria-hidden="true" href="#adding-nodes-to-the-world-scene">#</a></h3>
+<p>Add a &ldquo;CanvasLayer&rdquo; node and its child &ldquo;Label&rdquo; node to the World scene tree to make it easier to see which type of screen shake is being used on the screen. The name of the &ldquo;Label&rdquo; node is &ldquo;TypeLabel&rdquo;.<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img17.png" alt="World scene tree"  />
+</p>
+<p>With the &ldquo;TypeLabel&rdquo; node selected, enter &ldquo;ROUGH&rdquo; as the initial value for the &ldquo;Text&rdquo; property in the inspector.<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img18.png" alt="TypeLabel - Text property"  />
+</p>
+<p>In the &ldquo;Theme Overrides&rdquo; &gt; &ldquo;Color&rdquo; &gt; &ldquo;Font Color&rdquo; property, set the font color to #000000 (black).<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img19.png" alt="TypeLabel = Color"  />
+</p>
+<p>Select &ldquo;Center&rdquo; from the &ldquo;Layout&rdquo; on the 2D workspace toolbar and center the &ldquo;TypeLabel&rdquo; node.<br>
+<img loading="lazy" src="/images/tutorials/gd0014_screen_shake/img20.png" alt="2D Workspace - Layout - Center"  />
+</p>
+<p>Attach the script to the &ldquo;World&rdquo; root node and save the file path as &ldquo;res://World/World.gd&rdquo;. In the script, write the following code for the operation to switch the type of screen shake.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###World.gd###</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> type_label <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">CanvasLayer</span><span style="color:#f92672">/</span>TypeLabel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _unhandled_input(event):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> event<span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;ui_right&#34;</span>)\
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">or</span> event<span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;ui_left&#34;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> type_label<span style="color:#f92672">.</span>text <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;ROUGH&#34;</span>:
+</span></span><span style="display:flex;"><span>			type_label<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SMOOTH&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			type_label<span style="color:#f92672">.</span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ROUGH&#34;</span>
+</span></span></code></pre></div><p>The left and right arrow keys can now be used to switch between ROUGH (rough shake) and SMOOTH (smooth shake).</p>
+<br>
+<h3 id="test-smooth-shake-and-compare-with-rough-shake">Test &ldquo;smooth shake&rdquo; and compare with &ldquo;rough shake&rdquo;<a hidden class="anchor" aria-hidden="true" href="#test-smooth-shake-and-compare-with-rough-shake">#</a></h3>
+<p>Finally, let&rsquo;s run the project again to check the behavior of the &ldquo;smooth shake&rdquo; and compare it with the &ldquo;rough shake&rdquo; while switching the shaking type.</p>
+<p>
+<video controls autoplay loop muted playsinline aria-label='Run project - sharp shake' style='ZgotmplZ'>
+
+    <source src="/images/tutorials/gd0014_screen_shake/img21.mp4" type="video/mp4">
+    
+    Your browser does not support the video tag.
+</video>
+<br>
+<br></p>
+<p>This completes the implementation of screen shake. I hope you could feel the difference. It may seem like a small difference, but if you are concerned about the presentation of the game, you will want to use the appropriate shaking for the scene.</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h2 id="sample-projects">Sample projects<a hidden class="anchor" aria-hidden="true" href="#sample-projects">#</a></h2>
+<p>In addition, we have prepared a separate project that makes it easier to visually understand the state of screen shake. Please try it if you like.</p>
+<p>
+<video controls autoplay loop muted playsinline aria-label='Sample 1' style='ZgotmplZ'>
+
+    <source src="/images/tutorials/gd0014_screen_shake/img22.mp4" type="video/mp4">
+    
+    Your browser does not support the video tag.
+</video>
+<br>
+<br></p>
+<p>The sample project file is located in the <a href="https://github.com/msnsk/ScreenShake2D.git" target="_blank">GitHub repository</a>
+. Please download the .zip file from there. You can check it by importing the &ldquo;project.godot&rdquo; file in the &ldquo;Sample&rdquo; folder with the Godot Engine.<br>
+<br></p>
+<p>The specifications of the sample project are as follows.</p>
+<ul>
+<li>Gauge <code>amount</code> and <code>trauma</code> properties.</li>
+<li>Add a character that can be moved up, down, left, or right by keyboard operation.
+<ul>
+<li>D key: right</li>
+<li>A key: left</li>
+<li>W key: Up</li>
+<li>S key: Down</li>
+</ul>
+</li>
+<li>Adding multiple spikes on the ground that cause the screen to shake when a character steps on them.</li>
+<li>Adding a value to the <code>trauma</code> is increased by 0.1 with the up arrow key and decreased by 0.1 with the down arrow key (maximum 1.0, minimum 0.0).</li>
+<li>Display &ldquo;ROUGH&rdquo; and &ldquo;SMOOTH&rdquo; shaking types in the upper left corner.</li>
+<li>Use the left and right arrow keys to toggle between &ldquo;ROUGH&rdquo; and &ldquo;SMOOTH&rdquo; shaking.</li>
+<li>Space key also generates screen shake.</li>
+</ul>
+<br>
+<hr>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>In this article, we introduced the implementation of screen shake in 2D. Although the game genre and scene may vary, there will be many opportunities to apply screen shake. If you understand how to change the parameters that constitute screen shake, you should be able to express screen shake in a way that best suits the purpose of use.</p>
+<br>
+<hr>
+<h2 id="references">References<a hidden class="anchor" aria-hidden="true" href="#references">#</a></h2>
+<ul>
+<li><a href="https://www.kenney.nl/assets" target="_blank">KENNEY - Assets</a>
+</li>
+<li><a href="https://godotengine.github.io/godot-demo-projects/misc/opensimplexnoise/" target="_blank">Godot demo projects - OpenSimplexNoise</a>
+</li>
+<li><a href="https://kidscancode.org/godot_recipes/2d/screen_shake/" target="_blank">KidsCanCode: SCREEN SHAKE</a>
+</li>
+<li><a href="https://youtu.be/tu-Qe66AvtY" target="_blank">YouTube: Math for Game Programmers: Juicing Your Cameras With Math</a>
+</li>
+<li><a href="https://youtu.be/AobjNjzZhmo" target="_blank">YouTube: Godot Game Juice Tutorial 1: Camera Shake and Frame Freeze</a>
+</li>
+<li><a href="https://www.codingkaiju.com/tutorials/screen-shake-in-godot-the-best-way/" target="_blank">Coding Kaiju - Screen Shake in Godot: The Best Way</a>
+</li>
+</ul>
+<br>
+<hr>
+<!-- #### UPDATE: -->
+<!-- 2022/05/25 新規作成 -->
+<!-- --- -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br>
+
+  </div>
+
+  <footer class="post-footer">
+    
+    <div class="recommendation">
+        <span>Please feel free to follow my accounts!</span>
+      <div class="social-icons">
+    <a href="https://twitter.com/MasanaoSako" target="_blank" rel="noopener noreferrer me" title="Twitter">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+</svg>
+    </a>
+    <a href="https://github.com/msnsk/" target="_blank" rel="noopener noreferrer me" title="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+    </a>
+</div>
+
+    </div>
+    <div class="recommendation">
+        <span>If you liked this article, please share it!</span>
+    </div>
+    
+    
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2D Screen Shake in Godot on twitter"
+        href="https://twitter.com/intent/tweet/?text=2D%20Screen%20Shake%20in%20Godot&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f&amp;hashtags=GameDev%2cGodotEngine%2cGodot3%2c2D%2cScreenShake">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2D Screen Shake in Godot on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f&amp;title=2D%20Screen%20Shake%20in%20Godot&amp;summary=2D%20Screen%20Shake%20in%20Godot&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2D Screen Shake in Godot on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f&title=2D%20Screen%20Shake%20in%20Godot">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2D Screen Shake in Godot on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2D Screen Shake in Godot on whatsapp"
+        href="https://api.whatsapp.com/send?text=2D%20Screen%20Shake%20in%20Godot%20-%20https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2D Screen Shake in Godot on telegram"
+        href="https://telegram.me/share/url?text=2D%20Screen%20Shake%20in%20Godot&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0014_screen_shake%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/en/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/godot3/">Godot3</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/2d/">2D</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/screenshake/">ScreenShake</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://www.peanuts-code.com/en/tutorials/gd0013_advanced_match3/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Advanced match 3 puzzle game in Godot</span>
+  </a>
+</nav>
+
+    
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://www.peanuts-code.com/en/">Peanuts Code</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

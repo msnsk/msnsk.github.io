@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ScreenShake on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/en/tags/screenshake/</link>
+    <description>Recent content in ScreenShake on Peanuts Code</description>
+    <image>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 28 Jul 2022 14:10:56 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/screenshake/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2D Screen Shake in Godot</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/</link>
+      <pubDate>Thu, 28 Jul 2022 14:10:56 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/</guid>
+      <description>In this article, I will explain how to implement an effect, &amp;ldquo;screen shake&amp;rdquo;, in 2D games. It is not an absolutely necessary element of a game, but if used well, it can make the player&amp;rsquo;s game experience more interactive and directly affect the user experience. For example, there are many situations where it could be used, such as when a player fires a gun, takes damage from enemies, or falls from a high place. By the way, this kind of element that is not necessary but makes the game more interesting by adding it is called &amp;ldquo;game juice&amp;rdquo; in English.</description>
+    </item>
+    
+  </channel>
+</rss>

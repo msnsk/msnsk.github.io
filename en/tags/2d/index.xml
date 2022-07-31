@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 15 Jul 2022 18:40:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/2d/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Jul 2022 14:10:56 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/2d/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2D Screen Shake in Godot</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/</link>
+      <pubDate>Thu, 28 Jul 2022 14:10:56 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/</guid>
+      <description>In this article, I will explain how to implement an effect, &amp;ldquo;screen shake&amp;rdquo;, in 2D games. It is not an absolutely necessary element of a game, but if used well, it can make the player&amp;rsquo;s game experience more interactive and directly affect the user experience. For example, there are many situations where it could be used, such as when a player fires a gun, takes damage from enemies, or falls from a high place. By the way, this kind of element that is not necessary but makes the game more interesting by adding it is called &amp;ldquo;game juice&amp;rdquo; in English.</description>
+    </item>
+    
     <item>
       <title>Advanced match 3 puzzle game in Godot</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0013_advanced_match3/</link>
