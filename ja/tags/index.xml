@@ -10,20 +10,11 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 28 Jul 2022 14:10:56 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>2D</title>
-      <link>https://www.peanuts-code.com/ja/tags/2d/</link>
-      <pubDate>Thu, 28 Jul 2022 14:10:56 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/2d/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Fri, 05 Aug 2022 11:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GameDev</title>
       <link>https://www.peanuts-code.com/ja/tags/gamedev/</link>
-      <pubDate>Thu, 28 Jul 2022 14:10:56 +0900</pubDate>
+      <pubDate>Fri, 05 Aug 2022 11:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/gamedev/</guid>
       <description></description>
@@ -32,7 +23,7 @@
     <item>
       <title>Godot3</title>
       <link>https://www.peanuts-code.com/ja/tags/godot3/</link>
-      <pubDate>Thu, 28 Jul 2022 14:10:56 +0900</pubDate>
+      <pubDate>Fri, 05 Aug 2022 11:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/godot3/</guid>
       <description></description>
@@ -41,9 +32,36 @@
     <item>
       <title>GodotEngine</title>
       <link>https://www.peanuts-code.com/ja/tags/godotengine/</link>
-      <pubDate>Thu, 28 Jul 2022 14:10:56 +0900</pubDate>
+      <pubDate>Fri, 05 Aug 2022 11:05:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>UI</title>
+      <link>https://www.peanuts-code.com/ja/tags/ui/</link>
+      <pubDate>Fri, 05 Aug 2022 11:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/ui/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>プログレスバー</title>
+      <link>https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%AC%E3%82%B9%E3%83%90%E3%83%BC/</link>
+      <pubDate>Fri, 05 Aug 2022 11:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%AC%E3%82%B9%E3%83%90%E3%83%BC/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>2D</title>
+      <link>https://www.peanuts-code.com/ja/tags/2d/</link>
+      <pubDate>Thu, 28 Jul 2022 14:10:56 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/2d/</guid>
       <description></description>
     </item>
     

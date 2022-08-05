@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 28 Jul 2022 14:10:56 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Aug 2022 11:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot で作るブロック崩し Part 1：パドルを作って動かそう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_1/</link>
@@ -279,6 +279,15 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</guid>
       <description>第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップ</description>
+    </item>
+    
+    <item>
+      <title>Godot で作る円形プログレスバー</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0015_circular_progress_bar/</link>
+      <pubDate>Fri, 05 Aug 2022 11:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0015_circular_progress_bar/</guid>
+      <description>今回は、円形のプログレスバーの作り方を紹介する。プログレスバーを、一般的な縦向きや横向きではなく、円形にすることによって、画面上のちょっとしたアクセントにもなるので使い所があれば是非参考にしていただき</description>
     </item>
     
     <item>
