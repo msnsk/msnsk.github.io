@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 28 Jul 2022 14:10:56 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Aug 2022 11:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Circular Progress Bar in Godot</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0015_circular_progress_bar/</link>
+      <pubDate>Fri, 05 Aug 2022 11:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0015_circular_progress_bar/</guid>
+      <description>In this article, I will show you how to create a circular progress bar. By using a circular progress bar instead of the usual portrait or landscape orientation, you can add a little accent to your screen, so please refer to this tutorial if you find a use for it. At the end of the tutorial, we will also show you some sample progress bars that are not circular (e.g., heart-shaped), so if you are interested, please take a look at them as well. The final project file for this tutorial is available at GitHub repository . If you download</description>
+    </item>
+    
     <item>
       <title>2D Screen Shake in Godot</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/</link>
