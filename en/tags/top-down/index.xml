@@ -12,7 +12,7 @@
     <language>en</language>
     <lastBuildDate>Sat, 28 May 2022 18:41:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/top-down/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Homing missiles in Godot Engine</title>
+      <title>Homing Missiles in Godot</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0008_homing_missiles/</link>
       <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
       
@@ -21,7 +21,7 @@
     </item>
     
     <item>
-      <title>Bullet hell in Godot Engine</title>
+      <title>Bullet Hell in Godot</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0007_bullethell/</link>
       <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
       
@@ -31,7 +31,7 @@ In this tutorial, we will focus only on creating a bullet hell.</description>
     </item>
     
     <item>
-      <title>Four types of guns for top-down shooting in Godot Engine</title>
+      <title>Four Types of Guns for Top-down Shooting in Godot</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0006_guns_of_topdown_shooter/</link>
       <pubDate>Sat, 07 May 2022 22:05:00 +0900</pubDate>
       
