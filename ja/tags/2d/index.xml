@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 28 Jul 2022 14:10:56 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/2d/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Aug 2022 02:10:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/2d/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>シリーズ：Godot で作るブロック崩し</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/</link>
@@ -297,6 +297,15 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</guid>
       <description>第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップ</description>
+    </item>
+    
+    <item>
+      <title>Godot で作る 2D 経路探索</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0016_2d_path_finding/</link>
+      <pubDate>Mon, 15 Aug 2022 02:10:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0016_2d_path_finding/</guid>
+      <description>このチュートリアルでは 2D ゲームにおける経路探索 (Path Finding) について紹介する。経路探索というのは、例えばあるオブジェクトをある目的地へ移動させる際に、オブジェクトから目的地までの移動可能な最短経路を割り出す機能</description>
     </item>
     
     <item>

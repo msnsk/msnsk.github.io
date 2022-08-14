@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 05 Aug 2022 11:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Aug 2022 02:10:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作る 2D 経路探索</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0016_2d_path_finding/</link>
+      <pubDate>Mon, 15 Aug 2022 02:10:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0016_2d_path_finding/</guid>
+      <description>このチュートリアルでは 2D ゲームにおける経路探索 (Path Finding) について紹介する。経路探索というのは、例えばあるオブジェクトをある目的地へ移動させる際に、オブジェクトから目的地までの移動可能な最短経路を割り出す機能</description>
+    </item>
+    
     <item>
       <title>Godot で作る円形プログレスバー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0015_circular_progress_bar/</link>
