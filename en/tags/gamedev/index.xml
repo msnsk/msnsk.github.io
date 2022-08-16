@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 05 Aug 2022 11:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Aug 2022 23:10:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2D Path Finding in Godot</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0016_2d_path_finding/</link>
+      <pubDate>Tue, 16 Aug 2022 23:10:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0016_2d_path_finding/</guid>
+      <description>This tutorial introduces Path Finding in 2D games. Path finding is a function that determines the shortest possible path from an object to its destination, for example, when moving an object to a certain destination. Up to Godot 3.4, the Navigation node was used to implement path finding. This was not particularly inconvenient, but the methodology for game development using it was limited and inapplicable in some areas. This time, I would like to introduce an implementation method using Navigation Server, which was added to Godot 3.5. This is a backport from Godot 4, which is currently under active development.</description>
+    </item>
+    
     <item>
       <title>Circular Progress Bar in Godot</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0015_circular_progress_bar/</link>
