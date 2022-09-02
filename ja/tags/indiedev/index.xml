@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>IndieDev on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/indiedev/</link>
+    <description>Recent content in IndieDev on Peanuts Code</description>
+    <image>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Tue, 30 Aug 2022 19:33:38 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/indiedev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ゲームジャムで成長しよう</title>
+      <link>https://www.peanuts-code.com/ja/posts/post0004_my_first_game_jam/</link>
+      <pubDate>Tue, 30 Aug 2022 19:33:38 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/posts/post0004_my_first_game_jam/</guid>
+      <description>先日開催された「KENNEY Game Jam」に参加した。私にとって初めてのゲームジャムであった。今回はゲームジャムに参加してみてわかったこと、感じたことを交えつつ、itch.io のサイトで催されているインデ</description>
+    </item>
+    
+  </channel>
+</rss>

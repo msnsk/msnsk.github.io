@@ -10,22 +10,49 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 15 Aug 2022 02:10:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 30 Aug 2022 19:33:38 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GameDev</title>
+      <link>https://www.peanuts-code.com/ja/tags/gamedev/</link>
+      <pubDate>Tue, 30 Aug 2022 19:33:38 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/gamedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GameJam</title>
+      <link>https://www.peanuts-code.com/ja/tags/gamejam/</link>
+      <pubDate>Tue, 30 Aug 2022 19:33:38 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/gamejam/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IndieDev</title>
+      <link>https://www.peanuts-code.com/ja/tags/indiedev/</link>
+      <pubDate>Tue, 30 Aug 2022 19:33:38 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/indiedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kenneyjam</title>
+      <link>https://www.peanuts-code.com/ja/tags/kenneyjam/</link>
+      <pubDate>Tue, 30 Aug 2022 19:33:38 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/kenneyjam/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>2D</title>
       <link>https://www.peanuts-code.com/ja/tags/2d/</link>
       <pubDate>Mon, 15 Aug 2022 02:10:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/2d/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GameDev</title>
-      <link>https://www.peanuts-code.com/ja/tags/gamedev/</link>
-      <pubDate>Mon, 15 Aug 2022 02:10:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/gamedev/</guid>
       <description></description>
     </item>
     
