@@ -126,6 +126,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/gamejam/</loc>
     <lastmod>2022-08-30T19:33:38+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/gamejam/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/gamejam/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/indiedev/</loc>
     <lastmod>2022-08-30T19:33:38+09:00</lastmod>
@@ -142,6 +152,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/kenneyjam/</loc>
     <lastmod>2022-08-30T19:33:38+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/kenneyjam/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/kenneyjam/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/</loc>
     <lastmod>2022-08-30T19:33:38+09:00</lastmod>
@@ -158,6 +178,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/posts/post0004_my_first_game_jam/</loc>
     <lastmod>2022-08-30T19:33:38+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/posts/post0004_my_first_game_jam/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/posts/post0004_my_first_game_jam/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/posts/</loc>
     <lastmod>2022-08-30T19:33:38+09:00</lastmod>
