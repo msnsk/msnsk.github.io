@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 16 Sep 2022 02:09:16 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 30 Aug 2022 19:33:38 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot で作るブロック崩し Part 1：パドルを作って動かそう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_1/</link>
@@ -279,15 +279,6 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</guid>
       <description>第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップ</description>
-    </item>
-    
-    <item>
-      <title>Godot で作る 2D グリッドベース経路探索</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/</link>
-      <pubDate>Fri, 16 Sep 2022 02:09:16 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/</guid>
-      <description>この記事では、2D ゲームにおけるグリッドベースの経路探索の実装方法について説明する。なお、グリッドベースではない 2D 経路探索については、「Godot で作る 2D 経路探索 」の記事で紹介しているので、作りたいゲ</description>
     </item>
     
     <item>
