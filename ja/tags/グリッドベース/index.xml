@@ -17,7 +17,7 @@
       <pubDate>Mon, 19 Sep 2022 02:10:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/</guid>
-      <description>この記事では、2D ゲームにおけるグリッドベースの経路探索の実装方法について説明する。なお、グリッドベースではない 2D 経路探索については、「Godot で作る 2D 経路探索 」の記事で紹介しているので、作りたいゲ</description>
+      <description>この記事では、AStar というアルゴリズムを利用して、2D ゲームにおけるグリッドベースの経路探索の実装方法について紹介する。なお、グリッドベースではない 2D 経路探索については、「Godot で作る 2D 経路探</description>
     </item>
     
   </channel>
