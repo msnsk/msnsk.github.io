@@ -282,7 +282,7 @@
     </item>
     
     <item>
-      <title>Godot で作る 2D グリッドベース経路探索</title>
+      <title>Godot3 で作る 2D グリッドベース経路探索</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/</link>
       <pubDate>Mon, 19 Sep 2022 02:10:00 +0900</pubDate>
       
@@ -300,7 +300,7 @@
     </item>
     
     <item>
-      <title>Godot で作る 2D 経路探索</title>
+      <title>Godot3 で作る 2D 経路探索</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0016_2d_path_finding/</link>
       <pubDate>Mon, 15 Aug 2022 02:10:00 +0900</pubDate>
       
@@ -309,7 +309,7 @@
     </item>
     
     <item>
-      <title>Godot で作る円形プログレスバー</title>
+      <title>Godot3 で作る円形プログレスバー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0015_circular_progress_bar/</link>
       <pubDate>Fri, 05 Aug 2022 11:05:00 +0900</pubDate>
       
@@ -318,7 +318,7 @@
     </item>
     
     <item>
-      <title>Godot で作る画面揺れ</title>
+      <title>Godot3 で作る画面揺れ</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0014_screen_shake/</link>
       <pubDate>Thu, 28 Jul 2022 14:10:56 +0900</pubDate>
       
@@ -327,7 +327,7 @@
     </item>
     
     <item>
-      <title>Godot で作る進化形マッチ 3 パズルゲーム</title>
+      <title>Godot3 で作る進化形マッチ 3 パズルゲーム</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0013_advanced_match3/</link>
       <pubDate>Sun, 10 Jul 2022 00:51:37 +0900</pubDate>
       
@@ -345,7 +345,7 @@
     </item>
     
     <item>
-      <title>Godot で作るマッチ 3 パズルゲーム</title>
+      <title>Godot3 で作るマッチ 3 パズルゲーム</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0012_match3/</link>
       <pubDate>Sun, 26 Jun 2022 03:18:03 +0900</pubDate>
       
@@ -354,7 +354,7 @@
     </item>
     
     <item>
-      <title>Godot で作る同じ色をつなげて消すパズルゲーム</title>
+      <title>Godot3 で作る同じ色をつなげて消すパズルゲーム</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0011_connect_colors/</link>
       <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
       
@@ -363,7 +363,7 @@
     </item>
     
     <item>
-      <title>Godot で作る 2D グリッドベース移動</title>
+      <title>Godot3 で作る 2D グリッドベース移動</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</link>
       <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
       
@@ -372,7 +372,7 @@
     </item>
     
     <item>
-      <title>Godot で作るホーミングミサイル</title>
+      <title>Godot3 で作るホーミングミサイル</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</link>
       <pubDate>Fri, 27 May 2022 17:10:00 +0900</pubDate>
       
@@ -381,7 +381,7 @@
     </item>
     
     <item>
-      <title>Godot で作る弾幕シューティングの弾幕</title>
+      <title>Godot3 で作る弾幕シューティングの弾幕</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/</link>
       <pubDate>Sat, 21 May 2022 17:10:00 +0900</pubDate>
       
@@ -399,7 +399,7 @@
     </item>
     
     <item>
-      <title>Godot で作るトップダウンシューティングの 4 種類の銃</title>
+      <title>Godot3 で作るトップダウンシューティングの 4 種類の銃</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/</link>
       <pubDate>Wed, 04 May 2022 01:30:00 +0900</pubDate>
       
@@ -408,7 +408,7 @@
     </item>
     
     <item>
-      <title>Godot エディタの便利な検索機能</title>
+      <title>Godot3 エディタの便利な検索機能</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0009_various_searches/</link>
       <pubDate>Mon, 25 Apr 2022 17:08:00 +0900</pubDate>
       
@@ -426,7 +426,7 @@
     </item>
     
     <item>
-      <title>Godot の言語設定</title>
+      <title>Godot3 の言語設定</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</link>
       <pubDate>Mon, 01 Nov 2021 12:37:47 +0900</pubDate>
       
@@ -435,7 +435,7 @@
     </item>
     
     <item>
-      <title>Godot のプロジェクトマネージャー</title>
+      <title>Godot3 のプロジェクトマネージャー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</link>
       <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
       

@@ -10,13 +10,67 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 04 Sep 2022 00:35:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Sep 2022 19:45:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2D</title>
+      <link>https://www.peanuts-code.com/en/tags/2d/</link>
+      <pubDate>Thu, 22 Sep 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/2d/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AStar</title>
+      <link>https://www.peanuts-code.com/en/tags/astar/</link>
+      <pubDate>Thu, 22 Sep 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/astar/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>GameDev</title>
       <link>https://www.peanuts-code.com/en/tags/gamedev/</link>
-      <pubDate>Sun, 04 Sep 2022 00:35:00 +0900</pubDate>
+      <pubDate>Thu, 22 Sep 2022 19:45:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/gamedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Godot3</title>
+      <link>https://www.peanuts-code.com/en/tags/godot3/</link>
+      <pubDate>Thu, 22 Sep 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/godot3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GodotEngine</title>
+      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
+      <pubDate>Thu, 22 Sep 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GridBased</title>
+      <link>https://www.peanuts-code.com/en/tags/gridbased/</link>
+      <pubDate>Thu, 22 Sep 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/gridbased/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PathFinding</title>
+      <link>https://www.peanuts-code.com/en/tags/pathfinding/</link>
+      <pubDate>Thu, 22 Sep 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/pathfinding/</guid>
       <description></description>
     </item>
     
@@ -44,42 +98,6 @@
       <pubDate>Sun, 04 Sep 2022 00:35:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/kenneyjam/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>2D</title>
-      <link>https://www.peanuts-code.com/en/tags/2d/</link>
-      <pubDate>Tue, 16 Aug 2022 23:10:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/2d/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Godot3</title>
-      <link>https://www.peanuts-code.com/en/tags/godot3/</link>
-      <pubDate>Tue, 16 Aug 2022 23:10:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/godot3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GodotEngine</title>
-      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
-      <pubDate>Tue, 16 Aug 2022 23:10:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PathFinding</title>
-      <link>https://www.peanuts-code.com/en/tags/pathfinding/</link>
-      <pubDate>Tue, 16 Aug 2022 23:10:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/pathfinding/</guid>
       <description></description>
     </item>
     

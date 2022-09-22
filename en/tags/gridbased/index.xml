@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>GridBased on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/en/tags/gridbased/</link>
+    <description>Recent content in GridBased on Peanuts Code</description>
+    <image>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 22 Sep 2022 19:45:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/gridbased/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2D Grid Based Path Finding in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0017_2d_grid_based_path_finding/</link>
+      <pubDate>Thu, 22 Sep 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0017_2d_grid_based_path_finding/</guid>
+      <description>This article is a tutorial on how to implement grid-based path finding in 2D games using the AStar algorithm. For 2D pathfinding that is not grid-based, please refer to the article 2D Path Finding in Godot3 . I hope you will choose the article that best suits the game you want to make. The final project file in this tutorial is located in the GitHub repository . After downloading and extracting the .zip file, you can import the &amp;ldquo;project.godot&amp;rdquo; file into the Godot Engine to see the project directly. Translated with www.DeepL.com/Translator (free version) Environment Godot version: 3.5 Computer OS:</description>
+    </item>
+    
+  </channel>
+</rss>

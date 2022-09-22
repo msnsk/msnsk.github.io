@@ -12,7 +12,7 @@
     <language>ja</language>
     <lastBuildDate>Fri, 27 May 2022 17:10:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Godot で作るホーミングミサイル</title>
+      <title>Godot3 で作るホーミングミサイル</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</link>
       <pubDate>Fri, 27 May 2022 17:10:00 +0900</pubDate>
       
@@ -21,7 +21,7 @@
     </item>
     
     <item>
-      <title>Godot で作る弾幕シューティングの弾幕</title>
+      <title>Godot3 で作る弾幕シューティングの弾幕</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/</link>
       <pubDate>Sat, 21 May 2022 17:10:00 +0900</pubDate>
       
@@ -30,7 +30,7 @@
     </item>
     
     <item>
-      <title>Godot で作るトップダウンシューティングの 4 種類の銃</title>
+      <title>Godot3 で作るトップダウンシューティングの 4 種類の銃</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/</link>
       <pubDate>Wed, 04 May 2022 01:30:00 +0900</pubDate>
       

@@ -126,6 +126,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/astar/</loc>
     <lastmod>2022-09-19T02:10:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/astar/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/astar/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/gamedev/</loc>
     <lastmod>2022-09-19T02:10:00+09:00</lastmod>
@@ -140,9 +150,6 @@
                 href="https://www.peanuts-code.com/ja/tags/gamedev/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/</loc>
-    <lastmod>2022-09-19T02:10:00+09:00</lastmod>
-  </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/godot3/</loc>
     <lastmod>2022-09-19T02:10:00+09:00</lastmod>
     <xhtml:link
@@ -154,6 +161,19 @@
                 rel="alternate"
                 hreflang="ja"
                 href="https://www.peanuts-code.com/ja/tags/godot3/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/</loc>
+    <lastmod>2022-09-19T02:10:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tutorials/gd0017_2d_grid_based_path_finding/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/godotengine/</loc>
