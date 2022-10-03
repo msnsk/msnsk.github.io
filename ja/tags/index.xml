@@ -10,13 +10,67 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 19 Sep 2022 02:10:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Oct 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2D</title>
       <link>https://www.peanuts-code.com/ja/tags/2d/</link>
-      <pubDate>Mon, 19 Sep 2022 02:10:00 +0900</pubDate>
+      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/2d/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GameDev</title>
+      <link>https://www.peanuts-code.com/ja/tags/gamedev/</link>
+      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/gamedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Godot3</title>
+      <link>https://www.peanuts-code.com/ja/tags/godot3/</link>
+      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/godot3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GodotEngine</title>
+      <link>https://www.peanuts-code.com/ja/tags/godotengine/</link>
+      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>アニメーション</title>
+      <link>https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/</link>
+      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>近接攻撃</title>
+      <link>https://www.peanuts-code.com/ja/tags/%E8%BF%91%E6%8E%A5%E6%94%BB%E6%92%83/</link>
+      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/%E8%BF%91%E6%8E%A5%E6%94%BB%E6%92%83/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>当たり判定</title>
+      <link>https://www.peanuts-code.com/ja/tags/%E5%BD%93%E3%81%9F%E3%82%8A%E5%88%A4%E5%AE%9A/</link>
+      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/%E5%BD%93%E3%81%9F%E3%82%8A%E5%88%A4%E5%AE%9A/</guid>
       <description></description>
     </item>
     
@@ -26,33 +80,6 @@
       <pubDate>Mon, 19 Sep 2022 02:10:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/astar/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GameDev</title>
-      <link>https://www.peanuts-code.com/ja/tags/gamedev/</link>
-      <pubDate>Mon, 19 Sep 2022 02:10:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/gamedev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Godot3</title>
-      <link>https://www.peanuts-code.com/ja/tags/godot3/</link>
-      <pubDate>Mon, 19 Sep 2022 02:10:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/godot3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GodotEngine</title>
-      <link>https://www.peanuts-code.com/ja/tags/godotengine/</link>
-      <pubDate>Mon, 19 Sep 2022 02:10:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/godotengine/</guid>
       <description></description>
     </item>
     

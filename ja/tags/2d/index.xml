@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 19 Sep 2022 02:10:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/2d/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Oct 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/2d/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>シリーズ：Godot で作るブロック崩し</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/</link>
@@ -297,6 +297,15 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</guid>
       <description>第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップ</description>
+    </item>
+    
+    <item>
+      <title>Godot3 で作る 2D ゲームの近接攻撃の当たり判定</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/</link>
+      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/</guid>
+      <description>この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（H</description>
     </item>
     
     <item>

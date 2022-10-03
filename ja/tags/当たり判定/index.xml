@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>当たり判定 on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/%E5%BD%93%E3%81%9F%E3%82%8A%E5%88%A4%E5%AE%9A/</link>
+    <description>Recent content in 当たり判定 on Peanuts Code</description>
+    <image>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Mon, 03 Oct 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E5%BD%93%E3%81%9F%E3%82%8A%E5%88%A4%E5%AE%9A/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot3 で作る 2D ゲームの近接攻撃の当たり判定</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/</link>
+      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/</guid>
+      <description>この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（H</description>
+    </item>
+    
+  </channel>
+</rss>
