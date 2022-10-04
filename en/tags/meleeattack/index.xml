@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>MeleeAttack on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/en/tags/meleeattack/</link>
+    <description>Recent content in MeleeAttack on Peanuts Code</description>
+    <image>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 05 Oct 2022 02:55:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/meleeattack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2D Hit Detection for Melee Attacks in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/</link>
+      <pubDate>Wed, 05 Oct 2022 02:55:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/</guid>
+      <description>This article introduces a method for implementing simple hit detection for melee attacks in 2D games. This is a commonly used method where the object to attack (e.g., player character) has a collision shape (called &amp;ldquo;Hit Box&amp;rdquo;) that is only active during the attack, and the object to be attacked (e.g., enemy character, destructible barrels, crates, grass, etc.) has a collision shape (called &amp;ldquo;Hurt Box). The hit judgment of the attack can be implemented by enabling/disabling the Hit Box and Hurt Box, and changing their size and position in accordance with the animation of the attack. This is relatively easy</description>
+    </item>
+    
+  </channel>
+</rss>

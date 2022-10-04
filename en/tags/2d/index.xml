@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 22 Sep 2022 19:45:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/2d/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Oct 2022 02:55:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/2d/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2D Hit Detection for Melee Attacks in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/</link>
+      <pubDate>Wed, 05 Oct 2022 02:55:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/</guid>
+      <description>This article introduces a method for implementing simple hit detection for melee attacks in 2D games. This is a commonly used method where the object to attack (e.g., player character) has a collision shape (called &amp;ldquo;Hit Box&amp;rdquo;) that is only active during the attack, and the object to be attacked (e.g., enemy character, destructible barrels, crates, grass, etc.) has a collision shape (called &amp;ldquo;Hurt Box). The hit judgment of the attack can be implemented by enabling/disabling the Hit Box and Hurt Box, and changing their size and position in accordance with the animation of the attack. This is relatively easy</description>
+    </item>
+    
     <item>
       <title>2D Grid Based Path Finding in Godot3</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0017_2d_grid_based_path_finding/</link>
