@@ -10,11 +10,11 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 03 Oct 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Oct 2022 16:30:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2D</title>
       <link>https://www.peanuts-code.com/ja/tags/2d/</link>
-      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      <pubDate>Thu, 13 Oct 2022 16:30:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/2d/</guid>
       <description></description>
@@ -23,7 +23,7 @@
     <item>
       <title>GameDev</title>
       <link>https://www.peanuts-code.com/ja/tags/gamedev/</link>
-      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      <pubDate>Thu, 13 Oct 2022 16:30:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/gamedev/</guid>
       <description></description>
@@ -32,7 +32,7 @@
     <item>
       <title>Godot3</title>
       <link>https://www.peanuts-code.com/ja/tags/godot3/</link>
-      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      <pubDate>Thu, 13 Oct 2022 16:30:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/godot3/</guid>
       <description></description>
@@ -41,7 +41,7 @@
     <item>
       <title>GodotEngine</title>
       <link>https://www.peanuts-code.com/ja/tags/godotengine/</link>
-      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      <pubDate>Thu, 13 Oct 2022 16:30:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/godotengine/</guid>
       <description></description>
@@ -50,9 +50,18 @@
     <item>
       <title>アニメーション</title>
       <link>https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/</link>
-      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      <pubDate>Thu, 13 Oct 2022 16:30:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ステートマシン</title>
+      <link>https://www.peanuts-code.com/ja/tags/%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%9E%E3%82%B7%E3%83%B3/</link>
+      <pubDate>Thu, 13 Oct 2022 16:30:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%9E%E3%82%B7%E3%83%B3/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ステートマシン on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%9E%E3%82%B7%E3%83%B3/</link>
+    <description>Recent content in ステートマシン on Peanuts Code</description>
+    <image>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Thu, 13 Oct 2022 16:30:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%9E%E3%82%B7%E3%83%B3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot3 で作るアニメーションステートマシン</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/</link>
+      <pubDate>Thu, 13 Oct 2022 16:30:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/</guid>
+      <description>今回のテーマは 2D ゲームのアニメーションステートマシンの実装だ。ステートとは「状態」のことで、ステートマシンというのは、キャラクターのある状態からある状態への遷移を制御する仕組みのことだ。 ある状態からは</description>
+    </item>
+    
+  </channel>
+</rss>
