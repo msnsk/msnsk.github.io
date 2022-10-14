@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Animation on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/en/tags/animation/</link>
-    <description>Recent content in Animation on Peanuts Code</description>
+    <title>StateMachine on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/en/tags/statemachine/</link>
+    <description>Recent content in StateMachine on Peanuts Code</description>
     <image>
       <url>https://www.peanuts-code.com/105</url>
       <link>https://www.peanuts-code.com/105</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 14 Oct 2022 20:25:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/animation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Oct 2022 20:25:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/statemachine/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Animation State Machine in Godot3</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0019_2d_animation_state_machine/</link>
@@ -18,15 +18,6 @@
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0019_2d_animation_state_machine/</guid>
       <description>This article describes an implementation of an animated state machine for a 2D game. A state machine controls the transition of an object from one state to another. There are several restrictions on state transitions, such as when an object can only transition from one state to a limited number of states, or when an object can only transition to the next state after the current animation ends. For example, &amp;ldquo;idle&amp;rdquo; and &amp;ldquo;run&amp;rdquo; can transition immediately in both directions, but &amp;ldquo;idle&amp;rdquo; to &amp;ldquo;attack&amp;rdquo; can transition immediately, but &amp;ldquo;attack&amp;rdquo; to &amp;ldquo;run&amp;rdquo; cannot, and &amp;ldquo;attack&amp;rdquo; to &amp;ldquo;idle&amp;rdquo; can transition only after the</description>
-    </item>
-    
-    <item>
-      <title>2D Hit Detection for Melee Attacks in Godot3</title>
-      <link>https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/</link>
-      <pubDate>Wed, 05 Oct 2022 02:55:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/</guid>
-      <description>This article introduces a method for implementing simple hit detection for melee attacks in 2D games. This is a commonly used method where the object to attack (e.g., player character) has a collision shape (called &amp;ldquo;Hit Box&amp;rdquo;) that is only active during the attack, and the object to be attacked (e.g., enemy character, destructible barrels, crates, grass, etc.) has a collision shape (called &amp;ldquo;Hurt Box). The hit judgment of the attack can be implemented by enabling/disabling the Hit Box and Hurt Box, and changing their size and position in accordance with the animation of the attack. This is relatively easy</description>
     </item>
     
   </channel>

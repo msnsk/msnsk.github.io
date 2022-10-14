@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 05 Oct 2022 02:55:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Oct 2022 20:25:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Animation State Machine in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0019_2d_animation_state_machine/</link>
+      <pubDate>Fri, 14 Oct 2022 20:25:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0019_2d_animation_state_machine/</guid>
+      <description>This article describes an implementation of an animated state machine for a 2D game. A state machine controls the transition of an object from one state to another. There are several restrictions on state transitions, such as when an object can only transition from one state to a limited number of states, or when an object can only transition to the next state after the current animation ends. For example, &amp;ldquo;idle&amp;rdquo; and &amp;ldquo;run&amp;rdquo; can transition immediately in both directions, but &amp;ldquo;idle&amp;rdquo; to &amp;ldquo;attack&amp;rdquo; can transition immediately, but &amp;ldquo;attack&amp;rdquo; to &amp;ldquo;run&amp;rdquo; cannot, and &amp;ldquo;attack&amp;rdquo; to &amp;ldquo;idle&amp;rdquo; can transition only after the</description>
+    </item>
+    
     <item>
       <title>2D Hit Detection for Melee Attacks in Godot3</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/</link>

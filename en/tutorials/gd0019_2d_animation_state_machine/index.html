@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Animation State Machine in Godot3 | Peanuts Code</title>
+<meta name="keywords" content="GameDev, GodotEngine, Godot3, 2D, Animation, StateMachine" />
+<meta name="description" content="This article describes an implementation of an animated state machine for a 2D game. A state machine controls the transition of an object from one state to another. There are several restrictions on state transitions, such as when an object can only transition from one state to a limited number of states, or when an object can only transition to the next state after the current animation ends. For example, &ldquo;idle&rdquo; and &ldquo;run&rdquo; can transition immediately in both directions, but &ldquo;idle&rdquo; to &ldquo;attack&rdquo; can transition immediately, but &ldquo;attack&rdquo; to &ldquo;run&rdquo; cannot, and &ldquo;attack&rdquo; to &ldquo;idle&rdquo; can transition only after the">
+<meta name="author" content="Gobo">
+<link rel="canonical" href="https://www.peanuts-code.com/en/tutorials/gd0019_2d_animation_state_machine/" />
+<meta name="google-site-verification" content="XYZabc" />
+<meta name="yandex-verification" content="XYZabc" />
+<meta name="msvalidate.01" content="XYZabc" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="/images/logomark.png" as="image">
+<link rel="icon" href="https://www.peanuts-code.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.peanuts-code.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.peanuts-code.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.peanuts-code.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.104.3" />
+<link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/" />
+<link rel="alternate" hreflang="en" href="https://www.peanuts-code.com/en/tutorials/gd0019_2d_animation_state_machine/" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-DK0NK2RTTW', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="Animation State Machine in Godot3" />
+<meta property="og:description" content="This article describes an implementation of an animated state machine for a 2D game. A state machine controls the transition of an object from one state to another. There are several restrictions on state transitions, such as when an object can only transition from one state to a limited number of states, or when an object can only transition to the next state after the current animation ends. For example, &ldquo;idle&rdquo; and &ldquo;run&rdquo; can transition immediately in both directions, but &ldquo;idle&rdquo; to &ldquo;attack&rdquo; can transition immediately, but &ldquo;attack&rdquo; to &ldquo;run&rdquo; cannot, and &ldquo;attack&rdquo; to &ldquo;idle&rdquo; can transition only after the" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.peanuts-code.com/en/tutorials/gd0019_2d_animation_state_machine/" />
+<meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0019_state_machine/img31.gif" /><meta property="article:section" content="tutorials" />
+<meta property="article:published_time" content="2022-10-14T20:25:00&#43;09:00" />
+<meta property="article:modified_time" content="2022-10-14T20:25:00&#43;09:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0019_state_machine/img31.gif" />
+<meta name="twitter:title" content="Animation State Machine in Godot3"/>
+<meta name="twitter:description" content="This article describes an implementation of an animated state machine for a 2D game. A state machine controls the transition of an object from one state to another. There are several restrictions on state transitions, such as when an object can only transition from one state to a limited number of states, or when an object can only transition to the next state after the current animation ends. For example, &ldquo;idle&rdquo; and &ldquo;run&rdquo; can transition immediately in both directions, but &ldquo;idle&rdquo; to &ldquo;attack&rdquo; can transition immediately, but &ldquo;attack&rdquo; to &ldquo;run&rdquo; cannot, and &ldquo;attack&rdquo; to &ldquo;idle&rdquo; can transition only after the"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Tutorials",
+      "item": "https://www.peanuts-code.com/en/tutorials/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Animation State Machine in Godot3",
+      "item": "https://www.peanuts-code.com/en/tutorials/gd0019_2d_animation_state_machine/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Animation State Machine in Godot3",
+  "name": "Animation State Machine in Godot3",
+  "description": "This article describes an implementation of an animated state machine for a 2D game. A state machine controls the transition of an object from one state to another. There are several restrictions on state transitions, such as when an object can only transition from one state to a limited number of states, or when an object can only transition to the next state after the current animation ends. For example, \u0026ldquo;idle\u0026rdquo; and \u0026ldquo;run\u0026rdquo; can transition immediately in both directions, but \u0026ldquo;idle\u0026rdquo; to \u0026ldquo;attack\u0026rdquo; can transition immediately, but \u0026ldquo;attack\u0026rdquo; to \u0026ldquo;run\u0026rdquo; cannot, and \u0026ldquo;attack\u0026rdquo; to \u0026ldquo;idle\u0026rdquo; can transition only after the",
+  "keywords": [
+    "GameDev", "GodotEngine", "Godot3", "2D", "Animation", "StateMachine"
+  ],
+  "articleBody": "This article describes an implementation of an animated state machine for a 2D game. A state machine controls the transition of an object from one state to another.\nThere are several restrictions on state transitions, such as when an object can only transition from one state to a limited number of states, or when an object can only transition to the next state after the current animation ends. For example, “idle” and “run” can transition immediately in both directions, but “idle” to “attack” can transition immediately, but “attack” to “run” cannot, and “attack” to “idle” can transition only after the “attack” animation ends. The “attack” to “idle” transition occurs only after the “attack” animation is over.\nIf all of these controls were coded in script, the code would tend to be rather long and complex. On the other hand, Godot’s “AnimationTree” node can be used to reduce the amount of script code and improve readability. In this article, we will show you how to implement a state machine using the “AnimationTree” node.\nEnvironment Godot version: 3.5.1\nComputer OS: macOS 12.6\nBasic Articles You may also find the following articles useful.\nDownloading Godot Project Manager of Godot3 Preparation Project Settings After starting a new project, do some preliminary project settings.\nThe window size is set as follows.\nAdded the following actions to the input map for the player character’s movement and attacks.\nDownload Assets I have downloaded the asset pack from the following link.\nitch.io - mystic woods Use the three sprite sheets “player.png”, “slime.png” and “objects.png” in the downloaded folder. I can’t help but be thankful for this wonderful asset.\nThe three sprite sheets (.png files) are added to the project by dragging and dropping them into Godot’s file system.\nIf the added image appears blurry (it will by default), select the imported file, select “Presets” \u003e “2D Pixel” from the “Import” tab, and click the “Reimport” button. The image will now be displayed with the edges characteristic of dot images.\nCreate a Player scene Create a “Player” scene for the player character. The scene tree will look like this:\nPlayer (KinematicBody2D) Sprite BodyCollisionShape (CollisionShape2D) HitBox (Area2D) HitBoxCollisionShape (CollisionShape2D) AnimationPlayer AnimationTree Edit a node in the Player scene Sprite node Apply the previously imported resource “player.png” to the “Texture” property in the inspector.\nSet the value of the “Animation” \u003e “Hframes” property to 6 and the “Vframes” property to 5. This is because the applied sprite sheet consists of 6 columns horizontally and 5 rows vertically. Since this is a free version of the sprite sheet, the fourth row is missing, so don’t worry about it. Later, we will create an animation by changing the number of frames in the “AnimationPlayer” node.\nChange “Offset” \u003e “Offset” property to (0, -17). The feet of the player character’s texture will now be at the coordinates (0, 0). This is done so that when the player character’s feet overlap with other objects on the game screen, the y-coordinates of each object are compared, and the object in front (with the larger y-coordinate) is displayed in the foreground.\nBodyCollisionShape (CollisionShape2D) node In the inspector, the “CircleShape2D” resource was applied to the “Shape” property, and the size and position were adjusted as follows.\nHitBox (Area2D) node This node is for the Hit Box for melee attacks. There is no need to edit this node. The implementation of melee attacks is explained in detail in the following article.\n2D Hit Detection for Melee Attacks in Godot3 HitBoxCollisionShape (CollisionShape2D) node The “RectangleShape2D” resource is applied to the “Shape” property. The size and position of the collision shape of the Hit Box will be changed in the animation of the “AnimationPlayer” node, so we will leave them as they are and set them when creating the animation. The “Disabled” property is also changed in the attack animation, but since the Hit Box needs to be disabled except during the attack, we leave it turned on.\nAnimationPlayer node Confirm that the “Root Node” is set to the “Player” node in the inspector.\nCreate animations In the animation panel, create the following six types of animations.\nidle\nJust change the “Frame” property of the “Sprite” node. Looping is on.\nrun\nJust change the “Frame” property of the “Sprite” node. Looping is on.\nattack1\nThis is the first animation for the attack. In addition to changing the “Frame” property of the “Sprite” node, the “Disabled” properties of the “BodyCollisionShape” and “HitBoxCollisionShape” are turned on and off. Looping is off. At this timing, the position and size of the “HitBoxCollisionShape” collision shape should be set to match the sprite’s sword trajectory.\nattack2\nThis is the second animation the attack. This is played during the first animation to make it look as if the player character is attacking continuously. It is just “attack1” played backwards. Looping is turned off.\nhurt\nThis is the animation when the player character takes damage. The sprite sheet does not have a texture when it is damaged, so it is represented by blinking colors. The “Modulate” property of the “Sprite” node is switched between white and red (translucent) multiple times. Two “Call Method Tracks” were added by clicking “+Add Track” in the upper left corner of the panel. One is to call the set_physics_process() method at the end of the animation. In the inspector, turn on “Args” \u003e “0” \u003e “Value”. This means that the argument of this method is passed true. The loop is turned off. The other method will be defined later in the script and then added (here is the state after the addition). The die_on_hurt_anim() method is called. This will be the method that will transition to the “die” animation when the life reaches 0, and will be explained again when scripting.\ndie\nAnimation when dead. Just change the “Frame” property of the “Sprite” node. Looping is off.\nThe naming convention “attack1” and “attack2” is based on the following video.\nYouTube - Name Files Logically AnimationTree node Using this node, we will create a state machine to control the animation prepared by “AnimationPlayer”. 1. In the inspector, select “New AnimationNodeStateMachine” for the “Tree Root” property. This is a setting to enable state management of animations.\nMake sure that the “AnimationPlayer” node is selected in the “Anim Player” property. Turn on the “Active” property. If it is not turned on, this node will not function. However, when adding or editing animations on the “AnimationPlayer” node, you may need to turn it off to stop the animation from playing.\nCreate a State Machine From this point on, we will work on the animation panel. We will compose the animation tree that will carry the state machine.\nOpen the Animation Tree panel.\nRight-click in the panel with the Select/Move tool\nor use the node creation tool and click in the panel, then you can select an animation you want to add as a node from the animations created in “AnimationPlayer”.\nAt first, all the animations created by “AnimationPlayer” are added as nodes in the animation tree. In the screenshot below, the nodes are arranged in an orderly fashion, but in the actual creation of the animation tree, the nodes will be connected to each other, and the arrangement will be adjusted each time to make it easier to see.\nThen, in the Select/Move tool, hold down the Shift key and press\nor in the Node Connection tool, press\nnode to node by dragging.\nIf you look at the inspector with the connected arrow selected, you will see that it is a resource called “AnimationNodeStateMachineTransition”. By changing the “Switch Mode” property of this resource from the default “Immediate” to “AtEnd,” it is possible to transition to the next node’s animation after the node’s animation ends. At this time and in the panel, the arrows will be displayed with lines. In addition, if the “Auto Advance” property is turned on, the transition can be made automatically without being controlled by a script. In this case, the arrow will be green.\nFor example, when the player character takes damage from an enemy, we want to immediately switch the animation from “idle” to “hurt”, but automatically transition to “idle” when the “hurt” animation ends. In this case, the following is used.\nWe want the first animation at the beginning of the game to play automatically, so select the “idle” animation node and enable autoplay.\nSimilarly, the node for the “die” animation when the player character dies should be selected and set as the last node.\nThe final configuration was as follows. This time, the attack is not allowed while moving.\nAttach a script to the Player node Attach the script to the “Player” node and edit as follows:\n###Player.gd### extends KinematicBody2D # Life var life: int = 3 # Speed var speed := 80.0 # Velocity var velocity: Vector2 # Referencing a Sprite node onready var sprite = $Sprite # Parameters \u003e Playback property of the AnimationTree node # i.e. AnimationNodeStateMachinePlayback resource onready var state_machine = $AnimationTree.get(\"parameters/playback\") func _physics_process(_delta): get_input() velocity = move_and_slide(velocity) # Methods for player input func get_input(): # Get the current state var current_state = state_machine.get_current_node() # Input for attack if Input.is_action_just_pressed(\"attack\"): # If current_state is not attack1, move to attack1 if current_state ! = \"attack1\": state_machine.travel(\"attack1\") # If current_state is attack1, move to attack2 else: state_machine.travel(\"attack2\") # If an attack is entered, no movement input is accepted and the operation ends. return # Input of movement velocity = Vector2() if Input.is_action_pressed(\"right\"): velocity.x += 1 sprite.flip_h = false if Input.is_action_pressed(\"left\"): velocity.x -= 1 sprite.flip_h = true if Input.is_action_pressed(\"down\"): velocity.y += 1 if Input.is_action_pressed(\"up\"): velocity.y -= 1 velocity = velocity.normalized() * speed # If velocity length is 0, transition the state to idle if velocity.length() == 0: state_machine.travel(\"idle\") # If velocity length is greater than 0, transition the state to run if velocity.length() \u003e 0: state_machine.travel(\"run\") # Methods called when a player is damaged func hurt(): # Life is reduced by 1 life -= 1 # Stop physics process and stop accepting input set_physics_process(false) # Transition state to hurt state_machine.travel(\"hurt\") # Method called at the end of the hurt animation func die_on_hurt_anim(): # If life is greater than 0, do nothing and exit if life \u003e 0: return # Transition the state to die state_machine.travel(\"die\") # Stop the physical process and stop accepting input set_physics_process(false) As mentioned earlier, the method die_on_hurt_anim must be called within the “hurt” animation. At this point, you should go back to the Animation Panel and edit the `hurt’ animation in the “AnimationPlayer” node.\nThe “AnimationNodeStateMachinePlayback” resource class, which is the value of the “AnimationTree” node’s “Parameters” \u003e “Playback” property, has a method called get_current_node that can be called from the current node. Calling this method will get the current animation node. This is useful when you want to make an if statement conditional on the current node.\nThe travel method, also a built-in function of this class, can be used to control the animation transition by passing the name of the animation node to be transitioned as a string argument. Of course, it is necessary to set up the transition on the animation tree (connected by arrows).\nConnect the “body_entered” signal of the “HitBox (Area2D)” node at the end of the script and edit the generated method as follows:\n###Player.gd### func _on_HitBox_body_entered(body): # Call the hurt method of the body object that was hit by the sword body.hurt() Operation check This time, a “Tree” scene and a “Slime” scene were created separately for operation checks. Both scenes can inflict damage by colliding with the “HitBox” in the “Player” scene. The “Slime” scene also has a “HitBox” node, and when the “Player” hits the “Slime”, the player side takes damage and its life is reduced by one. The life property of the “Player” is set to 3, so that the player will die after hitting Slime three times.\nWe prepared a “World” scene and added instances of the “Player,” “Tree,” and “Slime” scenes. To check the operation, set the “World” scene as the main scene and run the project.\nYou can see how the state machine smoothly transitions the animation according to the situation.\nConclusion In this article, we explained how to use a state machine to transition the animation (state) of the player character. Let’s look back at the key points of our work.\nIdentify the states to be used in the game first. Create an animation for each state using “AnimationPlayer” Create a state machine with “AnimationTree” Control animation transitions with a script. In fact, if you have a large number of animations, the nodes and the lines connecting them in the animation tree panel may become cluttered and difficult to understand visually. In such cases, it is a good idea to write them down on a piece of paper with a pen first to organize them in your mind.\nOf course, you can also create a state machine with a script instead of relying on the “AnimationTree” node, so if you are not comfortable with editing the animation tree panel, you can try that.\nReferences Godot Docs - Introduction to the animation features Godot Docs - Using AnimationTree Godot Docs - AnimationNodeStateMachinePlayback KidsCanCode - CONTROLLING ANIMATION STATES YouTube - Godot Recipes: Animation States YouTube - Make an Action RPG in Godot 3.2 (P9 | Attacking Animation + State Machines) YouTube - Name Files Logically itch.io - mystic woods ",
+  "wordCount" : "2226",
+  "inLanguage": "en",
+  "image":"https://www.peanuts-code.com/images/tutorials/gd0019_state_machine/img31.gif","datePublished": "2022-10-14T20:25:00+09:00",
+  "dateModified": "2022-10-14T20:25:00+09:00",
+  "author":{
+    "@type": "Person",
+    "name": "Gobo"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.peanuts-code.com/en/tutorials/gd0019_2d_animation_state_machine/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Peanuts Code",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.peanuts-code.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://www.peanuts-code.com/en/" accesskey="h" title="Peanuts Code (Alt + H)">
+                <img src="/images/logomark.png" alt="logo" aria-label="logo"
+                    height="35">Peanuts Code</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://www.peanuts-code.com/ja/" title="日本語"
+                            aria-label="日本語">Ja</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://www.peanuts-code.com/en/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/tutorials/" title="Tutorials">
+                    <span>Tutorials</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.peanuts-code.com/en/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/en/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/en/tutorials/">Tutorials</a></div>
+    <h1 class="post-title">
+      Animation State Machine in Godot3
+    </h1>
+    <div class="post-meta">2022-10-14&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Gobo&nbsp;|&nbsp;
+<ul class="i18n_list">Translations:
+    <li>
+        <a href="https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/">Ja</a>
+    </li>
+</ul>
+</div>
+    
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/en/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/godot3/">Godot3</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/2d/">2D</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/animation/">Animation</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/statemachine/">StateMachine</a></li>
+    </ul>
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Animation State Machine in Godot3 on twitter"
+        href="https://twitter.com/intent/tweet/?text=Animation%20State%20Machine%20in%20Godot3&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f&amp;hashtags=GameDev%2cGodotEngine%2cGodot3%2c2D%2cAnimation%2cStateMachine">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Animation State Machine in Godot3 on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f&amp;title=Animation%20State%20Machine%20in%20Godot3&amp;summary=Animation%20State%20Machine%20in%20Godot3&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Animation State Machine in Godot3 on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f&title=Animation%20State%20Machine%20in%20Godot3">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Animation State Machine in Godot3 on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Animation State Machine in Godot3 on whatsapp"
+        href="https://api.whatsapp.com/send?text=Animation%20State%20Machine%20in%20Godot3%20-%20https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Animation State Machine in Godot3 on telegram"
+        href="https://telegram.me/share/url?text=Animation%20State%20Machine%20in%20Godot3&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+    
+    
+    
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0019_state_machine/img31.gif" alt="Animation State Machine in Godot3">
+        
+</figure><div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#preparation" aria-label="Preparation">Preparation</a><ul>
+                        
+                <li>
+                    <a href="#project-settings" aria-label="Project Settings">Project Settings</a></li>
+                <li>
+                    <a href="#download-assets" aria-label="Download Assets">Download Assets</a></li></ul>
+                </li>
+                <li>
+                    <a href="#create-a-player-scene" aria-label="Create a Player scene">Create a Player scene</a></li>
+                <li>
+                    <a href="#edit-a-node-in-the-player-scene" aria-label="Edit a node in the Player scene">Edit a node in the Player scene</a><ul>
+                        
+                <li>
+                    <a href="#sprite-node" aria-label="Sprite node">Sprite node</a></li>
+                <li>
+                    <a href="#bodycollisionshape-collisionshape2d-node" aria-label="BodyCollisionShape (CollisionShape2D) node">BodyCollisionShape (CollisionShape2D) node</a></li>
+                <li>
+                    <a href="#hitbox-area2d-node" aria-label="HitBox (Area2D) node">HitBox (Area2D) node</a></li>
+                <li>
+                    <a href="#hitboxcollisionshape-collisionshape2d-node" aria-label="HitBoxCollisionShape (CollisionShape2D) node">HitBoxCollisionShape (CollisionShape2D) node</a></li>
+                <li>
+                    <a href="#animationplayer-node" aria-label="AnimationPlayer node">AnimationPlayer node</a><ul>
+                        
+                <li>
+                    <a href="#create-animations" aria-label="Create animations">Create animations</a></li></ul>
+                </li>
+                <li>
+                    <a href="#animationtree-node" aria-label="AnimationTree node">AnimationTree node</a><ul>
+                        
+                <li>
+                    <a href="#create-a-state-machine" aria-label="Create a State Machine">Create a State Machine</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#attach-a-script-to-the-player-node" aria-label="Attach a script to the Player node">Attach a script to the Player node</a></li>
+                <li>
+                    <a href="#operation-check" aria-label="Operation check">Operation check</a></li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+                <li>
+                    <a href="#references" aria-label="References">References</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>This article describes an implementation of an animated state machine for a 2D game. A state machine controls the transition of an object from one state to another.</p>
+<p>There are several restrictions on state transitions, such as when an object can only transition from one state to a limited number of states, or when an object can only transition to the next state after the current animation ends. For example, &ldquo;idle&rdquo; and &ldquo;run&rdquo; can transition immediately in both directions, but &ldquo;idle&rdquo; to &ldquo;attack&rdquo; can transition immediately, but &ldquo;attack&rdquo; to &ldquo;run&rdquo; cannot, and &ldquo;attack&rdquo; to &ldquo;idle&rdquo; can transition only after the &ldquo;attack&rdquo; animation ends. The &ldquo;attack&rdquo; to &ldquo;idle&rdquo; transition occurs only after the &ldquo;attack&rdquo; animation is over.</p>
+<p>If all of these controls were coded in script, the code would tend to be rather long and complex. On the other hand, Godot&rsquo;s &ldquo;AnimationTree&rdquo; node can be used to reduce the amount of script code and improve readability. In this article, we will show you how to implement a state machine using the &ldquo;AnimationTree&rdquo; node.</p>
+<blockquote>
+<p><strong><span style="color:salmon">Environment</span>
+</strong><br>
+<em>Godot version: <strong>3.5.1</strong></em><br>
+<em>Computer OS: <strong>macOS 12.6</strong></em></p>
+</blockquote>
+<blockquote>
+<p><strong><span style="color:salmon">Basic Articles</span>
+</strong><br>
+<em>You may also find the following articles useful.<br>
+<a href="https://www.peanuts-code.com/en/tutorials/gd0001_download/">Downloading Godot</a>
+<br>
+<a href="https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/">Project Manager of Godot3</a>
+</em></p>
+</blockquote>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h2 id="preparation">Preparation<a hidden class="anchor" aria-hidden="true" href="#preparation">#</a></h2>
+<h3 id="project-settings">Project Settings<a hidden class="anchor" aria-hidden="true" href="#project-settings">#</a></h3>
+<p>After starting a new project, do some preliminary project settings.</p>
+<p>The window size is set as follows.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img1.png" alt="project settings - window size"  />
+</p>
+<p>Added the following actions to the input map for the player character&rsquo;s movement and attacks.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img2.png" alt="project settings - add actions to input map"  />
+</p>
+<br>
+<h3 id="download-assets">Download Assets<a hidden class="anchor" aria-hidden="true" href="#download-assets">#</a></h3>
+<p>I have downloaded the asset pack from the following link.</p>
+<blockquote>
+<p><em><a href="https://game-endeavor.itch.io/mystic-woods" target="_blank">itch.io - mystic woods</a>
+</em></p>
+</blockquote>
+<p>Use the three sprite sheets &ldquo;player.png&rdquo;, &ldquo;slime.png&rdquo; and &ldquo;objects.png&rdquo; in the downloaded folder. I can&rsquo;t help but be thankful for this wonderful asset.</p>
+<p>The three sprite sheets (.png files) are added to the project by dragging and dropping them into Godot&rsquo;s file system.</p>
+<p>If the added image appears blurry (it will by default), select the imported file, select &ldquo;Presets&rdquo; &gt; &ldquo;2D Pixel&rdquo; from the &ldquo;Import&rdquo; tab, and click the &ldquo;Reimport&rdquo; button. The image will now be displayed with the edges characteristic of dot images.</p>
+<hr>
+<h2 id="create-a-player-scene">Create a Player scene<a hidden class="anchor" aria-hidden="true" href="#create-a-player-scene">#</a></h2>
+<p>Create a &ldquo;Player&rdquo; scene for the player character. The scene tree will look like this:</p>
+<ul>
+<li>Player (KinematicBody2D)
+<ul>
+<li>Sprite</li>
+<li>BodyCollisionShape (CollisionShape2D)</li>
+<li>HitBox (Area2D)
+<ul>
+<li>HitBoxCollisionShape (CollisionShape2D)</li>
+</ul>
+</li>
+<li>AnimationPlayer</li>
+<li>AnimationTree</li>
+</ul>
+</li>
+</ul>
+<p><img loading="lazy" src="/images/tutorials/gd0019_state_machine/img3.png" alt="Player scene tree"  />
+</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h2 id="edit-a-node-in-the-player-scene">Edit a node in the Player scene<a hidden class="anchor" aria-hidden="true" href="#edit-a-node-in-the-player-scene">#</a></h2>
+<h3 id="sprite-node">Sprite node<a hidden class="anchor" aria-hidden="true" href="#sprite-node">#</a></h3>
+<ol>
+<li>Apply the previously imported resource &ldquo;player.png&rdquo; to the &ldquo;Texture&rdquo; property in the inspector.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img4.png" alt="Sprite node - edit properies"  />
+<br>
+Set the value of the &ldquo;Animation&rdquo; &gt; &ldquo;Hframes&rdquo; property to 6 and the &ldquo;Vframes&rdquo; property to 5. This is because the applied sprite sheet consists of 6 columns horizontally and 5 rows vertically. Since this is a free version of the sprite sheet, the fourth row is missing, so don&rsquo;t worry about it. Later, we will create an animation by changing the number of frames in the &ldquo;AnimationPlayer&rdquo; node.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img6.png" alt="Sprite node - edit properies"  />
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img4.1.png" alt="Sprite node - edit properies"  />
+</li>
+<li>Change &ldquo;Offset&rdquo; &gt; &ldquo;Offset&rdquo; property to (0, -17). The feet of the player character&rsquo;s texture will now be at the coordinates (0, 0). This is done so that when the player character&rsquo;s feet overlap with other objects on the game screen, the y-coordinates of each object are compared, and the object in front (with the larger y-coordinate) is displayed in the foreground.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img4.2.png" alt="Sprite node - edit properies"  />
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img5.png" alt="Sprite node - edit properies"  />
+</li>
+</ol>
+<br>
+<h3 id="bodycollisionshape-collisionshape2d-node">BodyCollisionShape (CollisionShape2D) node<a hidden class="anchor" aria-hidden="true" href="#bodycollisionshape-collisionshape2d-node">#</a></h3>
+<p>In the inspector, the &ldquo;CircleShape2D&rdquo; resource was applied to the &ldquo;Shape&rdquo; property, and the size and position were adjusted as follows.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img7.png" alt="BodyCollisionShape node - edit properies"  />
+</p>
+<br>
+<h3 id="hitbox-area2d-node">HitBox (Area2D) node<a hidden class="anchor" aria-hidden="true" href="#hitbox-area2d-node">#</a></h3>
+<p>This node is for the Hit Box for melee attacks. There is no need to edit this node. The implementation of melee attacks is explained in detail in the following article.</p>
+<blockquote>
+<p><em><a href="https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/" title="2D Hit Detection for Melee Attacks in Godot3">2D Hit Detection for Melee Attacks in Godot3</a>
+</em></p>
+</blockquote>
+<br>
+<h3 id="hitboxcollisionshape-collisionshape2d-node">HitBoxCollisionShape (CollisionShape2D) node<a hidden class="anchor" aria-hidden="true" href="#hitboxcollisionshape-collisionshape2d-node">#</a></h3>
+<p>The &ldquo;RectangleShape2D&rdquo; resource is applied to the &ldquo;Shape&rdquo; property. The size and position of the collision shape of the Hit Box will be changed in the animation of the &ldquo;AnimationPlayer&rdquo; node, so we will leave them as they are and set them when creating the animation. The &ldquo;Disabled&rdquo; property is also changed in the attack animation, but since the Hit Box needs to be disabled except during the attack, we leave it turned on.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img8.png" alt="HitBoxCollisionShape node - edit properies"  />
+</p>
+<br>
+<h3 id="animationplayer-node">AnimationPlayer node<a hidden class="anchor" aria-hidden="true" href="#animationplayer-node">#</a></h3>
+<p>Confirm that the &ldquo;Root Node&rdquo; is set to the &ldquo;Player&rdquo; node in the inspector.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img9.png" alt="AnimationPlayer node - edit properies"  />
+</p>
+<br>
+<h4 id="create-animations">Create animations<a hidden class="anchor" aria-hidden="true" href="#create-animations">#</a></h4>
+<p>In the animation panel, create the following six types of animations.</p>
+<ul>
+<li><strong>idle</strong><br>
+Just change the &ldquo;Frame&rdquo; property of the &ldquo;Sprite&rdquo; node. Looping is on.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img10.gif" alt="Animation - idle"  />
+</li>
+<li><strong>run</strong><br>
+Just change the &ldquo;Frame&rdquo; property of the &ldquo;Sprite&rdquo; node. Looping is on.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img11.gif" alt="Animation - run"  />
+</li>
+<li><strong>attack1</strong><br>
+This is the first animation for the attack. In addition to changing the &ldquo;Frame&rdquo; property of the &ldquo;Sprite&rdquo; node, the &ldquo;Disabled&rdquo; properties of the &ldquo;BodyCollisionShape&rdquo; and &ldquo;HitBoxCollisionShape&rdquo; are turned on and off. Looping is off. At this timing, the position and size of the &ldquo;HitBoxCollisionShape&rdquo; collision shape should be set to match the sprite&rsquo;s sword trajectory.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img12.gif" alt="Animation - attack1"  />
+</li>
+<li><strong>attack2</strong><br>
+This is the second animation the attack. This is played during the first animation to make it look as if the player character is attacking continuously. It is just &ldquo;attack1&rdquo; played backwards. Looping is turned off.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img13.gif" alt="Animation - attack2"  />
+</li>
+<li><strong>hurt</strong><br>
+This is the animation when the player character takes damage. The sprite sheet does not have a texture when it is damaged, so it is represented by blinking colors. The &ldquo;Modulate&rdquo; property of the &ldquo;Sprite&rdquo; node is switched between white and red (translucent) multiple times. Two &ldquo;Call Method Tracks&rdquo; were added by clicking &ldquo;+Add Track&rdquo; in the upper left corner of the panel. One is to call the <code>set_physics_process()</code> method at the end of the animation. In the inspector, turn on &ldquo;Args&rdquo; &gt; &ldquo;0&rdquo; &gt; &ldquo;Value&rdquo;. This means that the argument of this method is passed <code>true</code>. The loop is turned off. The other method will be defined later in the script and then added (here is the state after the addition). The <code>die_on_hurt_anim()</code> method is called. This will be the method that will transition to the &ldquo;die&rdquo; animation when the life reaches 0, and will be explained again when scripting.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img14.gif" alt="Animation - hurt"  />
+</li>
+<li><strong>die</strong><br>
+Animation when dead. Just change the &ldquo;Frame&rdquo; property of the &ldquo;Sprite&rdquo; node. Looping is off.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img15.gif" alt="Animation - die"  />
+</li>
+</ul>
+<p>The naming convention &ldquo;attack1&rdquo; and &ldquo;attack2&rdquo; is based on the following video.<br>
+<a href="https://youtu.be/XMzR5mJHPDg" target="_blank">YouTube - Name Files Logically</a>
+</p>
+<br>
+<h3 id="animationtree-node">AnimationTree node<a hidden class="anchor" aria-hidden="true" href="#animationtree-node">#</a></h3>
+<p>Using this node, we will create a state machine to control the animation prepared by &ldquo;AnimationPlayer&rdquo;. 1. In the inspector, select &ldquo;New AnimationNodeStateMachine&rdquo; for the &ldquo;Tree Root&rdquo; property. This is a setting to enable state management of animations.</p>
+<ol>
+<li>Make sure that the &ldquo;AnimationPlayer&rdquo; node is selected in the &ldquo;Anim Player&rdquo; property.</li>
+<li>Turn on the &ldquo;Active&rdquo; property. If it is not turned on, this node will not function. However, when adding or editing animations on the &ldquo;AnimationPlayer&rdquo; node, you may need to turn it off to stop the animation from playing.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img16.png" alt="AnimationTree - Edit properties"  />
+</li>
+</ol>
+<br>
+<h4 id="create-a-state-machine">Create a State Machine<a hidden class="anchor" aria-hidden="true" href="#create-a-state-machine">#</a></h4>
+<p>From this point on, we will work on the animation panel. We will compose the animation tree that will carry the state machine.</p>
+<ol>
+<li>Open the Animation Tree panel.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img17.png" alt="AnimationTree pannel"  />
+</li>
+<li>Right-click in the panel with the Select/Move tool<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img18.png" alt="AnimationTree pannel"  />
+ or use the node creation tool and click in the panel,<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img19.png" alt="AnimationTree pannel"  />
+ then you can select an animation you want to add as a node from the animations created in &ldquo;AnimationPlayer&rdquo;.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img20.png" alt="AnimationTree pannel"  />
+</li>
+<li>At first, all the animations created by &ldquo;AnimationPlayer&rdquo; are added as nodes in the animation tree. In the screenshot below, the nodes are arranged in an orderly fashion, but in the actual creation of the animation tree, the nodes will be connected to each other, and the arrangement will be adjusted each time to make it easier to see.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img21.png" alt="AnimationTree pannel"  />
+</li>
+<li>Then, in the Select/Move tool, hold down the Shift key and press<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img18.png" alt="AnimationTree pannel"  />
+ or in the Node Connection tool, press<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img22.png" alt="AnimationTree pannel"  />
+ node to node by dragging.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img23.png" alt="AnimationTree pannel"  />
+</li>
+<li>If you look at the inspector with the connected arrow selected, you will see that it is a resource called &ldquo;AnimationNodeStateMachineTransition&rdquo;. By changing the &ldquo;Switch Mode&rdquo; property of this resource from the default &ldquo;Immediate&rdquo; to &ldquo;AtEnd,&rdquo; it is possible to transition to the next node&rsquo;s animation after the node&rsquo;s animation ends. At this time and in the panel, the arrows will be displayed with lines.<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img24.png" alt="AnimationTree pannel"  />
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img24.1.png" alt="AnimationTree pannel"  />
+In addition, if the &ldquo;Auto Advance&rdquo; property is turned on, the transition can be made automatically without being controlled by a script. In this case, the arrow will be green.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img25.png" alt="AnimationTree pannel"  />
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img25.1.png" alt="AnimationTree pannel"  />
+For example, when the player character takes damage from an enemy, we want to immediately switch the animation from &ldquo;idle&rdquo; to &ldquo;hurt&rdquo;, but automatically transition to &ldquo;idle&rdquo; when the &ldquo;hurt&rdquo; animation ends. In this case, the following is used.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img26.png" alt="AnimationTree pannel"  />
+</li>
+<li>We want the first animation at the beginning of the game to play automatically, so select the &ldquo;idle&rdquo; animation node and enable autoplay.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img27.png" alt="AnimationTree pannel"  />
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img27.1.png" alt="AnimationTree pannel"  />
+Similarly, the node for the &ldquo;die&rdquo; animation when the player character dies should be selected and set as the last node.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img28.png" alt="AnimationTree pannel"  />
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img28.1.png" alt="AnimationTree pannel"  />
+</li>
+<li>The final configuration was as follows. This time, the attack is not allowed while moving.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img29.png" alt="AnimationTree pannel"  />
+</li>
+</ol>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h2 id="attach-a-script-to-the-player-node">Attach a script to the Player node<a hidden class="anchor" aria-hidden="true" href="#attach-a-script-to-the-player-node">#</a></h2>
+<p>Attach the script to the &ldquo;Player&rdquo; node and edit as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Player.gd###</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Life</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> life: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Speed</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> speed :<span style="color:#f92672">=</span> <span style="color:#ae81ff">80.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Velocity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> velocity: <span style="color:#a6e22e">Vector2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Referencing a Sprite node</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> sprite <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">Sprite</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Parameters &gt; Playback property of the AnimationTree node</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># i.e. AnimationNodeStateMachinePlayback resource</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> state_machine <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>AnimationTree<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;parameters/playback&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _physics_process(_delta):
+</span></span><span style="display:flex;"><span>	get_input()
+</span></span><span style="display:flex;"><span>	velocity <span style="color:#f92672">=</span> move_and_slide(velocity)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Methods for player input</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> get_input():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Get the current state</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> current_state <span style="color:#f92672">=</span> state_machine<span style="color:#f92672">.</span>get_current_node()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Input for attack</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_just_pressed(<span style="color:#e6db74">&#34;attack&#34;</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If current_state is not attack1, move to attack1</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> current_state <span style="color:#f92672">!</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;attack1&#34;</span>:
+</span></span><span style="display:flex;"><span>			state_machine<span style="color:#f92672">.</span>travel(<span style="color:#e6db74">&#34;attack1&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If current_state is attack1, move to attack2</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			state_machine<span style="color:#f92672">.</span>travel(<span style="color:#e6db74">&#34;attack2&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If an attack is entered, no movement input is accepted and the operation ends.</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Input of movement</span>
+</span></span><span style="display:flex;"><span>	velocity <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;right&#34;</span>):
+</span></span><span style="display:flex;"><span>		velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>flip_h <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;left&#34;</span>):
+</span></span><span style="display:flex;"><span>		velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>flip_h <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;down&#34;</span>):
+</span></span><span style="display:flex;"><span>		velocity<span style="color:#f92672">.</span>y <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;up&#34;</span>):
+</span></span><span style="display:flex;"><span>		velocity<span style="color:#f92672">.</span>y <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>	velocity <span style="color:#f92672">=</span> velocity<span style="color:#f92672">.</span>normalized() <span style="color:#f92672">*</span> speed
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If velocity length is 0, transition the state to idle</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> velocity<span style="color:#f92672">.</span>length() <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>		state_machine<span style="color:#f92672">.</span>travel(<span style="color:#e6db74">&#34;idle&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If velocity length is greater than 0, transition the state to run</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> velocity<span style="color:#f92672">.</span>length() <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>		state_machine<span style="color:#f92672">.</span>travel(<span style="color:#e6db74">&#34;run&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Methods called when a player is damaged</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> hurt():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Life is reduced by 1</span>
+</span></span><span style="display:flex;"><span>	life <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Stop physics process and stop accepting input</span>
+</span></span><span style="display:flex;"><span>	set_physics_process(false)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Transition state to hurt</span>
+</span></span><span style="display:flex;"><span>	state_machine<span style="color:#f92672">.</span>travel(<span style="color:#e6db74">&#34;hurt&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Method called at the end of the hurt animation</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> die_on_hurt_anim():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># If life is greater than 0, do nothing and exit</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> life <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>: <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Transition the state to die</span>
+</span></span><span style="display:flex;"><span>	state_machine<span style="color:#f92672">.</span>travel(<span style="color:#e6db74">&#34;die&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Stop the physical process and stop accepting input</span>
+</span></span><span style="display:flex;"><span>	set_physics_process(false)
+</span></span></code></pre></div><p>As mentioned earlier, the method <code>die_on_hurt_anim</code> must be called within the &ldquo;hurt&rdquo; animation. At this point, you should go back to the Animation Panel and edit the `hurt&rsquo; animation in the &ldquo;AnimationPlayer&rdquo; node.</p>
+<p>The &ldquo;AnimationNodeStateMachinePlayback&rdquo; resource class, which is the value of the &ldquo;AnimationTree&rdquo; node&rsquo;s &ldquo;Parameters&rdquo; &gt; &ldquo;Playback&rdquo; property, has a method called <code>get_current_node</code> that can be called from the current node. Calling this method will get the current animation node. This is useful when you want to make an <code>if</code> statement conditional on the current node.</p>
+<p>The <code>travel</code> method, also a built-in function of this class, can be used to control the animation transition by passing the name of the animation node to be transitioned as a string argument. Of course, it is necessary to set up the transition on the animation tree (connected by arrows).<br>
+<br></p>
+<p>Connect the &ldquo;body_entered&rdquo; signal of the &ldquo;HitBox (Area2D)&rdquo; node at the end of the script and edit the generated method as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Player.gd###</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_HitBox_body_entered(body):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Call the hurt method of the body object that was hit by the sword</span>
+</span></span><span style="display:flex;"><span>	body<span style="color:#f92672">.</span>hurt()
+</span></span></code></pre></div><br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h2 id="operation-check">Operation check<a hidden class="anchor" aria-hidden="true" href="#operation-check">#</a></h2>
+<p>This time, a &ldquo;Tree&rdquo; scene and a &ldquo;Slime&rdquo; scene were created separately for operation checks. Both scenes can inflict damage by colliding with the &ldquo;HitBox&rdquo; in the &ldquo;Player&rdquo; scene. The &ldquo;Slime&rdquo; scene also has a &ldquo;HitBox&rdquo; node, and when the &ldquo;Player&rdquo; hits the &ldquo;Slime&rdquo;, the player side takes damage and its life is reduced by one. The <code>life</code> property of the &ldquo;Player&rdquo; is set to 3, so that the player will die after hitting Slime three times.</p>
+<p>We prepared a &ldquo;World&rdquo; scene and added instances of the &ldquo;Player,&rdquo; &ldquo;Tree,&rdquo; and &ldquo;Slime&rdquo; scenes. To check the operation, set the &ldquo;World&rdquo; scene as the main scene and run the project.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img30.png" alt="World scene tree"  />
+</p>
+<p>You can see how the state machine smoothly transitions the animation according to the situation.<br>
+<img loading="lazy" src="/images/tutorials/gd0019_state_machine/img31.gif" alt="World scene - 2D Workspace"  />
+</p>
+<br>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>In this article, we explained how to use a state machine to transition the animation (state) of the player character. Let&rsquo;s look back at the key points of our work.</p>
+<ul>
+<li>Identify the states to be used in the game first.</li>
+<li>Create an animation for each state using &ldquo;AnimationPlayer&rdquo;</li>
+<li>Create a state machine with &ldquo;AnimationTree&rdquo;</li>
+<li>Control animation transitions with a script.</li>
+</ul>
+<p>In fact, if you have a large number of animations, the nodes and the lines connecting them in the animation tree panel may become cluttered and difficult to understand visually. In such cases, it is a good idea to write them down on a piece of paper with a pen first to organize them in your mind.</p>
+<p>Of course, you can also create a state machine with a script instead of relying on the &ldquo;AnimationTree&rdquo; node, so if you are not comfortable with editing the animation tree panel, you can try that.<br>
+<br></p>
+<hr>
+<h2 id="references">References<a hidden class="anchor" aria-hidden="true" href="#references">#</a></h2>
+<ul>
+<li><a href="https://docs.godotengine.org/en/stable/tutorials/animation/introduction.html" target="_blank">Godot Docs - Introduction to the animation features</a>
+</li>
+<li><a href="https://docs.godotengine.org/en/stable/tutorials/animation/animation_tree.html" target="_blank">Godot Docs - Using AnimationTree</a>
+</li>
+<li><a href="https://docs.godotengine.org/en/stable/classes/class_animationnodestatemachineplayback.html" target="_blank">Godot Docs - AnimationNodeStateMachinePlayback</a>
+</li>
+<li><a href="http://kidscancode.org/godot_recipes/3.x/" target="_blank">KidsCanCode - CONTROLLING ANIMATION STATES</a>
+</li>
+<li><a href="https://youtu.be/0bq2OIjHxk4" target="_blank">YouTube - Godot Recipes: Animation States</a>
+</li>
+<li><a href="https://youtu.be/0nd1zNiy0C4/animation/animation_state_machine/" target="_blank">YouTube - Make an Action RPG in Godot 3.2 (P9 | Attacking Animation &#43; State Machines)</a>
+</li>
+<li><a href="https://youtu.be/XMzR5mJHPDg" target="_blank">YouTube - Name Files Logically</a>
+</li>
+<li><a href="https://game-endeavor.itch.io/mystic-woods" target="_blank">itch.io - mystic woods</a>
+</li>
+</ul>
+<hr>
+<!-- **UPDATE** -->
+<!-- 2022/05/25 新規作成 -->
+<!-- --- -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
+     crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle"
+style="display:block; text-align:center;"
+data-ad-layout="in-article"
+data-ad-format="fluid"
+data-ad-client="ca-pub-4952908839423901"
+data-ad-slot="9419515863"></ins></p>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+  </div>
+
+  <footer class="post-footer">
+    
+    <div class="recommendation">
+        <span>Please feel free to follow my accounts!</span>
+      <div class="social-icons">
+    <a href="https://twitter.com/MasanaoSako" target="_blank" rel="noopener noreferrer me" title="Twitter">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+</svg>
+    </a>
+    <a href="https://github.com/msnsk/" target="_blank" rel="noopener noreferrer me" title="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+    </a>
+</div>
+
+    </div>
+    <div class="recommendation">
+        <span>If you liked this article, please share it!</span>
+    </div>
+    
+    
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Animation State Machine in Godot3 on twitter"
+        href="https://twitter.com/intent/tweet/?text=Animation%20State%20Machine%20in%20Godot3&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f&amp;hashtags=GameDev%2cGodotEngine%2cGodot3%2c2D%2cAnimation%2cStateMachine">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Animation State Machine in Godot3 on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f&amp;title=Animation%20State%20Machine%20in%20Godot3&amp;summary=Animation%20State%20Machine%20in%20Godot3&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Animation State Machine in Godot3 on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f&title=Animation%20State%20Machine%20in%20Godot3">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Animation State Machine in Godot3 on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Animation State Machine in Godot3 on whatsapp"
+        href="https://api.whatsapp.com/send?text=Animation%20State%20Machine%20in%20Godot3%20-%20https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Animation State Machine in Godot3 on telegram"
+        href="https://telegram.me/share/url?text=Animation%20State%20Machine%20in%20Godot3&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fen%2ftutorials%2fgd0019_2d_animation_state_machine%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+    <ul class="post-tags">
+      <li><a href="https://www.peanuts-code.com/en/tags/gamedev/">GameDev</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/godotengine/">GodotEngine</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/godot3/">Godot3</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/2d/">2D</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/animation/">Animation</a></li>
+      <li><a href="https://www.peanuts-code.com/en/tags/statemachine/">StateMachine</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>2D Hit Detection for Melee Attacks in Godot3</span>
+  </a>
+</nav>
+
+    
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://www.peanuts-code.com/en/">Peanuts Code</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

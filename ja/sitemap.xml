@@ -152,6 +152,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/</loc>
     <lastmod>2022-10-13T16:30:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tutorials/gd0019_2d_animation_state_machine/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/godotengine/</loc>
     <lastmod>2022-10-13T16:30:00+09:00</lastmod>
