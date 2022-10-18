@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Godot3 のサウンドリソースをプログラムで切り替える方法 | Peanuts Code</title>
 <meta name="keywords" content="GameDev, GodotEngine, Godot3, サウンド, AudioStreamPlayer" />
-<meta name="description" content="この記事では、Godot3 の GDScript を利用して、1つの「AudioStreamPlayer」ノードの「Stream」プロパティに適用するサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説">
+<meta name="description" content="この記事では、「AudioStreamPlayer」ノード 1 つで複数のサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。 基本的に、「AudioStreamPlayer」系の">
 <meta name="author" content="Gobo">
 <link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/" />
 <meta name="google-site-verification" content="XYZabc" />
@@ -36,7 +36,7 @@ if (!doNotTrack) {
 }
 </script>
 <meta property="og:title" content="Godot3 のサウンドリソースをプログラムで切り替える方法" />
-<meta property="og:description" content="この記事では、Godot3 の GDScript を利用して、1つの「AudioStreamPlayer」ノードの「Stream」プロパティに適用するサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説" />
+<meta property="og:description" content="この記事では、「AudioStreamPlayer」ノード 1 つで複数のサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。 基本的に、「AudioStreamPlayer」系の" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/" />
 <meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0020_switching_sound_resources/img9.png" /><meta property="article:section" content="tutorials" />
@@ -46,7 +46,7 @@ if (!doNotTrack) {
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0020_switching_sound_resources/img9.png" />
 <meta name="twitter:title" content="Godot3 のサウンドリソースをプログラムで切り替える方法"/>
-<meta name="twitter:description" content="この記事では、Godot3 の GDScript を利用して、1つの「AudioStreamPlayer」ノードの「Stream」プロパティに適用するサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説"/>
+<meta name="twitter:description" content="この記事では、「AudioStreamPlayer」ノード 1 つで複数のサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。 基本的に、「AudioStreamPlayer」系の"/>
 
 
 <script type="application/ld+json">
@@ -75,12 +75,12 @@ if (!doNotTrack) {
   "@type": "BlogPosting",
   "headline": "Godot3 のサウンドリソースをプログラムで切り替える方法",
   "name": "Godot3 のサウンドリソースをプログラムで切り替える方法",
-  "description": "この記事では、Godot3 の GDScript を利用して、1つの「AudioStreamPlayer」ノードの「Stream」プロパティに適用するサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説",
+  "description": "この記事では、「AudioStreamPlayer」ノード 1 つで複数のサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。 基本的に、「AudioStreamPlayer」系の",
   "keywords": [
     "GameDev", "GodotEngine", "Godot3", "サウンド", "AudioStreamPlayer"
   ],
-  "articleBody": "この記事では、Godot3 の GDScript を利用して、1つの「AudioStreamPlayer」ノードの「Stream」プロパティに適用するサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。\n基本的に、「AudioStreamPlayer」系のクラスは、ノード１つに対して、設定できるサウンドリソースは１つだけだ。つまり、サウンドリソースの数だけシーンツリー内に「AudioStreamPlayer」ノードを追加しなければならない。サウンドリソース以外全て同じ設定のノードがシーンツリー内に複数存在する状況には無駄を感じるだろうし、またシーンドックの視認性が悪くて少し嫌になるかもしれない。\nそこで、同時に鳴らすことがない複数のサウンドリソースがある場合（例えば、キャラクターの攻撃の種類に応じた複数の効果音やUI上のボタンの種類に応じた複数の効果音など）、プロジェクトには、用途ごとに必要最小限の「AudioStreamPlayer」ノードだけ用意しておき、それぞれで用途に応じたサウンドリソースをスクリプトから切り替えれば無駄がなく、シーンドックの見た目もスッキリするはずだ。\nということで、ここからのチュートリアルでは、「AudioStreamPlayer」ノードは１つだけ用意して、そこに適用するサウンドリソースをスクリプトから切り替えて、再生できるように制御していく。\nEnvironment Godot のバージョン: 3.5.1\nコンピュータのOS: macOS 12.6\nBasic Articles 以下の記事もお役立てください。\nGodot をダウンロードする Godot のプロジェクトマネージャー Godot の言語設定 準備 プロジェクト設定 新規プロジェクトを立ち上げたら、「プロジェクト」メニュー＞「プロジェクト設定」から以下の設定を行なう。\n「一般」タブ ＞ サイドバー「Display」＞「Window」＞「Size」セクションにて、ウインドウサイズを以下のように設定する。\nサウンドリソースのダウンロード 以下のDropboxの共有フォルダに ６ つの .wav ファイル（効果音）を用意している。\nDropbox - 共有フォルダ ダウンロードした「audio」フォルダごとファイルシステムドックへドラッグ\u0026ドロップしてプロジェクトへ追加する。\nシーンの作成 以下のようなシーンツリーを作る。今回は過去最高にシンプルなツリーである。\nUI (Control) SoundLabel (Label) AudioStreamPlayer シーンツリーの作成が完了したら、ファイル名を「UI.tscn」として保存しておく。\nノードの編集 UI (Control) ルートノード このルートノードの「Anchor」を画面サイズと同じになるよう拡げておく。理由は、このあと子ノードの「SoundLabel」をこの「UI」ノードの中央に配置したいからだ。\n2D ワークスペースのツールバーから「Layout」＞「全画面(Full Rect)」を選択する。これで「Anchor」プロパティは自動的に調整され、2D ワークスペース上も以下のようになる。\nSoundLabel (Label) ノード このノードは、現在「AudioStreamPlayer」ノードの「Stream」プロパティに適用されているサウンドリソースのパスを表示するために利用する。そうすることで、最後にプロジェクトを実行して動作確認する時にどのリソースファイルを適用しているかひと目でわかる。\nインスペクターにて「Text」プロパティには一旦「no sound」と仮に入れておく。\n「Align」プロパティを「Center」に変更する。これで「Text」の文字列が水平方向で中央に表示される。\n「Control」クラスの「Grow Direction」＞「Horizontal」プロパティを「Both」に変更する。これで「Text」の文字数が増えても左右両方向に拡大するので、常に画面中央に表示される。\n2D ワークスペースのツールバーから「Layout」＞「中央」を選択する。2D ワークスペース上も以下のようになる。\nAudioStreamPlayer ノード このノードはサウンドを再生するためのノードだ。ノードの作りとして、もともと１つのサウンドリソースしか設定できない仕様であるが、今回のチュートリアルでは、このノード１つで、複数のサウンドリソースを切り替えて再生させる。その制御はのちほどスクリプトにて行うことになるが、ここではひとまずノードの設定をしておく。\nファイルシステムドックから先にインポートしておいたサウンドリソースファイルのうち「res://auido/coin.wav」を、インスペクターの「Stream」プロパティへドラッグ\u0026ドロップして適用する。ひとまずこれをデフォルトのサウンドリソースとする。 UI ルートノードにスクリプトをアタッチする いよいよ、サウンドリソースを設定と再生を制御するためのスクリプトを作成していく。まずはルートノード「UI」に新規でスクリプトをアタッチする。このときスクリプトのファイル名は「UI.gd」としておく。スクリプトをアタッチして、スクリプトエディタが開いたら、以下のようにコードを編集する。\nextends Control # 定数としてプリロードしたサウンドリソースを配列にしておく const sounds = [ preload(\"res://auido/coin.wav\"), preload(\"res://auido/heal.wav\"), preload(\"res://auido/hurt.wav\"), preload(\"res://auido/shoot1.wav\"), preload(\"res://auido/shoot2.wav\"), preload(\"res://auido/shoot3.wav\"), ] # 配列 sounds の要素のうち AudioStreamPlayer に設定する # リソースを指定するためのインデックス(0 から 5 まで) var index: int = 0 # SoundLabel の参照 onready var sound_label = $SoundLabel # AudioStreamPlayer の参照 onready var player = $AudioStreamPlayer # 組み込みプロセス関数（毎フレーム呼び出される） func _process(_delta): # 右矢印キーが押されたら if Input.is_action_just_pressed(\"ui_right\"): # 現在のインデックスが配列 sounds の最後のインデックス(5) # より小さければ現在のインデックスに 1 を足す if index \u003c sounds.size() - 1: index += 1 # 現在のインデックスが配列 sounds の最後のインデックス(5) # であればインデックスを 0 に戻す else: index = 0 # サウンドを再生するメソッドを呼び出す（あとで定義） play_sound() # 左矢印キーが押されたら if Input.is_action_just_pressed(\"ui_left\"): # 現在のインデックスが 0 より大きければ # 現在のインデックスから 1 を引く if index \u003e 0: index -= 1 # 現在のインデックスが 0 であれば # インデックスを配列 sounds の最後のインデックスと同じ(5)にする else: index = sounds.size() - 1 # サウンドを再生するメソッドを呼び出す（あとで定義） play_sound() # スペースバーかエンターキーが押されたら if Input.is_action_just_pressed(\"ui_accept\"): # サウンドを再生するメソッドを呼び出す（あとで定義） play_sound() # サウンドを再生するメソッド func play_sound(): # 配列 sounds から現在のインデックスに該当する要素を取得して # AudioStreamPlayer の Stream プロパティに適用する player.stream = sounds[index] # AudioStreamPlayer の Stream プロパティのリソースパスを # SoundLabel の Text プロパティに 設定する sound_label.text = player.stream.resource_path # AudioStreamPlayer の Stream プロパティのサウンドリソースを再生 player.play() これでスクリプトの編集は完了だ。\nなお、今回はpreloadを利用して、ノードが読み込まれるタイミングでサウンドリソースも読み込んでおくようにした。これは、処理の多いゲームの場合、動作遅延回避策になるだろう。反対に、大して処理が多くないのであればloadを利用して、再生する直前にリソースファイルを読み込んでも問題ないだろう。詳しくは以下の記事が大変参考になるので併せてご覧いただきたい。\n2dgames.jp -【Godot】サウンドを動的にロードして再生する方法 動作確認 最後にプロジェクトまたはシーンを実行して動作確認しておく。\nここまでで実装した通り、以下のキーボード操作でサウンドリソースを切り替え、再生できる。\n右矢印キー: 「UI.gd」スクリプトの配列sounds上の次のサウンドリソースに切り替えて再生 左矢印キー: 「UI.gd」スクリプトの配列sounds上の前のサウンドリソースに切り替えて再生 スペースバー / エンターキー: 現在設定されているサウンドリソースを再生 Your browser does not support the video tag. おわりに 今回のチュートリアルは、１つの「AudioStreamPlayer」ノードで複数のサウンドリソースを切り替えて再生する方法についてお伝えした。大事なポイントをまとめておこう。\n「AudioStreamPlayer」１つで複数のサウンドリソースを切り替えて再生できる。 上記手法は、設定がほとんど同じ複数の「AudioStreamPlayer」ノードを追加する無駄を回避し、シーンツリーの視認性を向上する目的で実装する。 サウンドの切り替えと再生はスクリプトで制御する。 もちろん、プログラミングが苦手な場合は、サウンドリソースの数だけ「AudioStreamPlayer」ノードをシーンに追加しても全く問題ない。今回紹介したのは、あくまで一つの方法論に過ぎないので、特にインディー開発の場合は自由にやっていただきたい。\n参考 Godot Docs - オーディオストリーム Godot Docs - AudioStreamPlayer 2dgames.jp -【Godot】サウンドを動的にロードして再生する方法 ",
-  "wordCount" : "3455",
+  "articleBody": "この記事では、「AudioStreamPlayer」ノード 1 つで複数のサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。\n基本的に、「AudioStreamPlayer」系のクラスは、ノード１つに対して、設定できるサウンドリソースは１つだけだ。つまり、サウンドリソースの数だけシーンツリー内に「AudioStreamPlayer」ノードを追加しなければならない。サウンドリソース以外全て同じ設定のノードがシーンツリー内に複数存在する（以下のスクリーンショットのような）状況には無駄を感じるだろうし、またシーンドックの視認性が悪くて少し嫌になるかもしれない。\nそこで、同時に鳴らすことがない複数のサウンドリソースがある場合（例えば、キャラクターの攻撃の種類に応じた複数の効果音やUI上のボタンの種類に応じた複数の効果音など）、プロジェクトには用途ごとに必要最小限の「AudioStreamPlayer」ノードだけ追加しておき、それぞれスクリプトから状況に応じてサウンドリソースを切り替えれば無駄がなく、シーンドックの見た目もスッキリするはずだ。\nということで、ここからのチュートリアルでは、「AudioStreamPlayer」ノードは１つだけ用意して、そこに適用するサウンドリソースをスクリプトから切り替えて、再生できるように制御していく。\nEnvironment Godot のバージョン: 3.5.1\nコンピュータのOS: macOS 12.6\nBasic Articles 以下の記事もお役立てください。\nGodot をダウンロードする Godot のプロジェクトマネージャー Godot の言語設定 準備 プロジェクト設定 新規プロジェクトを立ち上げたら、「プロジェクト」メニュー＞「プロジェクト設定」から以下の設定を行なう。\n「一般」タブ ＞ サイドバー「Display」＞「Window」＞「Size」セクションにて、ウインドウサイズを以下のように設定する。\nサウンドリソースのダウンロード 以下のDropboxの共有フォルダに ６ つの .wav ファイル（効果音）を用意している。\nDropbox - 共有フォルダ ダウンロードした「audio」フォルダごとファイルシステムドックへドラッグ\u0026ドロップしてプロジェクトへ追加する。\nシーンの作成 以下のようなシーンツリーを作る。今回は過去最高にシンプルなツリーである。\nUI (Control) SoundLabel (Label) AudioStreamPlayer シーンツリーの作成が完了したら、ファイル名を「UI.tscn」として保存しておく。\nノードの編集 UI (Control) ルートノード このルートノードの「Anchor」を画面サイズと同じになるよう拡げておく。理由は、このあと子ノードの「SoundLabel」を画面の中央に配置したいからだ。\n2D ワークスペースのツールバーから「Layout」＞「全画面(Full Rect)」を選択する。これで「Anchor」プロパティは自動的に調整され、2D ワークスペース上も以下のようになる。\nSoundLabel (Label) ノード このノードは、現在「AudioStreamPlayer」ノードの「Stream」プロパティに適用されているサウンドリソースのパスを表示するために利用する。これにより、プロジェクトを実行して動作確認をする時に、今どのリソースファイルを適用および再生しているのかがひと目でわかる。\nインスペクターにて「Text」プロパティには一旦「no sound」と仮に入れておく。\n「Align」プロパティを「Center」に変更する。これで「Text」の文字列が水平方向で中央に表示される。\n「Control」クラスの「Grow Direction」＞「Horizontal」プロパティを「Both」に変更する。これで「Text」の文字数が増えても左右両方向に拡大するので、常に画面中央に表示される。\n2D ワークスペースのツールバーから「Layout」＞「中央」を選択する。2D ワークスペース上も以下のようになる。\nAudioStreamPlayer ノード このノードはサウンドリソースを適用して、それを再生するためのノードだ。ノードの作りとして、もともと１つのサウンドリソースしか設定できない仕様であるが、今回のチュートリアルでは、このノード１つで、複数のサウンドリソースを切り替えて再生させる。その制御はのちほどスクリプトにて行うことになるが、ここではひとまずノードの設定をしておく。\nファイルシステムドックから先にインポートしておいたサウンドリソースファイルのうち「res://auido/coin.wav」を、インスペクターの「Stream」プロパティへドラッグ\u0026ドロップして適用する。ひとまずこれをデフォルトのサウンドリソースとする。 UI ルートノードにスクリプトをアタッチする いよいよ、サウンドリソースを設定と再生を制御するためのスクリプトを作成していく。まずはルートノード「UI」に新規でスクリプトをアタッチする。このときスクリプトのファイル名は「UI.gd」としておく。スクリプトをアタッチして、スクリプトエディタが開いたら、以下のようにコードを編集する。\nextends Control # 定数としてプリロードしたサウンドリソースを配列にしておく const sounds = [ # デフォルトのリソースを1番目の要素にしている preload(\"res://auido/coin.wav\"), preload(\"res://auido/heal.wav\"), preload(\"res://auido/hurt.wav\"), preload(\"res://auido/shoot1.wav\"), preload(\"res://auido/shoot2.wav\"), preload(\"res://auido/shoot3.wav\"), ] # 配列 sounds の要素のうち AudioStreamPlayer に設定する # リソースを指定するためのインデックス(0 から 5 まで) var index: int = 0 # SoundLabel の参照 onready var sound_label = $SoundLabel # AudioStreamPlayer の参照 onready var player = $AudioStreamPlayer # ノードが読み込まれたら実行される組込み関数 func _ready(): # サウンドを再生するメソッドを呼び出す（あとで定義） play_sound() # 組み込みプロセス関数（毎フレーム呼び出される） func _process(_delta): # 右矢印キーが押されたら if Input.is_action_just_pressed(\"ui_right\"): # 現在のインデックスが配列 sounds の最後のインデックス(5) # より小さければ現在のインデックスに 1 を足す if index \u003c sounds.size() - 1: index += 1 # 現在のインデックスが配列 sounds の最後のインデックス(5) # であればインデックスを 0 に戻す else: index = 0 # サウンドを再生するメソッドを呼び出す（あとで定義） play_sound() # 左矢印キーが押されたら if Input.is_action_just_pressed(\"ui_left\"): # 現在のインデックスが 0 より大きければ # 現在のインデックスから 1 を引く if index \u003e 0: index -= 1 # 現在のインデックスが 0 であれば # インデックスを配列 sounds の最後のインデックスと同じ(5)にする else: index = sounds.size() - 1 # サウンドを再生するメソッドを呼び出す（あとで定義） play_sound() # スペースバーかエンターキーが押されたら if Input.is_action_just_pressed(\"ui_accept\"): # サウンドを再生するメソッドを呼び出す（あとで定義） play_sound() # サウンドを再生するメソッド func play_sound(): # 配列 sounds から現在のインデックスに該当する要素を取得して # AudioStreamPlayer の Stream プロパティに適用する player.stream = sounds[index] # AudioStreamPlayer の Stream プロパティのリソースパスを # SoundLabel の Text プロパティに 設定する sound_label.text = player.stream.resource_path # AudioStreamPlayer の Stream プロパティのサウンドリソースを再生 player.play() これでスクリプトの編集は完了だ。\nなお、今回はpreloadを利用して、ノードが読み込まれるタイミングでサウンドリソースも読み込んでおくようにした。これは、処理の多いゲームの場合、動作遅延回避策になるだろう。反対に、大して処理が多くないのであればloadを利用して、再生する直前にリソースファイルを読み込んでも問題ないだろう。詳しくは以下の記事が大変参考になるので併せてご覧いただきたい。\n2dgames.jp -【Godot】サウンドを動的にロードして再生する方法 動作確認 最後にプロジェクトまたはシーンを実行して動作確認しておく。\nここまでで実装した通り、以下のキーボード操作でサウンドリソースを切り替え、再生できる。\n右矢印キー: 「UI.gd」スクリプトの配列sounds上の次のサウンドリソースに切り替えて再生 左矢印キー: 「UI.gd」スクリプトの配列sounds上の前のサウンドリソースに切り替えて再生 スペースバー / エンターキー: 現在設定されているサウンドリソースを再生 Your browser does not support the video tag. おわりに 今回のチュートリアルは、１つの「AudioStreamPlayer」ノードで複数のサウンドリソースを切り替えて再生する方法についてお伝えした。大事なポイントをまとめておこう。\n「AudioStreamPlayer」１つで複数のサウンドリソースを切り替えて再生できる。 上記手法は、設定がほとんど同じ複数の「AudioStreamPlayer」ノードを追加する無駄を回避し、シーンツリーの視認性を向上する目的で実装する。 サウンドの切り替えと再生はスクリプトで制御する。 もちろん、プログラミングが苦手な場合は、サウンドリソースの数だけ「AudioStreamPlayer」ノードをシーンに追加しても全く問題ない。今回紹介したのは、あくまで一つの方法論に過ぎないので、特にインディー開発の場合は自由にやっていただきたい。\n参考 Godot Docs - オーディオストリーム Godot Docs - AudioStreamPlayer 2dgames.jp -【Godot】サウンドを動的にロードして再生する方法 ",
+  "wordCount" : "3525",
   "inLanguage": "ja",
   "image":"https://www.peanuts-code.com/images/tutorials/gd0020_switching_sound_resources/img9.png","datePublished": "2022-10-18T20:17:00+09:00",
   "dateModified": "2022-10-18T20:17:00+09:00",
@@ -225,7 +225,7 @@ if (!doNotTrack) {
     <h1 class="post-title">
       Godot3 のサウンドリソースをプログラムで切り替える方法
     </h1>
-    <div class="post-meta">2022-10-18&nbsp;·&nbsp;7 分&nbsp;·&nbsp;Gobo
+    <div class="post-meta">2022-10-18&nbsp;·&nbsp;8 分&nbsp;·&nbsp;Gobo
 </div>
     
     <ul class="post-tags">
@@ -328,11 +328,11 @@ if (!doNotTrack) {
     </details>
 </div>
 
-  <div class="post-content"><p>この記事では、Godot3 の GDScript を利用して、1つの「AudioStreamPlayer」ノードの「Stream」プロパティに適用するサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。</p>
-<p>基本的に、「AudioStreamPlayer」系のクラスは、ノード１つに対して、設定できるサウンドリソースは１つだけだ。つまり、サウンドリソースの数だけシーンツリー内に「AudioStreamPlayer」ノードを追加しなければならない。サウンドリソース以外全て同じ設定のノードがシーンツリー内に複数存在する状況には無駄を感じるだろうし、またシーンドックの視認性が悪くて少し嫌になるかもしれない。<br>
+  <div class="post-content"><p>この記事では、「AudioStreamPlayer」ノード 1 つで複数のサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。</p>
+<p>基本的に、「AudioStreamPlayer」系のクラスは、ノード１つに対して、設定できるサウンドリソースは１つだけだ。つまり、サウンドリソースの数だけシーンツリー内に「AudioStreamPlayer」ノードを追加しなければならない。サウンドリソース以外全て同じ設定のノードがシーンツリー内に複数存在する（以下のスクリーンショットのような）状況には無駄を感じるだろうし、またシーンドックの視認性が悪くて少し嫌になるかもしれない。<br>
 <img loading="lazy" src="/images/tutorials/gd0020_switching_sound_resources/img0.png" alt="project settings - window size"  />
 </p>
-<p>そこで、同時に鳴らすことがない複数のサウンドリソースがある場合（例えば、キャラクターの攻撃の種類に応じた複数の効果音やUI上のボタンの種類に応じた複数の効果音など）、プロジェクトには、用途ごとに必要最小限の「AudioStreamPlayer」ノードだけ用意しておき、それぞれで用途に応じたサウンドリソースをスクリプトから切り替えれば無駄がなく、シーンドックの見た目もスッキリするはずだ。</p>
+<p>そこで、同時に鳴らすことがない複数のサウンドリソースがある場合（例えば、キャラクターの攻撃の種類に応じた複数の効果音やUI上のボタンの種類に応じた複数の効果音など）、プロジェクトには用途ごとに必要最小限の「AudioStreamPlayer」ノードだけ追加しておき、それぞれスクリプトから状況に応じてサウンドリソースを切り替えれば無駄がなく、シーンドックの見た目もスッキリするはずだ。</p>
 <p>ということで、ここからのチュートリアルでは、「AudioStreamPlayer」ノードは１つだけ用意して、そこに適用するサウンドリソースをスクリプトから切り替えて、再生できるように制御していく。</p>
 <blockquote>
 <p><strong><span style="color:salmon">Environment</span>
@@ -422,7 +422,7 @@ data-ad-slot="9419515863"></ins></p>
 <hr>
 <h2 id="ノードの編集">ノードの編集<a hidden class="anchor" aria-hidden="true" href="#ノードの編集">#</a></h2>
 <h3 id="ui-control-ルートノード">UI (Control) ルートノード<a hidden class="anchor" aria-hidden="true" href="#ui-control-ルートノード">#</a></h3>
-<p>このルートノードの「Anchor」を画面サイズと同じになるよう拡げておく。理由は、このあと子ノードの「SoundLabel」をこの「UI」ノードの中央に配置したいからだ。</p>
+<p>このルートノードの「Anchor」を画面サイズと同じになるよう拡げておく。理由は、このあと子ノードの「SoundLabel」を画面の中央に配置したいからだ。</p>
 <ul>
 <li>2D ワークスペースのツールバーから「Layout」＞「全画面(Full Rect)」を選択する。これで「Anchor」プロパティは自動的に調整され、2D ワークスペース上も以下のようになる。<br>
 <img loading="lazy" src="/images/tutorials/gd0020_switching_sound_resources/img3.png" alt="UI node - Layout - Full Rect"  />
@@ -430,7 +430,7 @@ data-ad-slot="9419515863"></ins></p>
 </ul>
 <br>
 <h3 id="soundlabel-label-ノード">SoundLabel (Label) ノード<a hidden class="anchor" aria-hidden="true" href="#soundlabel-label-ノード">#</a></h3>
-<p>このノードは、現在「AudioStreamPlayer」ノードの「Stream」プロパティに適用されているサウンドリソースのパスを表示するために利用する。そうすることで、最後にプロジェクトを実行して動作確認する時にどのリソースファイルを適用しているかひと目でわかる。</p>
+<p>このノードは、現在「AudioStreamPlayer」ノードの「Stream」プロパティに適用されているサウンドリソースのパスを表示するために利用する。これにより、プロジェクトを実行して動作確認をする時に、今どのリソースファイルを適用および再生しているのかがひと目でわかる。</p>
 <ul>
 <li>インスペクターにて「Text」プロパティには一旦「no sound」と仮に入れておく。<br>
 <img loading="lazy" src="/images/tutorials/gd0020_switching_sound_resources/img4.png" alt="SoundLabel node - Text"  />
@@ -447,7 +447,7 @@ data-ad-slot="9419515863"></ins></p>
 </ul>
 <br>
 <h3 id="audiostreamplayer-ノード">AudioStreamPlayer ノード<a hidden class="anchor" aria-hidden="true" href="#audiostreamplayer-ノード">#</a></h3>
-<p>このノードはサウンドを再生するためのノードだ。ノードの作りとして、もともと１つのサウンドリソースしか設定できない仕様であるが、今回のチュートリアルでは、このノード１つで、複数のサウンドリソースを切り替えて再生させる。その制御はのちほどスクリプトにて行うことになるが、ここではひとまずノードの設定をしておく。</p>
+<p>このノードはサウンドリソースを適用して、それを再生するためのノードだ。ノードの作りとして、もともと１つのサウンドリソースしか設定できない仕様であるが、今回のチュートリアルでは、このノード１つで、複数のサウンドリソースを切り替えて再生させる。その制御はのちほどスクリプトにて行うことになるが、ここではひとまずノードの設定をしておく。</p>
 <ul>
 <li>ファイルシステムドックから先にインポートしておいたサウンドリソースファイルのうち「res://auido/coin.wav」を、インスペクターの「Stream」プロパティへドラッグ&amp;ドロップして適用する。ひとまずこれをデフォルトのサウンドリソースとする。</li>
 </ul>
@@ -470,6 +470,7 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 定数としてプリロードしたサウンドリソースを配列にしておく</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> sounds <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># デフォルトのリソースを1番目の要素にしている</span>
 </span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://auido/coin.wav&#34;</span>),
 </span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://auido/heal.wav&#34;</span>),
 </span></span><span style="display:flex;"><span>	preload(<span style="color:#e6db74">&#34;res://auido/hurt.wav&#34;</span>),
@@ -486,6 +487,12 @@ data-ad-slot="9419515863"></ins></p>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> sound_label <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>SoundLabel
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># AudioStreamPlayer の参照</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> player <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>AudioStreamPlayer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ノードが読み込まれたら実行される組込み関数</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># サウンドを再生するメソッドを呼び出す（あとで定義）</span>
+</span></span><span style="display:flex;"><span>	play_sound()
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 組み込みプロセス関数（毎フレーム呼び出される）</span>

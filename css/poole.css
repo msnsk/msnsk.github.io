@@ -198,6 +198,17 @@ pre code {
   border: 0;
 }
 
+/* 2022/10/18 追加 */
+/* Fixes iOS font sizing anomaly */
+/* iOSデバイスでコードブロックのフォントサイズがおかしくなる問題の修正 */
+code {
+  text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+
 /* Quotes */
 blockquote {
   padding: .5rem 1rem;

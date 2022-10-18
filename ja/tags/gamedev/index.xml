@@ -287,7 +287,7 @@
       <pubDate>Tue, 18 Oct 2022 20:17:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/</guid>
-      <description>この記事では、Godot3 の GDScript を利用して、1つの「AudioStreamPlayer」ノードの「Stream」プロパティに適用するサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説</description>
+      <description>この記事では、「AudioStreamPlayer」ノード 1 つで複数のサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。 基本的に、「AudioStreamPlayer」系の</description>
     </item>
     
     <item>
