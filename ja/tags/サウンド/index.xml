@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>サウンド on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/%E3%82%B5%E3%82%A6%E3%83%B3%E3%83%89/</link>
+    <description>Recent content in サウンド on Peanuts Code</description>
+    <image>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Tue, 18 Oct 2022 20:17:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B5%E3%82%A6%E3%83%B3%E3%83%89/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot3 のサウンドリソースをプログラムで切り替える方法</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/</link>
+      <pubDate>Tue, 18 Oct 2022 20:17:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/</guid>
+      <description>この記事では、Godot3 の GDScript を利用して、1つの「AudioStreamPlayer」ノードの「Stream」プロパティに適用するサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説</description>
+    </item>
+    
+  </channel>
+</rss>

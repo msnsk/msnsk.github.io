@@ -10,7 +10,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 13 Oct 2022 16:30:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Oct 2022 20:17:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>シリーズ：Godot で作るブロック崩し</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/</link>
@@ -297,6 +297,15 @@
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</guid>
       <description>第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップ</description>
+    </item>
+    
+    <item>
+      <title>Godot3 のサウンドリソースをプログラムで切り替える方法</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/</link>
+      <pubDate>Tue, 18 Oct 2022 20:17:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/</guid>
+      <description>この記事では、Godot3 の GDScript を利用して、1つの「AudioStreamPlayer」ノードの「Stream」プロパティに適用するサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説</description>
     </item>
     
     <item>

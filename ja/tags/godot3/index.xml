@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 13 Oct 2022 16:30:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godot3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Oct 2022 20:17:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godot3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot3 のサウンドリソースをプログラムで切り替える方法</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/</link>
+      <pubDate>Tue, 18 Oct 2022 20:17:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/</guid>
+      <description>この記事では、Godot3 の GDScript を利用して、1つの「AudioStreamPlayer」ノードの「Stream」プロパティに適用するサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説</description>
+    </item>
+    
     <item>
       <title>Godot3 で作るアニメーションステートマシン</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/</link>
