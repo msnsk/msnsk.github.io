@@ -10,7 +10,61 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 14 Oct 2022 20:25:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Oct 2022 19:45:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AudioStreamPlayer</title>
+      <link>https://www.peanuts-code.com/en/tags/audiostreamplayer/</link>
+      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/audiostreamplayer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GameDev</title>
+      <link>https://www.peanuts-code.com/en/tags/gamedev/</link>
+      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/gamedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Godot3</title>
+      <link>https://www.peanuts-code.com/en/tags/godot3/</link>
+      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/godot3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GodotEngine</title>
+      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
+      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Resource</title>
+      <link>https://www.peanuts-code.com/en/tags/resource/</link>
+      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/resource/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sound</title>
+      <link>https://www.peanuts-code.com/en/tags/sound/</link>
+      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/sound/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>2D</title>
       <link>https://www.peanuts-code.com/en/tags/2d/</link>
@@ -26,33 +80,6 @@
       <pubDate>Fri, 14 Oct 2022 20:25:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/animation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GameDev</title>
-      <link>https://www.peanuts-code.com/en/tags/gamedev/</link>
-      <pubDate>Fri, 14 Oct 2022 20:25:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/gamedev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Godot3</title>
-      <link>https://www.peanuts-code.com/en/tags/godot3/</link>
-      <pubDate>Fri, 14 Oct 2022 20:25:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/godot3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GodotEngine</title>
-      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
-      <pubDate>Fri, 14 Oct 2022 20:25:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
       <description></description>
     </item>
     

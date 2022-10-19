@@ -113,6 +113,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/audiostreamplayer/</loc>
     <lastmod>2022-10-18T20:17:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/audiostreamplayer/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/audiostreamplayer/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/gamedev/</loc>
     <lastmod>2022-10-18T20:17:00+09:00</lastmod>
@@ -142,6 +152,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/</loc>
     <lastmod>2022-10-18T20:17:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tutorials/gd0020_switching_sound_resources/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/godotengine/</loc>
     <lastmod>2022-10-18T20:17:00+09:00</lastmod>

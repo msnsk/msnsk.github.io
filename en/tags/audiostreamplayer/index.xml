@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AudioStreamPlayer on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/en/tags/audiostreamplayer/</link>
+    <description>Recent content in AudioStreamPlayer on Peanuts Code</description>
+    <image>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 19 Oct 2022 19:45:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/audiostreamplayer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Switching Sound Resources by Script in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0020_switching_sound_resources/</link>
+      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0020_switching_sound_resources/</guid>
+      <description>This article explains how to switch between and play multiple sound resources (music and sound effect files) with a single &amp;ldquo;AudioStreamPlayer&amp;rdquo; node. Basically, only one sound resource can be set per &amp;ldquo;AudioStreamPlayer&amp;rdquo; node. In other words, you must add &amp;ldquo;AudioStreamPlayer&amp;rdquo; nodes in the scene tree for each sound resource. You may feel useless in a situation where there are multiple nodes in the scene tree with the same settings except for the sound resource (as shown in the screenshot below), and you may also feel a little uncomfortable with the lack of visibility in the scene dock. So, if you</description>
+    </item>
+    
+  </channel>
+</rss>
