@@ -11,7 +11,52 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 19 Oct 2022 19:45:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AppStore</title>
+      <link>https://www.peanuts-code.com/en/tags/appstore/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/appstore/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GodotEngine</title>
+      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iOS</title>
+      <link>https://www.peanuts-code.com/en/tags/ios/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MobileGame</title>
+      <link>https://www.peanuts-code.com/en/tags/mobilegame/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/mobilegame/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Product</title>
+      <link>https://www.peanuts-code.com/en/tags/product/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/product/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>AudioStreamPlayer</title>
       <link>https://www.peanuts-code.com/en/tags/audiostreamplayer/</link>
@@ -36,15 +81,6 @@
       <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/godot3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GodotEngine</title>
-      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
-      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
       <description></description>
     </item>
     
@@ -198,15 +234,6 @@
       <pubDate>Fri, 15 Jul 2022 18:40:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/match3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MobileGame</title>
-      <link>https://www.peanuts-code.com/en/tags/mobilegame/</link>
-      <pubDate>Fri, 15 Jul 2022 18:40:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/mobilegame/</guid>
       <description></description>
     </item>
     

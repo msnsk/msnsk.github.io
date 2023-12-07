@@ -10,6 +10,16 @@
       <link>https://www.peanuts-code.com/105</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="https://www.peanuts-code.com/en/portfolio/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Thu, 30 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/portfolio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Slashing Samurai</title>
+      <link>https://www.peanuts-code.com/en/portfolio/work0001_slashing_samurai/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/portfolio/work0001_slashing_samurai/</guid>
+      <description>iOS 12 or later | Casual Timing Game | Containing Ads</description>
+    </item>
+    
   </channel>
 </rss>

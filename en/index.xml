@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 19 Oct 2022 19:45:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Slashing Samurai</title>
+      <link>https://www.peanuts-code.com/en/portfolio/work0001_slashing_samurai/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/portfolio/work0001_slashing_samurai/</guid>
+      <description>iOS 12 or later | Casual Timing Game | Containing Ads</description>
+    </item>
+    
     <item>
       <title>Switching Sound Resources by Script in Godot3</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0020_switching_sound_resources/</link>

@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.peanuts-code.com/en/</loc>
-    <lastmod>2022-10-19T19:45:00+09:00</lastmod>
+    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -13,6 +13,110 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.peanuts-code.com/en/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/appstore/</loc>
+    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/appstore/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/appstore/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/godotengine/</loc>
+    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/godotengine/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/godotengine/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/ios/</loc>
+    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/ios/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/ios/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/mobilegame/</loc>
+    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/mobilegame/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/mobilegame/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/product/</loc>
+    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/product/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/product/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/portfolio/work0001_slashing_samurai/</loc>
+    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/portfolio/work0001_slashing_samurai/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/portfolio/work0001_slashing_samurai/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/tags/</loc>
+    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/portfolio/</loc>
+    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/portfolio/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/portfolio/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/audiostreamplayer/</loc>
@@ -54,19 +158,6 @@
                 href="https://www.peanuts-code.com/en/tags/godot3/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/godotengine/</loc>
-    <lastmod>2022-10-19T19:45:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/godotengine/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/godotengine/"
-                />
-  </url><url>
     <loc>https://www.peanuts-code.com/en/tags/resource/</loc>
     <lastmod>2022-10-19T19:45:00+09:00</lastmod>
   </url><url>
@@ -84,19 +175,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.peanuts-code.com/en/tutorials/gd0020_switching_sound_resources/"
-                />
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/</loc>
-    <lastmod>2022-10-19T19:45:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tutorials/</loc>
@@ -332,9 +410,6 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/match3/</loc>
-    <lastmod>2022-07-15T18:40:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/tags/mobilegame/</loc>
     <lastmod>2022-07-15T18:40:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/puzzleanddragonscopy/</loc>
@@ -603,18 +678,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.peanuts-code.com/en/series/"
-                />
-  </url><url>
-    <loc>https://www.peanuts-code.com/en/portfolio/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/portfolio/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/portfolio/"
                 />
   </url>
 </urlset>

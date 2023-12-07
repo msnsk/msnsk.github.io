@@ -11,7 +11,70 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 18 Oct 2022 20:17:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AppStore</title>
+      <link>https://www.peanuts-code.com/ja/tags/appstore/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/appstore/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GameDev</title>
+      <link>https://www.peanuts-code.com/ja/tags/gamedev/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/gamedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GodotEngine</title>
+      <link>https://www.peanuts-code.com/ja/tags/godotengine/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IndieDev</title>
+      <link>https://www.peanuts-code.com/ja/tags/indiedev/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/indiedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iOS</title>
+      <link>https://www.peanuts-code.com/ja/tags/ios/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MobileGame</title>
+      <link>https://www.peanuts-code.com/ja/tags/mobilegame/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/mobilegame/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Product</title>
+      <link>https://www.peanuts-code.com/ja/tags/product/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/product/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>AudioStreamPlayer</title>
       <link>https://www.peanuts-code.com/ja/tags/audiostreamplayer/</link>
@@ -22,29 +85,11 @@
     </item>
     
     <item>
-      <title>GameDev</title>
-      <link>https://www.peanuts-code.com/ja/tags/gamedev/</link>
-      <pubDate>Tue, 18 Oct 2022 20:17:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/gamedev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Godot3</title>
       <link>https://www.peanuts-code.com/ja/tags/godot3/</link>
       <pubDate>Tue, 18 Oct 2022 20:17:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/godot3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GodotEngine</title>
-      <link>https://www.peanuts-code.com/ja/tags/godotengine/</link>
-      <pubDate>Tue, 18 Oct 2022 20:17:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/godotengine/</guid>
       <description></description>
     </item>
     
@@ -135,15 +180,6 @@
       <pubDate>Tue, 30 Aug 2022 19:33:38 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/gamejam/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>IndieDev</title>
-      <link>https://www.peanuts-code.com/ja/tags/indiedev/</link>
-      <pubDate>Tue, 30 Aug 2022 19:33:38 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/indiedev/</guid>
       <description></description>
     </item>
     
