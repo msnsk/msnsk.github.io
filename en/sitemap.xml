@@ -568,17 +568,6 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/homepage/</loc>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href=""
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/homepage/"
-                />
   </url><url>
     <loc>https://www.peanuts-code.com/en/categories/</loc>
     <xhtml:link
@@ -614,6 +603,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.peanuts-code.com/en/series/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/en/portfolio/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/portfolio/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/portfolio/"
                 />
   </url>
 </urlset>

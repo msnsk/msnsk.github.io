@@ -1,1146 +1,148 @@
-<!DOCTYPE html>
-<html lang="ja" dir="auto">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>Godot3 で作る 2D ゲームの近接攻撃の当たり判定 | Peanuts Code</title>
-<meta name="keywords" content="GameDev, GodotEngine, Godot3, 2D, 近接攻撃, 当たり判定, アニメーション" />
-<meta name="description" content="この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（H">
-<meta name="author" content="Gobo">
-<link rel="canonical" href="https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/" />
-<meta name="google-site-verification" content="XYZabc" />
-<meta name="yandex-verification" content="XYZabc" />
-<meta name="msvalidate.01" content="XYZabc" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="/images/logomark.png" as="image">
-<link rel="icon" href="https://www.peanuts-code.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://www.peanuts-code.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://www.peanuts-code.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://www.peanuts-code.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://www.peanuts-code.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.107.0">
-<link rel="alternate" hreflang="ja" href="https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/" />
-<link rel="alternate" hreflang="en" href="https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/" />
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DK0NK2RTTW"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-DK0NK2RTTW', { 'anonymize_ip': false });
-}
-</script>
-<meta property="og:title" content="Godot3 で作る 2D ゲームの近接攻撃の当たり判定" />
-<meta property="og:description" content="この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（H" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/" />
-<meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0018_melee_attacks/img28.gif" /><meta property="article:section" content="tutorials" />
-<meta property="article:published_time" content="2022-10-03T22:55:00&#43;09:00" />
-<meta property="article:modified_time" content="2022-10-03T22:55:00&#43;09:00" />
-
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.peanuts-code.com/images/tutorials/gd0018_melee_attacks/img28.gif" />
-<meta name="twitter:title" content="Godot3 で作る 2D ゲームの近接攻撃の当たり判定"/>
-<meta name="twitter:description" content="この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（H"/>
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "チュートリアル",
-      "item": "https://www.peanuts-code.com/ja/tutorials/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "Godot3 で作る 2D ゲームの近接攻撃の当たり判定",
-      "item": "https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Godot3 で作る 2D ゲームの近接攻撃の当たり判定",
-  "name": "Godot3 で作る 2D ゲームの近接攻撃の当たり判定",
-  "description": "この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（H",
-  "keywords": [
-    "GameDev", "GodotEngine", "Godot3", "2D", "近接攻撃", "当たり判定", "アニメーション"
-  ],
-  "articleBody": "この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。\n一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（Hit Box という）を用意し、攻撃を受けるオブジェクト（敵キャラクターや破壊できる樽や木箱、草など）には攻撃を受ける範囲となる衝突形状（Hurt Box という）を用意し、攻撃時のアニメーションに合わせて、Hit Box と Hurt Box の有効/無効の切り替えやサイズ、位置の変更をすることで攻撃の当たり判定を実装することができる。\n比較的簡単に実装できるのでさっそくやっていこう。\nEnvironment Godot のバージョン: 3.5.1\nコンピュータのOS: macOS 11.6.5\nBasic Articles 以下の記事もお役立てください。\nGodot をダウンロードする Godot のプロジェクトマネージャー Godot の言語設定 インプットマップの追加 まずは「プロジェクト」＞「プロジェクト設定」＞「インプットマップ」タブで、以下のアクションを追加する。\nright: D キー left: A キー down: S キー up: W キー attack: Space バー Player シーンを作る プレイヤーキャラクターのシーンを作成する。ルートノードを「KinematicBody2D」にして、必要なノードを追加し、以下のようなシーンツリーを作成する。 Player (KinematicBody2D) Sprite BodyCollisionShape (CollisionShape2D) HitBox (Area2D) HitBoxCollisionShape (CollisionShape2D) AnimationPlayer このシーンを「Player.tscn」というファイル名で保存する。 Player シーンのノードを編集する Sprite ノード プレイヤーキャラクターの近接攻撃のアニメーションを含むスプライトシートとして、今回は itch.io から Pixel Art Dwarf Sprites というアセットをダウンロードして利用させていただいた。特に近接攻撃用のアニメーションとして、3 ~ 5 行目を利用することになる。\nダウンロードしたスプライトシートをファイルシステムドックにドラッグしてインポートする。そのままだと少しぼやけた感じで表示されるため、ファイルを選択して、インポートドックから、2D Pixel のプリセットを適用して再インポートする。 インスペクタードックにて「Texture」プロパティにインポートしたスプライトシートを適用する。\n縦横それぞれ 8 フレームずつのスプライトシートなので、「Animation」＞「Hframes」/「Vframes」の値をそれぞれ 8 とする。\n2D ワークスペース上に 1 フレーム分のテクスチャが表示されればOKだ。\nBodyCollisionShape (CollisionShape2D) ノード 親の「Player」ルートノードは KinematicBody2D クラスなので、必ず衝突形状の設定が必要だ。あとで作成する Hit Box の衝突形状と区別するため、「BodyCollisionShape」と名前を変更している。\n「Shape」プロパティには「RectangleShape」リソースを適用する。\n2D ワークスペースにて、衝突形状をスプライトのテクスチャの体部分に合わせる。\nコリジョン形状が視覚的に邪魔な場合は、必要に応じて、シーンドックでノードを非表示に設定すると良い。\nHitBox (Area2D) ノード Hit Box とは、キャラクターが近接攻撃する時の当たり判定を行うための衝突形状である。Hit Box というだけあって、一般的に四角い衝突形状が使われることが多い。Godot で作る 2D ゲームの場合、「Area2D」とその子ノードの「CollisionShape2D」を使用する。\n親の「HitBox」ノードの編集は不要だが、あとでスクリプトを作成する際に、このノードのシグナルを利用することになる。\nHitBoxCollisionShape (CollisonShape2D) ノード 「BodyCollisionShape」ノードと区別するため、名前を「HitBoxCollisionShape」としている。\n「Shape」プロパティに新規「RectangleShape」リソースを適用して四角い衝突形状を設定する。サイズや位置は後ほど攻撃時のアニメーションの中で変更させるので、今の時点で「RectangleShape」の「Extents」プロパティはデフォルトのままで良い。\nプレイヤーキャラクターの攻撃時のみ衝突判定を有効にしたいので、「Disabled」プロパティは オン にして、衝突を無効化しておく。\nAnimationPlayer ノード（アニメーションの作成） 「AnimationPlayer」ノードで近接攻撃のアニメーションを作成する。\nシーンドックで「AnimationPlayer」ノードを選択する。 アニメーションパネルを開く アニメーションを新規作成し、名前を「right_attack1」とする。\n*左右それぞれの向きに対して attack1, 2, 3 まで作る想定である。 まずは以下の通りに設定する。 読み込み時の自動再生： Off アニメーションの長さ(秒): 0.6 アニメーションのループ： Off 「Sprite」ノードの「Frame Coords」プロパティのトラックを追加する。0.1 秒間隔で、スプライトシートの 3 行目のテクスチャを左端から順番に 6 列目まで追加する。具体的には、 (0, 2)、(1, 2)、(2, 2)、(3, 2)、(4, 2)、(5, 2) と、y の値（スプライトシートの行）はそのままで x の値（スプライトシートの列）のみ 0 から 5 へ変化させていく。\nこのトラックの「Interpolation」の種類を「Nearest」に変更する。\n「BodyCollisionShape」の「Disabled」プロパティのトラックを追加する。プレイヤーキャラクターは、自分の攻撃時は敵からダメージを受けないようするため、タイムラインの0.3秒の位置で「BodyCollisionShape」の「Disabled」プロパティをオンにし、0.5秒の位置でオフに戻すようにする。\n「HitBoxCollisionShape」の「Disabled」プロパティのトラックを追加する。さっきと逆で、タイムラインの0.3秒の位置で「Disabled」プロパティをオフにし、0.5秒の位置でオンに戻す。これにより、プレイヤーキャラクターの攻撃アニメーションのうち、まさに斧を振り下ろしているアニメーションフレームの時だけ Hit Box の当たり判定が有効になる。 続けて「HitBoxCollisionShape」の「Position」プロパティと「Shape」＞「Extents」プロパティのトラックを追加する。タイムラインの0.3秒の斧を振り下ろすアニメーションに合わせて、HitBox の衝突形状のサイズと位置を調整する。「Position」の値は(7.5, -2.25)、「Extents」の値は(9.5, 12.25)とした（若干テクスチャ上の斧の軌跡より大きめにしている）。\n最終的に「right_attack1」は以下のようになった。\nSprite frame_coords Time: 0 / Value: (0, 2) / Easing: 1.00 Time: 0.1 / Value: (1, 2) / Easing: 1.00 Time: 0.2 / Value: (2, 2) / Easing: 1.00 Time: 0.3 / Value: (3, 2) / Easing: 1.00 Time: 0.4 / Value: (4, 2) / Easing: 1.00 Time: 0.5 / Value: (5, 2) / Easing: 1.00 BodyCollisionShape disabled Time: 0.1 / Value: On / Easing: 1.00 HitBoxCollisionShape disabled Time: 0.3 / Value; Off / Easing: 1.00 Time: 0.5 / Value; On / Easing: 1.00 position Time: 0.3 / Value: (7.5, -2.25) / Easing: 1.00 Time: 0.4 / Value: (4, 4) / Easing: 1.00 shape:extents Time: 0.3 / Value: (9.5, 12.25) / Easing: 1.00 Time: 0.4 / Value: (6, 6) / Easing: 1.00 以下のGIF画像は、今作成した「right_attack1」のアニメーションを 0.5 倍速で再生している。斧を振り下ろすタイミングだけ HitBox の衝突形状が有効（緑色）になっているのがおわかりいただけるだろう。\n同様の手順で、「right_attack2」のアニメーションを作成した。スプライトシートの 4 行目のテクスチャを使用した。タイムラインの 0.1 ~ 0.4 秒の間、「HitBoxCollisionShape」の「Position」と「Extents」を 0.1 秒おきに少しずつ変化させている。\n「right_attack2」を 0.5 倍速で再生するとこのようになる。\nさらに、「right_attack3」のアニメーションを作成した。こちらはスプライトシートの 5 行目のテクスチャを使用した。テクスチャは 2 フレームのみだが、その 2 つを 4 回繰り返している。「Sprite」ノードの「Position」プロパティのトラックを追加して、少し前に移動してから戻ってくるようなアニメーションにしている。\n「right_attack3」を 0.5 倍速で再生すると以下のようになる。\n左向きのアニメーションの作成時は、「Sprite」ノードの「Offset」＞「Flip H」プロパティをオンにしてから作業するとやりやすい。先に作った右向きの近接攻撃アニメーションを複製して、左向き用に調整すると簡単だ。\nPlayer ノードにスクリプトをアタッチする プレイヤーキャラクターの移動と近接攻撃を制御するために、「Player」ルートノードにスクリプトをアタッチしてコーディングしていく。\n###Player.gd### extends KinematicBody2D # 移動スピード var speed = 80.0 # 移動速度 var velocity: Vector2 # 攻撃アニメーションの番号（1 ~ 3） var attack_num = 1 # Sprite ノードの参照 onready var sprite = $Sprite # AnimationPlayer ノードの参照 onready var anim_player = $AnimationPlayer # キャラクターの移動に関する入力を制御するメソッド func move(): velocity = Vector2() if Input.is_action_pressed(\"right\"): velocity.x += 1 sprite.flip_h = false if Input.is_action_pressed(\"left\"): velocity.x -= 1 sprite.flip_h = true if Input.is_action_pressed(\"down\"): velocity.y += 1 if Input.is_action_pressed(\"up\"): velocity.y -= 1 velocity = velocity.normalized() * speed # 速度が 0 なら idle アニメーションを再生 if velocity.length() == 0: anim_player.play(\"idle\") # 速度が 0 より大きければ run アニメーションを再生 if velocity.length() \u003e 0: anim_player.play(\"run\") # 物理プロセスの組み込み関数 func _physics_process(_delta): move() # 移動に関する入力をキャラクターの動きとして反映させる velocity = move_and_slide(velocity) # 入力の組み込みコールバック関数 func _unhandled_input(event): # スペースバーが押されたら if event.is_action_pressed(\"attack\"): # 移動できないように物理プロセスを停止 set_physics_process(false) # スプライトが左右反転していたら（左向きだったら） if sprite.flip_h: # 左向きの攻撃アニメーションを再生 anim_player.play(\"left_attack\" + str(attack_num)) # スプライトが左右反転していなかったら（右向きだったら） else: # 右向きの攻撃アニメーションを再生 anim_player.play(\"right_attack\" + str(attack_num)) # 現在の攻撃アニメーションの番号が 3 未満の場合は番号に + 1 if attack_num \u003c 3: attack_num += 1 # 現在の攻撃アニメーションの番号が 3 以上の場合は番号を 1 に戻す else: attack_num = 1 「AnimationPlayer」ノードの「animation_finished」シグナルをスクリプトに接続し、自動生成されたメソッドを以下のように編集する。\nfunc _on_AnimationPlayer_animation_finished(anim_name): # アニメーションの名前に「attack」が含まれていたら物理プロセスを再開する if \"attack\" in anim_name: set_physics_process(true) 「Player」シーンを実行してみよう。事前に「デバッグ」メニューから衝突形状を表示する設定を有効にしておくとアニメーション中の衝突形状の変化がわかりやすいだろう。\nプレイヤーキャラクターの動きは以下のGIF画像のようなになる。\nEnemy シーンを作る プレイヤーキャラクターの近接攻撃の当たり判定を確認するために「Enemy」シーンを用意する。「Player」シーンと似たような作業内容のため、詳細は割愛させていただく。\nまずシーンツリーは以下の通りだ。\nEnemy (KinematicBody2D) Sprite BodyCollisionShape (CollisionShape2D) AnimationPlayer ReviveTimer (Timer) Enemy シーンのノードを編集する Sprite ノード 「Sprite」ノードの「Texture」プロパティには itch.io - mystic woods からダウンロードさせていただいたアセットのうち、「slime.png」のスプライトシートを適用する。\nBodyCollisionShape ノード 「Shape」プロパティには「CircleShape2D」を適用し、スプライトよりやや小さめの衝突形状にする。今回のチュートリアルでは、これがいわゆる Hurt Box となる。この衝突形状に、プレイヤーキャラクターの Hit Box が重なった時に当たり判定が有効となるようにすれば良いというわけだ。その制御は後ほどスクリプトで行う。\nAnimationPlayer ノード アニメーションパネルにて、以下の4つのアニメーションを用意する。全て 0.1 秒おきにスプライトシート上の次のフレームのテクスチャに変更する設定だ。\njump: 待機時の飛び跳ねるアニメーション（読み込み時に自動再生） hurt: ダメージを受けた時のアニメーション die: ライフが 0 になって死ぬときのアニメーション 「BodyCollisionShape」の「Disabled」をオンにする revive: 死んだあと一定時間後に生き返るアニメーション 「BodyCollisionShape」の「Disabled」をオフにする RevieTimer ノード 「One Shot」プロパティを有効にしておく。\nEnemy ノードにスクリプトをアタッチする 「Enemy」ルートノードにスクリプトをアタッチして以下のようにコーディングした。\n###Enemy.gd### extends KinematicBody2D # ライフの最大値 export (int) var max_life = 3 # 現在のライフ var life: int = max_life # Playerインスタンスを参照するための変数 var player: KinematicBody2D # Sprite ノードの参照 onready var sprite = $Sprite # AnimationPlayer ノードの参照 onready var anim_player = $AnimationPlayer # ReviveTimer ノードの参照 onready var revive_timer = $ReviveTimer func _process(_delta): # プレイヤーの位置により Sprite の向きを反転したりしなかったり sprite.flip_h = global_position.x \u003e player.global_position.x # ダメージを受けるメソッド func hurt(): # ライフを 1 減らす life -= 1 # アニメーション hurt を再生する anim_player.play(\"hurt\") さらに「AnimetionPlayer」の「animation_finished」シグナルと、「ReviveTimer」の「timeout」シグナルをスクリプトに接続し、それぞれの生成されたメソッドを以下のように編集する。\n###Enemy.gd### # AnimationPlayer のアニメーション終了時のシグナルにより呼ばれるメソッド func _on_AnimationPlayer_animation_finished(anim_name): # 終了したアニメーションが hurt の場合 if anim_name == \"hurt\": # ライフが 0 より大きければ jump アニメーションに戻る if life \u003e 0: anim_player.play(\"jump\") # ライフが 0 以下の場合は die アニメーションを再生する if life \u003c= 0: anim_player.play(\"die\") # 終了したアニメーションが die の場合は ReviveTimer をスタートさせる if anim_name == \"die\": revive_timer.start() # 終了したアニメーションが revive の場合は if anim_name == \"revive\": anim_player.play(\"jump\") # ReviveTimer のタイムアウト時のシグナルで呼ばれるメソッド func _on_ReviveTimer_timeout(): # revive アニメーションを再生する anim_player.play(\"revive\") # ライフを最大値に戻す life = max_life Player のスクリプトに HitBox のシグナルを追加する 「Player.gd」スクリプトの方に、近接攻撃が当たったら、「HitBox」のシグナルにより「Enemy.gd」のhurtメソッドを呼び出すようにする。\n「Player.tscn」シーンに戻り、「HitBox」ノードの「body_entered(body: Node)」シグナルを「Player.gd」スクリプトに接続する。\n###Player.gd### # 省略 # HitBox に物理ボディが当たった時のシグナルで呼ばれるメソッド func _on_HitBox_body_entered(body): # 物理ボディノードの名前が Enemy だったらその hurt メソッドを呼ぶ if body.name == \"Enemy\": body.hurt() World シーンを作る 最後に「World」シーンを作って、そこに「Player」シーンのインスタンスと「Enemy」のインスタンスを追加する。\nシーンツリーはシンプルに以下の通りだ。\nWorld (Node2D) Enemy (Enemy.tscn のインスタンス) Player (Player.tscn のインスタンス) 2D ワークスペース上で、それぞれのインスタンスを適当に配置する。\nWorld シーンにスクリプトをアタッチする World シーンにスクリプトをアタッチして、以下のようにコーディングする。目的は、「World」ルートノードから、「Enemy.gd」で宣言した「Enemy」ノードの変数playerに「Player」インスタンスの参照を渡すことだ。\n###World.gd### extends Node2D onready var player = $Player onready var enemy = $Enemy func _ready(): enemy.player = self.player プロジェクトを実行する 最後にプロジェクトを実行して近接攻撃の当たり判定の挙動を確認する。\n「Player」の「HitBox」ノードの衝突形状が「Enemy」の「BodyCollisionShape」(Hurt Box)と重なった時に当たり判定が有効になり、「Enemy」の「hurt」アニメーションが再生されているのがおわかりいただけるだろうか。\nおわりに 今回は2Dゲームにおけるシンプルな近接攻撃の当たり判定についてご紹介した。Hit Box と Hurt Box を使った攻撃の当たり判定の実装は比較的理解しやすく、様々なゲームで応用できるだろう。\nちなみに、実際のゲームでは、体の部位ごとに別々の Hit Box や Hurt Box を設定し、その組み合わせによってより複雑な仕組みを作ることもあるようだ。\n例えば、格闘ゲームでは手、足、頭など攻撃する側にいくつかの Hit Box を用意し、攻撃を受ける側にも上段、中段、下段の位置にそれぞれの Hurt Box を設定すれば、それぞれの組み合わせによって、ダメージなどを複雑に変化させることができる。\n他にも、ゾンビものの FPS ゲームであれば、ゾンビの頭と体で異なる Hurt Box を用意しておけば、頭を射撃すれば 1 発で倒せるが、他の部位だとそうはいかない、というお決まりのルールを実装することもできるだろう。\nこの記事が少しでもお役に立てたなら幸いだ。\n参考 この記事の作成にあたり、以下のリンク先の資料が大変参考になったのでご紹介させていただきたい。これらも併せてご覧いただくとより理解が深まるはずだ。\nIntroduction to the animation features KidsCanCode - MELEE ATTACKS YouTube - How to Make Melee Combat in Godot YouTube - Make an Action RPG in Godot 3.2 (P11 | Melee attacks with Hurtboxes and Hitboxes) itch.io - Pixel Art Dwarf Sprites *素材\nitch.io - mystic woods *素材\n",
-  "wordCount" : "6509",
-  "inLanguage": "ja",
-  "image":"https://www.peanuts-code.com/images/tutorials/gd0018_melee_attacks/img28.gif","datePublished": "2022-10-03T22:55:00+09:00",
-  "dateModified": "2022-10-03T22:55:00+09:00",
-  "author":{
-    "@type": "Person",
-    "name": "Gobo"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Peanuts Code",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.peanuts-code.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-<noscript>
-    <style type="text/css">
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: #1d1e20;
-                --entry: #2e2e33;
-                --primary: rgba(255, 255, 255, 0.84);
-                --secondary: rgba(255, 255, 255, 0.56);
-                --tertiary: rgba(255, 255, 255, 0.16);
-                --content: rgba(255, 255, 255, 0.74);
-                --hljs-bg: #2e2e33;
-                --code-bg: #37383e;
-                --border: #333;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript>
-
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://www.peanuts-code.com/ja/" accesskey="h" title="Peanuts Code (Alt + H)">
-                <img src="/images/logomark.png" alt="logo" aria-label="logo"
-                    height="35">Peanuts Code</a>
-            <span class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-                <ul class="lang-switch"><li>|</li>
-                    <li>
-                        <a href="https://www.peanuts-code.com/en/" title="English"
-                            aria-label="English">En</a>
-                    </li>
-                </ul>
-            </span>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="https://www.peanuts-code.com/ja/" title="ホーム">
-                    <span>ホーム</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.peanuts-code.com/ja/posts/" title="ブログ">
-                    <span>ブログ</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.peanuts-code.com/ja/tutorials/" title="チュートリアル">
-                    <span>チュートリアル</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.peanuts-code.com/ja/about/" title="サイト情報">
-                    <span>サイト情報</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.peanuts-code.com/ja/search/" title="検索 (Alt &#43; /)" accesskey=/>
-                    <span>検索</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <div class="breadcrumbs"><a href="https://www.peanuts-code.com/ja/">Home</a>&nbsp;»&nbsp;<a href="https://www.peanuts-code.com/ja/tutorials/">チュートリアル</a></div>
-    <h1 class="post-title">
-      Godot3 で作る 2D ゲームの近接攻撃の当たり判定
-    </h1>
-    <div class="post-meta">2022-10-03&nbsp;·&nbsp;13 分&nbsp;·&nbsp;Gobo&nbsp;|&nbsp;
-<ul class="i18n_list">言語:
-    <li>
-        <a href="https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/">En</a>
-    </li>
-</ul>
-</div>
-    
-    <ul class="post-tags">
-      <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/godot3/">Godot3</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E8%BF%91%E6%8E%A5%E6%94%BB%E6%92%83/">近接攻撃</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E5%BD%93%E3%81%9F%E3%82%8A%E5%88%A4%E5%AE%9A/">当たり判定</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/">アニメーション</a></li>
-    </ul>
-
-<div class="share-buttons">
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on twitter"
-        href="https://twitter.com/intent/tweet/?text=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f&amp;hashtags=GameDev%2cGodotEngine%2cGodot3%2c2D%2c%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%2c%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a%2c%e3%82%a2%e3%83%8b%e3%83%a1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on linkedin"
-        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f&amp;title=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;summary=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on reddit"
-        href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f&title=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on facebook"
-        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on whatsapp"
-        href="https://api.whatsapp.com/send?text=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a%20-%20https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on telegram"
-        href="https://telegram.me/share/url?text=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f">
-        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
-            <path
-                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
-        </svg>
-    </a>
-</div>
-
-    
-    
-    
-  </header> 
-<figure class="entry-cover"><img loading="lazy" src="https://www.peanuts-code.com/images/tutorials/gd0018_melee_attacks/img28.gif" alt="Godot3 で作る 2D ゲームの近接攻撃の当たり判定">
-        
-</figure><div class="toc">
-    <details  open>
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">目次</span>
-        </summary>
-
-        <div class="inner"><ul>
-                <li>
-                    <a href="#%e3%82%a4%e3%83%b3%e3%83%97%e3%83%83%e3%83%88%e3%83%9e%e3%83%83%e3%83%97%e3%81%ae%e8%bf%bd%e5%8a%a0" aria-label="インプットマップの追加">インプットマップの追加</a></li>
-                <li>
-                    <a href="#player-%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e3%82%8b" aria-label="Player シーンを作る">Player シーンを作る</a></li>
-                <li>
-                    <a href="#player-%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ae%e3%83%8e%e3%83%bc%e3%83%89%e3%82%92%e7%b7%a8%e9%9b%86%e3%81%99%e3%82%8b" aria-label="Player シーンのノードを編集する">Player シーンのノードを編集する</a><ul>
-                        
-                <li>
-                    <a href="#sprite-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="Sprite ノード">Sprite ノード</a></li>
-                <li>
-                    <a href="#bodycollisionshape-collisionshape2d-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="BodyCollisionShape (CollisionShape2D) ノード">BodyCollisionShape (CollisionShape2D) ノード</a></li>
-                <li>
-                    <a href="#hitbox-area2d-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="HitBox (Area2D) ノード">HitBox (Area2D) ノード</a></li>
-                <li>
-                    <a href="#hitboxcollisionshape-collisonshape2d-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="HitBoxCollisionShape (CollisonShape2D) ノード">HitBoxCollisionShape (CollisonShape2D) ノード</a></li>
-                <li>
-                    <a href="#animationplayer-%e3%83%8e%e3%83%bc%e3%83%89%e3%82%a2%e3%83%8b%e3%83%a1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%81%ae%e4%bd%9c%e6%88%90" aria-label="AnimationPlayer ノード（アニメーションの作成）">AnimationPlayer ノード（アニメーションの作成）</a></li></ul>
-                </li>
-                <li>
-                    <a href="#player-%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ab%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%82%92%e3%82%a2%e3%82%bf%e3%83%83%e3%83%81%e3%81%99%e3%82%8b" aria-label="Player ノードにスクリプトをアタッチする">Player ノードにスクリプトをアタッチする</a></li>
-                <li>
-                    <a href="#enemy-%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e3%82%8b" aria-label="Enemy シーンを作る">Enemy シーンを作る</a></li>
-                <li>
-                    <a href="#enemy-%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ae%e3%83%8e%e3%83%bc%e3%83%89%e3%82%92%e7%b7%a8%e9%9b%86%e3%81%99%e3%82%8b" aria-label="Enemy シーンのノードを編集する">Enemy シーンのノードを編集する</a><ul>
-                        
-                <li>
-                    <a href="#sprite-%e3%83%8e%e3%83%bc%e3%83%89-1" aria-label="Sprite ノード">Sprite ノード</a></li>
-                <li>
-                    <a href="#bodycollisionshape-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="BodyCollisionShape ノード">BodyCollisionShape ノード</a></li>
-                <li>
-                    <a href="#animationplayer-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="AnimationPlayer ノード">AnimationPlayer ノード</a></li>
-                <li>
-                    <a href="#revietimer-%e3%83%8e%e3%83%bc%e3%83%89" aria-label="RevieTimer ノード">RevieTimer ノード</a></li></ul>
-                </li>
-                <li>
-                    <a href="#enemy-%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ab%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%82%92%e3%82%a2%e3%82%bf%e3%83%83%e3%83%81%e3%81%99%e3%82%8b" aria-label="Enemy ノードにスクリプトをアタッチする">Enemy ノードにスクリプトをアタッチする</a></li>
-                <li>
-                    <a href="#player-%e3%81%ae%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%81%ab-hitbox-%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8a%e3%83%ab%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b" aria-label="Player のスクリプトに HitBox のシグナルを追加する">Player のスクリプトに HitBox のシグナルを追加する</a></li>
-                <li>
-                    <a href="#world-%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e3%82%8b" aria-label="World シーンを作る">World シーンを作る</a></li>
-                <li>
-                    <a href="#world-%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ab%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%82%92%e3%82%a2%e3%82%bf%e3%83%83%e3%83%81%e3%81%99%e3%82%8b" aria-label="World シーンにスクリプトをアタッチする">World シーンにスクリプトをアタッチする</a></li>
-                <li>
-                    <a href="#%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%82%92%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b" aria-label="プロジェクトを実行する">プロジェクトを実行する</a></li>
-                <li>
-                    <a href="#%e3%81%8a%e3%82%8f%e3%82%8a%e3%81%ab" aria-label="おわりに">おわりに</a></li>
-                <li>
-                    <a href="#%e5%8f%82%e8%80%83" aria-label="参考">参考</a>
-                </li>
-            </ul>
-        </div>
-    </details>
-</div>
-
-  <div class="post-content"><p>この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。</p>
-<p>一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（Hit Box という）を用意し、攻撃を受けるオブジェクト（敵キャラクターや破壊できる樽や木箱、草など）には攻撃を受ける範囲となる衝突形状（Hurt Box という）を用意し、攻撃時のアニメーションに合わせて、Hit Box と Hurt Box の有効/無効の切り替えやサイズ、位置の変更をすることで攻撃の当たり判定を実装することができる。</p>
-<p>比較的簡単に実装できるのでさっそくやっていこう。</p>
-<blockquote>
-<p><strong><span style="color:salmon">Environment</span>
-</strong><br>
-<em>Godot のバージョン: <strong>3.5.1</strong></em><br>
-<em>コンピュータのOS: <strong>macOS 11.6.5</strong></em></p>
-</blockquote>
-<blockquote>
-<p><strong><span style="color:salmon">Basic Articles</span>
-</strong><br>
-<em>以下の記事もお役立てください。<br>
-<a href="https://www.peanuts-code.com/ja/tutorials/gd0001_download/" title="Godot をダウンロードする">Godot をダウンロードする</a>
-<br>
-<a href="https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/" title="Godot のプロジェクトマネージャー">Godot のプロジェクトマネージャー</a>
-<br>
-<a href="https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/" title="Godot の言語設定">Godot の言語設定</a>
-</em></p>
-</blockquote>
-<br>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-style="display:block; text-align:center;"
-data-ad-layout="in-article"
-data-ad-format="fluid"
-data-ad-client="ca-pub-4952908839423901"
-data-ad-slot="9419515863"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<hr>
-<h2 id="インプットマップの追加">インプットマップの追加<a hidden class="anchor" aria-hidden="true" href="#インプットマップの追加">#</a></h2>
-<p>まずは「プロジェクト」＞「プロジェクト設定」＞「インプットマップ」タブで、以下のアクションを追加する。</p>
-<ul>
-<li>right: D キー</li>
-<li>left: A キー</li>
-<li>down: S キー</li>
-<li>up: W キー</li>
-<li>attack: Space バー</li>
-</ul>
-<p><img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img1.png" alt="Input Map"  />
-</p>
-<br>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-style="display:block; text-align:center;"
-data-ad-layout="in-article"
-data-ad-format="fluid"
-data-ad-client="ca-pub-4952908839423901"
-data-ad-slot="9419515863"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<hr>
-<h2 id="player-シーンを作る">Player シーンを作る<a hidden class="anchor" aria-hidden="true" href="#player-シーンを作る">#</a></h2>
-<ol>
-<li>プレイヤーキャラクターのシーンを作成する。ルートノードを「KinematicBody2D」にして、必要なノードを追加し、以下のようなシーンツリーを作成する。
-<ul>
-<li>Player (KinematicBody2D)
-<ul>
-<li>Sprite</li>
-<li>BodyCollisionShape (CollisionShape2D)</li>
-<li>HitBox (Area2D)
-<ul>
-<li>HitBoxCollisionShape (CollisionShape2D)</li>
-</ul>
-</li>
-<li>AnimationPlayer</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>このシーンを「Player.tscn」というファイル名で保存する。</li>
-</ol>
-<p><img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img2.png" alt="Player scene tree"  />
-</p>
-<br>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-style="display:block; text-align:center;"
-data-ad-layout="in-article"
-data-ad-format="fluid"
-data-ad-client="ca-pub-4952908839423901"
-data-ad-slot="9419515863"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<hr>
-<h2 id="player-シーンのノードを編集する">Player シーンのノードを編集する<a hidden class="anchor" aria-hidden="true" href="#player-シーンのノードを編集する">#</a></h2>
-<h3 id="sprite-ノード">Sprite ノード<a hidden class="anchor" aria-hidden="true" href="#sprite-ノード">#</a></h3>
-<p>プレイヤーキャラクターの近接攻撃のアニメーションを含むスプライトシートとして、今回は <a href="https://itch.io/game-assets" target="_blank">itch.io</a>
- から <a href="https://elthen.itch.io/pixel-art-dwarf-sprites" target="_blank">Pixel Art Dwarf Sprites</a>
- というアセットをダウンロードして利用させていただいた。特に近接攻撃用のアニメーションとして、3 ~ 5 行目を利用することになる。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img3.png" alt="Sprite sheet"  />
-</p>
-<ol>
-<li>ダウンロードしたスプライトシートをファイルシステムドックにドラッグしてインポートする。そのままだと少しぼやけた感じで表示されるため、ファイルを選択して、インポートドックから、2D Pixel のプリセットを適用して再インポートする。</li>
-<li>インスペクタードックにて「Texture」プロパティにインポートしたスプライトシートを適用する。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img4.png" alt="Sprite - Texture"  />
-</li>
-<li>縦横それぞれ 8 フレームずつのスプライトシートなので、「Animation」＞「Hframes」/「Vframes」の値をそれぞれ 8 とする。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img5.png" alt="Sprite - Animation - Hframes / Vframes"  />
-</li>
-</ol>
-<p>2D ワークスペース上に 1 フレーム分のテクスチャが表示されればOKだ。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img6.png" alt="Sprite - 2D workspace"  />
-</p>
-<br>
-<h3 id="bodycollisionshape-collisionshape2d-ノード">BodyCollisionShape (CollisionShape2D) ノード<a hidden class="anchor" aria-hidden="true" href="#bodycollisionshape-collisionshape2d-ノード">#</a></h3>
-<p>親の「Player」ルートノードは KinematicBody2D クラスなので、必ず衝突形状の設定が必要だ。あとで作成する Hit Box の衝突形状と区別するため、「BodyCollisionShape」と名前を変更している。</p>
-<ol>
-<li>「Shape」プロパティには「RectangleShape」リソースを適用する。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img7.png" alt="BodyCollisionShape - Shape"  />
-</li>
-<li>2D ワークスペースにて、衝突形状をスプライトのテクスチャの体部分に合わせる。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img8.png" alt="BodyCollisionShape - 2D workspace"  />
-</li>
-<li>コリジョン形状が視覚的に邪魔な場合は、必要に応じて、シーンドックでノードを非表示に設定すると良い。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img9.png" alt="BodyCollisionShape - hide"  />
-</li>
-</ol>
-<br>
-<h3 id="hitbox-area2d-ノード">HitBox (Area2D) ノード<a hidden class="anchor" aria-hidden="true" href="#hitbox-area2d-ノード">#</a></h3>
-<p>Hit Box とは、キャラクターが近接攻撃する時の当たり判定を行うための衝突形状である。Hit Box というだけあって、一般的に四角い衝突形状が使われることが多い。Godot で作る 2D ゲームの場合、「Area2D」とその子ノードの「CollisionShape2D」を使用する。</p>
-<p>親の「HitBox」ノードの編集は不要だが、あとでスクリプトを作成する際に、このノードのシグナルを利用することになる。</p>
-<br>
-<h3 id="hitboxcollisionshape-collisonshape2d-ノード">HitBoxCollisionShape (CollisonShape2D) ノード<a hidden class="anchor" aria-hidden="true" href="#hitboxcollisionshape-collisonshape2d-ノード">#</a></h3>
-<p>「BodyCollisionShape」ノードと区別するため、名前を「HitBoxCollisionShape」としている。</p>
-<ol>
-<li>「Shape」プロパティに新規「RectangleShape」リソースを適用して四角い衝突形状を設定する。サイズや位置は後ほど攻撃時のアニメーションの中で変更させるので、今の時点で「RectangleShape」の「Extents」プロパティはデフォルトのままで良い。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img10.png" alt="HitBoxCollisionShape - Shape"  />
-</li>
-<li>プレイヤーキャラクターの攻撃時のみ衝突判定を有効にしたいので、「Disabled」プロパティは <strong>オン</strong> にして、衝突を無効化しておく。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img11.png" alt="HitBoxCollisionShape - Disabled"  />
-</li>
-</ol>
-<br>
-<h3 id="animationplayer-ノードアニメーションの作成">AnimationPlayer ノード（アニメーションの作成）<a hidden class="anchor" aria-hidden="true" href="#animationplayer-ノードアニメーションの作成">#</a></h3>
-<p>「AnimationPlayer」ノードで近接攻撃のアニメーションを作成する。</p>
-<ol>
-<li>シーンドックで「AnimationPlayer」ノードを選択する。</li>
-<li>アニメーションパネルを開く</li>
-<li>アニメーションを新規作成し、名前を「right_attack1」とする。<br>
-*<em>左右それぞれの向きに対して attack1, 2, 3 まで作る想定である。</em></li>
-<li>まずは以下の通りに設定する。
-<ul>
-<li>読み込み時の自動再生： Off</li>
-<li>アニメーションの長さ(秒): 0.6</li>
-<li>アニメーションのループ： Off</li>
-</ul>
-</li>
-<li>「Sprite」ノードの「Frame Coords」プロパティのトラックを追加する。0.1 秒間隔で、スプライトシートの 3 行目のテクスチャを左端から順番に 6 列目まで追加する。具体的には、 (0, 2)、(1, 2)、(2, 2)、(3, 2)、(4, 2)、(5, 2) と、y の値（スプライトシートの行）はそのままで x の値（スプライトシートの列）のみ 0 から 5 へ変化させていく。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img12.png" alt="AnimationPlayer - Animation pannel - Sprite node frame_coords track - adding value"  />
-</li>
-<li>このトラックの「Interpolation」の種類を「Nearest」に変更する。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img13.png" alt="AnimationPlayer - Animation pannel - Sprite node frame_coords track - Interpolation"  />
-</li>
-<li>「BodyCollisionShape」の「Disabled」プロパティのトラックを追加する。プレイヤーキャラクターは、自分の攻撃時は敵からダメージを受けないようするため、タイムラインの0.3秒の位置で「BodyCollisionShape」の「Disabled」プロパティをオンにし、0.5秒の位置でオフに戻すようにする。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img14.png" alt="AnimationPlayer - Animation pannel - BodyCollisionShape track - adding value"  />
-</li>
-<li>「HitBoxCollisionShape」の「Disabled」プロパティのトラックを追加する。さっきと逆で、タイムラインの0.3秒の位置で「Disabled」プロパティをオフにし、0.5秒の位置でオンに戻す。これにより、プレイヤーキャラクターの攻撃アニメーションのうち、まさに斧を振り下ろしているアニメーションフレームの時だけ Hit Box の当たり判定が有効になる。</li>
-<li>続けて「HitBoxCollisionShape」の「Position」プロパティと「Shape」＞「Extents」プロパティのトラックを追加する。タイムラインの0.3秒の斧を振り下ろすアニメーションに合わせて、HitBox の衝突形状のサイズと位置を調整する。「Position」の値は(7.5, -2.25)、「Extents」の値は(9.5, 12.25)とした（若干テクスチャ上の斧の軌跡より大きめにしている）。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img15.png" alt="AnimationPlayer - 2D workspace"  />
-</li>
-</ol>
-<p>最終的に「right_attack1」は以下のようになった。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img16.png" alt="AnimationPlayer - Animation pannel - right_attack1"  />
-</p>
-<ul>
-<li>Sprite
-<ul>
-<li>frame_coords
-<ul>
-<li>Time: 0 / Value: (0, 2) / Easing: 1.00</li>
-<li>Time: 0.1 / Value: (1, 2) / Easing: 1.00</li>
-<li>Time: 0.2 / Value: (2, 2) / Easing: 1.00</li>
-<li>Time: 0.3 / Value: (3, 2) / Easing: 1.00</li>
-<li>Time: 0.4 / Value: (4, 2) / Easing: 1.00</li>
-<li>Time: 0.5 / Value: (5, 2) / Easing: 1.00</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>BodyCollisionShape
-<ul>
-<li>disabled
-<ul>
-<li>Time: 0.1 / Value: On / Easing: 1.00</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>HitBoxCollisionShape
-<ul>
-<li>disabled
-<ul>
-<li>Time: 0.3 / Value; Off / Easing: 1.00</li>
-<li>Time: 0.5 / Value; On / Easing: 1.00</li>
-</ul>
-</li>
-<li>position
-<ul>
-<li>Time: 0.3 / Value: (7.5, -2.25) / Easing: 1.00</li>
-<li>Time: 0.4 / Value: (4, 4) / Easing: 1.00</li>
-</ul>
-</li>
-<li>shape:extents
-<ul>
-<li>Time: 0.3 / Value: (9.5, 12.25) / Easing: 1.00</li>
-<li>Time: 0.4 / Value: (6, 6) / Easing: 1.00</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>以下のGIF画像は、今作成した「right_attack1」のアニメーションを 0.5 倍速で再生している。斧を振り下ろすタイミングだけ HitBox の衝突形状が有効（緑色）になっているのがおわかりいただけるだろう。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img17.gif" alt="AnimationPlayer - playback animation"  />
-</p>
-<br>
-<p>同様の手順で、「right_attack2」のアニメーションを作成した。スプライトシートの 4 行目のテクスチャを使用した。タイムラインの 0.1 ~ 0.4 秒の間、「HitBoxCollisionShape」の「Position」と「Extents」を 0.1 秒おきに少しずつ変化させている。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img18.png" alt="AnimationPlayer - 2D workplace"  />
-</p>
-<p>「right_attack2」を 0.5 倍速で再生するとこのようになる。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img19.gif" alt="AnimationPlayer - playback animation"  />
-</p>
-<br>
-<p>さらに、「right_attack3」のアニメーションを作成した。こちらはスプライトシートの 5 行目のテクスチャを使用した。テクスチャは 2 フレームのみだが、その 2 つを 4 回繰り返している。「Sprite」ノードの「Position」プロパティのトラックを追加して、少し前に移動してから戻ってくるようなアニメーションにしている。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img20.png" alt="AnimationPlayer - 2D workplace"  />
-</p>
-<p>「right_attack3」を 0.5 倍速で再生すると以下のようになる。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img21.gif" alt="AnimationPlayer - 2D workplace"  />
-</p>
-<br>
-<p>左向きのアニメーションの作成時は、「Sprite」ノードの「Offset」＞「Flip H」プロパティをオンにしてから作業するとやりやすい。先に作った右向きの近接攻撃アニメーションを複製して、左向き用に調整すると簡単だ。</p>
-<br>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-style="display:block; text-align:center;"
-data-ad-layout="in-article"
-data-ad-format="fluid"
-data-ad-client="ca-pub-4952908839423901"
-data-ad-slot="9419515863"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<hr>
-<h2 id="player-ノードにスクリプトをアタッチする">Player ノードにスクリプトをアタッチする<a hidden class="anchor" aria-hidden="true" href="#player-ノードにスクリプトをアタッチする">#</a></h2>
-<p>プレイヤーキャラクターの移動と近接攻撃を制御するために、「Player」ルートノードにスクリプトをアタッチしてコーディングしていく。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Player.gd###</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 移動スピード</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> speed <span style="color:#f92672">=</span> <span style="color:#ae81ff">80.0</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 移動速度</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> velocity: <span style="color:#a6e22e">Vector2</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 攻撃アニメーションの番号（1 ~ 3）</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> attack_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Sprite ノードの参照</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> sprite <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">Sprite</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># AnimationPlayer ノードの参照</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> anim_player <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">AnimationPlayer</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># キャラクターの移動に関する入力を制御するメソッド</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> move():
-</span></span><span style="display:flex;"><span>	velocity <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vector2</span>()
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;right&#34;</span>):
-</span></span><span style="display:flex;"><span>		velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>flip_h <span style="color:#f92672">=</span> false
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;left&#34;</span>):
-</span></span><span style="display:flex;"><span>		velocity<span style="color:#f92672">.</span>x <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>		sprite<span style="color:#f92672">.</span>flip_h <span style="color:#f92672">=</span> true
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;down&#34;</span>):
-</span></span><span style="display:flex;"><span>		velocity<span style="color:#f92672">.</span>y <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;up&#34;</span>):
-</span></span><span style="display:flex;"><span>		velocity<span style="color:#f92672">.</span>y <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>	velocity <span style="color:#f92672">=</span> velocity<span style="color:#f92672">.</span>normalized() <span style="color:#f92672">*</span> speed
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 速度が 0 なら idle アニメーションを再生</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> velocity<span style="color:#f92672">.</span>length() <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
-</span></span><span style="display:flex;"><span>		anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;idle&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 速度が 0 より大きければ run アニメーションを再生</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> velocity<span style="color:#f92672">.</span>length() <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
-</span></span><span style="display:flex;"><span>		anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;run&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 物理プロセスの組み込み関数</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _physics_process(_delta):
-</span></span><span style="display:flex;"><span>	move()
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 移動に関する入力をキャラクターの動きとして反映させる</span>
-</span></span><span style="display:flex;"><span>	velocity <span style="color:#f92672">=</span> move_and_slide(velocity)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 入力の組み込みコールバック関数</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _unhandled_input(event):
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># スペースバーが押されたら</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> event<span style="color:#f92672">.</span>is_action_pressed(<span style="color:#e6db74">&#34;attack&#34;</span>):
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># 移動できないように物理プロセスを停止</span>
-</span></span><span style="display:flex;"><span>		set_physics_process(false)
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># スプライトが左右反転していたら（左向きだったら）</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> sprite<span style="color:#f92672">.</span>flip_h:
-</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># 左向きの攻撃アニメーションを再生</span>
-</span></span><span style="display:flex;"><span>			anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;left_attack&#34;</span> <span style="color:#f92672">+</span> str(attack_num))
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># スプライトが左右反転していなかったら（右向きだったら）</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
-</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># 右向きの攻撃アニメーションを再生</span>
-</span></span><span style="display:flex;"><span>			anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;right_attack&#34;</span> <span style="color:#f92672">+</span> str(attack_num))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># 現在の攻撃アニメーションの番号が 3 未満の場合は番号に + 1</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> attack_num <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>:
-</span></span><span style="display:flex;"><span>			attack_num <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># 現在の攻撃アニメーションの番号が 3 以上の場合は番号を 1 に戻す</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
-</span></span><span style="display:flex;"><span>			attack_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
-</span></span></code></pre></div><br>
-<p>「AnimationPlayer」ノードの「animation_finished」シグナルをスクリプトに接続し、自動生成されたメソッドを以下のように編集する。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_AnimationPlayer_animation_finished(anim_name):
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># アニメーションの名前に「attack」が含まれていたら物理プロセスを再開する</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;attack&#34;</span> <span style="color:#f92672">in</span> anim_name:
-</span></span><span style="display:flex;"><span>		set_physics_process(true)
-</span></span></code></pre></div><br>
-<p>「Player」シーンを実行してみよう。事前に「デバッグ」メニューから衝突形状を表示する設定を有効にしておくとアニメーション中の衝突形状の変化がわかりやすいだろう。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img21.1.png" alt="run project"  />
-</p>
-<p>プレイヤーキャラクターの動きは以下のGIF画像のようなになる。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img22.gif" alt="Player - run scene"  />
-</p>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-style="display:block; text-align:center;"
-data-ad-layout="in-article"
-data-ad-format="fluid"
-data-ad-client="ca-pub-4952908839423901"
-data-ad-slot="9419515863"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<hr>
-<h2 id="enemy-シーンを作る">Enemy シーンを作る<a hidden class="anchor" aria-hidden="true" href="#enemy-シーンを作る">#</a></h2>
-<p>プレイヤーキャラクターの近接攻撃の当たり判定を確認するために「Enemy」シーンを用意する。「Player」シーンと似たような作業内容のため、詳細は割愛させていただく。</p>
-<p>まずシーンツリーは以下の通りだ。</p>
-<ul>
-<li>Enemy (KinematicBody2D)
-<ul>
-<li>Sprite</li>
-<li>BodyCollisionShape (CollisionShape2D)</li>
-<li>AnimationPlayer</li>
-<li>ReviveTimer (Timer)</li>
-</ul>
-</li>
-</ul>
-<p><img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img23.png" alt="Enemy - Scene tree"  />
-</p>
-<br>
-<h2 id="enemy-シーンのノードを編集する">Enemy シーンのノードを編集する<a hidden class="anchor" aria-hidden="true" href="#enemy-シーンのノードを編集する">#</a></h2>
-<h3 id="sprite-ノード-1">Sprite ノード<a hidden class="anchor" aria-hidden="true" href="#sprite-ノード-1">#</a></h3>
-<p>「Sprite」ノードの「Texture」プロパティには <a href="https://game-endeavor.itch.io/mystic-woods" target="_blank">itch.io - mystic woods</a>
- からダウンロードさせていただいたアセットのうち、「slime.png」のスプライトシートを適用する。</p>
-<h3 id="bodycollisionshape-ノード">BodyCollisionShape ノード<a hidden class="anchor" aria-hidden="true" href="#bodycollisionshape-ノード">#</a></h3>
-<p>「Shape」プロパティには「CircleShape2D」を適用し、スプライトよりやや小さめの衝突形状にする。今回のチュートリアルでは、これがいわゆる Hurt Box となる。この衝突形状に、プレイヤーキャラクターの Hit Box が重なった時に当たり判定が有効となるようにすれば良いというわけだ。その制御は後ほどスクリプトで行う。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img24.png" alt="Enemy - BodyCollisionShape"  />
-</p>
-<h3 id="animationplayer-ノード">AnimationPlayer ノード<a hidden class="anchor" aria-hidden="true" href="#animationplayer-ノード">#</a></h3>
-<p>アニメーションパネルにて、以下の4つのアニメーションを用意する。全て 0.1 秒おきにスプライトシート上の次のフレームのテクスチャに変更する設定だ。</p>
-<ul>
-<li>jump: 待機時の飛び跳ねるアニメーション（読み込み時に自動再生）</li>
-<li>hurt: ダメージを受けた時のアニメーション</li>
-<li>die: ライフが 0 になって死ぬときのアニメーション
-<ul>
-<li>「BodyCollisionShape」の「Disabled」をオンにする</li>
-</ul>
-</li>
-<li>revive: 死んだあと一定時間後に生き返るアニメーション
-<ul>
-<li>「BodyCollisionShape」の「Disabled」をオフにする</li>
-</ul>
-</li>
-</ul>
-<h3 id="revietimer-ノード">RevieTimer ノード<a hidden class="anchor" aria-hidden="true" href="#revietimer-ノード">#</a></h3>
-<p>「One Shot」プロパティを有効にしておく。</p>
-<br>
-<h2 id="enemy-ノードにスクリプトをアタッチする">Enemy ノードにスクリプトをアタッチする<a hidden class="anchor" aria-hidden="true" href="#enemy-ノードにスクリプトをアタッチする">#</a></h2>
-<p>「Enemy」ルートノードにスクリプトをアタッチして以下のようにコーディングした。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Enemy.gd###</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">KinematicBody2D</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ライフの最大値</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> (<span style="color:#a6e22e">int</span>) <span style="color:#66d9ef">var</span> max_life <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 現在のライフ</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> life: <span style="color:#a6e22e">int</span> <span style="color:#f92672">=</span> max_life
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Playerインスタンスを参照するための変数</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> player: <span style="color:#a6e22e">KinematicBody2D</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Sprite ノードの参照</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> sprite <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">Sprite</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># AnimationPlayer ノードの参照</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> anim_player <span style="color:#f92672">=</span> <span style="color:#f92672">$</span><span style="color:#a6e22e">AnimationPlayer</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ReviveTimer ノードの参照</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> revive_timer <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>ReviveTimer
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _process(_delta):
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># プレイヤーの位置により Sprite の向きを反転したりしなかったり</span>
-</span></span><span style="display:flex;"><span>	sprite<span style="color:#f92672">.</span>flip_h <span style="color:#f92672">=</span> global_position<span style="color:#f92672">.</span>x <span style="color:#f92672">&gt;</span> player<span style="color:#f92672">.</span>global_position<span style="color:#f92672">.</span>x
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ダメージを受けるメソッド</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> hurt():
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># ライフを 1 減らす</span>
-</span></span><span style="display:flex;"><span>	life <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># アニメーション hurt を再生する</span>
-</span></span><span style="display:flex;"><span>	anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;hurt&#34;</span>)
-</span></span></code></pre></div><p>さらに「AnimetionPlayer」の「animation_finished」シグナルと、「ReviveTimer」の「timeout」シグナルをスクリプトに接続し、それぞれの生成されたメソッドを以下のように編集する。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Enemy.gd###</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># AnimationPlayer のアニメーション終了時のシグナルにより呼ばれるメソッド</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_AnimationPlayer_animation_finished(anim_name):
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 終了したアニメーションが hurt の場合</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> anim_name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;hurt&#34;</span>:
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># ライフが 0 より大きければ jump アニメーションに戻る</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> life <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
-</span></span><span style="display:flex;"><span>			anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;jump&#34;</span>)
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># ライフが 0 以下の場合は die アニメーションを再生する</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> life <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>:
-</span></span><span style="display:flex;"><span>			anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;die&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 終了したアニメーションが die の場合は ReviveTimer をスタートさせる</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> anim_name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;die&#34;</span>:
-</span></span><span style="display:flex;"><span>		revive_timer<span style="color:#f92672">.</span>start()
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 終了したアニメーションが revive の場合は</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> anim_name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;revive&#34;</span>:
-</span></span><span style="display:flex;"><span>		anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;jump&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ReviveTimer のタイムアウト時のシグナルで呼ばれるメソッド</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_ReviveTimer_timeout():
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># revive アニメーションを再生する</span>
-</span></span><span style="display:flex;"><span>	anim_player<span style="color:#f92672">.</span>play(<span style="color:#e6db74">&#34;revive&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># ライフを最大値に戻す</span>
-</span></span><span style="display:flex;"><span>	life <span style="color:#f92672">=</span> max_life
-</span></span></code></pre></div><br>
-<hr>
-<h2 id="player-のスクリプトに-hitbox-のシグナルを追加する">Player のスクリプトに HitBox のシグナルを追加する<a hidden class="anchor" aria-hidden="true" href="#player-のスクリプトに-hitbox-のシグナルを追加する">#</a></h2>
-<p>「Player.gd」スクリプトの方に、近接攻撃が当たったら、「HitBox」のシグナルにより「Enemy.gd」の<code>hurt</code>メソッドを呼び出すようにする。</p>
-<p>「Player.tscn」シーンに戻り、「HitBox」ノードの「body_entered(body: Node)」シグナルを「Player.gd」スクリプトに接続する。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###Player.gd###</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 省略</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># HitBox に物理ボディが当たった時のシグナルで呼ばれるメソッド</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _on_HitBox_body_entered(body):
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># 物理ボディノードの名前が Enemy だったらその hurt メソッドを呼ぶ</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> body<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Enemy&#34;</span>:
-</span></span><span style="display:flex;"><span>		body<span style="color:#f92672">.</span>hurt()
-</span></span></code></pre></div><br>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-style="display:block; text-align:center;"
-data-ad-layout="in-article"
-data-ad-format="fluid"
-data-ad-client="ca-pub-4952908839423901"
-data-ad-slot="9419515863"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<hr>
-<h2 id="world-シーンを作る">World シーンを作る<a hidden class="anchor" aria-hidden="true" href="#world-シーンを作る">#</a></h2>
-<p>最後に「World」シーンを作って、そこに「Player」シーンのインスタンスと「Enemy」のインスタンスを追加する。</p>
-<p>シーンツリーはシンプルに以下の通りだ。</p>
-<ul>
-<li>World (Node2D)
-<ul>
-<li>Enemy (Enemy.tscn のインスタンス)</li>
-<li>Player (Player.tscn のインスタンス)</li>
-</ul>
-</li>
-</ul>
-<p><img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img25.png" alt="World - Scene tree"  />
-</p>
-<p>2D ワークスペース上で、それぞれのインスタンスを適当に配置する。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img26.png" alt="World - 2D workspace"  />
-</p>
-<br>
-<hr>
-<h2 id="world-シーンにスクリプトをアタッチする">World シーンにスクリプトをアタッチする<a hidden class="anchor" aria-hidden="true" href="#world-シーンにスクリプトをアタッチする">#</a></h2>
-<p>World シーンにスクリプトをアタッチして、以下のようにコーディングする。目的は、「World」ルートノードから、「Enemy.gd」で宣言した「Enemy」ノードの変数<code>player</code>に「Player」インスタンスの参照を渡すことだ。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-GDScript" data-lang="GDScript"><span style="display:flex;"><span><span style="color:#75715e">###World.gd###</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Node2D</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> player <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>Player
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">onready</span> <span style="color:#66d9ef">var</span> enemy <span style="color:#f92672">=</span> <span style="color:#f92672">$</span>Enemy
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> _ready():
-</span></span><span style="display:flex;"><span>	enemy<span style="color:#f92672">.</span>player <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>player
-</span></span></code></pre></div><br>
-<hr>
-<h2 id="プロジェクトを実行する">プロジェクトを実行する<a hidden class="anchor" aria-hidden="true" href="#プロジェクトを実行する">#</a></h2>
-<p>最後にプロジェクトを実行して近接攻撃の当たり判定の挙動を確認する。</p>
-<p>「Player」の「HitBox」ノードの衝突形状が「Enemy」の「BodyCollisionShape」(Hurt Box)と重なった時に当たり判定が有効になり、「Enemy」の「hurt」アニメーションが再生されているのがおわかりいただけるだろうか。<br>
-<img loading="lazy" src="/images/tutorials/gd0018_melee_attacks/img28.gif" alt="run project"  />
-</p>
-<br>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-style="display:block; text-align:center;"
-data-ad-layout="in-article"
-data-ad-format="fluid"
-data-ad-client="ca-pub-4952908839423901"
-data-ad-slot="9419515863"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<hr>
-<h2 id="おわりに">おわりに<a hidden class="anchor" aria-hidden="true" href="#おわりに">#</a></h2>
-<p>今回は2Dゲームにおけるシンプルな近接攻撃の当たり判定についてご紹介した。Hit Box と Hurt Box を使った攻撃の当たり判定の実装は比較的理解しやすく、様々なゲームで応用できるだろう。</p>
-<p>ちなみに、実際のゲームでは、体の部位ごとに別々の Hit Box や Hurt Box を設定し、その組み合わせによってより複雑な仕組みを作ることもあるようだ。</p>
-<p>例えば、格闘ゲームでは手、足、頭など攻撃する側にいくつかの Hit Box を用意し、攻撃を受ける側にも上段、中段、下段の位置にそれぞれの Hurt Box を設定すれば、それぞれの組み合わせによって、ダメージなどを複雑に変化させることができる。</p>
-<p>他にも、ゾンビものの FPS ゲームであれば、ゾンビの頭と体で異なる Hurt Box を用意しておけば、頭を射撃すれば 1 発で倒せるが、他の部位だとそうはいかない、というお決まりのルールを実装することもできるだろう。</p>
-<p>この記事が少しでもお役に立てたなら幸いだ。</p>
-<hr>
-<h2 id="参考">参考<a hidden class="anchor" aria-hidden="true" href="#参考">#</a></h2>
-<p>この記事の作成にあたり、以下のリンク先の資料が大変参考になったのでご紹介させていただきたい。これらも併せてご覧いただくとより理解が深まるはずだ。</p>
-<ul>
-<li>
-<p><a href="https://docs.godotengine.org/ja/stable/tutorials/animation/introduction.html" target="_blank">Introduction to the animation features</a>
-</p>
-</li>
-<li>
-<p><a href="http://kidscancode.org/godot_recipes/3.x/animation/melee_attacks/" target="_blank">KidsCanCode - MELEE ATTACKS</a>
-</p>
-</li>
-<li>
-<p><a href="https://youtu.be/dBvfwLxoY3I" target="_blank">YouTube - How to Make Melee Combat in Godot</a>
-</p>
-</li>
-<li>
-<p><a href="https://youtu.be/vDbEfmPcv-Q" target="_blank">YouTube - Make an Action RPG in Godot 3.2 (P11 | Melee attacks with Hurtboxes and Hitboxes)</a>
-</p>
-</li>
-<li>
-<p><a href="https://elthen.itch.io/pixel-art-dwarf-sprites" target="_blank">itch.io - Pixel Art Dwarf Sprites</a>
- *素材</p>
-</li>
-<li>
-<p><a href="https://game-endeavor.itch.io/mystic-woods" target="_blank">itch.io - mystic woods</a>
- *素材</p>
-</li>
-</ul>
-<hr>
-<!-- **UPDATE** -->
-<!-- 2022/05/25 新規作成 -->
-<!-- --- -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-style="display:block; text-align:center;"
-data-ad-layout="in-article"
-data-ad-format="fluid"
-data-ad-client="ca-pub-4952908839423901"
-data-ad-slot="9419515863"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-  </div>
-
-  <footer class="post-footer">
-    
-    <div class="recommendation">
-        <span>Twitter で新しい記事のお知らせやゲーム開発の進捗を投稿しています。<br>
-お気軽にフォローしてください。</span>
-      <div class="social-icons">
-    <a href="https://twitter.com/peanuts_code" target="_blank" rel="noopener noreferrer me" title="Twitter">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path
-        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-    </path>
-</svg>
-    </a>
-    <a href="https://github.com/msnsk/" target="_blank" rel="noopener noreferrer me" title="GitHub">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path
-        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-    </path>
-</svg>
-    </a>
-</div>
-
-    </div>
-    <div class="recommendation">
-        <span>もしこの記事が良かったら、ぜひSNSなどでシェアしていただけると幸いです。</span>
-    </div>
-    
-    
-
-<div class="share-buttons">
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on twitter"
-        href="https://twitter.com/intent/tweet/?text=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f&amp;hashtags=GameDev%2cGodotEngine%2cGodot3%2c2D%2c%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%2c%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a%2c%e3%82%a2%e3%83%8b%e3%83%a1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on linkedin"
-        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f&amp;title=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;summary=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on reddit"
-        href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f&title=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on facebook"
-        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on whatsapp"
-        href="https://api.whatsapp.com/send?text=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a%20-%20https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f">
-        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
-            <path
-                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
-        </svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on telegram"
-        href="https://telegram.me/share/url?text=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f">
-        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
-            <path
-                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
-        </svg>
-    </a>
-</div>
-
-    <ul class="post-tags">
-      <li><a href="https://www.peanuts-code.com/ja/tags/gamedev/">GameDev</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/godotengine/">GodotEngine</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/godot3/">Godot3</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/2d/">2D</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E8%BF%91%E6%8E%A5%E6%94%BB%E6%92%83/">近接攻撃</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E5%BD%93%E3%81%9F%E3%82%8A%E5%88%A4%E5%AE%9A/">当たり判定</a></li>
-      <li><a href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/">アニメーション</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/">
-    <span class="title">« 前のページ</span>
-    <br>
-    <span>Godot3 で作るアニメーションステートマシン</span>
-  </a>
-  <a class="next" href="https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/">
-    <span class="title">次のページ »</span>
-    <br>
-    <span>Godot3 で作る 2D グリッドベース経路探索</span>
-  </a>
-</nav>
-
-    
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-    <span>&copy; 2022 <a href="https://www.peanuts-code.com/ja/">Peanuts Code</a></span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
-
-<script>
-    let menu = document.getElementById('menu')
-    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-    menu.onscroll = function () {
-        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerText = 'copy';
-
-        function copyingDone() {
-            copybutton.innerText = 'copied!';
-            setTimeout(() => {
-                copybutton.innerText = 'copy';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
-</script>
-</body>
-
-</html>
+<!doctype html><html lang=ja dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Godot3 で作る 2D ゲームの近接攻撃の当たり判定 | Peanuts Code</title>
+<meta name=keywords content="GameDev,GodotEngine,Godot3,2D,近接攻撃,当たり判定,アニメーション"><meta name=description content="この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（H"><meta name=author content="Gobo"><link rel=canonical href=https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/><link crossorigin=anonymous href=/assets/css/stylesheet.css rel="preload stylesheet" as=style><link rel=icon href=https://www.peanuts-code.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://www.peanuts-code.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://www.peanuts-code.com/favicon-32x32.png><link rel=apple-touch-icon href=https://www.peanuts-code.com/apple-touch-icon.png><link rel=mask-icon href=https://www.peanuts-code.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=ja href=https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/><link rel=alternate hreflang=en href=https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:title" content="Godot3 で作る 2D ゲームの近接攻撃の当たり判定"><meta property="og:description" content="この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（H"><meta property="og:type" content="article"><meta property="og:url" content="https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/"><meta property="og:image" content="https://www.peanuts-code.com/images/tutorials/gd0018_melee_attacks/img28.gif"><meta property="article:section" content="tutorials"><meta property="article:published_time" content="2022-10-03T22:55:00+09:00"><meta property="article:modified_time" content="2022-10-03T22:55:00+09:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://www.peanuts-code.com/images/tutorials/gd0018_melee_attacks/img28.gif"><meta name=twitter:title content="Godot3 で作る 2D ゲームの近接攻撃の当たり判定"><meta name=twitter:description content="この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（H"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"チュートリアル","item":"https://www.peanuts-code.com/ja/tutorials/"},{"@type":"ListItem","position":2,"name":"Godot3 で作る 2D ゲームの近接攻撃の当たり判定","item":"https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Godot3 で作る 2D ゲームの近接攻撃の当たり判定","name":"Godot3 で作る 2D ゲームの近接攻撃の当たり判定","description":"この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（H","keywords":["GameDev","GodotEngine","Godot3","2D","近接攻撃","当たり判定","アニメーション"],"articleBody":"この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。\n一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（Hit Box という）を用意し、攻撃を受けるオブジェクト（敵キャラクターや破壊できる樽や木箱、草など）には攻撃を受ける範囲となる衝突形状（Hurt Box という）を用意し、攻撃時のアニメーションに合わせて、Hit Box と Hurt Box の有効/無効の切り替えやサイズ、位置の変更をすることで攻撃の当たり判定を実装することができる。\n比較的簡単に実装できるのでさっそくやっていこう。\nEnvironment Godot のバージョン: 3.5.1\nコンピュータのOS: macOS 11.6.5\nBasic Articles 以下の記事もお役立てください。\nGodot をダウンロードする Godot のプロジェクトマネージャー Godot の言語設定 インプットマップの追加 まずは「プロジェクト」＞「プロジェクト設定」＞「インプットマップ」タブで、以下のアクションを追加する。\nright: D キー left: A キー down: S キー up: W キー attack: Space バー Player シーンを作る プレイヤーキャラクターのシーンを作成する。ルートノードを「KinematicBody2D」にして、必要なノードを追加し、以下のようなシーンツリーを作成する。 Player (KinematicBody2D) Sprite BodyCollisionShape (CollisionShape2D) HitBox (Area2D) HitBoxCollisionShape (CollisionShape2D) AnimationPlayer このシーンを「Player.tscn」というファイル名で保存する。 Player シーンのノードを編集する Sprite ノード プレイヤーキャラクターの近接攻撃のアニメーションを含むスプライトシートとして、今回は itch.io から Pixel Art Dwarf Sprites というアセットをダウンロードして利用させていただいた。特に近接攻撃用のアニメーションとして、3 ~ 5 行目を利用することになる。\nダウンロードしたスプライトシートをファイルシステムドックにドラッグしてインポートする。そのままだと少しぼやけた感じで表示されるため、ファイルを選択して、インポートドックから、2D Pixel のプリセットを適用して再インポートする。 インスペクタードックにて「Texture」プロパティにインポートしたスプライトシートを適用する。\n縦横それぞれ 8 フレームずつのスプライトシートなので、「Animation」＞「Hframes」/「Vframes」の値をそれぞれ 8 とする。\n2D ワークスペース上に 1 フレーム分のテクスチャが表示されればOKだ。\nBodyCollisionShape (CollisionShape2D) ノード 親の「Player」ルートノードは KinematicBody2D クラスなので、必ず衝突形状の設定が必要だ。あとで作成する Hit Box の衝突形状と区別するため、「BodyCollisionShape」と名前を変更している。\n「Shape」プロパティには「RectangleShape」リソースを適用する。\n2D ワークスペースにて、衝突形状をスプライトのテクスチャの体部分に合わせる。\nコリジョン形状が視覚的に邪魔な場合は、必要に応じて、シーンドックでノードを非表示に設定すると良い。\nHitBox (Area2D) ノード Hit Box とは、キャラクターが近接攻撃する時の当たり判定を行うための衝突形状である。Hit Box というだけあって、一般的に四角い衝突形状が使われることが多い。Godot で作る 2D ゲームの場合、「Area2D」とその子ノードの「CollisionShape2D」を使用する。\n親の「HitBox」ノードの編集は不要だが、あとでスクリプトを作成する際に、このノードのシグナルを利用することになる。\nHitBoxCollisionShape (CollisonShape2D) ノード 「BodyCollisionShape」ノードと区別するため、名前を「HitBoxCollisionShape」としている。\n「Shape」プロパティに新規「RectangleShape」リソースを適用して四角い衝突形状を設定する。サイズや位置は後ほど攻撃時のアニメーションの中で変更させるので、今の時点で「RectangleShape」の「Extents」プロパティはデフォルトのままで良い。\nプレイヤーキャラクターの攻撃時のみ衝突判定を有効にしたいので、「Disabled」プロパティは オン にして、衝突を無効化しておく。\nAnimationPlayer ノード（アニメーションの作成） 「AnimationPlayer」ノードで近接攻撃のアニメーションを作成する。\nシーンドックで「AnimationPlayer」ノードを選択する。 アニメーションパネルを開く アニメーションを新規作成し、名前を「right_attack1」とする。\n*左右それぞれの向きに対して attack1, 2, 3 まで作る想定である。 まずは以下の通りに設定する。 読み込み時の自動再生： Off アニメーションの長さ(秒): 0.6 アニメーションのループ： Off 「Sprite」ノードの「Frame Coords」プロパティのトラックを追加する。0.1 秒間隔で、スプライトシートの 3 行目のテクスチャを左端から順番に 6 列目まで追加する。具体的には、 (0, 2)、(1, 2)、(2, 2)、(3, 2)、(4, 2)、(5, 2) と、y の値（スプライトシートの行）はそのままで x の値（スプライトシートの列）のみ 0 から 5 へ変化させていく。\nこのトラックの「Interpolation」の種類を「Nearest」に変更する。\n「BodyCollisionShape」の「Disabled」プロパティのトラックを追加する。プレイヤーキャラクターは、自分の攻撃時は敵からダメージを受けないようするため、タイムラインの0.3秒の位置で「BodyCollisionShape」の「Disabled」プロパティをオンにし、0.5秒の位置でオフに戻すようにする。\n「HitBoxCollisionShape」の「Disabled」プロパティのトラックを追加する。さっきと逆で、タイムラインの0.3秒の位置で「Disabled」プロパティをオフにし、0.5秒の位置でオンに戻す。これにより、プレイヤーキャラクターの攻撃アニメーションのうち、まさに斧を振り下ろしているアニメーションフレームの時だけ Hit Box の当たり判定が有効になる。 続けて「HitBoxCollisionShape」の「Position」プロパティと「Shape」＞「Extents」プロパティのトラックを追加する。タイムラインの0.3秒の斧を振り下ろすアニメーションに合わせて、HitBox の衝突形状のサイズと位置を調整する。「Position」の値は(7.5, -2.25)、「Extents」の値は(9.5, 12.25)とした（若干テクスチャ上の斧の軌跡より大きめにしている）。\n最終的に「right_attack1」は以下のようになった。\nSprite frame_coords Time: 0 / Value: (0, 2) / Easing: 1.00 Time: 0.1 / Value: (1, 2) / Easing: 1.00 Time: 0.2 / Value: (2, 2) / Easing: 1.00 Time: 0.3 / Value: (3, 2) / Easing: 1.00 Time: 0.4 / Value: (4, 2) / Easing: 1.00 Time: 0.5 / Value: (5, 2) / Easing: 1.00 BodyCollisionShape disabled Time: 0.1 / Value: On / Easing: 1.00 HitBoxCollisionShape disabled Time: 0.3 / Value; Off / Easing: 1.00 Time: 0.5 / Value; On / Easing: 1.00 position Time: 0.3 / Value: (7.5, -2.25) / Easing: 1.00 Time: 0.4 / Value: (4, 4) / Easing: 1.00 shape:extents Time: 0.3 / Value: (9.5, 12.25) / Easing: 1.00 Time: 0.4 / Value: (6, 6) / Easing: 1.00 以下のGIF画像は、今作成した「right_attack1」のアニメーションを 0.5 倍速で再生している。斧を振り下ろすタイミングだけ HitBox の衝突形状が有効（緑色）になっているのがおわかりいただけるだろう。\n同様の手順で、「right_attack2」のアニメーションを作成した。スプライトシートの 4 行目のテクスチャを使用した。タイムラインの 0.1 ~ 0.4 秒の間、「HitBoxCollisionShape」の「Position」と「Extents」を 0.1 秒おきに少しずつ変化させている。\n「right_attack2」を 0.5 倍速で再生するとこのようになる。\nさらに、「right_attack3」のアニメーションを作成した。こちらはスプライトシートの 5 行目のテクスチャを使用した。テクスチャは 2 フレームのみだが、その 2 つを 4 回繰り返している。「Sprite」ノードの「Position」プロパティのトラックを追加して、少し前に移動してから戻ってくるようなアニメーションにしている。\n「right_attack3」を 0.5 倍速で再生すると以下のようになる。\n左向きのアニメーションの作成時は、「Sprite」ノードの「Offset」＞「Flip H」プロパティをオンにしてから作業するとやりやすい。先に作った右向きの近接攻撃アニメーションを複製して、左向き用に調整すると簡単だ。\nPlayer ノードにスクリプトをアタッチする プレイヤーキャラクターの移動と近接攻撃を制御するために、「Player」ルートノードにスクリプトをアタッチしてコーディングしていく。\n###Player.gd### extends KinematicBody2D # 移動スピード var speed = 80.0 # 移動速度 var velocity: Vector2 # 攻撃アニメーションの番号（1 ~ 3） var attack_num = 1 # Sprite ノードの参照 onready var sprite = $Sprite # AnimationPlayer ノードの参照 onready var anim_player = $AnimationPlayer # キャラクターの移動に関する入力を制御するメソッド func move(): velocity = Vector2() if Input.is_action_pressed(\"right\"): velocity.x += 1 sprite.flip_h = false if Input.is_action_pressed(\"left\"): velocity.x -= 1 sprite.flip_h = true if Input.is_action_pressed(\"down\"): velocity.y += 1 if Input.is_action_pressed(\"up\"): velocity.y -= 1 velocity = velocity.normalized() * speed # 速度が 0 なら idle アニメーションを再生 if velocity.length() == 0: anim_player.play(\"idle\") # 速度が 0 より大きければ run アニメーションを再生 if velocity.length() \u003e 0: anim_player.play(\"run\") # 物理プロセスの組み込み関数 func _physics_process(_delta): move() # 移動に関する入力をキャラクターの動きとして反映させる velocity = move_and_slide(velocity) # 入力の組み込みコールバック関数 func _unhandled_input(event): # スペースバーが押されたら if event.is_action_pressed(\"attack\"): # 移動できないように物理プロセスを停止 set_physics_process(false) # スプライトが左右反転していたら（左向きだったら） if sprite.flip_h: # 左向きの攻撃アニメーションを再生 anim_player.play(\"left_attack\" + str(attack_num)) # スプライトが左右反転していなかったら（右向きだったら） else: # 右向きの攻撃アニメーションを再生 anim_player.play(\"right_attack\" + str(attack_num)) # 現在の攻撃アニメーションの番号が 3 未満の場合は番号に + 1 if attack_num \u003c 3: attack_num += 1 # 現在の攻撃アニメーションの番号が 3 以上の場合は番号を 1 に戻す else: attack_num = 1 「AnimationPlayer」ノードの「animation_finished」シグナルをスクリプトに接続し、自動生成されたメソッドを以下のように編集する。\nfunc _on_AnimationPlayer_animation_finished(anim_name): # アニメーションの名前に「attack」が含まれていたら物理プロセスを再開する if \"attack\" in anim_name: set_physics_process(true) 「Player」シーンを実行してみよう。事前に「デバッグ」メニューから衝突形状を表示する設定を有効にしておくとアニメーション中の衝突形状の変化がわかりやすいだろう。\nプレイヤーキャラクターの動きは以下のGIF画像のようなになる。\nEnemy シーンを作る プレイヤーキャラクターの近接攻撃の当たり判定を確認するために「Enemy」シーンを用意する。「Player」シーンと似たような作業内容のため、詳細は割愛させていただく。\nまずシーンツリーは以下の通りだ。\nEnemy (KinematicBody2D) Sprite BodyCollisionShape (CollisionShape2D) AnimationPlayer ReviveTimer (Timer) Enemy シーンのノードを編集する Sprite ノード 「Sprite」ノードの「Texture」プロパティには itch.io - mystic woods からダウンロードさせていただいたアセットのうち、「slime.png」のスプライトシートを適用する。\nBodyCollisionShape ノード 「Shape」プロパティには「CircleShape2D」を適用し、スプライトよりやや小さめの衝突形状にする。今回のチュートリアルでは、これがいわゆる Hurt Box となる。この衝突形状に、プレイヤーキャラクターの Hit Box が重なった時に当たり判定が有効となるようにすれば良いというわけだ。その制御は後ほどスクリプトで行う。\nAnimationPlayer ノード アニメーションパネルにて、以下の4つのアニメーションを用意する。全て 0.1 秒おきにスプライトシート上の次のフレームのテクスチャに変更する設定だ。\njump: 待機時の飛び跳ねるアニメーション（読み込み時に自動再生） hurt: ダメージを受けた時のアニメーション die: ライフが 0 になって死ぬときのアニメーション 「BodyCollisionShape」の「Disabled」をオンにする revive: 死んだあと一定時間後に生き返るアニメーション 「BodyCollisionShape」の「Disabled」をオフにする RevieTimer ノード 「One Shot」プロパティを有効にしておく。\nEnemy ノードにスクリプトをアタッチする 「Enemy」ルートノードにスクリプトをアタッチして以下のようにコーディングした。\n###Enemy.gd### extends KinematicBody2D # ライフの最大値 export (int) var max_life = 3 # 現在のライフ var life: int = max_life # Playerインスタンスを参照するための変数 var player: KinematicBody2D # Sprite ノードの参照 onready var sprite = $Sprite # AnimationPlayer ノードの参照 onready var anim_player = $AnimationPlayer # ReviveTimer ノードの参照 onready var revive_timer = $ReviveTimer func _process(_delta): # プレイヤーの位置により Sprite の向きを反転したりしなかったり sprite.flip_h = global_position.x \u003e player.global_position.x # ダメージを受けるメソッド func hurt(): # ライフを 1 減らす life -= 1 # アニメーション hurt を再生する anim_player.play(\"hurt\") さらに「AnimetionPlayer」の「animation_finished」シグナルと、「ReviveTimer」の「timeout」シグナルをスクリプトに接続し、それぞれの生成されたメソッドを以下のように編集する。\n###Enemy.gd### # AnimationPlayer のアニメーション終了時のシグナルにより呼ばれるメソッド func _on_AnimationPlayer_animation_finished(anim_name): # 終了したアニメーションが hurt の場合 if anim_name == \"hurt\": # ライフが 0 より大きければ jump アニメーションに戻る if life \u003e 0: anim_player.play(\"jump\") # ライフが 0 以下の場合は die アニメーションを再生する if life \u003c= 0: anim_player.play(\"die\") # 終了したアニメーションが die の場合は ReviveTimer をスタートさせる if anim_name == \"die\": revive_timer.start() # 終了したアニメーションが revive の場合は if anim_name == \"revive\": anim_player.play(\"jump\") # ReviveTimer のタイムアウト時のシグナルで呼ばれるメソッド func _on_ReviveTimer_timeout(): # revive アニメーションを再生する anim_player.play(\"revive\") # ライフを最大値に戻す life = max_life Player のスクリプトに HitBox のシグナルを追加する 「Player.gd」スクリプトの方に、近接攻撃が当たったら、「HitBox」のシグナルにより「Enemy.gd」のhurtメソッドを呼び出すようにする。\n「Player.tscn」シーンに戻り、「HitBox」ノードの「body_entered(body: Node)」シグナルを「Player.gd」スクリプトに接続する。\n###Player.gd### # 省略 # HitBox に物理ボディが当たった時のシグナルで呼ばれるメソッド func _on_HitBox_body_entered(body): # 物理ボディノードの名前が Enemy だったらその hurt メソッドを呼ぶ if body.name == \"Enemy\": body.hurt() World シーンを作る 最後に「World」シーンを作って、そこに「Player」シーンのインスタンスと「Enemy」のインスタンスを追加する。\nシーンツリーはシンプルに以下の通りだ。\nWorld (Node2D) Enemy (Enemy.tscn のインスタンス) Player (Player.tscn のインスタンス) 2D ワークスペース上で、それぞれのインスタンスを適当に配置する。\nWorld シーンにスクリプトをアタッチする World シーンにスクリプトをアタッチして、以下のようにコーディングする。目的は、「World」ルートノードから、「Enemy.gd」で宣言した「Enemy」ノードの変数playerに「Player」インスタンスの参照を渡すことだ。\n###World.gd### extends Node2D onready var player = $Player onready var enemy = $Enemy func _ready(): enemy.player = self.player プロジェクトを実行する 最後にプロジェクトを実行して近接攻撃の当たり判定の挙動を確認する。\n「Player」の「HitBox」ノードの衝突形状が「Enemy」の「BodyCollisionShape」(Hurt Box)と重なった時に当たり判定が有効になり、「Enemy」の「hurt」アニメーションが再生されているのがおわかりいただけるだろうか。\nおわりに 今回は2Dゲームにおけるシンプルな近接攻撃の当たり判定についてご紹介した。Hit Box と Hurt Box を使った攻撃の当たり判定の実装は比較的理解しやすく、様々なゲームで応用できるだろう。\nちなみに、実際のゲームでは、体の部位ごとに別々の Hit Box や Hurt Box を設定し、その組み合わせによってより複雑な仕組みを作ることもあるようだ。\n例えば、格闘ゲームでは手、足、頭など攻撃する側にいくつかの Hit Box を用意し、攻撃を受ける側にも上段、中段、下段の位置にそれぞれの Hurt Box を設定すれば、それぞれの組み合わせによって、ダメージなどを複雑に変化させることができる。\n他にも、ゾンビものの FPS ゲームであれば、ゾンビの頭と体で異なる Hurt Box を用意しておけば、頭を射撃すれば 1 発で倒せるが、他の部位だとそうはいかない、というお決まりのルールを実装することもできるだろう。\nこの記事が少しでもお役に立てたなら幸いだ。\n参考 この記事の作成にあたり、以下のリンク先の資料が大変参考になったのでご紹介させていただきたい。これらも併せてご覧いただくとより理解が深まるはずだ。\nIntroduction to the animation features KidsCanCode - MELEE ATTACKS YouTube - How to Make Melee Combat in Godot YouTube - Make an Action RPG in Godot 3.2 (P11 | Melee attacks with Hurtboxes and Hitboxes) itch.io - Pixel Art Dwarf Sprites *素材\nitch.io - mystic woods *素材\n","wordCount":"6509","inLanguage":"ja","image":"https://www.peanuts-code.com/images/tutorials/gd0018_melee_attacks/img28.gif","datePublished":"2022-10-03T22:55:00+09:00","dateModified":"2022-10-03T22:55:00+09:00","author":{"@type":"Person","name":"Gobo"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/"},"publisher":{"@type":"Organization","name":"Peanuts Code","logo":{"@type":"ImageObject","url":"https://www.peanuts-code.com/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://www.peanuts-code.com/ja/ accesskey=h title="Peanuts Code (Alt + H)"><img src=https://www.peanuts-code.com/images/logomark.png alt aria-label=logo height=35>Peanuts Code</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button><ul class=lang-switch><li>|</li><li><a href=https://www.peanuts-code.com/en/ title=English aria-label=English>En</a></li></ul></div></div><ul id=menu><li><a href=https://www.peanuts-code.com/ja/ title=ホーム><span>ホーム</span></a></li><li><a href=https://www.peanuts-code.com/ja/portfolio/ title=作ったゲーム><span>作ったゲーム</span></a></li><li><a href=https://www.peanuts-code.com/ja/posts/ title=ブログ><span>ブログ</span></a></li><li><a href=https://www.peanuts-code.com/ja/tutorials/ title=チュートリアル><span>チュートリアル</span></a></li><li><a href=https://www.peanuts-code.com/ja/about/ title=サイト情報><span>サイト情報</span></a></li><li><a href=https://www.peanuts-code.com/ja/search/ title="検索 (Alt + /)" accesskey=/><span>検索</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://www.peanuts-code.com/ja/>ホーム</a>&nbsp;»&nbsp;<a href=https://www.peanuts-code.com/ja/tutorials/>チュートリアル</a></div><h1 class=post-title>Godot3 で作る 2D ゲームの近接攻撃の当たり判定</h1><div class=post-meta><span title='2022-10-03 22:55:00 +0900 +0900'>2022-10-03</span>&nbsp;·&nbsp;13 分&nbsp;·&nbsp;Gobo&nbsp;|&nbsp;言語:<ul class=i18n_list><li><a href=https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/>En</a></li></ul></div><ul class=post-tags><li><a href=https://www.peanuts-code.com/ja/tags/gamedev/>GameDev</a></li><li><a href=https://www.peanuts-code.com/ja/tags/godotengine/>GodotEngine</a></li><li><a href=https://www.peanuts-code.com/ja/tags/godot3/>Godot3</a></li><li><a href=https://www.peanuts-code.com/ja/tags/2d/>2D</a></li><li><a href=https://www.peanuts-code.com/ja/tags/%E8%BF%91%E6%8E%A5%E6%94%BB%E6%92%83/>近接攻撃</a></li><li><a href=https://www.peanuts-code.com/ja/tags/%E5%BD%93%E3%81%9F%E3%82%8A%E5%88%A4%E5%AE%9A/>当たり判定</a></li><li><a href=https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/>アニメーション</a></li></ul><div class=share-buttons><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on x" href="https://x.com/intent/tweet/?text=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f&amp;hashtags=GameDev%2cGodotEngine%2cGodot3%2c2D%2c%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%2c%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a%2c%e3%82%a2%e3%83%8b%e3%83%a1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f&amp;title=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;summary=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on reddit" href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f&title=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on whatsapp" href="https://api.whatsapp.com/send?text=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a%20-%20https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on telegram" href="https://telegram.me/share/url?text=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on ycombinator" href="https://news.ycombinator.com/submitlink?t=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&u=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></div></header><figure class=entry-cover><img loading=lazy src=https://www.peanuts-code.com/images/tutorials/gd0018_melee_attacks/img28.gif alt="Godot3 で作る 2D ゲームの近接攻撃の当たり判定"></figure><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>目次</span></summary><div class=inner><ul><li><a href=#%e3%82%a4%e3%83%b3%e3%83%97%e3%83%83%e3%83%88%e3%83%9e%e3%83%83%e3%83%97%e3%81%ae%e8%bf%bd%e5%8a%a0 aria-label=インプットマップの追加>インプットマップの追加</a></li><li><a href=#player-%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e3%82%8b aria-label="Player シーンを作る">Player シーンを作る</a></li><li><a href=#player-%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ae%e3%83%8e%e3%83%bc%e3%83%89%e3%82%92%e7%b7%a8%e9%9b%86%e3%81%99%e3%82%8b aria-label="Player シーンのノードを編集する">Player シーンのノードを編集する</a><ul><li><a href=#sprite-%e3%83%8e%e3%83%bc%e3%83%89 aria-label="Sprite ノード">Sprite ノード</a></li><li><a href=#bodycollisionshape-collisionshape2d-%e3%83%8e%e3%83%bc%e3%83%89 aria-label="BodyCollisionShape (CollisionShape2D) ノード">BodyCollisionShape (CollisionShape2D) ノード</a></li><li><a href=#hitbox-area2d-%e3%83%8e%e3%83%bc%e3%83%89 aria-label="HitBox (Area2D) ノード">HitBox (Area2D) ノード</a></li><li><a href=#hitboxcollisionshape-collisonshape2d-%e3%83%8e%e3%83%bc%e3%83%89 aria-label="HitBoxCollisionShape (CollisonShape2D) ノード">HitBoxCollisionShape (CollisonShape2D) ノード</a></li><li><a href=#animationplayer-%e3%83%8e%e3%83%bc%e3%83%89%e3%82%a2%e3%83%8b%e3%83%a1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%81%ae%e4%bd%9c%e6%88%90 aria-label="AnimationPlayer ノード（アニメーションの作成）">AnimationPlayer ノード（アニメーションの作成）</a></li></ul></li><li><a href=#player-%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ab%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%82%92%e3%82%a2%e3%82%bf%e3%83%83%e3%83%81%e3%81%99%e3%82%8b aria-label="Player ノードにスクリプトをアタッチする">Player ノードにスクリプトをアタッチする</a></li><li><a href=#enemy-%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e3%82%8b aria-label="Enemy シーンを作る">Enemy シーンを作る</a></li><li><a href=#enemy-%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ae%e3%83%8e%e3%83%bc%e3%83%89%e3%82%92%e7%b7%a8%e9%9b%86%e3%81%99%e3%82%8b aria-label="Enemy シーンのノードを編集する">Enemy シーンのノードを編集する</a><ul><li><a href=#sprite-%e3%83%8e%e3%83%bc%e3%83%89-1 aria-label="Sprite ノード">Sprite ノード</a></li><li><a href=#bodycollisionshape-%e3%83%8e%e3%83%bc%e3%83%89 aria-label="BodyCollisionShape ノード">BodyCollisionShape ノード</a></li><li><a href=#animationplayer-%e3%83%8e%e3%83%bc%e3%83%89 aria-label="AnimationPlayer ノード">AnimationPlayer ノード</a></li><li><a href=#revietimer-%e3%83%8e%e3%83%bc%e3%83%89 aria-label="RevieTimer ノード">RevieTimer ノード</a></li></ul></li><li><a href=#enemy-%e3%83%8e%e3%83%bc%e3%83%89%e3%81%ab%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%82%92%e3%82%a2%e3%82%bf%e3%83%83%e3%83%81%e3%81%99%e3%82%8b aria-label="Enemy ノードにスクリプトをアタッチする">Enemy ノードにスクリプトをアタッチする</a></li><li><a href=#player-%e3%81%ae%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%81%ab-hitbox-%e3%81%ae%e3%82%b7%e3%82%b0%e3%83%8a%e3%83%ab%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b aria-label="Player のスクリプトに HitBox のシグナルを追加する">Player のスクリプトに HitBox のシグナルを追加する</a></li><li><a href=#world-%e3%82%b7%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e3%82%8b aria-label="World シーンを作る">World シーンを作る</a></li><li><a href=#world-%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ab%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%82%92%e3%82%a2%e3%82%bf%e3%83%83%e3%83%81%e3%81%99%e3%82%8b aria-label="World シーンにスクリプトをアタッチする">World シーンにスクリプトをアタッチする</a></li><li><a href=#%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%82%92%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b aria-label=プロジェクトを実行する>プロジェクトを実行する</a></li><li><a href=#%e3%81%8a%e3%82%8f%e3%82%8a%e3%81%ab aria-label=おわりに>おわりに</a></li><li><a href=#%e5%8f%82%e8%80%83 aria-label=参考>参考</a></li></ul></div></details></div><div class=post-content><p>この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。</p><p>一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（Hit Box という）を用意し、攻撃を受けるオブジェクト（敵キャラクターや破壊できる樽や木箱、草など）には攻撃を受ける範囲となる衝突形状（Hurt Box という）を用意し、攻撃時のアニメーションに合わせて、Hit Box と Hurt Box の有効/無効の切り替えやサイズ、位置の変更をすることで攻撃の当たり判定を実装することができる。</p><p>比較的簡単に実装できるのでさっそくやっていこう。</p><blockquote><p><strong><span style=color:salmon>Environment</span></strong><br><em>Godot のバージョン: <strong>3.5.1</strong></em><br><em>コンピュータのOS: <strong>macOS 11.6.5</strong></em></p></blockquote><blockquote><p><strong><span style=color:salmon>Basic Articles</span></strong><br><em>以下の記事もお役立てください。<br><a href=https://www.peanuts-code.com/ja/tutorials/gd0001_download/ title="Godot をダウンロードする">Godot をダウンロードする</a><br><a href=https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/ title="Godot のプロジェクトマネージャー">Godot のプロジェクトマネージャー</a><br><a href=https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/ title="Godot の言語設定">Godot の言語設定</a></em></p></blockquote><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901" crossorigin=anonymous></script><p><ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-4952908839423901 data-ad-slot=9419515863></ins></p><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script><hr><h2 id=インプットマップの追加>インプットマップの追加<a hidden class=anchor aria-hidden=true href=#インプットマップの追加>#</a></h2><p>まずは「プロジェクト」＞「プロジェクト設定」＞「インプットマップ」タブで、以下のアクションを追加する。</p><ul><li>right: D キー</li><li>left: A キー</li><li>down: S キー</li><li>up: W キー</li><li>attack: Space バー</li></ul><p><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img1.png alt="Input Map"></p><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901" crossorigin=anonymous></script><p><ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-4952908839423901 data-ad-slot=9419515863></ins></p><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script><hr><h2 id=player-シーンを作る>Player シーンを作る<a hidden class=anchor aria-hidden=true href=#player-シーンを作る>#</a></h2><ol><li>プレイヤーキャラクターのシーンを作成する。ルートノードを「KinematicBody2D」にして、必要なノードを追加し、以下のようなシーンツリーを作成する。<ul><li>Player (KinematicBody2D)<ul><li>Sprite</li><li>BodyCollisionShape (CollisionShape2D)</li><li>HitBox (Area2D)<ul><li>HitBoxCollisionShape (CollisionShape2D)</li></ul></li><li>AnimationPlayer</li></ul></li></ul></li><li>このシーンを「Player.tscn」というファイル名で保存する。</li></ol><p><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img2.png alt="Player scene tree"></p><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901" crossorigin=anonymous></script><p><ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-4952908839423901 data-ad-slot=9419515863></ins></p><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script><hr><h2 id=player-シーンのノードを編集する>Player シーンのノードを編集する<a hidden class=anchor aria-hidden=true href=#player-シーンのノードを編集する>#</a></h2><h3 id=sprite-ノード>Sprite ノード<a hidden class=anchor aria-hidden=true href=#sprite-ノード>#</a></h3><p>プレイヤーキャラクターの近接攻撃のアニメーションを含むスプライトシートとして、今回は <a href=https://itch.io/game-assets target=_blank>itch.io</a>
+から <a href=https://elthen.itch.io/pixel-art-dwarf-sprites target=_blank>Pixel Art Dwarf Sprites</a>
+というアセットをダウンロードして利用させていただいた。特に近接攻撃用のアニメーションとして、3 ~ 5 行目を利用することになる。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img3.png alt="Sprite sheet"></p><ol><li>ダウンロードしたスプライトシートをファイルシステムドックにドラッグしてインポートする。そのままだと少しぼやけた感じで表示されるため、ファイルを選択して、インポートドックから、2D Pixel のプリセットを適用して再インポートする。</li><li>インスペクタードックにて「Texture」プロパティにインポートしたスプライトシートを適用する。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img4.png alt="Sprite - Texture"></li><li>縦横それぞれ 8 フレームずつのスプライトシートなので、「Animation」＞「Hframes」/「Vframes」の値をそれぞれ 8 とする。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img5.png alt="Sprite - Animation - Hframes / Vframes"></li></ol><p>2D ワークスペース上に 1 フレーム分のテクスチャが表示されればOKだ。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img6.png alt="Sprite - 2D workspace"></p><br><h3 id=bodycollisionshape-collisionshape2d-ノード>BodyCollisionShape (CollisionShape2D) ノード<a hidden class=anchor aria-hidden=true href=#bodycollisionshape-collisionshape2d-ノード>#</a></h3><p>親の「Player」ルートノードは KinematicBody2D クラスなので、必ず衝突形状の設定が必要だ。あとで作成する Hit Box の衝突形状と区別するため、「BodyCollisionShape」と名前を変更している。</p><ol><li>「Shape」プロパティには「RectangleShape」リソースを適用する。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img7.png alt="BodyCollisionShape - Shape"></li><li>2D ワークスペースにて、衝突形状をスプライトのテクスチャの体部分に合わせる。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img8.png alt="BodyCollisionShape - 2D workspace"></li><li>コリジョン形状が視覚的に邪魔な場合は、必要に応じて、シーンドックでノードを非表示に設定すると良い。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img9.png alt="BodyCollisionShape - hide"></li></ol><br><h3 id=hitbox-area2d-ノード>HitBox (Area2D) ノード<a hidden class=anchor aria-hidden=true href=#hitbox-area2d-ノード>#</a></h3><p>Hit Box とは、キャラクターが近接攻撃する時の当たり判定を行うための衝突形状である。Hit Box というだけあって、一般的に四角い衝突形状が使われることが多い。Godot で作る 2D ゲームの場合、「Area2D」とその子ノードの「CollisionShape2D」を使用する。</p><p>親の「HitBox」ノードの編集は不要だが、あとでスクリプトを作成する際に、このノードのシグナルを利用することになる。</p><br><h3 id=hitboxcollisionshape-collisonshape2d-ノード>HitBoxCollisionShape (CollisonShape2D) ノード<a hidden class=anchor aria-hidden=true href=#hitboxcollisionshape-collisonshape2d-ノード>#</a></h3><p>「BodyCollisionShape」ノードと区別するため、名前を「HitBoxCollisionShape」としている。</p><ol><li>「Shape」プロパティに新規「RectangleShape」リソースを適用して四角い衝突形状を設定する。サイズや位置は後ほど攻撃時のアニメーションの中で変更させるので、今の時点で「RectangleShape」の「Extents」プロパティはデフォルトのままで良い。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img10.png alt="HitBoxCollisionShape - Shape"></li><li>プレイヤーキャラクターの攻撃時のみ衝突判定を有効にしたいので、「Disabled」プロパティは <strong>オン</strong> にして、衝突を無効化しておく。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img11.png alt="HitBoxCollisionShape - Disabled"></li></ol><br><h3 id=animationplayer-ノードアニメーションの作成>AnimationPlayer ノード（アニメーションの作成）<a hidden class=anchor aria-hidden=true href=#animationplayer-ノードアニメーションの作成>#</a></h3><p>「AnimationPlayer」ノードで近接攻撃のアニメーションを作成する。</p><ol><li>シーンドックで「AnimationPlayer」ノードを選択する。</li><li>アニメーションパネルを開く</li><li>アニメーションを新規作成し、名前を「right_attack1」とする。<br>*<em>左右それぞれの向きに対して attack1, 2, 3 まで作る想定である。</em></li><li>まずは以下の通りに設定する。<ul><li>読み込み時の自動再生： Off</li><li>アニメーションの長さ(秒): 0.6</li><li>アニメーションのループ： Off</li></ul></li><li>「Sprite」ノードの「Frame Coords」プロパティのトラックを追加する。0.1 秒間隔で、スプライトシートの 3 行目のテクスチャを左端から順番に 6 列目まで追加する。具体的には、 (0, 2)、(1, 2)、(2, 2)、(3, 2)、(4, 2)、(5, 2) と、y の値（スプライトシートの行）はそのままで x の値（スプライトシートの列）のみ 0 から 5 へ変化させていく。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img12.png alt="AnimationPlayer - Animation pannel - Sprite node frame_coords track - adding value"></li><li>このトラックの「Interpolation」の種類を「Nearest」に変更する。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img13.png alt="AnimationPlayer - Animation pannel - Sprite node frame_coords track - Interpolation"></li><li>「BodyCollisionShape」の「Disabled」プロパティのトラックを追加する。プレイヤーキャラクターは、自分の攻撃時は敵からダメージを受けないようするため、タイムラインの0.3秒の位置で「BodyCollisionShape」の「Disabled」プロパティをオンにし、0.5秒の位置でオフに戻すようにする。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img14.png alt="AnimationPlayer - Animation pannel - BodyCollisionShape track - adding value"></li><li>「HitBoxCollisionShape」の「Disabled」プロパティのトラックを追加する。さっきと逆で、タイムラインの0.3秒の位置で「Disabled」プロパティをオフにし、0.5秒の位置でオンに戻す。これにより、プレイヤーキャラクターの攻撃アニメーションのうち、まさに斧を振り下ろしているアニメーションフレームの時だけ Hit Box の当たり判定が有効になる。</li><li>続けて「HitBoxCollisionShape」の「Position」プロパティと「Shape」＞「Extents」プロパティのトラックを追加する。タイムラインの0.3秒の斧を振り下ろすアニメーションに合わせて、HitBox の衝突形状のサイズと位置を調整する。「Position」の値は(7.5, -2.25)、「Extents」の値は(9.5, 12.25)とした（若干テクスチャ上の斧の軌跡より大きめにしている）。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img15.png alt="AnimationPlayer - 2D workspace"></li></ol><p>最終的に「right_attack1」は以下のようになった。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img16.png alt="AnimationPlayer - Animation pannel - right_attack1"></p><ul><li>Sprite<ul><li>frame_coords<ul><li>Time: 0 / Value: (0, 2) / Easing: 1.00</li><li>Time: 0.1 / Value: (1, 2) / Easing: 1.00</li><li>Time: 0.2 / Value: (2, 2) / Easing: 1.00</li><li>Time: 0.3 / Value: (3, 2) / Easing: 1.00</li><li>Time: 0.4 / Value: (4, 2) / Easing: 1.00</li><li>Time: 0.5 / Value: (5, 2) / Easing: 1.00</li></ul></li></ul></li><li>BodyCollisionShape<ul><li>disabled<ul><li>Time: 0.1 / Value: On / Easing: 1.00</li></ul></li></ul></li><li>HitBoxCollisionShape<ul><li>disabled<ul><li>Time: 0.3 / Value; Off / Easing: 1.00</li><li>Time: 0.5 / Value; On / Easing: 1.00</li></ul></li><li>position<ul><li>Time: 0.3 / Value: (7.5, -2.25) / Easing: 1.00</li><li>Time: 0.4 / Value: (4, 4) / Easing: 1.00</li></ul></li><li>shape:extents<ul><li>Time: 0.3 / Value: (9.5, 12.25) / Easing: 1.00</li><li>Time: 0.4 / Value: (6, 6) / Easing: 1.00</li></ul></li></ul></li></ul><p>以下のGIF画像は、今作成した「right_attack1」のアニメーションを 0.5 倍速で再生している。斧を振り下ろすタイミングだけ HitBox の衝突形状が有効（緑色）になっているのがおわかりいただけるだろう。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img17.gif alt="AnimationPlayer - playback animation"></p><br><p>同様の手順で、「right_attack2」のアニメーションを作成した。スプライトシートの 4 行目のテクスチャを使用した。タイムラインの 0.1 ~ 0.4 秒の間、「HitBoxCollisionShape」の「Position」と「Extents」を 0.1 秒おきに少しずつ変化させている。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img18.png alt="AnimationPlayer - 2D workplace"></p><p>「right_attack2」を 0.5 倍速で再生するとこのようになる。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img19.gif alt="AnimationPlayer - playback animation"></p><br><p>さらに、「right_attack3」のアニメーションを作成した。こちらはスプライトシートの 5 行目のテクスチャを使用した。テクスチャは 2 フレームのみだが、その 2 つを 4 回繰り返している。「Sprite」ノードの「Position」プロパティのトラックを追加して、少し前に移動してから戻ってくるようなアニメーションにしている。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img20.png alt="AnimationPlayer - 2D workplace"></p><p>「right_attack3」を 0.5 倍速で再生すると以下のようになる。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img21.gif alt="AnimationPlayer - 2D workplace"></p><br><p>左向きのアニメーションの作成時は、「Sprite」ノードの「Offset」＞「Flip H」プロパティをオンにしてから作業するとやりやすい。先に作った右向きの近接攻撃アニメーションを複製して、左向き用に調整すると簡単だ。</p><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901" crossorigin=anonymous></script><p><ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-4952908839423901 data-ad-slot=9419515863></ins></p><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script><hr><h2 id=player-ノードにスクリプトをアタッチする>Player ノードにスクリプトをアタッチする<a hidden class=anchor aria-hidden=true href=#player-ノードにスクリプトをアタッチする>#</a></h2><p>プレイヤーキャラクターの移動と近接攻撃を制御するために、「Player」ルートノードにスクリプトをアタッチしてコーディングしていく。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-GDScript data-lang=GDScript><span style=display:flex><span><span style=color:#75715e>###Player.gd###</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>KinematicBody2D</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 移動スピード</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> speed <span style=color:#f92672>=</span> <span style=color:#ae81ff>80.0</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 移動速度</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> velocity: <span style=color:#a6e22e>Vector2</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 攻撃アニメーションの番号（1 ~ 3）</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> attack_num <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Sprite ノードの参照</span>
+</span></span><span style=display:flex><span>onready <span style=color:#66d9ef>var</span> sprite <span style=color:#f92672>=</span> <span style=color:#a6e22e>$Sprite</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># AnimationPlayer ノードの参照</span>
+</span></span><span style=display:flex><span>onready <span style=color:#66d9ef>var</span> anim_player <span style=color:#f92672>=</span> <span style=color:#a6e22e>$AnimationPlayer</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># キャラクターの移動に関する入力を制御するメソッド</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>move</span>():
+</span></span><span style=display:flex><span>	velocity <span style=color:#f92672>=</span> <span style=color:#a6e22e>Vector2</span>()
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>Input</span><span style=color:#f92672>.</span><span style=color:#a6e22e>is_action_pressed</span>(<span style=color:#e6db74>&#34;right&#34;</span>):
+</span></span><span style=display:flex><span>		velocity<span style=color:#f92672>.</span>x <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>		sprite<span style=color:#f92672>.</span>flip_h <span style=color:#f92672>=</span> <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>Input</span><span style=color:#f92672>.</span><span style=color:#a6e22e>is_action_pressed</span>(<span style=color:#e6db74>&#34;left&#34;</span>):
+</span></span><span style=display:flex><span>		velocity<span style=color:#f92672>.</span>x <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>		sprite<span style=color:#f92672>.</span>flip_h <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>Input</span><span style=color:#f92672>.</span><span style=color:#a6e22e>is_action_pressed</span>(<span style=color:#e6db74>&#34;down&#34;</span>):
+</span></span><span style=display:flex><span>		velocity<span style=color:#f92672>.</span>y <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>Input</span><span style=color:#f92672>.</span><span style=color:#a6e22e>is_action_pressed</span>(<span style=color:#e6db74>&#34;up&#34;</span>):
+</span></span><span style=display:flex><span>		velocity<span style=color:#f92672>.</span>y <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>	velocity <span style=color:#f92672>=</span> velocity<span style=color:#f92672>.</span><span style=color:#a6e22e>normalized</span>() <span style=color:#f92672>*</span> speed
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e># 速度が 0 なら idle アニメーションを再生</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> velocity<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span>() <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>		anim_player<span style=color:#f92672>.</span><span style=color:#a6e22e>play</span>(<span style=color:#e6db74>&#34;idle&#34;</span>)
+</span></span><span style=display:flex><span>	<span style=color:#75715e># 速度が 0 より大きければ run アニメーションを再生</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> velocity<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span>() <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>		anim_player<span style=color:#f92672>.</span><span style=color:#a6e22e>play</span>(<span style=color:#e6db74>&#34;run&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 物理プロセスの組み込み関数</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>_physics_process</span>(_delta):
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>move</span>()
+</span></span><span style=display:flex><span>	<span style=color:#75715e># 移動に関する入力をキャラクターの動きとして反映させる</span>
+</span></span><span style=display:flex><span>	velocity <span style=color:#f92672>=</span> <span style=color:#a6e22e>move_and_slide</span>(velocity)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 入力の組み込みコールバック関数</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>_unhandled_input</span>(event):
+</span></span><span style=display:flex><span>	<span style=color:#75715e># スペースバーが押されたら</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> event<span style=color:#f92672>.</span><span style=color:#a6e22e>is_action_pressed</span>(<span style=color:#e6db74>&#34;attack&#34;</span>):
+</span></span><span style=display:flex><span>		<span style=color:#75715e># 移動できないように物理プロセスを停止</span>
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>set_physics_process</span>(<span style=color:#66d9ef>false</span>)
+</span></span><span style=display:flex><span>		<span style=color:#75715e># スプライトが左右反転していたら（左向きだったら）</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> sprite<span style=color:#f92672>.</span>flip_h:
+</span></span><span style=display:flex><span>			<span style=color:#75715e># 左向きの攻撃アニメーションを再生</span>
+</span></span><span style=display:flex><span>			anim_player<span style=color:#f92672>.</span><span style=color:#a6e22e>play</span>(<span style=color:#e6db74>&#34;left_attack&#34;</span> <span style=color:#f92672>+</span> str(attack_num))
+</span></span><span style=display:flex><span>		<span style=color:#75715e># スプライトが左右反転していなかったら（右向きだったら）</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>			<span style=color:#75715e># 右向きの攻撃アニメーションを再生</span>
+</span></span><span style=display:flex><span>			anim_player<span style=color:#f92672>.</span><span style=color:#a6e22e>play</span>(<span style=color:#e6db74>&#34;right_attack&#34;</span> <span style=color:#f92672>+</span> str(attack_num))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#75715e># 現在の攻撃アニメーションの番号が 3 未満の場合は番号に + 1</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> attack_num <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>3</span>:
+</span></span><span style=display:flex><span>			attack_num <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>		<span style=color:#75715e># 現在の攻撃アニメーションの番号が 3 以上の場合は番号を 1 に戻す</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>			attack_num <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span></code></pre></div><br><p>「AnimationPlayer」ノードの「animation_finished」シグナルをスクリプトに接続し、自動生成されたメソッドを以下のように編集する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-GDScript data-lang=GDScript><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>_on_AnimationPlayer_animation_finished</span>(anim_name):
+</span></span><span style=display:flex><span>	<span style=color:#75715e># アニメーションの名前に「attack」が含まれていたら物理プロセスを再開する</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#34;attack&#34;</span> <span style=color:#f92672>in</span> anim_name:
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>set_physics_process</span>(<span style=color:#66d9ef>true</span>)
+</span></span></code></pre></div><br><p>「Player」シーンを実行してみよう。事前に「デバッグ」メニューから衝突形状を表示する設定を有効にしておくとアニメーション中の衝突形状の変化がわかりやすいだろう。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img21.1.png alt="run project"></p><p>プレイヤーキャラクターの動きは以下のGIF画像のようなになる。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img22.gif alt="Player - run scene"></p><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901" crossorigin=anonymous></script><p><ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-4952908839423901 data-ad-slot=9419515863></ins></p><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script><hr><h2 id=enemy-シーンを作る>Enemy シーンを作る<a hidden class=anchor aria-hidden=true href=#enemy-シーンを作る>#</a></h2><p>プレイヤーキャラクターの近接攻撃の当たり判定を確認するために「Enemy」シーンを用意する。「Player」シーンと似たような作業内容のため、詳細は割愛させていただく。</p><p>まずシーンツリーは以下の通りだ。</p><ul><li>Enemy (KinematicBody2D)<ul><li>Sprite</li><li>BodyCollisionShape (CollisionShape2D)</li><li>AnimationPlayer</li><li>ReviveTimer (Timer)</li></ul></li></ul><p><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img23.png alt="Enemy - Scene tree"></p><br><h2 id=enemy-シーンのノードを編集する>Enemy シーンのノードを編集する<a hidden class=anchor aria-hidden=true href=#enemy-シーンのノードを編集する>#</a></h2><h3 id=sprite-ノード-1>Sprite ノード<a hidden class=anchor aria-hidden=true href=#sprite-ノード-1>#</a></h3><p>「Sprite」ノードの「Texture」プロパティには <a href=https://game-endeavor.itch.io/mystic-woods target=_blank>itch.io - mystic woods</a>
+からダウンロードさせていただいたアセットのうち、「slime.png」のスプライトシートを適用する。</p><h3 id=bodycollisionshape-ノード>BodyCollisionShape ノード<a hidden class=anchor aria-hidden=true href=#bodycollisionshape-ノード>#</a></h3><p>「Shape」プロパティには「CircleShape2D」を適用し、スプライトよりやや小さめの衝突形状にする。今回のチュートリアルでは、これがいわゆる Hurt Box となる。この衝突形状に、プレイヤーキャラクターの Hit Box が重なった時に当たり判定が有効となるようにすれば良いというわけだ。その制御は後ほどスクリプトで行う。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img24.png alt="Enemy - BodyCollisionShape"></p><h3 id=animationplayer-ノード>AnimationPlayer ノード<a hidden class=anchor aria-hidden=true href=#animationplayer-ノード>#</a></h3><p>アニメーションパネルにて、以下の4つのアニメーションを用意する。全て 0.1 秒おきにスプライトシート上の次のフレームのテクスチャに変更する設定だ。</p><ul><li>jump: 待機時の飛び跳ねるアニメーション（読み込み時に自動再生）</li><li>hurt: ダメージを受けた時のアニメーション</li><li>die: ライフが 0 になって死ぬときのアニメーション<ul><li>「BodyCollisionShape」の「Disabled」をオンにする</li></ul></li><li>revive: 死んだあと一定時間後に生き返るアニメーション<ul><li>「BodyCollisionShape」の「Disabled」をオフにする</li></ul></li></ul><h3 id=revietimer-ノード>RevieTimer ノード<a hidden class=anchor aria-hidden=true href=#revietimer-ノード>#</a></h3><p>「One Shot」プロパティを有効にしておく。</p><br><h2 id=enemy-ノードにスクリプトをアタッチする>Enemy ノードにスクリプトをアタッチする<a hidden class=anchor aria-hidden=true href=#enemy-ノードにスクリプトをアタッチする>#</a></h2><p>「Enemy」ルートノードにスクリプトをアタッチして以下のようにコーディングした。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-GDScript data-lang=GDScript><span style=display:flex><span><span style=color:#75715e>###Enemy.gd###</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>KinematicBody2D</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ライフの最大値</span>
+</span></span><span style=display:flex><span>export (<span style=color:#66d9ef>int</span>) <span style=color:#66d9ef>var</span> max_life <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 現在のライフ</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> life: <span style=color:#66d9ef>int</span> <span style=color:#f92672>=</span> max_life
+</span></span><span style=display:flex><span><span style=color:#75715e># Playerインスタンスを参照するための変数</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> player: KinematicBody2D
+</span></span><span style=display:flex><span><span style=color:#75715e># Sprite ノードの参照</span>
+</span></span><span style=display:flex><span>onready <span style=color:#66d9ef>var</span> sprite <span style=color:#f92672>=</span> <span style=color:#a6e22e>$Sprite</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># AnimationPlayer ノードの参照</span>
+</span></span><span style=display:flex><span>onready <span style=color:#66d9ef>var</span> anim_player <span style=color:#f92672>=</span> <span style=color:#a6e22e>$AnimationPlayer</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ReviveTimer ノードの参照</span>
+</span></span><span style=display:flex><span>onready <span style=color:#66d9ef>var</span> revive_timer <span style=color:#f92672>=</span> <span style=color:#a6e22e>$ReviveTimer</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>_process</span>(_delta):
+</span></span><span style=display:flex><span>	<span style=color:#75715e># プレイヤーの位置により Sprite の向きを反転したりしなかったり</span>
+</span></span><span style=display:flex><span>	sprite<span style=color:#f92672>.</span>flip_h <span style=color:#f92672>=</span> global_position<span style=color:#f92672>.</span>x <span style=color:#f92672>&gt;</span> player<span style=color:#f92672>.</span>global_position<span style=color:#f92672>.</span>x
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ダメージを受けるメソッド</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>hurt</span>():
+</span></span><span style=display:flex><span>	<span style=color:#75715e># ライフを 1 減らす</span>
+</span></span><span style=display:flex><span>	life <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e># アニメーション hurt を再生する</span>
+</span></span><span style=display:flex><span>	anim_player<span style=color:#f92672>.</span><span style=color:#a6e22e>play</span>(<span style=color:#e6db74>&#34;hurt&#34;</span>)
+</span></span></code></pre></div><p>さらに「AnimetionPlayer」の「animation_finished」シグナルと、「ReviveTimer」の「timeout」シグナルをスクリプトに接続し、それぞれの生成されたメソッドを以下のように編集する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-GDScript data-lang=GDScript><span style=display:flex><span><span style=color:#75715e>###Enemy.gd###</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># AnimationPlayer のアニメーション終了時のシグナルにより呼ばれるメソッド</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>_on_AnimationPlayer_animation_finished</span>(anim_name):
+</span></span><span style=display:flex><span>	<span style=color:#75715e># 終了したアニメーションが hurt の場合</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> anim_name <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;hurt&#34;</span>:
+</span></span><span style=display:flex><span>		<span style=color:#75715e># ライフが 0 より大きければ jump アニメーションに戻る</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> life <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>			anim_player<span style=color:#f92672>.</span><span style=color:#a6e22e>play</span>(<span style=color:#e6db74>&#34;jump&#34;</span>)
+</span></span><span style=display:flex><span>		<span style=color:#75715e># ライフが 0 以下の場合は die アニメーションを再生する</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> life <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>			anim_player<span style=color:#f92672>.</span><span style=color:#a6e22e>play</span>(<span style=color:#e6db74>&#34;die&#34;</span>)
+</span></span><span style=display:flex><span>	<span style=color:#75715e># 終了したアニメーションが die の場合は ReviveTimer をスタートさせる</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> anim_name <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;die&#34;</span>:
+</span></span><span style=display:flex><span>		revive_timer<span style=color:#f92672>.</span><span style=color:#a6e22e>start</span>()
+</span></span><span style=display:flex><span>	<span style=color:#75715e># 終了したアニメーションが revive の場合は</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> anim_name <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;revive&#34;</span>:
+</span></span><span style=display:flex><span>		anim_player<span style=color:#f92672>.</span><span style=color:#a6e22e>play</span>(<span style=color:#e6db74>&#34;jump&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ReviveTimer のタイムアウト時のシグナルで呼ばれるメソッド</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>_on_ReviveTimer_timeout</span>():
+</span></span><span style=display:flex><span>	<span style=color:#75715e># revive アニメーションを再生する</span>
+</span></span><span style=display:flex><span>	anim_player<span style=color:#f92672>.</span><span style=color:#a6e22e>play</span>(<span style=color:#e6db74>&#34;revive&#34;</span>)
+</span></span><span style=display:flex><span>	<span style=color:#75715e># ライフを最大値に戻す</span>
+</span></span><span style=display:flex><span>	life <span style=color:#f92672>=</span> max_life
+</span></span></code></pre></div><br><hr><h2 id=player-のスクリプトに-hitbox-のシグナルを追加する>Player のスクリプトに HitBox のシグナルを追加する<a hidden class=anchor aria-hidden=true href=#player-のスクリプトに-hitbox-のシグナルを追加する>#</a></h2><p>「Player.gd」スクリプトの方に、近接攻撃が当たったら、「HitBox」のシグナルにより「Enemy.gd」の<code>hurt</code>メソッドを呼び出すようにする。</p><p>「Player.tscn」シーンに戻り、「HitBox」ノードの「body_entered(body: Node)」シグナルを「Player.gd」スクリプトに接続する。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-GDScript data-lang=GDScript><span style=display:flex><span><span style=color:#75715e>###Player.gd###</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 省略</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># HitBox に物理ボディが当たった時のシグナルで呼ばれるメソッド</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>_on_HitBox_body_entered</span>(body):
+</span></span><span style=display:flex><span>	<span style=color:#75715e># 物理ボディノードの名前が Enemy だったらその hurt メソッドを呼ぶ</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> body<span style=color:#f92672>.</span>name <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;Enemy&#34;</span>:
+</span></span><span style=display:flex><span>		body<span style=color:#f92672>.</span><span style=color:#a6e22e>hurt</span>()
+</span></span></code></pre></div><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901" crossorigin=anonymous></script><p><ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-4952908839423901 data-ad-slot=9419515863></ins></p><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script><hr><h2 id=world-シーンを作る>World シーンを作る<a hidden class=anchor aria-hidden=true href=#world-シーンを作る>#</a></h2><p>最後に「World」シーンを作って、そこに「Player」シーンのインスタンスと「Enemy」のインスタンスを追加する。</p><p>シーンツリーはシンプルに以下の通りだ。</p><ul><li>World (Node2D)<ul><li>Enemy (Enemy.tscn のインスタンス)</li><li>Player (Player.tscn のインスタンス)</li></ul></li></ul><p><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img25.png alt="World - Scene tree"></p><p>2D ワークスペース上で、それぞれのインスタンスを適当に配置する。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img26.png alt="World - 2D workspace"></p><br><hr><h2 id=world-シーンにスクリプトをアタッチする>World シーンにスクリプトをアタッチする<a hidden class=anchor aria-hidden=true href=#world-シーンにスクリプトをアタッチする>#</a></h2><p>World シーンにスクリプトをアタッチして、以下のようにコーディングする。目的は、「World」ルートノードから、「Enemy.gd」で宣言した「Enemy」ノードの変数<code>player</code>に「Player」インスタンスの参照を渡すことだ。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-GDScript data-lang=GDScript><span style=display:flex><span><span style=color:#75715e>###World.gd###</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Node2D</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>onready <span style=color:#66d9ef>var</span> player <span style=color:#f92672>=</span> <span style=color:#a6e22e>$Player</span>
+</span></span><span style=display:flex><span>onready <span style=color:#66d9ef>var</span> enemy <span style=color:#f92672>=</span> <span style=color:#a6e22e>$Enemy</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>_ready</span>():
+</span></span><span style=display:flex><span>	enemy<span style=color:#f92672>.</span>player <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>player
+</span></span></code></pre></div><br><hr><h2 id=プロジェクトを実行する>プロジェクトを実行する<a hidden class=anchor aria-hidden=true href=#プロジェクトを実行する>#</a></h2><p>最後にプロジェクトを実行して近接攻撃の当たり判定の挙動を確認する。</p><p>「Player」の「HitBox」ノードの衝突形状が「Enemy」の「BodyCollisionShape」(Hurt Box)と重なった時に当たり判定が有効になり、「Enemy」の「hurt」アニメーションが再生されているのがおわかりいただけるだろうか。<br><img loading=lazy src=/images/tutorials/gd0018_melee_attacks/img28.gif alt="run project"></p><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901" crossorigin=anonymous></script><p><ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-4952908839423901 data-ad-slot=9419515863></ins></p><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script><hr><h2 id=おわりに>おわりに<a hidden class=anchor aria-hidden=true href=#おわりに>#</a></h2><p>今回は2Dゲームにおけるシンプルな近接攻撃の当たり判定についてご紹介した。Hit Box と Hurt Box を使った攻撃の当たり判定の実装は比較的理解しやすく、様々なゲームで応用できるだろう。</p><p>ちなみに、実際のゲームでは、体の部位ごとに別々の Hit Box や Hurt Box を設定し、その組み合わせによってより複雑な仕組みを作ることもあるようだ。</p><p>例えば、格闘ゲームでは手、足、頭など攻撃する側にいくつかの Hit Box を用意し、攻撃を受ける側にも上段、中段、下段の位置にそれぞれの Hurt Box を設定すれば、それぞれの組み合わせによって、ダメージなどを複雑に変化させることができる。</p><p>他にも、ゾンビものの FPS ゲームであれば、ゾンビの頭と体で異なる Hurt Box を用意しておけば、頭を射撃すれば 1 発で倒せるが、他の部位だとそうはいかない、というお決まりのルールを実装することもできるだろう。</p><p>この記事が少しでもお役に立てたなら幸いだ。</p><hr><h2 id=参考>参考<a hidden class=anchor aria-hidden=true href=#参考>#</a></h2><p>この記事の作成にあたり、以下のリンク先の資料が大変参考になったのでご紹介させていただきたい。これらも併せてご覧いただくとより理解が深まるはずだ。</p><ul><li><p><a href=https://docs.godotengine.org/ja/stable/tutorials/animation/introduction.html target=_blank>Introduction to the animation features</a></p></li><li><p><a href=http://kidscancode.org/godot_recipes/3.x/animation/melee_attacks/ target=_blank>KidsCanCode - MELEE ATTACKS</a></p></li><li><p><a href=https://youtu.be/dBvfwLxoY3I target=_blank>YouTube - How to Make Melee Combat in Godot</a></p></li><li><p><a href=https://youtu.be/vDbEfmPcv-Q target=_blank>YouTube - Make an Action RPG in Godot 3.2 (P11 | Melee attacks with Hurtboxes and Hitboxes)</a></p></li><li><p><a href=https://elthen.itch.io/pixel-art-dwarf-sprites target=_blank>itch.io - Pixel Art Dwarf Sprites</a>
+*素材</p></li><li><p><a href=https://game-endeavor.itch.io/mystic-woods target=_blank>itch.io - mystic woods</a>
+*素材</p></li></ul><hr><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901" crossorigin=anonymous></script><p><ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-4952908839423901 data-ad-slot=9419515863></ins></p><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div><footer class=post-footer><div class=recommendation><span>Twitter で新しい記事のお知らせやゲーム開発の進捗を投稿しています。<br>お気軽にフォローしてください。</span><div class=social-icons><a href=https://twitter.com/peanuts_code target=_blank rel="noopener noreferrer me" title=X><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentcolor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href=https://github.com/msnsk/ target=_blank rel="noopener noreferrer me" title=GitHub><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></div><div class=recommendation><span>もしこの記事が良かったら、ぜひSNSなどでシェアしていただけると幸いです。</span></div><div class=share-buttons><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on x" href="https://x.com/intent/tweet/?text=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f&amp;hashtags=GameDev%2cGodotEngine%2cGodot3%2c2D%2c%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%2c%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a%2c%e3%82%a2%e3%83%8b%e3%83%a1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f&amp;title=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;summary=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;source=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on reddit" href="https://reddit.com/submit?url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f&title=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on whatsapp" href="https://api.whatsapp.com/send?text=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a%20-%20https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on telegram" href="https://telegram.me/share/url?text=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&amp;url=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a><a target=_blank rel="noopener noreferrer" aria-label="share Godot3 で作る 2D ゲームの近接攻撃の当たり判定 on ycombinator" href="https://news.ycombinator.com/submitlink?t=Godot3%20%e3%81%a7%e4%bd%9c%e3%82%8b%202D%20%e3%82%b2%e3%83%bc%e3%83%a0%e3%81%ae%e8%bf%91%e6%8e%a5%e6%94%bb%e6%92%83%e3%81%ae%e5%bd%93%e3%81%9f%e3%82%8a%e5%88%a4%e5%ae%9a&u=https%3a%2f%2fwww.peanuts-code.com%2fja%2ftutorials%2fgd0018_melee_attacks%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></div><ul class=post-tags><li><a href=https://www.peanuts-code.com/ja/tags/gamedev/>GameDev</a></li><li><a href=https://www.peanuts-code.com/ja/tags/godotengine/>GodotEngine</a></li><li><a href=https://www.peanuts-code.com/ja/tags/godot3/>Godot3</a></li><li><a href=https://www.peanuts-code.com/ja/tags/2d/>2D</a></li><li><a href=https://www.peanuts-code.com/ja/tags/%E8%BF%91%E6%8E%A5%E6%94%BB%E6%92%83/>近接攻撃</a></li><li><a href=https://www.peanuts-code.com/ja/tags/%E5%BD%93%E3%81%9F%E3%82%8A%E5%88%A4%E5%AE%9A/>当たり判定</a></li><li><a href=https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/>アニメーション</a></li></ul><nav class=paginav><a class=prev href=https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/><span class=title>« 前へ</span><br><span>Godot3 で作るアニメーションステートマシン</span>
+</a><a class=next href=https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/><span class=title>次へ »</span><br><span>Godot3 で作る 2D グリッドベース経路探索</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2023 <a href=https://www.peanuts-code.com/ja/>Peanuts Code</a></span>
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="コピー";function s(){t.innerHTML="コピーされました!",setTimeout(()=>{t.innerHTML="コピー"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
