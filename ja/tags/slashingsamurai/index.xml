@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>SlashingSamurai on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/slashingsamurai/</link>
+    <description>Recent content in SlashingSamurai on Peanuts Code</description>
+    <image>
+      <title>Peanuts Code</title>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 24 Dec 2023 02:21:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/slashingsamurai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>開発ログ - もの切り侍【企画編】</title>
+      <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</link>
+      <pubDate>Sun, 24 Dec 2023 02:21:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</guid>
+      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「企画」に関する記録である。 ゲームのおおまかな仕様を決める まずは、これから開発するゲームの仕様をおおまかに</description>
+    </item>
+    
+  </channel>
+</rss>
