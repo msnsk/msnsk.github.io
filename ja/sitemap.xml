@@ -4,6 +4,16 @@
   <url>
     <loc>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/</loc>
     <lastmod>2023-12-24T02:21:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/</loc>
     <lastmod>2022-01-10T00:18:03+09:00</lastmod>
