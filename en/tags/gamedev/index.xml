@@ -11,7 +11,18 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 19 Oct 2022 19:45:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Dec 2023 02:21:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Development Log - Slashing Samurai [Planning Phase]</title>
+      <link>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</link>
+      <pubDate>Sun, 24 Dec 2023 02:21:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</guid>
+      <description>This article is a record of the &amp;ldquo;Planning&amp;rdquo; phase of the (post-release) development log of the iOS mobile game &amp;ldquo;Slashing Samurai,&amp;rdquo; released on the App Store on December 15, 2023.
+Defining the Rough Specifications of the Game The development process began by roughly defining the specifications of the game to be developed.
+It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval. Achieving this alone meant the game&amp;rsquo;s volume had to be kept small. For a game with a small volume, a casual game seemed appropriate.</description>
+    </item>
+    
     <item>
       <title>Switching Sound Resources by Script in Godot3</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0020_switching_sound_resources/</link>

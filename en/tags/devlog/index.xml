@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>iOS on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/en/tags/ios/</link>
-    <description>Recent content in iOS on Peanuts Code</description>
+    <title>Devlog on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/en/tags/devlog/</link>
+    <description>Recent content in Devlog on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
       <url>https://www.peanuts-code.com/105</url>
@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 24 Dec 2023 02:21:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Dec 2023 02:21:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/devlog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Development Log - Slashing Samurai [Planning Phase]</title>
       <link>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</link>
@@ -21,17 +21,6 @@
       <description>This article is a record of the &amp;ldquo;Planning&amp;rdquo; phase of the (post-release) development log of the iOS mobile game &amp;ldquo;Slashing Samurai,&amp;rdquo; released on the App Store on December 15, 2023.
 Defining the Rough Specifications of the Game The development process began by roughly defining the specifications of the game to be developed.
 It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval. Achieving this alone meant the game&amp;rsquo;s volume had to be kept small. For a game with a small volume, a casual game seemed appropriate.</description>
-    </item>
-    
-    <item>
-      <title>Slashing Samurai</title>
-      <link>https://www.peanuts-code.com/en/portfolio/work0001_slashing_samurai/</link>
-      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/portfolio/work0001_slashing_samurai/</guid>
-      <description>Casual Timing Game, Slashing Samurai, is Here! Push beyond the limits of your dynamic visual acuity! Let a samurai to slice falling objects mid-air! Thrilling and addictive casual timing game – Can play now!
-Your browser does not support the video tag. Overview This is a exciting timing game! In each stage, a single object (a donut, a stuffed animal, a tomato, a bicycle, a statue, and more from different eras and places!) falls from the sky. Using touch-and-release controls, make the pixelated samurai jump and skillfully cut the falling item to clear the stage.
-Download on App Store for free Slashing Samurai is available for free download on the App Store.</description>
     </item>
     
   </channel>
