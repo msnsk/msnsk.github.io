@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 24 Dec 2023 02:21:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/devlog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Dec 2023 12:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/devlog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>開発ログ：もの切り侍【企画編】</title>
       <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</link>
@@ -19,6 +19,15 @@
       
       <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</guid>
       <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「企画」に関する記録である。 ゲームのおおまかな仕様を決める まずは、これから開発するゲームの仕様をおおまかに</description>
+    </item>
+    
+    <item>
+      <title>開発ログ：もの切り侍【アセット編】</title>
+      <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_2/</link>
+      <pubDate>Wed, 27 Dec 2023 12:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_2/</guid>
+      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「アセット」に関する記録である。 使用するアセットを検討する この開発ログには、モバイルゲーム「もの切り侍」の</description>
     </item>
     
   </channel>
