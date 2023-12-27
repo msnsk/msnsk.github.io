@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/</loc>
-    <lastmod>2023-12-24T02:21:00+09:00</lastmod>
+    <lastmod>2023-12-27T12:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -28,8 +28,21 @@
                 href="https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/"
                 />
   </url><url>
+    <loc>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_2/</loc>
+    <lastmod>2023-12-27T12:00:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_2/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_2/"
+                />
+  </url><url>
     <loc>https://www.peanuts-code.com/en/</loc>
-    <lastmod>2023-12-24T02:21:00+09:00</lastmod>
+    <lastmod>2023-12-27T12:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -42,7 +55,7 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/posts/</loc>
-    <lastmod>2023-12-24T02:21:00+09:00</lastmod>
+    <lastmod>2023-12-27T12:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -55,7 +68,7 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/devlog/</loc>
-    <lastmod>2023-12-24T02:21:00+09:00</lastmod>
+    <lastmod>2023-12-27T12:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -68,7 +81,7 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/gamedev/</loc>
-    <lastmod>2023-12-24T02:21:00+09:00</lastmod>
+    <lastmod>2023-12-27T12:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -81,7 +94,7 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/indiedev/</loc>
-    <lastmod>2023-12-24T02:21:00+09:00</lastmod>
+    <lastmod>2023-12-27T12:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -94,7 +107,7 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/ios/</loc>
-    <lastmod>2023-12-24T02:21:00+09:00</lastmod>
+    <lastmod>2023-12-27T12:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -107,7 +120,7 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/mobilegame/</loc>
-    <lastmod>2023-12-24T02:21:00+09:00</lastmod>
+    <lastmod>2023-12-27T12:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -120,7 +133,7 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/slashingsamurai/</loc>
-    <lastmod>2023-12-24T02:21:00+09:00</lastmod>
+    <lastmod>2023-12-27T12:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
@@ -133,7 +146,7 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/en/tags/</loc>
-    <lastmod>2023-12-24T02:21:00+09:00</lastmod>
+    <lastmod>2023-12-27T12:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
