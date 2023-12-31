@@ -60,6 +60,9 @@
                 href="https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_2/"
                 />
   </url><url>
+    <loc>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_3/</loc>
+    <lastmod>2023-12-24T02:21:00+09:00</lastmod>
+  </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_1/</loc>
     <lastmod>2021-11-06T17:44:27+09:00</lastmod>
   </url><url>
@@ -228,19 +231,6 @@
                 href="https://www.peanuts-code.com/ja/tags/mobilegame/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/slashingsamurai/</loc>
-    <lastmod>2023-12-27T12:00:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/slashingsamurai/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/slashingsamurai/"
-                />
-  </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/</loc>
     <lastmod>2023-12-27T12:00:00+09:00</lastmod>
     <xhtml:link
@@ -266,6 +256,9 @@
                 hreflang="ja"
                 href="https://www.peanuts-code.com/ja/posts/"
                 />
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E3%82%82%E3%81%AE%E5%88%87%E3%82%8A%E4%BE%8D/</loc>
+    <lastmod>2023-12-27T12:00:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/appstore/</loc>
     <lastmod>2023-12-16T00:00:00+00:00</lastmod>

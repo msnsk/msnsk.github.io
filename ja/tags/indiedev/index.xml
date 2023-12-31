@@ -40,6 +40,15 @@
     </item>
     
     <item>
+      <title>開発ログ：もの切り侍【ロジック編】</title>
+      <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_3/</link>
+      <pubDate>Sun, 24 Dec 2023 02:21:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_3/</guid>
+      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうちGodot Engine で作っていく「ロジック」に関する記録である。とはいえ、あまり具体的なコードなどを載せると長くな</description>
+    </item>
+    
+    <item>
       <title>ゲームジャムで成長しよう</title>
       <link>https://www.peanuts-code.com/ja/posts/post0004_my_first_game_jam/</link>
       <pubDate>Tue, 30 Aug 2022 19:33:38 +0900</pubDate>
