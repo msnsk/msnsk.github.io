@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 27 Dec 2023 12:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/devlog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Dec 2023 04:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/devlog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Devlog: Slashing Samurai - Planning</title>
       <link>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</link>
@@ -19,8 +19,20 @@
       
       <guid>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</guid>
       <description>This article is a record of the &amp;ldquo;Planning&amp;rdquo; phase of the (post-release) devlog of the iOS mobile game &amp;ldquo;Slashing Samurai,&amp;rdquo; released on the App Store on December 15, 2023.
+Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game!
 Defining the Rough Specifications of the Game The development process began by roughly defining the specifications of the game to be developed.
-It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval. Achieving this alone meant the game&amp;rsquo;s volume had to be kept small. For a game with a small volume, a casual game seemed appropriate.</description>
+It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval.</description>
+    </item>
+    
+    <item>
+      <title>Devlog: Slashing Samurai [Logic Edition]</title>
+      <link>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_3/</link>
+      <pubDate>Sun, 31 Dec 2023 04:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_3/</guid>
+      <description>This article is a record of the &amp;ldquo;logic&amp;rdquo; behind the development of &amp;ldquo;Slashing Samurai,&amp;rdquo; a mobile game for iOS released on the App Store on December 15, 2023, using the Godot Engine. However, to avoid excessive length, specific code details will be kept to a minimum.
+Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game!
+Identifying Necessary Screens I am the type to prioritize visuals. In game development, including the creation of &amp;ldquo;Slashing Samurai&amp;rdquo; in Godot, I started by identifying the necessary screens. I also considered the flow of screen transitions.</description>
     </item>
     
     <item>
@@ -30,9 +42,9 @@ It was pre-determined that the game would be distributed globally on a specific 
       
       <guid>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_2/</guid>
       <description>This article is a record of the &amp;ldquo;Assets&amp;rdquo; in the (post) devlog of the iOS mobile game &amp;ldquo;Slashing Samurai,&amp;rdquo; released on the App Store on December 15, 2023.
+Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game!
 Consideration of Assets to Use In this development log, we record how we prepared assets for the development of the mobile game &amp;ldquo;Slashing Samurai.&amp;rdquo; In the context of game development, assets refer to the materials used.
-First, we listed the necessary assets and proceeded with a rough policy to prepare them with as low a budget as possible, considering the time cost.
-The result of listing the assets necessary for the game is as follows:</description>
+First, we listed the necessary assets and proceeded with a rough policy to prepare them with as low a budget as possible, considering the time cost.</description>
     </item>
     
   </channel>
