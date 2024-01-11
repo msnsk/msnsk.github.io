@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 31 Dec 2023 04:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/mobilegame/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/mobilegame/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Devlog: Slashing Samurai - Planning</title>
       <link>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</link>
@@ -22,6 +22,18 @@
 Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game!
 Defining the Rough Specifications of the Game The development process began by roughly defining the specifications of the game to be developed.
 It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval.</description>
+    </item>
+    
+    <item>
+      <title>Devlog: Slashing Samurai - Reflection</title>
+      <link>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_4/</link>
+      <pubDate>Thu, 11 Jan 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_4/</guid>
+      <description>This article is a record of reflections on the (post-release) development log of the iOS mobile game &amp;ldquo;Slashing Samurai,&amp;rdquo; released on the App Store on December 15, 2023. It explores areas for improvement and lessons learned during the development process.
+Feel free to download &amp;ldquo;Slashing Samurai&amp;rdquo; for free from the App Store using the banner below if you&amp;rsquo;re interested.
+Identification of Reflection Points After completing the development of &amp;ldquo;Slashing Samurai&amp;rdquo; and reflecting on the process and outcomes, various points for improvement became apparent. To better utilize these reflections in future game development, I want to document them thoroughly.
+Let&amp;rsquo;s start by summarizing specific points for improvement:</description>
     </item>
     
     <item>
