@@ -13,24 +13,6 @@
     <language>ja</language>
     <lastBuildDate>Thu, 30 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>シリーズ：Godot で作るブロック崩し</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/</link>
-      <pubDate>Mon, 10 Jan 2022 00:18:03 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/</guid>
-      <description>このシリーズでは昔懐かしのブロック崩しを開発しながら、Godot でのゲーム開発の基本を学んでいく。ゲーム開発初心者の方、Godot エンジン初心者の方には特にお勧めのチュートリアルである。 Environment このチュート</description>
-    </item>
-    
-    <item>
-      <title>シリーズ：Godot で作るプラットフォーマー</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</link>
-      <pubDate>Sun, 24 Apr 2022 00:00:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/</guid>
-      <description>このチュートリアルシリーズでは、Godot を使ってプラットフォーマーというジャンルのゲームを開発する。スーパーマリオシリーズに代表されるオーソドックスな横スクロールアクションゲームで、特に海外で根強い</description>
-    </item>
-    
-    <item>
       <title>モバイルゲーム「もの切り侍」</title>
       <link>https://www.peanuts-code.com/ja/portfolio/work0001_slashing_samurai/</link>
       <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
