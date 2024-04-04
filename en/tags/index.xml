@@ -11,70 +11,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 03 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>AppStore</title>
-      <link>https://www.peanuts-code.com/en/tags/appstore/</link>
-      <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/appstore/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GameDev</title>
-      <link>https://www.peanuts-code.com/en/tags/gamedev/</link>
-      <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/gamedev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GodotEngine</title>
-      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
-      <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>IndieDev</title>
-      <link>https://www.peanuts-code.com/en/tags/indiedev/</link>
-      <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/indiedev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>IOS</title>
-      <link>https://www.peanuts-code.com/en/tags/ios/</link>
-      <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/ios/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MobileGame</title>
-      <link>https://www.peanuts-code.com/en/tags/mobilegame/</link>
-      <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/mobilegame/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Product</title>
-      <link>https://www.peanuts-code.com/en/tags/product/</link>
-      <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.peanuts-code.com/en/tags/product/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Devlog</title>
       <link>https://www.peanuts-code.com/en/tags/devlog/</link>
@@ -85,11 +22,74 @@
     </item>
     
     <item>
+      <title>GameDev</title>
+      <link>https://www.peanuts-code.com/en/tags/gamedev/</link>
+      <pubDate>Thu, 11 Jan 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/gamedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IndieDev</title>
+      <link>https://www.peanuts-code.com/en/tags/indiedev/</link>
+      <pubDate>Thu, 11 Jan 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/indiedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IOS</title>
+      <link>https://www.peanuts-code.com/en/tags/ios/</link>
+      <pubDate>Thu, 11 Jan 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MobileGame</title>
+      <link>https://www.peanuts-code.com/en/tags/mobilegame/</link>
+      <pubDate>Thu, 11 Jan 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/mobilegame/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>SlashingSamurai</title>
       <link>https://www.peanuts-code.com/en/tags/slashingsamurai/</link>
       <pubDate>Thu, 11 Jan 2024 00:00:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tags/slashingsamurai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AppStore</title>
+      <link>https://www.peanuts-code.com/en/tags/appstore/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/appstore/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GodotEngine</title>
+      <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Product</title>
+      <link>https://www.peanuts-code.com/en/tags/product/</link>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tags/product/</guid>
       <description></description>
     </item>
     
