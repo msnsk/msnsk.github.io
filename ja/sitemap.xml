@@ -150,6 +150,19 @@
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</loc>
     <lastmod>2022-04-24T00:00:00+09:00</lastmod>
   </url><url>
+    <loc>https://www.peanuts-code.com/ja/tutorials/</loc>
+    <lastmod>2024-05-01T20:17:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tutorials/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tutorials/"
+                />
+  </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/appstore/</loc>
     <lastmod>2024-04-16T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -376,19 +389,6 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/%E3%82%B5%E3%82%A6%E3%83%B3%E3%83%89/</loc>
     <lastmod>2022-10-18T20:17:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.peanuts-code.com/ja/tutorials/</loc>
-    <lastmod>2022-10-18T20:17:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tutorials/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tutorials/"
-                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/2d/</loc>
     <lastmod>2022-10-16T00:00:00+00:00</lastmod>
