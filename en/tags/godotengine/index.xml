@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 03 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 May 2024 20:17:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🕹️ Lovely Solitaire</title>
       <link>https://www.peanuts-code.com/en/portfolio/work0002_lovely_solitaire/</link>
@@ -20,6 +20,17 @@
       <guid>https://www.peanuts-code.com/en/portfolio/work0002_lovely_solitaire/</guid>
       <description>Introducing a Mobile Game, Lovely Solitaire! When it comes to solitaire (Klondike), it&amp;rsquo;s the king of classic one-player card games, and now, introducing the mobile game &amp;ldquo;Lovely Solitaire&amp;rdquo; available on the App Store! With its chic user interface, you can exude a sense of style even while playing on the train! (Or so we hope?) New to the game? Don&amp;rsquo;t worry, you can learn the rules and tips from the &amp;ldquo;How to Play&amp;rdquo; section in the game!
 Your browser does not support the video tag. What Makes It Lovely? The pastel-colored UI and pixel art card designs make it lovely! Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely!</description>
+    </item>
+    
+    <item>
+      <title>🤖 Adding a Game Center Plugin to Your Project</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</link>
+      <pubDate>Sun, 05 May 2024 20:17:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</guid>
+      <description>In this article, I&amp;rsquo;ll show you how to add the official Godot plugin for integrating with Apple&amp;rsquo;s Game Center to your project.
+First off, what is Game Center? For those unfamiliar, it’s a feature available on iOS devices like iPhones and iPads. By signing in with an Apple ID, Game Center records achievements and allows players to compete on leaderboards in supported games. Developers can set achievements, define their completion criteria, and decide what to compete for on the leaderboards.
+Using the Game Center plugin in Godot, you can easily integrate these features into your games, which is pretty awesome.</description>
     </item>
     
     <item>

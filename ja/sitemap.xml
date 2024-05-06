@@ -152,9 +152,29 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/app-store/</loc>
     <lastmod>2024-05-01T20:17:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/app-store/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/app-store/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/apple/</loc>
     <lastmod>2024-05-01T20:17:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/apple/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/apple/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/gamedev/</loc>
     <lastmod>2024-05-01T20:17:00+09:00</lastmod>
@@ -171,6 +191,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/godot4/</loc>
     <lastmod>2024-05-01T20:17:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/godot4/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/godot4/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/godotengine/</loc>
     <lastmod>2024-05-01T20:17:00+09:00</lastmod>
@@ -229,6 +259,16 @@
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</loc>
     <lastmod>2024-05-01T20:17:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/"
+                />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/appstore/</loc>
     <lastmod>2024-04-16T00:00:00+00:00</lastmod>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>2D&#34; on Peanuts Code</title>
+    <title>2D on Peanuts Code</title>
     <link>https://www.peanuts-code.com/ja/tags/2d/</link>
-    <description>Recent content in 2D&#34; on Peanuts Code</description>
+    <description>Recent content in 2D on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
       <url>https://www.peanuts-code.com/105</url>
@@ -11,6 +11,384 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 24 Apr 2022 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/2d/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Oct 2022 16:30:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/2d/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Godot で作るブロック崩し Part 1：パドルを作って動かそう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_1/</link>
+      <pubDate>Sat, 06 Nov 2021 17:44:27 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_1/</guid>
+      <description>Part 1 の今回は、ゲームのプレイ画面にパドルを配置して動かすところまでやっていく。 ところで、ゲーム開発初心者が初めて挑戦するゲームにうってつけなのがブロック崩しだ。ブロック崩しはシンプルながらその開発を通</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 2：ボールを作って発射しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_2/</link>
+      <pubDate>Sat, 06 Nov 2021 23:11:01 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_2/</guid>
+      <description>Part 2 の今回は、ボールのオブジェクトを作って、パドルからボールを発射するところまで進めていく。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_3/</link>
+      <pubDate>Tue, 09 Nov 2021 16:21:24 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_3/</guid>
+      <description>Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリー</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 4：ブロックを配置してボールを当てて消そう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_4/</link>
+      <pubDate>Wed, 10 Nov 2021 17:05:50 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_4/</guid>
+      <description>Part 4 の今回は、ブロックのオブジェクトを作って、それを画面上に複数配置し、ボールがそのブロックに衝突したらブロックが消えるようにしていく。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリ</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 5：細かい更新をしてゲーム性を高めよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_5/</link>
+      <pubDate>Wed, 17 Nov 2021 12:23:06 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_5/</guid>
+      <description>Part 5 の今回は、パドルが壁を通過してしまう問題の修正、衝突するたびにボールのスピードが上がる仕様に変更、プレイヤーの操作でボールが発射される仕様に変更、パドル上のボールが当たった位置によってボールの反射</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 6：ゲームスタート/ゲームオーバーの画面を作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_6/</link>
+      <pubDate>Sun, 21 Nov 2021 13:39:21 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_6/</guid>
+      <description>Part 6 の今回は、ゲームスタート画面とゲームオーバーの画面を作り、それらとプレイ画面との間で適宜、画面が遷移するようにしていく。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリーズをまだご</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 7：HUDを作って表示内容を更新してみよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_7/</link>
+      <pubDate>Tue, 23 Nov 2021 23:45:05 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_7/</guid>
+      <description>Part 7 の今回は、HUD（ヘッドアップディスプレイ）を作っていく。HUD というのは、例えば、プレイヤーのライフゲージやスコア、残り時間、レベル（ステージ）の番号などのように、ゲームプレイ画面に常に表示され</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 8：ポーズ画面を作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_8/</link>
+      <pubDate>Mon, 29 Nov 2021 17:02:30 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_8/</guid>
+      <description>Part 8 の今回は、ゲームをプレイ中にポーズ（一時停止）する機能とポーズ画面を作っていく。といっても作業はこれまでのおさらい的内容が多くなっているので、気楽にやってみてほしい。 それでは前回に引き続きブロック</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 9：アニメーションを追加しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_9/</link>
+      <pubDate>Thu, 02 Dec 2021 22:49:34 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_9/</guid>
+      <description>Part 9 の今回は、ブロック崩しの一部の要素にアニメーションを追加する。全てのオブジェクトをアニメーションさせると作業量が膨大になるので、今回はパドルとブロックに対象を絞ってに簡単なアニメーションを追加して</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 10：パワーアップアイテムをドロップさせよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_10/</link>
+      <pubDate>Thu, 02 Dec 2021 22:49:34 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_10/</guid>
+      <description>Part 10 の今回は、ブロック崩しにパワーアップアイテムを追加していく。ブロックを崩すとアイテムが落ちてきて、パドルとアイテムが衝突するとパワーアップが適用される、という仕組みの部分を実装していこう。 なお、パ</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 11：パワーアップを実装しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_11/</link>
+      <pubDate>Sat, 11 Dec 2021 13:36:54 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_11/</guid>
+      <description>Part 11 の今回は、ブロック崩しにパワーアップ機能を実装していく。前回の Part 11 でブロックを消すとパワーアップアイテムが落ちてきて、パドルとアイテムが衝突するとパワーアップが適用される、という仕組みの部分を作っ</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 12：BGMとサウンドエフェクトを追加しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_12/</link>
+      <pubDate>Sun, 19 Dec 2021 00:21:13 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_12/</guid>
+      <description>Part 12 の今回は、ブロック崩しにBGMとサウンドエフェクト（効果音）を追加していく。今回のチュートリアルにはいつもの GIF ではなく mp4 の動画を載せている。この記事の閲覧環境は様々だと思われるため、デフォルトでは</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 13：ハイスコアのデータを保存しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_13/</link>
+      <pubDate>Thu, 23 Dec 2021 16:55:59 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_13/</guid>
+      <description>Part 13 の今回は、ブロック崩しの HUD にハイスコア、ハイレベル（過去最高クリアレベルのことをこう呼ぶことにする）の要素を追加し、ゲームオーバーになった時点でそのデータが自動的に保存されるようにして、一度ゲーム</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 14：ブロックの種類を増やしてレベルをデザインしよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_14/</link>
+      <pubDate>Fri, 31 Dec 2021 02:09:21 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_14/</guid>
+      <description>Part 14 の今回は、ブロック崩しのブロックの種類を増やして、複数のレベル（ステージ）をデザインしていく。併せてゲームクリア画面も作成する。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただ</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るブロック崩し Part 15：プロジェクトをエクスポートしよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_15/</link>
+      <pubDate>Mon, 10 Jan 2022 00:18:03 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_15/</guid>
+      <description>Part 15 の今回は、これまで開発してきたブロック崩しのプロジェクトをエクスポートして、開発者以外にもプレイしてもらえるようにする。エクスポートの作業は基本的に、ゲームが完成した段階でそのゲームを配布するため</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 1：プレイヤーキャラクターを作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</link>
+      <pubDate>Sat, 29 Jan 2022 23:38:27 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</guid>
+      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。今回は、初回ということで、ゲームのプレイ画面にプレ</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</link>
+      <pubDate>Fri, 04 Feb 2022 13:30:38 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</guid>
+      <description>今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。 なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良い</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 3：カメラを追加しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_3/</link>
+      <pubDate>Sat, 05 Feb 2022 17:16:51 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_3/</guid>
+      <description>第3回目の今回は、プレイヤーキャラクターの動きに合わせてカメラが移動し、Part 2 の時より広いタイルマップ上をキャラクターが移動できるようにしていく。 なお、2Dゲームのカメラについて、公式ドキュメント</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/</link>
+      <pubDate>Thu, 10 Feb 2022 01:41:29 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/</guid>
+      <description>第4回目の今回は、敵キャラクターの雛形となるシーンを作成し、それを継承する形で個別の敵キャラクターを一つ作っていく。そのあと、その敵キャラクターをレベルシーンに配置して、プレイヤーキャラクターに踏まれ</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 5：さらに敵キャラクターを作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_5/</link>
+      <pubDate>Fri, 18 Feb 2022 15:00:38 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_5/</guid>
+      <description>第5回目の今回は、さらに敵キャラクターの種類を増やしていく。それぞれの敵キャラクターの動きに違いを持たせ、それらをタイルマップ上に複数配置してゲームの難易度を高めていこう。具体的に今回は以下の敵キャラ</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 6：アイテムを作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_6/</link>
+      <pubDate>Sat, 19 Feb 2022 16:17:02 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_6/</guid>
+      <description>第6回目の今回は、アイテムを作る。アイテムというのは、ちょうどスーパーマリオシリーズのコインのような、当たるとポイントを獲得できてちょっと嬉しい存在だ。さらに、下から小突くとアイテムが出てくる箱、その</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 7：次のレベルに遷移させよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_7/</link>
+      <pubDate>Thu, 03 Mar 2022 15:11:20 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_7/</guid>
+      <description>第7回目の今回は、レベルのマップ上にスタートポイント、中間のチェックポイント、そしてエンドポイントを配置し、エンドポイントに到達した時に次のレベルに遷移する仕組みを実装していく。併せて、現在レベルシー</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 8：HUD を追加しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_8/</link>
+      <pubDate>Fri, 04 Mar 2022 13:16:21 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_8/</guid>
+      <description>第8回目の今回は、HUD を実装していく。 HUD というのは、ヘッズアップディスプレイ（Heads Up Display）の略で、ゲームプレイ中に常に画面上に表示されている UI の一つだ。例えば、プレイヤーの残りのライ</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_9/</link>
+      <pubDate>Mon, 14 Mar 2022 01:59:44 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_9/</guid>
+      <description>第9回目の今回は、ゲームオーバーの仕組みを実装していく。 世に出ているプラットフォーマーゲームにはほぼ確実にゲームオーバーの仕組みが存在する。ゲームオーバーになるかもしれない緊張感がなければプラットフォ</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 10：スタート画面を作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_10/</link>
+      <pubDate>Tue, 22 Mar 2022 17:32:43 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_10/</guid>
+      <description>第10回目の今回は、ゲーム開始時に表示されるスタート画面を作る。タイトル画面、スタートメニューとも言う。 それだけだと、前回と比べて簡単すぎるので、ゲーム開始時にプレイヤーキャラクターを選択できる仕組み</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 11：背景を作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_11/</link>
+      <pubDate>Fri, 25 Mar 2022 22:31:30 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_11/</guid>
+      <description>第11回目の今回は、ゲームプレイ画面の背景を作る。 背景と言っても、ただテクスチャ画像を一枚ペタリと貼り付けて終わりだと面白くない。それに、カメラがどれだけ動いても背景が途切れなく繋がっている状態を作る</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 12：光と影を演出しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_12/</link>
+      <pubDate>Sat, 26 Mar 2022 00:25:27 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_12/</guid>
+      <description>第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 13：サウンドを追加しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_13/</link>
+      <pubDate>Fri, 08 Apr 2022 19:42:19 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_13/</guid>
+      <description>第13回目の今回は、ゲームにサウンドを追加する。ゲームに使われるサウンドというのは、大きく分けて2種類ある。バックグラウンドミュージック（BGM）と効果音（サウンドエフェクト：SFX）だ。Godot Engine</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 14：プレイヤーキャラクターのアクションをアップデートしよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_14/</link>
+      <pubDate>Thu, 14 Apr 2022 02:07:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_14/</guid>
+      <description>第14回目の今回は、プレイヤーキャラクターのアクションをアップデートしていく。具体的には以下にリストアップしたジャンプとダッシュの動きや演出を追加していく。 落下時のアニメーション 壁ジャンプ ダブルジャン</description>
+    </item>
+    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 15：いろいろな仕掛けを追加しよう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</link>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</guid>
+      <description>第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップ</description>
+    </item>
+    
+    <item>
+      <title>🤖 Godot3 で作るアニメーションステートマシン</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/</link>
+      <pubDate>Thu, 13 Oct 2022 16:30:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/</guid>
+      <description>今回のテーマは 2D ゲームのアニメーションステートマシンの実装だ。ステートとは「状態」のことで、ステートマシンというのは、キャラクターのある状態からある状態への遷移を制御する仕組みのことだ。 ある状態からは</description>
+    </item>
+    
+    <item>
+      <title>🤖 Godot3 で作る 2D ゲームの近接攻撃の当たり判定</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/</link>
+      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/</guid>
+      <description>この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（H</description>
+    </item>
+    
+    <item>
+      <title>🤖 Godot3 で作る 2D グリッドベース経路探索</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/</link>
+      <pubDate>Mon, 19 Sep 2022 02:10:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/</guid>
+      <description>この記事では、AStar というアルゴリズムを利用して、2D ゲームにおけるグリッドベースの経路探索の実装方法について紹介する。なお、グリッドベースではない 2D 経路探索については、「Godot で作る 2D 経路探</description>
+    </item>
+    
+    <item>
+      <title>🤖 Godot3 で作る 2D 経路探索</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0016_2d_path_finding/</link>
+      <pubDate>Mon, 15 Aug 2022 02:10:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0016_2d_path_finding/</guid>
+      <description>このチュートリアルでは 2D ゲームにおける経路探索 (Path Finding) について紹介する。経路探索というのは、例えばあるオブジェクトをある目的地へ移動させる際に、オブジェクトから目的地までの移動可能な最短経路を割り出す機能</description>
+    </item>
+    
+    <item>
+      <title>🤖 Godot3 で作る画面揺れ</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0014_screen_shake/</link>
+      <pubDate>Thu, 28 Jul 2022 14:10:56 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0014_screen_shake/</guid>
+      <description>今回の記事では、2Dゲームでの画面揺れの実装方法を紹介する。ゲームに絶対に必要な要素ではないが、うまく使えばプレイヤーのゲーム体験をよりインタラクティブにでき、ユーザエクスペリエンスに直接影響を与える</description>
+    </item>
+    
+    <item>
+      <title>🤖 Godot3 で作る進化形マッチ 3 パズルゲーム</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0013_advanced_match3/</link>
+      <pubDate>Sun, 10 Jul 2022 00:51:37 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0013_advanced_match3/</guid>
+      <description>今回のチュートリアルでは、進化形マッチ3パズルゲームと銘打って、盤面上で１つのピースを一定時間（数秒間）自由に動かして同じ色のピースを３つ以上並べて消すタイプのパズルゲームをを作っていく。 これはモバイ</description>
+    </item>
+    
+    <item>
+      <title>🤖 Godot3 で作るマッチ 3 パズルゲーム</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0012_match3/</link>
+      <pubDate>Sun, 26 Jun 2022 03:18:03 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0012_match3/</guid>
+      <description>今回のチュートリアルではマッチ3パズルゲームを作っていく。マッチ3（スリー）パズルゲームとは、盤面のグリッドに沿って均一に並べられた複数のカラフルなピースのうちの１つを、1マス動かして同じ色のピースを</description>
+    </item>
+    
+    <item>
+      <title>🤖 Godot3 で作る同じ色をつなげて消すパズルゲーム</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0011_connect_colors/</link>
+      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0011_connect_colors/</guid>
+      <description>このチュートリアルでは、スマホゲームで大人気の ディズニーツムツムのような同じ色のドロップをなぞってつなげて消すタイプのゲームの作り方を説明する。ちなみにディズニーツムツムを知らない方は以下のリンク先を</description>
+    </item>
+    
+    <item>
+      <title>🤖 Godot3 で作る 2D グリッドベース移動</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</link>
+      <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</guid>
+      <description>このチュートリアルでは、2Dゲームにおける「グリッドベース移動」をどのように実装するのかを説明する。グリッドベース移動というのは、等間隔にグリッド（格子状の線）で区分されたゲームの画面上をキャラクター</description>
+    </item>
+    
+    <item>
+      <title>🤖 Godot3 で作るホーミングミサイル</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</link>
+      <pubDate>Fri, 27 May 2022 17:10:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</guid>
+      <description>このチュートリアルでは、2Dトップダウンシューティングにおける「ホーミングミサイル」を作っていく。ホーミングミサイルというのは、ターゲットを追跡するミサイルのことだ。 Environment このチュートリアルは以下の環境で</description>
+    </item>
+    
+    <item>
+      <title>🤖 Godot3 で作る弾幕シューティングの弾幕</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/</link>
+      <pubDate>Sat, 21 May 2022 17:10:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/</guid>
+      <description>このチュートリアルでは、2Dトップダウンシューティングゲームの「弾幕」を作っていく。弾幕というのは、敵キャラクターから放たれる大量の弾（またはそれに類似する遠距離攻撃）のことで、弾が幕のように隙間なく</description>
+    </item>
+    
+    <item>
+      <title>🤖 Godot3 で作るトップダウンシューティングの 4 種類の銃</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/</link>
+      <pubDate>Wed, 04 May 2022 01:30:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/</guid>
+      <description>このチュートリアルでは、2Dトップダウンシューティングゲーム（見下ろし型シューティングゲーム）で一般的によく登場する銃を4種類作っていく。具体的には以下の通りだ。 ハンドガン ショットガン マシンガン レーザ</description>
+    </item>
+    
   </channel>
 </rss>

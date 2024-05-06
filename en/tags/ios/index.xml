@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 03 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 May 2024 20:17:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🕹️ Lovely Solitaire</title>
       <link>https://www.peanuts-code.com/en/portfolio/work0002_lovely_solitaire/</link>
@@ -32,6 +32,17 @@ Your browser does not support the video tag. What Makes It Lovely? The pastel-co
 Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game!
 Defining the Rough Specifications of the Game The development process began by roughly defining the specifications of the game to be developed.
 It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval.</description>
+    </item>
+    
+    <item>
+      <title>🤖 Adding a Game Center Plugin to Your Project</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</link>
+      <pubDate>Sun, 05 May 2024 20:17:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</guid>
+      <description>In this article, I&amp;rsquo;ll show you how to add the official Godot plugin for integrating with Apple&amp;rsquo;s Game Center to your project.
+First off, what is Game Center? For those unfamiliar, it’s a feature available on iOS devices like iPhones and iPads. By signing in with an Apple ID, Game Center records achievements and allows players to compete on leaderboards in supported games. Developers can set achievements, define their completion criteria, and decide what to compete for on the leaderboards.
+Using the Game Center plugin in Godot, you can easily integrate these features into your games, which is pretty awesome.</description>
     </item>
     
     <item>
