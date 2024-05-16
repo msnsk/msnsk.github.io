@@ -11,7 +11,19 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 05 May 2024 20:17:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/plugin/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 May 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/plugin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 Implementing Game Center Features After Adding Its Plugin</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</link>
+      <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</guid>
+      <description>In the previous article 🤖 Adding Game Center Plugin to Your Project , I explained how to add the Game Center plugin from the official Godot iOS plugins to your project. In this article, I&amp;rsquo;ll guide you on implementing the functionalities of Apple&amp;rsquo;s Game Center using the added plugin.
+If you&amp;rsquo;re wondering what Game Center is all about, I briefly explained it in the beginning of the previous article, so you might want to check that out first.
+Broadly, I&amp;rsquo;ll explain in two main sections:
+Setting Up Game Center in App Store Connect Implementing Game Center in GDScript By the way, the basic usage of plugins is documented in Godot Docs / iOS plugins / iOS plugins , so it would be reasonable to start there.</description>
+    </item>
+    
     <item>
       <title>🤖 Adding a Game Center Plugin to Your Project</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</link>

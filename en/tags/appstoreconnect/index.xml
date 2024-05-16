@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AppStoreConnect on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/en/tags/appstoreconnect/</link>
+    <description>Recent content in AppStoreConnect on Peanuts Code</description>
+    <image>
+      <title>Peanuts Code</title>
+      <url>https://www.peanuts-code.com/105</url>
+      <link>https://www.peanuts-code.com/105</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 13 May 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/appstoreconnect/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 Distributing Games from Xcode to App Store Connect</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</link>
+      <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</guid>
+      <description>In this article, I&amp;rsquo;ll explain how to upload an iOS game exported from Godot to App Store Connect using Xcode. It&amp;rsquo;ll probably be short, so feel free to take it easy. Also, I&amp;rsquo;m assuming you&amp;rsquo;re familiar with Xcode, which is a macOS-exclusive app, so I&amp;rsquo;ll proceed with that in mind. Macs can be pricey, but if you want to release apps like iOS or macOS on the App Store, it&amp;rsquo;s an essential tool. I got mine with a 2-year Orico loan. It was tough, though 😆
+Environment at the time of writing this article Xcode Version: 15.3 (15E204a)
+Computer Model: MacBook Air M1, 2020</description>
+    </item>
+    
+  </channel>
+</rss>

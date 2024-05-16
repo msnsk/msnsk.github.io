@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 05 May 2024 20:17:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 May 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🕹️ Lovely Solitaire</title>
       <link>https://www.peanuts-code.com/en/portfolio/work0002_lovely_solitaire/</link>
@@ -20,6 +20,18 @@
       <guid>https://www.peanuts-code.com/en/portfolio/work0002_lovely_solitaire/</guid>
       <description>Introducing a Mobile Game, Lovely Solitaire! When it comes to solitaire (Klondike), it&amp;rsquo;s the king of classic one-player card games, and now, introducing the mobile game &amp;ldquo;Lovely Solitaire&amp;rdquo; available on the App Store! With its chic user interface, you can exude a sense of style even while playing on the train! (Or so we hope?) New to the game? Don&amp;rsquo;t worry, you can learn the rules and tips from the &amp;ldquo;How to Play&amp;rdquo; section in the game!
 Your browser does not support the video tag. What Makes It Lovely? The pastel-colored UI and pixel art card designs make it lovely! Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely!</description>
+    </item>
+    
+    <item>
+      <title>🤖 Implementing Game Center Features After Adding Its Plugin</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</link>
+      <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</guid>
+      <description>In the previous article 🤖 Adding Game Center Plugin to Your Project , I explained how to add the Game Center plugin from the official Godot iOS plugins to your project. In this article, I&amp;rsquo;ll guide you on implementing the functionalities of Apple&amp;rsquo;s Game Center using the added plugin.
+If you&amp;rsquo;re wondering what Game Center is all about, I briefly explained it in the beginning of the previous article, so you might want to check that out first.
+Broadly, I&amp;rsquo;ll explain in two main sections:
+Setting Up Game Center in App Store Connect Implementing Game Center in GDScript By the way, the basic usage of plugins is documented in Godot Docs / iOS plugins / iOS plugins , so it would be reasonable to start there.</description>
     </item>
     
     <item>

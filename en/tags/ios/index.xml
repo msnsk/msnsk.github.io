@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 05 May 2024 20:17:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 May 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🕹️ Lovely Solitaire</title>
       <link>https://www.peanuts-code.com/en/portfolio/work0002_lovely_solitaire/</link>
@@ -32,6 +32,29 @@ Your browser does not support the video tag. What Makes It Lovely? The pastel-co
 Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game!
 Defining the Rough Specifications of the Game The development process began by roughly defining the specifications of the game to be developed.
 It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval.</description>
+    </item>
+    
+    <item>
+      <title>🤖 Distributing Games from Xcode to App Store Connect</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</link>
+      <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</guid>
+      <description>In this article, I&amp;rsquo;ll explain how to upload an iOS game exported from Godot to App Store Connect using Xcode. It&amp;rsquo;ll probably be short, so feel free to take it easy. Also, I&amp;rsquo;m assuming you&amp;rsquo;re familiar with Xcode, which is a macOS-exclusive app, so I&amp;rsquo;ll proceed with that in mind. Macs can be pricey, but if you want to release apps like iOS or macOS on the App Store, it&amp;rsquo;s an essential tool. I got mine with a 2-year Orico loan. It was tough, though 😆
+Environment at the time of writing this article Xcode Version: 15.3 (15E204a)
+Computer Model: MacBook Air M1, 2020</description>
+    </item>
+    
+    <item>
+      <title>🤖 Implementing Game Center Features After Adding Its Plugin</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</link>
+      <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</guid>
+      <description>In the previous article 🤖 Adding Game Center Plugin to Your Project , I explained how to add the Game Center plugin from the official Godot iOS plugins to your project. In this article, I&amp;rsquo;ll guide you on implementing the functionalities of Apple&amp;rsquo;s Game Center using the added plugin.
+If you&amp;rsquo;re wondering what Game Center is all about, I briefly explained it in the beginning of the previous article, so you might want to check that out first.
+Broadly, I&amp;rsquo;ll explain in two main sections:
+Setting Up Game Center in App Store Connect Implementing Game Center in GDScript By the way, the basic usage of plugins is documented in Godot Docs / iOS plugins / iOS plugins , so it would be reasonable to start there.</description>
     </item>
     
     <item>
