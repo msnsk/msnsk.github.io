@@ -11,65 +11,65 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 01 May 2024 20:17:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 May 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>App Store</title>
       <link>https://www.peanuts-code.com/ja/tags/app-store/</link>
-      <pubDate>Wed, 01 May 2024 20:17:00 +0900</pubDate>
+      <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/app-store/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Apple</title>
-      <link>https://www.peanuts-code.com/ja/tags/apple/</link>
-      <pubDate>Wed, 01 May 2024 20:17:00 +0900</pubDate>
+      <title>AppStoreConnect</title>
+      <link>https://www.peanuts-code.com/ja/tags/appstoreconnect/</link>
+      <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
       
-      <guid>https://www.peanuts-code.com/ja/tags/apple/</guid>
+      <guid>https://www.peanuts-code.com/ja/tags/appstoreconnect/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GameDev</title>
       <link>https://www.peanuts-code.com/ja/tags/gamedev/</link>
-      <pubDate>Wed, 01 May 2024 20:17:00 +0900</pubDate>
+      <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/gamedev/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Godot4</title>
-      <link>https://www.peanuts-code.com/ja/tags/godot4/</link>
-      <pubDate>Wed, 01 May 2024 20:17:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/godot4/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>GodotEngine</title>
-      <link>https://www.peanuts-code.com/ja/tags/godotengine/</link>
-      <pubDate>Wed, 01 May 2024 20:17:00 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tags/godotengine/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>IOS</title>
       <link>https://www.peanuts-code.com/ja/tags/ios/</link>
-      <pubDate>Wed, 01 May 2024 20:17:00 +0900</pubDate>
+      <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/ios/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Xcode</title>
+      <link>https://www.peanuts-code.com/ja/tags/xcode/</link>
+      <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/xcode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GodotEngine</title>
+      <link>https://www.peanuts-code.com/ja/tags/godotengine/</link>
+      <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>プラグイン</title>
       <link>https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3/</link>
-      <pubDate>Wed, 01 May 2024 20:17:00 +0900</pubDate>
+      <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3/</guid>
       <description></description>

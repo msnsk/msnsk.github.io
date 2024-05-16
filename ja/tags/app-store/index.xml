@@ -11,14 +11,32 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 01 May 2024 20:17:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/app-store/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 May 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/app-store/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 Xcode から App Store Connect にゲームを配布する</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0023_distribute_app_from_xcode/</link>
+      <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0023_distribute_app_from_xcode/</guid>
+      <description>この記事では、Godot から書き出した iOS 版のゲームを Xcode から App Store Connect にアップロードする方法について説明するで。たぶん、手短に終わるから気楽にみてくれたらええよ。ほんで、多分わかってくれてると思うけど Xcode って</description>
+    </item>
+    
+    <item>
+      <title>🤖 Game Center プラグインを追加したあとの実装</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0022_implement_game_center/</link>
+      <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
+      
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0022_implement_game_center/</guid>
+      <description>前回の 🤖 プロジェクトに Game Center プラグインを追加する の記事では Godot 公式の iOS プラグインのうち Game Center のプラグインをプロジェクトに追加する手順について説明したんやけど、今回の記事では、その追加したプラグインを使って、</description>
+    </item>
+    
     <item>
       <title>🤖 プロジェクトに Game Center プラグインを追加する</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</link>
       <pubDate>Wed, 01 May 2024 20:17:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</guid>
-      <description>※関西弁でお送りします。 この記事では、Apple の Game Center と連携させるための Godot 公式プラグインをプロジェクトに追加する方法について説明していくで。 そもそも Game Center って何？って人がいるかもしれへんから、簡単に説明</description>
+      <description>この記事では、Apple の Game Center と連携させるための Godot 公式プラグインをプロジェクトに追加する方法について説明していくで。 ちなみに、今までの記事は「である」調で書いてたんやけど、ちょっと堅苦しくて偉そうやっ</description>
     </item>
     
   </channel>

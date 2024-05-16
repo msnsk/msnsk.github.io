@@ -151,7 +151,7 @@
     <lastmod>2022-04-24T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/app-store/</loc>
-    <lastmod>2024-05-01T20:17:00+09:00</lastmod>
+    <lastmod>2024-05-13T00:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -163,21 +163,11 @@
                 href="https://www.peanuts-code.com/ja/tags/app-store/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/apple/</loc>
-    <lastmod>2024-05-01T20:17:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/apple/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/apple/"
-                />
+    <loc>https://www.peanuts-code.com/ja/tags/appstoreconnect/</loc>
+    <lastmod>2024-05-13T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/gamedev/</loc>
-    <lastmod>2024-05-01T20:17:00+09:00</lastmod>
+    <lastmod>2024-05-13T00:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -189,34 +179,8 @@
                 href="https://www.peanuts-code.com/ja/tags/gamedev/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/godot4/</loc>
-    <lastmod>2024-05-01T20:17:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/godot4/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/godot4/"
-                />
-  </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/godotengine/</loc>
-    <lastmod>2024-05-01T20:17:00+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/godotengine/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/godotengine/"
-                />
-  </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/ios/</loc>
-    <lastmod>2024-05-01T20:17:00+09:00</lastmod>
+    <lastmod>2024-05-13T00:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -229,7 +193,7 @@
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/</loc>
-    <lastmod>2024-05-01T20:17:00+09:00</lastmod>
+    <lastmod>2024-05-13T00:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -241,11 +205,14 @@
                 href="https://www.peanuts-code.com/ja/tags/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3/</loc>
-    <lastmod>2024-05-01T20:17:00+09:00</lastmod>
+    <loc>https://www.peanuts-code.com/ja/tags/xcode/</loc>
+    <lastmod>2024-05-13T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tutorials/gd0023_distribute_app_from_xcode/</loc>
+    <lastmod>2024-05-13T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/</loc>
-    <lastmod>2024-05-01T20:17:00+09:00</lastmod>
+    <lastmod>2024-05-13T00:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -256,6 +223,25 @@
                 hreflang="ja"
                 href="https://www.peanuts-code.com/ja/tutorials/"
                 />
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/godotengine/</loc>
+    <lastmod>2024-05-11T00:00:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.peanuts-code.com/en/tags/godotengine/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://www.peanuts-code.com/ja/tags/godotengine/"
+                />
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3/</loc>
+    <lastmod>2024-05-11T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.peanuts-code.com/ja/tutorials/gd0022_implement_game_center/</loc>
+    <lastmod>2024-05-11T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</loc>
     <lastmod>2024-05-01T20:17:00+09:00</lastmod>

@@ -18,7 +18,7 @@
       <pubDate>Sun, 05 May 2024 20:17:00 +0900</pubDate>
       
       <guid>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</guid>
-      <description>In this article, I&amp;rsquo;ll show you how to add the official Godot plugin for integrating with Apple&amp;rsquo;s Game Center to your project.
+      <description>Introduction In this article, I&amp;rsquo;ll show you how to add the official Godot plugin for integrating with Apple&amp;rsquo;s Game Center to your project.
 First off, what is Game Center? For those unfamiliar, it’s a feature available on iOS devices like iPhones and iPads. By signing in with an Apple ID, Game Center records achievements and allows players to compete on leaderboards in supported games. Developers can set achievements, define their completion criteria, and decide what to compete for on the leaderboards.
 Using the Game Center plugin in Godot, you can easily integrate these features into your games, which is pretty awesome.</description>
     </item>
