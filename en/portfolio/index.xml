@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 03 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/portfolio/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/portfolio/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🕹️ Lovely Solitaire</title>
       <link>https://www.peanuts-code.com/en/portfolio/work0002_lovely_solitaire/</link>
@@ -20,6 +20,16 @@
       <guid>https://www.peanuts-code.com/en/portfolio/work0002_lovely_solitaire/</guid>
       <description>Introducing a Mobile Game, Lovely Solitaire! When it comes to solitaire (Klondike), it&amp;rsquo;s the king of classic one-player card games, and now, introducing the mobile game &amp;ldquo;Lovely Solitaire&amp;rdquo; available on the App Store! With its chic user interface, you can exude a sense of style even while playing on the train! (Or so we hope?) New to the game? Don&amp;rsquo;t worry, you can learn the rules and tips from the &amp;ldquo;How to Play&amp;rdquo; section in the game!
 Your browser does not support the video tag. What Makes It Lovely? The pastel-colored UI and pixel art card designs make it lovely! Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely!</description>
+    </item>
+    
+    <item>
+      <title>🕹️ Mobile Game - Quick Hand Poker</title>
+      <link>https://www.peanuts-code.com/en/portfolio/work0003_quick_hand_poker/</link>
+      <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.peanuts-code.com/en/portfolio/work0003_quick_hand_poker/</guid>
+      <description>This game will be available soon! Currently under review by the App Store! This is poker turned into a falling object game! Poker, a table game loved by many in casinos, has been reborn as a falling object game! It&amp;rsquo;s called &amp;ldquo;Quick Hand Poker&amp;rdquo;! Quickly touch five objects on the screen that combine the suit and rank of playing cards to form poker hands! Aim for a high score within the time limit! Even if it&amp;rsquo;s your first time playing, don&amp;rsquo;t worry. The rules and hands of the game can be easily checked within the game!
+Your browser does not support the video tag.</description>
     </item>
     
     <item>
