@@ -6,20 +6,19 @@
     <description>Recent content in Frustration on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 04 Jul 2022 08:45:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/frustration/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Jul 2022 08:45:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/frustration/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>📔 How to avoid frustration of game development</title>
       <link>https://www.peanuts-code.com/en/posts/post0003_how_to_avoid_frustration/</link>
       <pubDate>Mon, 04 Jul 2022 08:45:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/posts/post0003_how_to_avoid_frustration/</guid>
-      <description>When one has taken the trouble to start a personal game development project, one would like to continue it for a long and enjoyable time if possible. However, in general, game development tends to be frustrating. Let us first consider the reasons for this. Reasons for frustration First, game development is hard work. It is sometimes referred to as a comprehensive art form. In other words, a game is a work of art that combines music, images, characters, scenarios, systems, level design, and everything else into one. There is no way it is easy. It is so difficult that it</description>
+      <description>When one has taken the trouble to start a personal game development project, one would like to continue it for a long and enjoyable time if possible. However, in general, game development tends to be frustrating. Let us first consider the reasons for this. Reasons for frustration First, game development is hard work. It is sometimes referred to as a comprehensive art form. In other words, a game is a work of art that combines music, images, characters, scenarios, systems, level design, and everything else into one. There is no way it is easy. It is so difficult that it is easy to fall behind in the process. However, there is another problem that is even bigger, especially for adults who are making games as independent developers. That is the fact that you can&amp;rsquo;t make money by developing games. If there is no money to be made, they quit this hard work. Game development is hard work, but it pays off when the game sells. The word &amp;ldquo;no money&amp;rdquo; may be a bit of a generalization, because there are always</description>
     </item>
-    
   </channel>
 </rss>

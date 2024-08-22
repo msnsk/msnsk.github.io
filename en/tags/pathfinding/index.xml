@@ -6,29 +6,26 @@
     <description>Recent content in PathFinding on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 22 Sep 2022 19:45:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/pathfinding/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Sep 2022 19:45:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/pathfinding/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 2D Grid Based Path Finding in Godot3</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0017_2d_grid_based_path_finding/</link>
       <pubDate>Thu, 22 Sep 2022 19:45:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/tutorials/gd0017_2d_grid_based_path_finding/</guid>
-      <description>This article is a tutorial on how to implement grid-based path finding in 2D games using the AStar algorithm. For 2D pathfinding that is not grid-based, please refer to the article 2D Path Finding in Godot3 . I hope you will choose the article that best suits the game you want to make. The final project file in this tutorial is located in the GitHub repository . After downloading and extracting the .zip file, you can import the &amp;ldquo;project.godot&amp;rdquo; file into the Godot Engine to see the project directly. Translated with www.DeepL.com/Translator (free version) Environment Godot version: 3.5 Computer OS:</description>
+      <description>This article is a tutorial on how to implement grid-based path finding in 2D games using the AStar algorithm. For 2D pathfinding that is not grid-based, please refer to the article 2D Path Finding in Godot3 . I hope you will choose the article that best suits the game you want to make. The final project file in this tutorial is located in the GitHub repository . After downloading and extracting the .zip file, you can import the &amp;ldquo;project.godot&amp;rdquo; file into the Godot Engine to see the project directly. Translated with www.DeepL.com/Translator (free version) Environment Godot version: 3.5 Computer OS: macOS 11.6.5 Basic Articles You may also find the following articles useful. Downloading Godot Project Manager of Godot About AStar In this article, we will implement grid-based routing using a search algorithm called AStar. It is useful when you want to automatically move objects along a grid from the current location to the destination. For example, this method is ideal for puzzle games where you move pieces on the board, or strategy simulation games where you move characters of both</description>
     </item>
-    
     <item>
       <title>🤖 2D Path Finding in Godot3</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0016_2d_path_finding/</link>
       <pubDate>Tue, 16 Aug 2022 23:10:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/tutorials/gd0016_2d_path_finding/</guid>
-      <description>This tutorial introduces Path Finding in 2D games. Path finding is a function that determines the shortest possible path from an object to its destination, for example, when moving an object to a certain destination. Up to Godot 3.4, the Navigation node was used to implement path finding. This was not particularly inconvenient, but the methodology for game development using it was limited and inapplicable in some areas. This time, I would like to introduce an implementation method using Navigation Server, which was added to Godot 3.5. This is a backport from Godot 4, which is currently under active development.</description>
+      <description>This tutorial introduces Path Finding in 2D games. Path finding is a function that determines the shortest possible path from an object to its destination, for example, when moving an object to a certain destination. Up to Godot 3.4, the Navigation node was used to implement path finding. This was not particularly inconvenient, but the methodology for game development using it was limited and inapplicable in some areas. This time, I would like to introduce an implementation method using Navigation Server, which was added to Godot 3.5. This is a backport from Godot 4, which is currently under active development. This article is intended for users of Godot 3.5 or later. Users of Godot version 3.4 or earlier should take note. The final project file for this tutorial is available at GitHub repository . You can also check the project directly by downloading the .zip file and importing the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;End&amp;rdquo; folder with the Godot Engine. Environment Godot version: 3.5 Computer OS: macOS 11.6.5 Basic Articles You may also find the following articles useful. Downloading Godot Project</description>
     </item>
-    
   </channel>
 </rss>

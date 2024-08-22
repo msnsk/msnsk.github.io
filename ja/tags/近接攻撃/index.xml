@@ -6,20 +6,19 @@
     <description>Recent content in 近接攻撃 on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 03 Oct 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E8%BF%91%E6%8E%A5%E6%94%BB%E6%92%83/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Oct 2022 22:55:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/%E8%BF%91%E6%8E%A5%E6%94%BB%E6%92%83/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 で作る 2D ゲームの近接攻撃の当たり判定</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/</link>
       <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/</guid>
-      <description>この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（H</description>
+      <description>この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（Hit Box という）を用意し、攻撃を受けるオブジェクト（敵キャラクターや破壊できる樽や木箱、草など）には攻撃を受ける範囲となる衝突形状（Hurt Box という）を用意し、攻</description>
     </item>
-    
   </channel>
 </rss>

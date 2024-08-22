@@ -6,22 +6,26 @@
     <description>Recent content in ProjectManager on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 30 Oct 2021 12:30:09 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/projectmanager/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/projectmanager/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Project Manager of Godot3</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/</link>
       <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/</guid>
       <description>In this article, we will introduce what you can do with the Project Manager.
 When Godot is launched, the first thing that appears is the Project Manager. The Project Manager is a tool for managing projects handled by Godot, including the following operations.
-Creating new projects Loading project files downloaded from the Web Renaming a project Removing projects that were previously managed by the Project Manager. When using Godot for the first time, a dialog box will appear as shown in the following screen shot, prompting you to open the Asset Library. The asset library can be easily accessed at any time, so choose Cancel for now.</description>
+Creating new projects Loading project files downloaded from the Web Renaming a project Removing projects that were previously managed by the Project Manager. When using Godot for the first time, a dialog box will appear as shown in the following screen shot, prompting you to open the Asset Library. The asset library can be easily accessed at any time, so choose Cancel for now.
+Creating a new project Click &amp;ldquo;New Project&amp;rdquo; from the right sidebar of the Project Manager.
+Click &amp;ldquo;Browse&amp;rdquo; to choose the path where you want to save the new project files.
+Click on &amp;ldquo;Create Folder&amp;rdquo; in the upper right corner of the window that opens.
+Enter a name for the folder. As an example, it was named &amp;ldquo;SampleProject&amp;rdquo;.
+Once the folder is created, the folder path is automatically selected. Continue to click &amp;ldquo;Select Current Folder&amp;rdquo; in the lower right corner.</description>
     </item>
-    
   </channel>
 </rss>

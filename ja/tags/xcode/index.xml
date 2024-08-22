@@ -6,20 +6,19 @@
     <description>Recent content in Xcode on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 13 May 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/xcode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/xcode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Xcode から App Store Connect にゲームを配布する</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0023_distribute_app_from_xcode/</link>
       <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0023_distribute_app_from_xcode/</guid>
-      <description>この記事では、Godot から書き出した iOS 版のゲームを Xcode から App Store Connect にアップロードする方法について説明するで。たぶん、手短に終わるから気楽にみてくれたらええよ。ほんで、多分わかってくれてると思うけど Xcode って</description>
+      <description>この記事では、Godot から書き出した iOS 版のゲームを Xcode から App Store Connect にアップロードする方法について説明するで。たぶん、手短に終わるから気楽にみてくれたらええよ。ほんで、多分わかってくれてると思うけど Xcode って macOS 専用のアプリやから、Mac 持ってるの前提で話進めるからね。Mac はお高いんやけど、iOS とか macOS とかのアプリを App Store でリリースしたかったら絶対要る道具やから、Or</description>
     </item>
-    
   </channel>
 </rss>

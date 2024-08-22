@@ -6,10 +6,11 @@
     <description>Recent content in Categories on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language><atom:link href="https://www.peanuts-code.com/ja/categories/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- 0.133.0</generator>
+    <language>ja</language>
+    <atom:link href="https://www.peanuts-code.com/ja/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

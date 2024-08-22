@@ -6,20 +6,19 @@
     <description>Recent content in 弾幕 on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 21 May 2022 17:10:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E5%BC%BE%E5%B9%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 May 2022 17:10:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/%E5%BC%BE%E5%B9%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 で作る弾幕シューティングの弾幕</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/</link>
       <pubDate>Sat, 21 May 2022 17:10:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/</guid>
-      <description>このチュートリアルでは、2Dトップダウンシューティングゲームの「弾幕」を作っていく。弾幕というのは、敵キャラクターから放たれる大量の弾（またはそれに類似する遠距離攻撃）のことで、弾が幕のように隙間なく</description>
+      <description>このチュートリアルでは、2Dトップダウンシューティングゲームの「弾幕」を作っていく。弾幕というのは、敵キャラクターから放たれる大量の弾（またはそれに類似する遠距離攻撃）のことで、弾が幕のように隙間なく飛んでくるので「弾幕」という。プレイヤーはその隙間を縫うようにうまくかわしながら、敵キャラクターを射撃して倒していくゲームを弾幕シューティングゲームという。単に</description>
     </item>
-    
   </channel>
 </rss>

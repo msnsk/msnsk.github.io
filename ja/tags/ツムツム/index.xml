@@ -6,20 +6,19 @@
     <description>Recent content in ツムツム on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 14 Jun 2022 22:43:45 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%84%E3%83%A0%E3%83%84%E3%83%A0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%84%E3%83%A0%E3%83%84%E3%83%A0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 で作る同じ色をつなげて消すパズルゲーム</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0011_connect_colors/</link>
       <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0011_connect_colors/</guid>
-      <description>このチュートリアルでは、スマホゲームで大人気の ディズニーツムツムのような同じ色のドロップをなぞってつなげて消すタイプのゲームの作り方を説明する。ちなみにディズニーツムツムを知らない方は以下のリンク先を</description>
+      <description>このチュートリアルでは、スマホゲームで大人気の ディズニーツムツムのような同じ色のドロップをなぞってつなげて消すタイプのゲームの作り方を説明する。ちなみにディズニーツムツムを知らない方は以下のリンク先を一度ご覧いただきたい。 LINE：ディズニー ツムツム Other Tutorials 「パズル＆ドラゴンズ」のようなゲームを作ってみたい場合： Godot で作る進化形マッチ 3 パズルゲーム 「キャンディーク</description>
     </item>
-    
   </channel>
 </rss>

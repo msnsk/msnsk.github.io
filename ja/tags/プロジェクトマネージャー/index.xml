@@ -6,29 +6,26 @@
     <description>Recent content in プロジェクトマネージャー on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 01 Nov 2021 12:37:47 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Nov 2021 12:37:47 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 の言語設定</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</link>
       <pubDate>Mon, 01 Nov 2021 12:37:47 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/</guid>
       <description>Godot で表示される言語の設定を変更する手順について解説</description>
     </item>
-    
     <item>
       <title>🤖 Godot3 のプロジェクトマネージャー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</link>
       <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/</guid>
       <description>ゲームエンジン Godot のプロジェクトマネージャーでできる操作のあれこれを解説</description>
     </item>
-    
   </channel>
 </rss>

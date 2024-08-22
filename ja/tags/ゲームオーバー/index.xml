@@ -6,20 +6,19 @@
     <description>Recent content in ゲームオーバー on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 14 Mar 2022 01:59:44 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_9/</link>
       <pubDate>Mon, 14 Mar 2022 01:59:44 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_9/</guid>
-      <description>第9回目の今回は、ゲームオーバーの仕組みを実装していく。 世に出ているプラットフォーマーゲームにはほぼ確実にゲームオーバーの仕組みが存在する。ゲームオーバーになるかもしれない緊張感がなければプラットフォ</description>
+      <description>第9回目の今回は、ゲームオーバーの仕組みを実装していく。 世に出ているプラットフォーマーゲームにはほぼ確実にゲームオーバーの仕組みが存在する。ゲームオーバーになるかもしれない緊張感がなければプラットフォーマーの面白さは激減する。だから、ゲームオーバーの実装は必要不可欠だ。さらに、ゲームオーバーの条件設定もまたゲームの難易度を左右するため非常に重要だ。 一般的にゲ</description>
     </item>
-    
   </channel>
 </rss>

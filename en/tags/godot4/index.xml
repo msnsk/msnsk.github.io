@@ -6,22 +6,26 @@
     <description>Recent content in Godot4 on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 05 May 2024 20:17:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/godot4/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/godot4/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Adding a Game Center Plugin to Your Project</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</link>
       <pubDate>Sun, 05 May 2024 20:17:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</guid>
       <description>Introduction In this article, I&amp;rsquo;ll show you how to add the official Godot plugin for integrating with Apple&amp;rsquo;s Game Center to your project.
 First off, what is Game Center? For those unfamiliar, it’s a feature available on iOS devices like iPhones and iPads. By signing in with an Apple ID, Game Center records achievements and allows players to compete on leaderboards in supported games. Developers can set achievements, define their completion criteria, and decide what to compete for on the leaderboards.
-Using the Game Center plugin in Godot, you can easily integrate these features into your games, which is pretty awesome.</description>
+Using the Game Center plugin in Godot, you can easily integrate these features into your games, which is pretty awesome.
+By the way, you can find the official documentation and source code at the Godot iOS plugins repository , so take a look there first. If there&amp;rsquo;s anything you don&amp;rsquo;t quite understand, you can always come back to this article.
+Author&amp;#39;s Environment at the Time of Writing Godot Version: 4.2.1
+Computer Model: MacBook Air M1, 2020
+OS: macOS 14.4.1
+Clone the Plugin Repository First, head over to this Github page and follow the steps there. However, they’re not very detailed, so I&amp;rsquo;ll explain the nitty-gritty parts here.</description>
     </item>
-    
   </channel>
 </rss>

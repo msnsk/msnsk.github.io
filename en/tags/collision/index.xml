@@ -6,20 +6,19 @@
     <description>Recent content in Collision on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 05 Oct 2022 02:55:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/collision/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Oct 2022 02:55:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/collision/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 2D Hit Detection for Melee Attacks in Godot3</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/</link>
       <pubDate>Wed, 05 Oct 2022 02:55:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/</guid>
-      <description>This article introduces a method for implementing simple hit detection for melee attacks in 2D games. This is a commonly used method where the object to attack (e.g., player character) has a collision shape (called &amp;ldquo;Hit Box&amp;rdquo;) that is only active during the attack, and the object to be attacked (e.g., enemy character, destructible barrels, crates, grass, etc.) has a collision shape (called &amp;ldquo;Hurt Box). The hit judgment of the attack can be implemented by enabling/disabling the Hit Box and Hurt Box, and changing their size and position in accordance with the animation of the attack. This is relatively easy</description>
+      <description>This article introduces a method for implementing simple hit detection for melee attacks in 2D games. This is a commonly used method where the object to attack (e.g., player character) has a collision shape (called &amp;ldquo;Hit Box&amp;rdquo;) that is only active during the attack, and the object to be attacked (e.g., enemy character, destructible barrels, crates, grass, etc.) has a collision shape (called &amp;ldquo;Hurt Box). The hit judgment of the attack can be implemented by enabling/disabling the Hit Box and Hurt Box, and changing their size and position in accordance with the animation of the attack. This is relatively easy to implement, so let&amp;rsquo;s get started. Environment Godot version: 3.5.1 Computer OS version: macOS 11.6.5 Basic Articles You may also find the following articles useful. Downloading Godot Project Manager of Godot Add Actions to Input Map First, go to &amp;ldquo;Project&amp;rdquo; &amp;gt; &amp;ldquo;Project Settings&amp;rdquo; &amp;gt; &amp;ldquo;Input Map&amp;rdquo; tab and add the following actions: right: D key left: A key down: S key up: W key attack: Space bar Create a Player scene Create a scene for the player character. Create the</description>
     </item>
-    
   </channel>
 </rss>

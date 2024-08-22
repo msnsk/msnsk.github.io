@@ -6,20 +6,19 @@
     <description>Recent content in サウンド on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 18 Oct 2022 20:17:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B5%E3%82%A6%E3%83%B3%E3%83%89/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Oct 2022 20:17:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B5%E3%82%A6%E3%83%B3%E3%83%89/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 のサウンドリソースをプログラムで切り替える方法</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/</link>
       <pubDate>Tue, 18 Oct 2022 20:17:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/</guid>
-      <description>この記事では、「AudioStreamPlayer」ノード 1 つで複数のサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。 基本的に、「AudioStreamPlayer」系の</description>
+      <description>この記事では、「AudioStreamPlayer」ノード 1 つで複数のサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。 基本的に、「AudioStreamPlayer」系のクラスは、ノード１つに対して、設定できるサウンドリソースは１つだけだ。つまり、サウンドリソースの数だけシーンツリー内に「AudioStreamPlayer」ノー</description>
     </item>
-    
   </channel>
 </rss>

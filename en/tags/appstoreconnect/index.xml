@@ -6,22 +6,24 @@
     <description>Recent content in AppStoreConnect on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 13 May 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/appstoreconnect/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/appstoreconnect/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Distributing Games from Xcode to App Store Connect</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</link>
       <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</guid>
       <description>In this article, I&amp;rsquo;ll explain how to upload an iOS game exported from Godot to App Store Connect using Xcode. It&amp;rsquo;ll probably be short, so feel free to take it easy. Also, I&amp;rsquo;m assuming you&amp;rsquo;re familiar with Xcode, which is a macOS-exclusive app, so I&amp;rsquo;ll proceed with that in mind. Macs can be pricey, but if you want to release apps like iOS or macOS on the App Store, it&amp;rsquo;s an essential tool. I got mine with a 2-year Orico loan. It was tough, though 😆
 Environment at the time of writing this article Xcode Version: 15.3 (15E204a)
-Computer Model: MacBook Air M1, 2020</description>
+Computer Model: MacBook Air M1, 2020
+OS: macOS 14.4.1
+Working with Xcode First, let&amp;rsquo;s open the project for the iOS version of your game exported from Godot in Xcode. If you peek into the folder where you exported it via Finder, you&amp;rsquo;ll find a file with a .xcodeproj extension. Just double-click on that (if there&amp;rsquo;s a .xcworkspace file generated due to adding plugins like Google AdMob, open that instead, but I won&amp;rsquo;t dive into that here).
+Enabling Game Center Capability in Xcode *You can skip this section if you don&amp;rsquo;t plan to integrate with Apple&amp;rsquo;s Game Center.</description>
     </item>
-    
   </channel>
 </rss>

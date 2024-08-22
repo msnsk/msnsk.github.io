@@ -6,20 +6,19 @@
     <description>Recent content in HomingMissile on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 May 2022 18:41:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/homingmissile/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 May 2022 18:41:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/homingmissile/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Homing Missiles in Godot3</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0008_homing_missiles/</link>
       <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/tutorials/gd0008_homing_missiles/</guid>
-      <description>In this tutorial, we will create a homing missile in a 2D top-down shooter. A homing missile is a missile that tracks its target. Environment This tutorial was created in the following environment ・Godot version: 3.4.2 ・Computer OS version: macOS 11.6.5 To focus on the creation of the homing missile, the rest of the project has been pre-created in advance. The project file for this tutorial is located at GitHub repository . After downloading the .zip file, import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;Start&amp;rdquo; folder into the</description>
+      <description>In this tutorial, we will create a homing missile in a 2D top-down shooter. A homing missile is a missile that tracks its target. Environment This tutorial was created in the following environment ・Godot version: 3.4.2 ・Computer OS version: macOS 11.6.5 To focus on the creation of the homing missile, the rest of the project has been pre-created in advance. The project file for this tutorial is located at GitHub repository . After downloading the .zip file, import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;Start&amp;rdquo; folder into the Godot Engine, and you can start the project with only the preliminary work completed. If you would like to see the completed project in a hurry, import the &amp;ldquo;project.godot&amp;rdquo; file from the &amp;ldquo;End&amp;rdquo; folder. All the assets imported into the project were downloaded from KENNEY website. I used an asset pack called Tower Defense (top-down) . I just want to thank them for making such a great asset pack available to the public. Preliminary Preparation The following game specifications, except</description>
     </item>
-    
   </channel>
 </rss>

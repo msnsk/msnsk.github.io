@@ -6,45 +6,51 @@
     <description>Recent content in App Store on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 13 May 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/app-store/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/app-store/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Distributing Games from Xcode to App Store Connect</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</link>
       <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</guid>
       <description>In this article, I&amp;rsquo;ll explain how to upload an iOS game exported from Godot to App Store Connect using Xcode. It&amp;rsquo;ll probably be short, so feel free to take it easy. Also, I&amp;rsquo;m assuming you&amp;rsquo;re familiar with Xcode, which is a macOS-exclusive app, so I&amp;rsquo;ll proceed with that in mind. Macs can be pricey, but if you want to release apps like iOS or macOS on the App Store, it&amp;rsquo;s an essential tool. I got mine with a 2-year Orico loan. It was tough, though 😆
 Environment at the time of writing this article Xcode Version: 15.3 (15E204a)
-Computer Model: MacBook Air M1, 2020</description>
+Computer Model: MacBook Air M1, 2020
+OS: macOS 14.4.1
+Working with Xcode First, let&amp;rsquo;s open the project for the iOS version of your game exported from Godot in Xcode. If you peek into the folder where you exported it via Finder, you&amp;rsquo;ll find a file with a .xcodeproj extension. Just double-click on that (if there&amp;rsquo;s a .xcworkspace file generated due to adding plugins like Google AdMob, open that instead, but I won&amp;rsquo;t dive into that here).
+Enabling Game Center Capability in Xcode *You can skip this section if you don&amp;rsquo;t plan to integrate with Apple&amp;rsquo;s Game Center.</description>
     </item>
-    
     <item>
       <title>🤖 Implementing Game Center Features After Adding Its Plugin</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</link>
       <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</guid>
       <description>In the previous article 🤖 Adding Game Center Plugin to Your Project , I explained how to add the Game Center plugin from the official Godot iOS plugins to your project. In this article, I&amp;rsquo;ll guide you on implementing the functionalities of Apple&amp;rsquo;s Game Center using the added plugin.
 If you&amp;rsquo;re wondering what Game Center is all about, I briefly explained it in the beginning of the previous article, so you might want to check that out first.
 Broadly, I&amp;rsquo;ll explain in two main sections:
-Setting Up Game Center in App Store Connect Implementing Game Center in GDScript By the way, the basic usage of plugins is documented in Godot Docs / iOS plugins / iOS plugins , so it would be reasonable to start there.</description>
+Setting Up Game Center in App Store Connect Implementing Game Center in GDScript By the way, the basic usage of plugins is documented in Godot Docs / iOS plugins / iOS plugins , so it would be reasonable to start there.
+Also, you can find the code for the Game Center plugin on GitHub at Godot iOS GameCenter plugin . If you want to delve into the details, you can check it out. Personally, I found it a bit challenging at first.
+Environment at the Time of Writing Godot Version: 4.2.1
+Computer Model: MacBook Air M1, 2020</description>
     </item>
-    
     <item>
       <title>🤖 Adding a Game Center Plugin to Your Project</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</link>
       <pubDate>Sun, 05 May 2024 20:17:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</guid>
       <description>Introduction In this article, I&amp;rsquo;ll show you how to add the official Godot plugin for integrating with Apple&amp;rsquo;s Game Center to your project.
 First off, what is Game Center? For those unfamiliar, it’s a feature available on iOS devices like iPhones and iPads. By signing in with an Apple ID, Game Center records achievements and allows players to compete on leaderboards in supported games. Developers can set achievements, define their completion criteria, and decide what to compete for on the leaderboards.
-Using the Game Center plugin in Godot, you can easily integrate these features into your games, which is pretty awesome.</description>
+Using the Game Center plugin in Godot, you can easily integrate these features into your games, which is pretty awesome.
+By the way, you can find the official documentation and source code at the Godot iOS plugins repository , so take a look there first. If there&amp;rsquo;s anything you don&amp;rsquo;t quite understand, you can always come back to this article.
+Author&amp;#39;s Environment at the Time of Writing Godot Version: 4.2.1
+Computer Model: MacBook Air M1, 2020
+OS: macOS 14.4.1
+Clone the Plugin Repository First, head over to this Github page and follow the steps there. However, they’re not very detailed, so I&amp;rsquo;ll explain the nitty-gritty parts here.</description>
     </item>
-    
   </channel>
 </rss>

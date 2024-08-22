@@ -6,20 +6,19 @@
     <description>Recent content in BGM on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 08 Apr 2022 19:42:19 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/bgm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/bgm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot で作るプラットフォーマー Part 13：サウンドを追加しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_13/</link>
       <pubDate>Fri, 08 Apr 2022 19:42:19 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_13/</guid>
-      <description>第13回目の今回は、ゲームにサウンドを追加する。ゲームに使われるサウンドというのは、大きく分けて2種類ある。バックグラウンドミュージック（BGM）と効果音（サウンドエフェクト：SFX）だ。Godot Engine</description>
+      <description>第13回目の今回は、ゲームにサウンドを追加する。ゲームに使われるサウンドというのは、大きく分けて2種類ある。バックグラウンドミュージック（BGM）と効果音（サウンドエフェクト：SFX）だ。Godot Engine ではどちらも追加する方法に大きな違いはない。素材さえ用意すれば、追加するのは比較的簡単だ。特定のタイミングでサウンドを鳴らしたい時、例えば、プレイヤーキャラクタ</description>
     </item>
-    
   </channel>
 </rss>

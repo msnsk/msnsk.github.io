@@ -6,42 +6,45 @@
     <description>Recent content in 🕹️ Works on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/portfolio/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/portfolio/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🕹️ Lovely Solitaire</title>
       <link>https://www.peanuts-code.com/en/portfolio/work0002_lovely_solitaire/</link>
       <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/portfolio/work0002_lovely_solitaire/</guid>
       <description>Introducing a Mobile Game, Lovely Solitaire! When it comes to solitaire (Klondike), it&amp;rsquo;s the king of classic one-player card games, and now, introducing the mobile game &amp;ldquo;Lovely Solitaire&amp;rdquo; available on the App Store! With its chic user interface, you can exude a sense of style even while playing on the train! (Or so we hope?) New to the game? Don&amp;rsquo;t worry, you can learn the rules and tips from the &amp;ldquo;How to Play&amp;rdquo; section in the game!
-Your browser does not support the video tag. What Makes It Lovely? The pastel-colored UI and pixel art card designs make it lovely! Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely!</description>
+Your browser does not support the video tag. What Makes It Lovely? The pastel-colored UI and pixel art card designs make it lovely! The trailing effect when dragging cards is cool!
+Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely! So, be sure to turn on the sound while playing!
+Also, the ability to automatically move cards with taps (isn&amp;rsquo;t that normal?), the support for Apple&amp;rsquo;s Game Center (also normal?), well, if you find all these trivial things lovely, then you must be lovely too!
+Free Download! You can access the page of &amp;ldquo;Lovely Solitaire&amp;rdquo; on the App Store from the banner below!</description>
     </item>
-    
     <item>
       <title>🕹️ Mobile Game - Quick Hand Poker</title>
       <link>https://www.peanuts-code.com/en/portfolio/work0003_quick_hand_poker/</link>
       <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/portfolio/work0003_quick_hand_poker/</guid>
       <description>This is poker turned into a falling object game! Poker, a table game loved by many in casinos, has been reborn as a falling object game! It&amp;rsquo;s called &amp;ldquo;Quick Hand Poker&amp;rdquo;! Quickly touch five objects on the screen that combine the suit and rank of playing cards to form poker hands! Aim for a high score within the time limit! Even if it&amp;rsquo;s your first time playing, don&amp;rsquo;t worry. The rules and hands of the game can be easily checked within the game!
-Your browser does not support the video tag. What kind of game is Quick Hand Poker? Easy operation!</description>
+Your browser does not support the video tag. What kind of game is Quick Hand Poker? Easy operation!
+The operation is basically as simple as touching the screen! Select five objects from the falling card objects that form a poker hand! The selected five objects disappear, and new objects fall. Thus, you keep touching the objects on the screen one after another! This is almost all the operation! Simple rules!
+The simple rule is to aim for a high score within the time limit (initially 30 seconds). Quickly form as rare poker hands as possible! The total of the ranks (numbers) of the selected five objects is multiplied by the multiplier corresponding to the hand, which is added as the score.</description>
     </item>
-    
     <item>
       <title>🕹️ Slashing Samurai</title>
       <link>https://www.peanuts-code.com/en/portfolio/work0001_slashing_samurai/</link>
       <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/portfolio/work0001_slashing_samurai/</guid>
       <description>Casual Timing Game, Slashing Samurai, is Here! Push beyond the limits of your dynamic visual acuity! Let a samurai to slice falling objects mid-air! Thrilling and addictive casual timing game – Can play now!
 Your browser does not support the video tag. Overview This is a exciting timing game! In each stage, a single object (a donut, a stuffed animal, a tomato, a bicycle, a statue, and more from different eras and places!) falls from the sky. Using touch-and-release controls, make the pixelated samurai jump and skillfully cut the falling item to clear the stage.
-Download on App Store for free Slashing Samurai is available for free download on the App Store.</description>
+Download on App Store for free Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game!
+Features Easy Controls! The basic controls during gameplay involve simply touching and releasing the screen, making it incredibly easy.
+Here are the specific steps:
+When an item falls from the sky, touch the screen at the right moment to make the samurai jump. While holding the screen, the samurai ascends to a certain height. Quickly release your finger when an item is in front of the samurai.</description>
     </item>
-    
   </channel>
 </rss>

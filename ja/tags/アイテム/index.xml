@@ -6,20 +6,19 @@
     <description>Recent content in アイテム on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 19 Feb 2022 16:17:02 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%82%A4%E3%83%86%E3%83%A0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%82%A4%E3%83%86%E3%83%A0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot で作るプラットフォーマー Part 6：アイテムを作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_6/</link>
       <pubDate>Sat, 19 Feb 2022 16:17:02 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_6/</guid>
-      <description>第6回目の今回は、アイテムを作る。アイテムというのは、ちょうどスーパーマリオシリーズのコインのような、当たるとポイントを獲得できてちょっと嬉しい存在だ。さらに、下から小突くとアイテムが出てくる箱、その</description>
+      <description>第6回目の今回は、アイテムを作る。アイテムというのは、ちょうどスーパーマリオシリーズのコインのような、当たるとポイントを獲得できてちょっと嬉しい存在だ。さらに、下から小突くとアイテムが出てくる箱、その名もアイテムボックスを作る。それぞれスクリプトで動作を制御し、最後はレベルシーンに配置するところまでやっていこう。 Memo： 過去のシリーズをまだご覧になっていな</description>
     </item>
-    
   </channel>
 </rss>

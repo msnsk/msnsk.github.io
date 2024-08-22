@@ -6,20 +6,19 @@
     <description>Recent content in プログレスバー on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 05 Aug 2022 11:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%AC%E3%82%B9%E3%83%90%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%AC%E3%82%B9%E3%83%90%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 で作る円形プログレスバー</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0015_circular_progress_bar/</link>
       <pubDate>Fri, 05 Aug 2022 11:05:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0015_circular_progress_bar/</guid>
-      <description>今回は、円形のプログレスバーの作り方を紹介する。プログレスバーを、一般的な縦向きや横向きではなく、円形にすることによって、画面上のちょっとしたアクセントにもなるので使い所があれば是非参考にしていただき</description>
+      <description>今回は、円形のプログレスバーの作り方を紹介する。プログレスバーを、一般的な縦向きや横向きではなく、円形にすることによって、画面上のちょっとしたアクセントにもなるので使い所があれば是非参考にしていただきたい。また、チュートリアルの最後のほうで、円形以外の形状（例えばハート型）のプログレスバーもサンプルとしていくつか紹介するのでそちらも興味があればぜひご覧いただ</description>
     </item>
-    
   </channel>
 </rss>

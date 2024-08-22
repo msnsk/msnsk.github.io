@@ -6,20 +6,19 @@
     <description>Recent content in トラップ on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 24 Apr 2022 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%88%E3%83%A9%E3%83%83%E3%83%97/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Apr 2022 00:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%88%E3%83%A9%E3%83%83%E3%83%97/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot で作るプラットフォーマー Part 15：いろいろな仕掛けを追加しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</link>
       <pubDate>Sun, 24 Apr 2022 00:00:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</guid>
-      <description>第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップ</description>
+      <description>第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップやギミックの類だ。 動く床 落ちる床 高く飛べる床 火が出る装置 飛んでくる鉄球 今回は Part 1 でインポート済みのアセットからたくさんのスプライトシートを利用する。例によって、</description>
     </item>
-    
   </channel>
 </rss>

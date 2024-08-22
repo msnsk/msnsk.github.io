@@ -6,50 +6,46 @@
     <description>Recent content in 📔 Blog on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Sep 2022 00:35:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>📔 Grow with game jams</title>
       <link>https://www.peanuts-code.com/en/posts/post0004_my_first_game_jam/</link>
       <pubDate>Sun, 04 Sep 2022 00:35:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/posts/post0004_my_first_game_jam/</guid>
-      <description>I recently joined the &amp;ldquo;KENNEY Game Jam&amp;rdquo; held recently. It was my first game jam. In this article, I would like to write about the game jam for indie game developers held on the itch.io website, including what I learned and felt while participating in the game jam. What is a Game Jam? A game jam is an event where participants develop a game in a short period of time, publish it, and evaluate each other. It is also called the hackathon of game development. The itch.io site sells games, assets, and hosts a number of game jams worldwide. Some</description>
+      <description>I recently joined the &amp;ldquo;KENNEY Game Jam&amp;rdquo; held recently. It was my first game jam. In this article, I would like to write about the game jam for indie game developers held on the itch.io website, including what I learned and felt while participating in the game jam. What is a Game Jam? A game jam is an event where participants develop a game in a short period of time, publish it, and evaluate each other. It is also called the hackathon of game development. The itch.io site sells games, assets, and hosts a number of game jams worldwide. Some are held monthly, some are held as an annual event, and there are a variety of small and large game jams, and there is always some sort of game jam going on throughout the year. KENNEY Jam 2022 , which I attended, was also held at itch.io . The participants in the game jam are mainly individual developers and small teams. Skill levels range from beginners to veterans. Although veterans are considered to have an advantage, many game jams have</description>
     </item>
-    
     <item>
       <title>📔 How to avoid frustration of game development</title>
       <link>https://www.peanuts-code.com/en/posts/post0003_how_to_avoid_frustration/</link>
       <pubDate>Mon, 04 Jul 2022 08:45:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/posts/post0003_how_to_avoid_frustration/</guid>
-      <description>When one has taken the trouble to start a personal game development project, one would like to continue it for a long and enjoyable time if possible. However, in general, game development tends to be frustrating. Let us first consider the reasons for this. Reasons for frustration First, game development is hard work. It is sometimes referred to as a comprehensive art form. In other words, a game is a work of art that combines music, images, characters, scenarios, systems, level design, and everything else into one. There is no way it is easy. It is so difficult that it</description>
+      <description>When one has taken the trouble to start a personal game development project, one would like to continue it for a long and enjoyable time if possible. However, in general, game development tends to be frustrating. Let us first consider the reasons for this. Reasons for frustration First, game development is hard work. It is sometimes referred to as a comprehensive art form. In other words, a game is a work of art that combines music, images, characters, scenarios, systems, level design, and everything else into one. There is no way it is easy. It is so difficult that it is easy to fall behind in the process. However, there is another problem that is even bigger, especially for adults who are making games as independent developers. That is the fact that you can&amp;rsquo;t make money by developing games. If there is no money to be made, they quit this hard work. Game development is hard work, but it pays off when the game sells. The word &amp;ldquo;no money&amp;rdquo; may be a bit of a generalization, because there are always</description>
     </item>
-    
     <item>
       <title>📔 Game development starting with something simple</title>
       <link>https://www.peanuts-code.com/en/posts/post0002_development_starts_small/</link>
       <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/posts/post0002_development_starts_small/</guid>
       <description>This article is especially worth reading if you are a beginner who has just started or is thinking about starting game development. We hope you will read it through to the end.
 Now, do you have a dream game that you really want to make? Many people who have started or are thinking of starting game development probably dream of such a game. And that game will have plenty of elements of games that you have played and been influenced by in your life.
-As you can probably guess, this article is now going to make the claim that you should save your dream game for the future.</description>
+As you can probably guess, this article is now going to make the claim that you should save your dream game for the future. However, this assertion is not brand new, but rather a rather common piece of advice for novice game developers. Let me explain why you should save your dream game for the future.
+Elements that tend to be included in the dream game What elements tend to be included in a dream game? By the way, the elements here are the specifications and functions of the game. The following is a list of those that come to mind as examples.</description>
     </item>
-    
     <item>
       <title>📔 Age Doesn&#39;t Matter When You Start Game Development</title>
       <link>https://www.peanuts-code.com/en/posts/post0001_no_matter_how_old/</link>
       <pubDate>Sun, 16 Jan 2022 16:56:41 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/posts/post0001_no_matter_how_old/</guid>
       <description>Many people want to start game development but tend to give up because of their age. No, this is not limited to game development but can be applied to anything from playing the piano to being a YouTuber.
-For some reason, it is a common perception that when you reach middle age, your physical and mental strength declines somehow. However, this is not true. There is no evidence that this socially accepted notion applies to you. It doesn&amp;rsquo;t matter if you are a middle-aged businessman, a first-grader, or a 90-year-old. The moment you decide you want to do something is the youngest time to start doing it.</description>
+For some reason, it is a common perception that when you reach middle age, your physical and mental strength declines somehow. However, this is not true. There is no evidence that this socially accepted notion applies to you. It doesn&amp;rsquo;t matter if you are a middle-aged businessman, a first-grader, or a 90-year-old. The moment you decide you want to do something is the youngest time to start doing it.
+In the end, life is about doing or not doing. At the age of 100 years of life, there are few cases where it is too late to start doing something. It would be a shame to make a decision based only on a vague impression that game development sounds too difficult for you. You will never know the truth until you try it.
+It is a fact that game development is often thought of as a hurdle for the average person.</description>
     </item>
-    
   </channel>
 </rss>

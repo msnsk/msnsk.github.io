@@ -6,22 +6,22 @@
     <description>Recent content in HowToStart on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 11 May 2022 02:05:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/howtostart/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 May 2022 02:05:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/howtostart/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>📔 Game development starting with something simple</title>
       <link>https://www.peanuts-code.com/en/posts/post0002_development_starts_small/</link>
       <pubDate>Wed, 11 May 2022 02:05:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/posts/post0002_development_starts_small/</guid>
       <description>This article is especially worth reading if you are a beginner who has just started or is thinking about starting game development. We hope you will read it through to the end.
 Now, do you have a dream game that you really want to make? Many people who have started or are thinking of starting game development probably dream of such a game. And that game will have plenty of elements of games that you have played and been influenced by in your life.
-As you can probably guess, this article is now going to make the claim that you should save your dream game for the future.</description>
+As you can probably guess, this article is now going to make the claim that you should save your dream game for the future. However, this assertion is not brand new, but rather a rather common piece of advice for novice game developers. Let me explain why you should save your dream game for the future.
+Elements that tend to be included in the dream game What elements tend to be included in a dream game? By the way, the elements here are the specifications and functions of the game. The following is a list of those that come to mind as examples.</description>
     </item>
-    
   </channel>
 </rss>

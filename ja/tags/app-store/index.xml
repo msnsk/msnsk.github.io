@@ -6,38 +6,33 @@
     <description>Recent content in App Store on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 13 May 2024 00:00:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/app-store/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/app-store/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Xcode から App Store Connect にゲームを配布する</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0023_distribute_app_from_xcode/</link>
       <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0023_distribute_app_from_xcode/</guid>
-      <description>この記事では、Godot から書き出した iOS 版のゲームを Xcode から App Store Connect にアップロードする方法について説明するで。たぶん、手短に終わるから気楽にみてくれたらええよ。ほんで、多分わかってくれてると思うけど Xcode って</description>
+      <description>この記事では、Godot から書き出した iOS 版のゲームを Xcode から App Store Connect にアップロードする方法について説明するで。たぶん、手短に終わるから気楽にみてくれたらええよ。ほんで、多分わかってくれてると思うけど Xcode って macOS 専用のアプリやから、Mac 持ってるの前提で話進めるからね。Mac はお高いんやけど、iOS とか macOS とかのアプリを App Store でリリースしたかったら絶対要る道具やから、Or</description>
     </item>
-    
     <item>
       <title>🤖 Game Center プラグインを追加したあとの実装</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0022_implement_game_center/</link>
       <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0022_implement_game_center/</guid>
-      <description>前回の 🤖 プロジェクトに Game Center プラグインを追加する の記事では Godot 公式の iOS プラグインのうち Game Center のプラグインをプロジェクトに追加する手順について説明したんやけど、今回の記事では、その追加したプラグインを使って、</description>
+      <description>前回の 🤖 プロジェクトに Game Center プラグインを追加する の記事では Godot 公式の iOS プラグインのうち Game Center のプラグインをプロジェクトに追加する手順について説明したんやけど、今回の記事では、その追加したプラグインを使って、実際に Apple の Game Center の機能を実装する方法について書いてるで。 そもそも Game Center って何？って人がいるかもしれんけど、前回の記事の冒頭で軽く説明してるから、よかったら先にそっち</description>
     </item>
-    
     <item>
       <title>🤖 プロジェクトに Game Center プラグインを追加する</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</link>
       <pubDate>Wed, 01 May 2024 20:17:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</guid>
-      <description>この記事では、Apple の Game Center と連携させるための Godot 公式プラグインをプロジェクトに追加する方法について説明していくで。 ちなみに、今までの記事は「である」調で書いてたんやけど、ちょっと堅苦しくて偉そうやっ</description>
+      <description>この記事では、Apple の Game Center と連携させるための Godot 公式プラグインをプロジェクトに追加する方法について説明していくで。 ちなみに、今までの記事は「である」調で書いてたんやけど、ちょっと堅苦しくて偉そうやったから、今回から、口語調というか、おもいっきり普段のタメ語の関西弁で書いていくことにしたんやわ。今までの記事を読んでくれてたみんなにはビビらせてしまうかもしれん</description>
     </item>
-    
   </channel>
 </rss>

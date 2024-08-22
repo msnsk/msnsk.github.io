@@ -6,29 +6,26 @@
     <description>Recent content in 敵キャラクター on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 18 Feb 2022 15:00:38 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E6%95%B5%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/</link>
-      <pubDate>Thu, 10 Feb 2022 01:41:29 +0900</pubDate>
-      
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/</guid>
-      <description>第4回目の今回は、敵キャラクターの雛形となるシーンを作成し、それを継承する形で個別の敵キャラクターを一つ作っていく。そのあと、その敵キャラクターをレベルシーンに配置して、プレイヤーキャラクターに踏まれ</description>
-    </item>
-    
+    <lastBuildDate>Fri, 25 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/%E6%95%B5%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Godot で作るプラットフォーマー Part 5：さらに敵キャラクターを作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_5/</link>
       <pubDate>Fri, 18 Feb 2022 15:00:38 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_5/</guid>
-      <description>第5回目の今回は、さらに敵キャラクターの種類を増やしていく。それぞれの敵キャラクターの動きに違いを持たせ、それらをタイルマップ上に複数配置してゲームの難易度を高めていこう。具体的に今回は以下の敵キャラ</description>
+      <description>第5回目の今回は、さらに敵キャラクターの種類を増やしていく。それぞれの敵キャラクターの動きに違いを持たせ、それらをタイルマップ上に複数配置してゲームの難易度を高めていこう。具体的に今回は以下の敵キャラクターを作成していく。 バニー（うさぎ） カメレオン プラント（植物） Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめしま</description>
     </item>
-    
+    <item>
+      <title>Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/</link>
+      <pubDate>Thu, 10 Feb 2022 01:41:29 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/</guid>
+      <description>第4回目の今回は、敵キャラクターの雛形となるシーンを作成し、それを継承する形で個別の敵キャラクターを一つ作っていく。そのあと、その敵キャラクターをレベルシーンに配置して、プレイヤーキャラクターに踏まれたら消えるところまで実装してみよう。 Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。 Godot で作るプラットフォーマ</description>
+    </item>
   </channel>
 </rss>

@@ -6,101 +6,82 @@
     <description>Recent content in IOS on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 10 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🕹️ モバイルゲーム - もの切り侍</title>
       <link>https://www.peanuts-code.com/ja/portfolio/work0001_slashing_samurai/</link>
       <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/portfolio/work0001_slashing_samurai/</guid>
-      <description>カジュアル・タイミングゲーム「もの切り侍」が登場！ 今あなたの動体視力と反射神経が試される！侍を操作して、空から降ってくるあんな物やこんな物を見事空中で切ることができるか？！簡単片手操作でプレイできる、</description>
+      <description>カジュアル・タイミングゲーム「もの切り侍」が登場！ 今あなたの動体視力と反射神経が試される！侍を操作して、空から降ってくるあんな物やこんな物を見事空中で切ることができるか？！簡単片手操作でプレイできる、激ハマり必至の爽快カジュアル・タイミングゲーム！ Your browser does not support the video tag. どんなゲーム？ ゲームのジャンルはいわゆるタイミングゲームになります。ゲームの各ステージでは、なん</description>
     </item>
-    
     <item>
       <title>🕹️ モバイルゲーム - ステキなソリティア</title>
       <link>https://www.peanuts-code.com/ja/portfolio/work0002_lovely_solitaire/</link>
       <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/portfolio/work0002_lovely_solitaire/</guid>
-      <description>カードゲーム「ステキなソリティア」が登場！ 「ソリティア（クロンダイク）」と言えば、言わずと知れた定番中の定番、一人遊びカードゲームの王様なわけですが、このたび、モバイルゲーム「ステキなソリティア」が App</description>
+      <description>カードゲーム「ステキなソリティア」が登場！ 「ソリティア（クロンダイク）」と言えば、言わずと知れた定番中の定番、一人遊びカードゲームの王様なわけですが、このたび、モバイルゲーム「ステキなソリティア」が App Store で配信！オシャレなユーザーインターフェースなので、電車の中でプレイしていても、なんかイケてる感じを醸し出すことができます！（本当かな？）初めてプレイする人もご</description>
     </item>
-    
     <item>
       <title>🕹️ モバイルゲーム - クイックハンドポーカー</title>
       <link>https://www.peanuts-code.com/ja/portfolio/work0003_quick_hand_poker/</link>
       <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/portfolio/work0003_quick_hand_poker/</guid>
-      <description>落ち物ゲームになったポーカーというのがコレです！ カジノのテーブルゲームとして多くの人に親しまれているポーカーですが、なんと、落ち物ゲームとして生まれ変わりました！その名も「クイックハンドポーカー」です</description>
+      <description>落ち物ゲームになったポーカーというのがコレです！ カジノのテーブルゲームとして多くの人に親しまれているポーカーですが、なんと、落ち物ゲームとして生まれ変わりました！その名も「クイックハンドポーカー」です！画面上に落とされたトランプのスート（マーク）とランク（数字）を組み合わせたオブジェクトを素早く5つタッチしてポーカーの役を揃えましょう！制限時間内に高得点を目</description>
     </item>
-    
     <item>
       <title>📔 開発ログ：もの切り侍【アセット編】</title>
       <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_2/</link>
       <pubDate>Wed, 27 Dec 2023 12:00:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_2/</guid>
-      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「アセット」に関する記録である。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味が</description>
+      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「アセット」に関する記録である。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。 使用するアセットを検討する この開発ログには、モバイルゲーム「もの切り侍」の開発にどのようなアセットをどのようにして用意したのかについ</description>
     </item>
-    
     <item>
       <title>🤖 Xcode から App Store Connect にゲームを配布する</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0023_distribute_app_from_xcode/</link>
       <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0023_distribute_app_from_xcode/</guid>
-      <description>この記事では、Godot から書き出した iOS 版のゲームを Xcode から App Store Connect にアップロードする方法について説明するで。たぶん、手短に終わるから気楽にみてくれたらええよ。ほんで、多分わかってくれてると思うけど Xcode って</description>
+      <description>この記事では、Godot から書き出した iOS 版のゲームを Xcode から App Store Connect にアップロードする方法について説明するで。たぶん、手短に終わるから気楽にみてくれたらええよ。ほんで、多分わかってくれてると思うけど Xcode って macOS 専用のアプリやから、Mac 持ってるの前提で話進めるからね。Mac はお高いんやけど、iOS とか macOS とかのアプリを App Store でリリースしたかったら絶対要る道具やから、Or</description>
     </item>
-    
     <item>
       <title>🤖 Game Center プラグインを追加したあとの実装</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0022_implement_game_center/</link>
       <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0022_implement_game_center/</guid>
-      <description>前回の 🤖 プロジェクトに Game Center プラグインを追加する の記事では Godot 公式の iOS プラグインのうち Game Center のプラグインをプロジェクトに追加する手順について説明したんやけど、今回の記事では、その追加したプラグインを使って、</description>
+      <description>前回の 🤖 プロジェクトに Game Center プラグインを追加する の記事では Godot 公式の iOS プラグインのうち Game Center のプラグインをプロジェクトに追加する手順について説明したんやけど、今回の記事では、その追加したプラグインを使って、実際に Apple の Game Center の機能を実装する方法について書いてるで。 そもそも Game Center って何？って人がいるかもしれんけど、前回の記事の冒頭で軽く説明してるから、よかったら先にそっち</description>
     </item>
-    
     <item>
       <title>🤖 プロジェクトに Game Center プラグインを追加する</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</link>
       <pubDate>Wed, 01 May 2024 20:17:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</guid>
-      <description>この記事では、Apple の Game Center と連携させるための Godot 公式プラグインをプロジェクトに追加する方法について説明していくで。 ちなみに、今までの記事は「である」調で書いてたんやけど、ちょっと堅苦しくて偉そうやっ</description>
+      <description>この記事では、Apple の Game Center と連携させるための Godot 公式プラグインをプロジェクトに追加する方法について説明していくで。 ちなみに、今までの記事は「である」調で書いてたんやけど、ちょっと堅苦しくて偉そうやったから、今回から、口語調というか、おもいっきり普段のタメ語の関西弁で書いていくことにしたんやわ。今までの記事を読んでくれてたみんなにはビビらせてしまうかもしれん</description>
     </item>
-    
     <item>
       <title>📔 開発ログ：もの切り侍【反省編】</title>
       <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_4/</link>
       <pubDate>Wed, 10 Jan 2024 03:00:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_4/</guid>
-      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち、もっとこうすれば良かった、ああすれば良かった、といった「反省」に関する記録である。 「もの切り侍」は下の App</description>
+      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち、もっとこうすれば良かった、ああすれば良かった、といった「反省」に関する記録である。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。 反省点の洗い出し 「もの切り侍」の開発を終え、そのプロセスや成果物を精霊に見つめ直</description>
     </item>
-    
     <item>
       <title>📔 開発ログ：もの切り侍【ロジック編】</title>
       <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_3/</link>
       <pubDate>Sat, 30 Dec 2023 23:00:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_3/</guid>
-      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうちGodot Engine で作っていく「ロジック」に関する記録である。とはいえ、あまり具体的なコードなどを載せると長くな</description>
+      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうちGodot Engine で作っていく「ロジック」に関する記録である。とはいえ、あまり具体的なコードなどを載せると長くなってしまうので、そのあたりは控えめにしようと思う。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。 必要な画</description>
     </item>
-    
     <item>
       <title>📔 開発ログ：もの切り侍【企画編】</title>
       <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</link>
       <pubDate>Sun, 24 Dec 2023 02:21:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</guid>
-      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「企画」に関する記録である。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があれ</description>
+      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「企画」に関する記録である。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。 ゲームのおおまかな仕様を決める まずは、これから開発するゲームの仕様をおおまかに決めるところからスタートした。 特定のプラットフォームで全世</description>
     </item>
-    
   </channel>
 </rss>

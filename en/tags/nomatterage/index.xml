@@ -6,21 +6,22 @@
     <description>Recent content in NoMatterAge on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 16 Jan 2022 16:56:41 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/nomatterage/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/nomatterage/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>📔 Age Doesn&#39;t Matter When You Start Game Development</title>
       <link>https://www.peanuts-code.com/en/posts/post0001_no_matter_how_old/</link>
       <pubDate>Sun, 16 Jan 2022 16:56:41 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/posts/post0001_no_matter_how_old/</guid>
       <description>Many people want to start game development but tend to give up because of their age. No, this is not limited to game development but can be applied to anything from playing the piano to being a YouTuber.
-For some reason, it is a common perception that when you reach middle age, your physical and mental strength declines somehow. However, this is not true. There is no evidence that this socially accepted notion applies to you. It doesn&amp;rsquo;t matter if you are a middle-aged businessman, a first-grader, or a 90-year-old. The moment you decide you want to do something is the youngest time to start doing it.</description>
+For some reason, it is a common perception that when you reach middle age, your physical and mental strength declines somehow. However, this is not true. There is no evidence that this socially accepted notion applies to you. It doesn&amp;rsquo;t matter if you are a middle-aged businessman, a first-grader, or a 90-year-old. The moment you decide you want to do something is the youngest time to start doing it.
+In the end, life is about doing or not doing. At the age of 100 years of life, there are few cases where it is too late to start doing something. It would be a shame to make a decision based only on a vague impression that game development sounds too difficult for you. You will never know the truth until you try it.
+It is a fact that game development is often thought of as a hurdle for the average person.</description>
     </item>
-    
   </channel>
 </rss>

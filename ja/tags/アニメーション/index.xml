@@ -6,29 +6,26 @@
     <description>Recent content in アニメーション on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 13 Oct 2022 16:30:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Oct 2022 16:30:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 で作るアニメーションステートマシン</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/</link>
       <pubDate>Thu, 13 Oct 2022 16:30:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/</guid>
-      <description>今回のテーマは 2D ゲームのアニメーションステートマシンの実装だ。ステートとは「状態」のことで、ステートマシンというのは、キャラクターのある状態からある状態への遷移を制御する仕組みのことだ。 ある状態からは</description>
+      <description>今回のテーマは 2D ゲームのアニメーションステートマシンの実装だ。ステートとは「状態」のことで、ステートマシンというのは、キャラクターのある状態からある状態への遷移を制御する仕組みのことだ。 ある状態からは限られた状態にしか遷移できなかったり、状態によって今のアニメーションが終了してから次の状態に遷移させるのか、ただちに遷移させるのかの違いがある。例えば、「idl</description>
     </item>
-    
     <item>
       <title>🤖 Godot3 で作る 2D ゲームの近接攻撃の当たり判定</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/</link>
       <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/</guid>
-      <description>この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（H</description>
+      <description>この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。 一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（Hit Box という）を用意し、攻撃を受けるオブジェクト（敵キャラクターや破壊できる樽や木箱、草など）には攻撃を受ける範囲となる衝突形状（Hurt Box という）を用意し、攻</description>
     </item>
-    
   </channel>
 </rss>

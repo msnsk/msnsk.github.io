@@ -6,20 +6,19 @@
     <description>Recent content in ホーミングミサイル on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 27 May 2022 17:10:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%9B%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%83%9F%E3%82%B5%E3%82%A4%E3%83%AB/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 May 2022 17:10:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%9B%E3%83%BC%E3%83%9F%E3%83%B3%E3%82%B0%E3%83%9F%E3%82%B5%E3%82%A4%E3%83%AB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 で作るホーミングミサイル</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</link>
       <pubDate>Fri, 27 May 2022 17:10:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</guid>
-      <description>このチュートリアルでは、2Dトップダウンシューティングにおける「ホーミングミサイル」を作っていく。ホーミングミサイルというのは、ターゲットを追跡するミサイルのことだ。 Environment このチュートリアルは以下の環境で</description>
+      <description>このチュートリアルでは、2Dトップダウンシューティングにおける「ホーミングミサイル」を作っていく。ホーミングミサイルというのは、ターゲットを追跡するミサイルのことだ。 Environment このチュートリアルは以下の環境で作成しました。 ・Godot のバージョン: 3.4.2 ・コンピュータのOS: macOS 11.6.5 このチュートリアルでは、ホーミングミサイルの作成にフォーカスするため、それ以外の部分は事前に</description>
     </item>
-    
   </channel>
 </rss>

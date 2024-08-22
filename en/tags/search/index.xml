@@ -6,21 +6,24 @@
     <description>Recent content in Search on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/105</url>
-      <link>https://www.peanuts-code.com/105</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 27 Apr 2022 02:44:00 +0900</lastBuildDate><atom:link href="https://www.peanuts-code.com/en/tags/search/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Apr 2022 02:44:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/search/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Powerful Search Features in Godot</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0009_various_searches/</link>
       <pubDate>Wed, 27 Apr 2022 02:44:00 +0900</pubDate>
-      
       <guid>https://www.peanuts-code.com/en/tutorials/gd0009_various_searches/</guid>
       <description>When we develop a game, especially a big one, sometimes it may often happen that we can never find the scene which we want to edit or we cannot remember where the script file is, which we are going to edit.
-In this article, I am going to introduce some so powerful and useful search features with keyboard shortcuts. Once you know those, you can reduce the huge amount of time looking for something which may be the most uninteresting in the game development. In addition, you can use the search features in a much faster way instead of looking for a script file and clicking it in the file system dock, for example.</description>
+In this article, I am going to introduce some so powerful and useful search features with keyboard shortcuts. Once you know those, you can reduce the huge amount of time looking for something which may be the most uninteresting in the game development. In addition, you can use the search features in a much faster way instead of looking for a script file and clicking it in the file system dock, for example.
+By the way, we can see all default shortcuts in the official online documents of Godot. Be careful about that it says Alt as Option on macOS.
+GODOT DOCS Default editor shortcuts Anyway, why do not you try to use the searches because it is sure to improve work efficiency.
+I will introduce ones in order of the widest range of searches first.
+Quick Open To use Quick Open, perform the following keyboard shortcut on Godot editor.</description>
     </item>
-    
   </channel>
 </rss>
