@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2024 13:55:22 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🕹️ モバイルゲーム - もの切り侍</title>
@@ -40,6 +40,13 @@
       <pubDate>Wed, 27 Dec 2023 12:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_2/</guid>
       <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「アセット」に関する記録である。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。 使用するアセットを検討する この開発ログには、モバイルゲーム「もの切り侍」の開発にどのようなアセットをどのようにして用意したのかについ</description>
+    </item>
+    <item>
+      <title>TileMapLayerの使い方</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0024_tilemaplayer/</link>
+      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0024_tilemaplayer/</guid>
+      <description>はじめに Godot 4.3 から、従来使われてきた TileMap クラスが Deprecated（今後もうアップデートされないってこと）になって、その代わりに TileMapLayer クラスが新たに追加されました。ということで、TileMapLayer で実際にタイルマップを作ってみたいと思います。 記事作成当時の筆者の環境 Godot のバージョン: 4.3 コンピュータのモデル: MacBook Air M1, 2020 OS: macOS 14.6.1 画面の大きさを設定する 今回は 16 x 16 px のタ</description>
     </item>
     <item>
       <title>🤖 Xcode から App Store Connect にゲームを配布する</title>

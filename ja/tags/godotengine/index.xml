@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2024 13:55:22 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🕹️ モバイルゲーム - もの切り侍</title>
@@ -33,6 +33,13 @@
       <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
       <guid>https://www.peanuts-code.com/ja/portfolio/work0003_quick_hand_poker/</guid>
       <description>落ち物ゲームになったポーカーというのがコレです！ カジノのテーブルゲームとして多くの人に親しまれているポーカーですが、なんと、落ち物ゲームとして生まれ変わりました！その名も「クイックハンドポーカー」です！画面上に落とされたトランプのスート（マーク）とランク（数字）を組み合わせたオブジェクトを素早く5つタッチしてポーカーの役を揃えましょう！制限時間内に高得点を目</description>
+    </item>
+    <item>
+      <title>TileMapLayerの使い方</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0024_tilemaplayer/</link>
+      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0024_tilemaplayer/</guid>
+      <description>はじめに Godot 4.3 から、従来使われてきた TileMap クラスが Deprecated（今後もうアップデートされないってこと）になって、その代わりに TileMapLayer クラスが新たに追加されました。ということで、TileMapLayer で実際にタイルマップを作ってみたいと思います。 記事作成当時の筆者の環境 Godot のバージョン: 4.3 コンピュータのモデル: MacBook Air M1, 2020 OS: macOS 14.6.1 画面の大きさを設定する 今回は 16 x 16 px のタ</description>
     </item>
     <item>
       <title>🤖 Game Center プラグインを追加したあとの実装</title>

@@ -11,27 +11,48 @@
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2024 13:55:22 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>AppStore</title>
-      <link>https://www.peanuts-code.com/ja/tags/appstore/</link>
-      <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://www.peanuts-code.com/ja/tags/appstore/</guid>
+      <title>2D</title>
+      <link>https://www.peanuts-code.com/ja/tags/2d/</link>
+      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tags/2d/</guid>
       <description></description>
     </item>
     <item>
       <title>GameDev</title>
       <link>https://www.peanuts-code.com/ja/tags/gamedev/</link>
-      <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tags/gamedev/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Godot4</title>
+      <link>https://www.peanuts-code.com/ja/tags/godot4/</link>
+      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tags/godot4/</guid>
       <description></description>
     </item>
     <item>
       <title>GodotEngine</title>
       <link>https://www.peanuts-code.com/ja/tags/godotengine/</link>
-      <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>TileMap</title>
+      <link>https://www.peanuts-code.com/ja/tags/tilemap/</link>
+      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tags/tilemap/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AppStore</title>
+      <link>https://www.peanuts-code.com/ja/tags/appstore/</link>
+      <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tags/appstore/</guid>
       <description></description>
     </item>
     <item>
@@ -123,13 +144,6 @@
       <link>https://www.peanuts-code.com/ja/tags/%E3%82%B5%E3%82%A6%E3%83%B3%E3%83%89/</link>
       <pubDate>Tue, 18 Oct 2022 20:17:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tags/%E3%82%B5%E3%82%A6%E3%83%B3%E3%83%89/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>2D</title>
-      <link>https://www.peanuts-code.com/ja/tags/2d/</link>
-      <pubDate>Thu, 13 Oct 2022 16:30:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/tags/2d/</guid>
       <description></description>
     </item>
     <item>

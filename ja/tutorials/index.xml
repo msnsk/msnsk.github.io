@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2024 13:55:22 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TileMapLayerの使い方</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0024_tilemaplayer/</link>
+      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0024_tilemaplayer/</guid>
+      <description>はじめに Godot 4.3 から、従来使われてきた TileMap クラスが Deprecated（今後もうアップデートされないってこと）になって、その代わりに TileMapLayer クラスが新たに追加されました。ということで、TileMapLayer で実際にタイルマップを作ってみたいと思います。 記事作成当時の筆者の環境 Godot のバージョン: 4.3 コンピュータのモデル: MacBook Air M1, 2020 OS: macOS 14.6.1 画面の大きさを設定する 今回は 16 x 16 px のタ</description>
+    </item>
     <item>
       <title>🤖 Xcode から App Store Connect にゲームを配布する</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0023_distribute_app_from_xcode/</link>
