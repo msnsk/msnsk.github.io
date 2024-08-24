@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2024 13:55:22 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/godotengine/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🕹️ Lovely Solitaire</title>
@@ -33,6 +33,19 @@ Free Download! You can access the page of &amp;ldquo;Lovely Solitaire&amp;rdquo;
 Your browser does not support the video tag. What kind of game is Quick Hand Poker? Easy operation!
 The operation is basically as simple as touching the screen! Select five objects from the falling card objects that form a poker hand! The selected five objects disappear, and new objects fall. Thus, you keep touching the objects on the screen one after another! This is almost all the operation! Simple rules!
 The simple rule is to aim for a high score within the time limit (initially 30 seconds). Quickly form as rare poker hands as possible! The total of the ranks (numbers) of the selected five objects is multiplied by the multiplier corresponding to the hand, which is added as the score.</description>
+    </item>
+    <item>
+      <title>🤖 Making a Tilemap with TileMapLayer</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0024_tilemaplayer/</link>
+      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0024_tilemaplayer/</guid>
+      <description>Introduction With Godot 4.3, the previously used TileMap class has been deprecated (meaning it won&amp;rsquo;t be updated anymore), and a new TileMapLayer class has been added in its place. So, I&amp;rsquo;m going to actually create a tilemap using TileMapLayer!
+My environment at the time of writing Godot version: 4.3
+Computer model: MacBook Air M1, 2020
+OS: macOS 14.6.1
+Setting the Screen Size I&amp;rsquo;ll be using 16x16 px tile images this time, so I&amp;rsquo;ll make the Viewport small enough to fit the tiles neatly. After creating a new project, I went to Project Settings &amp;gt; General tab &amp;gt; Window and set the following:
+Size: Viewport Width: 256 Viewport Height: 160 Window Width Override: 1024 (4 times) Window Height Override: 640 (4 times) *Window Width Override and Window Height Override can be set after enabling Advanced Settings in the top right of the settings panel. Then I scrolled down a bit in the settings panel and set the stretch mode to viewport so that the game graphics scale to fit the window size. I left the aspect ratio as is.
+Stretch: Mode: viewport Aspect: keep (default) Scale: 1 (default) Scale Mode: fractional (default) Importing Assets for Tiles I downloaded the 1-Bit Pack from KENNEY .</description>
     </item>
     <item>
       <title>🤖 Implementing Game Center Features After Adding Its Plugin</title>
