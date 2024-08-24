@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>2024 on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/en/archives/2024/</link>
+    <description>Recent content in 2024 on Peanuts Code</description>
+    <image>
+      <title>Peanuts Code</title>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
+    </image>
+    <generator>Hugo -- 0.133.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/archives/2024/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🕹️ Lovely Solitaire</title>
+      <link>https://www.peanuts-code.com/en/portfolio/work0002_lovely_solitaire/</link>
+      <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.peanuts-code.com/en/portfolio/work0002_lovely_solitaire/</guid>
+      <description>Introducing a Mobile Game, Lovely Solitaire! When it comes to solitaire (Klondike), it&amp;rsquo;s the king of classic one-player card games, and now, introducing the mobile game &amp;ldquo;Lovely Solitaire&amp;rdquo; available on the App Store! With its chic user interface, you can exude a sense of style even while playing on the train! (Or so we hope?) New to the game? Don&amp;rsquo;t worry, you can learn the rules and tips from the &amp;ldquo;How to Play&amp;rdquo; section in the game!
+Your browser does not support the video tag. What Makes It Lovely? The pastel-colored UI and pixel art card designs make it lovely! The trailing effect when dragging cards is cool!
+Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely! So, be sure to turn on the sound while playing!
+Also, the ability to automatically move cards with taps (isn&amp;rsquo;t that normal?), the support for Apple&amp;rsquo;s Game Center (also normal?), well, if you find all these trivial things lovely, then you must be lovely too!
+Free Download! You can access the page of &amp;ldquo;Lovely Solitaire&amp;rdquo; on the App Store from the banner below!</description>
+    </item>
+    <item>
+      <title>🕹️ Mobile Game - Quick Hand Poker</title>
+      <link>https://www.peanuts-code.com/en/portfolio/work0003_quick_hand_poker/</link>
+      <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.peanuts-code.com/en/portfolio/work0003_quick_hand_poker/</guid>
+      <description>This is poker turned into a falling object game! Poker, a table game loved by many in casinos, has been reborn as a falling object game! It&amp;rsquo;s called &amp;ldquo;Quick Hand Poker&amp;rdquo;! Quickly touch five objects on the screen that combine the suit and rank of playing cards to form poker hands! Aim for a high score within the time limit! Even if it&amp;rsquo;s your first time playing, don&amp;rsquo;t worry. The rules and hands of the game can be easily checked within the game!
+Your browser does not support the video tag. What kind of game is Quick Hand Poker? Easy operation!
+The operation is basically as simple as touching the screen! Select five objects from the falling card objects that form a poker hand! The selected five objects disappear, and new objects fall. Thus, you keep touching the objects on the screen one after another! This is almost all the operation! Simple rules!
+The simple rule is to aim for a high score within the time limit (initially 30 seconds). Quickly form as rare poker hands as possible! The total of the ranks (numbers) of the selected five objects is multiplied by the multiplier corresponding to the hand, which is added as the score.</description>
+    </item>
+    <item>
+      <title>🤖 Distributing Games from Xcode to App Store Connect</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</link>
+      <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</guid>
+      <description>In this article, I&amp;rsquo;ll explain how to upload an iOS game exported from Godot to App Store Connect using Xcode. It&amp;rsquo;ll probably be short, so feel free to take it easy. Also, I&amp;rsquo;m assuming you&amp;rsquo;re familiar with Xcode, which is a macOS-exclusive app, so I&amp;rsquo;ll proceed with that in mind. Macs can be pricey, but if you want to release apps like iOS or macOS on the App Store, it&amp;rsquo;s an essential tool. I got mine with a 2-year Orico loan. It was tough, though 😆
+Environment at the time of writing this article Xcode Version: 15.3 (15E204a)
+Computer Model: MacBook Air M1, 2020
+OS: macOS 14.4.1
+Working with Xcode First, let&amp;rsquo;s open the project for the iOS version of your game exported from Godot in Xcode. If you peek into the folder where you exported it via Finder, you&amp;rsquo;ll find a file with a .xcodeproj extension. Just double-click on that (if there&amp;rsquo;s a .xcworkspace file generated due to adding plugins like Google AdMob, open that instead, but I won&amp;rsquo;t dive into that here).
+Enabling Game Center Capability in Xcode *You can skip this section if you don&amp;rsquo;t plan to integrate with Apple&amp;rsquo;s Game Center.</description>
+    </item>
+    <item>
+      <title>🤖 Implementing Game Center Features After Adding Its Plugin</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</link>
+      <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</guid>
+      <description>In the previous article 🤖 Adding Game Center Plugin to Your Project , I explained how to add the Game Center plugin from the official Godot iOS plugins to your project. In this article, I&amp;rsquo;ll guide you on implementing the functionalities of Apple&amp;rsquo;s Game Center using the added plugin.
+If you&amp;rsquo;re wondering what Game Center is all about, I briefly explained it in the beginning of the previous article, so you might want to check that out first.
+Broadly, I&amp;rsquo;ll explain in two main sections:
+Setting Up Game Center in App Store Connect Implementing Game Center in GDScript By the way, the basic usage of plugins is documented in Godot Docs / iOS plugins / iOS plugins , so it would be reasonable to start there.
+Also, you can find the code for the Game Center plugin on GitHub at Godot iOS GameCenter plugin . If you want to delve into the details, you can check it out. Personally, I found it a bit challenging at first.
+Environment at the Time of Writing Godot Version: 4.2.1
+Computer Model: MacBook Air M1, 2020</description>
+    </item>
+    <item>
+      <title>🤖 Adding a Game Center Plugin to Your Project</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</link>
+      <pubDate>Sun, 05 May 2024 20:17:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</guid>
+      <description>Introduction In this article, I&amp;rsquo;ll show you how to add the official Godot plugin for integrating with Apple&amp;rsquo;s Game Center to your project.
+First off, what is Game Center? For those unfamiliar, it’s a feature available on iOS devices like iPhones and iPads. By signing in with an Apple ID, Game Center records achievements and allows players to compete on leaderboards in supported games. Developers can set achievements, define their completion criteria, and decide what to compete for on the leaderboards.
+Using the Game Center plugin in Godot, you can easily integrate these features into your games, which is pretty awesome.
+By the way, you can find the official documentation and source code at the Godot iOS plugins repository , so take a look there first. If there&amp;rsquo;s anything you don&amp;rsquo;t quite understand, you can always come back to this article.
+Author&amp;#39;s Environment at the Time of Writing Godot Version: 4.2.1
+Computer Model: MacBook Air M1, 2020
+OS: macOS 14.4.1
+Clone the Plugin Repository First, head over to this Github page and follow the steps there. However, they’re not very detailed, so I&amp;rsquo;ll explain the nitty-gritty parts here.</description>
+    </item>
+    <item>
+      <title>📔 Devlog: Slashing Samurai - Reflection</title>
+      <link>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlog_4/</link>
+      <pubDate>Thu, 11 Jan 2024 00:00:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlog_4/</guid>
+      <description>This article is a record of reflections on the (post-release) development log of the iOS mobile game &amp;ldquo;Slashing Samurai,&amp;rdquo; released on the App Store on December 15, 2023. It explores areas for improvement and lessons learned during the development process.
+Feel free to download &amp;ldquo;Slashing Samurai&amp;rdquo; for free from the App Store using the banner below if you&amp;rsquo;re interested.
+Identification of Reflection Points After completing the development of &amp;ldquo;Slashing Samurai&amp;rdquo; and reflecting on the process and outcomes, various points for improvement became apparent. To better utilize these reflections in future game development, I want to document them thoroughly.
+Let&amp;rsquo;s start by summarizing specific points for improvement:
+Overdoing Too many stages Excessive difficulty Overemphasis on world-building Too late Implementation of plugins took too long Testing on actual devices was too slow Promotion preparation was too slow I will provide detailed records for each of these.
+Overdoing Let&amp;rsquo;s begin by discussing the common pitfalls of the &amp;ldquo;overdoing it&amp;rdquo; category, which many novice developers, including myself, tend to fall into.
+Too Many Stages Rather than doing this with good intentions, I might have unconsciously avoided the struggles of subtraction.</description>
+    </item>
+  </channel>
+</rss>

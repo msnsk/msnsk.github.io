@@ -112,7 +112,7 @@
       <description>今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。 なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。 公式オンラインドキュメント： Using TileMaps Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。 Godot で作るプラットフォ</description>
     </item>
     <item>
-      <title>Godot で作るプラットフォーマー Part 1：プレイヤーキャラクターを作ろう！</title>
+      <title>Godot3 で作るプラットフォーマー Part 1：プレイヤーキャラクターを作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</link>
       <pubDate>Sat, 29 Jan 2022 23:38:27 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</guid>

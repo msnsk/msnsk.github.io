@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Archives on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/en/archives/</link>
+    <description>Recent content in Archives on Peanuts Code</description>
+    <image>
+      <title>Peanuts Code</title>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
+    </image>
+    <generator>Hugo -- 0.133.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/archives/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024</title>
+      <link>https://www.peanuts-code.com/en/archives/2024/</link>
+      <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.peanuts-code.com/en/archives/2024/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Godot4</title>
+      <link>https://www.peanuts-code.com/en/archives/godot4/</link>
+      <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/archives/godot4/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>2023</title>
+      <link>https://www.peanuts-code.com/en/archives/2023/</link>
+      <pubDate>Sun, 31 Dec 2023 04:00:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/archives/2023/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>2022</title>
+      <link>https://www.peanuts-code.com/en/archives/2022/</link>
+      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/archives/2022/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Godot3</title>
+      <link>https://www.peanuts-code.com/en/archives/godot3/</link>
+      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/archives/godot3/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>2021</title>
+      <link>https://www.peanuts-code.com/en/archives/2021/</link>
+      <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/archives/2021/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

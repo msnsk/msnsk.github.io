@@ -35,7 +35,7 @@
       <description>落ち物ゲームになったポーカーというのがコレです！ カジノのテーブルゲームとして多くの人に親しまれているポーカーですが、なんと、落ち物ゲームとして生まれ変わりました！その名も「クイックハンドポーカー」です！画面上に落とされたトランプのスート（マーク）とランク（数字）を組み合わせたオブジェクトを素早く5つタッチしてポーカーの役を揃えましょう！制限時間内に高得点を目</description>
     </item>
     <item>
-      <title>TileMapLayerの使い方</title>
+      <title>🤖 TileMapLayerでタイルマップを作ろう</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0024_tilemaplayer/</link>
       <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0024_tilemaplayer/</guid>
@@ -273,7 +273,7 @@
       <description>今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。 なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。 公式オンラインドキュメント： Using TileMaps Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。 Godot で作るプラットフォ</description>
     </item>
     <item>
-      <title>Godot で作るプラットフォーマー Part 1：プレイヤーキャラクターを作ろう！</title>
+      <title>Godot3 で作るプラットフォーマー Part 1：プレイヤーキャラクターを作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</link>
       <pubDate>Sat, 29 Jan 2022 23:38:27 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</guid>

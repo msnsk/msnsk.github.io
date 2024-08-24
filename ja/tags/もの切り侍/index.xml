@@ -15,30 +15,30 @@
     <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%82%E3%81%AE%E5%88%87%E3%82%8A%E4%BE%8D/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>📔 開発ログ：もの切り侍【アセット編】</title>
-      <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_2/</link>
+      <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_2/</link>
       <pubDate>Wed, 27 Dec 2023 12:00:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_2/</guid>
+      <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_2/</guid>
       <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「アセット」に関する記録である。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。 使用するアセットを検討する この開発ログには、モバイルゲーム「もの切り侍」の開発にどのようなアセットをどのようにして用意したのかについ</description>
     </item>
     <item>
       <title>📔 開発ログ：もの切り侍【反省編】</title>
-      <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_4/</link>
+      <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_4/</link>
       <pubDate>Wed, 10 Jan 2024 03:00:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_4/</guid>
+      <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_4/</guid>
       <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち、もっとこうすれば良かった、ああすれば良かった、といった「反省」に関する記録である。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。 反省点の洗い出し 「もの切り侍」の開発を終え、そのプロセスや成果物を精霊に見つめ直</description>
     </item>
     <item>
       <title>📔 開発ログ：もの切り侍【ロジック編】</title>
-      <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_3/</link>
+      <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_3/</link>
       <pubDate>Sat, 30 Dec 2023 23:00:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_3/</guid>
+      <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_3/</guid>
       <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうちGodot Engine で作っていく「ロジック」に関する記録である。とはいえ、あまり具体的なコードなどを載せると長くなってしまうので、そのあたりは控えめにしようと思う。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。 必要な画</description>
     </item>
     <item>
       <title>📔 開発ログ：もの切り侍【企画編】</title>
-      <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</link>
+      <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_1/</link>
       <pubDate>Sun, 24 Dec 2023 02:21:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlogs/slashing_samurai_devlog_1/</guid>
+      <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_1/</guid>
       <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「企画」に関する記録である。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。 ゲームのおおまかな仕様を決める まずは、これから開発するゲームの仕様をおおまかに決めるところからスタートした。 特定のプラットフォームで全世</description>
     </item>
   </channel>

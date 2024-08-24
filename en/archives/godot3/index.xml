@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Godot3 on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/en/archives/godot3/</link>
+    <description>Recent content in Godot3 on Peanuts Code</description>
+    <image>
+      <title>Peanuts Code</title>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
+    </image>
+    <generator>Hugo -- 0.133.0</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 19 Oct 2022 19:45:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/archives/godot3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 Switching Sound Resources by Script in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0020_switching_sound_resources/</link>
+      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0020_switching_sound_resources/</guid>
+      <description>This article explains how to switch between and play multiple sound resources (music and sound effect files) with a single &amp;ldquo;AudioStreamPlayer&amp;rdquo; node. Basically, only one sound resource can be set per &amp;ldquo;AudioStreamPlayer&amp;rdquo; node. In other words, you must add &amp;ldquo;AudioStreamPlayer&amp;rdquo; nodes in the scene tree for each sound resource. You may feel useless in a situation where there are multiple nodes in the scene tree with the same settings except for the sound resource (as shown in the screenshot below), and you may also feel a little uncomfortable with the lack of visibility in the scene dock. So, if you have multiple sound resources that are never played simultaneously (e.g., multiple sound effects for different types of character attacks, multiple sound effects for different types of buttons on the UI, etc.), add only the minimum necessary &amp;ldquo;AudioStreamPlayer&amp;rdquo; node for each use to your scene. If you code a program that switches sound resources according to the situation, there will be no waste and the scene dock will look cleaner. In this tutorial, we will prepare only one &amp;ldquo;AudioStreamPlayer&amp;rdquo; node and</description>
+    </item>
+    <item>
+      <title>🤖 Animation State Machine in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0019_2d_animation_state_machine/</link>
+      <pubDate>Fri, 14 Oct 2022 20:25:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0019_2d_animation_state_machine/</guid>
+      <description>This article describes an implementation of an animated state machine for a 2D game. A state machine controls the transition of an object from one state to another. There are several restrictions on state transitions, such as when an object can only transition from one state to a limited number of states, or when an object can only transition to the next state after the current animation ends. For example, &amp;ldquo;idle&amp;rdquo; and &amp;ldquo;run&amp;rdquo; can transition immediately in both directions, but &amp;ldquo;idle&amp;rdquo; to &amp;ldquo;attack&amp;rdquo; can transition immediately, but &amp;ldquo;attack&amp;rdquo; to &amp;ldquo;run&amp;rdquo; cannot, and &amp;ldquo;attack&amp;rdquo; to &amp;ldquo;idle&amp;rdquo; can transition only after the &amp;ldquo;attack&amp;rdquo; animation ends. The &amp;ldquo;attack&amp;rdquo; to &amp;ldquo;idle&amp;rdquo; transition occurs only after the &amp;ldquo;attack&amp;rdquo; animation is over. If all of these controls were coded in script, the code would tend to be rather long and complex. On the other hand, Godot&amp;rsquo;s &amp;ldquo;AnimationTree&amp;rdquo; node can be used to reduce the amount of script code and improve readability. In this article, we will show you how to implement a state machine using the &amp;ldquo;AnimationTree&amp;rdquo; node. Environment Godot version: 3.5.1 Computer OS: macOS 12.6</description>
+    </item>
+    <item>
+      <title>🤖 2D Hit Detection for Melee Attacks in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/</link>
+      <pubDate>Wed, 05 Oct 2022 02:55:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0018_melee_attacks/</guid>
+      <description>This article introduces a method for implementing simple hit detection for melee attacks in 2D games. This is a commonly used method where the object to attack (e.g., player character) has a collision shape (called &amp;ldquo;Hit Box&amp;rdquo;) that is only active during the attack, and the object to be attacked (e.g., enemy character, destructible barrels, crates, grass, etc.) has a collision shape (called &amp;ldquo;Hurt Box). The hit judgment of the attack can be implemented by enabling/disabling the Hit Box and Hurt Box, and changing their size and position in accordance with the animation of the attack. This is relatively easy to implement, so let&amp;rsquo;s get started. Environment Godot version: 3.5.1 Computer OS version: macOS 11.6.5 Basic Articles You may also find the following articles useful. Downloading Godot Project Manager of Godot Add Actions to Input Map First, go to &amp;ldquo;Project&amp;rdquo; &amp;gt; &amp;ldquo;Project Settings&amp;rdquo; &amp;gt; &amp;ldquo;Input Map&amp;rdquo; tab and add the following actions: right: D key left: A key down: S key up: W key attack: Space bar Create a Player scene Create a scene for the player character. Create the</description>
+    </item>
+    <item>
+      <title>🤖 2D Grid Based Path Finding in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0017_2d_grid_based_path_finding/</link>
+      <pubDate>Thu, 22 Sep 2022 19:45:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0017_2d_grid_based_path_finding/</guid>
+      <description>This article is a tutorial on how to implement grid-based path finding in 2D games using the AStar algorithm. For 2D pathfinding that is not grid-based, please refer to the article 2D Path Finding in Godot3 . I hope you will choose the article that best suits the game you want to make. The final project file in this tutorial is located in the GitHub repository . After downloading and extracting the .zip file, you can import the &amp;ldquo;project.godot&amp;rdquo; file into the Godot Engine to see the project directly. Translated with www.DeepL.com/Translator (free version) Environment Godot version: 3.5 Computer OS: macOS 11.6.5 Basic Articles You may also find the following articles useful. Downloading Godot Project Manager of Godot About AStar In this article, we will implement grid-based routing using a search algorithm called AStar. It is useful when you want to automatically move objects along a grid from the current location to the destination. For example, this method is ideal for puzzle games where you move pieces on the board, or strategy simulation games where you move characters of both</description>
+    </item>
+    <item>
+      <title>🤖 2D Path Finding in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0016_2d_path_finding/</link>
+      <pubDate>Tue, 16 Aug 2022 23:10:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0016_2d_path_finding/</guid>
+      <description>This tutorial introduces Path Finding in 2D games. Path finding is a function that determines the shortest possible path from an object to its destination, for example, when moving an object to a certain destination. Up to Godot 3.4, the Navigation node was used to implement path finding. This was not particularly inconvenient, but the methodology for game development using it was limited and inapplicable in some areas. This time, I would like to introduce an implementation method using Navigation Server, which was added to Godot 3.5. This is a backport from Godot 4, which is currently under active development. This article is intended for users of Godot 3.5 or later. Users of Godot version 3.4 or earlier should take note. The final project file for this tutorial is available at GitHub repository . You can also check the project directly by downloading the .zip file and importing the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;End&amp;rdquo; folder with the Godot Engine. Environment Godot version: 3.5 Computer OS: macOS 11.6.5 Basic Articles You may also find the following articles useful. Downloading Godot Project</description>
+    </item>
+    <item>
+      <title>🤖 Circular Progress Bar in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0015_circular_progress_bar/</link>
+      <pubDate>Fri, 05 Aug 2022 11:05:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0015_circular_progress_bar/</guid>
+      <description>In this article, I will show you how to create a circular progress bar. By using a circular progress bar instead of the usual portrait or landscape orientation, you can add a little accent to your screen, so please refer to this tutorial if you find a use for it. At the end of the tutorial, we will also show you some sample progress bars that are not circular (e.g., heart-shaped), so if you are interested, please take a look at them as well. The final project file for this tutorial is available at GitHub repository . If you download the .zip file and import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;End&amp;rdquo; folder with the Godot Engine, you can check the project directly. Environment ・Godot version: 3.4.4 ・Computer OS version: macOS 11.6.5 Other Articles Please also use the following articles to help you start creating your game. Downloading Godot Project Manager of Godot Preparation Preparing an image of the circular progress bar If you have a drawing application</description>
+    </item>
+    <item>
+      <title>🤖 2D Screen Shake in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/</link>
+      <pubDate>Thu, 28 Jul 2022 14:10:56 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/</guid>
+      <description>In this article, I will explain how to implement an effect, &amp;ldquo;screen shake&amp;rdquo;, in 2D games. It is not an absolutely necessary element of a game, but if used well, it can make the player&amp;rsquo;s game experience more interactive and directly affect the user experience. For example, there are many situations where it could be used, such as when a player fires a gun, takes damage from enemies, or falls from a high place. By the way, this kind of element that is not necessary but makes the game more interesting by adding it is called &amp;ldquo;game juice&amp;rdquo; in English. I have one more vocabulary in English, and I am a little wiser now. There are already many resources on the Web that explain how to implement screen shake, and of course there are methods other than those introduced here. This time, we refer to the following video and article in particular, so please check them as well for a deeper understanding. Reference YouTube: GDC - Math for Game Programmers: Juicing Your Cameras With Math KidsCanCode: SCREEN SHAKE The project</description>
+    </item>
+    <item>
+      <title>🤖 Advanced Match 3 Puzzle Game in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0013_advanced_match3/</link>
+      <pubDate>Fri, 15 Jul 2022 18:40:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0013_advanced_match3/</guid>
+      <description>In this tutorial, we will create an advanced match-3 puzzle game, a type of puzzle game in which one piece is moved freely on the board for a certain period of time to erase three or more pieces of the same color in a row.
+This is easy to understand if you imagine a puzzle game like &amp;ldquo;Puzzle &amp;amp; Dragons&amp;rdquo; (a.k.a. &amp;ldquo;Puzzle Dora&amp;rdquo;), which has gained popularity as a mobile game.
+However, the tutorial would be too large if it included all game elements such as decks, gacha, and battles with enemy characters, so we will focus on the puzzle part of the tutorial this time.
+For more information on how to create an standard match-3 puzzle game like &amp;ldquo;Candy Crush&amp;rdquo; or a puzzle game like &amp;ldquo;LINE Tsum Tsum&amp;rdquo;, please refer to the following tutorial.
+Other Tutorials If you want to make a game like &amp;ldquo;Candy Crush&amp;rdquo;:
+Match 3 puzzle game in Godot If you want to make a game like &amp;ldquo;LINE: Disney Tsum Tsum&amp;rdquo;:
+Connecting matching colors puzzle game in Godot The project file that will be created at the end of this tutorial is located in the GitHub repository .</description>
+    </item>
+    <item>
+      <title>🤖 Match 3 Puzzle Game in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0012_match3/</link>
+      <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0012_match3/</guid>
+      <description>In this tutorial, we will create a match 3 puzzle game. Match 3 is a puzzle game in which players move multiple colorful pieces evenly arranged along a grid on the board to eliminate three or more pieces of the same color in a row. This genre is particularly popular among mobile game players because it is easy to operate and enjoyable. Candy Crush, Toon Blast, and Royal Match are just a few examples of popular games. Puzzle &amp;amp; Dragons and LINE Tsum Tsum are also based on Match 3, although the controls are slightly different. In this tutorial, we will create a puzzle like Candy Crush, in which the pieces are moved only one square at a time to match colors. If you want to make a game like &amp;ldquo;LINE tsum tsum&amp;rdquo;, check another tutorial, Connecting matching colors puzzle game in Godot . The final project file for this tutorial is located at GitHub repository . If you download the .zip file and import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;End&amp;rdquo; folder with the Godot Engine, you can check the</description>
+    </item>
+    <item>
+      <title>🤖 Connecting Matching Colors Puzzle Game in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/</link>
+      <pubDate>Mon, 20 Jun 2022 03:00:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/</guid>
+      <description>In this tutorial, we will explain how to create a type of game in which you trace and erase drops of the same color, like the very popular Disney Tsum Tsum smartphone game. LINE: Disney Tsum Tsum Note that the final project file in this tutorial is located in the GitHub repository . You can directly check the project by downloading the .zip file and importing the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;End&amp;rdquo; folder with the Godot Engine. Environment This tutorial was created in the following environment ・Godot version: 3.4.4 ・Computer OS version: macOS 11.6.5 Memo: Please also use the following articles to help you start creating your game. Downloading Godot Project Manager of Godot Creating a new project First, we would like you to start Godot Engine and create a new project. Let&amp;rsquo;s name the project &amp;ldquo;Connect Colors Start. Editing project settings Once the editor appears, let&amp;rsquo;s editing the settings for the entire project. First, set the display size for the game. In this case, we set</description>
+    </item>
+    <item>
+      <title>🤖 2D Grid-based Movement in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/</link>
+      <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/</guid>
+      <description>This tutorial explains how to implement &amp;ldquo;grid-based movement&amp;rdquo; in 2D games. Grid-based movement refers to the movement of objects such as characters on the game screen one grid at a time.
+Many puzzle games such as the popular smartphone game &amp;ldquo;Puzzle &amp;amp; Dragons&amp;rdquo; and the original falling game &amp;ldquo;Tetris,&amp;rdquo; as well as tactical simulation games such as the &amp;ldquo;Fire Emblem&amp;rdquo; series and &amp;ldquo;Tactics Ogre&amp;rdquo; probably employ this type of movement.
+On the other hand, RPGs such as the &amp;ldquo;Final Fantasy&amp;rdquo; series and the &amp;ldquo;Dragon Quest&amp;rdquo; series also use this grid-based movement when looking closely at character movement in the era of 2D graphics, when these games appeared as software for the NES and Super Nintendo.
+Thus, grid-based movement is used in games of various genres, and its versatility is quite high.
+In this article, we will focus as much as possible on only the implementation of grid-based movement. In addition, a sample game that uses grid-based movement will be introduced at the end of the article, so please feel free to refer to it as well.
+Note that the project file that will be created at the end of this tutorial is located in the GitHub repository .</description>
+    </item>
+    <item>
+      <title>🤖 Homing Missiles in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0008_homing_missiles/</link>
+      <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0008_homing_missiles/</guid>
+      <description>In this tutorial, we will create a homing missile in a 2D top-down shooter. A homing missile is a missile that tracks its target. Environment This tutorial was created in the following environment ・Godot version: 3.4.2 ・Computer OS version: macOS 11.6.5 To focus on the creation of the homing missile, the rest of the project has been pre-created in advance. The project file for this tutorial is located at GitHub repository . After downloading the .zip file, import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;Start&amp;rdquo; folder into the Godot Engine, and you can start the project with only the preliminary work completed. If you would like to see the completed project in a hurry, import the &amp;ldquo;project.godot&amp;rdquo; file from the &amp;ldquo;End&amp;rdquo; folder. All the assets imported into the project were downloaded from KENNEY website. I used an asset pack called Tower Defense (top-down) . I just want to thank them for making such a great asset pack available to the public. Preliminary Preparation The following game specifications, except</description>
+    </item>
+    <item>
+      <title>🤖 Bullet Hell in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0007_bullethell/</link>
+      <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0007_bullethell/</guid>
+      <description>In this time, we will create a bullet hell aka barrage for a barrage shooting game. The bullet hell is a large number of bullets (or similar long-range attacks) like a curtain. A &amp;ldquo;bullet hell shooter&amp;rdquo; is a game in which the player shoots at and defeats enemy characters while dodging and weaving through the gaps between the bullets. Some games specialize in simply dodging the bullets. Many games are based on the motif of spaceships and fighter planes that fit the image (in this tutorial, a ground battle between a wizard and a monster though).
+In this tutorial, we will focus only on creating a bullet hell. Also, while bullet hell come in various shapes and sizes, we will focus on rotating-type bullet hell.
+Environment This tutorial was created in the following environment
+・Godot version: 3.4.2
+・Computer OS version: macOS 11.6.5
+The project file for this tutorial is located at GitHub repository . After downloading the .zip file, import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;Start&amp;rdquo; folder into the Godot Engine, and you will be able to start with a project that has only been prepped.</description>
+    </item>
+    <item>
+      <title>🤖 Four Types of Guns for Top-down Shooting in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0006_guns_of_topdown_shooter/</link>
+      <pubDate>Sat, 07 May 2022 22:05:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0006_guns_of_topdown_shooter/</guid>
+      <description>In this tutorial, we are going to make four types of guns that commonly appear in 2D top-down shooters. Specifically, they are as follows. Handgun Shotgun Machine gun Laser Gun Environment This tutorial was created in the following environment ・Godot version: 3.4.2 ・Computer OS version: macOS 11.6.5 Since this tutorial will focus on gun creation, the following has been prepared in advance. 1. Game world A scene called &amp;ldquo;World.tscn&amp;rdquo; was prepared, and the appearance was simply created by adding a &amp;ldquo;TileMap&amp;rdquo; node. In addition to the &amp;ldquo;TileMap&amp;rdquo; node, a &amp;ldquo;Player&amp;rdquo; node and several &amp;ldquo;Obstacle&amp;rdquo; nodes were added. For these, we created individual scenes and added the instances. 2. Player Character Created as &amp;ldquo;Player.tscn&amp;rdquo; scene. The root node is the &amp;ldquo;KinematicBody2D&amp;rdquo; class, and the &amp;ldquo;Sprite&amp;rdquo; and the &amp;ldquo;CollisionShape2D&amp;rdquo; were added as child nodes. The texture of the &amp;ldquo;Sprite&amp;rdquo; node is a hitman with a gun. A node named &amp;ldquo;Muzzle&amp;rdquo; of the &amp;ldquo;Position2D&amp;rdquo; class was placed at the tip of the image of the gun held by the hitman.</description>
+    </item>
+    <item>
+      <title>🤖 Powerful Search Features in Godot</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0009_various_searches/</link>
+      <pubDate>Wed, 27 Apr 2022 02:44:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0009_various_searches/</guid>
+      <description>When we develop a game, especially a big one, sometimes it may often happen that we can never find the scene which we want to edit or we cannot remember where the script file is, which we are going to edit.
+In this article, I am going to introduce some so powerful and useful search features with keyboard shortcuts. Once you know those, you can reduce the huge amount of time looking for something which may be the most uninteresting in the game development. In addition, you can use the search features in a much faster way instead of looking for a script file and clicking it in the file system dock, for example.
+By the way, we can see all default shortcuts in the official online documents of Godot. Be careful about that it says Alt as Option on macOS.
+GODOT DOCS Default editor shortcuts Anyway, why do not you try to use the searches because it is sure to improve work efficiency.
+I will introduce ones in order of the widest range of searches first.
+Quick Open To use Quick Open, perform the following keyboard shortcut on Godot editor.</description>
+    </item>
+    <item>
+      <title>🤖 Project Manager of Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/</link>
+      <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/</guid>
+      <description>In this article, we will introduce what you can do with the Project Manager.
+When Godot is launched, the first thing that appears is the Project Manager. The Project Manager is a tool for managing projects handled by Godot, including the following operations.
+Creating new projects Loading project files downloaded from the Web Renaming a project Removing projects that were previously managed by the Project Manager. When using Godot for the first time, a dialog box will appear as shown in the following screen shot, prompting you to open the Asset Library. The asset library can be easily accessed at any time, so choose Cancel for now.
+Creating a new project Click &amp;ldquo;New Project&amp;rdquo; from the right sidebar of the Project Manager.
+Click &amp;ldquo;Browse&amp;rdquo; to choose the path where you want to save the new project files.
+Click on &amp;ldquo;Create Folder&amp;rdquo; in the upper right corner of the window that opens.
+Enter a name for the folder. As an example, it was named &amp;ldquo;SampleProject&amp;rdquo;.
+Once the folder is created, the folder path is automatically selected. Continue to click &amp;ldquo;Select Current Folder&amp;rdquo; in the lower right corner.</description>
+    </item>
+    <item>
+      <title>🤖 Downloading Godot</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0001_download/</link>
+      <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0001_download/</guid>
+      <description>What&amp;rsquo;s Godot? Godot Engine, or simply Godot, is a very popular open-source game engine that is now gaining popularity, especially in the indie game industry.
+A game engine is a reliable tool that handles all the complicated tasks for game developers by providing them with a system that is commonly needed in game development from the beginning so that they can concentrate on game development.
+For example, &amp;ldquo;displaying characters on the screen,&amp;rdquo; &amp;ldquo;sound effects sound when buttons are pressed and the screen changes,&amp;rdquo; &amp;ldquo;shining light on 3D objects and drawing shadows,&amp;rdquo; and &amp;ldquo;causing damage when a beam of light hits an enemy,&amp;rdquo; etc., are all common game development tasks that would be difficult if created from scratch. The game engine takes care of these processes for us.
+In this article, I will explain the first step to start using Godot, which is to download it (very easy).
+Godot is multi-platform. The files are available for almost all computers with major operating systems (Windows, macOS, and Linux) installed.
+Let&amp;rsquo;s get started with the download process.
+Accessing the download page First, access the official download page.</description>
+    </item>
+  </channel>
+</rss>
