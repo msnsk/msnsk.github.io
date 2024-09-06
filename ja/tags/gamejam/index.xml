@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>ja</language>
     <lastBuildDate>Tue, 30 Aug 2022 19:33:38 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/gamejam/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,13 @@
       <link>https://www.peanuts-code.com/ja/posts/post0004_my_first_game_jam/</link>
       <pubDate>Tue, 30 Aug 2022 19:33:38 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/posts/post0004_my_first_game_jam/</guid>
-      <description>先日開催された「KENNEY Game Jam」に参加した。私にとって初めてのゲームジャムであった。今回はゲームジャムに参加してみてわかったこと、感じたことを交えつつ、itch.io のサイトで催されているインディーゲームデベロッパー向けのゲームジャムについて記事にした。 ゲームジャムとは ゲームジャムとは、参加者が短い期間でゲームを開発、公開して評価し合うイベントのことで</description>
+      <description>&lt;p&gt;先日開催された「KENNEY Game Jam」に参加した。私にとって初めてのゲームジャムであった。今回はゲームジャムに参加してみてわかったこと、感じたことを交えつつ、&lt;a href=&#34;https://itch.io/jams&#34; target=&#34;_blank&#34;&gt;itch.io&lt;/a&gt;
+のサイトで催されているインディーゲームデベロッパー向けのゲームジャムについて記事にした。&lt;/p&gt;
+&lt;br/&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ゲームジャムとは&#34;&gt;ゲームジャムとは&lt;/h2&gt;
+&lt;p&gt;ゲームジャムとは、参加者が短い期間でゲームを開発、公開して評価し合うイベントのことである。ゲーム開発の&lt;a href=&#34;https://ja.wikipedia.org/wiki/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3&#34; target=&#34;_blank&#34;&gt;ハッカソン&lt;/a&gt;
+とも言われる。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

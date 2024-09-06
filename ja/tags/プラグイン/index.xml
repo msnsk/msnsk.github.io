@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>プラグイン on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3/</link>
+    <link>http://localhost:1313/ja/tags/%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3/</link>
     <description>Recent content in プラグイン on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/images/logomark.png</url>
-      <link>https://www.peanuts-code.com/images/logomark.png</link>
+      <url>http://localhost:1313/images/logomark.png</url>
+      <link>http://localhost:1313/images/logomark.png</link>
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
     <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
-    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/ja/tags/%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Game Center プラグインを追加したあとの実装</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0022_implement_game_center/</link>
+      <link>http://localhost:1313/ja/tutorials/gd0022_implement_game_center/</link>
       <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0022_implement_game_center/</guid>
+      <guid>http://localhost:1313/ja/tutorials/gd0022_implement_game_center/</guid>
       <description>前回の 🤖 プロジェクトに Game Center プラグインを追加する の記事では Godot 公式の iOS プラグインのうち Game Center のプラグインをプロジェクトに追加する手順について説明したんやけど、今回の記事では、その追加したプラグインを使って、実際に Apple の Game Center の機能を実装する方法について書いてるで。 そもそも Game Center って何？って人がいるかもしれんけど、前回の記事の冒頭で軽く説明してるから、よかったら先にそっち</description>
     </item>
     <item>
       <title>🤖 プロジェクトに Game Center プラグインを追加する</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</link>
+      <link>http://localhost:1313/ja/tutorials/gd0021_game_center_plugin/</link>
       <pubDate>Wed, 01 May 2024 20:17:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</guid>
+      <guid>http://localhost:1313/ja/tutorials/gd0021_game_center_plugin/</guid>
       <description>この記事では、Apple の Game Center と連携させるための Godot 公式プラグインをプロジェクトに追加する方法について説明していくで。 ちなみに、今までの記事は「である」調で書いてたんやけど、ちょっと堅苦しくて偉そうやったから、今回から、口語調というか、おもいっきり普段のタメ語の関西弁で書いていくことにしたんやわ。今までの記事を読んでくれてたみんなにはビビらせてしまうかもしれん</description>
     </item>
   </channel>

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>キャンディークラッシュ on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/ja/tags/%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%87%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5/</link>
+    <link>http://localhost:1313/ja/tags/%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%87%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5/</link>
     <description>Recent content in キャンディークラッシュ on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/images/logomark.png</url>
-      <link>https://www.peanuts-code.com/images/logomark.png</link>
+      <url>http://localhost:1313/images/logomark.png</url>
+      <link>http://localhost:1313/images/logomark.png</link>
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
     <lastBuildDate>Sun, 26 Jun 2022 03:18:03 +0900</lastBuildDate>
-    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%87%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/ja/tags/%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%87%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 で作るマッチ 3 パズルゲーム</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0012_match3/</link>
+      <link>http://localhost:1313/ja/tutorials/gd0012_match3/</link>
       <pubDate>Sun, 26 Jun 2022 03:18:03 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0012_match3/</guid>
+      <guid>http://localhost:1313/ja/tutorials/gd0012_match3/</guid>
       <description>今回のチュートリアルではマッチ3パズルゲームを作っていく。マッチ3（スリー）パズルゲームとは、盤面のグリッドに沿って均一に並べられた複数のカラフルなピースのうちの１つを、1マス動かして同じ色のピースを３つ以上並べて消すタイプのパズルゲームの総称だ。うまく動かすと、一回の操作で連続的に複数のピースを消すことができ、なんとも気持ちの良いプレイ感覚を味わうことがで</description>
     </item>
   </channel>

@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>ja</language>
     <lastBuildDate>Fri, 25 Mar 2022 22:31:30 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/%E8%83%8C%E6%99%AF/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,9 @@
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_11/</link>
       <pubDate>Fri, 25 Mar 2022 22:31:30 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_11/</guid>
-      <description>第11回目の今回は、ゲームプレイ画面の背景を作る。 背景と言っても、ただテクスチャ画像を一枚ペタリと貼り付けて終わりだと面白くない。それに、カメラがどれだけ動いても背景が途切れなく繋がっている状態を作るには、ちょっとした工夫（というか Godot の機能）が必要だ。 また、プラットフォーマーのゲームでは、大抵、背景がいくつかのレイヤーに別れており、プレイヤー（カメラ）が動い</description>
+      <description>&lt;p&gt;第11回目の今回は、ゲームプレイ画面の背景を作る。&lt;/p&gt;
+&lt;p&gt;背景と言っても、ただテクスチャ画像を一枚ペタリと貼り付けて終わりだと面白くない。それに、カメラがどれだけ動いても背景が途切れなく繋がっている状態を作るには、ちょっとした工夫（というか Godot の機能）が必要だ。&lt;/p&gt;
+&lt;p&gt;また、プラットフォーマーのゲームでは、大抵、背景がいくつかのレイヤーに別れており、プレイヤー（カメラ）が動いた時に、遠景のレイヤーはゆっくり動き、近景のレイヤーは速く動く、という設定により背景の奥行きが感じられる表現が採用されている。これは、いわゆるパララックスエフェクト（視差効果）というものだ。ありがたいことに Godot にはこのパララックスエフェクトを背景に適用するためのクラスが最初から用意されているので、それらのノードを追加するだけでほとんど作業は完了できる。しかも、なんと言ってもスクリプトのコーディングが不要だ。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

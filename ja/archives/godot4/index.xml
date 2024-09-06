@@ -9,37 +9,56 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 23 Aug 2024 13:55:22 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 06 Sep 2024 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/archives/godot4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 2Dグリッドベース移動を実装しよう</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</link>
+      <pubDate>Fri, 06 Sep 2024 00:00:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</guid>
+      <description>&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
+&lt;p&gt;このチュートリアルでは Godot で 2D ゲームにおける「グリッドベース移動」を実装してみます。できるだけシンプルに。&lt;/p&gt;
+&lt;p&gt;そもそもグリッドベース移動って何なん？という方もいらっしゃるかと。グリッドベース移動とは、グリッド（格子状の線）で等間隔に区分されたゲームの画面上をキャラクターなどのオブジェクトが 1 グリッド（1 マス）ずつ移動する動きのことです。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>🤖 TileMapLayerでタイルマップを作ろう</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0024_tilemaplayer/</link>
       <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0024_tilemaplayer/</guid>
-      <description>はじめに Godot 4.3 から、従来使われてきた TileMap クラスが Deprecated（今後もうアップデートされないってこと）になって、その代わりに TileMapLayer クラスが新たに追加されました。ということで、TileMapLayer で実際にタイルマップを作ってみたいと思います。 記事作成当時の筆者の環境 Godot のバージョン: 4.3 コンピュータのモデル: MacBook Air M1, 2020 OS: macOS 14.6.1 画面の大きさを設定する 今回は 16 x 16 px のタ</description>
+      <description>&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
+&lt;p&gt;Godot 4.3 から、従来使われてきた TileMap クラスが Deprecated（今後もうアップデートされないってこと）になって、その代わりに TileMapLayer クラスが新たに追加されました。ということで、TileMapLayer で実際にタイルマップを作ってみたいと思います。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;記事作成当時の筆者の環境&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+Godot のバージョン: &lt;strong&gt;4.3&lt;/strong&gt;&lt;br&gt;
+コンピュータのモデル: &lt;strong&gt;MacBook Air M1, 2020&lt;/strong&gt;&lt;br&gt;
+OS: &lt;strong&gt;macOS 14.6.1&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Xcode から App Store Connect にゲームを配布する</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0023_distribute_app_from_xcode/</link>
       <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0023_distribute_app_from_xcode/</guid>
-      <description>この記事では、Godot から書き出した iOS 版のゲームを Xcode から App Store Connect にアップロードする方法について説明するで。たぶん、手短に終わるから気楽にみてくれたらええよ。ほんで、多分わかってくれてると思うけど Xcode って macOS 専用のアプリやから、Mac 持ってるの前提で話進めるからね。Mac はお高いんやけど、iOS とか macOS とかのアプリを App Store でリリースしたかったら絶対要る道具やから、Or</description>
+      <description>&lt;p&gt;この記事では、Godot から書き出した iOS 版のゲームを Xcode から App Store Connect にアップロードする方法について説明するで。たぶん、手短に終わるから気楽にみてくれたらええよ。ほんで、多分わかってくれてると思うけど Xcode って macOS 専用のアプリやから、Mac 持ってるの前提で話進めるからね。Mac はお高いんやけど、iOS とか macOS とかのアプリを App Store でリリースしたかったら絶対要る道具やから、Orico ローンとかで買ってもいいんちゃうかな。知らんけど。僕は Orico ローンの 2 年払いで買ったわ。なかなか苦しかったけどね😆&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Game Center プラグインを追加したあとの実装</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0022_implement_game_center/</link>
       <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0022_implement_game_center/</guid>
-      <description>前回の 🤖 プロジェクトに Game Center プラグインを追加する の記事では Godot 公式の iOS プラグインのうち Game Center のプラグインをプロジェクトに追加する手順について説明したんやけど、今回の記事では、その追加したプラグインを使って、実際に Apple の Game Center の機能を実装する方法について書いてるで。 そもそも Game Center って何？って人がいるかもしれんけど、前回の記事の冒頭で軽く説明してるから、よかったら先にそっち</description>
+      <description>&lt;p&gt;前回の &lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/&#34; title=&#34;プロジェクトに Game Center プラグインを追加する&#34;&gt;🤖 プロジェクトに Game Center プラグインを追加する&lt;/a&gt;
+ の記事では Godot 公式の iOS プラグインのうち Game Center のプラグインをプロジェクトに追加する手順について説明したんやけど、今回の記事では、その追加したプラグインを使って、実際に Apple の Game Center の機能を実装する方法について書いてるで。&lt;/p&gt;
+&lt;p&gt;そもそも Game Center って何？って人がいるかもしれんけど、前回の記事の冒頭で軽く説明してるから、よかったら先にそっち見てみてな。&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 プロジェクトに Game Center プラグインを追加する</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</link>
       <pubDate>Wed, 01 May 2024 20:17:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</guid>
-      <description>この記事では、Apple の Game Center と連携させるための Godot 公式プラグインをプロジェクトに追加する方法について説明していくで。 ちなみに、今までの記事は「である」調で書いてたんやけど、ちょっと堅苦しくて偉そうやったから、今回から、口語調というか、おもいっきり普段のタメ語の関西弁で書いていくことにしたんやわ。今までの記事を読んでくれてたみんなにはビビらせてしまうかもしれん</description>
+      <description>&lt;p&gt;この記事では、Apple の Game Center と連携させるための Godot 公式プラグインをプロジェクトに追加する方法について説明していくで。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;ちなみに、今までの記事は「である」調で書いてたんやけど、ちょっと堅苦しくて偉そうやったから、今回から、口語調というか、おもいっきり普段のタメ語の関西弁で書いていくことにしたんやわ。今までの記事を読んでくれてたみんなにはビビらせてしまうかもしれんけど、まあ、普通の文章書くんなら ChatGPT のほうが上手に書きよるから、ちょっと人間らしさ出してこや、って感じやねん。関西弁アレルギーの人はほんまゴメンやで。&lt;/em&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

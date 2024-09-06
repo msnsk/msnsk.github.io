@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>en</language>
     <lastBuildDate>Thu, 11 Jan 2024 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/devlog/index.xml" rel="self" type="application/rss+xml" />
@@ -18,44 +18,131 @@
       <link>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlog_1/</link>
       <pubDate>Sun, 24 Dec 2023 02:21:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlog_1/</guid>
-      <description>This article is a record of the &amp;ldquo;Planning&amp;rdquo; phase of the (post-release) devlog of the iOS mobile game &amp;ldquo;Slashing Samurai,&amp;rdquo; released on the App Store on December 15, 2023.
-Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game!
-Defining the Rough Specifications of the Game The development process began by roughly defining the specifications of the game to be developed.
-It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval. Achieving this alone meant the game&amp;rsquo;s volume had to be kept small. For a game with a small volume, a casual game seemed appropriate. The essential element for casual games is user-friendliness. The most effective platform for maximizing user-friendliness is likely a mobile game. With devices that everyone carries, offering a small screen that serves as an input device, there seems to be no other platform that matches the physical convenience.
-I have always loved RPGs.</description>
+      <description>&lt;p&gt;This article is a record of the &amp;ldquo;Planning&amp;rdquo; phase of the (post-release) devlog of the iOS mobile game &amp;ldquo;Slashing Samurai,&amp;rdquo; released on the App Store on December 15, 2023.&lt;/p&gt;
+&lt;p&gt;Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game!&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;https://apps.apple.com/en/app/slashing-samurai/id6473121142&#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/banners/app_store/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg&#34; width=&#34;200px&#34;/&gt; &lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;hr&gt;
+&lt;h2 id=&#34;defining-the-rough-specifications-of-the-game&#34;&gt;Defining the Rough Specifications of the Game&lt;/h2&gt;
+&lt;p&gt;The development process began by roughly defining the specifications of the game to be developed.&lt;/p&gt;
+&lt;p&gt;It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval. Achieving this alone meant the game&amp;rsquo;s volume had to be kept small. For a game with a small volume, a casual game seemed appropriate. The essential element for casual games is user-friendliness. The most effective platform for maximizing user-friendliness is likely a mobile game. With devices that everyone carries, offering a small screen that serves as an input device, there seems to be no other platform that matches the physical convenience.&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 Devlog: Slashing Samurai - Reflection</title>
       <link>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlog_4/</link>
       <pubDate>Thu, 11 Jan 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlog_4/</guid>
-      <description>This article is a record of reflections on the (post-release) development log of the iOS mobile game &amp;ldquo;Slashing Samurai,&amp;rdquo; released on the App Store on December 15, 2023. It explores areas for improvement and lessons learned during the development process.
-Feel free to download &amp;ldquo;Slashing Samurai&amp;rdquo; for free from the App Store using the banner below if you&amp;rsquo;re interested.
-Identification of Reflection Points After completing the development of &amp;ldquo;Slashing Samurai&amp;rdquo; and reflecting on the process and outcomes, various points for improvement became apparent. To better utilize these reflections in future game development, I want to document them thoroughly.
-Let&amp;rsquo;s start by summarizing specific points for improvement:
-Overdoing Too many stages Excessive difficulty Overemphasis on world-building Too late Implementation of plugins took too long Testing on actual devices was too slow Promotion preparation was too slow I will provide detailed records for each of these.
-Overdoing Let&amp;rsquo;s begin by discussing the common pitfalls of the &amp;ldquo;overdoing it&amp;rdquo; category, which many novice developers, including myself, tend to fall into.
-Too Many Stages Rather than doing this with good intentions, I might have unconsciously avoided the struggles of subtraction.</description>
+      <description>&lt;p&gt;This article is a record of reflections on the (post-release) development log of the iOS mobile game &amp;ldquo;Slashing Samurai,&amp;rdquo; released on the App Store on December 15, 2023. It explores areas for improvement and lessons learned during the development process.&lt;/p&gt;
+&lt;p&gt;Feel free to download &amp;ldquo;Slashing Samurai&amp;rdquo; for free from the App Store using the banner below if you&amp;rsquo;re interested.&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;https://apps.apple.com/jp/app/slashing-samurai/id6473121142&#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/banners/app_store/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg&#34; width=&#34;200px&#34;/&gt; &lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;br/&gt;
+&lt;h2 id=&#34;identification-of-reflection-points&#34;&gt;Identification of Reflection Points&lt;/h2&gt;
+&lt;p&gt;After completing the development of &amp;ldquo;Slashing Samurai&amp;rdquo; and reflecting on the process and outcomes, various points for improvement became apparent. To better utilize these reflections in future game development, I want to document them thoroughly.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s start by summarizing specific points for improvement:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Overdoing
+&lt;ul&gt;
+&lt;li&gt;Too many stages&lt;/li&gt;
+&lt;li&gt;Excessive difficulty&lt;/li&gt;
+&lt;li&gt;Overemphasis on world-building&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Too late
+&lt;ul&gt;
+&lt;li&gt;Implementation of plugins took too long&lt;/li&gt;
+&lt;li&gt;Testing on actual devices was too slow&lt;/li&gt;
+&lt;li&gt;Promotion preparation was too slow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I will provide detailed records for each of these.&lt;/p&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 Devlog: Slashing Samurai - Logic</title>
       <link>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlog_3/</link>
       <pubDate>Sun, 31 Dec 2023 04:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlog_3/</guid>
-      <description>This article is a record of the &amp;ldquo;logic&amp;rdquo; behind the development of &amp;ldquo;Slashing Samurai,&amp;rdquo; a mobile game for iOS released on the App Store on December 15, 2023, using the Godot Engine. However, to avoid excessive length, specific code details will be kept to a minimum. Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game! Identifying Necessary Screens I am the type to prioritize visuals. In game development, including the creation of &amp;ldquo;Slashing Samurai&amp;rdquo; in Godot, I started by identifying the necessary screens. I also considered the flow of screen transitions. Although there were many changes in the end, the base stayed relatively close to the initial plan. Initially, the plan included the following screens: Start Screen Play Screen (including Pause Screen) Stage Selection Screen Settings Screen In the end, the following screens were added: Prologue Screen Menu Screen Credit Screen Score Screen Falling Object Record Screen This devlog will focus on documenting the screens that were originally planned to be the core of the game. Start Screen and</description>
+      <description>&lt;p&gt;This article is a record of the &amp;ldquo;logic&amp;rdquo; behind the development of &amp;ldquo;Slashing Samurai,&amp;rdquo; a mobile game for iOS released on the App Store on December 15, 2023, using the Godot Engine. However, to avoid excessive length, specific code details will be kept to a minimum.&lt;/p&gt;
+&lt;p&gt;Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game!&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;https://apps.apple.com/en/app/slashing-samurai/id6473121142&#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/banners/app_store/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg&#34; width=&#34;200px&#34;/&gt; &lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;br/&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;identifying-necessary-screens&#34;&gt;Identifying Necessary Screens&lt;/h2&gt;
+&lt;p&gt;I am the type to prioritize visuals. In game development, including the creation of &amp;ldquo;Slashing Samurai&amp;rdquo; in Godot, I started by identifying the necessary screens. I also considered the flow of screen transitions. Although there were many changes in the end, the base stayed relatively close to the initial plan.&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/posts/post0005/3_logic/01.webp&#34; alt=&#34;Note: Screen Transitions&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;Initially, the plan included the following screens:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Start Screen&lt;/li&gt;
+&lt;li&gt;Play Screen (including Pause Screen)&lt;/li&gt;
+&lt;li&gt;Stage Selection Screen&lt;/li&gt;
+&lt;li&gt;Settings Screen&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the end, the following screens were added:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Prologue Screen&lt;/li&gt;
+&lt;li&gt;Menu Screen
+&lt;ul&gt;
+&lt;li&gt;Credit Screen&lt;/li&gt;
+&lt;li&gt;Score Screen&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Falling Object Record Screen&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This devlog will focus on documenting the screens that were originally planned to be the core of the game.&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 Devlog: Slashing Samurai - Assets</title>
       <link>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlog_2/</link>
       <pubDate>Wed, 27 Dec 2023 12:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/posts/post0005_slashing_samurai_devlog_2/</guid>
-      <description>This article is a record of the &amp;ldquo;Assets&amp;rdquo; in the (post) devlog of the iOS mobile game &amp;ldquo;Slashing Samurai,&amp;rdquo; released on the App Store on December 15, 2023.
-Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game!
-Consideration of Assets to Use In this development log, we record how we prepared assets for the development of the mobile game &amp;ldquo;Slashing Samurai.&amp;rdquo; In the context of game development, assets refer to the materials used.
-First, we listed the necessary assets and proceeded with a rough policy to prepare them with as low a budget as possible, considering the time cost.
-The result of listing the assets necessary for the game is as follows:
-Character images Object (falling items) images Background images Fonts Background music (BGM) Sound effects (SFX) We will detail how we prepared each of these materials one by one.
-Character Images Initially, I attempted to draw the player character, a samurai, by myself. I even tried drawing a bit. It was a 2D drawing. Using the Procreate app on the iPad, I could create animations simultaneously.</description>
+      <description>&lt;p&gt;This article is a record of the &amp;ldquo;Assets&amp;rdquo; in the (post) devlog of the iOS mobile game &amp;ldquo;Slashing Samurai,&amp;rdquo; released on the App Store on December 15, 2023.&lt;/p&gt;
+&lt;p&gt;Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game!&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;https://apps.apple.com/en/app/slashing-samurai/id6473121142&#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/banners/app_store/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg&#34; width=&#34;200px&#34;/&gt; &lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;br/&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;consideration-of-assets-to-use&#34;&gt;Consideration of Assets to Use&lt;/h2&gt;
+&lt;p&gt;In this development log, we record how we prepared assets for the development of the mobile game &amp;ldquo;Slashing Samurai.&amp;rdquo; In the context of game development, assets refer to the materials used.&lt;/p&gt;
+&lt;p&gt;First, we listed the necessary assets and proceeded with a rough policy to prepare them with as low a budget as possible, considering the time cost.&lt;/p&gt;
+&lt;p&gt;The result of listing the assets necessary for the game is as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Character images&lt;/li&gt;
+&lt;li&gt;Object (falling items) images&lt;/li&gt;
+&lt;li&gt;Background images&lt;/li&gt;
+&lt;li&gt;Fonts&lt;/li&gt;
+&lt;li&gt;Background music (BGM)&lt;/li&gt;
+&lt;li&gt;Sound effects (SFX)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We will detail how we prepared each of these materials one by one.&lt;/p&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

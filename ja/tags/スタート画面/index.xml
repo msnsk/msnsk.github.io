@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>ja</language>
     <lastBuildDate>Tue, 22 Mar 2022 17:32:43 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E7%94%BB%E9%9D%A2/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,14 @@
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_10/</link>
       <pubDate>Tue, 22 Mar 2022 17:32:43 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_10/</guid>
-      <description>第10回目の今回は、ゲーム開始時に表示されるスタート画面を作る。タイトル画面、スタートメニューとも言う。 それだけだと、前回と比べて簡単すぎるので、ゲーム開始時にプレイヤーキャラクターを選択できる仕組みも実装する。画面遷移のイメージは以下の通りだ。 まずゲームを始めるとスタート画面が表示される。 スタートボタンを押すとプレイヤーキャラクター選択画面に遷移する。 プレ</description>
+      <description>&lt;p&gt;第10回目の今回は、ゲーム開始時に表示されるスタート画面を作る。タイトル画面、スタートメニューとも言う。&lt;/p&gt;
+&lt;p&gt;それだけだと、前回と比べて簡単すぎるので、ゲーム開始時にプレイヤーキャラクターを選択できる仕組みも実装する。画面遷移のイメージは以下の通りだ。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;まずゲームを始めるとスタート画面が表示される。&lt;/li&gt;
+&lt;li&gt;スタートボタンを押すとプレイヤーキャラクター選択画面に遷移する。&lt;/li&gt;
+&lt;li&gt;プレイヤーキャラクターを選択するとゲームプレイ開始。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ということで、今回の作業は以下の通りだ。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

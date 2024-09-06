@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Grid-Based on Peanuts Code</title>
+    <link>http://localhost:1313/en/tags/grid-based/</link>
+    <description>Recent content in Grid-Based on Peanuts Code</description>
+    <image>
+      <title>Peanuts Code</title>
+      <url>http://localhost:1313/images/logomark.png</url>
+      <link>http://localhost:1313/images/logomark.png</link>
+    </image>
+    <generator>Hugo -- 0.133.0</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 09 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/en/tags/grid-based/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 2D Grid-based Movement in Godot3</title>
+      <link>http://localhost:1313/en/tutorials/gd0010_2d_grid_based_movement/</link>
+      <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
+      <guid>http://localhost:1313/en/tutorials/gd0010_2d_grid_based_movement/</guid>
+      <description>This tutorial explains how to implement &amp;ldquo;grid-based movement&amp;rdquo; in 2D games. Grid-based movement refers to the movement of objects such as characters on the game screen one grid at a time.
+Many puzzle games such as the popular smartphone game &amp;ldquo;Puzzle &amp;amp; Dragons&amp;rdquo; and the original falling game &amp;ldquo;Tetris,&amp;rdquo; as well as tactical simulation games such as the &amp;ldquo;Fire Emblem&amp;rdquo; series and &amp;ldquo;Tactics Ogre&amp;rdquo; probably employ this type of movement.
+On the other hand, RPGs such as the &amp;ldquo;Final Fantasy&amp;rdquo; series and the &amp;ldquo;Dragon Quest&amp;rdquo; series also use this grid-based movement when looking closely at character movement in the era of 2D graphics, when these games appeared as software for the NES and Super Nintendo.
+Thus, grid-based movement is used in games of various genres, and its versatility is quite high.
+In this article, we will focus as much as possible on only the implementation of grid-based movement. In addition, a sample game that uses grid-based movement will be introduced at the end of the article, so please feel free to refer to it as well.
+Note that the project file that will be created at the end of this tutorial is located in the GitHub repository .</description>
+    </item>
+  </channel>
+</rss>

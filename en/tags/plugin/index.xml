@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>en</language>
     <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/plugin/index.xml" rel="self" type="application/rss+xml" />
@@ -18,27 +18,52 @@
       <link>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</link>
       <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</guid>
-      <description>In the previous article 🤖 Adding Game Center Plugin to Your Project , I explained how to add the Game Center plugin from the official Godot iOS plugins to your project. In this article, I&amp;rsquo;ll guide you on implementing the functionalities of Apple&amp;rsquo;s Game Center using the added plugin.
-If you&amp;rsquo;re wondering what Game Center is all about, I briefly explained it in the beginning of the previous article, so you might want to check that out first.
-Broadly, I&amp;rsquo;ll explain in two main sections:
-Setting Up Game Center in App Store Connect Implementing Game Center in GDScript By the way, the basic usage of plugins is documented in Godot Docs / iOS plugins / iOS plugins , so it would be reasonable to start there.
-Also, you can find the code for the Game Center plugin on GitHub at Godot iOS GameCenter plugin . If you want to delve into the details, you can check it out. Personally, I found it a bit challenging at first.
-Environment at the Time of Writing Godot Version: 4.2.1
-Computer Model: MacBook Air M1, 2020</description>
+      <description>&lt;p&gt;In the previous article &lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/&#34;&gt;🤖 Adding Game Center Plugin to Your Project&lt;/a&gt;
+, I explained how to add the Game Center plugin from the official Godot iOS plugins to your project. In this article, I&amp;rsquo;ll guide you on implementing the functionalities of Apple&amp;rsquo;s Game Center using the added plugin.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;re wondering what Game Center is all about, I briefly explained it in the beginning of the previous article, so you might want to check that out first.&lt;/p&gt;
+&lt;p&gt;Broadly, I&amp;rsquo;ll explain in two main sections:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Setting Up Game Center in App Store Connect&lt;/li&gt;
+&lt;li&gt;Implementing Game Center in GDScript&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;By the way, the basic usage of plugins is documented in &lt;a href=&#34;https://docs.godotengine.org/en/4.x/tutorials/platform/ios/plugins_for_ios.html&#34; target=&#34;_blank&#34;&gt;Godot Docs / iOS plugins / iOS plugins&lt;/a&gt;
+, so it would be reasonable to start there.&lt;/p&gt;
+&lt;p&gt;Also, you can find the code for the Game Center plugin on GitHub at &lt;a href=&#34;https://github.com/godotengine/godot-ios-plugins/blob/master/plugins/gamecenter/game_center.mm&#34; target=&#34;_blank&#34;&gt;Godot iOS GameCenter plugin&lt;/a&gt;
+. If you want to delve into the details, you can check it out. Personally, I found it a bit challenging at first.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Environment at the Time of Writing&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+Godot Version: &lt;strong&gt;4.2.1&lt;/strong&gt;&lt;br&gt;
+Computer Model: &lt;strong&gt;MacBook Air M1, 2020&lt;/strong&gt;&lt;br&gt;
+OS: &lt;strong&gt;macOS 14.4.1&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Adding a Game Center Plugin to Your Project</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</link>
       <pubDate>Sun, 05 May 2024 20:17:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</guid>
-      <description>Introduction In this article, I&amp;rsquo;ll show you how to add the official Godot plugin for integrating with Apple&amp;rsquo;s Game Center to your project.
-First off, what is Game Center? For those unfamiliar, it’s a feature available on iOS devices like iPhones and iPads. By signing in with an Apple ID, Game Center records achievements and allows players to compete on leaderboards in supported games. Developers can set achievements, define their completion criteria, and decide what to compete for on the leaderboards.
-Using the Game Center plugin in Godot, you can easily integrate these features into your games, which is pretty awesome.
-By the way, you can find the official documentation and source code at the Godot iOS plugins repository , so take a look there first. If there&amp;rsquo;s anything you don&amp;rsquo;t quite understand, you can always come back to this article.
-Author&amp;#39;s Environment at the Time of Writing Godot Version: 4.2.1
-Computer Model: MacBook Air M1, 2020
-OS: macOS 14.4.1
-Clone the Plugin Repository First, head over to this Github page and follow the steps there. However, they’re not very detailed, so I&amp;rsquo;ll explain the nitty-gritty parts here.</description>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In this article, I&amp;rsquo;ll show you how to add the official Godot plugin for integrating with Apple&amp;rsquo;s Game Center to your project.&lt;/p&gt;
+&lt;p&gt;First off, what is Game Center? For those unfamiliar, it’s a feature available on iOS devices like iPhones and iPads. By signing in with an Apple ID, Game Center records achievements and allows players to compete on leaderboards in supported games. Developers can set achievements, define their completion criteria, and decide what to compete for on the leaderboards.&lt;/p&gt;
+&lt;p&gt;Using the Game Center plugin in Godot, you can easily integrate these features into your games, which is pretty awesome.&lt;/p&gt;
+&lt;p&gt;By the way, you can find the official documentation and source code at the &lt;a href=&#34;https://github.com/godotengine/godot-ios-plugins&#34; target=&#34;_blank&#34;&gt;Godot iOS plugins repository&lt;/a&gt;
+, so take a look there first. If there&amp;rsquo;s anything you don&amp;rsquo;t quite understand, you can always come back to this article.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Author&amp;#39;s Environment at the Time of Writing&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+Godot Version: &lt;strong&gt;4.2.1&lt;/strong&gt;&lt;br&gt;
+Computer Model: &lt;strong&gt;MacBook Air M1, 2020&lt;/strong&gt;&lt;br&gt;
+OS: &lt;strong&gt;macOS 14.4.1&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

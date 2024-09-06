@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>ja</language>
     <lastBuildDate>Sun, 16 Oct 2022 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%BC/index.xml" rel="self" type="application/rss+xml" />
@@ -18,105 +18,206 @@
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</link>
       <pubDate>Sun, 24 Apr 2022 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</guid>
-      <description>第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップやギミックの類だ。 動く床 落ちる床 高く飛べる床 火が出る装置 飛んでくる鉄球 今回は Part 1 でインポート済みのアセットからたくさんのスプライトシートを利用する。例によって、</description>
+      <description>&lt;p&gt;第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップやギミックの類だ。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;動く床&lt;/li&gt;
+&lt;li&gt;落ちる床&lt;/li&gt;
+&lt;li&gt;高く飛べる床&lt;/li&gt;
+&lt;li&gt;火が出る装置&lt;/li&gt;
+&lt;li&gt;飛んでくる鉄球&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;今回は Part 1 でインポート済みのアセットからたくさんのスプライトシートを利用する。例によって、見た目にブラーがかかっている（ピクセルアート特有のエッジが効いた画像ではない）場合は、ファイルシステム上で利用するアセットファイルを選択し、インポートドックから「プリセット」＞「2D Pixel」を選択し、「再インポート」をクリックして修正しよう。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るプラットフォーマー Part 14：プレイヤーキャラクターのアクションをアップデートしよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_14/</link>
       <pubDate>Thu, 14 Apr 2022 02:07:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_14/</guid>
-      <description>第14回目の今回は、プレイヤーキャラクターのアクションをアップデートしていく。具体的には以下にリストアップしたジャンプとダッシュの動きや演出を追加していく。 落下時のアニメーション 壁ジャンプ ダブルジャンプ（2段ジャンプ） 走っている時の砂埃 ダッシュ時のゴーストエフェクト（残像効果） おまけのような内容だが、作って実際にプレイすると非常に楽しいところなので、是非やっ</description>
+      <description>&lt;p&gt;第14回目の今回は、プレイヤーキャラクターのアクションをアップデートしていく。具体的には以下にリストアップしたジャンプとダッシュの動きや演出を追加していく。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;落下時のアニメーション&lt;/li&gt;
+&lt;li&gt;壁ジャンプ&lt;/li&gt;
+&lt;li&gt;ダブルジャンプ（2段ジャンプ）&lt;/li&gt;
+&lt;li&gt;走っている時の砂埃&lt;/li&gt;
+&lt;li&gt;ダッシュ時のゴーストエフェクト（残像効果）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;おまけのような内容だが、作って実際にプレイすると非常に楽しいところなので、是非やってみてほしい。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るプラットフォーマー Part 13：サウンドを追加しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_13/</link>
       <pubDate>Fri, 08 Apr 2022 19:42:19 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_13/</guid>
-      <description>第13回目の今回は、ゲームにサウンドを追加する。ゲームに使われるサウンドというのは、大きく分けて2種類ある。バックグラウンドミュージック（BGM）と効果音（サウンドエフェクト：SFX）だ。Godot Engine ではどちらも追加する方法に大きな違いはない。素材さえ用意すれば、追加するのは比較的簡単だ。特定のタイミングでサウンドを鳴らしたい時、例えば、プレイヤーキャラクタ</description>
+      <description>&lt;p&gt;第13回目の今回は、ゲームにサウンドを追加する。ゲームに使われるサウンドというのは、大きく分けて2種類ある。バックグラウンドミュージック（BGM）と効果音（サウンドエフェクト：SFX）だ。Godot Engine ではどちらも追加する方法に大きな違いはない。素材さえ用意すれば、追加するのは比較的簡単だ。特定のタイミングでサウンドを鳴らしたい時、例えば、プレイヤーキャラクターがジャンプした時にジャンプの効果音を鳴らしたい場合などには、プログラミングして制御する必要があるが、複雑なコードにはならないので安心してほしい。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るプラットフォーマー Part 12：光と影を演出しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_12/</link>
       <pubDate>Sat, 26 Mar 2022 00:25:27 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_12/</guid>
-      <description>第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので、気楽にやっていこう。 Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。 Godot で作るプラットフォーマー 公式オンライ</description>
+      <description>&lt;p&gt;第12回目の今回は、ゲームプレイ画面に光と影の演出、というテーマでやっていく。前回に引き続き、ビジュアル面でのゲームのアップデートだ。結果が目に見えてわかりやすいのと、今回もスクリプト不要の内容なので、気楽にやっていこう。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo：&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/&#34; title=&#34;Godot で作るプラットフォーマー&#34;&gt;Godot で作るプラットフォーマー&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るプラットフォーマー Part 11：背景を作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_11/</link>
       <pubDate>Fri, 25 Mar 2022 22:31:30 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_11/</guid>
-      <description>第11回目の今回は、ゲームプレイ画面の背景を作る。 背景と言っても、ただテクスチャ画像を一枚ペタリと貼り付けて終わりだと面白くない。それに、カメラがどれだけ動いても背景が途切れなく繋がっている状態を作るには、ちょっとした工夫（というか Godot の機能）が必要だ。 また、プラットフォーマーのゲームでは、大抵、背景がいくつかのレイヤーに別れており、プレイヤー（カメラ）が動い</description>
+      <description>&lt;p&gt;第11回目の今回は、ゲームプレイ画面の背景を作る。&lt;/p&gt;
+&lt;p&gt;背景と言っても、ただテクスチャ画像を一枚ペタリと貼り付けて終わりだと面白くない。それに、カメラがどれだけ動いても背景が途切れなく繋がっている状態を作るには、ちょっとした工夫（というか Godot の機能）が必要だ。&lt;/p&gt;
+&lt;p&gt;また、プラットフォーマーのゲームでは、大抵、背景がいくつかのレイヤーに別れており、プレイヤー（カメラ）が動いた時に、遠景のレイヤーはゆっくり動き、近景のレイヤーは速く動く、という設定により背景の奥行きが感じられる表現が採用されている。これは、いわゆるパララックスエフェクト（視差効果）というものだ。ありがたいことに Godot にはこのパララックスエフェクトを背景に適用するためのクラスが最初から用意されているので、それらのノードを追加するだけでほとんど作業は完了できる。しかも、なんと言ってもスクリプトのコーディングが不要だ。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るプラットフォーマー Part 10：スタート画面を作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_10/</link>
       <pubDate>Tue, 22 Mar 2022 17:32:43 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_10/</guid>
-      <description>第10回目の今回は、ゲーム開始時に表示されるスタート画面を作る。タイトル画面、スタートメニューとも言う。 それだけだと、前回と比べて簡単すぎるので、ゲーム開始時にプレイヤーキャラクターを選択できる仕組みも実装する。画面遷移のイメージは以下の通りだ。 まずゲームを始めるとスタート画面が表示される。 スタートボタンを押すとプレイヤーキャラクター選択画面に遷移する。 プレ</description>
+      <description>&lt;p&gt;第10回目の今回は、ゲーム開始時に表示されるスタート画面を作る。タイトル画面、スタートメニューとも言う。&lt;/p&gt;
+&lt;p&gt;それだけだと、前回と比べて簡単すぎるので、ゲーム開始時にプレイヤーキャラクターを選択できる仕組みも実装する。画面遷移のイメージは以下の通りだ。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;まずゲームを始めるとスタート画面が表示される。&lt;/li&gt;
+&lt;li&gt;スタートボタンを押すとプレイヤーキャラクター選択画面に遷移する。&lt;/li&gt;
+&lt;li&gt;プレイヤーキャラクターを選択するとゲームプレイ開始。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ということで、今回の作業は以下の通りだ。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るプラットフォーマー Part 9：ゲームオーバーの仕組みを作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_9/</link>
       <pubDate>Mon, 14 Mar 2022 01:59:44 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_9/</guid>
-      <description>第9回目の今回は、ゲームオーバーの仕組みを実装していく。 世に出ているプラットフォーマーゲームにはほぼ確実にゲームオーバーの仕組みが存在する。ゲームオーバーになるかもしれない緊張感がなければプラットフォーマーの面白さは激減する。だから、ゲームオーバーの実装は必要不可欠だ。さらに、ゲームオーバーの条件設定もまたゲームの難易度を左右するため非常に重要だ。 一般的にゲ</description>
+      <description>&lt;p&gt;第9回目の今回は、ゲームオーバーの仕組みを実装していく。&lt;/p&gt;
+&lt;p&gt;世に出ているプラットフォーマーゲームにはほぼ確実にゲームオーバーの仕組みが存在する。ゲームオーバーになるかもしれない緊張感がなければプラットフォーマーの面白さは激減する。だから、ゲームオーバーの実装は必要不可欠だ。さらに、ゲームオーバーの条件設定もまたゲームの難易度を左右するため非常に重要だ。&lt;/p&gt;
+&lt;p&gt;一般的にゲームオーバーの条件としては、敵や敵の攻撃に一回でも当たるか、当たってヘルス（ライフ）が 0 になるか、画面下部に落下した時などにゲームオーバーになることが多い。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るプラットフォーマー Part 8：HUD を追加しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_8/</link>
       <pubDate>Fri, 04 Mar 2022 13:16:21 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_8/</guid>
-      <description>第8回目の今回は、HUD を実装していく。 HUD というのは、ヘッズアップディスプレイ（Heads Up Display）の略で、ゲームプレイ中に常に画面上に表示されている UI の一つだ。例えば、プレイヤーの残りのライフ（海外での呼称 Health に合わせてこれ以降はヘルスと呼ぶ）や、獲得したスコアなどがわかりやすいだろう。HUD を実装する目的は現在のゲームの状態を視覚的にわかりやすくす</description>
+      <description>&lt;p&gt;第8回目の今回は、HUD を実装していく。&lt;/p&gt;
+&lt;p&gt;HUD というのは、ヘッズアップディスプレイ（Heads Up Display）の略で、ゲームプレイ中に常に画面上に表示されている UI の一つだ。例えば、プレイヤーの残りのライフ（海外での呼称 Health に合わせてこれ以降はヘルスと呼ぶ）や、獲得したスコアなどがわかりやすいだろう。HUD を実装する目的は現在のゲームの状態を視覚的にわかりやすくすることだ。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るプラットフォーマー Part 7：次のレベルに遷移させよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_7/</link>
       <pubDate>Thu, 03 Mar 2022 15:11:20 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_7/</guid>
-      <description>第7回目の今回は、レベルのマップ上にスタートポイント、中間のチェックポイント、そしてエンドポイントを配置し、エンドポイントに到達した時に次のレベルに遷移する仕組みを実装していく。併せて、現在レベルシーンは「Level1」だけなので、次の「Level2」シーンも作成していく。 Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをお</description>
+      <description>&lt;p&gt;第7回目の今回は、レベルのマップ上にスタートポイント、中間のチェックポイント、そしてエンドポイントを配置し、エンドポイントに到達した時に次のレベルに遷移する仕組みを実装していく。併せて、現在レベルシーンは「Level1」だけなので、次の「Level2」シーンも作成していく。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo：&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/&#34; title=&#34;Godot で作るプラットフォーマー&#34;&gt;Godot で作るプラットフォーマー&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るプラットフォーマー Part 6：アイテムを作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_6/</link>
       <pubDate>Sat, 19 Feb 2022 16:17:02 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_6/</guid>
-      <description>第6回目の今回は、アイテムを作る。アイテムというのは、ちょうどスーパーマリオシリーズのコインのような、当たるとポイントを獲得できてちょっと嬉しい存在だ。さらに、下から小突くとアイテムが出てくる箱、その名もアイテムボックスを作る。それぞれスクリプトで動作を制御し、最後はレベルシーンに配置するところまでやっていこう。 Memo： 過去のシリーズをまだご覧になっていな</description>
+      <description>&lt;p&gt;第6回目の今回は、アイテムを作る。アイテムというのは、ちょうどスーパーマリオシリーズのコインのような、当たるとポイントを獲得できてちょっと嬉しい存在だ。さらに、下から小突くとアイテムが出てくる箱、その名もアイテムボックスを作る。それぞれスクリプトで動作を制御し、最後はレベルシーンに配置するところまでやっていこう。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo：&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/&#34; title=&#34;Godot で作るプラットフォーマー&#34;&gt;Godot で作るプラットフォーマー&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るプラットフォーマー Part 5：さらに敵キャラクターを作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_5/</link>
       <pubDate>Fri, 18 Feb 2022 15:00:38 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_5/</guid>
-      <description>第5回目の今回は、さらに敵キャラクターの種類を増やしていく。それぞれの敵キャラクターの動きに違いを持たせ、それらをタイルマップ上に複数配置してゲームの難易度を高めていこう。具体的に今回は以下の敵キャラクターを作成していく。 バニー（うさぎ） カメレオン プラント（植物） Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめしま</description>
+      <description>&lt;p&gt;第5回目の今回は、さらに敵キャラクターの種類を増やしていく。それぞれの敵キャラクターの動きに違いを持たせ、それらをタイルマップ上に複数配置してゲームの難易度を高めていこう。具体的に今回は以下の敵キャラクターを作成していく。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;バニー（うさぎ）&lt;/li&gt;
+&lt;li&gt;カメレオン&lt;/li&gt;
+&lt;li&gt;プラント（植物）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo：&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/&#34; title=&#34;Godot で作るプラットフォーマー&#34;&gt;Godot で作るプラットフォーマー&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るプラットフォーマー Part 4：敵キャラクターを作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/</link>
       <pubDate>Thu, 10 Feb 2022 01:41:29 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_4/</guid>
-      <description>第4回目の今回は、敵キャラクターの雛形となるシーンを作成し、それを継承する形で個別の敵キャラクターを一つ作っていく。そのあと、その敵キャラクターをレベルシーンに配置して、プレイヤーキャラクターに踏まれたら消えるところまで実装してみよう。 Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。 Godot で作るプラットフォーマ</description>
+      <description>&lt;p&gt;第4回目の今回は、敵キャラクターの雛形となるシーンを作成し、それを継承する形で個別の敵キャラクターを一つ作っていく。そのあと、その敵キャラクターをレベルシーンに配置して、プレイヤーキャラクターに踏まれたら消えるところまで実装してみよう。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo：&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/&#34; title=&#34;Godot で作るプラットフォーマー&#34;&gt;Godot で作るプラットフォーマー&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るプラットフォーマー Part 3：カメラを追加しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_3/</link>
       <pubDate>Sat, 05 Feb 2022 17:16:51 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_3/</guid>
-      <description>第3回目の今回は、プレイヤーキャラクターの動きに合わせてカメラが移動し、Part 2 の時より広いタイルマップ上をキャラクターが移動できるようにしていく。 なお、2Dゲームのカメラについて、公式ドキュメントにも説明があるので、併せて確認いただくのが良いだろう。 公式オンラインドキュメント： Camera2D Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただ</description>
+      <description>&lt;p&gt;第3回目の今回は、プレイヤーキャラクターの動きに合わせてカメラが移動し、Part 2 の時より広いタイルマップ上をキャラクターが移動できるようにしていく。&lt;/p&gt;
+&lt;p&gt;なお、2Dゲームのカメラについて、公式ドキュメントにも説明があるので、併せて確認いただくのが良いだろう。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;公式オンラインドキュメント：&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+&lt;a href=&#34;https://docs.godotengine.org/ja/stable/classes/class_camera2d.html&#34; target=&#34;_blank&#34;&gt;Camera2D&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo：&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/&#34; title=&#34;Godot で作るプラットフォーマー&#34;&gt;Godot で作るプラットフォーマー&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るプラットフォーマー Part 2：タイルマップを作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</link>
       <pubDate>Fri, 04 Feb 2022 13:30:38 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_2/</guid>
-      <description>今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。 なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。 公式オンラインドキュメント： Using TileMaps Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。 Godot で作るプラットフォ</description>
+      <description>&lt;p&gt;今回は、第2回ということで、ゲームのプレイ画面にタイルマップを配置してプレイヤーが動き回る舞台を作っていく。&lt;/p&gt;
+&lt;p&gt;なお、タイルマップについては、公式ドキュメントでも説明があるので、併せて確認いただくのが良いだろう。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;公式オンラインドキュメント：&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+&lt;a href=&#34;https://docs.godotengine.org/ja/stable/tutorials/2d/using_tilemaps.html&#34; target=&#34;_blank&#34;&gt;Using TileMaps&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo：&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/&#34; title=&#34;Godot で作るプラットフォーマー&#34;&gt;Godot で作るプラットフォーマー&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot3 で作るプラットフォーマー Part 1：プレイヤーキャラクターを作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</link>
       <pubDate>Sat, 29 Jan 2022 23:38:27 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_1/</guid>
-      <description>このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。今回は、初回ということで、ゲームのプレイ画面にプレイヤーキャラクターを用意して操作するところまでやってみよう。 Memo: ゲームを作り始めるのに以下の記事もお役立てください。 Godot をダウンロードする Godot のプロジェクトマネージャ</description>
+      <description>&lt;p&gt;このチュートリアルシリーズでは、スーパーマリオのような横スクロールアクションゲーム、いわゆる「プラットフォーマー」というジャンルのゲームを作っていく。今回は、初回ということで、ゲームのプレイ画面にプレイヤーキャラクターを用意して操作するところまでやってみよう。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:teal&#34;&gt;Memo:&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+ゲームを作り始めるのに以下の記事もお役立てください。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0001_download/&#34; title=&#34;Godot をダウンロードする&#34;&gt;Godot をダウンロードする&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0002_project_manager/&#34; title=&#34;Godot のプロジェクトマネージャー&#34;&gt;Godot のプロジェクトマネージャー&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0003_change_language/&#34; title=&#34;Godot の言語設定&#34;&gt;Godot の言語設定&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/&#34; title=&#34;Godot で作るブロック崩しシリーズ&#34;&gt;Godot で作るブロック崩しシリーズ&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

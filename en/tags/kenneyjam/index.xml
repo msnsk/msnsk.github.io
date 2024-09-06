@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>en</language>
     <lastBuildDate>Sun, 04 Sep 2022 00:35:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/kenneyjam/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,30 @@
       <link>https://www.peanuts-code.com/en/posts/post0004_my_first_game_jam/</link>
       <pubDate>Sun, 04 Sep 2022 00:35:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/posts/post0004_my_first_game_jam/</guid>
-      <description>I recently joined the &amp;ldquo;KENNEY Game Jam&amp;rdquo; held recently. It was my first game jam. In this article, I would like to write about the game jam for indie game developers held on the itch.io website, including what I learned and felt while participating in the game jam. What is a Game Jam? A game jam is an event where participants develop a game in a short period of time, publish it, and evaluate each other. It is also called the hackathon of game development. The itch.io site sells games, assets, and hosts a number of game jams worldwide. Some are held monthly, some are held as an annual event, and there are a variety of small and large game jams, and there is always some sort of game jam going on throughout the year. KENNEY Jam 2022 , which I attended, was also held at itch.io . The participants in the game jam are mainly individual developers and small teams. Skill levels range from beginners to veterans. Although veterans are considered to have an advantage, many game jams have</description>
+      <description>&lt;p&gt;I recently joined the &amp;ldquo;KENNEY Game Jam&amp;rdquo; held recently. It was my first game jam. In this article, I would like to write about the game jam for indie game developers held on the &lt;a href=&#34;https://itch.io/jams&#34; target=&#34;_blank&#34;&gt;itch.io&lt;/a&gt;
+ website, including what I learned and felt while participating in the game jam.&lt;br&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;what-is-a-game-jam&#34;&gt;What is a Game Jam?&lt;/h2&gt;
+&lt;p&gt;A game jam is an event where participants develop a game in a short period of time, publish it, and evaluate each other. It is also called the &lt;a href=&#34;https://en.wikipedia.org/wiki/Hackathon&#34; target=&#34;_blank&#34;&gt;hackathon&lt;/a&gt;
+ of game development.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://itch.io/jams&#34; target=&#34;_blank&#34;&gt;itch.io&lt;/a&gt;
+ site sells games, assets, and hosts a number of game jams worldwide. Some are held monthly, some are held as an annual event, and there are a variety of small and large game jams, and there is always some sort of game jam going on throughout the year. &lt;a href=&#34;https://itch.io/jam/kenney-jam-2022&#34; target=&#34;_blank&#34;&gt;KENNEY Jam 2022&lt;/a&gt;
+, which I attended, was also held at &lt;a href=&#34;https://itch.io/jams&#34; target=&#34;_blank&#34;&gt;itch.io&lt;/a&gt;
+.&lt;br&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/posts/post0004/img2.png&#34; alt=&#34;image2&#34;  /&gt;
+&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

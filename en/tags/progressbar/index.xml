@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>en</language>
     <lastBuildDate>Fri, 05 Aug 2022 11:05:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/progressbar/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,23 @@
       <link>https://www.peanuts-code.com/en/tutorials/gd0015_circular_progress_bar/</link>
       <pubDate>Fri, 05 Aug 2022 11:05:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0015_circular_progress_bar/</guid>
-      <description>In this article, I will show you how to create a circular progress bar. By using a circular progress bar instead of the usual portrait or landscape orientation, you can add a little accent to your screen, so please refer to this tutorial if you find a use for it. At the end of the tutorial, we will also show you some sample progress bars that are not circular (e.g., heart-shaped), so if you are interested, please take a look at them as well. The final project file for this tutorial is available at GitHub repository . If you download the .zip file and import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;End&amp;rdquo; folder with the Godot Engine, you can check the project directly. Environment ・Godot version: 3.4.4 ・Computer OS version: macOS 11.6.5 Other Articles Please also use the following articles to help you start creating your game. Downloading Godot Project Manager of Godot Preparation Preparing an image of the circular progress bar If you have a drawing application</description>
+      <description>&lt;p&gt;In this article, I will show you how to create a circular progress bar. By using a circular progress bar instead of the usual portrait or landscape orientation, you can add a little accent to your screen, so please refer to this tutorial if you find a use for it. At the end of the tutorial, we will also show you some sample progress bars that are not circular (e.g., heart-shaped), so if you are interested, please take a look at them as well.&lt;/p&gt;
+&lt;p&gt;The final project file for this tutorial is available at &lt;a href=&#34;https://github.com/msnsk/CircularProgressBar.git&#34; target=&#34;_blank&#34;&gt;GitHub repository&lt;/a&gt;
+. If you download the .zip file and import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;End&amp;rdquo; folder with the Godot Engine, you can check the project directly.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Environment&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+・&lt;em&gt;Godot version: &lt;strong&gt;3.4.4&lt;/strong&gt;&lt;/em&gt;&lt;br&gt;
+・&lt;em&gt;Computer OS version: &lt;strong&gt;macOS 11.6.5&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Other Articles&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;Please also use the following articles to help you start creating your game.&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0001_download/&#34;&gt;Downloading Godot&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/&#34;&gt;Project Manager of Godot&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

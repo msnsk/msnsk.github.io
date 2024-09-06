@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>en</language>
     <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/appstoreconnect/index.xml" rel="self" type="application/rss+xml" />
@@ -18,12 +18,29 @@
       <link>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</link>
       <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</guid>
-      <description>In this article, I&amp;rsquo;ll explain how to upload an iOS game exported from Godot to App Store Connect using Xcode. It&amp;rsquo;ll probably be short, so feel free to take it easy. Also, I&amp;rsquo;m assuming you&amp;rsquo;re familiar with Xcode, which is a macOS-exclusive app, so I&amp;rsquo;ll proceed with that in mind. Macs can be pricey, but if you want to release apps like iOS or macOS on the App Store, it&amp;rsquo;s an essential tool. I got mine with a 2-year Orico loan. It was tough, though 😆
-Environment at the time of writing this article Xcode Version: 15.3 (15E204a)
-Computer Model: MacBook Air M1, 2020
-OS: macOS 14.4.1
-Working with Xcode First, let&amp;rsquo;s open the project for the iOS version of your game exported from Godot in Xcode. If you peek into the folder where you exported it via Finder, you&amp;rsquo;ll find a file with a .xcodeproj extension. Just double-click on that (if there&amp;rsquo;s a .xcworkspace file generated due to adding plugins like Google AdMob, open that instead, but I won&amp;rsquo;t dive into that here).
-Enabling Game Center Capability in Xcode *You can skip this section if you don&amp;rsquo;t plan to integrate with Apple&amp;rsquo;s Game Center.</description>
+      <description>&lt;p&gt;In this article, I&amp;rsquo;ll explain how to upload an iOS game exported from Godot to App Store Connect using Xcode. It&amp;rsquo;ll probably be short, so feel free to take it easy. Also, I&amp;rsquo;m assuming you&amp;rsquo;re familiar with Xcode, which is a macOS-exclusive app, so I&amp;rsquo;ll proceed with that in mind. Macs can be pricey, but if you want to release apps like iOS or macOS on the App Store, it&amp;rsquo;s an essential tool. I got mine with a 2-year Orico loan. It was tough, though 😆&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Environment at the time of writing this article&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+Xcode Version: &lt;strong&gt;15.3 (15E204a)&lt;/strong&gt;&lt;br&gt;
+Computer Model: &lt;strong&gt;MacBook Air M1, 2020&lt;/strong&gt;&lt;br&gt;
+OS: &lt;strong&gt;macOS 14.4.1&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;br/&gt;
+&lt;h2 id=&#34;working-with-xcode&#34;&gt;Working with Xcode&lt;/h2&gt;
+&lt;p&gt;First, let&amp;rsquo;s open the project for the iOS version of your game exported from Godot in Xcode. If you peek into the folder where you exported it via Finder, you&amp;rsquo;ll find a file with a &lt;strong&gt;.xcodeproj&lt;/strong&gt; extension. Just double-click on that (if there&amp;rsquo;s a &lt;strong&gt;.xcworkspace&lt;/strong&gt; file generated due to adding plugins like Google AdMob, open that instead, but I won&amp;rsquo;t dive into that here).&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

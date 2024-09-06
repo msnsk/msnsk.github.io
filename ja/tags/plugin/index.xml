@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Plugin on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/plugin/</link>
+    <description>Recent content in Plugin on Peanuts Code</description>
+    <image>
+      <title>Peanuts Code</title>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
+    </image>
+    <generator>Hugo -- 0.134.1</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/plugin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 Game Center プラグインを追加したあとの実装</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0022_implement_game_center/</link>
+      <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0022_implement_game_center/</guid>
+      <description>&lt;p&gt;前回の &lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/&#34; title=&#34;プロジェクトに Game Center プラグインを追加する&#34;&gt;🤖 プロジェクトに Game Center プラグインを追加する&lt;/a&gt;
+ の記事では Godot 公式の iOS プラグインのうち Game Center のプラグインをプロジェクトに追加する手順について説明したんやけど、今回の記事では、その追加したプラグインを使って、実際に Apple の Game Center の機能を実装する方法について書いてるで。&lt;/p&gt;
+&lt;p&gt;そもそも Game Center って何？って人がいるかもしれんけど、前回の記事の冒頭で軽く説明してるから、よかったら先にそっち見てみてな。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>🤖 プロジェクトに Game Center プラグインを追加する</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</link>
+      <pubDate>Wed, 01 May 2024 20:17:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0021_game_center_plugin/</guid>
+      <description>&lt;p&gt;この記事では、Apple の Game Center と連携させるための Godot 公式プラグインをプロジェクトに追加する方法について説明していくで。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;ちなみに、今までの記事は「である」調で書いてたんやけど、ちょっと堅苦しくて偉そうやったから、今回から、口語調というか、おもいっきり普段のタメ語の関西弁で書いていくことにしたんやわ。今までの記事を読んでくれてたみんなにはビビらせてしまうかもしれんけど、まあ、普通の文章書くんなら ChatGPT のほうが上手に書きよるから、ちょっと人間らしさ出してこや、って感じやねん。関西弁アレルギーの人はほんまゴメンやで。&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

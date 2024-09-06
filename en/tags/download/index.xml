@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>en</language>
     <lastBuildDate>Wed, 08 Jun 2022 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/download/index.xml" rel="self" type="application/rss+xml" />
@@ -18,13 +18,13 @@
       <link>https://www.peanuts-code.com/en/tutorials/gd0001_download/</link>
       <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0001_download/</guid>
-      <description>What&amp;rsquo;s Godot? Godot Engine, or simply Godot, is a very popular open-source game engine that is now gaining popularity, especially in the indie game industry.
-A game engine is a reliable tool that handles all the complicated tasks for game developers by providing them with a system that is commonly needed in game development from the beginning so that they can concentrate on game development.
-For example, &amp;ldquo;displaying characters on the screen,&amp;rdquo; &amp;ldquo;sound effects sound when buttons are pressed and the screen changes,&amp;rdquo; &amp;ldquo;shining light on 3D objects and drawing shadows,&amp;rdquo; and &amp;ldquo;causing damage when a beam of light hits an enemy,&amp;rdquo; etc., are all common game development tasks that would be difficult if created from scratch. The game engine takes care of these processes for us.
-In this article, I will explain the first step to start using Godot, which is to download it (very easy).
-Godot is multi-platform. The files are available for almost all computers with major operating systems (Windows, macOS, and Linux) installed.
-Let&amp;rsquo;s get started with the download process.
-Accessing the download page First, access the official download page.</description>
+      <description>&lt;h2 id=&#34;whats-godot&#34;&gt;What&amp;rsquo;s Godot?&lt;/h2&gt;
+&lt;p&gt;Godot Engine, or simply Godot, is a very popular open-source game engine that is now gaining popularity, especially in the indie game industry.&lt;/p&gt;
+&lt;p&gt;A game engine is a reliable tool that handles all the complicated tasks for game developers by providing them with a system that is commonly needed in game development from the beginning so that they can concentrate on game development.&lt;/p&gt;
+&lt;p&gt;For example, &amp;ldquo;displaying characters on the screen,&amp;rdquo; &amp;ldquo;sound effects sound when buttons are pressed and the screen changes,&amp;rdquo; &amp;ldquo;shining light on 3D objects and drawing shadows,&amp;rdquo; and &amp;ldquo;causing damage when a beam of light hits an enemy,&amp;rdquo; etc., are all common game development tasks that would be difficult if created from scratch. The game engine takes care of these processes for us.&lt;/p&gt;
+&lt;p&gt;In this article, I will explain the first step to start using Godot, which is to download it (very easy).&lt;/p&gt;
+&lt;p&gt;Godot is multi-platform. The files are available for almost all computers with major operating systems (Windows, macOS, and Linux) installed.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s get started with the download process.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>ja</language>
     <lastBuildDate>Wed, 10 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/indiedev/index.xml" rel="self" type="application/rss+xml" />
@@ -18,56 +18,98 @@
       <link>https://www.peanuts-code.com/ja/portfolio/work0001_slashing_samurai/</link>
       <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
       <guid>https://www.peanuts-code.com/ja/portfolio/work0001_slashing_samurai/</guid>
-      <description>カジュアル・タイミングゲーム「もの切り侍」が登場！ 今あなたの動体視力と反射神経が試される！侍を操作して、空から降ってくるあんな物やこんな物を見事空中で切ることができるか？！簡単片手操作でプレイできる、激ハマり必至の爽快カジュアル・タイミングゲーム！ Your browser does not support the video tag. どんなゲーム？ ゲームのジャンルはいわゆるタイミングゲームになります。ゲームの各ステージでは、なん</description>
+      <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; allowfullscreen=&#34;allowfullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/wHKKKYeLvJk?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;
+      &gt;&lt;/iframe&gt;
+    &lt;/div&gt;
+
+&lt;h2 id=&#34;カジュアルタイミングゲームもの切り侍が登場&#34;&gt;カジュアル・タイミングゲーム「もの切り侍」が登場！&lt;/h2&gt;
+&lt;p&gt;今あなたの動体視力と反射神経が試される！侍を操作して、空から降ってくるあんな物やこんな物を見事空中で切ることができるか？！簡単片手操作でプレイできる、激ハマり必至の爽快カジュアル・タイミングゲーム！&lt;/p&gt;</description>
     </item>
     <item>
       <title>🕹️ モバイルゲーム - ステキなソリティア</title>
       <link>https://www.peanuts-code.com/ja/portfolio/work0002_lovely_solitaire/</link>
       <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
       <guid>https://www.peanuts-code.com/ja/portfolio/work0002_lovely_solitaire/</guid>
-      <description>カードゲーム「ステキなソリティア」が登場！ 「ソリティア（クロンダイク）」と言えば、言わずと知れた定番中の定番、一人遊びカードゲームの王様なわけですが、このたび、モバイルゲーム「ステキなソリティア」が App Store で配信！オシャレなユーザーインターフェースなので、電車の中でプレイしていても、なんかイケてる感じを醸し出すことができます！（本当かな？）初めてプレイする人もご</description>
+      <description>&lt;h2 id=&#34;カードゲームステキなソリティアが登場&#34;&gt;カードゲーム「ステキなソリティア」が登場！&lt;/h2&gt;
+&lt;p&gt;「ソリティア（クロンダイク）」と言えば、言わずと知れた定番中の定番、一人遊びカードゲームの王様なわけですが、このたび、モバイルゲーム「ステキなソリティア」が App Store で配信！オシャレなユーザーインターフェースなので、電車の中でプレイしていても、なんかイケてる感じを醸し出すことができます！（本当かな？）初めてプレイする人もご安心を。ゲームのルールやコツはゲーム内の「遊び方」から確認できます！&lt;/p&gt;</description>
     </item>
     <item>
       <title>🕹️ モバイルゲーム - クイックハンドポーカー</title>
       <link>https://www.peanuts-code.com/ja/portfolio/work0003_quick_hand_poker/</link>
       <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
       <guid>https://www.peanuts-code.com/ja/portfolio/work0003_quick_hand_poker/</guid>
-      <description>落ち物ゲームになったポーカーというのがコレです！ カジノのテーブルゲームとして多くの人に親しまれているポーカーですが、なんと、落ち物ゲームとして生まれ変わりました！その名も「クイックハンドポーカー」です！画面上に落とされたトランプのスート（マーク）とランク（数字）を組み合わせたオブジェクトを素早く5つタッチしてポーカーの役を揃えましょう！制限時間内に高得点を目</description>
+      <description>&lt;h2 id=&#34;落ち物ゲームになったポーカーというのがコレです&#34;&gt;落ち物ゲームになったポーカーというのがコレです！&lt;/h2&gt;
+&lt;p&gt;カジノのテーブルゲームとして多くの人に親しまれているポーカーですが、なんと、落ち物ゲームとして生まれ変わりました！その名も「クイックハンドポーカー」です！画面上に落とされたトランプのスート（マーク）とランク（数字）を組み合わせたオブジェクトを素早く5つタッチしてポーカーの役を揃えましょう！制限時間内に高得点を目指しましょう！初めてプレイする人もご安心を。ゲームのルールや役はゲーム内で簡単に確認できます！&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 開発ログ：もの切り侍【アセット編】</title>
       <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_2/</link>
       <pubDate>Wed, 27 Dec 2023 12:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_2/</guid>
-      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「アセット」に関する記録である。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。 使用するアセットを検討する この開発ログには、モバイルゲーム「もの切り侍」の開発にどのようなアセットをどのようにして用意したのかについ</description>
+      <description>&lt;p&gt;この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「アセット」に関する記録である。&lt;/p&gt;
+&lt;p&gt;「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;https://apps.apple.com/jp/app/slashing-samurai/id6473121142&#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/banners/app_store/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg&#34; width=&#34;200px&#34;/&gt; &lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;br/&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;使用するアセットを検討する&#34;&gt;使用するアセットを検討する&lt;/h2&gt;
+&lt;p&gt;この開発ログには、モバイルゲーム「もの切り侍」の開発にどのようなアセットをどのようにして用意したのかについて記録する。ちなみにアセットとは、ゲーム開発に関して言えば、使用する素材という意味で捉えて差し支えないだろう。&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 開発ログ：もの切り侍【反省編】</title>
       <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_4/</link>
       <pubDate>Wed, 10 Jan 2024 03:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_4/</guid>
-      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち、もっとこうすれば良かった、ああすれば良かった、といった「反省」に関する記録である。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。 反省点の洗い出し 「もの切り侍」の開発を終え、そのプロセスや成果物を精霊に見つめ直</description>
+      <description>&lt;p&gt;この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち、もっとこうすれば良かった、ああすれば良かった、といった「反省」に関する記録である。&lt;/p&gt;
+&lt;p&gt;「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;https://apps.apple.com/jp/app/slashing-samurai/id6473121142&#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/banners/app_store/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg&#34; width=&#34;200px&#34;/&gt; &lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;br/&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;反省点の洗い出し&#34;&gt;反省点の洗い出し&lt;/h2&gt;
+&lt;p&gt;「もの切り侍」の開発を終え、そのプロセスや成果物を精霊に見つめ直してみると、いろいろと反省すべき点があった。次のゲーム開発にそれらの反省を活かすべく、その内容をきっちりと記録に残しておきたいと思う。&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 開発ログ：もの切り侍【ロジック編】</title>
       <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_3/</link>
       <pubDate>Sat, 30 Dec 2023 23:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_3/</guid>
-      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうちGodot Engine で作っていく「ロジック」に関する記録である。とはいえ、あまり具体的なコードなどを載せると長くなってしまうので、そのあたりは控えめにしようと思う。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。 必要な画</description>
+      <description>&lt;p&gt;この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうちGodot Engine で作っていく「ロジック」に関する記録である。とはいえ、あまり具体的なコードなどを載せると長くなってしまうので、そのあたりは控えめにしようと思う。&lt;/p&gt;
+&lt;p&gt;「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 開発ログ：もの切り侍【企画編】</title>
       <link>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_1/</link>
       <pubDate>Sun, 24 Dec 2023 02:21:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_1/</guid>
-      <description>この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「企画」に関する記録である。 「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。 ゲームのおおまかな仕様を決める まずは、これから開発するゲームの仕様をおおまかに決めるところからスタートした。 特定のプラットフォームで全世</description>
+      <description>&lt;p&gt;この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうち「企画」に関する記録である。&lt;/p&gt;
+&lt;p&gt;「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;https://apps.apple.com/jp/app/slashing-samurai/id6473121142&#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/banners/app_store/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg&#34; width=&#34;200px&#34;/&gt; &lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;br/&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ゲームのおおまかな仕様を決める&#34;&gt;ゲームのおおまかな仕様を決める&lt;/h2&gt;
+&lt;p&gt;まずは、これから開発するゲームの仕様をおおまかに決めるところからスタートした。&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 ゲームジャムで成長しよう</title>
       <link>https://www.peanuts-code.com/ja/posts/post0004_my_first_game_jam/</link>
       <pubDate>Tue, 30 Aug 2022 19:33:38 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/posts/post0004_my_first_game_jam/</guid>
-      <description>先日開催された「KENNEY Game Jam」に参加した。私にとって初めてのゲームジャムであった。今回はゲームジャムに参加してみてわかったこと、感じたことを交えつつ、itch.io のサイトで催されているインディーゲームデベロッパー向けのゲームジャムについて記事にした。 ゲームジャムとは ゲームジャムとは、参加者が短い期間でゲームを開発、公開して評価し合うイベントのことで</description>
+      <description>&lt;p&gt;先日開催された「KENNEY Game Jam」に参加した。私にとって初めてのゲームジャムであった。今回はゲームジャムに参加してみてわかったこと、感じたことを交えつつ、&lt;a href=&#34;https://itch.io/jams&#34; target=&#34;_blank&#34;&gt;itch.io&lt;/a&gt;
+のサイトで催されているインディーゲームデベロッパー向けのゲームジャムについて記事にした。&lt;/p&gt;
+&lt;br/&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ゲームジャムとは&#34;&gt;ゲームジャムとは&lt;/h2&gt;
+&lt;p&gt;ゲームジャムとは、参加者が短い期間でゲームを開発、公開して評価し合うイベントのことである。ゲーム開発の&lt;a href=&#34;https://ja.wikipedia.org/wiki/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3&#34; target=&#34;_blank&#34;&gt;ハッカソン&lt;/a&gt;
+とも言われる。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

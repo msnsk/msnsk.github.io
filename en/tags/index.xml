@@ -9,43 +9,50 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 23 Aug 2024 13:55:22 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 06 Sep 2024 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2D</title>
       <link>https://www.peanuts-code.com/en/tags/2d/</link>
-      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
+      <pubDate>Fri, 06 Sep 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tags/2d/</guid>
       <description></description>
     </item>
     <item>
       <title>GameDev</title>
       <link>https://www.peanuts-code.com/en/tags/gamedev/</link>
-      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
+      <pubDate>Fri, 06 Sep 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tags/gamedev/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Godot4</title>
-      <link>https://www.peanuts-code.com/en/tags/godot4/</link>
-      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/godot4/</guid>
       <description></description>
     </item>
     <item>
       <title>GodotEngine</title>
       <link>https://www.peanuts-code.com/en/tags/godotengine/</link>
-      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
+      <pubDate>Fri, 06 Sep 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tags/godotengine/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GridBased</title>
+      <link>https://www.peanuts-code.com/en/tags/gridbased/</link>
+      <pubDate>Fri, 06 Sep 2024 00:00:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tags/gridbased/</guid>
       <description></description>
     </item>
     <item>
       <title>TileMap</title>
       <link>https://www.peanuts-code.com/en/tags/tilemap/</link>
-      <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
+      <pubDate>Fri, 06 Sep 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tags/tilemap/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Top-Down</title>
+      <link>https://www.peanuts-code.com/en/tags/top-down/</link>
+      <pubDate>Fri, 06 Sep 2024 00:00:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tags/top-down/</guid>
       <description></description>
     </item>
     <item>
@@ -112,13 +119,6 @@
       <description></description>
     </item>
     <item>
-      <title>Apple</title>
-      <link>https://www.peanuts-code.com/en/tags/apple/</link>
-      <pubDate>Sun, 05 May 2024 20:17:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/apple/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Devlog</title>
       <link>https://www.peanuts-code.com/en/tags/devlog/</link>
       <pubDate>Thu, 11 Jan 2024 00:00:00 +0900</pubDate>
@@ -133,31 +133,10 @@
       <description></description>
     </item>
     <item>
-      <title>AudioStreamPlayer</title>
-      <link>https://www.peanuts-code.com/en/tags/audiostreamplayer/</link>
+      <title>Audio</title>
+      <link>https://www.peanuts-code.com/en/tags/audio/</link>
       <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/audiostreamplayer/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Godot3</title>
-      <link>https://www.peanuts-code.com/en/tags/godot3/</link>
-      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/godot3/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Resource</title>
-      <link>https://www.peanuts-code.com/en/tags/resource/</link>
-      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/resource/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Sound</title>
-      <link>https://www.peanuts-code.com/en/tags/sound/</link>
-      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/sound/</guid>
+      <guid>https://www.peanuts-code.com/en/tags/audio/</guid>
       <description></description>
     </item>
     <item>
@@ -168,13 +147,6 @@
       <description></description>
     </item>
     <item>
-      <title>StateMachine</title>
-      <link>https://www.peanuts-code.com/en/tags/statemachine/</link>
-      <pubDate>Fri, 14 Oct 2022 20:25:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/statemachine/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Collision</title>
       <link>https://www.peanuts-code.com/en/tags/collision/</link>
       <pubDate>Wed, 05 Oct 2022 02:55:00 +0900</pubDate>
@@ -182,24 +154,10 @@
       <description></description>
     </item>
     <item>
-      <title>MeleeAttack</title>
-      <link>https://www.peanuts-code.com/en/tags/meleeattack/</link>
-      <pubDate>Wed, 05 Oct 2022 02:55:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/meleeattack/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>AStar</title>
       <link>https://www.peanuts-code.com/en/tags/astar/</link>
       <pubDate>Thu, 22 Sep 2022 19:45:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tags/astar/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>GridBased</title>
-      <link>https://www.peanuts-code.com/en/tags/gridbased/</link>
-      <pubDate>Thu, 22 Sep 2022 19:45:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/gridbased/</guid>
       <description></description>
     </item>
     <item>
@@ -252,13 +210,6 @@
       <description></description>
     </item>
     <item>
-      <title>PuzzleAndDragonsCopy</title>
-      <link>https://www.peanuts-code.com/en/tags/puzzleanddragonscopy/</link>
-      <pubDate>Fri, 15 Jul 2022 18:40:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/puzzleanddragonscopy/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>PuzzleGame</title>
       <link>https://www.peanuts-code.com/en/tags/puzzlegame/</link>
       <pubDate>Fri, 15 Jul 2022 18:40:00 +0900</pubDate>
@@ -273,38 +224,10 @@
       <description></description>
     </item>
     <item>
-      <title>GridBasedMovement</title>
-      <link>https://www.peanuts-code.com/en/tags/gridbasedmovement/</link>
-      <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/gridbasedmovement/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>HomingMissile</title>
-      <link>https://www.peanuts-code.com/en/tags/homingmissile/</link>
-      <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/homingmissile/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Shooter</title>
       <link>https://www.peanuts-code.com/en/tags/shooter/</link>
       <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tags/shooter/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Top-Down</title>
-      <link>https://www.peanuts-code.com/en/tags/top-down/</link>
-      <pubDate>Sat, 28 May 2022 18:41:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/top-down/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>BulletHell</title>
-      <link>https://www.peanuts-code.com/en/tags/bullethell/</link>
-      <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/bullethell/</guid>
       <description></description>
     </item>
     <item>
@@ -329,17 +252,10 @@
       <description></description>
     </item>
     <item>
-      <title>Guns</title>
-      <link>https://www.peanuts-code.com/en/tags/guns/</link>
-      <pubDate>Sat, 07 May 2022 22:05:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/guns/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Search</title>
-      <link>https://www.peanuts-code.com/en/tags/search/</link>
+      <title>Editor</title>
+      <link>https://www.peanuts-code.com/en/tags/editor/</link>
       <pubDate>Wed, 27 Apr 2022 02:44:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tags/search/</guid>
+      <guid>https://www.peanuts-code.com/en/tags/editor/</guid>
       <description></description>
     </item>
     <item>

@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>ja</language>
     <lastBuildDate>Mon, 10 Jan 2022 00:18:03 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/index.xml" rel="self" type="application/rss+xml" />
@@ -18,105 +18,252 @@
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_15/</link>
       <pubDate>Mon, 10 Jan 2022 00:18:03 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_15/</guid>
-      <description>Part 15 の今回は、これまで開発してきたブロック崩しのプロジェクトをエクスポートして、開発者以外にもプレイしてもらえるようにする。エクスポートの作業は基本的に、ゲームが完成した段階でそのゲームを配布するために行う。 友人、知人にエクスポートしたゲームファイルをそのまま渡すこともあるかもしれないが、一般的には、ゲームのプラットフォーム（Windows や Linux の PC、mac</description>
+      <description>&lt;p&gt;Part 15 の今回は、これまで開発してきたブロック崩しのプロジェクトをエクスポートして、開発者以外にもプレイしてもらえるようにする。エクスポートの作業は基本的に、ゲームが完成した段階でそのゲームを配布するために行う。&lt;/p&gt;
+&lt;p&gt;友人、知人にエクスポートしたゲームファイルをそのまま渡すこともあるかもしれないが、一般的には、ゲームのプラットフォーム（Windows や Linux の PC、macOS コンピュータ、Nintendo Switch などのコンソール、iOS や Android などのモバイルなど）ごとに Web で販売できるサイトが存在するので、そこにエクスポートしたファイルをアップロードして、世界中から自分の作ったゲームをダウンロードしてもらえるようにする。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 14：ブロックの種類を増やしてレベルをデザインしよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_14/</link>
       <pubDate>Fri, 31 Dec 2021 02:09:21 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_14/</guid>
-      <description>Part 14 の今回は、ブロック崩しのブロックの種類を増やして、複数のレベル（ステージ）をデザインしていく。併せてゲームクリア画面も作成する。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。 Godot で作るブロック崩し ブロックの種類を増やす 今回用意するブロックの種類は、オーソドックスに以下の3種類とする。 NORMAL: 1回ボールが当たったら消え</description>
+      <description>&lt;p&gt;Part 14 の今回は、ブロック崩しのブロックの種類を増やして、複数のレベル（ステージ）をデザインしていく。併せてゲームクリア画面も作成する。&lt;/p&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo:&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/&#34; title=&#34;Godot で作るブロック崩し&#34;&gt;Godot で作るブロック崩し&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;ブロックの種類を増やす&#34;&gt;ブロックの種類を増やす&lt;/h1&gt;
+&lt;p&gt;今回用意するブロックの種類は、オーソドックスに以下の3種類とする。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 13：ハイスコアのデータを保存しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_13/</link>
       <pubDate>Thu, 23 Dec 2021 16:55:59 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_13/</guid>
-      <description>Part 13 の今回は、ブロック崩しの HUD にハイスコア、ハイレベル（過去最高クリアレベルのことをこう呼ぶことにする）の要素を追加し、ゲームオーバーになった時点でそのデータが自動的に保存されるようにして、一度ゲームを終了しても記録が消えない仕組みを作っていく。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。 Godot で作るブロック崩し HUD</description>
+      <description>&lt;p&gt;Part 13 の今回は、ブロック崩しの HUD にハイスコア、ハイレベル（過去最高クリアレベルのことをこう呼ぶことにする）の要素を追加し、ゲームオーバーになった時点でそのデータが自動的に保存されるようにして、一度ゲームを終了しても記録が消えない仕組みを作っていく。&lt;/p&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo:&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/&#34; title=&#34;Godot で作るブロック崩し&#34;&gt;Godot で作るブロック崩し&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 12：BGMとサウンドエフェクトを追加しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_12/</link>
       <pubDate>Sun, 19 Dec 2021 00:21:13 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_12/</guid>
-      <description>Part 12 の今回は、ブロック崩しにBGMとサウンドエフェクト（効果音）を追加していく。今回のチュートリアルにはいつもの GIF ではなく mp4 の動画を載せている。この記事の閲覧環境は様々だと思われるため、デフォルトでは音をミュートしている。動画のコントローラでミュート解除していただきつつ、確認いただければと思う。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧い</description>
+      <description>&lt;p&gt;Part 12 の今回は、ブロック崩しにBGMとサウンドエフェクト（効果音）を追加していく。今回のチュートリアルにはいつもの GIF ではなく mp4 の動画を載せている。この記事の閲覧環境は様々だと思われるため、デフォルトでは音をミュートしている。動画のコントローラでミュート解除していただきつつ、確認いただければと思う。&lt;/p&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo:&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/&#34; title=&#34;Godot で作るブロック崩し&#34;&gt;Godot で作るブロック崩し&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 11：パワーアップを実装しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_11/</link>
       <pubDate>Sat, 11 Dec 2021 13:36:54 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_11/</guid>
-      <description>Part 11 の今回は、ブロック崩しにパワーアップ機能を実装していく。前回の Part 11 でブロックを消すとパワーアップアイテムが落ちてきて、パドルとアイテムが衝突するとパワーアップが適用される、という仕組みの部分を作ったので、今回は個々のパワーアップ機能自体を実装する。 具体的には以下のパワーアップ機能をそれぞれ作っていく。 Slow: ボールのスピードを初期値に戻す（遅くする） Expand: 一定時間</description>
+      <description>&lt;p&gt;Part 11 の今回は、ブロック崩しにパワーアップ機能を実装していく。前回の Part 11 でブロックを消すとパワーアップアイテムが落ちてきて、パドルとアイテムが衝突するとパワーアップが適用される、という仕組みの部分を作ったので、今回は個々のパワーアップ機能自体を実装する。&lt;/p&gt;
+&lt;p&gt;具体的には以下のパワーアップ機能をそれぞれ作っていく。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Slow: ボールのスピードを初期値に戻す（遅くする）&lt;/li&gt;
+&lt;li&gt;Expand: 一定時間、パドルを横に伸ばす&lt;/li&gt;
+&lt;li&gt;Multiple: 一定時間、複数のボールを発射できるようにする&lt;/li&gt;
+&lt;li&gt;Laser: 一定時間、レーザービームを発射できるようにする&lt;/li&gt;
+&lt;li&gt;Life: ライフを一つ増やす（ライフ数の最大は 5）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;それでは前回に引き続き&lt;strong&gt;ブロック崩し&lt;/strong&gt;を開発していこう。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 10：パワーアップアイテムをドロップさせよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_10/</link>
       <pubDate>Thu, 02 Dec 2021 22:49:34 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_10/</guid>
-      <description>Part 10 の今回は、ブロック崩しにパワーアップアイテムを追加していく。ブロックを崩すとアイテムが落ちてきて、パドルとアイテムが衝突するとパワーアップが適用される、という仕組みの部分を実装していこう。 なお、パドルを大きくしたり、複数のボールを発射できるなど、いくつかのパワーアップを用意していく予定だが、個々のパワーアップの実装については、次回の Part 11 で説明させていただ</description>
+      <description>&lt;p&gt;Part 10 の今回は、ブロック崩しにパワーアップアイテムを追加していく。ブロックを崩すとアイテムが落ちてきて、パドルとアイテムが衝突するとパワーアップが適用される、という仕組みの部分を実装していこう。&lt;/p&gt;
+&lt;p&gt;なお、パドルを大きくしたり、複数のボールを発射できるなど、いくつかのパワーアップを用意していく予定だが、個々のパワーアップの実装については、次回の Part 11 で説明させていただくこととする。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 9：アニメーションを追加しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_9/</link>
       <pubDate>Thu, 02 Dec 2021 22:49:34 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_9/</guid>
-      <description>Part 9 の今回は、ブロック崩しの一部の要素にアニメーションを追加する。全てのオブジェクトをアニメーションさせると作業量が膨大になるので、今回はパドルとブロックに対象を絞ってに簡単なアニメーションを追加していく。 なお、アニメーションについては Godot 公式ドキュメントの「ステップ・バイ・ステップ」のチュートリアル にもある程度わかりやすく掲載しているので、そちらも参考にして</description>
+      <description>&lt;p&gt;Part 9 の今回は、ブロック崩しの一部の要素にアニメーションを追加する。全てのオブジェクトをアニメーションさせると作業量が膨大になるので、今回はパドルとブロックに対象を絞ってに簡単なアニメーションを追加していく。&lt;/p&gt;
+&lt;p&gt;なお、アニメーションについては &lt;a href=&#34;https://docs.godotengine.org/ja/stable/getting_started/step_by_step/animations.html&#34; target=&#34;_blank&#34;&gt;Godot 公式ドキュメントの「ステップ・バイ・ステップ」のチュートリアル&lt;/a&gt;
+にもある程度わかりやすく掲載しているので、そちらも参考にしていただきたい。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 8：ポーズ画面を作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_8/</link>
       <pubDate>Mon, 29 Nov 2021 17:02:30 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_8/</guid>
-      <description>Part 8 の今回は、ゲームをプレイ中にポーズ（一時停止）する機能とポーズ画面を作っていく。といっても作業はこれまでのおさらい的内容が多くなっているので、気楽にやってみてほしい。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。 Godot で作るブロック崩し 本題の前に さて、本題のポー</description>
+      <description>&lt;p&gt;Part 8 の今回は、ゲームをプレイ中にポーズ（一時停止）する機能とポーズ画面を作っていく。といっても作業はこれまでのおさらい的内容が多くなっているので、気楽にやってみてほしい。&lt;/p&gt;
+&lt;p&gt;それでは前回に引き続き&lt;strong&gt;ブロック崩し&lt;/strong&gt;を開発していこう。&lt;/p&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo:&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/&#34; title=&#34;Godot で作るブロック崩し&#34;&gt;Godot で作るブロック崩し&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 7：HUDを作って表示内容を更新してみよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_7/</link>
       <pubDate>Tue, 23 Nov 2021 23:45:05 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_7/</guid>
-      <description>Part 7 の今回は、HUD（ヘッドアップディスプレイ）を作っていく。HUD というのは、例えば、プレイヤーのライフゲージやスコア、残り時間、レベル（ステージ）の番号などのように、ゲームプレイ画面に常に表示されているもののことだ。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめしま</description>
+      <description>&lt;p&gt;Part 7 の今回は、HUD（ヘッドアップディスプレイ）を作っていく。HUD というのは、例えば、プレイヤーのライフゲージやスコア、残り時間、レベル（ステージ）の番号などのように、ゲームプレイ画面に常に表示されているもののことだ。&lt;/p&gt;
+&lt;p&gt;それでは前回に引き続き&lt;strong&gt;ブロック崩し&lt;/strong&gt;を開発していこう。&lt;/p&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo:&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/&#34; title=&#34;Godot で作るブロック崩し&#34;&gt;Godot で作るブロック崩し&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 6：ゲームスタート/ゲームオーバーの画面を作ろう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_6/</link>
       <pubDate>Sun, 21 Nov 2021 13:39:21 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_6/</guid>
-      <description>Part 6 の今回は、ゲームスタート画面とゲームオーバーの画面を作り、それらとプレイ画面との間で適宜、画面が遷移するようにしていく。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。 Godot で作るブロック崩し スタート画面を作る ゲームを開始した時、ゲームタイトルが表示され、ボタンを</description>
+      <description>&lt;p&gt;Part 6 の今回は、ゲームスタート画面とゲームオーバーの画面を作り、それらとプレイ画面との間で適宜、画面が遷移するようにしていく。&lt;/p&gt;
+&lt;p&gt;それでは前回に引き続き&lt;strong&gt;ブロック崩し&lt;/strong&gt;を開発していこう。&lt;/p&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo:&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/&#34; title=&#34;Godot で作るブロック崩し&#34;&gt;Godot で作るブロック崩し&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 5：細かい更新をしてゲーム性を高めよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_5/</link>
       <pubDate>Wed, 17 Nov 2021 12:23:06 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_5/</guid>
-      <description>Part 5 の今回は、パドルが壁を通過してしまう問題の修正、衝突するたびにボールのスピードが上がる仕様に変更、プレイヤーの操作でボールが発射される仕様に変更、パドル上のボールが当たった位置によってボールの反射角度が変わる仕様に変更、ついて更新していく。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧い</description>
+      <description>&lt;p&gt;Part 5 の今回は、パドルが壁を通過してしまう問題の修正、衝突するたびにボールのスピードが上がる仕様に変更、プレイヤーの操作でボールが発射される仕様に変更、パドル上のボールが当たった位置によってボールの反射角度が変わる仕様に変更、ついて更新していく。&lt;/p&gt;
+&lt;p&gt;それでは前回に引き続き&lt;strong&gt;ブロック崩し&lt;/strong&gt;を開発していこう。&lt;/p&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo:&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/&#34; title=&#34;Godot で作るブロック崩し&#34;&gt;Godot で作るブロック崩し&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 4：ブロックを配置してボールを当てて消そう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_4/</link>
       <pubDate>Wed, 10 Nov 2021 17:05:50 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_4/</guid>
-      <description>Part 4 の今回は、ブロックのオブジェクトを作って、それを画面上に複数配置し、ボールがそのブロックに衝突したらブロックが消えるようにしていく。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。 Godot で作るブロック崩し ブロックのシーンを作る ブロックを画面に複数配置していくことを</description>
+      <description>&lt;p&gt;Part 4 の今回は、ブロックのオブジェクトを作って、それを画面上に複数配置し、ボールがそのブロックに衝突したらブロックが消えるようにしていく。&lt;/p&gt;
+&lt;p&gt;それでは前回に引き続き&lt;strong&gt;ブロック崩し&lt;/strong&gt;を開発していこう。&lt;/p&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo:&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/&#34; title=&#34;Godot で作るブロック崩し&#34;&gt;Godot で作るブロック崩し&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_3/</link>
       <pubDate>Tue, 09 Nov 2021 16:21:24 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_3/</guid>
-      <description>Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。 Godot で作るブロック崩し 壁を作る 壁をゲーム画面のギリギリ外側に作っていく。シーンドック</description>
+      <description>&lt;p&gt;Part 3 の今回は、壁を作って、ボールがその壁に衝突したら跳ね返るようにしていく。ただし、画面下部には壁は作らずにボールが落ちるようにする。&lt;/p&gt;
+&lt;p&gt;それでは前回に引き続き&lt;strong&gt;ブロック崩し&lt;/strong&gt;を開発していこう。&lt;/p&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo:&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/&#34; title=&#34;Godot で作るブロック崩し&#34;&gt;Godot で作るブロック崩し&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 2：ボールを作って発射しよう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_2/</link>
       <pubDate>Sat, 06 Nov 2021 23:11:01 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_2/</guid>
-      <description>Part 2 の今回は、ボールのオブジェクトを作って、パドルからボールを発射するところまで進めていく。 それでは前回に引き続きブロック崩しを開発していこう。 Memo: 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。 Godot で作るブロック崩し ボールを作る 前回の Part 1 でプレイヤーが操作するパドルを作ったので、今度はボールを作る。 ルートノード「Gam</description>
+      <description>&lt;p&gt;Part 2 の今回は、ボールのオブジェクトを作って、パドルからボールを発射するところまで進めていく。&lt;/p&gt;
+&lt;p&gt;それでは前回に引き続き&lt;strong&gt;ブロック崩し&lt;/strong&gt;を開発していこう。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo:&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/&#34; title=&#34;Godot で作るブロック崩し&#34;&gt;Godot で作るブロック崩し&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;ボールを作る&#34;&gt;ボールを作る&lt;/h1&gt;
+&lt;p&gt;前回の Part 1 でプレイヤーが操作するパドルを作ったので、今度はボールを作る。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 1：パドルを作って動かそう！</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_1/</link>
       <pubDate>Sat, 06 Nov 2021 17:44:27 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0004_breakout/breakout_1/</guid>
-      <description>Part 1 の今回は、ゲームのプレイ画面にパドルを配置して動かすところまでやっていく。 ところで、ゲーム開発初心者が初めて挑戦するゲームにうってつけなのがブロック崩しだ。ブロック崩しはシンプルながらその開発を通して、ゲーム作りの基本をたくさん学習することができるので Godot 初心者やゲーム開発初学者にとてもおすすめだ。習得したゲーム開発の基本スキルは他のジャンルのゲームでもで</description>
+      <description>&lt;p&gt;Part 1 の今回は、ゲームのプレイ画面にパドルを配置して動かすところまでやっていく。&lt;/p&gt;
+&lt;p&gt;ところで、ゲーム開発初心者が初めて挑戦するゲームにうってつけなのが&lt;strong&gt;ブロック崩し&lt;/strong&gt;だ。ブロック崩しはシンプルながらその開発を通して、ゲーム作りの基本をたくさん学習することができるので Godot 初心者やゲーム開発初学者にとてもおすすめだ。習得したゲーム開発の基本スキルは他のジャンルのゲームでもできることばかりだ。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

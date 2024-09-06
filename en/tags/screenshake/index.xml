@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>en</language>
     <lastBuildDate>Thu, 28 Jul 2022 14:10:56 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/screenshake/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,16 @@
       <link>https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/</link>
       <pubDate>Thu, 28 Jul 2022 14:10:56 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0014_screen_shake/</guid>
-      <description>In this article, I will explain how to implement an effect, &amp;ldquo;screen shake&amp;rdquo;, in 2D games. It is not an absolutely necessary element of a game, but if used well, it can make the player&amp;rsquo;s game experience more interactive and directly affect the user experience. For example, there are many situations where it could be used, such as when a player fires a gun, takes damage from enemies, or falls from a high place. By the way, this kind of element that is not necessary but makes the game more interesting by adding it is called &amp;ldquo;game juice&amp;rdquo; in English. I have one more vocabulary in English, and I am a little wiser now. There are already many resources on the Web that explain how to implement screen shake, and of course there are methods other than those introduced here. This time, we refer to the following video and article in particular, so please check them as well for a deeper understanding. Reference YouTube: GDC - Math for Game Programmers: Juicing Your Cameras With Math KidsCanCode: SCREEN SHAKE The project</description>
+      <description>&lt;p&gt;In this article, I will explain how to implement an effect, &amp;ldquo;screen shake&amp;rdquo;, in 2D games. It is not an absolutely necessary element of a game, but if used well, it can make the player&amp;rsquo;s game experience more interactive and directly affect the user experience. For example, there are many situations where it could be used, such as when a player fires a gun, takes damage from enemies, or falls from a high place.&lt;/p&gt;
+&lt;p&gt;By the way, this kind of element that is not necessary but makes the game more interesting by adding it is called &amp;ldquo;game juice&amp;rdquo; in English. I have one more vocabulary in English, and I am a little wiser now.&lt;/p&gt;
+&lt;p&gt;There are already many resources on the Web that explain how to implement screen shake, and of course there are methods other than those introduced here. This time, we refer to the following video and article in particular, so please check them as well for a deeper understanding.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Reference&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;&lt;a href=&#34;https://youtu.be/tu-Qe66AvtY&#34; target=&#34;_blank&#34;&gt;YouTube: GDC - Math for Game Programmers: Juicing Your Cameras With Math&lt;/a&gt;
+&lt;/em&gt;&lt;br&gt;
+&lt;em&gt;&lt;a href=&#34;https://kidscancode.org/godot_recipes/2d/screen_shake/&#34; target=&#34;_blank&#34;&gt;KidsCanCode: SCREEN SHAKE&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>ja</language>
     <lastBuildDate>Mon, 19 Sep 2022 02:10:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/astar/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,10 @@
       <link>https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/</link>
       <pubDate>Mon, 19 Sep 2022 02:10:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/</guid>
-      <description>この記事では、AStar というアルゴリズムを利用して、2D ゲームにおけるグリッドベースの経路探索の実装方法について紹介する。なお、グリッドベースではない 2D 経路探索については、「Godot で作る 2D 経路探索 」の記事で紹介しているので、作りたいゲームに併せて記事を選んでいただければ幸いだ。 このチュートリアルで最後にできあがるプロジェクトのファイルは GitHubリポ</description>
+      <description>&lt;p&gt;この記事では、AStar というアルゴリズムを利用して、2D ゲームにおけるグリッドベースの経路探索の実装方法について紹介する。なお、グリッドベースではない 2D 経路探索については、「&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0016_2d_path_finding/&#34; title=&#34;Godot で作る 2D 経路探索&#34;&gt;Godot で作る 2D 経路探索&lt;/a&gt;
+」の記事で紹介しているので、作りたいゲームに併せて記事を選んでいただければ幸いだ。&lt;/p&gt;
+&lt;p&gt;このチュートリアルで最後にできあがるプロジェクトのファイルは &lt;a href=&#34;https://github.com/msnsk/2DGridBasedPathFInding.git&#34; target=&#34;_blank&#34;&gt;GitHubリポジトリ&lt;/a&gt;
+ に置いている。.zipファイルをダウンロードして展開したあと、「project.godot」ファイルを Godot Engine でインポートしていただければ、直接プロジェクトを確認していただくことも可能だ。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

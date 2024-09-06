@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Audio on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/en/tags/audio/</link>
+    <description>Recent content in Audio on Peanuts Code</description>
+    <image>
+      <title>Peanuts Code</title>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
+    </image>
+    <generator>Hugo -- 0.134.1</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 19 Oct 2022 19:45:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/audio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 Switching Sound Resources by Script in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0020_switching_sound_resources/</link>
+      <pubDate>Wed, 19 Oct 2022 19:45:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0020_switching_sound_resources/</guid>
+      <description>&lt;p&gt;This article explains how to switch between and play multiple sound resources (music and sound effect files) with a single &amp;ldquo;AudioStreamPlayer&amp;rdquo; node.&lt;/p&gt;
+&lt;p&gt;Basically, only one sound resource can be set per &amp;ldquo;AudioStreamPlayer&amp;rdquo; node. In other words, you must add &amp;ldquo;AudioStreamPlayer&amp;rdquo; nodes in the scene tree for each sound resource. You may feel useless in a situation where there are multiple nodes in the scene tree with the same settings except for the sound resource (as shown in the screenshot below), and you may also feel a little uncomfortable with the lack of visibility in the scene dock.&lt;br&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0020_switching_sound_resources/img0.png&#34; alt=&#34;project settings - window size&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;So, if you have multiple sound resources that are never played simultaneously (e.g., multiple sound effects for different types of character attacks, multiple sound effects for different types of buttons on the UI, etc.), add only the minimum necessary &amp;ldquo;AudioStreamPlayer&amp;rdquo; node for each use to your scene. If you code a program that switches sound resources according to the situation, there will be no waste and the scene dock will look cleaner.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

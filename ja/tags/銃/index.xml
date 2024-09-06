@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>銃 on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/ja/tags/%E9%8A%83/</link>
+    <link>http://localhost:1313/ja/tags/%E9%8A%83/</link>
     <description>Recent content in 銃 on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/images/logomark.png</url>
-      <link>https://www.peanuts-code.com/images/logomark.png</link>
+      <url>http://localhost:1313/images/logomark.png</url>
+      <link>http://localhost:1313/images/logomark.png</link>
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
     <lastBuildDate>Wed, 04 May 2022 01:30:00 +0900</lastBuildDate>
-    <atom:link href="https://www.peanuts-code.com/ja/tags/%E9%8A%83/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/ja/tags/%E9%8A%83/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 で作るトップダウンシューティングの 4 種類の銃</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/</link>
+      <link>http://localhost:1313/ja/tutorials/gd0006_guns_of_topdown_shooter/</link>
       <pubDate>Wed, 04 May 2022 01:30:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/</guid>
+      <guid>http://localhost:1313/ja/tutorials/gd0006_guns_of_topdown_shooter/</guid>
       <description>このチュートリアルでは、2Dトップダウンシューティングゲーム（見下ろし型シューティングゲーム）で一般的によく登場する銃を4種類作っていく。具体的には以下の通りだ。 ハンドガン ショットガン マシンガン レーザーガン Environment このチュートリアルは以下の環境で作成しました。 ・Godot のバージョン: 3.4.2 ・コンピュータのOS: macOS 11.6.5 このチュートリアルでは、銃の作成にフォーカスするため</description>
     </item>
   </channel>

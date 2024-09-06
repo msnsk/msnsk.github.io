@@ -9,61 +9,158 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 23 Aug 2024 13:55:22 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 06 Sep 2024 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/archives/godot4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 Implementing 2D Grid-Based Movement</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/</link>
+      <pubDate>Fri, 06 Sep 2024 00:00:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In this tutorial, we are going to implement a &amp;ldquo;grid-based movement&amp;rdquo; system for a 2D game in Godot. It&amp;rsquo;s not overly complex.&lt;/p&gt;
+&lt;p&gt;Some of you might be wondering, what exactly is grid-based movement? Grid-based movement is when objects, such as characters, move one grid (one tile) at a time on a game screen that is divided into evenly spaced grid lines.&lt;/p&gt;
+&lt;p&gt;To give some examples, think of older games like the &lt;em&gt;Fire Emblem&lt;/em&gt; series, &lt;em&gt;Tactics Ogre&lt;/em&gt;, or various simulation games. Even RPGs like &lt;em&gt;Final Fantasy&lt;/em&gt; and &lt;em&gt;Dragon Quest&lt;/em&gt; during their 2D eras employed grid-based movement when it came to character movement on maps. Puzzle games like &lt;em&gt;Tetris&lt;/em&gt; often use grid-based movement for the blocks or pieces as well.&lt;/p&gt;
+&lt;p&gt;As you can see, grid-based movement is widely used across many genres of games, making it a highly versatile feature.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Environment&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+This tutorial was created under the following environment:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Godot version: &lt;strong&gt;4.3&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Computer OS: &lt;strong&gt;macOS 14.6.1&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;By the way, the project I made can be found in this &lt;a href=&#34;https://github.com/msnsk/GridBasedMovement.git&#34; target=&#34;_blank&#34;&gt;GitHub repository&lt;/a&gt;
+.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>🤖 Making a Tilemap with TileMapLayer</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0024_tilemaplayer/</link>
       <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0024_tilemaplayer/</guid>
-      <description>Introduction With Godot 4.3, the previously used TileMap class has been deprecated (meaning it won&amp;rsquo;t be updated anymore), and a new TileMapLayer class has been added in its place. So, I&amp;rsquo;m going to actually create a tilemap using TileMapLayer!
-My environment at the time of writing Godot version: 4.3
-Computer model: MacBook Air M1, 2020
-OS: macOS 14.6.1
-Setting the Screen Size I&amp;rsquo;ll be using 16x16 px tile images this time, so I&amp;rsquo;ll make the Viewport small enough to fit the tiles neatly. After creating a new project, I went to Project Settings &amp;gt; General tab &amp;gt; Window and set the following:
-Size: Viewport Width: 256 Viewport Height: 160 Window Width Override: 1024 (4 times) Window Height Override: 640 (4 times) *Window Width Override and Window Height Override can be set after enabling Advanced Settings in the top right of the settings panel. Then I scrolled down a bit in the settings panel and set the stretch mode to viewport so that the game graphics scale to fit the window size. I left the aspect ratio as is.
-Stretch: Mode: viewport Aspect: keep (default) Scale: 1 (default) Scale Mode: fractional (default) Importing Assets for Tiles I downloaded the 1-Bit Pack from KENNEY .</description>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;With Godot 4.3, the previously used TileMap class has been deprecated (meaning it won&amp;rsquo;t be updated anymore), and a new TileMapLayer class has been added in its place. So, I&amp;rsquo;m going to actually create a tilemap using TileMapLayer!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;My environment at the time of writing&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+Godot version: &lt;strong&gt;4.3&lt;/strong&gt;&lt;br&gt;
+Computer model: &lt;strong&gt;MacBook Air M1, 2020&lt;/strong&gt;&lt;br&gt;
+OS: &lt;strong&gt;macOS 14.6.1&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;h2 id=&#34;setting-the-screen-size&#34;&gt;Setting the Screen Size&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;ll be using 16x16 px tile images this time, so I&amp;rsquo;ll make the Viewport small enough to fit the tiles neatly. After creating a new project, I went to Project Settings &amp;gt; General tab &amp;gt; Window and set the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Size:
+&lt;ul&gt;
+&lt;li&gt;Viewport Width: 256&lt;/li&gt;
+&lt;li&gt;Viewport Height: 160&lt;/li&gt;
+&lt;li&gt;Window Width Override: 1024 (4 times)&lt;/li&gt;
+&lt;li&gt;Window Height Override: 640 (4 times)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;span style=&#34;font-size: 0.75em; font-weight: 600; color: #7a7a7a; margin-bottom: 1em; display: inline-block;&#34;&gt;*Window Width Override and Window Height Override can be set after enabling Advanced Settings in the top right of the settings panel.&lt;/span&gt;
+&lt;figure&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0024/01a.png&#34;
+         alt=&#34;Screen size settings&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;Then I scrolled down a bit in the settings panel and set the stretch mode to &lt;strong&gt;viewport&lt;/strong&gt; so that the game graphics scale to fit the window size. I left the aspect ratio as is.&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Distributing Games from Xcode to App Store Connect</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</link>
       <pubDate>Mon, 13 May 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0023_distribute_app_from_xcode/</guid>
-      <description>In this article, I&amp;rsquo;ll explain how to upload an iOS game exported from Godot to App Store Connect using Xcode. It&amp;rsquo;ll probably be short, so feel free to take it easy. Also, I&amp;rsquo;m assuming you&amp;rsquo;re familiar with Xcode, which is a macOS-exclusive app, so I&amp;rsquo;ll proceed with that in mind. Macs can be pricey, but if you want to release apps like iOS or macOS on the App Store, it&amp;rsquo;s an essential tool. I got mine with a 2-year Orico loan. It was tough, though 😆
-Environment at the time of writing this article Xcode Version: 15.3 (15E204a)
-Computer Model: MacBook Air M1, 2020
-OS: macOS 14.4.1
-Working with Xcode First, let&amp;rsquo;s open the project for the iOS version of your game exported from Godot in Xcode. If you peek into the folder where you exported it via Finder, you&amp;rsquo;ll find a file with a .xcodeproj extension. Just double-click on that (if there&amp;rsquo;s a .xcworkspace file generated due to adding plugins like Google AdMob, open that instead, but I won&amp;rsquo;t dive into that here).
-Enabling Game Center Capability in Xcode *You can skip this section if you don&amp;rsquo;t plan to integrate with Apple&amp;rsquo;s Game Center.</description>
+      <description>&lt;p&gt;In this article, I&amp;rsquo;ll explain how to upload an iOS game exported from Godot to App Store Connect using Xcode. It&amp;rsquo;ll probably be short, so feel free to take it easy. Also, I&amp;rsquo;m assuming you&amp;rsquo;re familiar with Xcode, which is a macOS-exclusive app, so I&amp;rsquo;ll proceed with that in mind. Macs can be pricey, but if you want to release apps like iOS or macOS on the App Store, it&amp;rsquo;s an essential tool. I got mine with a 2-year Orico loan. It was tough, though 😆&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Environment at the time of writing this article&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+Xcode Version: &lt;strong&gt;15.3 (15E204a)&lt;/strong&gt;&lt;br&gt;
+Computer Model: &lt;strong&gt;MacBook Air M1, 2020&lt;/strong&gt;&lt;br&gt;
+OS: &lt;strong&gt;macOS 14.4.1&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;br/&gt;
+&lt;h2 id=&#34;working-with-xcode&#34;&gt;Working with Xcode&lt;/h2&gt;
+&lt;p&gt;First, let&amp;rsquo;s open the project for the iOS version of your game exported from Godot in Xcode. If you peek into the folder where you exported it via Finder, you&amp;rsquo;ll find a file with a &lt;strong&gt;.xcodeproj&lt;/strong&gt; extension. Just double-click on that (if there&amp;rsquo;s a &lt;strong&gt;.xcworkspace&lt;/strong&gt; file generated due to adding plugins like Google AdMob, open that instead, but I won&amp;rsquo;t dive into that here).&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Implementing Game Center Features After Adding Its Plugin</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</link>
       <pubDate>Sat, 11 May 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0022_implement_game_center/</guid>
-      <description>In the previous article 🤖 Adding Game Center Plugin to Your Project , I explained how to add the Game Center plugin from the official Godot iOS plugins to your project. In this article, I&amp;rsquo;ll guide you on implementing the functionalities of Apple&amp;rsquo;s Game Center using the added plugin.
-If you&amp;rsquo;re wondering what Game Center is all about, I briefly explained it in the beginning of the previous article, so you might want to check that out first.
-Broadly, I&amp;rsquo;ll explain in two main sections:
-Setting Up Game Center in App Store Connect Implementing Game Center in GDScript By the way, the basic usage of plugins is documented in Godot Docs / iOS plugins / iOS plugins , so it would be reasonable to start there.
-Also, you can find the code for the Game Center plugin on GitHub at Godot iOS GameCenter plugin . If you want to delve into the details, you can check it out. Personally, I found it a bit challenging at first.
-Environment at the Time of Writing Godot Version: 4.2.1
-Computer Model: MacBook Air M1, 2020</description>
+      <description>&lt;p&gt;In the previous article &lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/&#34;&gt;🤖 Adding Game Center Plugin to Your Project&lt;/a&gt;
+, I explained how to add the Game Center plugin from the official Godot iOS plugins to your project. In this article, I&amp;rsquo;ll guide you on implementing the functionalities of Apple&amp;rsquo;s Game Center using the added plugin.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;re wondering what Game Center is all about, I briefly explained it in the beginning of the previous article, so you might want to check that out first.&lt;/p&gt;
+&lt;p&gt;Broadly, I&amp;rsquo;ll explain in two main sections:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Setting Up Game Center in App Store Connect&lt;/li&gt;
+&lt;li&gt;Implementing Game Center in GDScript&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;By the way, the basic usage of plugins is documented in &lt;a href=&#34;https://docs.godotengine.org/en/4.x/tutorials/platform/ios/plugins_for_ios.html&#34; target=&#34;_blank&#34;&gt;Godot Docs / iOS plugins / iOS plugins&lt;/a&gt;
+, so it would be reasonable to start there.&lt;/p&gt;
+&lt;p&gt;Also, you can find the code for the Game Center plugin on GitHub at &lt;a href=&#34;https://github.com/godotengine/godot-ios-plugins/blob/master/plugins/gamecenter/game_center.mm&#34; target=&#34;_blank&#34;&gt;Godot iOS GameCenter plugin&lt;/a&gt;
+. If you want to delve into the details, you can check it out. Personally, I found it a bit challenging at first.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Environment at the Time of Writing&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+Godot Version: &lt;strong&gt;4.2.1&lt;/strong&gt;&lt;br&gt;
+Computer Model: &lt;strong&gt;MacBook Air M1, 2020&lt;/strong&gt;&lt;br&gt;
+OS: &lt;strong&gt;macOS 14.4.1&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Adding a Game Center Plugin to Your Project</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</link>
       <pubDate>Sun, 05 May 2024 20:17:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0021_game_center_plugin/</guid>
-      <description>Introduction In this article, I&amp;rsquo;ll show you how to add the official Godot plugin for integrating with Apple&amp;rsquo;s Game Center to your project.
-First off, what is Game Center? For those unfamiliar, it’s a feature available on iOS devices like iPhones and iPads. By signing in with an Apple ID, Game Center records achievements and allows players to compete on leaderboards in supported games. Developers can set achievements, define their completion criteria, and decide what to compete for on the leaderboards.
-Using the Game Center plugin in Godot, you can easily integrate these features into your games, which is pretty awesome.
-By the way, you can find the official documentation and source code at the Godot iOS plugins repository , so take a look there first. If there&amp;rsquo;s anything you don&amp;rsquo;t quite understand, you can always come back to this article.
-Author&amp;#39;s Environment at the Time of Writing Godot Version: 4.2.1
-Computer Model: MacBook Air M1, 2020
-OS: macOS 14.4.1
-Clone the Plugin Repository First, head over to this Github page and follow the steps there. However, they’re not very detailed, so I&amp;rsquo;ll explain the nitty-gritty parts here.</description>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In this article, I&amp;rsquo;ll show you how to add the official Godot plugin for integrating with Apple&amp;rsquo;s Game Center to your project.&lt;/p&gt;
+&lt;p&gt;First off, what is Game Center? For those unfamiliar, it’s a feature available on iOS devices like iPhones and iPads. By signing in with an Apple ID, Game Center records achievements and allows players to compete on leaderboards in supported games. Developers can set achievements, define their completion criteria, and decide what to compete for on the leaderboards.&lt;/p&gt;
+&lt;p&gt;Using the Game Center plugin in Godot, you can easily integrate these features into your games, which is pretty awesome.&lt;/p&gt;
+&lt;p&gt;By the way, you can find the official documentation and source code at the &lt;a href=&#34;https://github.com/godotengine/godot-ios-plugins&#34; target=&#34;_blank&#34;&gt;Godot iOS plugins repository&lt;/a&gt;
+, so take a look there first. If there&amp;rsquo;s anything you don&amp;rsquo;t quite understand, you can always come back to this article.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Author&amp;#39;s Environment at the Time of Writing&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+Godot Version: &lt;strong&gt;4.2.1&lt;/strong&gt;&lt;br&gt;
+Computer Model: &lt;strong&gt;MacBook Air M1, 2020&lt;/strong&gt;&lt;br&gt;
+OS: &lt;strong&gt;macOS 14.4.1&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

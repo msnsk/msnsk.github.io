@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>画面揺れ on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/ja/tags/%E7%94%BB%E9%9D%A2%E6%8F%BA%E3%82%8C/</link>
+    <link>http://localhost:1313/ja/tags/%E7%94%BB%E9%9D%A2%E6%8F%BA%E3%82%8C/</link>
     <description>Recent content in 画面揺れ on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/images/logomark.png</url>
-      <link>https://www.peanuts-code.com/images/logomark.png</link>
+      <url>http://localhost:1313/images/logomark.png</url>
+      <link>http://localhost:1313/images/logomark.png</link>
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
     <lastBuildDate>Mon, 01 Aug 2022 01:50:00 +0900</lastBuildDate>
-    <atom:link href="https://www.peanuts-code.com/ja/tags/%E7%94%BB%E9%9D%A2%E6%8F%BA%E3%82%8C/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/ja/tags/%E7%94%BB%E9%9D%A2%E6%8F%BA%E3%82%8C/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 で作る画面揺れ</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0014_screen_shake/</link>
+      <link>http://localhost:1313/ja/tutorials/gd0014_screen_shake/</link>
       <pubDate>Thu, 28 Jul 2022 14:10:56 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0014_screen_shake/</guid>
+      <guid>http://localhost:1313/ja/tutorials/gd0014_screen_shake/</guid>
       <description>今回の記事では、2Dゲームでの画面揺れの実装方法を紹介する。ゲームに絶対に必要な要素ではないが、うまく使えばプレイヤーのゲーム体験をよりインタラクティブにでき、ユーザエクスペリエンスに直接影響を与えることができる。例えば、銃を撃った時や敵からダメージを受けた時、高いところから落ちた時など、使えそうな場面は山ほどある。ちなみに、このような必要ではないものの追加</description>
     </item>
   </channel>

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>パズドラ on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/ja/tags/%E3%83%91%E3%82%BA%E3%83%89%E3%83%A9/</link>
+    <link>http://localhost:1313/ja/tags/%E3%83%91%E3%82%BA%E3%83%89%E3%83%A9/</link>
     <description>Recent content in パズドラ on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/images/logomark.png</url>
-      <link>https://www.peanuts-code.com/images/logomark.png</link>
+      <url>http://localhost:1313/images/logomark.png</url>
+      <link>http://localhost:1313/images/logomark.png</link>
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
     <lastBuildDate>Sun, 10 Jul 2022 00:51:37 +0900</lastBuildDate>
-    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%91%E3%82%BA%E3%83%89%E3%83%A9/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/ja/tags/%E3%83%91%E3%82%BA%E3%83%89%E3%83%A9/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 で作る進化形マッチ 3 パズルゲーム</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0013_advanced_match3/</link>
+      <link>http://localhost:1313/ja/tutorials/gd0013_advanced_match3/</link>
       <pubDate>Sun, 10 Jul 2022 00:51:37 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0013_advanced_match3/</guid>
+      <guid>http://localhost:1313/ja/tutorials/gd0013_advanced_match3/</guid>
       <description>今回のチュートリアルでは、進化形マッチ3パズルゲームと銘打って、盤面上で１つのピースを一定時間（数秒間）自由に動かして同じ色のピースを３つ以上並べて消すタイプのパズルゲームをを作っていく。 これはモバイルゲームで人気を博した「パズル&amp;amp;ドラゴンズ（Puzzle &amp;amp; Dragons）/ 通称パズドラ」のようなパズルをイメージしていただくとわかりやすいだろう。 ただ</description>
     </item>
   </channel>

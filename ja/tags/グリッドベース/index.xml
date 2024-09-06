@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>グリッドベース on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/ja/tags/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%99%E3%83%BC%E3%82%B9/</link>
+    <link>http://localhost:1313/ja/tags/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%99%E3%83%BC%E3%82%B9/</link>
     <description>Recent content in グリッドベース on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/images/logomark.png</url>
-      <link>https://www.peanuts-code.com/images/logomark.png</link>
+      <url>http://localhost:1313/images/logomark.png</url>
+      <link>http://localhost:1313/images/logomark.png</link>
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
     <lastBuildDate>Mon, 19 Sep 2022 02:10:00 +0900</lastBuildDate>
-    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%99%E3%83%BC%E3%82%B9/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/ja/tags/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%99%E3%83%BC%E3%82%B9/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 で作る 2D グリッドベース経路探索</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/</link>
+      <link>http://localhost:1313/ja/tutorials/gd0017_2d_grid_based_path_finding/</link>
       <pubDate>Mon, 19 Sep 2022 02:10:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0017_2d_grid_based_path_finding/</guid>
+      <guid>http://localhost:1313/ja/tutorials/gd0017_2d_grid_based_path_finding/</guid>
       <description>この記事では、AStar というアルゴリズムを利用して、2D ゲームにおけるグリッドベースの経路探索の実装方法について紹介する。なお、グリッドベースではない 2D 経路探索については、「Godot で作る 2D 経路探索 」の記事で紹介しているので、作りたいゲームに併せて記事を選んでいただければ幸いだ。 このチュートリアルで最後にできあがるプロジェクトのファイルは GitHubリポ</description>
     </item>
   </channel>

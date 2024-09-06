@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>ダウンロード on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/ja/tags/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89/</link>
+    <link>http://localhost:1313/ja/tags/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89/</link>
     <description>Recent content in ダウンロード on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/images/logomark.png</url>
-      <link>https://www.peanuts-code.com/images/logomark.png</link>
+      <url>http://localhost:1313/images/logomark.png</url>
+      <link>http://localhost:1313/images/logomark.png</link>
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
     <lastBuildDate>Mon, 25 Oct 2021 00:15:11 +0900</lastBuildDate>
-    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/ja/tags/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot をダウンロードする</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</link>
+      <link>http://localhost:1313/ja/tutorials/gd0001_download/</link>
       <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0001_download/</guid>
+      <guid>http://localhost:1313/ja/tutorials/gd0001_download/</guid>
       <description>ゲームエンジン Godot のダウンロード手順を解説</description>
     </item>
   </channel>

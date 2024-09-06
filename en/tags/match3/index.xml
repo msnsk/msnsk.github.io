@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>en</language>
     <lastBuildDate>Fri, 15 Jul 2022 18:40:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/match3/index.xml" rel="self" type="application/rss+xml" />
@@ -18,27 +18,74 @@
       <link>https://www.peanuts-code.com/en/tutorials/gd0013_advanced_match3/</link>
       <pubDate>Fri, 15 Jul 2022 18:40:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0013_advanced_match3/</guid>
-      <description>In this tutorial, we will create an advanced match-3 puzzle game, a type of puzzle game in which one piece is moved freely on the board for a certain period of time to erase three or more pieces of the same color in a row.
-This is easy to understand if you imagine a puzzle game like &amp;ldquo;Puzzle &amp;amp; Dragons&amp;rdquo; (a.k.a. &amp;ldquo;Puzzle Dora&amp;rdquo;), which has gained popularity as a mobile game.
-However, the tutorial would be too large if it included all game elements such as decks, gacha, and battles with enemy characters, so we will focus on the puzzle part of the tutorial this time.
-For more information on how to create an standard match-3 puzzle game like &amp;ldquo;Candy Crush&amp;rdquo; or a puzzle game like &amp;ldquo;LINE Tsum Tsum&amp;rdquo;, please refer to the following tutorial.
-Other Tutorials If you want to make a game like &amp;ldquo;Candy Crush&amp;rdquo;:
-Match 3 puzzle game in Godot If you want to make a game like &amp;ldquo;LINE: Disney Tsum Tsum&amp;rdquo;:
-Connecting matching colors puzzle game in Godot The project file that will be created at the end of this tutorial is located in the GitHub repository .</description>
+      <description>&lt;p&gt;In this tutorial, we will create an advanced match-3 puzzle game, a type of puzzle game in which one piece is moved freely on the board for a certain period of time to erase three or more pieces of the same color in a row.&lt;/p&gt;
+&lt;p&gt;This is easy to understand if you imagine a puzzle game like &amp;ldquo;Puzzle &amp;amp; Dragons&amp;rdquo; (a.k.a. &amp;ldquo;Puzzle Dora&amp;rdquo;), which has gained popularity as a mobile game.&lt;/p&gt;
+&lt;p&gt;However, the tutorial would be too large if it included all game elements such as decks, gacha, and battles with enemy characters, so we will focus on the puzzle part of the tutorial this time.&lt;/p&gt;
+&lt;p&gt;For more information on how to create an standard match-3 puzzle game like &amp;ldquo;Candy Crush&amp;rdquo; or a puzzle game like &amp;ldquo;LINE Tsum Tsum&amp;rdquo;, please refer to the following tutorial.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Other Tutorials&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+If you want to make a game like &amp;ldquo;Candy Crush&amp;rdquo;:&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0012_match3/&#34; title=&#34;Match 3 puzzle game in Godot&#34;&gt;Match 3 puzzle game in Godot&lt;/a&gt;
+&lt;br&gt;
+If you want to make a game like &amp;ldquo;LINE: Disney Tsum Tsum&amp;rdquo;:&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/&#34; title=&#34;Connecting matching colors puzzle game in Godot&#34;&gt;Connecting matching colors puzzle game in Godot&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Match 3 Puzzle Game in Godot3</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0012_match3/</link>
       <pubDate>Sat, 02 Jul 2022 06:05:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0012_match3/</guid>
-      <description>In this tutorial, we will create a match 3 puzzle game. Match 3 is a puzzle game in which players move multiple colorful pieces evenly arranged along a grid on the board to eliminate three or more pieces of the same color in a row. This genre is particularly popular among mobile game players because it is easy to operate and enjoyable. Candy Crush, Toon Blast, and Royal Match are just a few examples of popular games. Puzzle &amp;amp; Dragons and LINE Tsum Tsum are also based on Match 3, although the controls are slightly different. In this tutorial, we will create a puzzle like Candy Crush, in which the pieces are moved only one square at a time to match colors. If you want to make a game like &amp;ldquo;LINE tsum tsum&amp;rdquo;, check another tutorial, Connecting matching colors puzzle game in Godot . The final project file for this tutorial is located at GitHub repository . If you download the .zip file and import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;End&amp;rdquo; folder with the Godot Engine, you can check the</description>
+      <description>&lt;p&gt;In this tutorial, we will create a match 3 puzzle game. Match 3 is a puzzle game in which players move multiple colorful pieces evenly arranged along a grid on the board to eliminate three or more pieces of the same color in a row. This genre is particularly popular among mobile game players because it is easy to operate and enjoyable.&lt;/p&gt;
+&lt;p&gt;Candy Crush, Toon Blast, and Royal Match are just a few examples of popular games. Puzzle &amp;amp; Dragons and LINE Tsum Tsum are also based on Match 3, although the controls are slightly different. In this tutorial, we will create a puzzle like Candy Crush, in which the pieces are moved only one square at a time to match colors. If you want to make a game like &amp;ldquo;LINE tsum tsum&amp;rdquo;, check another tutorial, &lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/&#34; title=&#34;Connecting matching colors puzzle game in Godot&#34;&gt;Connecting matching colors puzzle game in Godot&lt;/a&gt;
+.&lt;/p&gt;
+&lt;p&gt;The final project file for this tutorial is located at &lt;strong&gt;&lt;a href=&#34;https://github.com/msnsk/Match3.git&#34; target=&#34;_blank&#34;&gt;GitHub repository&lt;/a&gt;
+&lt;/strong&gt;. If you download the .zip file and import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;End&amp;rdquo; folder with the Godot Engine, you can check the project directly.&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Connecting Matching Colors Puzzle Game in Godot3</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/</link>
       <pubDate>Mon, 20 Jun 2022 03:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0011_connect_colors/</guid>
-      <description>In this tutorial, we will explain how to create a type of game in which you trace and erase drops of the same color, like the very popular Disney Tsum Tsum smartphone game. LINE: Disney Tsum Tsum Note that the final project file in this tutorial is located in the GitHub repository . You can directly check the project by downloading the .zip file and importing the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;End&amp;rdquo; folder with the Godot Engine. Environment This tutorial was created in the following environment ・Godot version: 3.4.4 ・Computer OS version: macOS 11.6.5 Memo: Please also use the following articles to help you start creating your game. Downloading Godot Project Manager of Godot Creating a new project First, we would like you to start Godot Engine and create a new project. Let&amp;rsquo;s name the project &amp;ldquo;Connect Colors Start. Editing project settings Once the editor appears, let&amp;rsquo;s editing the settings for the entire project. First, set the display size for the game. In this case, we set</description>
+      <description>&lt;p&gt;In this tutorial, we will explain how to create a type of game in which you trace and erase drops of the same color, like the very popular Disney Tsum Tsum smartphone game.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.disney.co.jp/fc/tsum/tsum_en.html&#34; target=&#34;_blank&#34;&gt;LINE: Disney Tsum Tsum&lt;/a&gt;
+&lt;/p&gt;
+&lt;br/&gt;
+&lt;p&gt;Note that the final project file in this tutorial is located in the &lt;a href=&#34;https://github.com/msnsk/ConnectColors.git&#34; target=&#34;_blank&#34;&gt;GitHub repository&lt;/a&gt;
+. You can directly check the project by downloading the .zip file and importing the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;End&amp;rdquo; folder with the Godot Engine.&lt;/p&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Environment&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+This tutorial was created in the following environment&lt;/em&gt;&lt;br&gt;
+・&lt;em&gt;Godot version: &lt;strong&gt;3.4.4&lt;/strong&gt;&lt;/em&gt;&lt;br&gt;
+・&lt;em&gt;Computer OS version: &lt;strong&gt;macOS 11.6.5&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo:&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+Please also use the following articles to help you start creating your game.&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0001_download/&#34;&gt;Downloading Godot&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/&#34;&gt;Project Manager of Godot&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;creating-a-new-project&#34;&gt;Creating a new project&lt;/h2&gt;
+&lt;p&gt;First, we would like you to start Godot Engine and create a new project. Let&amp;rsquo;s name the project &amp;ldquo;Connect Colors Start.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>PuzzleGame on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/puzzlegame/</link>
+    <description>Recent content in PuzzleGame on Peanuts Code</description>
+    <image>
+      <title>Peanuts Code</title>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
+    </image>
+    <generator>Hugo -- 0.134.1</generator>
+    <language>ja</language>
+    <lastBuildDate>Sun, 10 Jul 2022 00:51:37 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/puzzlegame/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 Godot3 で作る進化形マッチ 3 パズルゲーム</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0013_advanced_match3/</link>
+      <pubDate>Sun, 10 Jul 2022 00:51:37 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0013_advanced_match3/</guid>
+      <description>&lt;p&gt;今回のチュートリアルでは、進化形マッチ3パズルゲームと銘打って、盤面上で１つのピースを一定時間（数秒間）自由に動かして同じ色のピースを３つ以上並べて消すタイプのパズルゲームをを作っていく。&lt;/p&gt;
+&lt;p&gt;これはモバイルゲームで人気を博した「パズル&amp;amp;ドラゴンズ（Puzzle &amp;amp; Dragons）/ 通称パズドラ」のようなパズルをイメージしていただくとわかりやすいだろう。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>🤖 Godot3 で作るマッチ 3 パズルゲーム</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0012_match3/</link>
+      <pubDate>Sun, 26 Jun 2022 03:18:03 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0012_match3/</guid>
+      <description>&lt;p&gt;今回のチュートリアルではマッチ3パズルゲームを作っていく。マッチ3（スリー）パズルゲームとは、盤面のグリッドに沿って均一に並べられた複数のカラフルなピースのうちの１つを、1マス動かして同じ色のピースを３つ以上並べて消すタイプのパズルゲームの総称だ。うまく動かすと、一回の操作で連続的に複数のピースを消すことができ、なんとも気持ちの良いプレイ感覚を味わうことができる。簡単な操作で気軽に楽しめるため、モバイルゲームで特に人気のあるジャンルだ。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>🤖 Godot3 で作る同じ色をつなげて消すパズルゲーム</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0011_connect_colors/</link>
+      <pubDate>Tue, 14 Jun 2022 22:43:45 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0011_connect_colors/</guid>
+      <description>&lt;p&gt;このチュートリアルでは、スマホゲームで大人気の ディズニーツムツムのような同じ色のドロップをなぞってつなげて消すタイプのゲームの作り方を説明する。ちなみにディズニーツムツムを知らない方は以下のリンク先を一度ご覧いただきたい。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.disney.co.jp/games/dtt.html&#34; target=&#34;_blank&#34;&gt;LINE：ディズニー ツムツム&lt;/a&gt;
+&lt;/p&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Other Tutorials&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+「パズル＆ドラゴンズ」のようなゲームを作ってみたい場合：&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0013_advanced_match3/&#34; title=&#34;Godot で作る進化形マッチ 3 パズルゲーム&#34;&gt;Godot で作る進化形マッチ 3 パズルゲーム&lt;/a&gt;
+&lt;br&gt;
+「キャンディークラッシュ」のようなゲームを作ってみたい場合：&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0012_match3/&#34; title=&#34;Godot で作るマッチ 3 パズルゲーム&#34;&gt;Godot で作るマッチ 3 パズルゲーム&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

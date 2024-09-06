@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>en</language>
     <lastBuildDate>Wed, 08 Jun 2022 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/archives/2021/index.xml" rel="self" type="application/rss+xml" />
@@ -18,27 +18,47 @@
       <link>https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/</link>
       <pubDate>Sat, 30 Oct 2021 12:30:09 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/</guid>
-      <description>In this article, we will introduce what you can do with the Project Manager.
-When Godot is launched, the first thing that appears is the Project Manager. The Project Manager is a tool for managing projects handled by Godot, including the following operations.
-Creating new projects Loading project files downloaded from the Web Renaming a project Removing projects that were previously managed by the Project Manager. When using Godot for the first time, a dialog box will appear as shown in the following screen shot, prompting you to open the Asset Library. The asset library can be easily accessed at any time, so choose Cancel for now.
-Creating a new project Click &amp;ldquo;New Project&amp;rdquo; from the right sidebar of the Project Manager.
-Click &amp;ldquo;Browse&amp;rdquo; to choose the path where you want to save the new project files.
-Click on &amp;ldquo;Create Folder&amp;rdquo; in the upper right corner of the window that opens.
-Enter a name for the folder. As an example, it was named &amp;ldquo;SampleProject&amp;rdquo;.
-Once the folder is created, the folder path is automatically selected. Continue to click &amp;ldquo;Select Current Folder&amp;rdquo; in the lower right corner.</description>
+      <description>&lt;p&gt;In this article, we will introduce what you can do with the Project Manager.&lt;/p&gt;
+&lt;p&gt;When Godot is launched, the first thing that appears is the Project Manager. The Project Manager is a tool for managing projects handled by Godot, including the following operations.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Creating new projects&lt;/li&gt;
+&lt;li&gt;Loading project files downloaded from the Web&lt;/li&gt;
+&lt;li&gt;Renaming a project&lt;/li&gt;
+&lt;li&gt;Removing projects that were previously managed by the Project Manager.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When using Godot for the first time, a dialog box will appear as shown in the following screen shot, prompting you to open the Asset Library. The asset library can be easily accessed at any time, so choose Cancel for now.&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0002_project_manager/en/img01.png&#34; alt=&#34;Godot Engine Project Manager&#34;  /&gt;
+&lt;/p&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;creating-a-new-project&#34;&gt;Creating a new project&lt;/h2&gt;
+&lt;p&gt;Click &amp;ldquo;New Project&amp;rdquo; from the right sidebar of the Project Manager.&lt;br&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0002_project_manager/en/img02.png&#34; alt=&#34;Right side bar on Project Manager window&#34;  /&gt;
+&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Downloading Godot</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0001_download/</link>
       <pubDate>Mon, 25 Oct 2021 00:15:11 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0001_download/</guid>
-      <description>What&amp;rsquo;s Godot? Godot Engine, or simply Godot, is a very popular open-source game engine that is now gaining popularity, especially in the indie game industry.
-A game engine is a reliable tool that handles all the complicated tasks for game developers by providing them with a system that is commonly needed in game development from the beginning so that they can concentrate on game development.
-For example, &amp;ldquo;displaying characters on the screen,&amp;rdquo; &amp;ldquo;sound effects sound when buttons are pressed and the screen changes,&amp;rdquo; &amp;ldquo;shining light on 3D objects and drawing shadows,&amp;rdquo; and &amp;ldquo;causing damage when a beam of light hits an enemy,&amp;rdquo; etc., are all common game development tasks that would be difficult if created from scratch. The game engine takes care of these processes for us.
-In this article, I will explain the first step to start using Godot, which is to download it (very easy).
-Godot is multi-platform. The files are available for almost all computers with major operating systems (Windows, macOS, and Linux) installed.
-Let&amp;rsquo;s get started with the download process.
-Accessing the download page First, access the official download page.</description>
+      <description>&lt;h2 id=&#34;whats-godot&#34;&gt;What&amp;rsquo;s Godot?&lt;/h2&gt;
+&lt;p&gt;Godot Engine, or simply Godot, is a very popular open-source game engine that is now gaining popularity, especially in the indie game industry.&lt;/p&gt;
+&lt;p&gt;A game engine is a reliable tool that handles all the complicated tasks for game developers by providing them with a system that is commonly needed in game development from the beginning so that they can concentrate on game development.&lt;/p&gt;
+&lt;p&gt;For example, &amp;ldquo;displaying characters on the screen,&amp;rdquo; &amp;ldquo;sound effects sound when buttons are pressed and the screen changes,&amp;rdquo; &amp;ldquo;shining light on 3D objects and drawing shadows,&amp;rdquo; and &amp;ldquo;causing damage when a beam of light hits an enemy,&amp;rdquo; etc., are all common game development tasks that would be difficult if created from scratch. The game engine takes care of these processes for us.&lt;/p&gt;
+&lt;p&gt;In this article, I will explain the first step to start using Godot, which is to download it (very easy).&lt;/p&gt;
+&lt;p&gt;Godot is multi-platform. The files are available for almost all computers with major operating systems (Windows, macOS, and Linux) installed.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s get started with the download process.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

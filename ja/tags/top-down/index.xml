@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Top-Down on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/top-down/</link>
+    <description>Recent content in Top-Down on Peanuts Code</description>
+    <image>
+      <title>Peanuts Code</title>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
+    </image>
+    <generator>Hugo -- 0.134.1</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 06 Sep 2024 00:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/top-down/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 2Dグリッドベース移動を実装しよう</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</link>
+      <pubDate>Fri, 06 Sep 2024 00:00:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</guid>
+      <description>&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
+&lt;p&gt;このチュートリアルでは Godot で 2D ゲームにおける「グリッドベース移動」を実装してみます。できるだけシンプルに。&lt;/p&gt;
+&lt;p&gt;そもそもグリッドベース移動って何なん？という方もいらっしゃるかと。グリッドベース移動とは、グリッド（格子状の線）で等間隔に区分されたゲームの画面上をキャラクターなどのオブジェクトが 1 グリッド（1 マス）ずつ移動する動きのことです。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>🤖 Godot3 で作るホーミングミサイル</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</link>
+      <pubDate>Fri, 27 May 2022 17:10:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0008_homing_missiles/</guid>
+      <description>&lt;p&gt;このチュートリアルでは、2Dトップダウンシューティングにおける「ホーミングミサイル」を作っていく。ホーミングミサイルというのは、ターゲットを追跡するミサイルのことだ。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Environment&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+このチュートリアルは以下の環境で作成しました。&lt;/em&gt;&lt;br&gt;
+・&lt;em&gt;Godot のバージョン: &lt;strong&gt;3.4.2&lt;/strong&gt;&lt;/em&gt;&lt;br&gt;
+・&lt;em&gt;コンピュータのOS: &lt;strong&gt;macOS 11.6.5&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;p&gt;このチュートリアルでは、ホーミングミサイルの作成にフォーカスするため、それ以外の部分は事前に下準備として作成済みだ。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>🤖 Godot3 で作る弾幕シューティングの弾幕</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/</link>
+      <pubDate>Sat, 21 May 2022 17:10:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0007_bullethell/</guid>
+      <description>&lt;p&gt;このチュートリアルでは、2Dトップダウンシューティングゲームの「弾幕」を作っていく。弾幕というのは、敵キャラクターから放たれる大量の弾（またはそれに類似する遠距離攻撃）のことで、弾が幕のように隙間なく飛んでくるので「弾幕」という。プレイヤーはその隙間を縫うようにうまくかわしながら、敵キャラクターを射撃して倒していくゲームを弾幕シューティングゲームという。単に弾幕をかわすことに特化したゲームもある。イメージに合う宇宙船や戦闘機をモチーフにしたゲームが多いのも特徴だ（今回は魔法使いとモンスターの地上戦だが）。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>🤖 Godot3 で作るトップダウンシューティングの 4 種類の銃</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/</link>
+      <pubDate>Wed, 04 May 2022 01:30:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0006_guns_of_topdown_shooter/</guid>
+      <description>&lt;p&gt;このチュートリアルでは、2Dトップダウンシューティングゲーム（見下ろし型シューティングゲーム）で一般的によく登場する銃を4種類作っていく。具体的には以下の通りだ。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ハンドガン&lt;/li&gt;
+&lt;li&gt;ショットガン&lt;/li&gt;
+&lt;li&gt;マシンガン&lt;/li&gt;
+&lt;li&gt;レーザーガン&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Environment&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+このチュートリアルは以下の環境で作成しました。&lt;/em&gt;&lt;br&gt;
+・&lt;em&gt;Godot のバージョン: &lt;strong&gt;3.4.2&lt;/strong&gt;&lt;/em&gt;&lt;br&gt;
+・&lt;em&gt;コンピュータのOS: &lt;strong&gt;macOS 11.6.5&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;p&gt;このチュートリアルでは、銃の作成にフォーカスするため、以下は予め用意しておいた。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

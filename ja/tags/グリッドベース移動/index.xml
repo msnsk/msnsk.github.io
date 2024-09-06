@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>グリッドベース移動 on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/ja/tags/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%99%E3%83%BC%E3%82%B9%E7%A7%BB%E5%8B%95/</link>
+    <link>http://localhost:1313/ja/tags/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%99%E3%83%BC%E3%82%B9%E7%A7%BB%E5%8B%95/</link>
     <description>Recent content in グリッドベース移動 on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/images/logomark.png</url>
-      <link>https://www.peanuts-code.com/images/logomark.png</link>
+      <url>http://localhost:1313/images/logomark.png</url>
+      <link>http://localhost:1313/images/logomark.png</link>
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 08 Jun 2022 00:05:00 +0900</lastBuildDate>
-    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%99%E3%83%BC%E3%82%B9%E7%A7%BB%E5%8B%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 Sep 2024 00:00:00 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/ja/tags/%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%83%99%E3%83%BC%E3%82%B9%E7%A7%BB%E5%8B%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>🤖 Godot3 で作る 2D グリッドベース移動</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</link>
-      <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</guid>
-      <description>このチュートリアルでは、2Dゲームにおける「グリッドベース移動」をどのように実装するのかを説明する。グリッドベース移動というのは、等間隔にグリッド（格子状の線）で区分されたゲームの画面上をキャラクターなどのオブジェクトが 1 グリッド（ 1 マス）ずつ移動する動きのことだ。 人気スマホゲーム「パズル＆ドラゴンズ」や元祖落ちゲー「テトリス」などのパズルゲームはもちろん、</description>
+      <title>🤖 2D グリッドベース移動</title>
+      <link>http://localhost:1313/ja/tutorials/gd0010_2d_grid_based_movement/</link>
+      <pubDate>Wed, 04 Sep 2024 00:00:00 +0900</pubDate>
+      <guid>http://localhost:1313/ja/tutorials/gd0010_2d_grid_based_movement/</guid>
+      <description>はじめに Godot で 2D ゲームにおける「グリッドベース移動」を実装してみました。複雑なことはしていません。 「そもそもグリッドベース移動って何？」というお声もあるかと。 グリッドベース移動とは、グリッド（格子状の線）で等間隔に区分されたゲームの画面上をキャラクターなどのオブジェクトが 1 グリッド（1 マス）ずつ移動する動きのことです。 少し昔のゲームを例にあげて恐縮ですが、「フ</description>
     </item>
   </channel>
 </rss>

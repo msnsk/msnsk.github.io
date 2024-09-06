@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>ステートマシン on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/ja/tags/%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%9E%E3%82%B7%E3%83%B3/</link>
+    <link>http://localhost:1313/ja/tags/%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%9E%E3%82%B7%E3%83%B3/</link>
     <description>Recent content in ステートマシン on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/images/logomark.png</url>
-      <link>https://www.peanuts-code.com/images/logomark.png</link>
+      <url>http://localhost:1313/images/logomark.png</url>
+      <link>http://localhost:1313/images/logomark.png</link>
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>ja</language>
     <lastBuildDate>Thu, 13 Oct 2022 16:30:00 +0900</lastBuildDate>
-    <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%9E%E3%82%B7%E3%83%B3/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/ja/tags/%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%9E%E3%82%B7%E3%83%B3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Godot3 で作るアニメーションステートマシン</title>
-      <link>https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/</link>
+      <link>http://localhost:1313/ja/tutorials/gd0019_2d_animation_state_machine/</link>
       <pubDate>Thu, 13 Oct 2022 16:30:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/ja/tutorials/gd0019_2d_animation_state_machine/</guid>
+      <guid>http://localhost:1313/ja/tutorials/gd0019_2d_animation_state_machine/</guid>
       <description>今回のテーマは 2D ゲームのアニメーションステートマシンの実装だ。ステートとは「状態」のことで、ステートマシンというのは、キャラクターのある状態からある状態への遷移を制御する仕組みのことだ。 ある状態からは限られた状態にしか遷移できなかったり、状態によって今のアニメーションが終了してから次の状態に遷移させるのか、ただちに遷移させるのかの違いがある。例えば、「idl</description>
     </item>
   </channel>

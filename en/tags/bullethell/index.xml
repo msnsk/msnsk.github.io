@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>BulletHell on Peanuts Code</title>
-    <link>https://www.peanuts-code.com/en/tags/bullethell/</link>
+    <link>http://localhost:1313/en/tags/bullethell/</link>
     <description>Recent content in BulletHell on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>https://www.peanuts-code.com/images/logomark.png</url>
-      <link>https://www.peanuts-code.com/images/logomark.png</link>
+      <url>http://localhost:1313/images/logomark.png</url>
+      <link>http://localhost:1313/images/logomark.png</link>
     </image>
     <generator>Hugo -- 0.133.0</generator>
     <language>en</language>
     <lastBuildDate>Mon, 23 May 2022 01:30:00 +0900</lastBuildDate>
-    <atom:link href="https://www.peanuts-code.com/en/tags/bullethell/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/en/tags/bullethell/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🤖 Bullet Hell in Godot3</title>
-      <link>https://www.peanuts-code.com/en/tutorials/gd0007_bullethell/</link>
+      <link>http://localhost:1313/en/tutorials/gd0007_bullethell/</link>
       <pubDate>Mon, 23 May 2022 01:30:00 +0900</pubDate>
-      <guid>https://www.peanuts-code.com/en/tutorials/gd0007_bullethell/</guid>
+      <guid>http://localhost:1313/en/tutorials/gd0007_bullethell/</guid>
       <description>In this time, we will create a bullet hell aka barrage for a barrage shooting game. The bullet hell is a large number of bullets (or similar long-range attacks) like a curtain. A &amp;ldquo;bullet hell shooter&amp;rdquo; is a game in which the player shoots at and defeats enemy characters while dodging and weaving through the gaps between the bullets. Some games specialize in simply dodging the bullets. Many games are based on the motif of spaceships and fighter planes that fit the image (in this tutorial, a ground battle between a wizard and a monster though).
 In this tutorial, we will focus only on creating a bullet hell. Also, while bullet hell come in various shapes and sizes, we will focus on rotating-type bullet hell.
 Environment This tutorial was created in the following environment

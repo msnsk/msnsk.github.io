@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>ja</language>
     <lastBuildDate>Sat, 05 Feb 2022 17:16:51 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%82%AB%E3%83%A1%E3%83%A9/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,20 @@
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_3/</link>
       <pubDate>Sat, 05 Feb 2022 17:16:51 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_3/</guid>
-      <description>第3回目の今回は、プレイヤーキャラクターの動きに合わせてカメラが移動し、Part 2 の時より広いタイルマップ上をキャラクターが移動できるようにしていく。 なお、2Dゲームのカメラについて、公式ドキュメントにも説明があるので、併せて確認いただくのが良いだろう。 公式オンラインドキュメント： Camera2D Memo： 過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただ</description>
+      <description>&lt;p&gt;第3回目の今回は、プレイヤーキャラクターの動きに合わせてカメラが移動し、Part 2 の時より広いタイルマップ上をキャラクターが移動できるようにしていく。&lt;/p&gt;
+&lt;p&gt;なお、2Dゲームのカメラについて、公式ドキュメントにも説明があるので、併せて確認いただくのが良いだろう。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;公式オンラインドキュメント：&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+&lt;a href=&#34;https://docs.godotengine.org/ja/stable/classes/class_camera2d.html&#34; target=&#34;_blank&#34;&gt;Camera2D&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Memo：&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+過去のシリーズをまだご覧になっていない方は、そちらを先にご覧いただくことをおすすめします。&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/&#34; title=&#34;Godot で作るプラットフォーマー&#34;&gt;Godot で作るプラットフォーマー&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Editor on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/en/tags/editor/</link>
+    <description>Recent content in Editor on Peanuts Code</description>
+    <image>
+      <title>Peanuts Code</title>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
+    </image>
+    <generator>Hugo -- 0.134.1</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 27 Apr 2022 02:44:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/editor/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 Powerful Search Features in Godot</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0009_various_searches/</link>
+      <pubDate>Wed, 27 Apr 2022 02:44:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0009_various_searches/</guid>
+      <description>&lt;p&gt;When we develop a game, especially a big one, sometimes it may often happen that we can never find the scene which we want to edit or we cannot remember where the script file is, which we are going to edit.&lt;/p&gt;
+&lt;p&gt;In this article, I am going to introduce some so powerful and useful search features with keyboard shortcuts. Once you know those, you can reduce the huge amount of time looking for something which may be the most uninteresting in the game development. In addition, you can use the search features in a much faster way instead of looking for a script file and clicking it in the file system dock, for example.&lt;/p&gt;
+&lt;p&gt;By the way, we can see all default shortcuts in the official online documents of Godot. Be careful about that it says Alt as Option on macOS.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;GODOT DOCS&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+&lt;a href=&#34;https://docs.godotengine.org/ja/stable/tutorials/editor/default_key_mapping.html&#34; target=&#34;_blank&#34;&gt;Default editor shortcuts&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Anyway, why do not you try to use the searches because it is sure to improve work efficiency.&lt;/p&gt;
+&lt;p&gt;I will introduce ones in order of the widest range of searches first.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

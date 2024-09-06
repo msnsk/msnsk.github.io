@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Collision on Peanuts Code</title>
+    <link>https://www.peanuts-code.com/ja/tags/collision/</link>
+    <description>Recent content in Collision on Peanuts Code</description>
+    <image>
+      <title>Peanuts Code</title>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
+    </image>
+    <generator>Hugo -- 0.134.1</generator>
+    <language>ja</language>
+    <lastBuildDate>Mon, 03 Oct 2022 22:55:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/ja/tags/collision/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🤖 Godot3 で作る 2D ゲームの近接攻撃の当たり判定</title>
+      <link>https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/</link>
+      <pubDate>Mon, 03 Oct 2022 22:55:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/ja/tutorials/gd0018_melee_attacks/</guid>
+      <description>&lt;p&gt;この記事では、2Dゲームにおけるシンプルな近接攻撃の当たり判定を実装する方法を紹介する。&lt;/p&gt;
+&lt;p&gt;一般的によく使われる手法で、攻撃するオブジェクト（プレイヤーキャラクターなど）に攻撃時のみ有効になる衝突形状（Hit Box という）を用意し、攻撃を受けるオブジェクト（敵キャラクターや破壊できる樽や木箱、草など）には攻撃を受ける範囲となる衝突形状（Hurt Box という）を用意し、攻撃時のアニメーションに合わせて、Hit Box と Hurt Box の有効/無効の切り替えやサイズ、位置の変更をすることで攻撃の当たり判定を実装することができる。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

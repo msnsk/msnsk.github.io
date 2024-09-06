@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>ja</language>
     <lastBuildDate>Sun, 24 Apr 2022 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/%E3%83%88%E3%83%A9%E3%83%83%E3%83%97/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,15 @@
       <link>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</link>
       <pubDate>Sun, 24 Apr 2022 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0005_platformer/platformer_15/</guid>
-      <description>第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップやギミックの類だ。 動く床 落ちる床 高く飛べる床 火が出る装置 飛んでくる鉄球 今回は Part 1 でインポート済みのアセットからたくさんのスプライトシートを利用する。例によって、</description>
+      <description>&lt;p&gt;第15回目の今回はいよいよこのチュートリアルのシリーズの最終回だ。最終回はプラットフォーマーのレベルデザインに比較的よく使われるいくつかの仕掛けを追加していく。具体的には以下にリストアップしたトラップやギミックの類だ。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;動く床&lt;/li&gt;
+&lt;li&gt;落ちる床&lt;/li&gt;
+&lt;li&gt;高く飛べる床&lt;/li&gt;
+&lt;li&gt;火が出る装置&lt;/li&gt;
+&lt;li&gt;飛んでくる鉄球&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;今回は Part 1 でインポート済みのアセットからたくさんのスプライトシートを利用する。例によって、見た目にブラーがかかっている（ピクセルアート特有のエッジが効いた画像ではない）場合は、ファイルシステム上で利用するアセットファイルを選択し、インポートドックから「プリセット」＞「2D Pixel」を選択し、「再インポート」をクリックして修正しよう。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

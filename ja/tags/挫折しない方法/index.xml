@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>ja</language>
     <lastBuildDate>Sun, 03 Jul 2022 02:30:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/%E6%8C%AB%E6%8A%98%E3%81%97%E3%81%AA%E3%81%84%E6%96%B9%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,10 @@
       <link>https://www.peanuts-code.com/ja/posts/post0003_how_to_avoid_frustration/</link>
       <pubDate>Sun, 03 Jul 2022 02:30:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/posts/post0003_how_to_avoid_frustration/</guid>
-      <description>せっかく始めたゲームの個人開発、できれば長く楽しく続けたいものだ。しかし、一般的にゲーム開発は挫折しがちである。まずはその理由について考えてみよう。 挫折する理由 まず、ゲーム開発は大変だ。総合芸術などと呼ばれることもある。つまり、ゲームというのは、音楽も映像もキャラクターもシナリオもシステムもレベルデザインも、全部合わせて１つの作品として表現するものなのだ。簡</description>
+      <description>&lt;p&gt;せっかく始めたゲームの個人開発、できれば長く楽しく続けたいものだ。しかし、一般的にゲーム開発は挫折しがちである。まずはその理由について考えてみよう。&lt;/p&gt;
+&lt;br/&gt;
+&lt;h2 id=&#34;挫折する理由&#34;&gt;挫折する理由&lt;/h2&gt;
+&lt;p&gt;まず、ゲーム開発は大変だ。総合芸術などと呼ばれることもある。つまり、ゲームというのは、音楽も映像もキャラクターもシナリオもシステムもレベルデザインも、全部合わせて１つの作品として表現するものなのだ。簡単なわけがない。大変なので、まずそれだけで挫折しがちというわけだ。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
