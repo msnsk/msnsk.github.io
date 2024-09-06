@@ -30,7 +30,7 @@
 &lt;p&gt;カジノのテーブルゲームとして多くの人に親しまれているポーカーですが、なんと、落ち物ゲームとして生まれ変わりました！その名も「クイックハンドポーカー」です！画面上に落とされたトランプのスート（マーク）とランク（数字）を組み合わせたオブジェクトを素早く5つタッチしてポーカーの役を揃えましょう！制限時間内に高得点を目指しましょう！初めてプレイする人もご安心を。ゲームのルールや役はゲーム内で簡単に確認できます！&lt;/p&gt;</description>
     </item>
     <item>
-      <title>🤖 2Dグリッドベース移動を実装しよう</title>
+      <title>🤖 2Dグリッドベース移動</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</link>
       <pubDate>Fri, 06 Sep 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</guid>
@@ -39,7 +39,7 @@
 &lt;p&gt;そもそもグリッドベース移動って何なん？という方もいらっしゃるかと。グリッドベース移動とは、グリッド（格子状の線）で等間隔に区分されたゲームの画面上をキャラクターなどのオブジェクトが 1 グリッド（1 マス）ずつ移動する動きのことです。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>🤖 TileMapLayerでタイルマップを作ろう</title>
+      <title>🤖 TileMapLayerでタイルマップを作る</title>
       <link>https://www.peanuts-code.com/ja/tutorials/gd0024_tilemaplayer/</link>
       <pubDate>Fri, 23 Aug 2024 13:55:22 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0024_tilemaplayer/</guid>

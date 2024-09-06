@@ -76,7 +76,7 @@ The operation is basically as simple as touching the screen! Select five objects
 The simple rule is to aim for a high score within the time limit (initially 30 seconds). Quickly form as rare poker hands as possible! The total of the ranks (numbers) of the selected five objects is multiplied by the multiplier corresponding to the hand, which is added as the score. In other words, the rarer the hand, the higher the score. Moreover, the rarer the hand, the longer the bonus time added to the time limit, allowing you to play the game longer and aim for even higher scores!&lt;/p&gt;</description>
     </item>
     <item>
-      <title>🤖 Implementing 2D Grid-Based Movement</title>
+      <title>🤖 2D Grid-Based Movement</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/</link>
       <pubDate>Fri, 06 Sep 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/</guid>

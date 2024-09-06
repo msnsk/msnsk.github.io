@@ -2,28 +2,81 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Grid-Based on Peanuts Code</title>
-    <link>http://localhost:1313/en/tags/grid-based/</link>
+    <link>https://www.peanuts-code.com/en/tags/grid-based/</link>
     <description>Recent content in Grid-Based on Peanuts Code</description>
     <image>
       <title>Peanuts Code</title>
-      <url>http://localhost:1313/images/logomark.png</url>
-      <link>http://localhost:1313/images/logomark.png</link>
+      <url>https://www.peanuts-code.com/images/logomark.png</url>
+      <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.133.0</generator>
+    <generator>Hugo -- 0.134.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 09 Jun 2022 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/en/tags/grid-based/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Sep 2024 00:00:00 +0900</lastBuildDate>
+    <atom:link href="https://www.peanuts-code.com/en/tags/grid-based/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>🤖 2D Grid-based Movement in Godot3</title>
-      <link>http://localhost:1313/en/tutorials/gd0010_2d_grid_based_movement/</link>
-      <pubDate>Wed, 08 Jun 2022 00:05:00 +0900</pubDate>
-      <guid>http://localhost:1313/en/tutorials/gd0010_2d_grid_based_movement/</guid>
-      <description>This tutorial explains how to implement &amp;ldquo;grid-based movement&amp;rdquo; in 2D games. Grid-based movement refers to the movement of objects such as characters on the game screen one grid at a time.
-Many puzzle games such as the popular smartphone game &amp;ldquo;Puzzle &amp;amp; Dragons&amp;rdquo; and the original falling game &amp;ldquo;Tetris,&amp;rdquo; as well as tactical simulation games such as the &amp;ldquo;Fire Emblem&amp;rdquo; series and &amp;ldquo;Tactics Ogre&amp;rdquo; probably employ this type of movement.
-On the other hand, RPGs such as the &amp;ldquo;Final Fantasy&amp;rdquo; series and the &amp;ldquo;Dragon Quest&amp;rdquo; series also use this grid-based movement when looking closely at character movement in the era of 2D graphics, when these games appeared as software for the NES and Super Nintendo.
-Thus, grid-based movement is used in games of various genres, and its versatility is quite high.
-In this article, we will focus as much as possible on only the implementation of grid-based movement. In addition, a sample game that uses grid-based movement will be introduced at the end of the article, so please feel free to refer to it as well.
-Note that the project file that will be created at the end of this tutorial is located in the GitHub repository .</description>
+      <title>🤖 2D Grid-Based Movement</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/</link>
+      <pubDate>Fri, 06 Sep 2024 00:00:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In this tutorial, we are going to implement a &amp;ldquo;grid-based movement&amp;rdquo; system for a 2D game in Godot. It&amp;rsquo;s not overly complex.&lt;/p&gt;
+&lt;p&gt;Some of you might be wondering, what exactly is grid-based movement? Grid-based movement is when objects, such as characters, move one grid (one tile) at a time on a game screen that is divided into evenly spaced grid lines.&lt;/p&gt;
+&lt;p&gt;To give some examples, think of older games like the &lt;em&gt;Fire Emblem&lt;/em&gt; series, &lt;em&gt;Tactics Ogre&lt;/em&gt;, or various simulation games. Even RPGs like &lt;em&gt;Final Fantasy&lt;/em&gt; and &lt;em&gt;Dragon Quest&lt;/em&gt; during their 2D eras employed grid-based movement when it came to character movement on maps. Puzzle games like &lt;em&gt;Tetris&lt;/em&gt; often use grid-based movement for the blocks or pieces as well.&lt;/p&gt;
+&lt;p&gt;As you can see, grid-based movement is widely used across many genres of games, making it a highly versatile feature.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Environment&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+This tutorial was created under the following environment:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Godot version: &lt;strong&gt;4.3&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Computer OS: &lt;strong&gt;macOS 14.6.1&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;By the way, the project I made can be found in this &lt;a href=&#34;https://github.com/msnsk/GridBasedMovement.git&#34; target=&#34;_blank&#34;&gt;GitHub repository&lt;/a&gt;
+.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>🤖 2D Grid Based Path Finding in Godot3</title>
+      <link>https://www.peanuts-code.com/en/tutorials/gd0017_2d_grid_based_path_finding/</link>
+      <pubDate>Thu, 22 Sep 2022 19:45:00 +0900</pubDate>
+      <guid>https://www.peanuts-code.com/en/tutorials/gd0017_2d_grid_based_path_finding/</guid>
+      <description>&lt;p&gt;This article is a tutorial on how to implement grid-based path finding in 2D games using the AStar algorithm. For 2D pathfinding that is not grid-based, please refer to the article &lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0016_2d_path_finding/&#34; title=&#34;2D Path Finding in Godot3&#34;&gt;2D Path Finding in Godot3&lt;/a&gt;
+. I hope you will choose the article that best suits the game you want to make.&lt;/p&gt;
+&lt;p&gt;The final project file in this tutorial is located in the &lt;a href=&#34;https://github.com/msnsk/2DGridBasedPathFInding.git&#34; target=&#34;_blank&#34;&gt;GitHub repository&lt;/a&gt;
+. After downloading and extracting the .zip file, you can import the &amp;ldquo;project.godot&amp;rdquo; file into the Godot Engine to see the project directly.&lt;/p&gt;
+&lt;p&gt;Translated with &lt;a href=&#34;https://www.DeepL.com/Translator&#34; target=&#34;_blank&#34;&gt;www.DeepL.com/Translator&lt;/a&gt;
+ (free version)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Environment&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;Godot version: &lt;strong&gt;3.5&lt;/strong&gt;&lt;/em&gt;&lt;br&gt;
+&lt;em&gt;Computer OS: &lt;strong&gt;macOS 11.6.5&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color:salmon&#34;&gt;Basic Articles&lt;/span&gt;
+&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;You may also find the following articles useful.&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0001_download/&#34;&gt;Downloading Godot&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/&#34;&gt;Project Manager of Godot&lt;/a&gt;
+&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;about-astar&#34;&gt;About AStar&lt;/h2&gt;
+&lt;p&gt;In this article, we will implement grid-based routing using a search algorithm called AStar. It is useful when you want to automatically move objects along a grid from the current location to the destination. For example, this method is ideal for puzzle games where you move pieces on the board, or strategy simulation games where you move characters of both sides on the board to fight each other.&lt;br&gt;
+&lt;br/&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

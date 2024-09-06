@@ -92,7 +92,7 @@ The simple rule is to aim for a high score within the time limit (initially 30 s
 &lt;p&gt;It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval. Achieving this alone meant the game&amp;rsquo;s volume had to be kept small. For a game with a small volume, a casual game seemed appropriate. The essential element for casual games is user-friendliness. The most effective platform for maximizing user-friendliness is likely a mobile game. With devices that everyone carries, offering a small screen that serves as an input device, there seems to be no other platform that matches the physical convenience.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>🤖 Implementing 2D Grid-Based Movement</title>
+      <title>🤖 2D Grid-Based Movement</title>
       <link>https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/</link>
       <pubDate>Fri, 06 Sep 2024 00:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/</guid>
