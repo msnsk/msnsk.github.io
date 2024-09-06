@@ -151,17 +151,17 @@
                 href="https://www.peanuts-code.com/ja/tags/godotengine/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/grid-based/</loc>
+    <loc>https://www.peanuts-code.com/ja/tags/gridbased/</loc>
     <lastmod>2024-09-06T00:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/grid-based/"
+                href="https://www.peanuts-code.com/en/tags/gridbased/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/grid-based/"
+                href="https://www.peanuts-code.com/ja/tags/gridbased/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tags/</loc>
@@ -190,17 +190,17 @@
                 href="https://www.peanuts-code.com/ja/tags/tilemap/"
                 />
   </url><url>
-    <loc>https://www.peanuts-code.com/ja/tags/top-down/</loc>
+    <loc>https://www.peanuts-code.com/ja/tags/topdown/</loc>
     <lastmod>2024-09-06T00:00:00+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://www.peanuts-code.com/en/tags/top-down/"
+                href="https://www.peanuts-code.com/en/tags/topdown/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ja"
-                href="https://www.peanuts-code.com/ja/tags/top-down/"
+                href="https://www.peanuts-code.com/ja/tags/topdown/"
                 />
   </url><url>
     <loc>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</loc>
