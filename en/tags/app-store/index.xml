@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>en</language>
     <lastBuildDate>Sun, 04 Aug 2024 14:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/app-store/index.xml" rel="self" type="application/rss+xml" />
@@ -92,7 +92,14 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;br/&gt;
+&lt;h2 id=&#34;clone-the-plugin-repository&#34;&gt;Clone the Plugin Repository&lt;/h2&gt;
+&lt;p&gt;First, head over to &lt;a href=&#34;https://github.com/godotengine/godot-ios-plugins/tree/master?tab=readme-ov-file&#34; target=&#34;_blank&#34;&gt;this Github page&lt;/a&gt;
+ and follow the steps there. However, they’re not very detailed, so I&amp;rsquo;ll explain the nitty-gritty parts here.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

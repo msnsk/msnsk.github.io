@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>ja</language>
     <lastBuildDate>Tue, 18 Oct 2022 20:17:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/audio/index.xml" rel="self" type="application/rss+xml" />
@@ -20,8 +20,7 @@
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/</guid>
       <description>&lt;p&gt;この記事では、「AudioStreamPlayer」ノード 1 つで複数のサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。&lt;/p&gt;
 &lt;p&gt;基本的に、「AudioStreamPlayer」系のクラスは、ノード１つに対して、設定できるサウンドリソースは１つだけだ。つまり、サウンドリソースの数だけシーンツリー内に「AudioStreamPlayer」ノードを追加しなければならない。サウンドリソース以外全て同じ設定のノードがシーンツリー内に複数存在する（以下のスクリーンショットのような）状況には無駄を感じるだろうし、またシーンドックの視認性が悪くて少し嫌になるかもしれない。&lt;br&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0020_switching_sound_resources/img0.png&#34; alt=&#34;project settings - window size&#34;  /&gt;
-&lt;/p&gt;</description>
+&lt;img alt=&#34;project settings - window size&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0020_switching_sound_resources/img0.png&#34;&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

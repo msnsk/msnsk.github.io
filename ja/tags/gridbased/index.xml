@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>ja</language>
     <lastBuildDate>Fri, 06 Sep 2024 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/gridbased/index.xml" rel="self" type="application/rss+xml" />
@@ -20,7 +20,8 @@
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</guid>
       <description>&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
 &lt;p&gt;このチュートリアルでは Godot で 2D ゲームにおける「グリッドベース移動」を実装してみます。できるだけシンプルに。&lt;/p&gt;
-&lt;p&gt;そもそもグリッドベース移動って何なん？という方もいらっしゃるかと。グリッドベース移動とは、グリッド（格子状の線）で等間隔に区分されたゲームの画面上をキャラクターなどのオブジェクトが 1 グリッド（1 マス）ずつ移動する動きのことです。&lt;/p&gt;</description>
+&lt;p&gt;そもそもグリッドベース移動って何なん？という方もいらっしゃるかと。グリッドベース移動とは、グリッド（格子状の線）で等間隔に区分されたゲームの画面上をキャラクターなどのオブジェクトが 1 グリッド（1 マス）ずつ移動する動きのことです。&lt;/p&gt;
+&lt;p&gt;少し昔のゲームを例にあげて恐縮ですが、「ファイヤーエムブレムシリーズ」「タクティクスオウガ」など、シミュレーションゲームでよく見かけます。あとは「ファイナルファンタジー」や「ドラゴンクエスト」シリーズなどの RPG も 2D グラフィック時代は、マップ上のキャラクター移動を観察すると、グリッドベース移動を行っています。テトリスなんかのパズルゲームでもピースやブロックの移動がグリッドベースになっていることが結構あります。&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Godot3 で作る 2D グリッドベース経路探索</title>

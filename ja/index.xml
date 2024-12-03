@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>ja</language>
     <lastBuildDate>Fri, 06 Sep 2024 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/index.xml" rel="self" type="application/rss+xml" />
@@ -24,7 +24,21 @@
     &lt;/div&gt;
 
 &lt;h2 id=&#34;カジュアルタイミングゲームもの切り侍が登場&#34;&gt;カジュアル・タイミングゲーム「もの切り侍」が登場！&lt;/h2&gt;
-&lt;p&gt;今あなたの動体視力と反射神経が試される！侍を操作して、空から降ってくるあんな物やこんな物を見事空中で切ることができるか？！簡単片手操作でプレイできる、激ハマり必至の爽快カジュアル・タイミングゲーム！&lt;/p&gt;</description>
+&lt;p&gt;今あなたの動体視力と反射神経が試される！侍を操作して、空から降ってくるあんな物やこんな物を見事空中で切ることができるか？！簡単片手操作でプレイできる、激ハマり必至の爽快カジュアル・タイミングゲーム！&lt;/p&gt;
+
+&lt;div style=&#34;display: flex; justify-content: center;&#34;&gt;
+
+    
+    &lt;video controls autoplay loop muted playsinline aria-label=&#39;Slashing Samurai Preview&#39; style=&#39;width: 40%&#39;&gt;
+    
+        &lt;source src=&#34;https://www.peanuts-code.com/images/portfolio/slashing_samurai/ja/pv/pv_ja_1.mp4&#34; type=&#34;video/mp4&#34;&gt;
+        
+        Your browser does not support the video tag.
+    &lt;/video&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;h2 id=&#34;どんなゲーム&#34;&gt;どんなゲーム？&lt;/h2&gt;
+&lt;p&gt;ゲームのジャンルはいわゆるタイミングゲームになります。ゲームの各ステージでは、なんらかの落ち物（ドーナッツ、ぬいぐるみ、トマト、自転車、石像、などなど、古今東西さまざま！）が、空から降ってきます。プレイヤーのタッチ＆リリース操作で、ドット絵の侍をジャンプさせ、空中でうまく落ち物を切ることができればステージクリアとなります。&lt;/p&gt;</description>
     </item>
     <item>
       <title>🕹️ モバイルゲーム - ステキなソリティア</title>
@@ -65,7 +79,8 @@
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</guid>
       <description>&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
 &lt;p&gt;このチュートリアルでは Godot で 2D ゲームにおける「グリッドベース移動」を実装してみます。できるだけシンプルに。&lt;/p&gt;
-&lt;p&gt;そもそもグリッドベース移動って何なん？という方もいらっしゃるかと。グリッドベース移動とは、グリッド（格子状の線）で等間隔に区分されたゲームの画面上をキャラクターなどのオブジェクトが 1 グリッド（1 マス）ずつ移動する動きのことです。&lt;/p&gt;</description>
+&lt;p&gt;そもそもグリッドベース移動って何なん？という方もいらっしゃるかと。グリッドベース移動とは、グリッド（格子状の線）で等間隔に区分されたゲームの画面上をキャラクターなどのオブジェクトが 1 グリッド（1 マス）ずつ移動する動きのことです。&lt;/p&gt;
+&lt;p&gt;少し昔のゲームを例にあげて恐縮ですが、「ファイヤーエムブレムシリーズ」「タクティクスオウガ」など、シミュレーションゲームでよく見かけます。あとは「ファイナルファンタジー」や「ドラゴンクエスト」シリーズなどの RPG も 2D グラフィック時代は、マップ上のキャラクター移動を観察すると、グリッドベース移動を行っています。テトリスなんかのパズルゲームでもピースやブロックの移動がグリッドベースになっていることが結構あります。&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 TileMapLayerでタイルマップを作る</title>
@@ -79,7 +94,22 @@
 &lt;/strong&gt;&lt;br&gt;
 Godot のバージョン: &lt;strong&gt;4.3&lt;/strong&gt;&lt;br&gt;
 コンピュータのモデル: &lt;strong&gt;MacBook Air M1, 2020&lt;/strong&gt;&lt;br&gt;
-OS: &lt;strong&gt;macOS 14.6.1&lt;/strong&gt;&lt;/p&gt;</description>
+OS: &lt;strong&gt;macOS 14.6.1&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;h2 id=&#34;画面の大きさを設定する&#34;&gt;画面の大きさを設定する&lt;/h2&gt;
+&lt;p&gt;今回は 16 x 16 px のタイル画像を使うので、Viewport は小さめにしてタイルがちょうど収まるサイズにしますね。プロジェクトを新規作成したら、プロジェクト設定 &amp;gt; 一般タブ &amp;gt; Window で以下のように設定しました。&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Xcode から App Store Connect にゲームを配布する</title>
@@ -127,7 +157,15 @@ OS: &lt;strong&gt;macOS 14.6.1&lt;/strong&gt;&lt;/p&gt;</description>
       <pubDate>Sat, 30 Dec 2023 23:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_3/</guid>
       <description>&lt;p&gt;この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうちGodot Engine で作っていく「ロジック」に関する記録である。とはいえ、あまり具体的なコードなどを載せると長くなってしまうので、そのあたりは控えめにしようと思う。&lt;/p&gt;
-&lt;p&gt;「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。&lt;/p&gt;</description>
+&lt;p&gt;「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;https://apps.apple.com/jp/app/slashing-samurai/id6473121142&#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/banners/app_store/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg&#34; width=&#34;200px&#34;/&gt; &lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;br/&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;必要な画面の洗い出し&#34;&gt;必要な画面の洗い出し&lt;/h2&gt;
+&lt;p&gt;私は割と見た目から入るタイプだ。ゲーム開発も例に漏れず、Godot で「もの切り侍」を作り始めるにあたり、まずは必要な画面の洗い出しからスタートした。その流れで画面遷移も考えた。最終的に変更点は多々あったが、ベースは当初考えたものからさほどブレていないと思う。&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 開発ログ：もの切り侍【企画編】</title>
@@ -143,7 +181,8 @@ OS: &lt;strong&gt;macOS 14.6.1&lt;/strong&gt;&lt;/p&gt;</description>
 &lt;br/&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;ゲームのおおまかな仕様を決める&#34;&gt;ゲームのおおまかな仕様を決める&lt;/h2&gt;
-&lt;p&gt;まずは、これから開発するゲームの仕様をおおまかに決めるところからスタートした。&lt;/p&gt;</description>
+&lt;p&gt;まずは、これから開発するゲームの仕様をおおまかに決めるところからスタートした。&lt;/p&gt;
+&lt;p&gt;特定のプラットフォームで全世界に向けて配信することはあらかじめ心に決めていた。世界へ配信するとなると、中途半端な完成度では承認してもらえないだろう。承認してもらうには、一定水準以上のクオリティが求められるはずだ。それを一人でやり遂げなければならない。となると、ゲームのボリュームは小さくおさえなければならない。ボリュームの小さなゲームといえば、カジュアルゲームか。カジュアルゲームにとって大事な要素は、なんといってもあらゆる手軽さだろう。それを最大限発揮できるのは、おそらくモバイルゲームのはずだ。誰もが常に持ち歩くほど小さく、画面自体が入力装置になっているデバイスにゲームを乗せられるのだから、もはや物理的な手軽さで他にかなうプラットフォームはないだろう。&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Godot3 のサウンドリソースをプログラムで切り替える方法</title>
@@ -152,8 +191,7 @@ OS: &lt;strong&gt;macOS 14.6.1&lt;/strong&gt;&lt;/p&gt;</description>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/</guid>
       <description>&lt;p&gt;この記事では、「AudioStreamPlayer」ノード 1 つで複数のサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。&lt;/p&gt;
 &lt;p&gt;基本的に、「AudioStreamPlayer」系のクラスは、ノード１つに対して、設定できるサウンドリソースは１つだけだ。つまり、サウンドリソースの数だけシーンツリー内に「AudioStreamPlayer」ノードを追加しなければならない。サウンドリソース以外全て同じ設定のノードがシーンツリー内に複数存在する（以下のスクリーンショットのような）状況には無駄を感じるだろうし、またシーンドックの視認性が悪くて少し嫌になるかもしれない。&lt;br&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0020_switching_sound_resources/img0.png&#34; alt=&#34;project settings - window size&#34;  /&gt;
-&lt;/p&gt;</description>
+&lt;img alt=&#34;project settings - window size&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0020_switching_sound_resources/img0.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Godot3 で作るアニメーションステートマシン</title>
@@ -222,7 +260,8 @@ OS: &lt;strong&gt;macOS 14.6.1&lt;/strong&gt;&lt;/p&gt;</description>
       <pubDate>Sun, 10 Jul 2022 00:51:37 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0013_advanced_match3/</guid>
       <description>&lt;p&gt;今回のチュートリアルでは、進化形マッチ3パズルゲームと銘打って、盤面上で１つのピースを一定時間（数秒間）自由に動かして同じ色のピースを３つ以上並べて消すタイプのパズルゲームをを作っていく。&lt;/p&gt;
-&lt;p&gt;これはモバイルゲームで人気を博した「パズル&amp;amp;ドラゴンズ（Puzzle &amp;amp; Dragons）/ 通称パズドラ」のようなパズルをイメージしていただくとわかりやすいだろう。&lt;/p&gt;</description>
+&lt;p&gt;これはモバイルゲームで人気を博した「パズル&amp;amp;ドラゴンズ（Puzzle &amp;amp; Dragons）/ 通称パズドラ」のようなパズルをイメージしていただくとわかりやすいだろう。&lt;/p&gt;
+&lt;p&gt;ただし、チュートリアルに味方のデッキやガチャ、敵キャラクターとのバトルなど全てのゲーム要素を盛り込むとボリュームが大きすぎるので、今回はパズル部分にフォーカスして手順を説明させていただく。&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 ゲームの個人開発で挫折しないための方法</title>
@@ -687,7 +726,13 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;スタート画面を作る&#34;&gt;スタート画面を作る&lt;/h1&gt;
+&lt;p&gt;ゲームを開始した時、ゲームタイトルが表示され、ボタンを押すなり何らかの操作によってプレイ画面に遷移するのが一般的だし、プレイヤーにとってもそのような流れが馴染み深く、わかりやすいはずだ。では実際にブロック崩しでもスタート画面を作ってプレイ画面へ遷移するようにアップデートしていこう。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 5：細かい更新をしてゲーム性を高めよう！</title>
@@ -726,7 +771,13 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;ブロックのシーンを作る&#34;&gt;ブロックのシーンを作る&lt;/h1&gt;
+&lt;p&gt;ブロックを画面に複数配置していくことを考えると、毎回メインシーンにブロック用の子ノードを追加するのは効率的ではないし、ブロックのノードに仕様変更の必要が生じた場合、一つ一つのブロックを修正するのは大変だ。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！</title>
@@ -750,7 +801,14 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;壁を作る&#34;&gt;壁を作る&lt;/h1&gt;
+&lt;p&gt;壁をゲーム画面のギリギリ外側に作っていく。シーンドックで「Game」ノードを選択して、壁となる子ノードを追加していこう。&lt;br&gt;
+&lt;img alt=&#34;Gameノードを選択&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_3/img_1.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 2：ボールを作って発射しよう！</title>

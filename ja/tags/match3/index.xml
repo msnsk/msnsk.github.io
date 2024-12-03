@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>ja</language>
     <lastBuildDate>Sun, 10 Jul 2022 00:51:37 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/match3/index.xml" rel="self" type="application/rss+xml" />
@@ -19,7 +19,8 @@
       <pubDate>Sun, 10 Jul 2022 00:51:37 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0013_advanced_match3/</guid>
       <description>&lt;p&gt;今回のチュートリアルでは、進化形マッチ3パズルゲームと銘打って、盤面上で１つのピースを一定時間（数秒間）自由に動かして同じ色のピースを３つ以上並べて消すタイプのパズルゲームをを作っていく。&lt;/p&gt;
-&lt;p&gt;これはモバイルゲームで人気を博した「パズル&amp;amp;ドラゴンズ（Puzzle &amp;amp; Dragons）/ 通称パズドラ」のようなパズルをイメージしていただくとわかりやすいだろう。&lt;/p&gt;</description>
+&lt;p&gt;これはモバイルゲームで人気を博した「パズル&amp;amp;ドラゴンズ（Puzzle &amp;amp; Dragons）/ 通称パズドラ」のようなパズルをイメージしていただくとわかりやすいだろう。&lt;/p&gt;
+&lt;p&gt;ただし、チュートリアルに味方のデッキやガチャ、敵キャラクターとのバトルなど全てのゲーム要素を盛り込むとボリュームが大きすぎるので、今回はパズル部分にフォーカスして手順を説明させていただく。&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Godot3 で作るマッチ 3 パズルゲーム</title>

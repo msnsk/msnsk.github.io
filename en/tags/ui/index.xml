@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>en</language>
     <lastBuildDate>Fri, 05 Aug 2022 11:05:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/ui/index.xml" rel="self" type="application/rss+xml" />
@@ -34,7 +34,24 @@
 &lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0001_download/&#34;&gt;Downloading Godot&lt;/a&gt;
 &lt;br&gt;
 &lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/&#34;&gt;Project Manager of Godot&lt;/a&gt;
-&lt;/em&gt;&lt;/p&gt;</description>
+&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;preparation&#34;&gt;Preparation&lt;/h2&gt;
+&lt;h3 id=&#34;preparing-an-image-of-the-circular-progress-bar&#34;&gt;Preparing an image of the circular progress bar&lt;/h3&gt;
+&lt;p&gt;If you have a drawing application such as Photoshop or GIMP on your computer, you can use it. I will not go into the details of how to use drawing applications here. If you have difficulty, please Google it.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>en</language>
     <lastBuildDate>Fri, 14 Oct 2022 20:25:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/animation/index.xml" rel="self" type="application/rss+xml" />
@@ -64,7 +64,15 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
 &lt;/script&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;add-actions-to-input-map&#34;&gt;Add Actions to Input Map&lt;/h2&gt;
-&lt;p&gt;First, go to &amp;ldquo;Project&amp;rdquo; &amp;gt; &amp;ldquo;Project Settings&amp;rdquo; &amp;gt; &amp;ldquo;Input Map&amp;rdquo; tab and add the following actions:&lt;/p&gt;</description>
+&lt;p&gt;First, go to &amp;ldquo;Project&amp;rdquo; &amp;gt; &amp;ldquo;Project Settings&amp;rdquo; &amp;gt; &amp;ldquo;Input Map&amp;rdquo; tab and add the following actions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;right: D key&lt;/li&gt;
+&lt;li&gt;left: A key&lt;/li&gt;
+&lt;li&gt;down: S key&lt;/li&gt;
+&lt;li&gt;up: W key&lt;/li&gt;
+&lt;li&gt;attack: Space bar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt=&#34;Input Map&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0018_melee_attacks/img1.png&#34;&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

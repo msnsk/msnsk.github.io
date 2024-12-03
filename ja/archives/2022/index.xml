@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>ja</language>
     <lastBuildDate>Tue, 18 Oct 2022 20:17:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/archives/2022/index.xml" rel="self" type="application/rss+xml" />
@@ -20,8 +20,7 @@
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0020_switching_sound_resources/</guid>
       <description>&lt;p&gt;この記事では、「AudioStreamPlayer」ノード 1 つで複数のサウンドリソース（音楽や効果音のファイル）を切り替えて再生する方法を説明する。&lt;/p&gt;
 &lt;p&gt;基本的に、「AudioStreamPlayer」系のクラスは、ノード１つに対して、設定できるサウンドリソースは１つだけだ。つまり、サウンドリソースの数だけシーンツリー内に「AudioStreamPlayer」ノードを追加しなければならない。サウンドリソース以外全て同じ設定のノードがシーンツリー内に複数存在する（以下のスクリーンショットのような）状況には無駄を感じるだろうし、またシーンドックの視認性が悪くて少し嫌になるかもしれない。&lt;br&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0020_switching_sound_resources/img0.png&#34; alt=&#34;project settings - window size&#34;  /&gt;
-&lt;/p&gt;</description>
+&lt;img alt=&#34;project settings - window size&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0020_switching_sound_resources/img0.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Godot3 で作るアニメーションステートマシン</title>
@@ -90,7 +89,8 @@
       <pubDate>Sun, 10 Jul 2022 00:51:37 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0013_advanced_match3/</guid>
       <description>&lt;p&gt;今回のチュートリアルでは、進化形マッチ3パズルゲームと銘打って、盤面上で１つのピースを一定時間（数秒間）自由に動かして同じ色のピースを３つ以上並べて消すタイプのパズルゲームをを作っていく。&lt;/p&gt;
-&lt;p&gt;これはモバイルゲームで人気を博した「パズル&amp;amp;ドラゴンズ（Puzzle &amp;amp; Dragons）/ 通称パズドラ」のようなパズルをイメージしていただくとわかりやすいだろう。&lt;/p&gt;</description>
+&lt;p&gt;これはモバイルゲームで人気を博した「パズル&amp;amp;ドラゴンズ（Puzzle &amp;amp; Dragons）/ 通称パズドラ」のようなパズルをイメージしていただくとわかりやすいだろう。&lt;/p&gt;
+&lt;p&gt;ただし、チュートリアルに味方のデッキやガチャ、敵キャラクターとのバトルなど全てのゲーム要素を盛り込むとボリュームが大きすぎるので、今回はパズル部分にフォーカスして手順を説明させていただく。&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 ゲームの個人開発で挫折しないための方法</title>

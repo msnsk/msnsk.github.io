@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>en</language>
     <lastBuildDate>Wed, 10 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/appstore/index.xml" rel="self" type="application/rss+xml" />
@@ -39,7 +39,13 @@
          alt=&#34;Lovely Solitaire shot1&#34; width=&#34;40%&#34;/&gt; 
 &lt;/figure&gt;
 
-&lt;p&gt;Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely! So, be sure to turn on the sound while playing!&lt;/p&gt;</description>
+&lt;p&gt;Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely! So, be sure to turn on the sound while playing!&lt;/p&gt;
+&lt;figure class=&#34;align-center &#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/portfolio/lovely_solitaire/en/ss/ss_en_2.png#center&#34;
+         alt=&#34;Lovely Solitaire shot2&#34; width=&#34;40%&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;Also, the ability to automatically move cards with taps (isn&amp;rsquo;t that normal?), the support for Apple&amp;rsquo;s Game Center (also normal?), well, if you find all these trivial things lovely, then you must be lovely too!&lt;/p&gt;</description>
     </item>
     <item>
       <title>🕹️ Mobile Game - Quick Hand Poker</title>
@@ -100,7 +106,18 @@ The simple rule is to aim for a high score within the time limit (initially 30 s
 &lt;/div&gt;
 &lt;br/&gt;
 &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;This is a exciting timing game! In each stage, a single object (a donut, a stuffed animal, a tomato, a bicycle, a statue, and more from different eras and places!) falls from the sky. Using touch-and-release controls, make the pixelated samurai jump and skillfully cut the falling item to clear the stage.&lt;/p&gt;</description>
+&lt;p&gt;This is a exciting timing game! In each stage, a single object (a donut, a stuffed animal, a tomato, a bicycle, a statue, and more from different eras and places!) falls from the sky. Using touch-and-release controls, make the pixelated samurai jump and skillfully cut the falling item to clear the stage.&lt;/p&gt;
+&lt;br/&gt;
+&lt;h2 id=&#34;download-on-app-store-for-free&#34;&gt;Download on App Store for free&lt;/h2&gt;
+&lt;p&gt;Slashing Samurai is available for free download on the App Store. Just click the banner below to get this game!&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;https://apps.apple.com/en/app/slashing-samurai/id6473121142&#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/banners/app_store/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg&#34; width=&#34;200px&#34;/&gt; &lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;br/&gt;
+&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
+&lt;h3 id=&#34;easy-controls&#34;&gt;Easy Controls!&lt;/h3&gt;
+&lt;p&gt;The basic controls during gameplay involve simply touching and releasing the screen, making it incredibly easy.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

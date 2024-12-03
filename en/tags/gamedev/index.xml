@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>en</language>
     <lastBuildDate>Fri, 06 Sep 2024 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
@@ -39,7 +39,13 @@
          alt=&#34;Lovely Solitaire shot1&#34; width=&#34;40%&#34;/&gt; 
 &lt;/figure&gt;
 
-&lt;p&gt;Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely! So, be sure to turn on the sound while playing!&lt;/p&gt;</description>
+&lt;p&gt;Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely! So, be sure to turn on the sound while playing!&lt;/p&gt;
+&lt;figure class=&#34;align-center &#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/portfolio/lovely_solitaire/en/ss/ss_en_2.png#center&#34;
+         alt=&#34;Lovely Solitaire shot2&#34; width=&#34;40%&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;Also, the ability to automatically move cards with taps (isn&amp;rsquo;t that normal?), the support for Apple&amp;rsquo;s Game Center (also normal?), well, if you find all these trivial things lovely, then you must be lovely too!&lt;/p&gt;</description>
     </item>
     <item>
       <title>🕹️ Mobile Game - Quick Hand Poker</title>
@@ -89,7 +95,8 @@ The simple rule is to aim for a high score within the time limit (initially 30 s
 &lt;hr&gt;
 &lt;h2 id=&#34;defining-the-rough-specifications-of-the-game&#34;&gt;Defining the Rough Specifications of the Game&lt;/h2&gt;
 &lt;p&gt;The development process began by roughly defining the specifications of the game to be developed.&lt;/p&gt;
-&lt;p&gt;It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval. Achieving this alone meant the game&amp;rsquo;s volume had to be kept small. For a game with a small volume, a casual game seemed appropriate. The essential element for casual games is user-friendliness. The most effective platform for maximizing user-friendliness is likely a mobile game. With devices that everyone carries, offering a small screen that serves as an input device, there seems to be no other platform that matches the physical convenience.&lt;/p&gt;</description>
+&lt;p&gt;It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval. Achieving this alone meant the game&amp;rsquo;s volume had to be kept small. For a game with a small volume, a casual game seemed appropriate. The essential element for casual games is user-friendliness. The most effective platform for maximizing user-friendliness is likely a mobile game. With devices that everyone carries, offering a small screen that serves as an input device, there seems to be no other platform that matches the physical convenience.&lt;/p&gt;
+&lt;p&gt;I have always loved RPGs. Naturally, I aspire to create an RPG with an exciting story and exhilarating battle system. However, for now, let&amp;rsquo;s stay grounded. RPGs are arguably in opposition to the casual game genre. Honestly, I wasn&amp;rsquo;t very familiar with casual games. However, seeing is believing. I downloaded several casual games on my phone and found them surprisingly addictive. Recently, the genre of &amp;ldquo;Hyper Casual&amp;rdquo; has been established, and it seems that there are quite a few people who enjoy playing such games. Convinced that &amp;ldquo;Casual games are not bad,&amp;rdquo; I decided to start my first mobile game development with the genre set as a casual game.&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 2D Grid-Based Movement</title>
@@ -111,7 +118,21 @@ This tutorial was created under the following environment:&lt;/em&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;By the way, the project I made can be found in this &lt;a href=&#34;https://github.com/msnsk/GridBasedMovement.git&#34; target=&#34;_blank&#34;&gt;GitHub repository&lt;/a&gt;
-.&lt;/p&gt;</description>
+.&lt;/p&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;h2 id=&#34;setting-up-the-window&#34;&gt;Setting Up the Window&lt;/h2&gt;
+&lt;p&gt;After creating a new project in Godot, the first step is to adjust the project settings. Open the &lt;strong&gt;Project&lt;/strong&gt; menu and select &lt;strong&gt;Project Settings&lt;/strong&gt;. From the &lt;strong&gt;General&lt;/strong&gt; tab, navigate to &lt;strong&gt;Display&lt;/strong&gt; &amp;gt; &lt;strong&gt;Window&lt;/strong&gt; in the sidebar, and set the window size and stretch options as follows:&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Making a Tilemap with TileMapLayer</title>
@@ -238,7 +259,14 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;br/&gt;
+&lt;h2 id=&#34;clone-the-plugin-repository&#34;&gt;Clone the Plugin Repository&lt;/h2&gt;
+&lt;p&gt;First, head over to &lt;a href=&#34;https://github.com/godotengine/godot-ios-plugins/tree/master?tab=readme-ov-file&#34; target=&#34;_blank&#34;&gt;this Github page&lt;/a&gt;
+ and follow the steps there. However, they’re not very detailed, so I&amp;rsquo;ll explain the nitty-gritty parts here.&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 Devlog: Slashing Samurai - Reflection</title>
@@ -280,7 +308,12 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;h2 id=&#34;overdoing&#34;&gt;Overdoing&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s begin by discussing the common pitfalls of the &amp;ldquo;overdoing it&amp;rdquo; category, which many novice developers, including myself, tend to fall into.&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 Devlog: Slashing Samurai - Logic</title>
@@ -297,8 +330,7 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
 &lt;hr&gt;
 &lt;h2 id=&#34;identifying-necessary-screens&#34;&gt;Identifying Necessary Screens&lt;/h2&gt;
 &lt;p&gt;I am the type to prioritize visuals. In game development, including the creation of &amp;ldquo;Slashing Samurai&amp;rdquo; in Godot, I started by identifying the necessary screens. I also considered the flow of screen transitions. Although there were many changes in the end, the base stayed relatively close to the initial plan.&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/posts/post0005/3_logic/01.webp&#34; alt=&#34;Note: Screen Transitions&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Note: Screen Transitions&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/posts/post0005/3_logic/01.webp&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Initially, the plan included the following screens:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Start Screen&lt;/li&gt;
@@ -353,7 +385,13 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;character-images&#34;&gt;Character Images&lt;/h2&gt;
+&lt;p&gt;Initially, I attempted to draw the player character, a samurai, by myself. I even tried drawing a bit. It was a 2D drawing. Using the Procreate app on the iPad, I could create animations simultaneously. I thought this could be useful and gave it a try.&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Switching Sound Resources by Script in Godot3</title>
@@ -362,9 +400,9 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
       <guid>https://www.peanuts-code.com/en/tutorials/gd0020_switching_sound_resources/</guid>
       <description>&lt;p&gt;This article explains how to switch between and play multiple sound resources (music and sound effect files) with a single &amp;ldquo;AudioStreamPlayer&amp;rdquo; node.&lt;/p&gt;
 &lt;p&gt;Basically, only one sound resource can be set per &amp;ldquo;AudioStreamPlayer&amp;rdquo; node. In other words, you must add &amp;ldquo;AudioStreamPlayer&amp;rdquo; nodes in the scene tree for each sound resource. You may feel useless in a situation where there are multiple nodes in the scene tree with the same settings except for the sound resource (as shown in the screenshot below), and you may also feel a little uncomfortable with the lack of visibility in the scene dock.&lt;br&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0020_switching_sound_resources/img0.png&#34; alt=&#34;project settings - window size&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;So, if you have multiple sound resources that are never played simultaneously (e.g., multiple sound effects for different types of character attacks, multiple sound effects for different types of buttons on the UI, etc.), add only the minimum necessary &amp;ldquo;AudioStreamPlayer&amp;rdquo; node for each use to your scene. If you code a program that switches sound resources according to the situation, there will be no waste and the scene dock will look cleaner.&lt;/p&gt;</description>
+&lt;img alt=&#34;project settings - window size&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0020_switching_sound_resources/img0.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;So, if you have multiple sound resources that are never played simultaneously (e.g., multiple sound effects for different types of character attacks, multiple sound effects for different types of buttons on the UI, etc.), add only the minimum necessary &amp;ldquo;AudioStreamPlayer&amp;rdquo; node for each use to your scene. If you code a program that switches sound resources according to the situation, there will be no waste and the scene dock will look cleaner.&lt;/p&gt;
+&lt;p&gt;In this tutorial, we will prepare only one &amp;ldquo;AudioStreamPlayer&amp;rdquo; node and control the sound resources to be applied to it so that they can be switched and played from a script.&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Animation State Machine in Godot3</title>
@@ -417,7 +455,15 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
 &lt;/script&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;add-actions-to-input-map&#34;&gt;Add Actions to Input Map&lt;/h2&gt;
-&lt;p&gt;First, go to &amp;ldquo;Project&amp;rdquo; &amp;gt; &amp;ldquo;Project Settings&amp;rdquo; &amp;gt; &amp;ldquo;Input Map&amp;rdquo; tab and add the following actions:&lt;/p&gt;</description>
+&lt;p&gt;First, go to &amp;ldquo;Project&amp;rdquo; &amp;gt; &amp;ldquo;Project Settings&amp;rdquo; &amp;gt; &amp;ldquo;Input Map&amp;rdquo; tab and add the following actions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;right: D key&lt;/li&gt;
+&lt;li&gt;left: A key&lt;/li&gt;
+&lt;li&gt;down: S key&lt;/li&gt;
+&lt;li&gt;up: W key&lt;/li&gt;
+&lt;li&gt;attack: Space bar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt=&#34;Input Map&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0018_melee_attacks/img1.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 2D Grid Based Path Finding in Godot3</title>
@@ -489,8 +535,8 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
  site sells games, assets, and hosts a number of game jams worldwide. Some are held monthly, some are held as an annual event, and there are a variety of small and large game jams, and there is always some sort of game jam going on throughout the year. &lt;a href=&#34;https://itch.io/jam/kenney-jam-2022&#34; target=&#34;_blank&#34;&gt;KENNEY Jam 2022&lt;/a&gt;
 , which I attended, was also held at &lt;a href=&#34;https://itch.io/jams&#34; target=&#34;_blank&#34;&gt;itch.io&lt;/a&gt;
 .&lt;br&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/posts/post0004/img2.png&#34; alt=&#34;image2&#34;  /&gt;
-&lt;/p&gt;</description>
+&lt;img alt=&#34;image2&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/posts/post0004/img2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The participants in the game jam are mainly individual developers and small teams. Skill levels range from beginners to veterans. Although veterans are considered to have an advantage, many game jams have short submission periods, and in such cases, it is almost impossible to create a large-scale game, so it is difficult to make an overwhelming difference. I have the impression that there are a relatively large number of people, even beginners, who take up the challenge as one goal.&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 2D Path Finding in Godot3</title>
@@ -537,7 +583,24 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
 &lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0001_download/&#34;&gt;Downloading Godot&lt;/a&gt;
 &lt;br&gt;
 &lt;a href=&#34;https://www.peanuts-code.com/en/tutorials/gd0002_project_manager/&#34;&gt;Project Manager of Godot&lt;/a&gt;
-&lt;/em&gt;&lt;/p&gt;</description>
+&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;preparation&#34;&gt;Preparation&lt;/h2&gt;
+&lt;h3 id=&#34;preparing-an-image-of-the-circular-progress-bar&#34;&gt;Preparing an image of the circular progress bar&lt;/h3&gt;
+&lt;p&gt;If you have a drawing application such as Photoshop or GIMP on your computer, you can use it. I will not go into the details of how to use drawing applications here. If you have difficulty, please Google it.&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 2D Screen Shake in Godot3</title>
@@ -595,7 +658,8 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
 &lt;br/&gt;
 &lt;h2 id=&#34;reasons-for-frustration&#34;&gt;Reasons for frustration&lt;/h2&gt;
 &lt;p&gt;First, game development is hard work. It is sometimes referred to as a comprehensive art form. In other words, a game is a work of art that combines music, images, characters, scenarios, systems, level design, and everything else into one. There is no way it is easy. It is so difficult that it is easy to fall behind in the process.&lt;/p&gt;
-&lt;p&gt;However, there is another problem that is even bigger, especially for adults who are making games as independent developers. That is the fact that you can&amp;rsquo;t make money by developing games. If there is no money to be made, they quit this hard work. Game development is hard work, but it pays off when the game sells.&lt;/p&gt;</description>
+&lt;p&gt;However, there is another problem that is even bigger, especially for adults who are making games as independent developers. That is the fact that you can&amp;rsquo;t make money by developing games. If there is no money to be made, they quit this hard work. Game development is hard work, but it pays off when the game sells.&lt;/p&gt;
+&lt;p&gt;The word &amp;ldquo;no money&amp;rdquo; may be a bit of a generalization, because there are always people who are making money. There are only a handful of people who make money, and the rest are mostly people who do not make money.&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Match 3 Puzzle Game in Godot3</title>
@@ -650,7 +714,10 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
 &lt;/script&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;creating-a-new-project&#34;&gt;Creating a new project&lt;/h2&gt;
-&lt;p&gt;First, we would like you to start Godot Engine and create a new project. Let&amp;rsquo;s name the project &amp;ldquo;Connect Colors Start.&lt;/p&gt;</description>
+&lt;p&gt;First, we would like you to start Godot Engine and create a new project. Let&amp;rsquo;s name the project &amp;ldquo;Connect Colors Start.&lt;/p&gt;
+&lt;br/&gt;
+&lt;h3 id=&#34;editing-project-settings&#34;&gt;Editing project settings&lt;/h3&gt;
+&lt;p&gt;Once the editor appears, let&amp;rsquo;s editing the settings for the entire project.&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Homing Missiles in Godot3</title>
@@ -671,7 +738,10 @@ This tutorial was created in the following environment&lt;/em&gt;&lt;br&gt;
 &lt;/strong&gt;. After downloading the .zip file, import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;Start&amp;rdquo; folder into the Godot Engine, and you can start the project with only the preliminary work completed. If you would like to see the completed project in a hurry, import the &amp;ldquo;project.godot&amp;rdquo; file from the &amp;ldquo;End&amp;rdquo; folder.&lt;/p&gt;
 &lt;p&gt;All the assets imported into the project were downloaded from &lt;strong&gt;&lt;a href=&#34;https://www.kenney.nl/assets&#34; target=&#34;_blank&#34;&gt;KENNEY&lt;/a&gt;
 &lt;/strong&gt; website. I used an asset pack called &lt;strong&gt;&lt;a href=&#34;https://www.kenney.nl/assets/tower-defense-top-down&#34; target=&#34;_blank&#34;&gt;Tower Defense (top-down)&lt;/a&gt;
-&lt;/strong&gt;. I just want to thank them for making such a great asset pack available to the public.&lt;/p&gt;</description>
+&lt;/strong&gt;. I just want to thank them for making such a great asset pack available to the public.&lt;/p&gt;
+&lt;br/&gt;
+&lt;h2 id=&#34;preliminary-preparation&#34;&gt;Preliminary Preparation&lt;/h2&gt;
+&lt;p&gt;The following game specifications, except for the homing missile part, which is listed as (planned), have already been prepared as a preliminary.&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Bullet Hell in Godot3</title>
@@ -728,19 +798,16 @@ This tutorial was created in the following environment&lt;/em&gt;&lt;br&gt;
 &lt;p&gt;Since this tutorial will focus on gun creation, the following has been prepared in advance.&lt;/p&gt;
 &lt;h4 id=&#34;1-game-world&#34;&gt;1. Game world&lt;/h4&gt;
 &lt;p&gt;A scene called &amp;ldquo;World.tscn&amp;rdquo; was prepared, and the appearance was simply created by adding a &amp;ldquo;TileMap&amp;rdquo; node. In addition to the &amp;ldquo;TileMap&amp;rdquo; node, a &amp;ldquo;Player&amp;rdquo; node and several &amp;ldquo;Obstacle&amp;rdquo; nodes were added. For these, we created individual scenes and added the instances.&lt;br&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img0.1.png&#34; alt=&#34;World scene tree&#34;  /&gt;
-&lt;/p&gt;
+&lt;img alt=&#34;World scene tree&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img0.1.png&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;2-player-character&#34;&gt;2. Player Character&lt;/h4&gt;
 &lt;p&gt;Created as &amp;ldquo;Player.tscn&amp;rdquo; scene. The root node is the &amp;ldquo;KinematicBody2D&amp;rdquo; class, and the &amp;ldquo;Sprite&amp;rdquo; and the &amp;ldquo;CollisionShape2D&amp;rdquo; were added as child nodes. The texture of the &amp;ldquo;Sprite&amp;rdquo; node is a hitman with a gun. A node named &amp;ldquo;Muzzle&amp;rdquo; of the &amp;ldquo;Position2D&amp;rdquo; class was placed at the tip of the image of the gun held by the hitman. This will be used later to specify the position where the bullet instance is generated when the gun is fired.&lt;br&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img0.2.png&#34; alt=&#34;Player scene tree&#34;  /&gt;
-&lt;br&gt;
+&lt;img alt=&#34;Player scene tree&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img0.2.png&#34;&gt;&lt;br&gt;
 The following actions have already been added to the input map. Used to move the player character, shoot, and switch guns.&lt;br&gt;
 - &lt;strong&gt;up&lt;/strong&gt;: W key - used to move the player character forward&lt;br&gt;
 - &lt;strong&gt;down&lt;/strong&gt;: S key - used to move the player character backward.&lt;br&gt;
 - &lt;strong&gt;fire&lt;/strong&gt;: Left mouse button - fires the gun.&lt;br&gt;
 - &lt;strong&gt;switch&lt;/strong&gt;: Right mouse button: Switches between gun types.&lt;br&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img1.png&#34; alt=&#34;inputmap&#34;  /&gt;
-&lt;br&gt;
+&lt;img alt=&#34;inputmap&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img1.png&#34;&gt;&lt;br&gt;
 Note that, for the sake of brevity in the tutorial, the player character&amp;rsquo;s sprite remains the same, even if the gun type is changed. Let&amp;rsquo;s say it looks like a handgun, but it can be a machine gun, a laser gun, or anything else.&lt;/p&gt;</description>
     </item>
     <item>
@@ -758,7 +825,16 @@ Note that, for the sake of brevity in the tutorial, the player character&amp;rsq
 &lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Anyway, why do not you try to use the searches because it is sure to improve work efficiency.&lt;/p&gt;
-&lt;p&gt;I will introduce ones in order of the widest range of searches first.&lt;/p&gt;</description>
+&lt;p&gt;I will introduce ones in order of the widest range of searches first.&lt;/p&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 Age Doesn&#39;t Matter When You Start Game Development</title>
@@ -784,8 +860,7 @@ Note that, for the sake of brevity in the tutorial, the player character&amp;rsq
 &lt;li&gt;Removing projects that were previously managed by the Project Manager.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;When using Godot for the first time, a dialog box will appear as shown in the following screen shot, prompting you to open the Asset Library. The asset library can be easily accessed at any time, so choose Cancel for now.&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0002_project_manager/en/img01.png&#34; alt=&#34;Godot Engine Project Manager&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Godot Engine Project Manager&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0002_project_manager/en/img01.png&#34;&gt;&lt;/p&gt;
 &lt;br/&gt;
 &lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
      crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
@@ -801,8 +876,11 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;creating-a-new-project&#34;&gt;Creating a new project&lt;/h2&gt;
 &lt;p&gt;Click &amp;ldquo;New Project&amp;rdquo; from the right sidebar of the Project Manager.&lt;br&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0002_project_manager/en/img02.png&#34; alt=&#34;Right side bar on Project Manager window&#34;  /&gt;
-&lt;/p&gt;</description>
+&lt;img alt=&#34;Right side bar on Project Manager window&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0002_project_manager/en/img02.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Click &amp;ldquo;Browse&amp;rdquo; to choose the path where you want to save the new project files.&lt;br&gt;
+&lt;img alt=&#34;Click browse button&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0002_project_manager/en/img02.1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Click on &amp;ldquo;Create Folder&amp;rdquo; in the upper right corner of the window that opens.&lt;br&gt;
+&lt;img alt=&#34;Top right corner on new project pannel in Project Manager&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0002_project_manager/en/img03.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Downloading Godot</title>
@@ -815,7 +893,16 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
 &lt;p&gt;For example, &amp;ldquo;displaying characters on the screen,&amp;rdquo; &amp;ldquo;sound effects sound when buttons are pressed and the screen changes,&amp;rdquo; &amp;ldquo;shining light on 3D objects and drawing shadows,&amp;rdquo; and &amp;ldquo;causing damage when a beam of light hits an enemy,&amp;rdquo; etc., are all common game development tasks that would be difficult if created from scratch. The game engine takes care of these processes for us.&lt;/p&gt;
 &lt;p&gt;In this article, I will explain the first step to start using Godot, which is to download it (very easy).&lt;/p&gt;
 &lt;p&gt;Godot is multi-platform. The files are available for almost all computers with major operating systems (Windows, macOS, and Linux) installed.&lt;/p&gt;
-&lt;p&gt;Let&amp;rsquo;s get started with the download process.&lt;/p&gt;</description>
+&lt;p&gt;Let&amp;rsquo;s get started with the download process.&lt;/p&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

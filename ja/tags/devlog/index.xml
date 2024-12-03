@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>ja</language>
     <lastBuildDate>Wed, 10 Jan 2024 03:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/tags/devlog/index.xml" rel="self" type="application/rss+xml" />
@@ -51,7 +51,15 @@
       <pubDate>Sat, 30 Dec 2023 23:00:00 +0900</pubDate>
       <guid>https://www.peanuts-code.com/ja/posts/post0005_slashing_samurai_devlog_3/</guid>
       <description>&lt;p&gt;この記事は 2023/12/15 に App Store でリリースされた iOS 対応モバイルゲーム「もの切り侍」の（事後の）開発ログのうちGodot Engine で作っていく「ロジック」に関する記録である。とはいえ、あまり具体的なコードなどを載せると長くなってしまうので、そのあたりは控えめにしようと思う。&lt;/p&gt;
-&lt;p&gt;「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。&lt;/p&gt;</description>
+&lt;p&gt;「もの切り侍」は下の App Store のバナーから、無料でダウンロードできるので、興味があればぜひ遊んでみてほしい。&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;https://apps.apple.com/jp/app/slashing-samurai/id6473121142&#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/banners/app_store/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg&#34; width=&#34;200px&#34;/&gt; &lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;br/&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;必要な画面の洗い出し&#34;&gt;必要な画面の洗い出し&lt;/h2&gt;
+&lt;p&gt;私は割と見た目から入るタイプだ。ゲーム開発も例に漏れず、Godot で「もの切り侍」を作り始めるにあたり、まずは必要な画面の洗い出しからスタートした。その流れで画面遷移も考えた。最終的に変更点は多々あったが、ベースは当初考えたものからさほどブレていないと思う。&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 開発ログ：もの切り侍【企画編】</title>
@@ -67,7 +75,8 @@
 &lt;br/&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;ゲームのおおまかな仕様を決める&#34;&gt;ゲームのおおまかな仕様を決める&lt;/h2&gt;
-&lt;p&gt;まずは、これから開発するゲームの仕様をおおまかに決めるところからスタートした。&lt;/p&gt;</description>
+&lt;p&gt;まずは、これから開発するゲームの仕様をおおまかに決めるところからスタートした。&lt;/p&gt;
+&lt;p&gt;特定のプラットフォームで全世界に向けて配信することはあらかじめ心に決めていた。世界へ配信するとなると、中途半端な完成度では承認してもらえないだろう。承認してもらうには、一定水準以上のクオリティが求められるはずだ。それを一人でやり遂げなければならない。となると、ゲームのボリュームは小さくおさえなければならない。ボリュームの小さなゲームといえば、カジュアルゲームか。カジュアルゲームにとって大事な要素は、なんといってもあらゆる手軽さだろう。それを最大限発揮できるのは、おそらくモバイルゲームのはずだ。誰もが常に持ち歩くほど小さく、画面自体が入力装置になっているデバイスにゲームを乗せられるのだから、もはや物理的な手軽さで他にかなうプラットフォームはないだろう。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

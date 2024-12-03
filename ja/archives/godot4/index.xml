@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>ja</language>
     <lastBuildDate>Fri, 06 Sep 2024 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/archives/godot4/index.xml" rel="self" type="application/rss+xml" />
@@ -20,7 +20,8 @@
       <guid>https://www.peanuts-code.com/ja/tutorials/gd0010_2d_grid_based_movement/</guid>
       <description>&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
 &lt;p&gt;このチュートリアルでは Godot で 2D ゲームにおける「グリッドベース移動」を実装してみます。できるだけシンプルに。&lt;/p&gt;
-&lt;p&gt;そもそもグリッドベース移動って何なん？という方もいらっしゃるかと。グリッドベース移動とは、グリッド（格子状の線）で等間隔に区分されたゲームの画面上をキャラクターなどのオブジェクトが 1 グリッド（1 マス）ずつ移動する動きのことです。&lt;/p&gt;</description>
+&lt;p&gt;そもそもグリッドベース移動って何なん？という方もいらっしゃるかと。グリッドベース移動とは、グリッド（格子状の線）で等間隔に区分されたゲームの画面上をキャラクターなどのオブジェクトが 1 グリッド（1 マス）ずつ移動する動きのことです。&lt;/p&gt;
+&lt;p&gt;少し昔のゲームを例にあげて恐縮ですが、「ファイヤーエムブレムシリーズ」「タクティクスオウガ」など、シミュレーションゲームでよく見かけます。あとは「ファイナルファンタジー」や「ドラゴンクエスト」シリーズなどの RPG も 2D グラフィック時代は、マップ上のキャラクター移動を観察すると、グリッドベース移動を行っています。テトリスなんかのパズルゲームでもピースやブロックの移動がグリッドベースになっていることが結構あります。&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 TileMapLayerでタイルマップを作る</title>
@@ -34,7 +35,22 @@
 &lt;/strong&gt;&lt;br&gt;
 Godot のバージョン: &lt;strong&gt;4.3&lt;/strong&gt;&lt;br&gt;
 コンピュータのモデル: &lt;strong&gt;MacBook Air M1, 2020&lt;/strong&gt;&lt;br&gt;
-OS: &lt;strong&gt;macOS 14.6.1&lt;/strong&gt;&lt;/p&gt;</description>
+OS: &lt;strong&gt;macOS 14.6.1&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;h2 id=&#34;画面の大きさを設定する&#34;&gt;画面の大きさを設定する&lt;/h2&gt;
+&lt;p&gt;今回は 16 x 16 px のタイル画像を使うので、Viewport は小さめにしてタイルがちょうど収まるサイズにしますね。プロジェクトを新規作成したら、プロジェクト設定 &amp;gt; 一般タブ &amp;gt; Window で以下のように設定しました。&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Xcode から App Store Connect にゲームを配布する</title>

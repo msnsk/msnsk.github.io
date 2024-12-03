@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>ja</language>
     <lastBuildDate>Fri, 31 Dec 2021 02:09:21 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/ja/archives/2021/index.xml" rel="self" type="application/rss+xml" />
@@ -155,7 +155,13 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;スタート画面を作る&#34;&gt;スタート画面を作る&lt;/h1&gt;
+&lt;p&gt;ゲームを開始した時、ゲームタイトルが表示され、ボタンを押すなり何らかの操作によってプレイ画面に遷移するのが一般的だし、プレイヤーにとってもそのような流れが馴染み深く、わかりやすいはずだ。では実際にブロック崩しでもスタート画面を作ってプレイ画面へ遷移するようにアップデートしていこう。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 5：細かい更新をしてゲーム性を高めよう！</title>
@@ -194,7 +200,13 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;ブロックのシーンを作る&#34;&gt;ブロックのシーンを作る&lt;/h1&gt;
+&lt;p&gt;ブロックを画面に複数配置していくことを考えると、毎回メインシーンにブロック用の子ノードを追加するのは効率的ではないし、ブロックのノードに仕様変更の必要が生じた場合、一つ一つのブロックを修正するのは大変だ。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 3：壁を作ってボールを跳ね返らせよう！</title>
@@ -218,7 +230,14 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;壁を作る&#34;&gt;壁を作る&lt;/h1&gt;
+&lt;p&gt;壁をゲーム画面のギリギリ外側に作っていく。シーンドックで「Game」ノードを選択して、壁となる子ノードを追加していこう。&lt;br&gt;
+&lt;img alt=&#34;Gameノードを選択&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0004_breakout/breakout_3/img_1.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Godot で作るブロック崩し Part 2：ボールを作って発射しよう！</title>

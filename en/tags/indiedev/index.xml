@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>en</language>
     <lastBuildDate>Wed, 10 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/indiedev/index.xml" rel="self" type="application/rss+xml" />
@@ -39,7 +39,13 @@
          alt=&#34;Lovely Solitaire shot1&#34; width=&#34;40%&#34;/&gt; 
 &lt;/figure&gt;
 
-&lt;p&gt;Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely! So, be sure to turn on the sound while playing!&lt;/p&gt;</description>
+&lt;p&gt;Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely! So, be sure to turn on the sound while playing!&lt;/p&gt;
+&lt;figure class=&#34;align-center &#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/portfolio/lovely_solitaire/en/ss/ss_en_2.png#center&#34;
+         alt=&#34;Lovely Solitaire shot2&#34; width=&#34;40%&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;Also, the ability to automatically move cards with taps (isn&amp;rsquo;t that normal?), the support for Apple&amp;rsquo;s Game Center (also normal?), well, if you find all these trivial things lovely, then you must be lovely too!&lt;/p&gt;</description>
     </item>
     <item>
       <title>🕹️ Mobile Game - Quick Hand Poker</title>
@@ -89,7 +95,8 @@ The simple rule is to aim for a high score within the time limit (initially 30 s
 &lt;hr&gt;
 &lt;h2 id=&#34;defining-the-rough-specifications-of-the-game&#34;&gt;Defining the Rough Specifications of the Game&lt;/h2&gt;
 &lt;p&gt;The development process began by roughly defining the specifications of the game to be developed.&lt;/p&gt;
-&lt;p&gt;It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval. Achieving this alone meant the game&amp;rsquo;s volume had to be kept small. For a game with a small volume, a casual game seemed appropriate. The essential element for casual games is user-friendliness. The most effective platform for maximizing user-friendliness is likely a mobile game. With devices that everyone carries, offering a small screen that serves as an input device, there seems to be no other platform that matches the physical convenience.&lt;/p&gt;</description>
+&lt;p&gt;It was pre-determined that the game would be distributed globally on a specific platform. If aiming for global distribution, it was clear that it would require a certain level of quality to gain approval. Achieving this alone meant the game&amp;rsquo;s volume had to be kept small. For a game with a small volume, a casual game seemed appropriate. The essential element for casual games is user-friendliness. The most effective platform for maximizing user-friendliness is likely a mobile game. With devices that everyone carries, offering a small screen that serves as an input device, there seems to be no other platform that matches the physical convenience.&lt;/p&gt;
+&lt;p&gt;I have always loved RPGs. Naturally, I aspire to create an RPG with an exciting story and exhilarating battle system. However, for now, let&amp;rsquo;s stay grounded. RPGs are arguably in opposition to the casual game genre. Honestly, I wasn&amp;rsquo;t very familiar with casual games. However, seeing is believing. I downloaded several casual games on my phone and found them surprisingly addictive. Recently, the genre of &amp;ldquo;Hyper Casual&amp;rdquo; has been established, and it seems that there are quite a few people who enjoy playing such games. Convinced that &amp;ldquo;Casual games are not bad,&amp;rdquo; I decided to start my first mobile game development with the genre set as a casual game.&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 Devlog: Slashing Samurai - Reflection</title>
@@ -131,7 +138,12 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;h2 id=&#34;overdoing&#34;&gt;Overdoing&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s begin by discussing the common pitfalls of the &amp;ldquo;overdoing it&amp;rdquo; category, which many novice developers, including myself, tend to fall into.&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 Devlog: Slashing Samurai - Logic</title>
@@ -148,8 +160,7 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
 &lt;hr&gt;
 &lt;h2 id=&#34;identifying-necessary-screens&#34;&gt;Identifying Necessary Screens&lt;/h2&gt;
 &lt;p&gt;I am the type to prioritize visuals. In game development, including the creation of &amp;ldquo;Slashing Samurai&amp;rdquo; in Godot, I started by identifying the necessary screens. I also considered the flow of screen transitions. Although there were many changes in the end, the base stayed relatively close to the initial plan.&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/posts/post0005/3_logic/01.webp&#34; alt=&#34;Note: Screen Transitions&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Note: Screen Transitions&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/posts/post0005/3_logic/01.webp&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Initially, the plan included the following screens:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Start Screen&lt;/li&gt;
@@ -204,7 +215,13 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;character-images&#34;&gt;Character Images&lt;/h2&gt;
+&lt;p&gt;Initially, I attempted to draw the player character, a samurai, by myself. I even tried drawing a bit. It was a 2D drawing. Using the Procreate app on the iPad, I could create animations simultaneously. I thought this could be useful and gave it a try.&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 Grow with game jams</title>
@@ -233,8 +250,8 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
  site sells games, assets, and hosts a number of game jams worldwide. Some are held monthly, some are held as an annual event, and there are a variety of small and large game jams, and there is always some sort of game jam going on throughout the year. &lt;a href=&#34;https://itch.io/jam/kenney-jam-2022&#34; target=&#34;_blank&#34;&gt;KENNEY Jam 2022&lt;/a&gt;
 , which I attended, was also held at &lt;a href=&#34;https://itch.io/jams&#34; target=&#34;_blank&#34;&gt;itch.io&lt;/a&gt;
 .&lt;br&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/posts/post0004/img2.png&#34; alt=&#34;image2&#34;  /&gt;
-&lt;/p&gt;</description>
+&lt;img alt=&#34;image2&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/posts/post0004/img2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The participants in the game jam are mainly individual developers and small teams. Skill levels range from beginners to veterans. Although veterans are considered to have an advantage, many game jams have short submission periods, and in such cases, it is almost impossible to create a large-scale game, so it is difficult to make an overwhelming difference. I have the impression that there are a relatively large number of people, even beginners, who take up the challenge as one goal.&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 How to avoid frustration of game development</title>
@@ -257,7 +274,8 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
 &lt;br/&gt;
 &lt;h2 id=&#34;reasons-for-frustration&#34;&gt;Reasons for frustration&lt;/h2&gt;
 &lt;p&gt;First, game development is hard work. It is sometimes referred to as a comprehensive art form. In other words, a game is a work of art that combines music, images, characters, scenarios, systems, level design, and everything else into one. There is no way it is easy. It is so difficult that it is easy to fall behind in the process.&lt;/p&gt;
-&lt;p&gt;However, there is another problem that is even bigger, especially for adults who are making games as independent developers. That is the fact that you can&amp;rsquo;t make money by developing games. If there is no money to be made, they quit this hard work. Game development is hard work, but it pays off when the game sells.&lt;/p&gt;</description>
+&lt;p&gt;However, there is another problem that is even bigger, especially for adults who are making games as independent developers. That is the fact that you can&amp;rsquo;t make money by developing games. If there is no money to be made, they quit this hard work. Game development is hard work, but it pays off when the game sells.&lt;/p&gt;
+&lt;p&gt;The word &amp;ldquo;no money&amp;rdquo; may be a bit of a generalization, because there are always people who are making money. There are only a handful of people who make money, and the rest are mostly people who do not make money.&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 Game development starting with something simple</title>

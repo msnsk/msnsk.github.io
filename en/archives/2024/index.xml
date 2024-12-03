@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>en</language>
     <lastBuildDate>Fri, 06 Sep 2024 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/archives/2024/index.xml" rel="self" type="application/rss+xml" />
@@ -39,7 +39,13 @@
          alt=&#34;Lovely Solitaire shot1&#34; width=&#34;40%&#34;/&gt; 
 &lt;/figure&gt;
 
-&lt;p&gt;Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely! So, be sure to turn on the sound while playing!&lt;/p&gt;</description>
+&lt;p&gt;Plus, the music is incredibly cool, the sound effects when moving cards are satisfying, making it lovely! So, be sure to turn on the sound while playing!&lt;/p&gt;
+&lt;figure class=&#34;align-center &#34;&gt;
+    &lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/portfolio/lovely_solitaire/en/ss/ss_en_2.png#center&#34;
+         alt=&#34;Lovely Solitaire shot2&#34; width=&#34;40%&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;Also, the ability to automatically move cards with taps (isn&amp;rsquo;t that normal?), the support for Apple&amp;rsquo;s Game Center (also normal?), well, if you find all these trivial things lovely, then you must be lovely too!&lt;/p&gt;</description>
     </item>
     <item>
       <title>🕹️ Mobile Game - Quick Hand Poker</title>
@@ -95,7 +101,21 @@ This tutorial was created under the following environment:&lt;/em&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;By the way, the project I made can be found in this &lt;a href=&#34;https://github.com/msnsk/GridBasedMovement.git&#34; target=&#34;_blank&#34;&gt;GitHub repository&lt;/a&gt;
-.&lt;/p&gt;</description>
+.&lt;/p&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;h2 id=&#34;setting-up-the-window&#34;&gt;Setting Up the Window&lt;/h2&gt;
+&lt;p&gt;After creating a new project in Godot, the first step is to adjust the project settings. Open the &lt;strong&gt;Project&lt;/strong&gt; menu and select &lt;strong&gt;Project Settings&lt;/strong&gt;. From the &lt;strong&gt;General&lt;/strong&gt; tab, navigate to &lt;strong&gt;Display&lt;/strong&gt; &amp;gt; &lt;strong&gt;Window&lt;/strong&gt; in the sidebar, and set the window size and stretch options as follows:&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Making a Tilemap with TileMapLayer</title>
@@ -222,7 +242,14 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;br/&gt;
+&lt;h2 id=&#34;clone-the-plugin-repository&#34;&gt;Clone the Plugin Repository&lt;/h2&gt;
+&lt;p&gt;First, head over to &lt;a href=&#34;https://github.com/godotengine/godot-ios-plugins/tree/master?tab=readme-ov-file&#34; target=&#34;_blank&#34;&gt;this Github page&lt;/a&gt;
+ and follow the steps there. However, they’re not very detailed, so I&amp;rsquo;ll explain the nitty-gritty parts here.&lt;/p&gt;</description>
     </item>
     <item>
       <title>📔 Devlog: Slashing Samurai - Reflection</title>
@@ -264,7 +291,12 @@ style=&#34;display:block; text-align:center;&#34;
 data-ad-layout=&#34;in-article&#34;
 data-ad-format=&#34;fluid&#34;
 data-ad-client=&#34;ca-pub-4952908839423901&#34;
-data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;</description>
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;h2 id=&#34;overdoing&#34;&gt;Overdoing&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s begin by discussing the common pitfalls of the &amp;ldquo;overdoing it&amp;rdquo; category, which many novice developers, including myself, tend to fall into.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

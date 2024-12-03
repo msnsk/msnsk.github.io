@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>en</language>
     <lastBuildDate>Fri, 15 Jul 2022 18:40:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/match3/index.xml" rel="self" type="application/rss+xml" />
@@ -85,7 +85,10 @@ data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
 &lt;/script&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;creating-a-new-project&#34;&gt;Creating a new project&lt;/h2&gt;
-&lt;p&gt;First, we would like you to start Godot Engine and create a new project. Let&amp;rsquo;s name the project &amp;ldquo;Connect Colors Start.&lt;/p&gt;</description>
+&lt;p&gt;First, we would like you to start Godot Engine and create a new project. Let&amp;rsquo;s name the project &amp;ldquo;Connect Colors Start.&lt;/p&gt;
+&lt;br/&gt;
+&lt;h3 id=&#34;editing-project-settings&#34;&gt;Editing project settings&lt;/h3&gt;
+&lt;p&gt;Once the editor appears, let&amp;rsquo;s editing the settings for the entire project.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -9,7 +9,7 @@
       <url>https://www.peanuts-code.com/images/logomark.png</url>
       <link>https://www.peanuts-code.com/images/logomark.png</link>
     </image>
-    <generator>Hugo -- 0.134.1</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>en</language>
     <lastBuildDate>Fri, 06 Sep 2024 00:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.peanuts-code.com/en/tags/topdown/index.xml" rel="self" type="application/rss+xml" />
@@ -33,7 +33,21 @@ This tutorial was created under the following environment:&lt;/em&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;By the way, the project I made can be found in this &lt;a href=&#34;https://github.com/msnsk/GridBasedMovement.git&#34; target=&#34;_blank&#34;&gt;GitHub repository&lt;/a&gt;
-.&lt;/p&gt;</description>
+.&lt;/p&gt;
+&lt;br/&gt;
+&lt;script async src=&#34;https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4952908839423901&#34;
+     crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;ins class=&#34;adsbygoogle&#34;
+style=&#34;display:block; text-align:center;&#34;
+data-ad-layout=&#34;in-article&#34;
+data-ad-format=&#34;fluid&#34;
+data-ad-client=&#34;ca-pub-4952908839423901&#34;
+data-ad-slot=&#34;9419515863&#34;&gt;&lt;/ins&gt;&lt;/p&gt;
+&lt;script&gt;
+     (adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+&lt;h2 id=&#34;setting-up-the-window&#34;&gt;Setting Up the Window&lt;/h2&gt;
+&lt;p&gt;After creating a new project in Godot, the first step is to adjust the project settings. Open the &lt;strong&gt;Project&lt;/strong&gt; menu and select &lt;strong&gt;Project Settings&lt;/strong&gt;. From the &lt;strong&gt;General&lt;/strong&gt; tab, navigate to &lt;strong&gt;Display&lt;/strong&gt; &amp;gt; &lt;strong&gt;Window&lt;/strong&gt; in the sidebar, and set the window size and stretch options as follows:&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Homing Missiles in Godot3</title>
@@ -54,7 +68,10 @@ This tutorial was created in the following environment&lt;/em&gt;&lt;br&gt;
 &lt;/strong&gt;. After downloading the .zip file, import the &amp;ldquo;project.godot&amp;rdquo; file in the &amp;ldquo;Start&amp;rdquo; folder into the Godot Engine, and you can start the project with only the preliminary work completed. If you would like to see the completed project in a hurry, import the &amp;ldquo;project.godot&amp;rdquo; file from the &amp;ldquo;End&amp;rdquo; folder.&lt;/p&gt;
 &lt;p&gt;All the assets imported into the project were downloaded from &lt;strong&gt;&lt;a href=&#34;https://www.kenney.nl/assets&#34; target=&#34;_blank&#34;&gt;KENNEY&lt;/a&gt;
 &lt;/strong&gt; website. I used an asset pack called &lt;strong&gt;&lt;a href=&#34;https://www.kenney.nl/assets/tower-defense-top-down&#34; target=&#34;_blank&#34;&gt;Tower Defense (top-down)&lt;/a&gt;
-&lt;/strong&gt;. I just want to thank them for making such a great asset pack available to the public.&lt;/p&gt;</description>
+&lt;/strong&gt;. I just want to thank them for making such a great asset pack available to the public.&lt;/p&gt;
+&lt;br/&gt;
+&lt;h2 id=&#34;preliminary-preparation&#34;&gt;Preliminary Preparation&lt;/h2&gt;
+&lt;p&gt;The following game specifications, except for the homing missile part, which is listed as (planned), have already been prepared as a preliminary.&lt;/p&gt;</description>
     </item>
     <item>
       <title>🤖 Bullet Hell in Godot3</title>
@@ -98,19 +115,16 @@ This tutorial was created in the following environment&lt;/em&gt;&lt;br&gt;
 &lt;p&gt;Since this tutorial will focus on gun creation, the following has been prepared in advance.&lt;/p&gt;
 &lt;h4 id=&#34;1-game-world&#34;&gt;1. Game world&lt;/h4&gt;
 &lt;p&gt;A scene called &amp;ldquo;World.tscn&amp;rdquo; was prepared, and the appearance was simply created by adding a &amp;ldquo;TileMap&amp;rdquo; node. In addition to the &amp;ldquo;TileMap&amp;rdquo; node, a &amp;ldquo;Player&amp;rdquo; node and several &amp;ldquo;Obstacle&amp;rdquo; nodes were added. For these, we created individual scenes and added the instances.&lt;br&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img0.1.png&#34; alt=&#34;World scene tree&#34;  /&gt;
-&lt;/p&gt;
+&lt;img alt=&#34;World scene tree&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img0.1.png&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;2-player-character&#34;&gt;2. Player Character&lt;/h4&gt;
 &lt;p&gt;Created as &amp;ldquo;Player.tscn&amp;rdquo; scene. The root node is the &amp;ldquo;KinematicBody2D&amp;rdquo; class, and the &amp;ldquo;Sprite&amp;rdquo; and the &amp;ldquo;CollisionShape2D&amp;rdquo; were added as child nodes. The texture of the &amp;ldquo;Sprite&amp;rdquo; node is a hitman with a gun. A node named &amp;ldquo;Muzzle&amp;rdquo; of the &amp;ldquo;Position2D&amp;rdquo; class was placed at the tip of the image of the gun held by the hitman. This will be used later to specify the position where the bullet instance is generated when the gun is fired.&lt;br&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img0.2.png&#34; alt=&#34;Player scene tree&#34;  /&gt;
-&lt;br&gt;
+&lt;img alt=&#34;Player scene tree&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img0.2.png&#34;&gt;&lt;br&gt;
 The following actions have already been added to the input map. Used to move the player character, shoot, and switch guns.&lt;br&gt;
 - &lt;strong&gt;up&lt;/strong&gt;: W key - used to move the player character forward&lt;br&gt;
 - &lt;strong&gt;down&lt;/strong&gt;: S key - used to move the player character backward.&lt;br&gt;
 - &lt;strong&gt;fire&lt;/strong&gt;: Left mouse button - fires the gun.&lt;br&gt;
 - &lt;strong&gt;switch&lt;/strong&gt;: Right mouse button: Switches between gun types.&lt;br&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img1.png&#34; alt=&#34;inputmap&#34;  /&gt;
-&lt;br&gt;
+&lt;img alt=&#34;inputmap&#34; loading=&#34;lazy&#34; src=&#34;https://www.peanuts-code.com/images/tutorials/gd0006_GunsOfTopdownShooter/img1.png&#34;&gt;&lt;br&gt;
 Note that, for the sake of brevity in the tutorial, the player character&amp;rsquo;s sprite remains the same, even if the gun type is changed. Let&amp;rsquo;s say it looks like a handgun, but it can be a machine gun, a laser gun, or anything else.&lt;/p&gt;</description>
     </item>
   </channel>
